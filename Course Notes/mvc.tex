@@ -298,7 +298,6 @@
 \bibliography{mvc}
 
 \begin{document}
-
 \pagestyle{fancy}
 \lhead{{\tiny \color{gray} \tt \gitAuthorIsoDate}}
 \chead{\tiny \ti{Multivariable Calculus, GSMST 2018-2019}}
@@ -308,7 +307,7 @@
 
 \begin{center}
 \tb{Multivariable Calculus} \\
-Dr. Anderson Trimm \\
+Anderson Trimm \\
 Gwinnett School of Mathematics, Science and Technology \\
 \tb{Preliminary} and \tb{incomplete} draft
 \end{center}
@@ -393,7 +392,7 @@ In this case, the analog of finding the equation of the tangent line to a curve 
 	\includegraphics[scale=0.5]{figures_mvc/tangent_plane_example}
 \end{center}
 
-One quickly finds that optimization problems are far more rich in three dimensions. First of all, one can now compute the instantaneous rate of change of $z=f(x,y)$ in an infinite number of directions. The the slope of a tangent line to a surface is called a  \ti{partial derivative} of the function or, more generally, a \ti{directional derivative}.
+One quickly finds that optimization problems are far more rich in three dimensions. First of all, one can now compute the instantaneous rate of change of $z=f(x,y)$ in an infinite number of directions. The  slope of a tangent line to a surface is called a  \ti{partial derivative} of the function or, more generally, a \ti{directional derivative}.
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/partial_derivative_2}
 \end{center}
@@ -482,8 +481,120 @@ We will denote a vector by boldface type, as in ${\bf v}$, and a scalar by lower
 	\includegraphics[scale=0.5]{figures_mvc/vAB}
 \end{center}
 
+\subsection{Vectors in coordinate systems}
+As in analytic geometry, the use of coordinate systems give us powerful tools with which to perform concrete computations with vectors. Additionally, working with coordinates will allow us to consider geometric entities such as lines and planes in vector settings. 
+
+\subsubsection{Coordinate correspondence}
+In this section we describe the coordinate correspondence between three-dimensional Euclidean space, $\mathbb{E}^3$ (the three-dimensional space in which the axioms of Euclidean geometry hold), and three-dimensional Cartesian space $\mathbb{R}^3\equiv \{(x_1,x_2,x_3):x_i \in \mathbb{R} \text{ for } i=1,2,3\}$.
+
+We begin with a line. A coordinate correspondence between a line $L$ and the real number system $\mathbb{R}$ is determined by choosing arbitrarily on $L$ a zero point $O$ and a unit point $Q$ distinct from $O$. Then to each point $X$ on $L$ is assigned the number $x$ such that $|x|$ is the distance from $O$ to $X$, measured in terms of the segment $OQ$ as the unit, and $x$ is positive or negative according to whether $X$ and $Q$ are on the same side of $O$ or on opposite sides. The mapping $X \mapsto x$ is the coordinate correspondence between $L$ and $\mathbb{R}$. 
+
+We now set up a coordinate correspondence between $\mathbb{E}^3$ and $\mathbb{R}^3$. We first choose arbitrarily a zero point $O$ and three unit points $Q_1, Q_2,$ and $Q_3$ in such a way that the four points do not lie in a plane. Each of the unit points $Q_i$ determines a line $L_i$ through $O$ and a coordinate correspondence on this line, as defined above. The three lines $L_1, L_2$, and $L_3$ are called the \ti{coordinate axes}. Consider now any point $X$ in $\mathbb{E}^3$. The plane through $X$ parallel to $L_2$ and $L_3$ intersects $L_1$ at a point $X_1$, and therefore determines a number $x_1$, the coordinate of $X_1$ on $L_1$. Similarly, $X$ determines points $X_2$ on $L_2$ and $X_3$ on $L_3$ which have coordinates $x_2$ and $x_3$, respectively. Altogether, $X$ determines a triple
+\begin{align*}
+	{\bf x}=(x_1,x_2,x_3)
+\end{align*} 
+in $\mathbb{R}^3$, and we have thus defined a mapping $\theta:X \mapsto {\bf x}$ from $\mathbb{E}^3$ to $\mathbb{R}^3$. 
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/e3_r3}
+\end{center}
+We call $\theta$ the \ti{coordinate correspondence} defined by the axis system. Note that the unit point $Q_1$ on $L_1$ has the coordinate triple $(1,0,0)$, and similarly
+\begin{align*}
+	\theta(Q_2)&=(0,1,0), \\
+	\theta(Q_3)&=(0,0,1).
+\end{align*}
+
+It is a fact that $\theta$ is a bijection from $\mathbb{E}^3$ to $\mathbb{R}^3$. The proof goes beyond the usual treatment of high school geometry, so we will simply accept this statement without proof.
+
+\subsubsection{Cartesian coordinates}
+\begin{defn}[Cartesian coordinates]
+	The axis system in $\mathbb{E}^3$ is \ti{Cartesian} if the coordinate axes are mutually perpendicular and a common unit of distance (i.e., $|OQ_1|=|OQ_2|=|OQ_3|$) is used. The corresponding coordinates are called \ti{Cartesian coordinates}.
+\end{defn}
+A Cartesian coordinate system is shown below. \footnote{Cartesian coordinates are also often called \ti{rectangular coordinates} because the axes that define them meet at right angles.}
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/cartesian_coordinate_system}
+\end{center}
+The coordinate axes are labeled $x,y,$ and $z$, and are arranged such that if you take your right hand and curl your fingers from the positive $x$-axis toward the positive $y$-axis, your thumb points along the positive $z$-axis. Such a coordinate system is called \ti{right-handed}. \footnote{As you might have guessed, there are also left-handed coordinate systems. Choosing our coordinate system to be left- or right-handed is called choosing an \ti{orientation} for our coordinate system. We will discuss orientations more later. For now, just note that everything we do in the following could equivalently be formulated in terms of left-handed coordinate systems, so choosing a right-handed coordinate system for $\mathbb{E}^3$ is simply the standard convention.}
+
+As discussed in the previous section, the coordinates of a point $P$ are the numbers at which the planes through $P$ perpendicular to the coordinate axes intersect these axes. These are labeled $\theta(P)=(x,y,z)$. 
+
+Points on the $x$-axis have $y$- and $z$-coordinates equal to zero. That is, they have coordinates of the form $(x,0,0)$. Similarly points on the $y$- and $z$-axes have coordinates of the from $(0,y,0)$ and $(0,0,z)$, respectively.
+
+The points in a plane perpendicular to the $x$-axis all have the same $x$-coordinate, $x_0$, this being the number at which the plane intersects that $x$-axis. The plane is then the set 
+\begin{equation}
+	P=\{(x,y,z) \in \mathbb{R}^3 : x=x_0\} 
+\end{equation}
+That is, the plane consists of all points having coordinates $(x_0,y,z)$, where $y$ and $z$ are any real numbers. The constraint $x=x_0$ is the equation of the plane perpendicular to the $x$-axis and intersecting it at $x_0$. Similar formulas hold for planes perpendicular to the $y$- and $z$-axes.
+
+\begin{example}
+The plane $x=2$ is the plane perpendicular to the $x$-axis at $x=2$. The plane $y=3$ is the plane perpendicular to the $y$-axis at $y=3$. The plane $z=5$ is the plane perpendicular to the $z$-axis at $z=5$. These planes are shown below, together with their intersection point $(2,3,5)$.
+\end{example}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/plane_235}
+\end{center}
+
+The planes $x=2$ and $y=3$ in the figure above intersect along a line parallel to the $z$-axis. This line is described by a pair of equations $L=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } y=3\}$.
+
+\begin{exercise}
+	Describe the other two lines of intersection in the figure above.
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+The line running parallel to the $x$-axis is given by $$L_1=\{(x,y,z) \in \mathbb{R}^3: y=3 \text{ and } z=5\},$$ while the line running parallel to the $y$-axis is given by $$L_2=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } z=5\}.$$}
+
+The three planes determined by the coordinate axes are the $xy$-plane, whose equation is $z=0$; the $yz$-plane, whose equation is $x=0$; and the $xz$-plane, whose equation is $y=0$. They meet at the origin, $(0,0,0)$.
+	
+The three coordinate planes $x=0, y=0,$ and $z=0$ divide space into eight cells called \ti{octants}. The octant in which the coordinates of all points are nonnegative is called the \ti{first octant}; there is no conventional numbering for the other seven octants.
+
+\begin{exercise}
+Write the coordinate equations and inequalities which define each of the following sets of points in space.
+\begin{enumerate}[(a)]
+	\item The half-space consisting of the points on and above the $xy$-plane.
+	\item  This plane is parallel to the $yz$-plane and lying 3 units behind it.
+	\item The second quadrant of the $xy$-plane.
+	\item The first octant.
+	\item The slab between the planes $y=-1$ and $y=1$, including these planes.
+	\item The line in which the planes $y=-2$ and $z=2$ intersect.
+\end{enumerate}	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:} 
+\begin{enumerate}[(a)]
+	\item $z \geq 0$,
+	\item $x=-3$,
+	\item $z=0, x \leq 0, z \geq 0$,
+	\item $x \geq 0, y \geq 0, z \geq 0$,
+	\item $-1 \leq y \leq 1$,
+	\item $y=-2,z=2$.
+\end{enumerate}}
+
+\begin{exercise}
+	What points $P(x,y,z)$ satisfy the equations
+	\begin{align*}
+		x^2+y^2=4 \text{ and }z=3?
+	\end{align*}
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:} These equations describe a circle of radius 2 lying in a plane parallel to the $xy$-plane and lying 3 units above it.}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/circle_z=3}
+\end{center}
+
+\subsubsection{Components of a vector}
+Let us choose a Cartesian coordinate system for three-dimensional space. If a vector is positioned with its initial point at the origin, then the vector is completely determined by the coordinates of its terminal point.
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/components}
+\end{center}
+
+\begin{defn}[Components of a vector]
+	The coordinates of the terminal point of a vector ${\bf v}$ positioned with its initial point at the origin are called the \ti{components} of ${\bf v}$. We denote the components of a vector ${\bf v}$ by writing ${\bf v}=(v_1,v_2,v_3)$.
+\end{defn}
+
 \subsection{Vector arithmetic}
-We have now defined a set of objects called vectors, which we visualize as arrows. To build a mathematical structure on this set, we need to define various rules and operations for working with vectors. As mathematicians, we are free to define any consistent set of rules and operations we like, and there are infinite possibilities. \footnote{After all, we are GSMST.} Of course, our motivation for the introduction of vectors was to describe physical phenomena, and we will continue to take our motivations from physics in order to define a mathematical structure on the set of vectors.
+We have now defined a set of objects called vectors, which we visualize as arrows. To build a mathematical structure on this set, we need to define various rules and operations for working with vectors. As mathematicians, we are free to define any consistent set of rules and operations we like, and there are many possibilities.  Of course, our motivation for the introduction of vectors was to describe physical phenomena, and we will continue to take our motivations from physics in order to define a mathematical structure on the set of vectors.
 
 \subsubsection{Equality of vectors}
 The most basic rule is one which will allow us to determine when two vectors are equal. As we have taken a vector to have only two defining properties, namely its magnitude and direction, we will agree that
@@ -1112,7 +1223,7 @@ The physical motivation for the cross product is that of \ti{torque}, which is a
 	\item How far out on the handle we apply the force. We denote the vector from the bolt to the point on the handle where the force is applied by ${\bf r}$. This vector is called the \ti{lever arm}. So, the magnitude of the torque also depends on the magnitude of the lever arm.
 	\item Finally, the magnitude of the torque depends on the angle with respect to the axis of the handle at which the force is applied. \footnote{The angle we refer to here will be taken to be the \ti{smaller} of the two angles between the force vector and the lever arm.} The torque is zero when this angle is zero (since a force directed \ti{along} the axis of the wrench causes no rotation) and the torque is maximized then the force is perpendicular to the axis of the wrench.
 \end{enumerate}
-Denoting the torque by $\vec{\tau}$, we find experimentally that 
+Denoting the torque by $\vec{\tau}$, one observes that 
 \begin{equation}\label{eq:magnitude_of_torque}
 	||\vec{\tau}||=||{\bf r}||\ ||{\bf F}||\ \sin \theta
 \end{equation}
@@ -1120,7 +1231,7 @@ where, again, $\theta$ is the \ti{smaller} of the two angles between ${\bf r}$ a
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/torque_wrench}
 \end{center}
-This gives the magnitude of $\vec{\tau}$. Notice that if we take the fingers of our right hand and point then along the direction of ${\bf r}$ and then curl them toward ${\bf F}$ through the angle $\theta$ between ${\bf r}$ and ${\bf F}$, then our thumb points in the direction of $\vec{\tau}$. Letting ${\bf n}$ be a unit vector in the direction of $\vec{\tau}$ we have therefore found
+This gives the magnitude of $\vec{\tau}$. Notice that if we take the fingers of our \ti{right} hand and point then along the direction of ${\bf r}$ and then curl them toward ${\bf F}$ through the angle $\theta$ between ${\bf r}$ and ${\bf F}$ (arranged so that their initial points coincide), then our thumb points in the direction of $\vec{\tau}$. This is called the \ti{right-hand rule}. Letting ${\bf n}$ be a unit vector in the direction of $\vec{\tau}$ we have therefore found
 \begin{equation}
 	\vec{\tau}=||{\bf r}|| \ ||{\bf F}|| \ \sin \theta{\bf n}.
 \end{equation}
@@ -1145,16 +1256,21 @@ The \ti{cross product} of two nonzero vectors ${\bf a}$ and ${\bf b}$ is the vec
 \begin{equation}
 	{\bf a} \times {\bf b}=||{\bf a}|| \ ||{\bf b}|| \ \sin \theta{\bf n}
 \end{equation}
-where $\theta$ is the angle between ${\bf a}$ and ${\bf b}$ and ${\bf n}$ is a unit vector in the direction determined by the ``right hand rule", as described above. If either ${\bf a}$ or ${\bf b}$ is the zero vector, then we define ${\bf a} \times {\bf b}$ to be ${\bf 0}$.
+where $\theta$ is the angle between ${\bf a}$ and ${\bf b}$ and ${\bf n}$ is a unit vector in the direction determined by the right-hand rule (that is, upon directing the fingers of ones right hand in the direction of ${\bf a}$ and curling them toward ${\bf b}$ through $\theta$, then ones thumb points in the direction of ${\bf n}$ and therefore $\overrightarrow{\tau}$). 
+
+If either ${\bf a}$ or ${\bf b}$ is the zero vector, then we define ${\bf a} \times {\bf b}$ to be ${\bf 0}$.
 \end{defn}
 
 If ${\bf a}$ and ${\bf b}$ are both nonzero and if $\theta \neq 0$, then ${\bf a}$ and ${\bf b}$ define a plane, and ${\bf n}$ is perpendicular to this plane. The sense of ${\bf n}$ is the one determined by the right hand rule. 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/cross_product}
 \end{center}
-Thus the cross product ${\bf a} \times {\bf b}$ is perpendicular to \ti{both} ${\bf a}$ and ${\bf b}$.
+Thus, 
+\begin{center}
+	\ti{The cross product ${\bf a} \times {\bf b}$ is a vector perpendicular to both ${\bf a}$ and ${\bf b}$}.
+\end{center}
 
-Note that if $\theta=0$ or $\pi$ (that is, if ${\bf a}$ and ${\bf b}$ lie along the same line with either the same or opposite sense), then ${\bf a} \times {\bf b}=0$. Conversely, if ${\bf a}$ and ${\bf b}$ are both non-zero, then we see from the definition that ${\bf a} \times {\bf b}=0$ only if ${\bf a}$ and ${\bf b}$ are parallel. Hence, we have proved the following proposition.
+Note that if $\theta=0$ or $\pi$ (that is, if ${\bf a}$ and ${\bf b}$ are parallel, which means they don't determine a plane), then ${\bf a} \times {\bf b}=0$ . Conversely, if ${\bf a}$ and ${\bf b}$ are both non-zero, then we see from the definition that ${\bf a} \times {\bf b}=0$ only if ${\bf a}$ and ${\bf b}$ are parallel. Hence, we have proved the following proposition.
 
 \begin{prop}[Parallel vectors]
 	Two nonzero vectors ${\bf a}$ and ${\bf b}$ are parallel if and only if 
@@ -1162,6 +1278,11 @@ Note that if $\theta=0$ or $\pi$ (that is, if ${\bf a}$ and ${\bf b}$ lie along 
 		{\bf a} \times {\bf b}=0.
 	\end{align*}
 \end{prop}
+
+Note that, geometrically, the magnitude of the cross product $||{\bf a} \times {\bf b}||=||{\bf a}|| \ ||{\bf b}||\sin\theta$ is the area of the parallelogram with adjacent sides ${\bf a}$ and ${\bf b}$:
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/cross_product_area_of_parallelogram}
+\end{center}
 
 Let us now look at the properties of the cross product. Despite its usefulness in physics, it turns out to preserve almost none of the properties of ordinary numerical multiplication. In particular, the cross product is neither commutative nor associative:
 
@@ -1187,17 +1308,474 @@ However, vector and scalar distributive laws \ti{do} hold for the cross product:
 
 \begin{pf}
 \begin{enumerate}[(1)]\hspace{10cm}
-	\item Verify by applying the definition of the cross product to both sides of the equation.
-	\item \fixme{Add proof.}
+	\item We can verify this formula by applying the definition of the cross product to both sides of the equation:
+	\begin{align*}
+		||(r{\bf a}) \times (s{\bf b})||&=||(r{\bf a}) || \ ||(s{\bf b})||\sin \theta  \\&=|r| \ |s | \ ||{\bf a} || \ ||{\bf b} || \sin \theta \\
+		&=|rs| \ ||{\bf a} || \ ||{\bf b} || \sin \theta \\
+		&=||(rs)({\bf a}\times {\bf b})||
+	\end{align*}
+where we have used the fact that the angle between ${\bf a}$ and ${\bf b}$ is the same as the angle between $r{\bf a}$ and $s{\bf b}$.
+	\item To derive this formula, we construct ${\bf a} \times {\bf b}$ in a new way. Draw ${\bf a}$ and ${\bf b}$ from the common point $O$ and construct a plane perpendicular to ${\bf a}$ at $O$.
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/distributivity_of_the_cross_product_1}
+\end{center}
+We then project ${\bf b}$ orthogonally onto $M$, yielding a vector ${\bf b}'$ with length $||{\bf b}||\sin \theta$. Finally, we rotate ${\bf b}'$ $90^\circ$ about ${\bf a}$ in the positive sense to produce a vector ${\bf b}''$, and then multiply ${\bf b}''$ by the length of ${\bf a}$. The resulting vector $||{\bf a}||{\bf b}''$ is equal to ${\bf a} \times {\bf b}$ since it has the same direction as ${\bf a} \times {\bf b}$ by construction and 
+\begin{align*}
+	||{\bf a}|| \ ||{\bf b}''||&=||{\bf a}|| \ ||{\bf b}'|| \ \text{ (since ${\bf b}''$ and ${\bf b}'$ are related by a rotation)} \\
+	&=||{\bf a}|| \ ||{\bf b}||\sin\theta \ \text{ (since ${\bf b}'$ is the projection of ${\bf b}$ onto $M$)} \\
+	&=||{\bf a} \times {\bf b}||. 
+\end{align*}
+Now each of these three operations, namely,
+\begin{enumerate}
+\item projection onto $M$,
+\item rotation about ${\bf a}$ through $90^\circ$, 
+\item multiplication by the scalar $||{\bf a}||$,
+\end{enumerate}
+when applied to a triangle whose plane is not parallel to ${\bf a}$, will produce another triangle. \footnote{If the triangle is in a plane parallel to ${\bf a}$ then projection onto $M$ will give a line segment, not a triangle.} If we start with a triangle whose sides are ${\bf b}, {\bf c},$ and ${\bf b}+{\bf c}$ and apply these three steps, we successively obtain
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/distributivity_of_the_cross_product_2}
+\end{center}
+\begin{enumerate}
+\item a triangle whose sides are ${\bf b}', {\bf c}',$ and $({\bf b}+{\bf c})'$ satisfying the vector equation
+	\begin{align*}
+		{\bf b}'+{\bf c}'=({\bf b}+{\bf c})';
+	\end{align*}
+\item a triangle whose sides are ${\bf b}'', {\bf c}'',$ and $({\bf b}+{\bf c})''$ satisfying the vector equation
+	\begin{align*}
+		{\bf b}''+{\bf c}''=({\bf b}+{\bf c})'';
+	\end{align*}
+	and, finally,
+\item a triangle whose sides are $||{\bf a}||{\bf b}'',$ $||{\bf a}||{\bf c}''$, and $||{\bf a}({\bf b}+{\bf c})''$ satisfying the vector equation
+	\begin{equation}\label{eq:distributive_cross_product}
+		||{\bf a}||{\bf b}''+||{\bf a}||{\bf c}''=||{\bf a}||({\bf b}+{\bf c})''.
+	\end{equation}
+\end{enumerate}
+But we have shown above that $||{\bf a}||{\bf b}''={\bf a} \times {\bf b}$, $||{\bf a}||{\bf c}''={\bf a} \times {\bf c}$, and $||{\bf a}||({\bf b}+{\bf c})''={\bf a} \times ({\bf b}+{\bf c})$,
+and therefore Eq. \eqref{eq:distributive_cross_product} is equivalent to 
+\begin{align*}
+	{\bf a} \times {\bf b}+{\bf a} \times {\bf c}={\bf a} \times ({\bf b} + {\bf c}),
+\end{align*}
+which is the property we wanted to establish.
 \end{enumerate}	
 \end{pf}
 
+The cross product takes a useful form in  Cartesian coordinates. Let us first work out the various cross products of pairs of the unit vectors ${\bf e}_1, {\bf e}_2, {\bf e}_3$. Applying the definitions of the cross product and the ${\bf e}_i$s, we find 
+\begin{align*}
+	{\bf e}_i \times {\bf e}_j=\epsilon_{ijk}{\bf e}_k
+\end{align*}
+for $i,j,k \in \{1,2,3\}$, where
+\begin{align*}
+	\epsilon_{ijk}=\begin{cases}
+		1, \text{ if $(ijk)$ is an even permutation of $(123)$} \\
+		-1, \text{ if $(ijk)$ is an odd permutation of $(123)$} \\
+		0, \text{ otherwise}
+	\end{cases}
+\end{align*}
+Now let
+\begin{align*}
+	{\bf a}&=a_1{\bf e}_1+a_2{\bf e}_2+a_3{\bf e}_3 \\
+	{\bf b}&=b_1{\bf e}_1+b_2{\bf e}_2+b_3{\bf e}_3 \\
+\end{align*} 
+We compute ${\bf a} \times {\bf b}$ using the distributive property above and then use the cross products of the ${\bf e}_i$s worked out above to simplify the 9 terms, ending up with \footnote{Those who have previously studied determinants can easily verify that this formula may be written as  
+\begin{align*}
+	{\bf a} \times {\bf b}=\begin{vmatrix}
+		{\bf e}_1 & {\bf e}_2 & {\bf e}_3 \\
+		a_1 & a_2 & a_3 \\
+		b_1 & b_2 & b_3
+	\end{vmatrix},
+\end{align*} which is a useful mnemonic to remember the formula in Eq. \eqref{eq:a_cross_b}. We will study determinants in detail in a later unit.}
+\begin{equation}\label{eq:a_cross_b}
+	{\bf a} \times {\bf b}=(a_2b_3-a_3b_2){\bf e}_1-(a_1b_3-a_3b_1){\bf e}_2+(a_1b_2-a_2b_1){\bf e}_3.
+\end{equation}
+\fixme{Discuss even odd permutations of $(123)$ and how to remember the signs.}
 
+\begin{exercise}
+Compute ${\bf a} \times {\bf b}$ and ${\bf b} \times {\bf a}$ if ${\bf a}=(2,1,1)$ and ${\bf b}=(-4,3,1)$.	
+\end{exercise}
 
+{\color{red} \flushleft {\bf Solution:}
+\begin{align*}
+	{\bf a} \times {\bf b}&=\begin{vmatrix}
+		{\bf e}_1 & {\bf e}_2 & {\bf e}_3 \\
+		2 & 1 & 1 \\
+		-4 & 3 & 1
+	\end{vmatrix}
+	=(-2,-6,10). \\
+	{\bf b} \times {\bf a}&=-{\bf a} \times {\bf b}=(2,6,-10).
+\end{align*}
+}
 
+\begin{exercise}
+Find a vector perpendicular to the plane of $P(1,-1,0), Q(2,1,-1),$ and $R(-1,1,2)$.	
+\end{exercise}
 
+{\color{red} \flushleft {\bf Solution:}
+Any three lines lie in a plane. We can construct two vectors in this plane:
+\begin{align*}
+	\overrightarrow{PQ}=(2-1,1-(-1),-1-0)=(1,2-1), \\
+	\overrightarrow{PR}=(-1-1,1-(-1),2-0)=(-2,2,2). \\
+\end{align*}
+A vector perpendicular to this plane is then given by
+\begin{align*}
+	\overrightarrow{PQ} \times \overrightarrow{PR} =\begin{vmatrix}
+		{\bf e}_1 & {\bf e}_2 & {\bf e}_3 \\
+		1 & 2 & -1 \\ -2 & 2 & 2
+	\end{vmatrix} = (6,0,6).
+\end{align*}}
 
+\begin{exercise}
+	Find the area of the triangle with vertices $P(1,-1,0), Q(2,1,-1),$ and $R(-1,1,2)$.
+\end{exercise}
+{\color{red} \flushleft {\bf Solution:}
+The area of the parallelogram determined by $P,Q,$ and $R$ is 
+\begin{align*}
+	||\overrightarrow{PQ} \times \overrightarrow{PR}||=||(6,0,6)||=6\sqrt{2}.
+\end{align*}
+The triangles area is half of this, or $3\sqrt{2}$.
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/triangle_area_cross_product}
+\end{center}
+}
 
+\begin{exercise}
+Find a unit vector perpendicular to the plane containing $P(1,-1,0), Q(2,1,-1),$ and $R(-1,1,2)$.	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+A unit vector perpendicular to the plane is given by
+\begin{align*}
+	{\bf n}=\frac{\overrightarrow{PQ} \times \overrightarrow{PR}}{||\overrightarrow{PQ} \times \overrightarrow{PR}||}=\frac{(6,0,6)}{6\sqrt{2}}=(1/\sqrt{2},0,1/\sqrt{2}).
+\end{align*}}
+
+\subsubsection{The triple scalar product}
+Since ${\bf a} \times {\bf b}$ is a vector, note that the product $({\bf a} \times {\bf b}) \cdot {\bf c}$ is defined.
+
+\begin{defn}[Triple scalar product]
+	For any vectors ${\bf a}, {\bf b},$ and ${\bf c}$, the \ti{triple scalar product} is defined by
+	\begin{align*}
+		({\bf a} \times {\bf b}) \cdot {{\bf c}}=||{\bf a} \times {\bf b}|| \ ||{\bf c}|| \cos \theta
+	\end{align*}
+where $\theta$ is the angle between ${\bf a} \times {\bf b}$ and ${\bf c}$.
+\end{defn}
+
+Geometrically, the magnitude of ${\bf a} \times {\bf b} \cdot {{\bf c}}$ is the volume of the parallelepiped whose with adjacent sides ${\bf a}, {\bf b}$, and ${\bf c}$, the number $||{\bf a} \times {\bf b}||$ being the area of the base parallelogram and $||{\bf c}||\cos \theta$ the height of the parallelepiped.
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/triple_scalar_product_parallelepiped}
+\end{center}
+For this reason, the triple scalar product is also called the \ti{box product} of ${\bf a}, {\bf b},$ and ${\bf c}$.
+
+Computing the triple scalar product in Cartesian coordinates, one can verify that 
+\begin{equation}\label{eq:triple_scalar_product_formula}
+\begin{split}
+		({\bf a} \times {\bf b}) \cdot {{\bf c}}&=a_1(b_2c_3-c_3b_2)-a_2(b_1c_3-b_3c_1)+a_3(b_1c_2-c_1b_2)	 \\
+		&=\begin{vmatrix}
+		a_1 & a_2 & a_3 \\
+		b_1 & b_2 & b_3 \\
+		c_1 & c_2 & c_3  
+	\end{vmatrix}. \\
+\end{split}
+\end{equation}
+
+\begin{prop}[Cyclic symmetry of triple scalar product]\label{eq:cyclic_symmetry_of_triple_scalar_product}
+For any three vectors ${\bf a}, {\bf b},$ and ${\bf c}$, the triple scalar product satisfies
+\begin{align*}
+	({\bf a} \times {\bf b}) \cdot {\bf c}=({\bf b} \times {\bf c}) \cdot {\bf a}=({\bf c} \times {\bf a}) \cdot {\bf b}.
+\end{align*}	
+\end{prop}
+
+\begin{pf}
+This is straightforward to verify from Eq. \eqref{eq:triple_scalar_product_formula}. For those who know about determinants, the determinant is unchanged under cyclic permutations of the rows.
+\end{pf}
+
+\begin{cor}[Interchange of dot and cross product in triple scalar product]
+For any three vectors ${\bf a}, {\bf b},$ and ${\bf c}$, the triple scalar product satisfies
+\begin{align*}
+	({\bf a} \times {\bf b}) \cdot {\bf c}={\bf a}\cdot ({\bf b} \times {\bf c})
+\end{align*}	
+\end{cor}
+
+\begin{pf}
+This follows from Proposition \ref{eq:cyclic_symmetry_of_triple_scalar_product} along with commutativity of the dot product.	
+\end{pf}
+
+\begin{exercise}
+Find the volume of the parallelepiped with adjacent sides ${\bf a}=(1,2,-1), {\bf b}=(-2,0,3)$, and ${\bf c}=(0,7,-4)$.	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+This is given by
+\begin{align*}
+	||{\bf a} \cdot ({\bf b} \times {\bf c})||=\vert \begin{vmatrix}
+		1 & 2 & -1 \\ -2 & 0 & 3 \\ 0 & 7 & -4
+	\end{vmatrix} \vert = \vert -23 \vert = 23.
+\end{align*}}
+
+\subsection{Equations of lines and planes}
+\subsubsection{Lines in space}
+The coordinate systems of analytic geometry allow us to consider geometric objects such as lines and planes in terms of vectors. These geometric ideas will give us valuable intuition later on in the course when we take a more abstract point of view toward vectors.
+
+First let us recall that any two points define a line. Equivalently, we can also determine a line if we know one point on the line and the slope of the line. 
+
+Let us now work in Cartesian coordinates. Suppose $L$ is a line passing through a point $P_0(x_0,y_0,z_0)$ and parallel to a vector ${\bf v}=v_1{\bf e}_1+v_2{\bf e}_2+v_3{\bf e}_3$. Now let $P(x,y,z)$ be any point in space. In which case will $P(x,y,z)$ to be on the line? This will be the case if the vector $\overrightarrow{P_0P}$ is parallel to ${\bf v}$, that is, if $\overrightarrow{P_0P}$ is a scalar multiple of ${\bf v}$. Therefore,
+\begin{defn}[Vector equation for a line]
+	The line through $P_0(x_0,y_0,z_0)$ and parallel of ${\bf v}$ is the set of all points $P(x,y,z)$ such that $\overrightarrow{P_0P}=t{\bf v}$, with $-\infty < t < \infty$. This equation is called the \ti{vector equation} of the line.
+\end{defn}
+In terms of Cartesian coordinates, the vector equation for the line becomes
+\begin{align*}
+	(x-x_0){\bf e}_1+(y-y_0){\bf e}_2+(z-z_0){\bf e}_3&=t(v_1{\bf e}_1+v_2{\bf e}_2+v_3{\bf e}_3) \\
+	&=tv_1{\bf e}_1+tv_2{\bf e}_2+tv_3{\bf e}_3
+\end{align*}
+which implies
+\begin{align*}
+	(x-x_0-tv_1){\bf e}_1+(y-y_0-tv_2){\bf e}_2+(z-z_0-tv_3){\bf e}_3={\bf 0}
+\end{align*}
+and hence
+\begin{equation}\label{eq:parametric_equations_line}
+	x=x_0+tv_1, \hspace{0.25cm} y=y_0+tv_2, \hspace{0.25cm} z=z_0+tv_3.
+\end{equation}
+Thus, the vector equation of the line is equivalent to the three scalar equations in Eq. \eqref{eq:parametric_equations_line}, each of which is the usual equation for a line with slope $v_i$ in one variable $t$.
+
+\begin{defn}[Parametric equations for a line]
+	The standard parametrization of the line through $P_0(x_0,y_0,z_0)$ and parallel to ${\bf v}=v_1{\bf e}_1+v_2{\bf e}_2+v_3{\bf e}_3$ is given by
+	\begin{align*}
+		x=x_0+tv_1, \hspace{0.25cm} y=y_0+tv_2, \hspace{0.25cm} z=z_0+tv_3.
+	\end{align*}
+	These equations are called the (standard) \ti{parametric equations} for the line.
+\end{defn}
+
+\begin{exercise}
+Find the parametric equations for the line through $(-2,0,4)$ and parallel to ${\bf v}=2{\bf e}_1+4{\bf e}_2-2{\bf e}_3$.	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+Plugging into Eq. \eqref{eq:parametric_equations_line} gives
+\begin{align*}
+	x=-2+2t, \hspace{0.25cm} y=4t, \hspace{0.25cm} z=4-2t.
+\end{align*}}
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/parametrized_line_example_1}
+\end{center}
+
+\begin{example}
+	Find parametric equations for the line through $P(-3,2,-3)$ and $Q(1,-1,4)$.
+\end{example}
+
+{\color{red} \flushleft {\bf Solution:}
+The vector from $P$ to $Q$ is 
+\begin{align*}
+	\overrightarrow{PQ}&=(1-(-3), -1-2, 4-(-3)) \\
+	&=(4,-3,7).
+\end{align*}
+We take this vector to be our ``${\bf v}$". The point $P_0$ could be either $P$ or $Q$. Arbitrarily choosing it to be $Q$, Eq. \eqref{eq:parametric_equations_line} gives
+\begin{align*}
+	x=1+4t, \hspace{0.25cm} y=-1-3t, \hspace{0.25cm} z=4+7t.
+\end{align*}}
+
+\begin{exercise}
+Parametrize the line segment joining the points $P(-3,2,-3)$ and $Q(1,-1,4)$.	
+\end{exercise}
+{\color{red} \flushleft {\bf Solution:}
+We have seen in the previous exercise that the  parametric equations 
+\begin{align*}
+	x=1+4t, \hspace{0.25cm} y=-1-3t, \hspace{0.25cm} z=4+7t.
+\end{align*}
+describe an infinite line containing $P$ and $Q$ when we take $-\infty < t < \infty$. To describe the line segment joining $P$ and $Q$, we simply restrict the domain of $t$. We see that the line passes through $P$ at $t=-1$ and $Q=0$. So the line segment joining $P$ and $Q$ is given by 
+
+\begin{align*}
+	x=1+4t, \hspace{0.25cm} y=-1-3t, \hspace{0.25cm} z=4+7t.
+\end{align*}
+
+with $-1 < t < 0$.}
+
+\subsubsection{Planes in space}
+Whereas a line is determined by any two points, a plane is determined by any \ti{three} non-collinear points. Similar to a line, which was equivalently determined by a single point and a slope, a plane can also be determined by a single point and a ``slope". The direction of the plane is determined by a normal vector ${\bf n}=n_1{\bf e}_1+n_2{\bf e}_2+n_3{\bf e}_3$. 
+
+Let us now repeat the question we asked before: given a point $P_0(x_0,y_0,z_0)$ on the plane and a vector ${\bf n}$ normal to the plane, what is the condition for an arbitrary point in space $P(x,y,z)$ to lie on the plane? If $P$ lies in the plane, the $\overrightarrow{P_0P}$ is a vector lying in the plane. Then, since ${\bf n}$ is normal to the plane, we must have that ${\bf n} \cdot \overrightarrow{P_0P}=0$.
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/vector_equation_of_a_plane}
+\end{center}
+
+\begin{defn}[Vector equation for a plane]
+	The \ti{vector equation} of the plane through $P_0(x_0,y_0,z_0)$ and normal to ${\bf n}=n_1{\bf e}_1+n_2{\bf e}_2+n_3{\bf e}_3$ is given by
+	\begin{equation}
+		{\bf n} \cdot \overrightarrow{P_0P}=0.
+	\end{equation}
+\end{defn}
+
+As before, we can expand this equation in Cartesian coordinates to obtain
+
+\begin{defn}[The component equation of a plane]
+	The component equation of a plane through $P_0(x_0,y_0,z_0)$ and normal to ${\bf n}=n_1{\bf e}_1+n_2{\bf e}_2+n_3{\bf e}_3$ is given by
+	\begin{equation}
+		n_1(x-x_0)+n_2(y-y_0)+n_3(z-z_0)=0.
+	\end{equation}
+	This can be simplified to 
+	\begin{equation}
+		n_1x+n_2y+n_3z=c
+	\end{equation}
+	where $c=n_1x_0+n_2y_0+n_3z_0$.
+\end{defn}
+
+\begin{exercise}
+Find an equation for the plane through $P_0(-3,0,7)$ perpendicular to ${\bf n}=(5,2,-1)$.	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+The component equation is 
+\begin{align*}
+	5(x-(-3))+2(y-0)+(-1)(z-7)=0,
+\end{align*}
+Simplifying, we obtain
+\begin{align*}
+	5x+15+2y-z+7&=0 \\
+	5x+2y-z&=-22.
+\end{align*}}
+
+\begin{exercise}
+Find the point where the line 
+\begin{align*}
+	x=\frac{8}{3}+2t, \hspace{0.25cm} y=2t, \hspace{0.25cm} z=1+t
+\end{align*}	
+intersects the plane $3x+2y+6z=6$.
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+The point $(\frac{8}{3}+2t, 2t, 1+t)$ lies in the plane if its coordinates satisfy the equation of the plane; that is, if
+\begin{align*}
+	3(\frac{8}{3}+2t)+2(-2t)+6(1+t)=6
+\end{align*}
+This has a solution at $t=-1$, so the point of intersection is 
+\begin{align*}
+	(x,y,z)\vert_{t=-1}=(\frac{2}{3},2,0).
+\end{align*}}
+
+\begin{exercise}
+\begin{enumerate}[(a)]
+	\item Find a vector parallel to the line of intersection of the planes $3x-6y-2z=15$ and $2x+y-2z=5$.	
+	\item Find parametric equations for the line in which these planes intersect.
+\end{enumerate}
+\end{exercise}
+
+\subsection{$n$-dimensional space}
+As we just have seen, the geometry of three-dimensional space is more complicated and harder to visualize than the geometry of one- or two-dimensional space. However, we have also seen that if we work in Cartesian coordinates, there is a remarkably simple structural resemblance between vectors in each of these spaces.
+
+Consider a vector in each of these spaces:
+\begin{enumerate}[(1)]
+	\item If ${\bf v}=v_1{\bf e}_1$, then
+		\begin{align*}
+			||{\bf v}||=\sqrt{(v_1)^2}=|v_1|.
+		\end{align*}
+	\item If ${\bf v}=v_1{\bf e}_1+v_2{\bf e}_2$, then
+		\begin{align*}
+			||{\bf v}||=\sqrt{(v_1)^2+(v_2)^2.}
+		\end{align*}
+	\item If ${\bf v}=v_1{\bf e}_1+v_2{\bf e}_2+v_3{\bf e}_3$, then
+		\begin{align*}
+			||{\bf v}||=\sqrt{(v_1)^2+(v_2)^2+(v_3)^2}.
+		\end{align*}
+\end{enumerate} 
+Similarly, in each dimension, we have seen that the basic operations of vector addition and scalar multiplication are given by
+
+\begin{enumerate}[(1)]
+	\item If ${\bf v}=v_1{\bf e}_1,{\bf w}=w_1{\bf e}_1,$ and $k$ a scalar, then
+	\begin{align*}
+		{\bf v}+{\bf w}&=(v_1+w_1){\bf e_1} \\
+		k{\bf v}&=(kv_1){\bf e}_1.
+	\end{align*}
+	\item If ${\bf v}=v_1{\bf e}_1+v_2{\bf e}_2,{\bf w}=w_1{\bf e}_1+w_2{\bf e}_2,$ and $k$ a scalar, then
+	\begin{align*}
+		{\bf v}+{\bf w}&=(v_1+w_1){\bf e}_1+(v_2+w_2){\bf e}_2 \\
+		k{\bf v}&=(kv_1){\bf e}_1+(kv_2){\bf e}_2.
+	\end{align*}
+	\item If ${\bf v}=v_1{\bf e}_1+v_2{\bf e}_2+v_3{\bf e}_3,{\bf w}=w_1{\bf e}_1+w_2{\bf e}_2+w_3{\bf e}_3,$ and $k$ a scalar, then
+	\begin{align*}
+		{\bf v}+{\bf w}&=(v_1+w_1){\bf e}_1+(v_2+w_2){\bf e}_2+(v_3+w_3){\bf e}_3 \\
+		k{\bf v}&=(kv_1){\bf e}_1+(kv_2){\bf e}_2+(kv_3){\bf e}_3.
+	\end{align*}
+\end{enumerate}
+
+We see that, once our rules and definitions are set, we don't have to worry about how difficult the geometry is. Except for the fact that we have an extra component to work with, there is no structural difference between working with vectors in two-dimensional space or three-dimensional space.
+
+In fact, this construction has a natural generalization.
+
+\begin{defn}[$n$-dimensional space]
+	Consider the set of all $n$-tuples of real numbers $(x_1,x_2,\cdots,x_n)$. We denote this set by $\mathbb{R}^n$.
+\end{defn}
+
+\begin{example}
+	The sets of all one-, two-, and three-tuples of real numbers, which we have been considering so far, are denoted $\mathbb{R}, \mathbb{R}^2,$ and $\mathbb{R}^3$, respectively.
+\end{example}
+
+Through the coordinate correspondence, $\mathbb{R}^n$ is geometrically obtained by introducing Cartesian coordinates for an $n$-dimensional Euclidean space. While the geometry of such a space is impossible to draw, we can define vectors in $\mathbb{R}^n$ by generalizing the definitions in $\mathbb{R}^3$:
+\begin{itemize}
+	\item A vector with its initial point at the origin $(0,0,\cdots,0)$ and terminal point at $(v_1,v_2,\cdots,v_n)$ will have components $(v_1,v_2,\cdots,v_n)$. Two vectors ${\bf v}$ and ${\bf w}$ are equal if 
+	\begin{align*}
+		v_1=w_1, \hspace{0.25cm} v_2=w_2, \hspace{0.25cm} \cdots \hspace{0.25cm} v_n=w_n
+	\end{align*}
+	The zero vector has components ${\bf 0}=(0,0,\cdots,0)$.
+	\item We define vector addition and scalar multiplication as before: introducing unit vectors ${\bf e}_1, {\bf e}_2, \cdots, {\bf e}_2$ pointing along the coordinate axes, for two vectors ${\bf v}$ and ${\bf w}$ in $n$-dimensional space and $k$ any scalar,
+\begin{align*}
+	(v_1{\bf e}_1+\cdots+v_n{\bf e}_n)+(w_1{\bf e}_1+\cdots+w_n{\bf e}_n)&=(v_1+w_1){\bf e}_1+\cdots +(v_n+w_n){\bf e}_n \\
+	k(v_1{\bf e}_1+\cdots+v_n{\bf e}_n)&=(kv_1){\bf e}_1+\cdots+(kv_n){\bf e}_n.
+\end{align*}
+\item The dot product of two vectors ${\bf v}$ and ${\bf w}$ in $\mathbb{R}^n$ is given by
+\begin{align*}
+	{\bf v}\cdot {\bf w}=v_1w_1+\cdots v_nw_n.
+\end{align*}
+\item The cross product is special to $\mathbb{R}^3$. There is no analog of the cross product for $\mathbb{R}^n$, when $n>3$. \footnote{It is possible to define a product which takes as input $n-1$ $n$-dimensional vectors and produces a vector perpendicular to each one of these, but we will not use such an operation in this course.}
+\end{itemize}
+
+We can use these definitions to show that the structural properties of vectors in $\mathbb{R}^3$ continue to hold for vectors in $\mathbb{R}^n$.
+
+\begin{thm}[Properties of vectors in $\mathbb{R}^n$]
+If ${\bf u}, {\bf v},$ and ${\bf w}$ are vectors in $\mathbb{R}^n$, and if $k$ and $m$ are scalars, then:
+	\begin{enumerate}[(a)]
+		\item ${\bf u}+{\bf v}={\bf v}+{\bf u}$
+		\item $({\bf u}+{\bf v})+{\bf w}={\bf u}+({\bf v}+{\bf w})$
+		\item ${\bf u}+{\bf 0}={\bf 0}+{\bf u}={\bf u}$
+		\item ${\bf u}+(-{\bf u})={\bf 0}$
+		\item $k({\bf u}+{\bf v})=k{\bf u}+k{\bf v}$
+		\item $(k+m){\bf u}=k{\bf u}+m{\bf u}$
+		\item $k(m{\bf u})=(km){\bf u}$
+		\item $1{\bf u}={\bf u}$
+		\item $0{\bf v}={\bf 0}$
+		\item $k{\bf 0}={\bf 0}$
+		\item $(-1){\bf v}=-{\bf v}$
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+Exercise.	
+\end{pf}
+
+This theorem allows us to compute in $\mathbb{R}^n$ without explicitly writing out all the components, which can be extremely cumbersome. For instance, the previous theorem can be used to prove that if ${\bf x}+{\bf a}={\bf b}$, then ${\bf x}={\bf b}-{\bf a}$:
+\begin{align*}
+	{\bf x}+{\bf a}&={\bf b} \\
+	({\bf x}+{\bf a})+(-{\bf a})&={\bf b}+(-{\bf a}) \\
+	{\bf x}+({\bf a}+(-{\bf a}))&={\bf b}-{\bf a} \\
+	{\bf x}+{\bf 0}&={\bf b}-{\bf a} \\
+	{\bf x}&={\bf b}-{\bf a}.
+\end{align*}
+
+Finally, it is common for addition, subtraction, and scalar multiplication to be used in combination to form new vectors. For example, if ${\bf v}_1, {\bf v}_2,$ and ${\bf v}_3$ are vectors in $\mathbb{R}^n$, then in this way we can form the vectors
+\begin{align*}
+	{\bf u}=2{\bf v}_1+3{\bf v}_2+{\bf v}_3 \text{ and } {\bf w}=7{\bf v}_1-6{\bf v}_2+8{\bf v}_3.
+\end{align*}
+This motivates the following definition.
+
+\begin{defn}[Linear combination]
+	If ${\bf w}$ is a vector in $\mathbb{R}^n$, then ${\bf w}$ is said to be a \ti{linear combination} of the vectors ${\bf v}_1, {\bf v}_2, \cdots, {\bf v}_r$ in $\mathbb{R}^n$ if it can be expressed in the form
+	\begin{align*}
+		{\bf w}=k_1{\bf v}_1+k_2{\bf v}_2+\cdots +k_r{\bf v}_r
+	\end{align*}
+	where $k_1,k_2,\cdots,k_r$ are scalars. The scalars are called the \ti{coefficients} of the linear combination.
+	
+	In the case where $r=1$, this becomes ${\bf w}=k_1{\bf v}_1$, so a linear combination of a single vector is just a scalar multiple of that vector.
+\end{defn}
+
+\subsubsection{Applications of $n$-dimensional space}
+\fixme{Finish.}
 \section{Systems of linear equations}
 
 \subsection{Basic definitions}
@@ -4282,6 +4860,6 @@ Since elementary row operations do not change the row space, we use the previous
 \section{Eigenvalues and eigenvectors}
 
 \printbibliography
-
+\nocite{*}
 \end{document}
 
