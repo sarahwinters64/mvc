@@ -5148,6 +5148,39 @@ Finally, setting $D(I)=1$, we find
 	D(A)=A_{11}A_{22}-A_{12}A_{21}
 \end{align*}
 The conditions that $D(A)$ is alternating and that $D(I)=1$ have fixed all four scalars, do $D(A)$ is the unique determinant function on $\mathbb{R}^{\overline{2} \times \overline{2}}$.}
+We will now prove that there exists a determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ for each positive integer $n$. To this end, we will need the following two lemmas.
+
+\begin{lem}[$D(A)=0$ implies alternating for $2$-linear functions]
+	Let $D$ be a 2-linear function with the property that $D(A)=0$ for any $2 \times 2$ matrix with equal rows. Then $D$ is alternating.
+\end{lem}
+
+\begin{pf}
+We must show that if $A$ is a $2 \times 2$ matrix and $A'$ is obtained by interchanging the rows of $A$, then $D(A')=-D(A)$. Denoting the rows of $A$ by $\alpha$ and $\beta$, this means we must show that $D(\beta,\alpha)=-D(\alpha,\beta)$. Since $D$ is 2-linear,
+\begin{equation}\label{eq:2_linear_alternating_lemma}
+	D(\alpha+\beta,\alpha+\beta)=D(\alpha,\alpha)+D(\alpha,\beta)+D(\beta,\alpha)+D(\beta,\beta).
+\end{equation}
+By our hypothesis, $D(\alpha+\beta,\alpha+\beta)=D(\alpha,\alpha)=D(\beta,\beta)=0$, so Eq. \eqref{eq:2_linear_alternating_lemma} gives
+\begin{align*}
+	0=D(\alpha,\beta)+D(\beta,\alpha)
+\end{align*} 	
+and therefore
+\begin{align*}
+	D(\beta,\alpha)=-D(\alpha,\beta).
+\end{align*}
+\end{pf}
+We now prove an analogous result for $n \times n$ matrices.
+
+\begin{lem}[$D(A)=0$ implies alternating for $n$-linear functions]
+	Let $D$ be an $n$-linear function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ where $D$ has the property that $D(A)=0$ whenever two adjacent rows of $A$ are equal. Then $D$ is alternating.
+\end{lem}
+
+\begin{pf}
+	
+\end{pf}
+
+
+
+
 
 
 \section{Eigenvalues and eigenvectors}
