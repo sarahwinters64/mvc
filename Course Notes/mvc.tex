@@ -3058,7 +3058,113 @@ Find the inverse of the matrix $A=\begin{bmatrix}
 \end{bmatrix}$, if it exists.	
 \end{exercise}
 
-\fixme{Include the determinants of $2\times 2$ and $3 \times 3$ matrices in this section and have a section on theory of determinant functions later?}
+Let us now make some general statements about the invertibility of square matrices. The simplest square matrix is a $1 \times 1$ matrix, which is just a number, $a_{11}$. Obviously, a $1 \times 1$ matrix is invertible if and only if $a_{11} \neq 0$.
+
+Let us now consider a general $2 \times 2$ matrix $A$:
+\begin{align*}
+	A=\begin{bmatrix}
+		a_{11} & a_{12} \\ a_{21} & a_{22}
+	\end{bmatrix}.
+\end{align*}
+and see what happens when its augmented matrix $A$ is row-reduced. For $A$ to be invertible each column must have a pivot, so we cannot have $a_{11}$ and $a_{12}$ both zero. We therefore assume $a_{11} \neq 0$ (swapping $R1$ and $R2$, if necessary). If we multiply the second row by $a_{11}$ and then subtract $a_{21} \times R1$ from $R2$, we find that $A$ is row-equivalent to the following two matrices:
+\begin{align*}
+	\begin{bmatrix}
+		a_{11}& a_{12} \\ a_{11}a_{12} & a_{11}a_{22}
+	\end{bmatrix} \sim \begin{bmatrix}
+		a_{11}& a_{12} \\ 
+		0 & a_{11}a_{22}-a_{12}a_{21}
+	\end{bmatrix}
+\end{align*} 
+To have a pivot in the $(2,2)$-position, we must have that
+\begin{equation}
+	a_{11}a_{22}-a_{12}a_{21} \neq 0.
+\end{equation}
+
+\begin{defn}[Determinant of a $2 \times 2$ matrix]
+Let $A$ be a $2 \times 2$ matrix. The quantity $a_{11}a_{22}-a_{12}a_{21}$ is called the \ti{determinant} of $A$, and is denoted $\det A$.
+\end{defn}
+
+\begin{prop}[Invertibility of a $2 \times 2$ matrix]\label{prop:2_by_2_invertibility}
+A $2 \times 2$ matrix $A$ is invertible if and only if $\det A \neq 0$.
+\end{prop}
+
+\begin{pf}
+We have just seen that if $A$ is invertible, then $\det A \neq 0$. 
+
+To prove the converse, assume $\det A \neq 0$. Since $\det A=a_{11}a_{22}-a_{12}a_{21}$, either $a_{11} \neq 0$ or $a_{12} \neq 0$. Assuming $a_{11} \neq 0$, we can divide by $a_{11}$ to solve for $a_{22}$:
+\begin{align*}
+	a_{22}=\frac{\det A+a_{12}a_{21}}{a_{11}}
+\end{align*} 
+	and therefore
+	\begin{align*}
+		A=\begin{bmatrix}
+			a_{11} & a_{12} \\
+			a_{21} & \frac{\det A+a_{12}a_{21}}{a_{11}}
+		\end{bmatrix}.
+	\end{align*}
+Multiplying $R2$ by $a_{11}$ and subtracting $a_{21} \times R1$ from the new $R2$, we find
+\begin{align*}
+	A \sim \begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{11}a_{21} & \det A + a_{12}a_{21}
+	\end{bmatrix} \sim \begin{bmatrix}
+		a_{11} & a_{12} \\
+		0 & \det A
+	\end{bmatrix}
+\end{align*}
+Hence, $A$ has two pivot columns, and is therefore invertible.
+\end{pf}
+
+The previous proposition turns out to hold for all square matrices. That is, the invertibility of any square matrix is determined by a single combination of its entries, and the matrix is invertible as long as this combination is not zero. Thus, if we know how to compute the determinant of a square matrix, we can check immediately if the matrix is invertible by checking whether the determinant is different from zero. 
+
+Let us see this for the $3 \times 3$ case. A general $3 \times 3$ matrix can be written as 
+\begin{align*}
+	A=\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}
+\end{align*}
+As before, the first column must be a pivot column if $A$ is invertible, so let us again assume that $a_{11} \neq 0$ (again, we can achieve this by swapping rows, if necessary). If we multiply the second and third rows of $A$ by $a_{11}$ and then subtract appropriate multiples of the first row from the other two rows, we find that $A$ is row-equivalent to the following two matrices:
+\begin{align*}
+	\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{11}a_{21} & a_{11}a_{22} & a_{11}a_{23} \\
+		a_{11}a_{31} & a_{11}a_{32} & a_{11}a_{33} 
+	\end{bmatrix} \sim \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		0 & a_{11}a_{22}-a_{12}a_{21} & a_{11}a_{23}-a_{13}a_{21} \\
+		0 & a_{11}a_{32}-a_{12}a_{31} & a_{11}a_{33}-a_{13}a_{31}
+	\end{bmatrix}
+\end{align*}
+For $A$ to be invertible, either the $(2,2)$- or $(3,2)$-entry in the matrix on the right must be nonzero. Making another row interchange if necessary, we assume the $(2,2)$-entry is non-zero. Now multiply the third row by $a_{11}a_{22}-a_{12}a_{21}$, and to the new row 3 add $-(a_{11}a_{32}-a_{12}a_{31}) \times R2$. This shows that 
+\begin{align*}
+	A \sim \begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		0 & a_{11}a_{22}-a_{12}a_{21} & a_{11}a_{23}-a_{13}a_{21} \\
+		0 & 0 & a_{11}\det A
+	\end{bmatrix}
+\end{align*}
+where
+\begin{equation}\label{eq:det_3_by_3}
+	\det A=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31} \\
+\end{equation}
+Thus, for $A$ to be invertible, again we find that $\det A \neq 0$. We will not attempt to prove the converse in the same way as before, as the algebra is too unwieldy. 
+
+The determinant of a $3 \times 3$ matrix turned out to have a much more complicated dependence on the entries of $A$ than in the case of a $2 \times 2$ matrix. In a later section we will study the theory of determinants in a much more systematic way. Until then, we will assume that Proposition \ref{prop:2_by_2_invertibility} holds for any $n \times n$ matrix and use freely the formulas for the determinants of $2 \times 2$ and $3 \times 3$ matrices. It is worth noting that the formula for the determinant of a $3 \times 3$ matrix given in Eq. \eqref{eq:det_3_by_3} can be rewritten as 
+\begin{align*}
+	\det A &=a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{23}a_{31})+a_{13}(a_{21}a_{32}-a_{22}a_{31}) \\
+	&=a_{11}\begin{bmatrix}
+		a_{22} & a_{23} \\ a_{32} & a_{33}
+	\end{bmatrix}-a_{12}\begin{bmatrix}
+		a_{21} & a_{23} \\
+		a_{31} & a_{33}
+	\end{bmatrix}+a_{13}\begin{bmatrix}
+		a_{21} & a_{22} \\ 
+		a_{31} & a_{32}
+	\end{bmatrix}.
+\end{align*}
+which is easier to remember. The fact that the determinant of a $3 \times 3$ matrix $A$ can be written in terms of determinants of $2 \times 2$ matrices whose entries are certain entries in $A$ is no coincidence, and we shall see that the determinant for an $n \times n$ matrix for $n>3$ has a similar structure.
 
 \subsubsection{Relation to linear systems}
 
