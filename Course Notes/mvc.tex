@@ -4962,6 +4962,193 @@ form a basis for the column space of $R$.
 Since elementary row operations do not change the row space, we use the previous theorem to find a basis for the row space of an arbitrary matrix $A$ by row-reducing $A$ to its RREF.
 	
 \section{Determinants}
+We have seen previously that a $1 \times 1$, $2 \times 2$, or $3 \times 3$ matrix is invertible if and only if its \ti{determinant} is non-zero, where the determinant is defined in each case as
+\begin{enumerate}
+	\item If $A=\begin{bmatrix} a_{11} \end{bmatrix}$, then 
+	\begin{align*}
+		\det A=a_{11}.
+	\end{align*} 
+	\item If $A=\begin{bmatrix}
+		a_{11} & a_{12} \\ a_{21} & a_{22}
+	\end{bmatrix}$, then 
+	\begin{align*}
+		\det A=a_{11}a_{22}-a_{21}a_{12}.
+	\end{align*}
+	\item If $A=\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33}
+	\end{bmatrix}$, then 
+\begin{align*}
+	\det A &=a_{11}\begin{bmatrix}
+		a_{22} & a_{23} \\ a_{32} & a_{33}
+	\end{bmatrix}-a_{12}\begin{bmatrix}
+		a_{21} & a_{23} \\
+		a_{31} & a_{33}
+	\end{bmatrix}+a_{13}\begin{bmatrix}
+		a_{21} & a_{22} \\ 
+		a_{31} & a_{32}
+	\end{bmatrix} \\
+	&=a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{23}a_{31})+a_{13}(a_{21}a_{32}-a_{22}a_{31}) \\
+	&=a_{11}a_{22}a_{33}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{13}a_{22}a_{31}.
+\end{align*}
+\end{enumerate}
+
+In this section, we will generalize these considerations to arbitrary square matrices by proceeding more systematically. We will first define the determinant as a certain function, called a \ti{determinant function}, which assigns to each $n \times n$ matrix a real number. This function should have a number of special properties, which we will discuss in detail. After proving that such a function exists for each $n$, we will prove that it is also unique. In proving uniqueness, we will obtain an explicit formula for the determinant of an arbitrary $n \times n$ matrix.
+
+\subsection{Determinant functions}
+\begin{defn}[$n$-linear function]
+	Let $D:\mathbb{R}^{\overline{n} \times \overline{n}} \to \mathbb{R}$ be a function which assigns to each $n \times n$ matrix $A$ a scalar $D(A)$. We say that $D$ is \ti{$n$-linear} if for each $i, 1 \leq i \leq n$, $D$ is a linear function of the $i$th row when the other $(n-1)$ rows are held fixed.
+	
+	Letting $\alpha_1,\cdots,\alpha_n$ denote the rows of $A$, then $D$ is $n$-linear if 
+	\begin{equation}\label{eq:n_linear}
+	D(\alpha_1,\cdots,c\alpha_i+c'\alpha_i',\cdots,\alpha_n)=cD(\alpha_1,\cdots,\alpha_i,\cdots,\alpha_n)+c'D(\alpha_1,\cdots,\alpha_i',\cdots,\alpha_n).
+	\end{equation} 
+	It will be convenient notation to suppress the rows which are being held fixed and abbreviate Eq. \eqref{eq:n_linear} as 
+	\begin{align*}
+		D(c\alpha_i+c'\alpha_i')=cD(\alpha_i)+c'D(\alpha_i').
+	\end{align*}
+\end{defn}
+
+\begin{example}
+For each $n \times n$ matrix $A$, define
+\begin{align*}
+	D(A)=aA_{1k_1}A_{2k_2}\cdots A_{nk_n}
+\end{align*}
+where $k_1,\cdots,k_n$ are positive integers such that $1 \leq k_i \leq n$ for each $i$ and $a$ is a real number. That is, up to a scalar multiple, $D(A)$ is a product of one element from each row of $A$. For instance, one such $D(A)$ would be the product of the diagonal entries of $A$:
+\begin{align*}
+	D(A)=A_{11}A_{22}\cdots A_{nn}.
+\end{align*}
+Letting $\alpha_i=(A_{i1}A_{i2}\cdots A_{in})$ and $\alpha_i'=(A_{i1}'A_{i2}'\cdots A_{in}')$, we see that
+\begin{align*}
+	D(c\alpha_i+c'\alpha_i')&=(cA_{ii}+c'A_{ii}')\prod_{j \neq i}A_{jj} \\
+	&=cA_{11}\cdots A_{ii}\cdots A_{nn}+c'A_{11} \cdots A_{ii}'\cdots A_{nn} \\
+	&=cD(\alpha_i)+c'D(\alpha_i')
+\end{align*}
+so $D$ is indeed $n$-linear. 
+\end{example}
+
+\begin{exercise}
+	Find all 2-linear functions on the set of $2 \times 2$ real matrices.	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+Denoting the rows of the $2 \times 2$ identity matrix by $\epsilon_1, \epsilon_2$, we have 
+\begin{align*}
+	D(A)=D(A_{11}\epsilon_1+A_{12}\epsilon_{2},A_{21}\epsilon_1+A_{22}\epsilon_2).
+\end{align*}
+Since $D$ is 2-linear, we have 
+\begin{align*}
+	D(A)=A_{11}A_{21}D(\epsilon_1,\epsilon_1)+A_{11}A_{22}D(\epsilon_1,\epsilon_2)+A_{12}A_{21}D(\epsilon_2,\epsilon_1)+A_{12}A_{22}D(\epsilon_2,\epsilon_2).
+\end{align*}
+This $D$ is completely determined by the four scalars
+\begin{align*}
+	D(\epsilon_1,\epsilon_1), \hspace{0.25cm}D(\epsilon_1,\epsilon_2), \hspace{0.25cm}D(\epsilon_2,\epsilon_1), \hspace{0.25cm}D(\epsilon_2,\epsilon_2).
+\end{align*}}
+
+\begin{lem}[Linear combinations of $n$-linear functions]
+	A linear combination of $n$-linear functions is $n$-linear.
+\end{lem}
+
+\begin{pf}
+It suffices to prove that a linear combination of two $n$-linear functions is $n$-linear. Let $D$ and $E$ be $n$-linear functions. If $a$ and $b$ are scalars, then $aD+bE$ is defined by
+\begin{align*}
+	(aD+bE)(A)=aD(A)+bE(A).
+\end{align*}
+Therefore
+\begin{align*}
+	(aD+bE)(c\alpha_i+c'\alpha_i')&=aD(c\alpha_i+c'\alpha_i')+bE(c\alpha_i+c'\alpha_i') \\
+	&=acD(\alpha_i)+ac'D(\alpha_i')+bcE(\alpha_i)+bc'E(\alpha_i') \\
+	&=c(aD+bE)(\alpha_i)+c'(aD+bE)(\alpha_i').
+\end{align*}	
+\end{pf}
+This lemma says that the set of $n$-linear functions on $\mathbb{R}^{\overline{n} \times \overline{n}}$ is a subspace of the set of \ti{all} real-valued functions on $\mathbb{R}^{\overline{n} \times \overline{n}}$.
+
+By this lemma, we see that the determinant of a $2 \times 2$ matrix is $2$-linear and the determinant of a $3 \times 3$ matrix is $3$-linear. However, these functions are not generic $n$-linear functions, but have the following special properties:
+
+\begin{exercise}
+Show that the formulas for $\det A$	for a $2 \times 2$ and $3 \times 3$ matrix $A$ have the following properties:
+\begin{enumerate}[(1)]
+	\item If $A'$ is the matrix obtained from $A$ by interchanging two rows, then $D(A')=-D(A)$. Note that this implies that if any two rows are equal, then $D(A)=0$.
+	\item If $I$ is the identity matrix, then $D(I)=1$.
+\end{enumerate}
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+We show this for the $2 \times 2$ case, leaving the $3 \times 3$ case as an exercise.
+\begin{enumerate}[(1)]
+	\item
+	\begin{align*}
+		D(A')&=A_{11}'A_{22}'-A_{12}'A_{21}' \\
+		&=A_{21}A_{12}-A_{22}A_{11} \\
+		&=-D(A).
+	\end{align*}
+	\item 
+		\begin{align*}
+			D(I)&=I_{11}I_{22}-I_{12}I_{21} \\
+			    &=(1)(1)-(0)(0) \\
+			    &=1.
+		\end{align*}
+\end{enumerate}}
+
+\begin{defn}[Alternating function]
+	Let $D$ be an $n$-linear function. We say $D$ is \ti{alternating} if whenever $A'$ is a matrix obtained from $A$ by interchanging two rows of $A$, then $D(A')=-D(A)$.
+\end{defn}
+
+\begin{prop}[Alternating function on a matrix with two equal rows]
+	If $D$ is alternating and $A$ is a matrix with two equal rows, then $D(A)=0$. 
+\end{prop}
+
+\begin{pf}
+	Suppose $\alpha_i=\alpha_j$. Then the matrix $A$ is unchanged by interchanging rows $i$ and $j$, i.e., $A'=A$. Since $D$ is alternating, we have $D(A)=-D(A)$, and therefore $D(A)=0$.
+\end{pf}
+The properties just seen will be the ones we take as our defining properties in generalizing the determinant for $n \times n$ matrices with $n>3$.
+\begin{defn}[Determinant function]
+	A function $D:\mathbb{R}^{\overline{n} \times \overline{n}} \to \mathbb{R}$ is a \ti{determinant function} if $D$ is $n$-linear, alternating, and $D(I)=1$.
+\end{defn}
+
+We will soon show that there is a unique determinant function defined on $\mathbb{R}^{\overline{n} \times \overline{n}}$ for each $n$. This is clearly true for the case $n=1$. We are also in a position to dispose of the case $n=2$.
+
+\begin{exercise}
+Show that $D:\mathbb{R}^{\overline{2} \times \overline{2}} \to \mathbb{R}$ defined by $D(A)=A_{11}A_{22}-A_{12}A_{21}$ is the unique determinant function on $\mathbb{R}^{\overline{2} \times \overline{2}}$.
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+We have already shown that $D(A)$ is a determinant function. All that is left is to show that it is unique. Recall that the most general 2-linear function on $\mathbb{R}^{\overline{2} \times \overline{2}}$ is completely determined by the four scalars $D(\epsilon_1,\epsilon_1), D(\epsilon_1,\epsilon_2), D(\epsilon_2,\epsilon_1), D(\epsilon_2,\epsilon_2)$ as
+\begin{align*}
+	D(A)=A_{11}A_{21}D(\epsilon_1,\epsilon_1)+A_{11}A_{22}D(\epsilon_1,\epsilon_2)+A_{12}A_{21}D(\epsilon_2,\epsilon_1)+A_{12}A_{22}D(\epsilon_2,\epsilon_2).
+\end{align*}
+Suppose $D$ is alternating. Letting $A'$ be obtained from $A$ by interchanging the two rows, we have
+\begin{align*}
+D(A')&=A_{11}'A_{21}'D(\epsilon_1,\epsilon_1)+A_{11}'A_{22}'D(\epsilon_1,\epsilon_2)+A_{12}'A_{21}'D(\epsilon_2,\epsilon_1)+A_{12}'A_{22}'D(\epsilon_2,\epsilon_2) \\
+	&=A_{21}A_{11}D(\epsilon_1,\epsilon_1)+A_{21}A_{12}D(\epsilon_1,\epsilon_2)+A_{22}A_{11}D(\epsilon_2,\epsilon_1)+A_{22}A_{12}D(\epsilon_2,\epsilon_2).
+\end{align*}
+Setting this equal to $-D(A)$ gives
+\begin{align*}
+	&A_{21}A_{11}D(\epsilon_1,\epsilon_1)+A_{21}A_{12}D(\epsilon_1,\epsilon_2)+A_{22}A_{11}D(\epsilon_2,\epsilon_1)+A_{22}A_{12}D(\epsilon_2,\epsilon_2)\\
+	&=-A_{11}A_{21}D(\epsilon_1,\epsilon_1)-A_{11}A_{22}D(\epsilon_1,\epsilon_2)-A_{12}A_{21}D(\epsilon_2,\epsilon_1)-A_{12}A_{22}D(\epsilon_2,\epsilon_2)
+\end{align*}
+and therefore
+\begin{align*}
+	&2A_{11}A_{21}D(\epsilon_1,\epsilon_1)+(A_{11}A_{22}+A_{12}A_{21})D(\epsilon_1,\epsilon_2)\\
+	&+(A_{11}A_{22}+A_{12}A_{21})D(\epsilon_2,\epsilon_1)+2A_{12}A_{22}D(\epsilon_2,\epsilon_2)=0.
+\end{align*}
+This is satisfied if 
+\begin{align*}
+D(\epsilon_1,\epsilon_1)=D(\epsilon_2,\epsilon_2)=0
+\end{align*}
+and 
+\begin{align*}
+	D(\epsilon_2,\epsilon_1)=-D(\epsilon_1,\epsilon_2).
+\end{align*}
+Since $D(\epsilon_1,\epsilon_2)=D(I)$, we have
+\begin{align*}
+	D(A)=(A_{11}A_{22}-A_{12}A_{21})D(I).
+\end{align*}
+Finally, setting $D(I)=1$, we find
+\begin{align*}
+	D(A)=A_{11}A_{22}-A_{12}A_{21}
+\end{align*}
+The conditions that $D(A)$ is alternating and that $D(I)=1$ have fixed all four scalars, do $D(A)$ is the unique determinant function on $\mathbb{R}^{\overline{2} \times \overline{2}}$.}
+
 
 \section{Eigenvalues and eigenvectors}
 
