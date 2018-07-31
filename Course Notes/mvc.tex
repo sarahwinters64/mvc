@@ -308,8 +308,7 @@
 \begin{center}
 \tb{Multivariable Calculus} \\
 Anderson Trimm \\
-Gwinnett School of Mathematics, Science and Technology \\
-\tb{Preliminary} and \tb{incomplete} draft
+Gwinnett School of Mathematics, Science and Technology 
 \end{center}
 
 {These are the notes for the 2018-2019
@@ -479,118 +478,6 @@ We will denote a vector by boldface type, as in ${\bf v}$, and a scalar by lower
 	\includegraphics[scale=0.5]{figures_mvc/vAB}
 \end{center}
 
-\subsection{Vectors in coordinate systems}
-As in analytic geometry, the use of coordinate systems give us powerful tools with which to perform concrete computations with vectors. Additionally, working with coordinates will allow us to consider geometric entities such as lines and planes in vector settings. 
-
-\subsubsection{Coordinate correspondence}
-In this section we describe the coordinate correspondence between three-dimensional Euclidean space, $\mathbb{E}^3$ (the three-dimensional space in which the axioms of Euclidean geometry hold), and three-dimensional Cartesian space $\mathbb{R}^3\equiv \{(x_1,x_2,x_3):x_i \in \mathbb{R} \text{ for } i=1,2,3\}$.
-
-We begin with a line. A coordinate correspondence between a line $L$ and the real number system $\mathbb{R}$ is determined by choosing arbitrarily on $L$ a zero point $O$ and a unit point $Q$ distinct from $O$. Then to each point $X$ on $L$ is assigned the number $x$ such that $|x|$ is the distance from $O$ to $X$, measured in terms of the segment $OQ$ as the unit, and $x$ is positive or negative according to whether $X$ and $Q$ are on the same side of $O$ or on opposite sides. The mapping $X \mapsto x$ is the coordinate correspondence between $L$ and $\mathbb{R}$. 
-
-We now set up a coordinate correspondence between $\mathbb{E}^3$ and $\mathbb{R}^3$. We first choose arbitrarily a zero point $O$ and three unit points $Q_1, Q_2,$ and $Q_3$ in such a way that the four points do not lie in a plane. Each of the unit points $Q_i$ determines a line $L_i$ through $O$ and a coordinate correspondence on this line, as defined above. The three lines $L_1, L_2$, and $L_3$ are called the \ti{coordinate axes}. Consider now any point $X$ in $\mathbb{E}^3$. The plane through $X$ parallel to $L_2$ and $L_3$ intersects $L_1$ at a point $X_1$, and therefore determines a number $x_1$, the coordinate of $X_1$ on $L_1$. Similarly, $X$ determines points $X_2$ on $L_2$ and $X_3$ on $L_3$ which have coordinates $x_2$ and $x_3$, respectively. Altogether, $X$ determines a triple
-\begin{align*}
-	{\bf x}=(x_1,x_2,x_3)
-\end{align*} 
-in $\mathbb{R}^3$, and we have thus defined a mapping $\theta:X \mapsto {\bf x}$ from $\mathbb{E}^3$ to $\mathbb{R}^3$. 
-
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/e3_r3}
-\end{center}
-We call $\theta$ the \ti{coordinate correspondence} defined by the axis system. Note that the unit point $Q_1$ on $L_1$ has the coordinate triple $(1,0,0)$, and similarly
-\begin{align*}
-	\theta(Q_2)&=(0,1,0), \\
-	\theta(Q_3)&=(0,0,1).
-\end{align*}
-
-It is a fact that $\theta$ is a bijection from $\mathbb{E}^3$ to $\mathbb{R}^3$. The proof goes beyond the usual treatment of high school geometry, so we will simply accept this statement without proof.
-
-\subsubsection{Cartesian coordinates}
-\begin{defn}[Cartesian coordinates]
-	The axis system in $\mathbb{E}^3$ is \ti{Cartesian} if the coordinate axes are mutually perpendicular and a common unit of distance (i.e., $|OQ_1|=|OQ_2|=|OQ_3|$) is used. The corresponding coordinates are called \ti{Cartesian coordinates}.
-\end{defn}
-A Cartesian coordinate system is shown below. \footnote{Cartesian coordinates are also often called \ti{rectangular coordinates} because the axes that define them meet at right angles.}
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/cartesian_coordinate_system}
-\end{center}
-The coordinate axes are labeled $x,y,$ and $z$, and are arranged such that if you take your right hand and curl your fingers from the positive $x$-axis toward the positive $y$-axis, your thumb points along the positive $z$-axis. Such a coordinate system is called \ti{right-handed}. \footnote{As you might have guessed, there are also left-handed coordinate systems. Choosing our coordinate system to be left- or right-handed is called choosing an \ti{orientation} for our coordinate system. We will discuss orientations more later. For now, just note that everything we do in the following could equivalently be formulated in terms of left-handed coordinate systems, so choosing a right-handed coordinate system for $\mathbb{E}^3$ is simply the standard convention.}
-
-As discussed in the previous section, the coordinates of a point $P$ are the numbers at which the planes through $P$ perpendicular to the coordinate axes intersect these axes. These are labeled $\theta(P)=(x,y,z)$. 
-
-Points on the $x$-axis have $y$- and $z$-coordinates equal to zero. That is, they have coordinates of the form $(x,0,0)$. Similarly points on the $y$- and $z$-axes have coordinates of the from $(0,y,0)$ and $(0,0,z)$, respectively.
-
-The points in a plane perpendicular to the $x$-axis all have the same $x$-coordinate, $x_0$, this being the number at which the plane intersects that $x$-axis. The plane is then the set 
-\begin{equation}
-	P=\{(x,y,z) \in \mathbb{R}^3 : x=x_0\} 
-\end{equation}
-That is, the plane consists of all points having coordinates $(x_0,y,z)$, where $y$ and $z$ are any real numbers. The constraint $x=x_0$ is the equation of the plane perpendicular to the $x$-axis and intersecting it at $x_0$. Similar formulas hold for planes perpendicular to the $y$- and $z$-axes.
-
-\begin{example}
-The plane $x=2$ is the plane perpendicular to the $x$-axis at $x=2$. The plane $y=3$ is the plane perpendicular to the $y$-axis at $y=3$. The plane $z=5$ is the plane perpendicular to the $z$-axis at $z=5$. These planes are shown below, together with their intersection point $(2,3,5)$.
-\end{example}
-
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/plane_235}
-\end{center}
-
-The planes $x=2$ and $y=3$ in the figure above intersect along a line parallel to the $z$-axis. This line is described by a pair of equations $L=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } y=3\}$.
-
-\begin{exercise}
-	Describe the other two lines of intersection in the figure above.
-\end{exercise}
-
-{\color{red} \flushleft {\bf Solution:}
-The line running parallel to the $x$-axis is given by $$L_1=\{(x,y,z) \in \mathbb{R}^3: y=3 \text{ and } z=5\},$$ while the line running parallel to the $y$-axis is given by $$L_2=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } z=5\}.$$}
-
-The three planes determined by the coordinate axes are the $xy$-plane, whose equation is $z=0$; the $yz$-plane, whose equation is $x=0$; and the $xz$-plane, whose equation is $y=0$. They meet at the origin, $(0,0,0)$.
-	
-The three coordinate planes $x=0, y=0,$ and $z=0$ divide space into eight cells called \ti{octants}. The octant in which the coordinates of all points are nonnegative is called the \ti{first octant}; there is no conventional numbering for the other seven octants.
-
-\begin{exercise}
-Write the coordinate equations and inequalities which define each of the following sets of points in space.
-\begin{enumerate}[(a)]
-	\item The half-space consisting of the points on and above the $xy$-plane.
-	\item  This plane is parallel to the $yz$-plane and lying 3 units behind it.
-	\item The second quadrant of the $xy$-plane.
-	\item The first octant.
-	\item The slab between the planes $y=-1$ and $y=1$, including these planes.
-	\item The line in which the planes $y=-2$ and $z=2$ intersect.
-\end{enumerate}	
-\end{exercise}
-
-{\color{red} \flushleft {\bf Solution:} 
-\begin{enumerate}[(a)]
-	\item $z \geq 0$,
-	\item $x=-3$,
-	\item $z=0, x \leq 0, z \geq 0$,
-	\item $x \geq 0, y \geq 0, z \geq 0$,
-	\item $-1 \leq y \leq 1$,
-	\item $y=-2,z=2$.
-\end{enumerate}}
-
-\begin{exercise}
-	What points $P(x,y,z)$ satisfy the equations
-	\begin{align*}
-		x^2+y^2=4 \text{ and }z=3?
-	\end{align*}
-\end{exercise}
-
-{\color{red} \flushleft {\bf Solution:} These equations describe a circle of radius 2 lying in a plane parallel to the $xy$-plane and lying 3 units above it.}
-
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/circle_z=3}
-\end{center}
-
-\subsubsection{Components of a vector}
-Let us choose a Cartesian coordinate system for three-dimensional space. If a vector is positioned with its initial point at the origin, then the vector is completely determined by the coordinates of its terminal point.
-
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/components}
-\end{center}
-
-\begin{defn}[Components of a vector]
-	The coordinates of the terminal point of a vector ${\bf v}$ positioned with its initial point at the origin are called the \ti{components} of ${\bf v}$. We denote the components of a vector ${\bf v}$ by writing ${\bf v}=(v_1,v_2,v_3)$.
-\end{defn}
-
 \subsection{Vector arithmetic}
 We have now defined a set of objects called vectors, which we visualize as arrows. To build a mathematical structure on this set, we need to define various rules and operations for working with vectors. As mathematicians, we are free to define any consistent set of rules and operations we like, and there are many possibilities.  Of course, our motivation for the introduction of vectors was to describe physical phenomena, and we will continue to take our motivations from physics in order to define a mathematical structure on the set of vectors.
 
@@ -629,7 +516,7 @@ To determine the net force, a third string is connected to the washer with pulle
  \begin{defn}[Vector addition]
  	The \ti{sum} ${\bf v}+{\bf w}$ of two vectors ${\bf v}$ and ${\bf w}$ is the resultant vector of ${\bf v}$ and ${\bf w}$.
  \end{defn}
-Note that when the two tension forces are along the \ti{same} direction (e.g., just add another mass on the same string), the resultant vector points in this same direction and has magnitude given by the sum of the magnitudes of the two tension vectors, and hence the addition of ${\bf v}$ and ${\bf w}$ reduces to addition of ordinary numbers in this special case. This is why we have decided to call this binary operation \ti{addition} and to continue to denote it by $+$; that is, it is a \ti{generalization} of ordinary addition. \footnote{To be completely rigorous and unambiguous, we should technically use some new symbol for this binary operation, such as ${\bf v}*{\bf w}$. However, it is standard practice to use the same symbol in such situations as it is conceptually useful to keep in mind the fact that this is a generalization of another operation.}
+Note that when the two tension forces are along the \ti{same} direction, the resultant vector points in this same direction and has magnitude given by the sum of the magnitudes of the two tension vectors, and hence the addition of ${\bf v}$ and ${\bf w}$ reduces to addition of ordinary numbers in this special case. This is why we have decided to call this binary operation \ti{addition} and to continue to denote it by $+$; that is, it is a \ti{generalization} of ordinary addition. \footnote{To be completely rigorous and unambiguous, we should technically use some new symbol for this binary operation, such as ${\bf v}*{\bf w}$. However, it is standard practice to use the same symbol in such situations as it is conceptually useful to keep in mind the fact that this is a generalization of another operation.}
  
 In terms of our geometric representation of vectors, the magnitude and direction of ${\bf v}+{\bf w}$ is determined as follows: Since the location of a vector is of no consequence (by our definition of equality of vectors), we may position the two vectors so that their initial points coincide. Then ${\bf v}$ and ${\bf w}$ form adjacent sides of a parallelogram, and the vector ${\bf v}+{\bf w}$ is the diagonal of the parallelogram, directed from the common initial point of ${\bf v}$ and ${\bf w}$ to the opposite vertex of the parallelogram, as shown below.	
 \begin{center}
@@ -758,17 +645,15 @@ Consider adding vectors ${\bf a}$ and ${\bf b}$ tail-to-tail, as shown below
 We see from the tip-to-tail rule, that ${\bf b}+{\bf x}={\bf a}$. Adding $(-{\bf b})$ to both sides of this equation and using associativity gives ${\bf x}={\bf a}-{\bf b}$.}
 The previous exercise shows that, if ${\bf a}$ and ${\bf b}$ are any two vectors and we wish to find ${\bf a}-{\bf b}$, we place the two vectors tail-to-tail and ${\bf a}-{\bf b}$ is then the vector which extends from the tip of ${\bf b}$ to the tip of ${\bf a}$.
 
-We have just shown that our definition of vector addition satisfies the same properties as numerical addition. That is, the additive structures are exactly the same for vectors as for numbers. Therefore, any results that hold for numbers also hold for vectors, for exactly the same reasons. For example,
+We have just shown that our definition of vector addition satisfies the same properties as numerical addition. That is, the additive structures are exactly the same for vectors as for numbers. Therefore, any results that hold for numbers (with regard to addition) also hold for vectors, for exactly the same reasons. For example,
 
-\begin{thm}[Cancellation law]
+\begin{thm}[Cancellation law for vector addition]
 	If ${\bf a}, {\bf b},$ and ${\bf c}$ are vectors such that ${\bf a}+{\bf b}={\bf a}+{\bf c}$, then ${\bf b}={\bf c}$. 
 \end{thm}
 
 \begin{pf}
-The proof is exactly the same as for numbers, with the word ``vector" substituted for ``number".
+The proof is exactly the same as for numbers (add $-{\bf a}$ to both sides), with the word ``vector" substituted for ``number".
 \end{pf}
-
-This is one illustration of the power of mathematical structure; namely, it is only the rules which determine how the various objects are related that are important, not the objects themselves.
 
 \subsubsection{Scalar multiplication}
 In physics, we observe that an unbalanced force on a body causes an acceleration in the direction of the force. It is also observed that the magnitude of acceleration of different bodies, when subjected to the same force, varies according to their mass. These observations are formalized in Newton's second law of motion
@@ -780,6 +665,10 @@ On the right side of this equation, we see a new operation: the product of a sca
 \begin{defn}[Scalar multiplication]
 The \ti{scalar multiple} of the vector ${\bf v}$ by the scalar ${\bf k}$ is the vector ${\bf w}=k{\bf v}$. The length of ${\bf w}$ is $|k|$ times the length of ${\bf v}$. If $k>0$, ${\bf w}$ points in the same direction as ${\bf v}$, while if $k<0$, ${\bf w}$ points in the direction of $-{\bf v}$. If $k=0$ or ${\bf v}={\bf 0}$, then we defined $k{\bf v}$ to be ${\bf 0}$.
 \end{defn}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/scalar_mult_examples}
+\end{center}
 
 \begin{example}
 The vector $2{\bf v}$ has the same direction as ${\bf v}$ but twice its length, while $-2{\bf v}$ is oppositely directed to ${\bf v}$ and twice its length.	
@@ -798,12 +687,128 @@ For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$,
 \end{prop}
 
 \begin{pf}
-	\fixme{Add proof. Does 1 depend on the triangle inequality?}
+	\begin{enumerate}[(a)]
+		\item By definition of scalar multiplication, the vector on the left side points in the direction of ${\bf v}$ if $c+d>0$ and points in the opposite direction if $c+d<0$. Its length is $|c+d|\||{\bf v}||$. 
+		
+		The right hand side is shown to be equal to the left hand side by adding the vectors tip to tail and checking each combination of signs for $c$ and $d$ (we may assume without loss of generality that $c>d$). For example, if $c<0$ and $d>0$, then $(c+d)||{\bf v}||$ points in the opposite direction of ${\bf v}$ and has length $(d-c)||{\bf v}||$. By adding tip to tail, $c{\bf v}+d{\bf v}$ also points in the opposite direction as ${\bf v}$ and has length $(d-c)||{\bf v}||$. Since these vectors have the same magnitude and direction, they are equal.
+		\item - (f) are left as exercises.
+	\end{enumerate}
 \end{pf}
 
+\subsection{Vectors in coordinate systems}
+As in analytic geometry, the use of coordinate systems give us powerful tools with which to perform concrete computations with vectors. Additionally, working with coordinates will allow us to consider geometric entities such as lines and planes in vector settings. 
+
+\subsubsection{Coordinate correspondence}
+In this section we describe the coordinate correspondence between three-dimensional Euclidean space, $\mathbb{E}^3$ (the three-dimensional space in which the axioms of Euclidean geometry hold), and three-dimensional Cartesian space $\mathbb{R}^3\equiv \{(x_1,x_2,x_3):x_i \in \mathbb{R} \text{ for } i=1,2,3\}$.
+
+We begin with a line. A coordinate correspondence between a line $L$ and the real number system $\mathbb{R}$ is determined by choosing arbitrarily on $L$ a zero point $O$ and a unit point $Q$ distinct from $O$. Then to each point $X$ on $L$ is assigned the number $x$ such that $|x|$ is the distance from $O$ to $X$, measured in terms of the segment $OQ$ as the unit, and $x$ is positive or negative according to whether $X$ and $Q$ are on the same side of $O$ or on opposite sides. The mapping $X \mapsto x$ is the coordinate correspondence between $L$ and $\mathbb{R}$. 
+
+We now set up a coordinate correspondence between $\mathbb{E}^3$ and $\mathbb{R}^3$. We first choose arbitrarily a zero point $O$ and three unit points $Q_1, Q_2,$ and $Q_3$ in such a way that the four points do not lie in a plane. Each of the unit points $Q_i$ determines a line $L_i$ through $O$ and a coordinate correspondence on this line, as defined above. The three lines $L_1, L_2$, and $L_3$ are called the \ti{coordinate axes}. Consider now any point $X$ in $\mathbb{E}^3$. The plane through $X$ parallel to $L_2$ and $L_3$ intersects $L_1$ at a point $X_1$, and therefore determines a number $x_1$, the coordinate of $X_1$ on $L_1$. Similarly, $X$ determines points $X_2$ on $L_2$ and $X_3$ on $L_3$ which have coordinates $x_2$ and $x_3$, respectively. Altogether, $X$ determines a triple
+\begin{align*}
+	{\bf x}=(x_1,x_2,x_3)
+\end{align*} 
+in $\mathbb{R}^3$, and we have thus defined a mapping $\theta:X \mapsto {\bf x}$ from $\mathbb{E}^3$ to $\mathbb{R}^3$. 
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/e3_r3}
+\end{center}
+We call $\theta$ the \ti{coordinate correspondence} defined by the axis system. Note that the unit point $Q_1$ on $L_1$ has the coordinate triple $(1,0,0)$, and similarly
+\begin{align*}
+	\theta(Q_2)&=(0,1,0), \\
+	\theta(Q_3)&=(0,0,1).
+\end{align*}
+
+It is a fact that $\theta$ is a bijection from $\mathbb{E}^3$ to $\mathbb{R}^3$. \footnote{The proof uses techniques beyond the usual treatment of high school geometry, so we will simply accept this statement without proof.} The power of this one-to-one correspondence is that it allows us treat geometric questions algebraically.
+
+\subsubsection{Cartesian coordinates}
+\begin{defn}[Cartesian coordinates]
+	The axis system in $\mathbb{E}^3$ is \ti{Cartesian} if the coordinate axes are mutually perpendicular and a common unit of distance (i.e., $|OQ_1|=|OQ_2|=|OQ_3|$) is used. The corresponding coordinates are called \ti{Cartesian coordinates}.
+\end{defn}
+A Cartesian coordinate system is shown below. \footnote{Cartesian coordinates are also often called \ti{rectangular coordinates} because the axes that define them meet at right angles.}
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/cartesian_coordinate_system}
+\end{center}
+The coordinate axes are labeled $x,y,$ and $z$, and are arranged such that if you take your right hand and curl your fingers from the positive $x$-axis toward the positive $y$-axis, your thumb points along the positive $z$-axis. Such a coordinate system is called \ti{right-handed}. \footnote{As you might have guessed, there are also left-handed coordinate systems. Choosing our coordinate system to be left- or right-handed is called choosing an \ti{orientation} for our coordinate system. We will discuss orientations more later. For now, just note that everything we do in the following could equivalently be formulated in terms of left-handed coordinate systems, so choosing a right-handed coordinate system for $\mathbb{E}^3$ is simply the standard convention.}
+
+As discussed in the previous section, the coordinates of a point $P$ are the numbers at which the planes through $P$ perpendicular to the coordinate axes intersect these axes. These are labeled $\theta(P)=(x,y,z)$. 
+
+Points on the $x$-axis have $y$- and $z$-coordinates equal to zero. That is, they have coordinates of the form $(x,0,0)$. Similarly points on the $y$- and $z$-axes have coordinates of the from $(0,y,0)$ and $(0,0,z)$, respectively.
+
+The points in a plane perpendicular to the $x$-axis all have the same $x$-coordinate, $x_0$, this being the number at which the plane intersects that $x$-axis. The plane is then the set 
+\begin{equation}
+	P=\{(x,y,z) \in \mathbb{R}^3 : x=x_0\} 
+\end{equation}
+That is, the plane consists of all points having coordinates $(x_0,y,z)$, where $y$ and $z$ are any real numbers. The constraint $x=x_0$ is the equation of the plane perpendicular to the $x$-axis and intersecting it at $x_0$. Similar formulas hold for planes perpendicular to the $y$- and $z$-axes.
+
+\begin{example}
+The plane $x=2$ is the plane perpendicular to the $x$-axis at $x=2$. The plane $y=3$ is the plane perpendicular to the $y$-axis at $y=3$. The plane $z=5$ is the plane perpendicular to the $z$-axis at $z=5$. These planes are shown below, together with their intersection point $(2,3,5)$.
+\end{example}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/plane_235}
+\end{center}
+
+The planes $x=2$ and $y=3$ in the figure above intersect along a line parallel to the $z$-axis. This line is described by a pair of equations $L=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } y=3\}$.
+
+\begin{exercise}
+	Describe the other two lines of intersection in the figure above.
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+The line running parallel to the $x$-axis is given by $$L_1=\{(x,y,z) \in \mathbb{R}^3: y=3 \text{ and } z=5\},$$ while the line running parallel to the $y$-axis is given by $$L_2=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } z=5\}.$$}
+
+The three planes determined by the coordinate axes are the $xy$-plane, whose equation is $z=0$; the $yz$-plane, whose equation is $x=0$; and the $xz$-plane, whose equation is $y=0$. They meet at the origin, $(0,0,0)$.
+	
+The three coordinate planes $x=0, y=0,$ and $z=0$ divide space into eight cells called \ti{octants}. The octant in which the coordinates of all points are nonnegative is called the \ti{first octant}; there is no conventional numbering for the other seven octants.
+
+\begin{exercise}
+Write the coordinate equations and inequalities which define each of the following sets of points in space.
+\begin{enumerate}[(a)]
+	\item The half-space consisting of the points on and above the $xy$-plane.
+	\item  This plane is parallel to the $yz$-plane and lying 3 units behind it.
+	\item The second quadrant of the $xy$-plane.
+	\item The first octant.
+	\item The slab between the planes $y=-1$ and $y=1$, including these planes.
+	\item The line in which the planes $y=-2$ and $z=2$ intersect.
+\end{enumerate}	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:} 
+\begin{enumerate}[(a)]
+	\item $z \geq 0$,
+	\item $x=-3$,
+	\item $z=0, x \leq 0, z \geq 0$,
+	\item $x \geq 0, y \geq 0, z \geq 0$,
+	\item $-1 \leq y \leq 1$,
+	\item $y=-2,z=2$.
+\end{enumerate}}
+
+\begin{exercise}
+	What points $P(x,y,z)$ satisfy the equations
+	\begin{align*}
+		x^2+y^2=4 \text{ and }z=3?
+	\end{align*}
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:} These equations describe a circle of radius 2 lying in a plane parallel to the $xy$-plane and lying 3 units above it.}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/circle_z=3}
+\end{center}
+
+\subsubsection{Components of a vector}
+Let us choose a Cartesian coordinate system for three-dimensional space. If a vector is positioned with its initial point at the origin, then the vector is completely determined by the coordinates of its terminal point.
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/components}
+\end{center}
+
+\begin{defn}[Components of a vector]
+	The coordinates of the terminal point of a vector ${\bf v}$ positioned with its initial point at the origin are called the \ti{components} of ${\bf v}$. We denote the components of a vector ${\bf v}$ by writing ${\bf v}=(v_1,v_2,v_3)$.
+\end{defn}
 
 \subsubsection{Norm of a vector}
-A \ti{norm} is a function which takes a vector as input and returns its magnitude. Here, we review the standard \ti{Euclidean norm}, which is given in terms of the Cartesian coordinates of a vector. 
+In Cartesian coordinates, we can easily compute the length of a vector in terms of its components. The length of a vector is also called its \ti{norm}. 
 \begin{defn}[Norm of a vector]\label{def:length_of_a_vector}
 	The \ti{norm} of a vector ${\bf v}$, denoted $||{\bf v}||$, is given in terms of its Cartesian coordinates by
 	\begin{align*}
@@ -819,18 +824,52 @@ This formula follows directly from the Pythagorean theorem. In the diagram below
 we see from the right triangle in the $x_1x_2$-plane that that $s^2=x_1^2+x_2^2$. Then, from triangle $XYO$, we have $r^2=s^2+x_3^2=x_1^2+x_2^2+x_3^2$.
 \end{pf}
 
+We also think of the norm as a function which takes in a vector and returns its length. This function has the following properties.
+
 \begin{prop}[Norm properties]
 	For any scalar $a$ and any vectors ${\bf v}$ and ${\bf w}$,
 	\begin{enumerate}[(1)]
-		\item $||{\bf u}+{\bf v}||\leq ||{\bf u}|| + ||{\bf v}||$ (triangle inequality)
+		\item $||{\bf v}|| \geq 0$, ${\bf v}={\bf 0}$ if and only if ${\bf v}={\bf 0}$. (positive-definite)
 		\item $||a{\bf v}||=|a| \ ||{\bf v}||$ (homogeneity)
-		\item If $||{\bf v}||=0$, then ${\bf v}={\bf 0}$ (positive-definite)
+		\item $||{\bf u}\cdot {\bf v}|| \leq ||{\bf u}|| \ ||{\bf v}||$ (Cauchy-Schwarz inequality)
+		\item $||{\bf u}+{\bf v}||\leq ||{\bf u}|| + ||{\bf v}||$ (triangle inequality)
 	\end{enumerate}
 \end{prop}
 
 \begin{pf}
-Verify these for the Euclidean norm. More generally, we take these to be the defining properties of a norm.
+\begin{enumerate}[(a)]
+	\item $||{\bf v}||=\sqrt{v_1^2+v_2^2+v_3^2}$ is a nonnegative function and zero if and only if $v_1=v_2=v_3=0$, that is, if ${\bf v}={\bf 0}$.
+	\item $||a{\bf v}||=\sqrt{a^2v_1^2+a^2v_2^2+a^2v_3^2}=\sqrt{a^2(v_1^2+v_2^2+v_3^2)}=\sqrt{a^2}\sqrt{(v_1^2+v_2^2+v_3^2)}=|a|\||{\bf v}||$.
+	\item By (a), for any real number $\lambda$, we have $||{\bf u}-\lambda{\bf v}|| \geq 0$. Squaring both sides, we have
+	\begin{align*}
+		||{\bf u}-\lambda{\bf v}||^2&=({\bf u}-\lambda{\bf v})\cdot ({\bf u}-\lambda{\bf v}) \\
+		&=\lambda^2{\bf v}\cdot {\bf v}-2\lambda {\bf u}\cdot {\bf v}+{\bf u}\cdot {\bf u} \\
+		&=\lambda^2||{\bf v}||^2-2\lambda{\bf u}\cdot {\bf v}+||{\bf u}||^2 \geq 0
+	\end{align*} 
+In particular, if ${\bf v} \neq 0$, we can take $\lambda=\frac{{\bf u}\cdot {\bf v}}{||{\bf v}||^2}$, which gives
+\begin{align*}
+	||{\bf u}-\lambda{\bf v}||^2&=\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^4}||{\bf v}||^2-2\frac{{\bf u}\cdot {\bf v}}{||{\bf v}||^2}{\bf u}\cdot {\bf v}+||{\bf u}||^2 \\
+	&=\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}-2\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}+||{\bf u}||^2 \\
+	&=-\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}+||{\bf u}||^2 \geq 0\\
+\end{align*}
+
+and therefore
+\begin{align*}
+	({\bf u} \cdot {\bf v})^2 \leq ||{\bf u}||^2 \ ||{\bf v}||^2.
+\end{align*}
+The desired inequality then follows by taking the square root of both sides (which doesn't effect the inequality since both sides are nonnegative). If ${\bf v}=0$ the inequality also holds since both sides are zero, hence the inequality holds for all ${\bf u}$ and ${\bf v}$. \footnote{An alternative way to finish the proof is to note that if ${\bf u} \neq \lambda {\bf v}$, then $||{\bf u}-\lambda{\bf v}||^2=\lambda^2||{\bf v}||^2-2\lambda {\bf u}\cdot {\bf v}+||{\bf u}||^2>0$. This quadratic expression in $\lambda$ therefore has no real zeros, hence the discriminant $4({\bf u}\cdot {\bf v})^2-4||{\bf u}||^2||{\bf v}||^2>0$ which implies ${\bf u}\cdot {\bf v} \leq ||{\bf u}|| \ ||{\bf v}||$. If ${\bf u}=\lambda {\bf v}$, then one can easily check that the inequality still holds. Hence, the inequality is true for all ${\bf u}$ and ${\bf v}$.}
+\item The triangle inequality follows from the Cauchy-Schwarz inequality:
+\begin{align*}
+	||{\bf u}+{\bf v}||^2&=({\bf u}+{\bf v})\cdot ({\bf u}+{\bf v}) \\
+	&={\bf u} \cdot {\bf u}+{\bf v}\cdot {\bf v} +2{\bf u} \cdot {\bf v} \\
+	&=||{\bf u}||^2+||{\bf v}||^2+2{\bf u} \cdot {\bf v} \\
+	&\leq ||{\bf u}||^2+||{\bf v}||^2+||{\bf u}|| \ ||{\bf v}|| \hspace{0.25cm} (\text{ by Cauchy-Schwarz})\\
+	&=(||{\bf u}||+||{\bf v}||)^2
+\end{align*}
+and the desired inequality follows by taking the square root of both sides.
+\end{enumerate}
 \end{pf}
+
 
 \begin{defn}[Unit vector]
 	A \ti{unit vector} is a vector of unit length. That is, a vector ${\bf v}$ such that $||{\bf v}||=1$.
@@ -1114,7 +1153,7 @@ Properties (2)-(6) are proved similarly. Note that (5) follows from (3) and (4),
 
 Note, however, the differences between the dot product and ordinary multiplication. For instance, one might ask, ``Is the dot product associative?". This question doesn't even make any sense for the dot product, as expressions such as ${\bf a}\cdot ({\bf b}\cdot {\bf c})$ are not defined, since ${\bf a}$ is a vector and $({\bf b}\cdot {\bf c})$ is a scalar, and one can only form the dot product between two vectors. 
 
-\subsubsection{Orthogonal vectors}
+\subsection{Orthogonal vectors}
 While writing vectors in component form has the advantage of facilitating many computations, this form seems to obscure geometric relations between vectors.
 For instance, the two vectors
 \begin{align*}
@@ -1161,7 +1200,7 @@ is called the \ti{Kronecker delta symbol}.
 \end{example}
 
 These examples illustrate another difference between the dot product of two vectors and the ordinary product of two numbers. For two real numbers, if $ab=0$, then either $a=0$ or $b=0$. These examples clearly show that if ${\bf a}\cdot {\bf b}=0$, then it need not be true that either ${\bf a}=0$ or ${\bf b}=0$.
-\subsubsection{Projection of a vector}
+\subsection{Projection of a vector}
 Let ${\bf a}$ be a nonzero vector, ${\bf \hat{a}}=\frac{{\bf a}}{||{\bf a}||}$ the unit vector obtained by normalizing ${\bf a}$, and ${\bf b}$ another vector. Then Eq. \eqref{eq:dot_2} shows that
 \begin{align*}
 	{\bf \hat{a}}\cdot {\bf b}=\frac{{\bf a}}{||{\bf a}||} \cdot {\bf b}=||{\bf b}||\cos \theta
@@ -1238,7 +1277,7 @@ We can find a point on the line by plugging in any number for $t$, such as $t=0$
 \end{align*}}
 
 
-\subsubsection{The cross product}
+\subsection{The cross product}
 There is another vector product which is important in physics, known as the \ti{cross product}. Unlike the dot product, which took two vectors and returned a \ti{scalar}, the cross product takes two vectors and returns another \ti{vector}.
 
 The physical motivation for the cross product is that of \ti{torque}, which is a force that causes a rotation. Suppose we wish to tighten a bolt using a wrench. Applying a force ${\bf F}$ to the handle of the wrench produces a torque which acts along the axis of the bolt to drive the bolt forward. The magnitude of the torque depends on three things:
@@ -1471,7 +1510,7 @@ A unit vector perpendicular to the plane is given by
 	{\bf n}=\frac{\overrightarrow{PQ} \times \overrightarrow{PR}}{||\overrightarrow{PQ} \times \overrightarrow{PR}||}=\frac{(6,0,6)}{6\sqrt{2}}=(1/\sqrt{2},0,1/\sqrt{2}).
 \end{align*}}
 
-\subsubsection{The triple scalar product}
+\subsection{The triple scalar product}
 Since ${\bf a} \times {\bf b}$ is a vector, note that the product $({\bf a} \times {\bf b}) \cdot {\bf c}$ is defined.
 
 \begin{defn}[Triple scalar product]
@@ -1680,6 +1719,44 @@ This has a solution at $t=-1$, so the point of intersection is
 	\item Find parametric equations for the line in which these planes intersect.
 \end{enumerate}
 \end{exercise}
+
+\fixme{Add solution.}
+
+\begin{example}[Distance between a point and a plane]
+	We can use projections to find the distance between a point $P$ and a plane. Let $P_0$ be any point in the plane and ${\bf n}$ a vector normal to the plane. Then the perpendicular distance $d$ from $P$ to the plane is the length of the component of $\overrightarrow{P_0P}$ along ${\bf n}$, that is
+	\begin{align*}
+		d=||\text{proj}_{\bf n}\overrightarrow{P_0P}||.
+	\end{align*}
+\end{example}
+
+\begin{exercise}
+Find the distance from the point $(3,0,10)$ to the plane $2x+3y+z=2$.	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+The point $P_0(0,0,2)$ satisfies the equation of the plane, and hence belongs to the plane. From the equation of the plane, a normal vector to the plane is given by the coefficients of $x,y,$ and $z$: ${\bf n}=(2,3,1)$. We can then compute the distance:
+\begin{align*}
+	d&=||\text{proj}_{\bf n}{\overrightarrow{P_0P}}|| \\
+	&=||\frac{\overrightarrow{P_0P}\cdot {\bf n}}{||{\bf n}||^2}{\bf n}|| \\
+	&=\frac{14}{\sqrt{14}}.
+\end{align*}}
+
+\begin{example}[Distance between two parallel planes]
+	Similar to the previous example, to find the distance between the two parallel planes, let $P_0$ be any point on the first plane and $P_1$ be any point on the second plane. Then, if ${\bf n}$ is a common normal vector to both planes, then the distance $d$ between them is 
+	\begin{align*}
+		d=||\text{proj}_{\bf n}{\overrightarrow{P_0P}}||.
+	\end{align*}
+\end{example}
+
+\begin{exercise}
+Find the distance between the planes $2x+3y+z=4$ and $-4x-6x-2x=12$.	
+\end{exercise}
+
+\fixme{Add solution.}
+
+{\color{red} \flushleft Answer: $\frac{10}{\sqrt{14}}$.}
+
+
 
 \subsection{$n$-dimensional space}
 As we just have seen, the geometry of three-dimensional space is more complicated and harder to visualize than the geometry of one- or two-dimensional space. However, we have also seen that if we work in Cartesian coordinates, there is a remarkably simple structural resemblance between vectors in each of these spaces.
@@ -5256,6 +5333,11 @@ We are now ready to prove that there exists a determinant function on $\mathbb{R
 
 
 \section{Eigenvalues and eigenvectors}
+
+\begin{appendices}
+\section{}	
+\end{appendices}
+
 
 \printbibliography
 \nocite{*}
