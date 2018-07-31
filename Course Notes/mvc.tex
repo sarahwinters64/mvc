@@ -437,9 +437,7 @@ The reason for emphasizing mathematical structure is that is that this is what i
 
 Since this course will at many times mention ideas from physics, it is also worthwhile at this point to emphasize the difference between physics and mathematics. While as of the present moment physicists have found mathematics to be the only language which is capable of describing the laws of physics, the objectives of physicists and mathematicians are very different. To put it shortly, one might say that physicists are interested in \ti{truth} whereas mathematicians are only interested in \ti{validity}. That is, in forming a mathematical structure (model), physicists create definitions and rules which they believe correspond to the \ti{real world}, that is, definitions and rules which, to the best of our knowledge, are \ti{true}. This approach to mathematics is often called \ti{applied mathematics}, i.e., practical mathematics. This is contrasted by what is called \ti{pure mathematics} (or, \ti{abstract mathematics}). A pure mathematician does not care at all whether the definitions and rules apply to the real world. He or she may define any consistent set of rules that they please, and apply the same logical reasoning to see what inescapable conclusions follow. That is, they are interested only in the logical process. If the theorems and propositions do indeed follow inescapably as a result of this logical process when applied to these axioms and definitions, then ones reasoning is said to be \ti{valid}, independently of whether the axioms and definitions bear any relation to the real world. \footnote{Note that truth (or at least what we believe to be true), unlike validity, is subject to change as we encounter new information. Both physicists and mathematicians are guided by the basic belief that if ones premises (assumptions) are true and ones argument is valid, then the conclusion must also be true. However, it is certainly possible that an argument can be valid and the conclusion be true even though the premises are \ti{false}. This is why no number of experiments can every prove a theory to be correct; the correct results could always be occurring despite wrong assumptions. This was true of the theory of classical mechanics. Despite having incorrect assumptions, Newton's theory of mechanics was consistent with all known experiments until the late 19th century when physicists first carried out new experiments which lead to the development of the theories of relativity and quantum mechanics. While at the present time these theories are in agreement with all known experiments, this could always change in the future.}
 
-Of course, there is no structural difference between pure and applied mathematics,  the only difference being whether the mathematical model under consideration is believed to describe the real world. Moreover, the difference between pure and applied mathematics is often a time-dependent one, as a model that seemingly bears no relationship to the real world at present may eventually turn out to be a realistic model after all. A classic example of this is Lobachevsky's geometry, \fixme{Add short description of non-Euclidean geometry and the relation to relativity.} which was pure mathematics from its invention in 1829 until 1915 at which time Einstein noticed that it served as a realistic model for his theory of general relativity.
-
-
+Of course, there is no structural difference between pure and applied mathematics,  the only difference being whether the mathematical model under consideration is believed to describe the real world. Moreover, the difference between pure and applied mathematics is often a time-dependent one, as a model that seemingly bears no relationship to the real world at present may eventually turn out to be a realistic model after all. A classic example of this is Lobachevsky's geometry, \fixme{Maybe elaborate or choose a simpler example.} which was pure mathematics from its invention in 1829 until 1915 at which time Einstein noticed that it served as a realistic model for his theory of general relativity.
 
 \section{Vectors and geometry}
 \subsection{Physical motivation}
@@ -5168,15 +5166,63 @@ and therefore
 	D(\beta,\alpha)=-D(\alpha,\beta).
 \end{align*}
 \end{pf}
-We now prove an analogous result for $n \times n$ matrices.
+The second lemma proves an analogous result for $n \times n$ matrices.
 
 \begin{lem}[$D(A)=0$ implies alternating for $n$-linear functions]
 	Let $D$ be an $n$-linear function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ where $D$ has the property that $D(A)=0$ whenever two adjacent rows of $A$ are equal. Then $D$ is alternating.
 \end{lem}
 
 \begin{pf}
-	
+We need to show that $D(A')=-D(A)$ if $A'$ is obtained by interchanging any two rows of $A$. First, suppose that $A'$ is obtained by interchanging two adjacent rows of $A$. It then holds by exactly the same arguments of the previous lemma that $D(A')=-D(A)$.
+
+Now let $B$ is obtained by interchanging rows $i$ and $j$ of $A$, where $i<j$. We can obtain $B$ from $A$ by a succession of interchanges of pairs of adjacent rows. We begin by interchanging row $i$ with row $(i+1)$ and continue until the rows are in the order
+\begin{align*}
+	\alpha_1,\cdots,\alpha_{i-1},\alpha_{i+1},\cdots,\alpha_j,\alpha_i,\alpha_{j+1},\cdots,\alpha_n.
+\end{align*}
+This requires $k=j-i$ interchanges of adjacent rows. We now move $\alpha_j$ to the $i$th position using $(k-1)$ interchanges of adjacent rows. We have thus obtained $B$ from $A$ by $k+(k-1)$ interchanges of adjacent rows. We have thus obtained $B$ from $A$ by $k+(k-1)=2k-1$ interchanges of adjacent rows. Thus
+\begin{align*}
+	D(B)=(-1)^{2k-1}D(A)=-D(A).
+\end{align*}	
 \end{pf}
+
+We are now ready to prove that there exists a determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ for each positive integer $n$. 
+
+\begin{defn}[\fixme{Need label.}]
+\begin{enumerate}[(a)] \hspace{10cm}
+	\item If $n>1$ and $A$ is an $n \times n$ matrix, we let $A(i\vert j)$ denote the $(n-1) \times (n-1)$ matrix obtained by deleting the $i$th row and $j$th column of $A$.
+	\item If $D$ is an $(n-1)$-linear function and $A$ is an $n \times n$ matrix, we put $D_{ij}(A)=D[A(i \vert j)]$.
+\end{enumerate}
+\end{defn}
+
+\begin{example}
+\begin{enumerate}[(a)]
+	\item If $A=\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}$, then $A(2|2)=\begin{bmatrix}
+		a_{11} & a_{13} \\
+		a_{31} & a_{33}
+	\end{bmatrix}$ and $A(3|1)=\begin{bmatrix}
+		a_{12} & a_{13} \\
+		a_{22} & a_{33}
+	\end{bmatrix}$.	
+	\item Let $D:\mathbb{R}^{\overline{2} \times \overline{2}}\to \mathbb{R}$ be defined by $D(A)=A_{11}A_{22}$. Then, for $A$ above, $D_{22}(A)=D[A(2\vert 2)]=a_{11}a_{33}$ and $D_{31}(A)=D[A(3\vert 1)]=a_{12}a_{33}$.
+\end{enumerate}
+\end{example}
+
+
+\begin{thm}[\fixme{Need label.}]
+\begin{enumerate}[(a)] \hspace{10cm}
+	\item Let $n>1$ and let $D$ be an alternating $(n-1)$-linear function on $\mathbb{R}^{\overline{(n-1)} \times \overline{(n-1)}}$. For each $j$, $1 \leq j \leq n$, the function $E_j$ defined by 
+	\begin{align*}
+		E_j(A)=\sum_{i=1}^n(-1)^{i+j}A_{ij}D_{ij}(A)
+	\end{align*}
+	is an alternating $n$-linear function for $A \in \mathbb{R}^{\overline{n} \times \overline{n}}$.
+	\item If $D$ is a determinant function, so is each $E_j$.
+\end{enumerate}
+	
+\end{thm}
 
 
 
