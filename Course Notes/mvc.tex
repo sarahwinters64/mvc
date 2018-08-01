@@ -688,7 +688,7 @@ For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$,
 
 \begin{pf}
 	\begin{enumerate}[(a)]
-		\item By definition of scalar multiplication, the vector on the left side points in the direction of ${\bf v}$ if $c+d>0$ and points in the opposite direction if $c+d<0$. Its length is $|c+d|\||{\bf v}||$. 
+		\item By definition of scalar multiplication, the vector on the left side points in the direction of ${\bf v}$ if $c+d>0$ and points in the opposite direction if $c+d<0$. Its length is $|c+d|\ ||{\bf v}||$. 
 		
 		The right hand side is shown to be equal to the left hand side by adding the vectors tip to tail and checking each combination of signs for $c$ and $d$ (we may assume without loss of generality that $c>d$). For example, if $c<0$ and $d>0$, then $(c+d)||{\bf v}||$ points in the opposite direction of ${\bf v}$ and has length $(d-c)||{\bf v}||$. By adding tip to tail, $c{\bf v}+d{\bf v}$ also points in the opposite direction as ${\bf v}$ and has length $(d-c)||{\bf v}||$. Since these vectors have the same magnitude and direction, they are equal.
 		\item - (f) are left as exercises.
@@ -1869,7 +1869,15 @@ If ${\bf u}, {\bf v},$ and ${\bf w}$ are vectors in $\mathbb{R}^n$, and if $k$ a
 \end{thm}
 
 \begin{pf}
-Exercise.	
+These are proved by writing each vector in components as using the corresponding properties for real numbers. For instance, to prove (a):
+\begin{align*}
+	{\bf u}+{\bf v}&=(u_1,\cdots,u_n)+(v_1,\cdots,v_n) \\
+	&=(u_1+v_1, \cdots, u_n+v_n) \\
+	&=(v_1+u_1, \cdots, v_n+u_n) \\ 
+	&=(v_1,\cdots,v_n)+(u_1,\cdots,u_n) \\
+	&={\bf v}+{\bf u}.
+\end{align*}	
+The others are proved similarly and are left as an exercise.
 \end{pf}
 
 This theorem allows us to compute in $\mathbb{R}^n$ without explicitly writing out all the components, which can be extremely cumbersome. For instance, the previous theorem can be used to prove that if ${\bf x}+{\bf a}={\bf b}$, then ${\bf x}={\bf b}-{\bf a}$:
@@ -1885,7 +1893,7 @@ Finally, it is common for addition, subtraction, and scalar multiplication to be
 \begin{align*}
 	{\bf u}=2{\bf v}_1+3{\bf v}_2+{\bf v}_3 \text{ and } {\bf w}=7{\bf v}_1-6{\bf v}_2+8{\bf v}_3.
 \end{align*}
-This motivates the following definition.
+As we will see, it is useful to know when a vector can be written in terms of other vectors in this way, so we make the following definition:
 
 \begin{defn}[Linear combination]
 	If ${\bf w}$ is a vector in $\mathbb{R}^n$, then ${\bf w}$ is said to be a \ti{linear combination} of the vectors ${\bf v}_1, {\bf v}_2, \cdots, {\bf v}_r$ in $\mathbb{R}^n$ if it can be expressed in the form
