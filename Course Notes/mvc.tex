@@ -807,7 +807,7 @@ Let us choose a Cartesian coordinate system for three-dimensional space. If a ve
 	The coordinates of the terminal point of a vector ${\bf v}$ positioned with its initial point at the origin are called the \ti{components} of ${\bf v}$. We denote the components of a vector ${\bf v}$ by writing ${\bf v}=(v_1,v_2,v_3)$.
 \end{defn}
 
-\subsubsection{Norm of a vector}
+\subsection{Norm of a vector}
 In Cartesian coordinates, we can easily compute the length of a vector in terms of its components. The length of a vector is also called its \ti{norm}. 
 \begin{defn}[Norm of a vector]\label{def:length_of_a_vector}
 	The \ti{norm} of a vector ${\bf v}$, denoted $||{\bf v}||$, is given in terms of its Cartesian coordinates by
@@ -831,8 +831,6 @@ We also think of the norm as a function which takes in a vector and returns its 
 	\begin{enumerate}[(1)]
 		\item $||{\bf v}|| \geq 0$, ${\bf v}={\bf 0}$ if and only if ${\bf v}={\bf 0}$. (positive-definite)
 		\item $||a{\bf v}||=|a| \ ||{\bf v}||$ (homogeneity)
-		\item $||{\bf u}\cdot {\bf v}|| \leq ||{\bf u}|| \ ||{\bf v}||$ (Cauchy-Schwarz inequality)
-		\item $||{\bf u}+{\bf v}||\leq ||{\bf u}|| + ||{\bf v}||$ (triangle inequality)
 	\end{enumerate}
 \end{prop}
 
@@ -840,33 +838,6 @@ We also think of the norm as a function which takes in a vector and returns its 
 \begin{enumerate}[(a)]
 	\item $||{\bf v}||=\sqrt{v_1^2+v_2^2+v_3^2}$ is a nonnegative function and zero if and only if $v_1=v_2=v_3=0$, that is, if ${\bf v}={\bf 0}$.
 	\item $||a{\bf v}||=\sqrt{a^2v_1^2+a^2v_2^2+a^2v_3^2}=\sqrt{a^2(v_1^2+v_2^2+v_3^2)}=\sqrt{a^2}\sqrt{(v_1^2+v_2^2+v_3^2)}=|a|\||{\bf v}||$.
-	\item By (a), for any real number $\lambda$, we have $||{\bf u}-\lambda{\bf v}|| \geq 0$. Squaring both sides, we have
-	\begin{align*}
-		||{\bf u}-\lambda{\bf v}||^2&=({\bf u}-\lambda{\bf v})\cdot ({\bf u}-\lambda{\bf v}) \\
-		&=\lambda^2{\bf v}\cdot {\bf v}-2\lambda {\bf u}\cdot {\bf v}+{\bf u}\cdot {\bf u} \\
-		&=\lambda^2||{\bf v}||^2-2\lambda{\bf u}\cdot {\bf v}+||{\bf u}||^2 \geq 0
-	\end{align*} 
-In particular, if ${\bf v} \neq 0$, we can take $\lambda=\frac{{\bf u}\cdot {\bf v}}{||{\bf v}||^2}$, which gives
-\begin{align*}
-	||{\bf u}-\lambda{\bf v}||^2&=\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^4}||{\bf v}||^2-2\frac{{\bf u}\cdot {\bf v}}{||{\bf v}||^2}{\bf u}\cdot {\bf v}+||{\bf u}||^2 \\
-	&=\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}-2\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}+||{\bf u}||^2 \\
-	&=-\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}+||{\bf u}||^2 \geq 0\\
-\end{align*}
-
-and therefore
-\begin{align*}
-	({\bf u} \cdot {\bf v})^2 \leq ||{\bf u}||^2 \ ||{\bf v}||^2.
-\end{align*}
-The desired inequality then follows by taking the square root of both sides (which doesn't effect the inequality since both sides are nonnegative). If ${\bf v}=0$ the inequality also holds since both sides are zero, hence the inequality holds for all ${\bf u}$ and ${\bf v}$. \footnote{An alternative way to finish the proof is to note that if ${\bf u} \neq \lambda {\bf v}$, then $||{\bf u}-\lambda{\bf v}||^2=\lambda^2||{\bf v}||^2-2\lambda {\bf u}\cdot {\bf v}+||{\bf u}||^2>0$. This quadratic expression in $\lambda$ therefore has no real zeros, hence the discriminant $4({\bf u}\cdot {\bf v})^2-4||{\bf u}||^2||{\bf v}||^2>0$ which implies ${\bf u}\cdot {\bf v} \leq ||{\bf u}|| \ ||{\bf v}||$. If ${\bf u}=\lambda {\bf v}$, then one can easily check that the inequality still holds. Hence, the inequality is true for all ${\bf u}$ and ${\bf v}$.}
-\item The triangle inequality follows from the Cauchy-Schwarz inequality:
-\begin{align*}
-	||{\bf u}+{\bf v}||^2&=({\bf u}+{\bf v})\cdot ({\bf u}+{\bf v}) \\
-	&={\bf u} \cdot {\bf u}+{\bf v}\cdot {\bf v} +2{\bf u} \cdot {\bf v} \\
-	&=||{\bf u}||^2+||{\bf v}||^2+2{\bf u} \cdot {\bf v} \\
-	&\leq ||{\bf u}||^2+||{\bf v}||^2+||{\bf u}|| \ ||{\bf v}|| \hspace{0.25cm} (\text{ by Cauchy-Schwarz})\\
-	&=(||{\bf u}||+||{\bf v}||)^2
-\end{align*}
-and the desired inequality follows by taking the square root of both sides.
 \end{enumerate}
 \end{pf}
 
@@ -1055,7 +1026,7 @@ The midpoint is the point
 	\left(\frac{3+7}{2},\frac{-2+4}{2},\frac{0+4}{2}\right)=(5,1,2).
 \end{align*}}
 
-\subsubsection{The dot product}
+\subsection{The dot product}
 Two nonzero vectors ${\bf u}$ and ${\bf v}$ positioned so that their initial points coincide determine an angle $\theta \in [0,\pi]$, which is the angle between the two vectors.
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/angle_uv}
@@ -1081,20 +1052,6 @@ and we see that
 	\item $\theta$ is obtuse if ${\bf u} \cdot {\bf v} < 0$.
 	\item $\theta$ is right if ${\bf u} \cdot {\bf v} = 0$.
 \end{itemize}
-
-Since the dot product takes as input two vectors and returns a scalar, it is also called the \ti{scalar product}. Note that from Eq. \eqref{eq:law_of_cosines}, we can write ${\bf u}\cdot {\bf v}$ in terms of magnitudes only, as 
-\begin{equation}\label{eq:dot_product_magnitudes}
-	{\bf u}\cdot {\bf v}=\frac{||{\bf u}||^2+||{\bf v}||^2-||{\bf u}-{\bf v}||^2}{2}.
-\end{equation}
-Note that this equation holds in \ti{all} coordinate systems. However, it takes a particularly simple form in Cartesian coordinates. Writing out the norm of each vector in terms of its components gives
-
-\begin{align*}
-	{\bf u}\cdot {\bf v}&=\frac{u_1^2+u_2^2+u_3^2+v_1^2+v_2^2+v_3^2-(u_1-v_1)^2-(u_2-v_2)^2-(u_3-v_3)^2}{2}
-\end{align*}
-Expanding the binomials and cancelling like terms, we find
-\begin{equation}
-	{\bf u}\cdot {\bf v}=u_1v_1+u_2v_2+u_3v_2.
-\end{equation}
 
 \begin{exercise}
 Compute the angle between the vectors ${\bf u}=(0,0,3)$ and ${\bf v}=(\sqrt{2},0,\sqrt{2})$.	
@@ -1127,6 +1084,28 @@ is a diagonal of the cube. The angle between ${\bf d}$ and ${\bf u}_1$ is
 \end{align*}
 }
 
+Since the dot product takes as input two vectors and returns a scalar, it is also called the \ti{scalar product}. Note that from Eq. \eqref{eq:law_of_cosines}, we can write ${\bf u}\cdot {\bf v}$ in terms of magnitudes only, as 
+\begin{equation}\label{eq:dot_product_magnitudes}
+	{\bf u}\cdot {\bf v}=\frac{||{\bf u}||^2+||{\bf v}||^2-||{\bf u}-{\bf v}||^2}{2}.
+\end{equation}
+Note that this equation holds in \ti{all} coordinate systems. However, it takes a particularly simple form in Cartesian coordinates. Writing out the norm of each vector in terms of its components gives
+
+\begin{align*}
+	{\bf u}\cdot {\bf v}&=\frac{u_1^2+u_2^2+u_3^2+v_1^2+v_2^2+v_3^2-(u_1-v_1)^2-(u_2-v_2)^2-(u_3-v_3)^2}{2}
+\end{align*}
+Expanding the binomials and cancelling like terms, we find
+\begin{equation}
+	{\bf u}\cdot {\bf v}=u_1v_1+u_2v_2+u_3v_2.
+\end{equation}
+
+Using this formula, we see that we can write the norm of a vector using the dot product as 
+
+\begin{equation}\label{eq:dot_product_norm}
+	||{\bf u}||=\sqrt{{\bf u}\cdot {\bf u}}.
+\end{equation}
+
+Let us now study the structural properties of the dot product.
+
 \begin{prop}[Properties of the dot product]
 	Let ${\bf a}, {\bf b}, {\bf c}, {\bf d}$ be vectors and $k$ any scalar. Then 
 	\begin{enumerate}[(1)]
@@ -1134,8 +1113,7 @@ is a diagonal of the cube. The angle between ${\bf d}$ and ${\bf u}_1$ is
 		\item $(k {\bf a})\cdot {\bf b}={\bf a}\cdot (k{\bf b})=k({\bf a}\cdot {\bf b})$
 		\item ${\bf a}\cdot ({\bf b}+{\bf c})={\bf a}\cdot {\bf b}+{\bf a}\cdot {\bf c}$
 		\item $({\bf a}+{\bf b})\cdot {\bf a}={\bf a}\cdot {\bf c}+{\bf b}\cdot {\bf c}$
-		\item $({\bf a}+{\bf b})\cdot ({\bf c}+{\bf d})={\bf a}\cdot {\bf c}+{\bf a}\cdot {\bf d}+{\bf b}\cdot {\bf c}+{\bf b}\cdot {\bf d}$
-		\item ${\bf a} \cdot {\bf a}=||{\bf a}||^2$
+		\item $({\bf a}+{\bf b})\cdot ({\bf c}+{\bf d})={\bf a}\cdot {\bf c}+{\bf a}\cdot {\bf d}+{\bf b}\cdot {\bf c}+{\bf b}\cdot {\bf d}$s
 	\end{enumerate}
 \end{prop}
 
@@ -1152,6 +1130,50 @@ Properties (2)-(6) are proved similarly. Note that (5) follows from (3) and (4),
 \fixme{Add exercises using these properties.}
 
 Note, however, the differences between the dot product and ordinary multiplication. For instance, one might ask, ``Is the dot product associative?". This question doesn't even make any sense for the dot product, as expressions such as ${\bf a}\cdot ({\bf b}\cdot {\bf c})$ are not defined, since ${\bf a}$ is a vector and $({\bf b}\cdot {\bf c})$ is a scalar, and one can only form the dot product between two vectors. 
+
+
+Finally, the relationship between the dot product and the norm in Eq. \eqref{eq:dot_product_norm} implies two important inequalities:
+
+\begin{prop}[Cauchy-Schwarz and triangle inequalities]
+For any vectors ${\bf u}$ and ${\bf v}$, the following inequalities hold:
+\begin{enumerate}[(a)]
+	\item $||{\bf u}\cdot {\bf v}|| \leq ||{\bf u}|| \ ||{\bf v}||$ (Cauchy-Schwarz inequality)
+		\item $||{\bf u}+{\bf v}||\leq ||{\bf u}|| + ||{\bf v}||$ (triangle inequality) 
+\end{enumerate}
+\end{prop}
+
+\begin{pf}
+	\begin{enumerate}[(a)]
+			\item By (a), for any real number $\lambda$, we have $||{\bf u}-\lambda{\bf v}|| \geq 0$. Squaring both sides, we have
+	\begin{align*}
+		||{\bf u}-\lambda{\bf v}||^2&=({\bf u}-\lambda{\bf v})\cdot ({\bf u}-\lambda{\bf v}) \\
+		&=\lambda^2{\bf v}\cdot {\bf v}-2\lambda {\bf u}\cdot {\bf v}+{\bf u}\cdot {\bf u} \\
+		&=\lambda^2||{\bf v}||^2-2\lambda{\bf u}\cdot {\bf v}+||{\bf u}||^2 \geq 0
+	\end{align*} 
+In particular, if ${\bf v} \neq 0$, we can take $\lambda=\frac{{\bf u}\cdot {\bf v}}{||{\bf v}||^2}$, which gives
+\begin{align*}
+	||{\bf u}-\lambda{\bf v}||^2&=\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^4}||{\bf v}||^2-2\frac{{\bf u}\cdot {\bf v}}{||{\bf v}||^2}{\bf u}\cdot {\bf v}+||{\bf u}||^2 \\
+	&=\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}-2\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}+||{\bf u}||^2 \\
+	&=-\frac{({\bf u}\cdot {\bf v})^2}{||{\bf v}||^2}+||{\bf u}||^2 \geq 0\\
+\end{align*}
+
+and therefore
+\begin{align*}
+	({\bf u} \cdot {\bf v})^2 \leq ||{\bf u}||^2 \ ||{\bf v}||^2.
+\end{align*}
+The desired inequality then follows by taking the square root of both sides (which doesn't effect the inequality since both sides are nonnegative). If ${\bf v}=0$ the inequality also holds since both sides are zero, hence the inequality holds for all ${\bf u}$ and ${\bf v}$. \footnote{An alternative way to finish the proof is to note that if ${\bf u} \neq \lambda {\bf v}$, then $||{\bf u}-\lambda{\bf v}||^2=\lambda^2||{\bf v}||^2-2\lambda {\bf u}\cdot {\bf v}+||{\bf u}||^2>0$. This quadratic expression in $\lambda$ therefore has no real zeros, hence the discriminant $4({\bf u}\cdot {\bf v})^2-4||{\bf u}||^2||{\bf v}||^2>0$ which implies ${\bf u}\cdot {\bf v} \leq ||{\bf u}|| \ ||{\bf v}||$. If ${\bf u}=\lambda {\bf v}$, then one can easily check that the inequality still holds. Hence, the inequality is true for all ${\bf u}$ and ${\bf v}$.}
+\item The triangle inequality follows from the Cauchy-Schwarz inequality:
+\begin{align*}
+	||{\bf u}+{\bf v}||^2&=({\bf u}+{\bf v})\cdot ({\bf u}+{\bf v}) \\
+	&={\bf u} \cdot {\bf u}+{\bf v}\cdot {\bf v} +2{\bf u} \cdot {\bf v} \\
+	&=||{\bf u}||^2+||{\bf v}||^2+2{\bf u} \cdot {\bf v} \\
+	&\leq ||{\bf u}||^2+||{\bf v}||^2+||{\bf u}|| \ ||{\bf v}|| \hspace{0.25cm} (\text{ by Cauchy-Schwarz})\\
+	&=(||{\bf u}||+||{\bf v}||)^2
+\end{align*}
+and the desired inequality follows by taking the square root of both sides.
+	\end{enumerate}
+\end{pf}
+
 
 \subsection{Orthogonal vectors}
 While writing vectors in component form has the advantage of facilitating many computations, this form seems to obscure geometric relations between vectors.
