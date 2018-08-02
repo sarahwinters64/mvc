@@ -1053,6 +1053,26 @@ and we see that
 	\item $\theta$ is right if ${\bf u} \cdot {\bf v} = 0$.
 \end{itemize}
 
+Since the dot product takes as input two vectors and returns a scalar, it is also called the \ti{scalar product}. Note that from Eq. \eqref{eq:law_of_cosines}, we can write ${\bf u}\cdot {\bf v}$ in terms of magnitudes only, as 
+\begin{equation}\label{eq:dot_product_magnitudes}
+	{\bf u}\cdot {\bf v}=\frac{||{\bf u}||^2+||{\bf v}||^2-||{\bf u}-{\bf v}||^2}{2}.
+\end{equation}
+Note that this equation holds in \ti{all} coordinate systems. However, it takes a particularly simple form in Cartesian coordinates. Writing out the norm of each vector in terms of its components gives
+
+\begin{align*}
+	{\bf u}\cdot {\bf v}&=\frac{u_1^2+u_2^2+u_3^2+v_1^2+v_2^2+v_3^2-(u_1-v_1)^2-(u_2-v_2)^2-(u_3-v_3)^2}{2}
+\end{align*}
+Expanding the binomials and cancelling like terms, we find
+\begin{equation}
+	{\bf u}\cdot {\bf v}=u_1v_1+u_2v_2+u_3v_2.
+\end{equation}
+
+Note that we can write the norm of a vector using the dot product as 
+
+\begin{equation}\label{eq:dot_product_norm}
+	||{\bf u}||=\sqrt{{\bf u}\cdot {\bf u}}.
+\end{equation}
+
 \begin{exercise}
 Compute the angle between the vectors ${\bf u}=(0,0,3)$ and ${\bf v}=(\sqrt{2},0,\sqrt{2})$.	
 \end{exercise}
@@ -1083,26 +1103,6 @@ is a diagonal of the cube. The angle between ${\bf d}$ and ${\bf u}_1$ is
 	&\approx 54.74^\circ.
 \end{align*}
 }
-
-Since the dot product takes as input two vectors and returns a scalar, it is also called the \ti{scalar product}. Note that from Eq. \eqref{eq:law_of_cosines}, we can write ${\bf u}\cdot {\bf v}$ in terms of magnitudes only, as 
-\begin{equation}\label{eq:dot_product_magnitudes}
-	{\bf u}\cdot {\bf v}=\frac{||{\bf u}||^2+||{\bf v}||^2-||{\bf u}-{\bf v}||^2}{2}.
-\end{equation}
-Note that this equation holds in \ti{all} coordinate systems. However, it takes a particularly simple form in Cartesian coordinates. Writing out the norm of each vector in terms of its components gives
-
-\begin{align*}
-	{\bf u}\cdot {\bf v}&=\frac{u_1^2+u_2^2+u_3^2+v_1^2+v_2^2+v_3^2-(u_1-v_1)^2-(u_2-v_2)^2-(u_3-v_3)^2}{2}
-\end{align*}
-Expanding the binomials and cancelling like terms, we find
-\begin{equation}
-	{\bf u}\cdot {\bf v}=u_1v_1+u_2v_2+u_3v_2.
-\end{equation}
-
-Using this formula, we see that we can write the norm of a vector using the dot product as 
-
-\begin{equation}\label{eq:dot_product_norm}
-	||{\bf u}||=\sqrt{{\bf u}\cdot {\bf u}}.
-\end{equation}
 
 Let us now study the structural properties of the dot product.
 
@@ -1135,7 +1135,7 @@ Note, however, the differences between the dot product and ordinary multiplicati
 Finally, the relationship between the dot product and the norm in Eq. \eqref{eq:dot_product_norm} implies two important inequalities:
 
 \begin{prop}[Cauchy-Schwarz and triangle inequalities]
-For any vectors ${\bf u}$ and ${\bf v}$, the following inequalities hold:
+For any vectors ${\bf u}$ and ${\bf v}$, the following inequalities hold: \footnote{The first of these can be understood by taking ${\bf v}={\bf e}_1$. Since ${\bf u}\cdot {\bf e}_1=u_1$, the inequality becomes $|u_1| \leq ||{\bf u}||=\sqrt{u_1^2+u_2^2+u_3^2}$. For the second, adding ${\bf u}+{\bf v}$ tip to tail, this inequality states the geometric fact that the length of any leg of a triangle is less than or equal to the sum of the other two.}
 \begin{enumerate}[(a)]
 	\item $||{\bf u}\cdot {\bf v}|| \leq ||{\bf u}|| \ ||{\bf v}||$ (Cauchy-Schwarz inequality)
 		\item $||{\bf u}+{\bf v}||\leq ||{\bf u}|| + ||{\bf v}||$ (triangle inequality) 
