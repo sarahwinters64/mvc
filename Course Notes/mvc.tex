@@ -431,10 +431,10 @@ The culmination of the course will be the generalization of the fundamental theo
 Each of these theorems have many important applications. As an important example, Maxwell's equations, which lay the foundation of the classical theory of electromagnetism in the same way that Newton's laws of motion lay the foundation of classical mechanics, are stated in terms of these theorems. 
 
 \subsection{Linear algebra}
-As one might have guessed from the introductory discussion above, vectors play an essential role in the study of multivariable calculus. In effect, the theory of multivariable calculus unites single-variable calculus with the theory of \ti{linear algebra}, which includes the study of vectors, matrices, and linear transformations. To give a satisfactory treatment of multivariable calculus, the entire first semester of this course will therefore be devoted to the study of linear algebra. Aside from this motivation, the subject of linear algebra is rich and interesting in its own right, and has many diverse applications which are independent of differential and integral calculus. We will discuss many of these throughout the course.
+As one might have guessed from the introductory discussion above, vectors play an essential role in the study of multivariable calculus. In effect, the theory of multivariable calculus unites single-variable calculus with the theory of \ti{linear algebra}, which includes the study of vectors, matrices, and linear transformations. To give a satisfactory treatment of multivariable calculus, the entire first semester of this course will therefore be devoted to the study of linear algebra. Aside from this motivation, the subject of linear algebra is rich and interesting in its own right, and has many diverse applications which are independent of differential and integral calculus. I hope to discuss many of these throughout the course.
 
 \subsection{Mathematical structure}
-The basic mathematical objects in linear algebra (vectors, scalars, matrices, etc.) have their origin in physics. While we will review these physical origins for the purpose of motivating the definitions, our primary objective in our study of linear algebra will be to build up an abstract mathematical structure called a \ti{vector space}. 
+The basic mathematical objects in linear algebra (vectors, scalars, matrices, etc.) have their origin in physics. While we will review these physical origins for the purpose of motivating the definitions, our primary objective in our study of linear algebra will be to build up an abstract mathematical structure called a \ti{vector space} and to study its properties. 
 
 You already have experience in building mathematical structures in your previous courses. For instance, in algebra you defined various number systems along with an order and arithmetic on these sets of numbers. Then, you were then able to use logic to prove that these number systems had various interesting properties which followed inescapably from the definitions. You played exactly the same game in geometry, beginning with Euclid's axioms and the definitions of circles, triangles, parallelograms, etc., building up the entire structure of Euclidean geometry as theorems which follow as inescapable consequences of these rules and definitions.
 
@@ -680,7 +680,7 @@ The \ti{scalar multiple} of the vector ${\bf v}$ by the scalar ${\bf k}$ is the 
 The vector $2{\bf v}$ has the same direction as ${\bf v}$ but twice its length, while $-2{\bf v}$ is oppositely directed to ${\bf v}$ and twice its length.	
 \end{example}
 
-\begin{prop}[Properties of scalar multiplication]
+\begin{prop}[Properties of scalar multiplication]\label{prop:Properties_of_scalar_multiplication}
 For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$,
 	\begin{enumerate}[(a)]
 		\item $(c+d){\bf v}=c{\bf v}+d{\bf v}$,
@@ -692,14 +692,15 @@ For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$,
 	\end{enumerate}
 \end{prop}
 
-\begin{pf}
-	\begin{enumerate}[(a)]
-		\item By definition of scalar multiplication, the vector on the left side points in the direction of ${\bf v}$ if $c+d>0$ and points in the opposite direction if $c+d<0$. Its length is $|c+d|\ ||{\bf v}||$. 
-		
-		The right hand side is shown to be equal to the left hand side by adding the vectors tip to tail and checking each combination of signs for $c$ and $d$ (we may assume without loss of generality that $c>d$). For example, if $c<0$ and $d>0$, then $(c+d)||{\bf v}||$ points in the opposite direction of ${\bf v}$ and has length $(d-c)||{\bf v}||$. By adding tip to tail, $c{\bf v}+d{\bf v}$ also points in the opposite direction as ${\bf v}$ and has length $(d-c)||{\bf v}||$. Since these vectors have the same magnitude and direction, they are equal.
-		\item - (f) are left as exercises.
-	\end{enumerate}
-\end{pf}
+\begin{exercise}
+Prove Proposition \ref{prop:Properties_of_scalar_multiplication}. \\
+\ti{Hints for (a) and (b):}
+\begin{enumerate}[(a)]
+	\item This follows from the segment addition postulate (it will help to start by drawing a picture). You will need to consider the different sign combinations for $c$ and $d$. Don't forget the cases where $c$ or $d$ is zero.
+	\item This follows from similar triangles (again, start by drawing a picture).
+\end{enumerate}
+\end{exercise}
+
 
 \subsection{Vectors in coordinate systems}
 As in analytic geometry, the use of coordinate systems give us powerful tools with which to perform concrete computations with vectors. Additionally, working with coordinates will allow us to consider geometric entities such as lines and planes in vector settings. 
