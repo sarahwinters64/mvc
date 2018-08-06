@@ -683,19 +683,20 @@ The vector $2{\bf v}$ has the same direction as ${\bf v}$ but twice its length, 
 \begin{prop}[Properties of scalar multiplication]\label{prop:Properties_of_scalar_multiplication}
 For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$,
 	\begin{enumerate}[(a)]
-		\item $(c+d){\bf v}=c{\bf v}+d{\bf v}$,
-		\item $c({\bf v}+{\bf w})=c{\bf v}+c{\bf w}$,
-		\item $(dc){\bf v}=c(d{\bf v})$,
 		\item 1{\bf v}={\bf v},
 		\item 0{\bf v}={\bf 0},
-		\item $(-1){\bf v}=-{\bf v}$.
+		\item $(-1){\bf v}=-{\bf v}$,
+		\item $(dc){\bf v}=c(d{\bf v})$,
+		\item $(c+d){\bf v}=c{\bf v}+d{\bf v}$,
+		\item $c({\bf v}+{\bf w})=c{\bf v}+c{\bf w}$.
 	\end{enumerate}
 \end{prop}
 
 \begin{exercise}
 Prove Proposition \ref{prop:Properties_of_scalar_multiplication}. \\
-\ti{Hints for (a) and (b):}
+\ti{Hints for (e) and (f):}
 \begin{enumerate}[(a)]
+\setcounter{enumi}{4}
 	\item This follows from the segment addition postulate (it will help to start by drawing a picture). You will need to consider the different sign combinations for $c$ and $d$. Don't forget the cases where $c$ or $d$ is zero.
 	\item This follows from similar triangles (again, start by drawing a picture).
 \end{enumerate}
@@ -5130,7 +5131,7 @@ We have seen previously that a $1 \times 1$, $2 \times 2$, or $3 \times 3$ matri
 \end{align*}
 \end{enumerate}
 
-In this section, we will generalize these considerations to arbitrary square matrices by proceeding more systematically. We will first define the determinant as a certain function, called a \ti{determinant function}, which assigns to each $n \times n$ matrix a real number. This function should have a number of special properties, which we will discuss in detail. After proving that such a function exists for each $n$, we will prove that it is also unique. In proving uniqueness, we will obtain an explicit formula for the determinant of an arbitrary $n \times n$ matrix.
+In this section, we will generalize these considerations to arbitrary square matrices. We will first define the determinant as a certain function, called a \ti{determinant function}, which assigns to each $n \times n$ matrix a real number. In order to generalize the formulas above, this function should have a number of special properties, which we will discuss in detail. After proving that such a function exists for each $n$, we will prove that it is also unique. In proving uniqueness, we will obtain an explicit formula for the determinant of an arbitrary $n \times n$ matrix.
 
 \subsection{Determinant functions}
 \begin{defn}[$n$-linear function]
@@ -5182,7 +5183,7 @@ This $D$ is completely determined by the four scalars
 	D(\epsilon_1,\epsilon_1), \hspace{0.25cm}D(\epsilon_1,\epsilon_2), \hspace{0.25cm}D(\epsilon_2,\epsilon_1), \hspace{0.25cm}D(\epsilon_2,\epsilon_2).
 \end{align*}}
 
-\begin{lem}[Linear combinations of $n$-linear functions]
+\begin{lem}[Linear combinations of $n$-linear functions] \label{lem:linear_comb_of_n_linear_functions}
 	A linear combination of $n$-linear functions is $n$-linear.
 \end{lem}
 
@@ -5250,7 +5251,7 @@ Show that $D:\mathbb{R}^{\overline{2} \times \overline{2}} \to \mathbb{R}$ defin
 \end{exercise}
 
 {\color{red} \flushleft {\bf Solution:}
-We have already shown that $D(A)$ is a determinant function. All that is left is to show that it is unique. Recall that the most general 2-linear function on $\mathbb{R}^{\overline{2} \times \overline{2}}$ is completely determined by the four scalars $D(\epsilon_1,\epsilon_1), D(\epsilon_1,\epsilon_2), D(\epsilon_2,\epsilon_1), D(\epsilon_2,\epsilon_2)$ as
+The function $D(A)$ is a determinant function by definition, since we defined determinant functions so that they would have the three properties of $D(A)$ just discussed. All that is left is to show that it is unique. Recall that the most general 2-linear function on $\mathbb{R}^{\overline{2} \times \overline{2}}$ is completely determined by the four scalars $D(\epsilon_1,\epsilon_1), D(\epsilon_1,\epsilon_2), D(\epsilon_2,\epsilon_1), D(\epsilon_2,\epsilon_2)$ as
 \begin{align*}
 	D(A)=A_{11}A_{21}D(\epsilon_1,\epsilon_1)+A_{11}A_{22}D(\epsilon_1,\epsilon_2)+A_{12}A_{21}D(\epsilon_2,\epsilon_1)+A_{12}A_{22}D(\epsilon_2,\epsilon_2).
 \end{align*}
@@ -5269,7 +5270,7 @@ and therefore
 	&2A_{11}A_{21}D(\epsilon_1,\epsilon_1)+(A_{11}A_{22}+A_{12}A_{21})D(\epsilon_1,\epsilon_2)\\
 	&+(A_{11}A_{22}+A_{12}A_{21})D(\epsilon_2,\epsilon_1)+2A_{12}A_{22}D(\epsilon_2,\epsilon_2)=0.
 \end{align*}
-This is satisfied if 
+This is satisfied for all $A_{11}, A_{12}, A_{21}, A_{22}$ if and only if 
 \begin{align*}
 D(\epsilon_1,\epsilon_1)=D(\epsilon_2,\epsilon_2)=0
 \end{align*}
@@ -5285,7 +5286,8 @@ Finally, setting $D(I)=1$, we find
 \begin{align*}
 	D(A)=A_{11}A_{22}-A_{12}A_{21}
 \end{align*}
-The conditions that $D(A)$ is alternating and that $D(I)=1$ have fixed all four scalars, do $D(A)$ is the unique determinant function on $\mathbb{R}^{\overline{2} \times \overline{2}}$.}
+The conditions that $D(A)$ is alternating and that $D(I)=1$ have fixed all four scalars, so $D(A)$ is the unique determinant function on $\mathbb{R}^{\overline{2} \times \overline{2}}$.}
+
 We will now prove that there exists a determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ for each positive integer $n$. To this end, we will need the following two lemmas.
 
 \begin{lem}[$D(A)=0$ implies alternating for $2$-linear functions]
@@ -5308,7 +5310,7 @@ and therefore
 \end{pf}
 The second lemma proves an analogous result for $n \times n$ matrices.
 
-\begin{lem}[$D(A)=0$ implies alternating for $n$-linear functions]
+\begin{lem}[$D(A)=0$ implies alternating for $n$-linear functions]\label{lem:d_a_0_implies_alternating}
 	Let $D$ be an $n$-linear function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ where $D$ has the property that $D(A)=0$ whenever two adjacent rows of $A$ are equal. Then $D$ is alternating.
 \end{lem}
 
@@ -5335,7 +5337,7 @@ We are now ready to prove that there exists a determinant function on $\mathbb{R
 \end{defn}
 
 \begin{example}
-\begin{enumerate}[(a)]
+\begin{enumerate}[(a)] \hspace{10cm}
 	\item If $A=\begin{bmatrix}
 		a_{11} & a_{12} & a_{13} \\
 		a_{21} & a_{22} & a_{23} \\
@@ -5345,14 +5347,14 @@ We are now ready to prove that there exists a determinant function on $\mathbb{R
 		a_{31} & a_{33}
 	\end{bmatrix}$ and $A(3|1)=\begin{bmatrix}
 		a_{12} & a_{13} \\
-		a_{22} & a_{33}
+		a_{22} & a_{23}
 	\end{bmatrix}$.	
-	\item Let $D:\mathbb{R}^{\overline{2} \times \overline{2}}\to \mathbb{R}$ be defined by $D(A)=A_{11}A_{22}$. Then, for $A$ above, $D_{22}(A)=D[A(2\vert 2)]=a_{11}a_{33}$ and $D_{31}(A)=D[A(3\vert 1)]=a_{12}a_{33}$.
+	\item Let $D:\mathbb{R}^{\overline{2} \times \overline{2}}\to \mathbb{R}$ be defined by $D(A)=A_{11}A_{22}$. Then, for $A$ above, $D_{22}(A)=D[A(2\vert 2)]=a_{11}a_{33}$ and $D_{31}(A)=D[A(3\vert 1)]=a_{12}a_{23}$.
 \end{enumerate}
 \end{example}
 
 
-\begin{thm}[\fixme{Need label.}]
+\begin{thm}[Determinant functions for $n>1$]\label{thm:def_functions_for_n_gt_1}
 \begin{enumerate}[(a)] \hspace{10cm}
 	\item Let $n>1$ and let $D$ be an alternating $(n-1)$-linear function on $\mathbb{R}^{\overline{(n-1)} \times \overline{(n-1)}}$. For each $j$, $1 \leq j \leq n$, the function $E_j$ defined by 
 	\begin{align*}
@@ -5364,17 +5366,92 @@ We are now ready to prove that there exists a determinant function on $\mathbb{R
 	
 \end{thm}
 
+\begin{pf}
+\begin{enumerate}[(a)]
+	 \item Let $A$ be an $n \times n$ matrix. Since $D_{ij}(A)\equiv D[A(i \vert j)]$ is independent of the $i$th row of $A$, it is linear as a function of any row except row $i$. \footnote{In the example above, $D_{22}(\alpha_1,c\alpha_2+c'\alpha_2',\alpha_3)=a_{11}a_{33}=D(\alpha_1,\alpha_2,\alpha_3)$, so $D_{22}$ is not a linear function of row 2.} Therefore $A_{ij}D_{ij}(A)$ is an $n$-linear function of $A$. \footnote{Using the same example as before, $(ca_{22}+c'a_{22}')D_{22}(\alpha_1,c\alpha_2+c'\alpha_2',\alpha_3)=ca_{22}a_{11}a_{33}+c'a_{22}'a_{11}a_{33}=ca_{22}D(\alpha_1,\alpha_2,\alpha_3)+c'a_{22}'D(\alpha_1,\alpha_2,\alpha_3)$, which shows $a_{22}D_{22}(A)$ is linear in row 2, and hence is 3-linear.} By Lemma \ref{lem:linear_comb_of_n_linear_functions} a linear combination of $n$-linear functions is $n$-linear, hence $E_j$ is $n$-linear. 
+	
+	To prove that $E_j$ is alternating, by Lemma \ref{lem:d_a_0_implies_alternating} it will suffice to show that $E_j(A)=0$ whenever $A$ has two equal and adjacent rows. Suppose then that $\alpha_k=\alpha_{k+1}$. If $i \neq k$ and $i \neq k+1$, the matrix $A(i \vert j)$ has two equal rows, and thus $D_{ij}(A)=0$ since $D_{ij}$ is an alternating function on $\mathbb{R}^{\overline{n-1} \times \overline{n-1}}$. Then in $E_j(A)$ the sum has only two nonzero terms:
+	\begin{align*}
+		E_j(A)=(-1)^{k+j}A_{kj}D_{kj}(A)+(-1)^{k+1+j}A_{(k+1)j}D_{(k+1)j}(A)
+	\end{align*}
+	Since $\alpha_k=\alpha_{k+1}$,
+	\begin{align*}
+		A_{kj}=A_{(k+1)j} \text{ and } A(k|j)=A(k+1|j)
+	\end{align*}
+	and therefore
+	\begin{align*}
+		E_j(A)=(-1)^{k+j}A_{kj}D_{kj}(A)-(-1)^{k+j}A_{kj}D_{kj}(A)=0.
+	\end{align*}
+	Hence, $E_j$ is alternating.
+	
+\item 	Now suppose $D$ is a determinant function. If $I^{(n)}$ is the $n \times n$ identity matrix, then $I^{(n)}(j \vert j)$ is the $(n-1) \times (n-1)$ identity matrix $I^{(n-1)}$. Since $I^{(n)}_{ij}=\delta_{ij}$, it follows that
+	\begin{align*}
+		E_j(I^{(n)})&=\sum_{i=1}^n(-1)^{i+j}\delta_{ij}D_{ij}(I^{(n)}) \\
+		&=(-1)^{2j}D_{jj}(I^{(n)}) \\
+		&=D(I^{(n)}(j|j)) \\
+		&=D(I^{(n-1)})\\
+		&=1.
+	\end{align*}
+	Hence, $E_j$ is a determinant function.	
+\end{enumerate}	
+\end{pf}
 
+\begin{cor}[Existence of determinant functions]
+	There exists at least one determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$.
+\end{cor}
+
+\begin{pf}
+We have shown the existence of a determinant function on $\mathbb{R}^{\overline{1} \times \overline{1}}$ (and even on $\mathbb{R}^{\overline{2} \times \overline{2}}$ and $\mathbb{R}^{\overline{3} \times \overline{3}}$). Theorem \ref{thm:def_functions_for_n_gt_1} shows us explicitly how to construct a determinant function on $n \times n$ matrices, given such a function on $(n-1) \times (n-1)$ matrices. The corollary follows by induction.
+\end{pf}
+
+\begin{example}
+If $B$ is a $2 \times 2$ matrix, let
+\begin{align*}
+	|B|=B_{11}B_{22}-B_{12}B_{21}.
+\end{align*}	
+Then $|B|=D(B)$, where $D$ is the determinant function on $2 \times 2$ matrices. We have showed that this function on $\mathbb{R}^{2 \times 2}$ is unique. Now let $A \in \mathbb{R}^{3 \times 3}$ be
+\begin{align*}
+	A=\begin{bmatrix}
+		A_{11} & A_{12} & A_{13} \\
+		A_{21} & A_{22} & A_{23} \\
+		A_{31} & A_{32} & A_{33} \\
+	\end{bmatrix}.
+\end{align*}
+Defining $E_1, E_2, E_3$ as above, then
+\begin{align*}
+	E_1(A)&=A_{11}\begin{vmatrix}
+		A_{22} & A_{23} \\ A_{32} & A_{33}
+	\end{vmatrix}-A_{21}\begin{vmatrix}
+		A_{12} & A_{13} \\ A_{32} & A_{33}
+	\end{vmatrix} + A_{31} \begin{vmatrix}
+		A_{12} & A_{13} \\ A_{22} & A_{23}
+	\end{vmatrix}, \\
+	E_2(A)&=-A_{12}\begin{vmatrix}
+		A_{21} & A_{23} \\ A_{31} & A_{33}
+	\end{vmatrix}+A_{22}\begin{vmatrix}
+		A_{11} & A_{13} \\ A_{31} & A_{33}
+	\end{vmatrix} - A_{32}\begin{vmatrix}
+		A_{11} & A_{13} \\ A_{21} & A_{23}
+	\end{vmatrix}, \\
+	E_3(A) &= A_{13}\begin{vmatrix}
+		A_{21} & A_{22} \\ A_{31} & A_{32}
+	\end{vmatrix} - A_{23} \begin{vmatrix}
+		A_{11} & A_{12} \\ A_{31} & A_{32}
+	\end{vmatrix} + A_{33}\begin{vmatrix}
+		A_{11} & A_{12} \\ A_{21} & A_{22}
+	\end{vmatrix}.
+\end{align*}
+It follows from the previous theorem that $E_1, E_2$, and $E_3$ are determinant functions. We will show later that $E_1=E_2=E_3$, but this is not yet apparent even in this simple case (though we could verify it directly by expanding each of the above expressions).
+\end{example}
+
+\fixme{Add exercises here?}
+
+\subsection{Permutations and the uniqueness of determinants}
 
 
 
 
 \section{Eigenvalues and eigenvectors}
-
-\begin{appendices}
-\section{}	
-\end{appendices}
-
 
 \printbibliography
 \nocite{*}
