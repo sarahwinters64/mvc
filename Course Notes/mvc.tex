@@ -5147,7 +5147,7 @@ In this section, we will generalize these considerations to arbitrary square mat
 	\end{align*}
 \end{defn}
 
-\begin{example}
+\begin{example}\label{ex:n_linear_function}
 For each $n \times n$ matrix $A$, define
 \begin{align*}
 	D(A)=aA_{1k_1}A_{2k_2}\cdots A_{nk_n}
@@ -5447,6 +5447,116 @@ It follows from the previous theorem that $E_1, E_2$, and $E_3$ are determinant 
 \fixme{Add exercises here?}
 
 \subsection{Permutations and the uniqueness of determinants}
+In this section we prove the uniqueness of the determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$.
+
+Suppose $D$ be an alternating $n$-linear function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ and let $A \in \mathbb{R}^{\overline{n} \times \overline{n}}$ with rows $\alpha_1,\alpha_2,\cdots,\alpha_n$. If we denote the rows of the $n \times n$ identity matrix by $\epsilon_1,\epsilon_2,\cdots,\epsilon_n$, then
+\begin{align*}
+	\alpha_i=\sum_{j=1}^nA(i,j)\epsilon_j, \ 1 \leq i \leq n.
+\end{align*}
+For example, for $i=1$ and $n=3$,
+
+\begin{align*}
+\alpha_1&=A(1,1)\epsilon_1+A(1,2)\epsilon_2+A(1,3)\epsilon_3 \\
+&=A_{11}(1,0,0)+A_{12}(0,1,0)+A_{13}(0,0,1) \\
+&=(A_{11},A_{12},A_{13})
+\end{align*}
+Then
+\begin{align*}
+	D(A)&=D\left(\sum_{j=1}^nA(1,j)\epsilon_j,\alpha_2,\cdots,\alpha_n\right) \\
+	&=\sum_{j=1}^nA(1,j)D\left(\epsilon_j,\alpha_2,\cdots,\alpha_n\right).
+\end{align*}
+If we now replace $\alpha_2$ by $\sum_{k=1}^n A(2,k)\epsilon_k$, we see that 
+\begin{align*}
+	D(\epsilon_j,\alpha_2,\cdots,\alpha_n)=\sum_{k=1}^nA(2,k)D(\epsilon_j,\epsilon_k,\cdots,\alpha_n)
+\end{align*}
+and therefore
+\begin{align*}
+	D(A)=\sum_{j,k=1}^nA(1,j)A(2,k)D(\epsilon_j,\epsilon_k,\cdots,\alpha_n).
+\end{align*}
+In $D(\epsilon_j,\epsilon_k,\cdots,\alpha_n)$ we next replace $\alpha_3$ by $\sum_{\ell=1}^nA(3,\ell)\epsilon_\ell$ and so on. We finally obtain a complicated but theoretically important expression for $D(A)$, namely
+\begin{equation}\label{eq:det_sum_over_all_sequences}
+	D(A)=\sum_{k_1,k_2,\cdots,k_n=1}^nA(1,k_1)A(2,k_2)\cdots A(n,k_n)D(\epsilon_{k_1},\epsilon_{k_2},\cdots,\epsilon_{k_n}).
+\end{equation}
+In Eq. \eqref{eq:det_sum_over_all_sequences} the sum is extended over all sequences $(k_1,k_2,\cdots,k_n)$ of positive integers from 1 to $n$. This shows that $D$ is a finite sum of functions of the type in Example \ref{ex:n_linear_function}. Note that Eq. \eqref{eq:det_sum_over_all_sequences} is a consequence just of the assumption that $D$ is $n$-linear. Since $D$ is alternating,
+\begin{align*}
+	D(\epsilon_{k_1},\epsilon_{k_2},\cdots,\epsilon_{k_n})=0
+\end{align*}
+whenever two of the indices $k_i$ are equal. Therefore, the only nonzero terms in the sum are those for which all $k_i$ are different. 
+
+\begin{defn}[Permutation]
+	A sequence $(\epsilon_{k_1},\epsilon_{k_2},\cdots,\epsilon_{k_n})$ of positive integers not exceeding $n$, with the property that no two of the $k_i$ are equal, is called a \ti{permutation of degree $n$}.
+\end{defn}
+
+\begin{example}
+	The set of all permutations of $(123)$ is $\{(123), (132), (213), (231), (312), (321)\}$. In general, there are $n!$ permutations of the set $\overline{n}$.	
+\end{example}
+
+
+In Eq. \eqref{eq:det_sum_over_all_sequences}, we therefore only need to sum over those sequences which are permutations of degree $n$.
+
+Since a finite sequence, or $n$-tuple, is a function defined on the first $n$ integers, a permutation of degree $n$ may be defined as a one-to-one function $\sigma:\overline{n} \to \overline{n}$ to itself. Such a function corresponds to the $n$-tuple $(\sigma(1),\sigma(2),\cdots,\sigma(n))$ and is thus simply a rule for ordering $1,2,\cdots,n$ in some well-defined way.
+
+If $D$ is an alternating $n$-linear function and $A$ is an $n \times n$ matrix, we then have 
+\begin{equation}\label{eq:expression_for_d_a}
+	D(A)=\sum_{\sigma \in S_n}A(1,\sigma(1))\cdots A(n,\sigma(n))D(\epsilon_{\sigma(1)},\epsilon_{\sigma(2)},\cdots,\epsilon_{\sigma(n)})
+\end{equation}
+where the sum is over the distinct permutations $\sigma$ of degree $n$.
+
+Next we will show that 
+\begin{align*}
+	D(\epsilon_{\sigma(1)},\epsilon_{\sigma(2)},\cdots,\epsilon_{\sigma(n)})=\pm D(\epsilon_1,\epsilon_2,\cdots, \epsilon_n)
+\end{align*}
+where the sign $\pm$ depends only on the permutation $\sigma$. The reason for this is as follows. The sequence $(\sigma(1),\sigma(2),\cdots,\sigma(n))$ can be obtained from the sequence $(1,2,\cdots,n)$ by a finite number of interchanges of pairs of elements. For example, if $\sigma(1) \neq 1,$ we can transpose 1 and $\sigma(1)$, obtaining $(\sigma(1),\cdots,1,\cdots)$. Proceeding in this way we arrive at the sequence $(\sigma(1),\cdots,\sigma(n))$ after $n$ or fewer such interchanges of pairs.
+
+\begin{example}
+	We can go from $(1234)$ to $(3241)$ by interchanging 1 and 4, followed by 3 and 4:
+	\begin{align*}
+		(1234) \to (4231) \to (3241).
+	\end{align*}	
+\end{example}
+Since $D$ is alternating, $D(A)$ changes sign each time we interchange two of the rows $\epsilon_i$ and $\epsilon_j$. Thus if we pass from $(1,2,\cdots,n)$ to $(\sigma(1),\sigma(2),\cdots,\sigma(n))$ by means of $m$ interchanges of pairs $(i,j)$, we will have
+\begin{align*}
+	D(\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)})=(-1)^m D(\epsilon_1,\cdots,\epsilon_n).
+\end{align*}
+In particular, if $D$ is a determinant function, then
+\begin{equation}\label{eq:def_of_m}
+	D(\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)})=(-1)^m
+\end{equation}
+where $m$ depends only on $\sigma$, and not upon $D$ (since this followed only from the fact that $D$ was alternating, hence it holds for any determinant function $D$). Thus all determinant functions assign the \ti{same} value to the matrix with rows $\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)}$, and this value is either 1 or $-1$.
+
+A basic fact about permutations is the following. If $\sigma$ is a permutation of degree $n$, one can pass from the sequence $(1,2,\cdots,n)$ to the sequence $(\sigma(1), \sigma(2),\cdots, \sigma(n))$ by a succession of interchanges of pairs and this can be done in a variety of ways; however, no matter how it is done, the number of interchanges used is either always even or always odd. The permutation is then called \ti{even} or \ti{odd}, respectively.
+
+\begin{defn}[Sign of a permutation]
+	The \ti{sign} of a permutation $\sigma$ is defined by
+	\begin{align*}
+		\text{sgn }\sigma  =\begin{cases}
+			1, \ \text{ if $\sigma$ is even} \\
+			-1, \ \text{ if $\sigma$ is odd} \\ 
+		\end{cases}
+	\end{align*}
+the symbol `1' denoting here the integer 1.
+\end{defn}
+
+We will show below that this basic property of permutations can be deduced from what we already know about determinant functions. Let us assume this for the time being. Then the integer $m$ occurring in Eq. \eqref{eq:def_of_m} is always even if $\sigma$ is an even permutation, and is always odd if $\sigma$ is an odd permutation. For any alternating $n$-linear function $D$ we then have 
+\begin{align*}
+	D(\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)})=(\text{sgn }\sigma)D(\epsilon_1,\cdots,\epsilon_n)
+\end{align*}
+and using Eq. \eqref{eq:expression_for_d_a}
+\begin{equation}\label{eq:unique_expression_for_determinant_function}
+	D(A)=\left[\sum_{\sigma \in S_n}(\text{sgn }\sigma)A(1,\sigma(1))\cdots A(n,\sigma(n))\right]D(I^{(n)}).
+\end{equation}
+From Eq. \eqref{eq:unique_expression_for_determinant_function} we see that there is precisely one determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$. If we denote this function by $\det$, it is given by
+\begin{equation}\label{eq:determinant_of_A}
+	\det (A)=\sum_{\sigma \in S_n}(\text{sgn }\sigma)A(1,\sigma(1))\cdots A(n,\sigma(n)).
+\end{equation}
+We formally summarize as follows.
+\begin{thm}
+Let $n$ be a positive integer. There is precisely one determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$, and it is the function $\det$ defined by Eq. \eqref{eq:determinant_of_A}. If $D$ is any alternating $n$-linear function on $\mathbb{R}^{\overline{n} \times \overline{n}}$, then for each $A \in \mathbb{R}^{\overline{n} \times \overline{n}}$
+\begin{align*}
+	D(A)=(\det A)D(I^{(n)}).
+\end{align*}
+\end{thm}
+
 
 
 
