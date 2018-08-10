@@ -1089,7 +1089,7 @@ Compute the angle between the vectors ${\bf u}=(0,0,3)$ and ${\bf v}=(\sqrt{2},0
 
 {\color{red} \flushleft {\bf Solution:} The angle between these vectors is
 \begin{align*}
-	\theta=\cos^{-1}\left(\frac{0(\sqrt{2}+0(0)+3(\sqrt{2}))}{3(2)}\right)=\cos^{-1}\left(\frac{1}{\sqrt{2}}\right)=\frac{\pi}{4}.
+	\theta=\cos^{-1}\left(\frac{0(\sqrt{2})+0(0)+3(\sqrt{2})}{3(2)}\right)=\cos^{-1}\left(\frac{1}{\sqrt{2}}\right)=\frac{\pi}{4}.
 \end{align*}}
 
 \begin{exercise}
@@ -1137,7 +1137,6 @@ Each of these can be proved by writing out the vectors in components. For exampl
 Properties (2)-(6) are proved similarly. Note that (5) follows from (3) and (4), but is included for emphasis since it is used frequently. 	
 \end{pf}
 
-\fixme{Add exercises using these properties.}
 
 Note, however, the differences between the dot product and ordinary multiplication. For instance, one might ask, ``Is the dot product associative?". This question doesn't even make any sense for the dot product, as expressions such as ${\bf a}\cdot ({\bf b}\cdot {\bf c})$ are not defined, since ${\bf a}$ is a vector and $({\bf b}\cdot {\bf c})$ is a scalar, and one can only form the dot product between two vectors. 
 
@@ -1154,7 +1153,7 @@ For any vectors ${\bf u}$ and ${\bf v}$, the following inequalities hold: \footn
 
 \begin{pf}
 	\begin{enumerate}[(a)]
-			\item By (a), for any real number $\lambda$, we have $||{\bf u}-\lambda{\bf v}|| \geq 0$. Squaring both sides, we have
+			\item Since the norm of any vector is nonnegative, for any real number $\lambda$ we have $||{\bf u}-\lambda{\bf v}|| \geq 0$. Squaring both sides, we have
 	\begin{align*}
 		||{\bf u}-\lambda{\bf v}||^2&=({\bf u}-\lambda{\bf v})\cdot ({\bf u}-\lambda{\bf v}) \\
 		&=\lambda^2{\bf v}\cdot {\bf v}-2\lambda {\bf u}\cdot {\bf v}+{\bf u}\cdot {\bf u} \\
@@ -1205,7 +1204,7 @@ are orthogonal (perpendicular), but this does not seem obvious in the given form
 If ${\bf a}$ and ${\bf b}$ are non-zero, then $||{\bf a}||$ and $||{\bf b}||$ are greater than zero, so ${\bf a}\cdot {\bf b}=0$ if and only if $\theta=\frac{\pi}{2}$, that is, if and only if ${\bf a}$ and ${\bf b}$ are orthogonal. 
 \end{pf}
 
-What if ${\bf b}={\bf 0}$? In this case, $\theta$ is not well-defined, since we have defined ${\bf 0}$ to be any vector with zero magnitude, independently of direction. For Proposition \ref{prop:orthogonal_vectors} to hold even if ${\bf a}$ or ${\bf b}$ are ${\bf 0}$, we simply define ${\bf a}\cdot {\bf b}=0$ if one of the vectors is the zero vector. With this definition, the zero vector is orthogonal to every vector, including itself.
+What if ${\bf b}={\bf 0}$? In this case, $\theta$ is not well-defined, but since $||{\bf b}||=0$, ${\bf a} \cdot {\bf b}=0$ independently of $\theta$. The zero vector is therefore orthogonal to every vector, including itself.
 
 \begin{example}
 The two vectors in the example above	
