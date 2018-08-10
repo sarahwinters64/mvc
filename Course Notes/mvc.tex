@@ -845,7 +845,7 @@ We also think of the norm as a function which takes in a vector and returns its 
 \begin{pf}
 \begin{enumerate}[(a)]
 	\item $||{\bf v}||=\sqrt{v_1^2+v_2^2+v_3^2}$ is a nonnegative function and zero if and only if $v_1=v_2=v_3=0$, that is, if ${\bf v}={\bf 0}$.
-	\item $||a{\bf v}||=\sqrt{a^2v_1^2+a^2v_2^2+a^2v_3^2}=\sqrt{a^2(v_1^2+v_2^2+v_3^2)}=\sqrt{a^2}\sqrt{(v_1^2+v_2^2+v_3^2)}=|a|\||{\bf v}||$.
+	\item $||a{\bf v}||=\sqrt{a^2v_1^2+a^2v_2^2+a^2v_3^2}=\sqrt{a^2(v_1^2+v_2^2+v_3^2)}=\sqrt{a^2}\sqrt{(v_1^2+v_2^2+v_3^2)}=|a|\ ||{\bf v}||$.
 \end{enumerate}
 \end{pf}
 
@@ -861,7 +861,9 @@ We also think of the norm as a function which takes in a vector and returns its 
 \begin{pf}
 Since ${\bf v}\neq 0$, $||{\bf v}|| \neq 0$, so we can multiply ${\bf v}$ by $1/||{\bf v}||$. Computing the length of $||\frac{{\bf v}}{||{\bf v}||}||$, we see that 
 \begin{align*}
-	||\frac{{\bf v}}{||{\bf v}||}||&=\frac{||{\bf v}||}{||{\bf v}||}=1,
+	||\frac{{\bf v}}{||{\bf v}||}||&=\vert \frac{1}{||{\bf v}||} \vert \ ||{\bf v}|| \\
+	&=\frac{1}{||{\bf v}||}  ||{\bf v}|| \\
+	&=1,
 \end{align*} 
 hence ${\bf v}/||{\bf v}||$ is a unit vector. Since ${\bf v}/||{\bf v}||$ is a scalar multiple of ${\bf v}$ (by $k=1/||{\bf v}||$) it is parallel to ${\bf v}$.
 \end{pf}
@@ -1039,22 +1041,22 @@ Two nonzero vectors ${\bf u}$ and ${\bf v}$ positioned so that their initial poi
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/angle_uv}
 \end{center}
-Note that the information about $\theta$ is encoded in ${\bf u}-{\bf v}$, since if we fix the magnitudes of ${\bf u}$ and ${\bf v}$ and open the angle, then ${\bf u}-{\bf v}$ will also change. The fundamental relation satisfied by ${\bf u}, {\bf v}$ and $\theta$ is the law of cosines, which says that if ${\bf w}={\bf u}-{\bf v}$, then
+Note that the information about $\theta$ is encoded in ${\bf u}-{\bf v}$, since if we fix the magnitudes of ${\bf u}$ and ${\bf v}$ and open the angle, then ${\bf u}-{\bf v}$ will also change. The fundamental relation satisfied by ${\bf u}, {\bf v}$ and $\theta$ is the law of cosines, which says that 
 \begin{equation}\label{eq:law_of_cosines}
-	||{\bf w}||^2=||{\bf u}||^2+||{\bf v}||^2-2||{\bf u}|| \ ||{\bf v}||\cos \theta. 
+	||{\bf u}-{\bf v}||^2=||{\bf u}||^2+||{\bf v}||^2-2||{\bf u}|| \ ||{\bf v}||\cos \theta. 
 \end{equation}
-Let us make the following definition.
+We see that the third term involves a product of the magnitude of the two vectors and the angle between them. Let us formally define this product. 
 \begin{defn}[Dot product]
 	The \ti{dot product} of two vectors ${\bf u}$ and ${\bf v}$ is defined by
 	\begin{equation}\label{eq:dot_product_def}
 		{\bf u}\cdot {\bf v}=||{\bf u}|| \ ||{\bf v}||\cos\theta.
 	\end{equation} 
 \end{defn}
-The angle between two vectors ${\bf u}$ and ${\bf v}$ is then given by
+The angle between two nonzero vectors ${\bf u}$ and ${\bf v}$ is then given by
 \begin{equation}\label{eq:angle_uv}
-	\theta=\cos^{-1}\left(\frac{{\bf u}\cdot {\bf v}}{||{\bf u}|| \ ||{\bf v}||}\right),
+	\theta=\cos^{-1}\left(\frac{{\bf u}\cdot {\bf v}}{||{\bf u}|| \ ||{\bf v}||}\right).
 \end{equation}	
-and we see that
+Since $||{\bf u}||, ||{\bf v}||>0$, the sign of ${\bf u} \cdot {\bf v}$ is completely determined by $\cos \theta$. We see that 
 \begin{itemize}
 	\item $\theta$ is acute if ${\bf u} \cdot {\bf v} > 0$.
 	\item $\theta$ is obtuse if ${\bf u} \cdot {\bf v} < 0$.
@@ -1789,7 +1791,7 @@ Find the distance between the planes $2x+3y+z=4$ and $-4x-6x-2x=12$.
 
 
 \subsection{$n$-dimensional space}
-As we just have seen, the geometry of three-dimensional space is more complicated and harder to visualize than the geometry of one- or two-dimensional space. However, we have also seen that if we work in Cartesian coordinates, there is a remarkably simple structural resemblance between vectors in each of these spaces.
+As we just have seen, the geometry of three-dimensional space is more complicated and harder to visualize than the geometry of one- or two-dimensional space. However, we have also seen that if we work in Cartesian coordinates, there is a simple structural resemblance between vectors in each of these spaces.
 
 Consider a vector in each of these spaces:
 \begin{enumerate}[(1)]
@@ -5549,15 +5551,99 @@ From Eq. \eqref{eq:unique_expression_for_determinant_function} we see that there
 	\det (A)=\sum_{\sigma \in S_n}(\text{sgn }\sigma)A(1,\sigma(1))\cdots A(n,\sigma(n)).
 \end{equation}
 We formally summarize as follows.
-\begin{thm}
+\begin{thm}[$\det A$]\label{thm:det_a}
 Let $n$ be a positive integer. There is precisely one determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$, and it is the function $\det$ defined by Eq. \eqref{eq:determinant_of_A}. If $D$ is any alternating $n$-linear function on $\mathbb{R}^{\overline{n} \times \overline{n}}$, then for each $A \in \mathbb{R}^{\overline{n} \times \overline{n}}$
 \begin{align*}
 	D(A)=(\det A)D(I^{(n)}).
 \end{align*}
 \end{thm}
 
+This is the theorem we have been seeking, but we have left a gap in the proof. That gap is the proof that for a given a given permutation $\sigma$, when we pass from $(1,2,\cdots,n)$ to $(\sigma(1),\sigma(2),\cdots,\sigma(n))$ by interchanging pairs, the number of interchanges is always even or always odd. This basic combinatorial fact can be proved without any reference to determinants; however, it should be pointed out that it follows from the \ti{existence} of a determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$. 
 
+Let $D$ be a determinant function on $\mathbb{R}^{\overline{n} \times \overline{n}}$ and let $\sigma$ be a permutation of degree $n$. Suppose we pass from $(1,2,\cdots,n)$ to $(\sigma(1),\sigma(2),\cdots,\sigma(n))$ by $m$ interchanges of pairs $(i,j)$, $i\neq j$. As shown in Eq. \eqref{eq:def_of_m}
 
+\begin{align*}
+	D(\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)})=(-1)^m
+\end{align*}
+that is, the number $(-1)^m$ must be the value of $D$ on the matrix with rows $\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)}$. If 
+\begin{align*}
+	D(\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)})=1,
+\end{align*}
+then $m$ must be even, and if 
+\begin{align*}
+	D(\epsilon_{\sigma(1)},\cdots,\epsilon_{\sigma(n)})=-1,
+\end{align*}
+then $m$ must be odd.
+
+Finally, since we have an explicit formula for the determinant of an $n \times n$ matrix and this formula involves the permutations of degree $n$, let us conclude this section by making a few more observations about permutations. First, note that there are precisely $n!=n\cdot (n-1) \cdots 2 \cdot 1$ permutations of degree $n$. For, if $\sigma$ is such a permutation, there are $n$ possible choices for $\sigma(1)$; when this choice has been made, there are $(n-1)$ choices for $\sigma(2)$, then $(n-2)$ choices for $\sigma(3)$, and so on. So there are 
+\begin{align*}
+	n(n-1)(n-2) \cdots 2 \cdot 1=n!
+\end{align*}
+permutations $\sigma$. The formula in Eq. \eqref{eq:determinant_of_A} thus gives $\det A$ as a sum of $n!$ terms, one for each permutation of degree $n$. A given term is a product
+\begin{align*}
+	A(1,\sigma(1)) \cdots A(n,\sigma(n))
+\end{align*}
+of $n$ entries of $A$, one entry from each row and one from each column, and is prefixed by  a `$+$' or `$-$' sign according to whether $\sigma$ is an even or odd permutation.
+
+When permutations are regarded as one-to-one functions from the set $\{1,2,\cdots,n\}$ onto itself, one can define a product of permutations. The product of $\sigma$ and $\tau$ will simply be the composed function $\sigma \tau$ defined by
+\begin{align*}
+	(\sigma \tau)(i)=\sigma(\tau(i)).
+\end{align*}
+If $\epsilon$ denotes the identity permutation, $\epsilon(i)=i$, then each $\sigma$ has an inverse $\sigma^{-1}$ such that 
+\begin{align*}
+	\sigma\sigma^{-1}=\sigma^{-1}\sigma=\epsilon.
+\end{align*}
+One can summarize these observations by saying that, under the operation of composition, the set of permutations of degree $n$ form a \ti{group}. \footnote{A group $(G,*)$ is a set $G$ together with a binary operation $*:G \times G \to G$ such that three axioms are satisfied: \begin{enumerate}
+	\item $*$ is associative,
+	\item there exists an identity $1 \in G$ such that $1*g=g*1=g$ for any $g \in G$,
+	\item for every $g \in G$ there exists $g^{-1} \in G$ such that $gg^{-1}=g^{-1}g=1$.
+\end{enumerate}} This group is called the \ti{symmetric group of degree $n$}.
+
+From the point of view of products of permutations, the basic property of the sign of a permutation is that 
+\begin{align*}
+	\text{sgn } (\sigma \tau)=\text{sgn } (\sigma)\text{sgn } (\tau).
+\end{align*}
+In other words, $\sigma\tau$ is an even permutation if $\sigma$ and $\tau$ are either both even or both odd, while $\sigma\tau$ is odd if one of the two permutations is odd and the other is even. One can see this from the definition of the sign in terms of successive interchanges of pairs $(i,j)$. It may also be instructive if we point out how $\text{sgn } (\sigma \tau)=\text{sgn } (\sigma)\text{sgn } (\tau)$ follows from a fundamental property of determinants.
+
+Let $\sigma$ and $\tau$ be permutations of degree $n$, let $\epsilon_1,\cdots, \epsilon_n$ be the rows of the $n \times n$ identity matrix, let $A$ be the matrix with rows $\epsilon_{\tau(1)},\cdots, \epsilon_{\tau(n)}$, and let $B$ be the matrix with rows $\epsilon_{\sigma(1)},\cdots, \epsilon_{\sigma(n)}$. The $i$th row of $A$ contains exactly one non-zero entry, namely the 1 in column $\tau(i)$. From this it is easy to see that $\epsilon_{\sigma(\tau(i))}$ is the $i$th row of the product matrix $AB$. Now
+\begin{align*}
+	\det A = \text{sgn }\tau, \hspace{0.25cm} \det B = \text{sgn }\sigma, \hspace{0.25cm} \text{ and } \det AB = \text{sgn }\sigma\tau
+\end{align*}
+so we will have $\text{sgn }\sigma\tau=\text{sgn }\sigma \text{sgn }\tau$ as soon as we prove the following:
+
+\begin{thm}[Determinant of a product]\label{thm:det_of_a_product}
+	Let $A$ and $B$ be $n \times n$ matrices. Then
+	\begin{align*}
+		\det AB= \det A \det B.
+	\end{align*}
+\end{thm}
+
+\begin{pf}
+	Let $B$ be a fixed $n \times n$ matrix, and for each $n \times n$ matrix $A$ define $D(A)=\det AB$. If we denote the rows of $A$ by $\alpha_1,\cdots,\alpha_n$, then
+	\begin{align*}
+		D(\alpha_1,\cdots,\alpha_n)=\det (\alpha_1 B, \cdots, \alpha_n B),
+	\end{align*}	
+where $\alpha_j B$ denotes the $1 \times n$ matrix which is the product of the $1 \times n$ matrix $\alpha_j$ and the $n \times n$ matrix $B$. Since 
+\begin{align*}
+	(c\alpha_i+c'\alpha_i')B=c\alpha_iB+c'\alpha_i'B
+\end{align*}
+and $\det$ is $n$-linear, it is easy to see that $D$ is $n$-linear. If $\alpha_i=\alpha_j$, then $\alpha_i B=\alpha_jB$, and since $\det$ is alternating,
+\begin{align*}
+	D(\alpha_1,\cdots,\alpha_n)=0,
+\end{align*}
+hence $D$ is alternating. Now $D$ is an alternating $n$-linear function, and by Theorem \ref{thm:det_a}
+\begin{align*}
+	D(A)=(\det A)D(I).
+\end{align*}
+But $D(I)=\det(IB)=\det(B)$, so
+\begin{align*}
+	\det AB=D(A)=(\det A)(\det B).
+\end{align*}
+\end{pf}
+
+The fact that $\text{sgn }\sigma\tau=\text{sgn }\sigma \text{sgn }\tau$ is only one of many corollaries to Theorem \ref{thm:det_of_a_product}. We shall consider some of these corollaries in the next section.
+
+\subsection{Additional properties of determinants}
 
 
 \section{Eigenvalues and eigenvectors}
