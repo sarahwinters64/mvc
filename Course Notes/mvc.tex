@@ -1606,6 +1606,7 @@ This is given by
 
 \subsection{Equations of lines and planes}
 \subsubsection{Lines in space}
+\fixme{Include here as well the point normal equation of a line. (See Anton page 144.) Show that the equation of a plane has a similar structure.}
 The coordinate systems of analytic geometry allow us to consider geometric objects such as lines and planes in terms of vectors. These geometric ideas will give us valuable intuition later on in the course when we take a more abstract point of view toward vectors.
 
 First let us recall that any two points define a line. Equivalently, we can also determine a line if we know one point on the line and the slope of the line. 
@@ -1682,6 +1683,7 @@ describe an infinite line containing $P$ and $Q$ when we take $-\infty < t < \in
 with $-1 < t < 0$.}
 
 \subsubsection{Planes in space}
+\fixme{Include the simplified distance formulas from Anton section 3.3 (starting on page 148).}
 Whereas a line is determined by any two points, a plane is determined by any \ti{three} non-collinear points. Similar to a line, which was equivalently determined by a single point and a slope, a plane can also be determined by a single point and a ``slope". The direction of the plane is determined by a normal vector ${\bf n}=n_1{\bf e}_1+n_2{\bf e}_2+n_3{\bf e}_3$. 
 
 Let us now repeat the question we asked before: given a point $P_0(x_0,y_0,z_0)$ on the plane and a vector ${\bf n}$ normal to the plane, what is the condition for an arbitrary point in space $P(x,y,z)$ to lie on the plane? If $P$ lies in the plane, the $\overrightarrow{P_0P}$ is a vector lying in the plane. Then, since ${\bf n}$ is normal to the plane, we must have that ${\bf n} \cdot \overrightarrow{P_0P}=0$.
@@ -1854,6 +1856,14 @@ Through the coordinate correspondence, $\mathbb{R}^n$ is geometrically obtained 
 \item The dot product of two vectors ${\bf v}$ and ${\bf w}$ in $\mathbb{R}^n$ is given by
 \begin{align*}
 	{\bf v}\cdot {\bf w}=v_1w_1+\cdots v_nw_n.
+\end{align*}
+The norm of a vector ${\bf v}$ can again be written in terms of the dot product as 
+\begin{align*}
+	||{\bf v}||=\sqrt{{\bf v}\cdot {\bf v}}.
+\end{align*}
+The dot product satisfies the same properties as in $\mathbb{R}^3$ and the angle between two vectors in $\mathbb{R}^n$ is defined as \footnote{Note that our proof of the Cauchy-Schwarz inequality as well as the triangle inequality still holds for $\mathbb{R}^n$.}
+\begin{align*}
+	\theta = \cos^{-1}\left(\frac{{\bf u}\cdot {\bf v}}{||{\bf u}|| \ ||{\bf v}||}\right).
 \end{align*}
 \item The cross product is special to $\mathbb{R}^3$. There is no analog of the cross product for $\mathbb{R}^n$, when $n>3$. \footnote{It is possible to define a product which takes as input $n-1$ $n$-dimensional vectors and produces a vector perpendicular to each one of these, but we will not use such an operation in this course.}
 \end{itemize}
