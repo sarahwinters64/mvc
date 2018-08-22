@@ -1926,7 +1926,7 @@ As we will see, it is useful to know when a vector can be written in terms of ot
 
 
 \section{Systems of linear equations}
-
+\fixme{Refer to point-normal equations of lines and planes from the slides as geometric motivation  for this section.}
 \subsection{Basic definitions}
 \begin{defn}[Linear equation]\label{def:linear_equation}
 	A \ti{linear equation} in the variables $x_1,\cdots, x_n$ is an equation that can be written in the form
@@ -2064,7 +2064,7 @@ To illustrate this technique, consider the homogeneous system
 	\end{equation} 
 Adding $(-2)$ (Eq. 4) +(Eq. 3)  gives $-7x_2-7x_3=0$ or $x_2=-x_3$. Adding
 $3$ (Eq. 3) + (Eq. 4) gives $7x_1+7x_3=0$ or $x_1=-x_3$. 
-Combining these, we see that this system has an infinite number of solutions. The solution set can be written in \ti{parametric form} as $\{(-t,-t,t): t \in \mathbb{R}\}$ in terms of a single \ti{parameter}, $t$. \footnote{In general, if a system of $m$ equations in $n$ unknowns is consistent but doesn't have a unique solution, then the solution set will depend on up to $n$ parameters. In this case, the solution set will be in 1-1 correspondence with $\mathbb{R}^n$. It is a fact that $|\mathbb{R}^n|=|\mathbb{R}|$ (I won't attempt to explain this here), so the statement that any system of linear equations has $0,1,$ or $\mathfrak{c}$ solutions is true in general. \fixme{Does this mean that we can, in principle, parametrize the solution set in terms of a single parameter? Can this not be done in practice (e.g., is the proof that there exists such a bijection not constructive)? or is this just not useful to do (e.g., that the bijection lacks some desirable properties, such as continuity)? For a historical account, see \cite{cantor_surprised}.}} 
+Combining these, we see that this system has an infinite number of solutions. The solution set can be written in \ti{parametric form} as $\{(-t,-t,t): t \in \mathbb{R}\}$ in terms of a single \ti{parameter}, $t$. \footnote{In general, if a system of $m$ equations in $n$ unknowns is consistent but doesn't have a unique solution, then the solution set will depend on up to $n$ parameters. In this case, the solution set will be in 1-1 correspondence with $\mathbb{R}^n$. It is a fact that $|\mathbb{R}^n|=|\mathbb{R}|$ (I won't attempt to explain this here), so the statement that any system of linear equations has $0,1,$ or $\mathfrak{c}$ solutions is true in general.} 
 \end{example}
 We now begin to formalize the elimination process in order to carry it out in a systematic way and to understand why it works. Consider again the general linear system of $m$ equations in $n$ unknowns in \eqref{eq:m_eq_n_var}. If we select $m$ scalars $c_1,\cdots,c_m$, multiply the $j$th equation by $c_j$ for $j=1,\cdots,m$, and add all of the equations together, we obtain a new linear equation, given by
 \begin{equation}\label{eq:linear_combination_of_equations}
@@ -2353,7 +2353,7 @@ The final matrix is the coefficient matrix of the system
 	x_3-\frac{11}{3}x_4&=0
 \end{split}
 \end{equation}
-whose solution set is obviously 
+whose solution set is obtained by taking $x_4$ to be any real number, $t$, and then solving for $x_1,x_2,$ and $x_3$ in terms of $t$: 
 \begin{equation}\label{eq:hom_ex_solution}
 \{(-\frac{17}{3}t,\frac{5}{3}t,\frac{11}{3}t,t):t \in \mathbb{R}\}.	
 \end{equation}
@@ -2362,7 +2362,7 @@ whose solution set is obviously
 In the previous example we were obviously not performing row operations at random. Instead, our choice of row operations was motivated by a desire to simplify the coefficient matrix in a manner analogous to `eliminating unknowns' in the system of linear equations. Roughly speaking, we use the $x_1$ term in the first equation of the system to eliminate the $x_1$ terms in the other equations. Then we use the $x_2$ term in the second equation to eliminate the $x_2$ terms in the other equations, and so on, until we obtain the simplest possible equivalent system of equations. 
 
 \subsection{Echelon matrices}
-We now make a formal definition of the type of matrix at which we are attempting to arrive. In the following definitions, a \ti{nonzero} row of a matrix means a row that contains at least one nonzero entry; a \ti{leading entry} of a nonzero row is the leftmost nonzero entry in that row.
+We now make a formal definition of the type of matrix at which we are attempting to arrive (compare with the final matrix in the example above). In the following definitions, a \ti{nonzero} row of a matrix means a row that contains at least one nonzero entry; a \ti{leading entry} of a nonzero row is the leftmost nonzero entry in that row.
 \begin{defn}[Row echelon form and reduced row echelon form]
 	An $m \times n$ matrix is said to be in \ti{row echelon form} (REF) if it has the following three properties:
 	\begin{enumerate}
@@ -2431,14 +2431,29 @@ is in reduced row echelon form.
 \end{thm}
 
 \begin{pf}
-Postponed. \fixme{Insert link to proof.}
+Postponed. \fixme{Insert link to proof in later section.}
 \end{pf}
 
-In the next section we will see a row-reduction algorithm which will put \ti{any} $m \times n$ matrix $A$ into reduced row echelon form. \footnote{This will prove there is \emph{at least} one row-reduced echelon matrix $U$ which is row-equivalent to $A$. Later, we will prove that there is \emph{only one} such $U$.} Theorem \ref{thm:uniqueness_of_reduced_row_echelon_form} shows that $U$ is unique. \fixme{Explain here why RREF is what we want to arrive at by performing elementary row operations. Columns with no leading 1s are called free variables. These will be parameters, and the leading 1s allow us to solve for the remaining variables in terms of the free ones, giving us the parametric description of the solution set.}
+In the next section we will see a row-reduction algorithm which will put \ti{any} $m \times n$ matrix $A$ into reduced row echelon form. \footnote{This will prove there is \emph{at least} one row-reduced echelon matrix $U$ which is row-equivalent to $A$. Later, we will prove that there is \emph{only one} such $U$.} Theorem \ref{thm:uniqueness_of_reduced_row_echelon_form} shows that $U$ is unique. \fixme{Explain here why RREF is what we want to arrive at by performing elementary row operations? Columns with no leading 1s are called free variables. These will be parameters, and the leading 1s allow us to solve for the remaining variables in terms of the free ones, giving us the parametric description of the solution set.}
 
 
 \subsection{Pivots}
-Note that when row operations on a matrix reduce it to REF, further row operations to obtain the RREF \ti{do not change the positions of the leading entries.} Since the RREF is unique, \ti{the leading entries are always in the same positions in any echelon form obtained from a given matrix}. These leading entries correspond to leading 1's in the RREF.This motivates the following definitions:
+Note that when row operations on a matrix reduce it to REF, further row operations to obtain the RREF \ti{do not change the positions of the leading entries.} 
+
+\begin{exercise}
+Verify this by reducing the matrix
+\begin{align*}
+	\begin{bmatrix}
+		2 & -3 & 2 & 1 \\
+		0 & 1 & -4 & 8 \\
+		0 & 0 & 0 & 5/2
+	\end{bmatrix}
+\end{align*}	
+to RREF by a sequence of elementary row operations.
+\end{exercise}
+
+
+Since the RREF is unique, \ti{the leading entries are always in the same positions in any echelon form obtained from a given matrix}. These leading entries correspond to leading 1's in the RREF. This motivates the following definitions:
 
 \begin{defn}[Pivots, Pivot positions, pivot columns] \label{def:pivots_pivot_positions_pivot_columns} \hspace{10cm}
 	\begin{enumerate}[(i)]
@@ -2552,7 +2567,7 @@ where each $x_i, i=1,\cdots,r$ occurs (with non-zero coefficient) only in the $i
 	\begin{enumerate}[(a)]
 		\item Let $R$ be the unique RREF of the matrix $A$. Since $A$ and $R$ are row-equivalent, the systems $AX=0$ and $RX=0$ have exactly the same solutions. As before, let $r$ be the number of non-zero rows in $R$. Then $r \leq m$, and since $m < n$, we have $r<n$. We will therefore have $n-r>0$ free variables, so $AX=0$ has a non-trivial solution. 
 		\item $(\implies)$ If $A$ is row-equivalent to $I$, then $AX=0$ and $IX=0$ have the same solutions, hence $AX=0$ has only the trivial solution $X=0$. \\
-		$(\impliedby)$ Suppose $AX=0$ has only the trivial solution. Let $R$ be the unique RREF of $R$, and let $r$ be the number of non-zero rows of $R$. Since $R$ is row-equivalent to $A$, $RX=0$ has only the trivial solution. Thus $r \geq n$. But since $R$ has $n$ rows, $r \leq n$, and therefore $r=n$. Since $R$ is in RREF, it is the $n \times n$ identity matrix.
+		$(\impliedby)$ Suppose $AX=0$ has only the trivial solution. Let $R$ be the unique RREF of $A$, and let $r$ be the number of non-zero rows of $R$. Since $R$ is row-equivalent to $A$, $RX=0$ has only the trivial solution. Thus $r \geq n$. But since $R$ has $n$ rows, $r \leq n$, and therefore $r=n$. Since $R$ is in RREF, it is the $n \times n$ identity matrix.
 	\end{enumerate}
 \end{pf}
 \begin{exercise}
