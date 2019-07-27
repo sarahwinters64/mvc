@@ -249,7 +249,7 @@
 \newcommand{\tb}[1]{\textbf{#1}}
 \newcommand{\lo}{\text{\calligra o}\,}
 \newcommand{\dd}{\ensuremath{\mathscr{D}}}
-
+\newcommand{\sgn}{\text{sgn}}
 
 
 \DeclareMathOperator{\ad}{ad}
@@ -312,8 +312,8 @@ Gwinnett School of Mathematics, Science and Technology \\
 \end{center}
 
 {These are the notes for the Fall Semester 2019
-course in Linear Algebra at GSMST. They will continually be updated throughout the semester. The latest PDF can always be accessed
-at \small \url{https://github.com/atrimm/mvc/blob/master/Course%20Notes/mvc.pdf}.}
+course in Linear Algebra at GSMST. They will updated frequently throughout the semester. The latest PDF can always be accessed
+at \small \url{https://github.com/atrimm/mvc/blob/master/Course%20Notes/linear_algebra_2019.pdf}.}
 
 \tableofcontents
 \renewcommand{\listtheoremname}{Quick reference}
@@ -324,20 +324,68 @@ at \small \url{https://github.com/atrimm/mvc/blob/master/Course%20Notes/mvc.pdf}
 %\setcounter{page}{1}
 \section{Vectors and geometry}
 \subsection{Physical motivation}
-The earliest notion of a \emph{vector} comes from physics. In nature, we encounter certain physical quantities, such as forces or velocities, which cannot be uniquely specified by a number alone, but also depend on a direction in space. 
+The earliest notion of a \emph{vector} comes from physics. In nature, we encounter certain physical quantities which cannot be uniquely specified by a number alone, but also depend on a direction in space. 
 
-\begin{example}
+\begin{example}\label{ex:disp}
 If the distance from town $A$ to town $B$ is 400 miles and we leave $A$ and travel at 50 miles per hour, then we will arrive at $B$ in 8 hours, but only if we travel in the direction from $A$ to $B$! Thus, displacement (400 mi, from $A$ to $B$) and velocity (50 mi/hr, from $A$ to $B$) are two examples of such physical quantities.
 \end{example}
 To distinguish physical quantities which depend on a numerical value alone from those which also depend on a direction, we make the following definitions. 
-\begin{defn}[Vectors and scalars]
+\begin{defn}[Vector and scalar quantities]
 \begin{enumerate}[(a)] \hspace{10cm}
-	\item A \ti{scalar} is a physical quantity which is uniquely specified by a numerical value alone.
-	\item A \ti{vector} is a physical quantity which is uniquely specified by a numerical value, called its \ti{magnitude}, and a direction.
+	\item A \emph{scalar quantity} is a physical quantity which is uniquely specified by a numerical value alone.
+	\item A \emph{vector quantity} is a physical quantity which is uniquely specified by a numerical value, called its \emph{magnitude}, and a direction.
 \end{enumerate}
 \end{defn}
-\subsection{Geometric interpretation}
-A scalar can be represented geometrically as a distance on a number line, that is, by a  \ti{line segment}. For example, we think of the number 3 as a length of 3 units. Clearly, any two line segments of the same length represent the same scalar, so we are free to measure every line segment by positioning its left end at the origin of a number line.
+
+\begin{exercise}
+Classify each of the following quantities are vector or scalar:
+\begin{enumerate}[(a)]
+	\item Force
+	\item Temperature
+	\item Volume
+	\item Accelerateion
+\end{enumerate}	
+\end{exercise}
+
+In the following sections, we will develop a mathematical model of vector and scalar quantities.
+
+\subsection{Mathematical model}
+\subsubsection{Scalars}
+The examples above show that a scalar quantity is uniquely described by a real number (in some choice of units). So the set $\R$ of all real numbers is a model for the set of scalars. Geometrically, we visualize a scalar as a point on the real number line. Going forward, the word \emph{scalar} will be synonymous with \emph{real number}, unless stated otherwise. \footnote{In unit 4, we will generalize our mathematical model and in this context it will make sense to take other sets of scalars, such as the complex numbers. Nearly all of what follows will continue to hold true in this more general setting, so we will continue to use the word ``scalar" rather than ``real number" partly because this is conventional and partly in order to keep our options open later on.}
+
+\subsubsection{Vectors in one-dimension}
+Consider driving on a road which is perfectly straight, running from east to west, say, without any curves or turns. At any instant on this road it is therefore only possible to be driving in one of two directions: either east or west. 
+
+Let us now develop a mathematical model of the displacement of the car. Modeling the straight road by the real number line, the location of the car relative to a chosen origin is simply given by a real number, specifying its coordinate. Since the location of the car is uniquely specified by a single real number, we say its motion is ``one-dimensional" or in ``one dimension". We will give a precise definition of the notion of dimension later in unit 4, but for now you can think of the dimension as being equal to the number of real numbers it takes to completely specify the car's coordinates relative to some origin, which will be obvious in all the examples we consider.
+
+As noted in Example \ref{ex:disp}, the coordinate of the car indeed uniquely specifies the magnitude and direction of the car's displacement at that instant. For example, if the car's coordinate is $-19$ m, then it is located a distance of 19 m to the left of the origin. Thus, given the coordinate $x$ of the car, the \emph{magnitude} of the displacement (i.e., the distance from the origin) is given by the \emph{absolute value} $|x|$ of the coordinate $x$, where 
+\begin{align*}
+	|x|=\begin{cases}
+		x, &\text{ if } x \geq 0, \\
+		-x, &\text{ if } x<0,
+	\end{cases}
+\end{align*}
+while the \emph{direction} (i.e., orientation of the car east or west) is given by the \emph{sign} of the coordinate $x$, which we will denote by $\sgn(x)$, where
+\begin{align*}
+	\sgn(x)=\frac{x}{|x|}=\begin{cases}
+		+1, &\text{ if } x>0, \\
+		-1, &\text{ if } x<0 \\
+	\end{cases}
+\end{align*}
+and is undefined if $x=0$, since 0 is neither positive nor negative. 
+
+A model for the velocity of the car is also given by the real number line, with the origin corresponding to the car being at rest (with respect to our coordinate system). The velocity at any instant is a real number $v$, which encodes the speed $|v|$ and orientation $\sgn(x)$ of the car east or west. Similarly for the acceleration or any other vector quantity in one dimension. It should be noted in these examples, however, that the real number line \emph{does not necessarily represent physical space}. For the displacement of the car, this \emph{was} the case; the magnitude represented the distance in space of the car from the origin, while the orientation was the east/west direction. For the velocity $v$, $|v|$ represents the speed, which is not a distance in physical space, while the orientation $\sgn(v)$ was again the east/west direction in space. For the acceleration $a$, $|a|$ is again not a distance in physical space, and in this case neither is $\sgn(a)$; instead, $\sgn(a)$ signifies either that the car is ``speeding up" or ``slowing down".
+
+These examples show that a vector in one-dimension is simply a real number. Recall that a scalar is also simply a real number. Thus,
+
+\begin{center}
+	\emph{vectors in one-dimension are the same thing as scalars.}
+\end{center}
+
+The difference between a vector in one-dimension and a scalar is therefore purely psychological, not mathematical. It is only because the sign of temperature, e.g. $-29^\circ$ C, has no physical relation to a direction in space that we prefer to think of it as a scalar rather than a one-dimensional vector, but mathematically these are the same. The mathematical difference between vectors and scalars will arise in higher dimensions, as we will see next.
+
+\subsubsection{Vectors in 2-dimensions}
+A can be represented geometrically as a distance on a number line, that is, by a  \ti{line segment}. For example, we think of the number 3 as a length of 3 units. Clearly, any two line segments of the same length represent the same scalar, so we are free to measure every line segment by positioning its left end at the origin of a number line.
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/scalar_number_line}
 \end{center}
