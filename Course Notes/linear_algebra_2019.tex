@@ -345,8 +345,10 @@ Classify each of the following quantities are vector or scalar:
 \begin{enumerate}[(a)]
 	\item Force
 	\item Temperature
+	\item Mass
 	\item Volume
-	\item Accelerateion
+	\item Acceleration
+	\item Density
 \end{enumerate}	
 \end{exercise}
 
@@ -385,17 +387,17 @@ if $x \neq 0$. Since $\sgn(x)$ is not defined if $x=0$, if the particle is at th
 
 Geometrically, we can visualize a nonzero vector $\mathbf{x}$ by an arrow of length $|x|$ which originates at the origin and terminates at the point $x$. \fixme{Insert graphic.}
 
-The velocity, $\mathbf{v}$, of the particle is specified by its speed and direction of motion. E.g., 25 m/s to the right. As in equation \eqref{eq:1_d_vector}, if the speed is nonzero we can encode this information into a single real number $v=\frac{v}{|v|}|v|$, as 
+The velocity, $\mathbf{v}$, of the particle is specified by its speed and direction of motion. E.g., 25 m/s in the positive direction. \footnote{The standard choice is to take the \emph{positive direction} to be the direction of \emph{increasing} $x$; the \emph{negative direction} is then the direction of \emph{decreasing} $x$.} As in equation \eqref{eq:1_d_vector}, if the speed is nonzero we can encode this information into a single real number $v=\frac{v}{|v|}|v|$, as 
 \begin{align*}
 	\mathbf{v}=(|v|,\sgn(v))
 \end{align*}
-where $|v|$ is the speed of the particle and $\sgn(v)$ is taken to be $+1$ if the particle is moving to the right and $-1$ if the particle is moving to the left. We can again visualize $\mathbf{v}$ as an arrow originating at the origin of the number line and terminating at the number $v$, except in this case the points on the number line represent velocities, and not points along the physical line along which the particle is moving.
+where $|v|$ is the speed of the particle and $\sgn(v)$ is taken to be $+1$ if the particle is moving in the positive direction and $-1$ if the particle is moving in the negative direction. We can again visualize $\mathbf{v}$ as an arrow originating at the origin of the number line and terminating at the number $v$, except in this case the points on the number line represent velocities, and not points along the physical line along which the particle is moving.
 
 Similarly, the acceleration vector $\mathbf{a}$  specified in terms of the real number $a=\frac{a}{|a|}|a|$ (if $a \neq 0$) by
 \begin{align*}
 	\mathbf{a}=(|a|,\sgn(a))
 \end{align*}
-where $|a|$ is the magnitude of the acceleration and $\sgn(a)$ is taken to be $+1$ if the particle is speeding up and $-1$ if it is slowing down. As before, we can visualize the vector $\mathbf{a}$ as an arrow of length $|a|$ originating at the origin and terminating at the point $a$.
+where $|a|$ is the magnitude of the acceleration and $\sgn(a)$ is taken to be $+1$ if the particle is speeding up in the positive direction and $-1$ if it is slowing down in the positive direction (which is the same as speeding up in the negative direction). As before, we can visualize the vector $\mathbf{a}$ as an arrow of length $|a|$ originating at the origin and terminating at the point $a$.
 
 Indeed, \emph{any} nonzero vector $\mathbf{t}$ in one dimension whose magnitude is nonzero can be specified in terms of a real number 
 \begin{equation}\label{eq:general_1_d_vector_1}
@@ -410,148 +412,66 @@ where $|t|$ is the magnitude of $\mathbf{t}$ and, since $\mathbf{t}$ has only on
 Together with equations \eqref{eq:general_1_d_vector_1} and \eqref{eq:general_1_d_vector_2}, this shows that vectors in one-dimension are in 1-1 correspondence with real numbers. In section \ref{sec:scalars}, we saw that scalars are also in 1-1 correspondence with real numbers, so \emph{there is a 1-1 correspondence between one-dimensional vectors and scalars}. Thus there is no essential difference between between a vector in one dimension and a scalar, since each a one-dimensional vector is associated to a unique scalar, and vice versa. The difference between vectors and scalars only arises in higher dimensions, as we will see next.
 
 \subsubsection{Vectors in  two dimensions}
-Let us now consider motion restricted to a \emph{plane}, rather than a line. Since each point in a plane specified by two coordinates $(x,y)$ with respect to some chosen origin, we say this motion is \emph{two-dimensional}. 
+Let us now consider motion restricted to a \emph{plane}, rather than a line. Since each point in a plane specified by \emph{two} coordinates $(x,y)$ with respect to some chosen origin, we say this motion is \emph{two-dimensional}. 
 
-As in the previous section, the displacement vector can be represented by a \emph{directed} line segment (arrow) stretching from the origin to the point $(x,y)$. \fixme{Include graphic.} Given the point $(x,y)$, the magnitude and direction of the vector are obtained by converting to \emph{polar coordinates}:
-\begin{align*}
-	r&=\sqrt{x^2+y^2} \\
-	\theta &=\tan^{-1}(\frac{y}{x}).
-\end{align*}
-
-
-
- As before, the length of the arrow will represent the magnitude of the vector. For example, if we wish to indicate a force of 2 pounds acting in the increasing \footnote{To represent a vector without ambiguity, when we specify the direction we must be sure to indicate the \ti{sense} of the vector. That is, in our present example, the word ``increasing'' denotes that we mean
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/sense_1}
-\end{center}
-rather than
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/sense_2}
-\end{center} In any diagram, it is therefore crucial to include the arrowhead to indicate the sense of the vector.} direction of the line $y=x$, we would represent it as the arrow ${\bf F}$.
-
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/force_example}
-\end{center}
-The tail of the arrow is called the \ti{initial point} of the vector and the tip is called the \ti{terminal point}. 
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/directed_line_segment}
-\end{center}
-We will denote a vector by boldface type, as in ${\bf v}$, and a scalar by lowercase italic type, as in $k$. When we want to indicate that a vector ${\bf v}$ has initial point $A$ and terminal point $B$, then we will write ${\bf v}=\overrightarrow{AB}$. \footnote{It is important to note that arrows are merely a convenient device to help us visualize vectors. That is, an arrow is a geometric representation of a vector, not the vector itself. Just as a number does not require the existence of a length, a vector require the existence of an arrow. Of course, once we have made this distinction, we may use vectors and arrows more or less interchangeably in the same way we use graphs and functions.}
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/vAB}
-\end{center}
-
-\subsection{Vectors in coordinate systems}
-As in analytic geometry, the use of coordinate systems give us powerful tools with which to perform concrete computations with vectors. Additionally, working with coordinates will allow us to consider geometric entities such as lines and planes in vector settings. 
-
-\subsubsection{Coordinate correspondence}
-In this section we describe the coordinate correspondence between three-dimensional Euclidean space, $\mathbb{E}^3$ (the three-dimensional space in which the axioms of Euclidean geometry hold), and three-dimensional Cartesian space $\mathbb{R}^3\equiv \{(x_1,x_2,x_3):x_i \in \mathbb{R} \text{ for } i=1,2,3\}$.
-
-We begin with a line. A coordinate correspondence between a line $L$ and the real number system $\mathbb{R}$ is determined by choosing arbitrarily on $L$ a zero point $O$ and a unit point $Q$ distinct from $O$. Then to each point $X$ on $L$ is assigned the number $x$ such that $|x|$ is the distance from $O$ to $X$, measured in terms of the segment $OQ$ as the unit, and $x$ is positive or negative according to whether $X$ and $Q$ are on the same side of $O$ or on opposite sides. The mapping $X \mapsto x$ is the coordinate correspondence between $L$ and $\mathbb{R}$. 
-
-We now set up a coordinate correspondence between $\mathbb{E}^3$ and $\mathbb{R}^3$. We first choose arbitrarily a zero point $O$ and three unit points $Q_1, Q_2,$ and $Q_3$ in such a way that the four points do not lie in a plane. Each of the unit points $Q_i$ determines a line $L_i$ through $O$ and a coordinate correspondence on this line, as defined above. The three lines $L_1, L_2$, and $L_3$ are called the \ti{coordinate axes}. Consider now any point $X$ in $\mathbb{E}^3$. The plane through $X$ parallel to $L_2$ and $L_3$ intersects $L_1$ at a point $X_1$, and therefore determines a number $x_1$, the coordinate of $X_1$ on $L_1$. Similarly, $X$ determines points $X_2$ on $L_2$ and $X_3$ on $L_3$ which have coordinates $x_2$ and $x_3$, respectively. Altogether, $X$ determines a triple
-\begin{align*}
-	{\bf x}=(x_1,x_2,x_3)
-\end{align*} 
-in $\mathbb{R}^3$, and we have thus defined a mapping $\theta:X \mapsto {\bf x}$ from $\mathbb{E}^3$ to $\mathbb{R}^3$. 
-
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/e3_r3}
-\end{center}
-We call $\theta$ the \ti{coordinate correspondence} defined by the axis system. Note that the unit point $Q_1$ on $L_1$ has the coordinate triple $(1,0,0)$, and similarly
-\begin{align*}
-	\theta(Q_2)&=(0,1,0), \\
-	\theta(Q_3)&=(0,0,1).
-\end{align*}
-
-It is a fact that $\theta$ is a bijection from $\mathbb{E}^3$ to $\mathbb{R}^3$. The proof goes beyond the usual treatment of high school geometry, so we will simply accept this statement without proof.
-
-\subsubsection{Cartesian coordinates}
-\begin{defn}[Cartesian coordinates]
-	The axis system in $\mathbb{E}^3$ is \ti{Cartesian} if the coordinate axes are mutually perpendicular and a common unit of distance (i.e., $|OQ_1|=|OQ_2|=|OQ_3|$) is used. The corresponding coordinates are called \ti{Cartesian coordinates}.
-\end{defn}
-A Cartesian coordinate system is shown below. \footnote{Cartesian coordinates are also often called \ti{rectangular coordinates} because the axes that define them meet at right angles.}
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/cartesian_coordinate_system}
-\end{center}
-The coordinate axes are labeled $x,y,$ and $z$, and are arranged such that if you take your right hand and curl your fingers from the positive $x$-axis toward the positive $y$-axis, your thumb points along the positive $z$-axis. Such a coordinate system is called \ti{right-handed}. \footnote{As you might have guessed, there are also left-handed coordinate systems. Choosing our coordinate system to be left- or right-handed is called choosing an \ti{orientation} for our coordinate system. We will discuss orientations more later. For now, just note that everything we do in the following could equivalently be formulated in terms of left-handed coordinate systems, so choosing a right-handed coordinate system for $\mathbb{E}^3$ is simply the standard convention.}
-
-As discussed in the previous section, the coordinates of a point $P$ are the numbers at which the planes through $P$ perpendicular to the coordinate axes intersect these axes. These are labeled $\theta(P)=(x,y,z)$. 
-
-Points on the $x$-axis have $y$- and $z$-coordinates equal to zero. That is, they have coordinates of the form $(x,0,0)$. Similarly points on the $y$- and $z$-axes have coordinates of the from $(0,y,0)$ and $(0,0,z)$, respectively.
-
-The points in a plane perpendicular to the $x$-axis all have the same $x$-coordinate, $x_0$, this being the number at which the plane intersects that $x$-axis. The plane is then the set 
-\begin{equation}
-	P=\{(x,y,z) \in \mathbb{R}^3 : x=x_0\} 
+Let's again consider the displacement vector, $\mathbf{x}$, of the particle. If the particle is not at the origin, this vector, as before, can be visualized as an arrow originating at the origin and terminating at the point $(x,y)$. The length of the arrow is the magnitude of $\mathbf{x}$, which is the distance of the particle from the origin. Denoting the magnitude of $\mathbf{x}$ by $||\mathbf{x}||$, \footnote{The double vertical bars are to differentiate this from the absolute value in one dimension.}
+this is given by the distance formula
+\begin{equation}\label{eq:pythagorean}
+	||\mathbf{x}||=\sqrt{x^2+y^2}.
 \end{equation}
-That is, the plane consists of all points having coordinates $(x_0,y,z)$, where $y$ and $z$ are any real numbers. The constraint $x=x_0$ is the equation of the plane perpendicular to the $x$-axis and intersecting it at $x_0$. Similar formulas hold for planes perpendicular to the $y$- and $z$-axes.
+We can specify the direction of the arrow by giving the angle it makes with respect to the positive $x$-axis, which is given by
+\begin{align*}
+	\theta=\tan^{-1}\left(\frac{y}{x}\right).
+\end{align*}
+Note that this is just the usual conversion from rectangular to polar coordinates. By \eqref{eq:pythagorean}, $||\mathbf{x}||=0$ if and only if $(x,y)=(0,0)$, so we see that the possible displacement vectors of a particle in two dimensions are in 1-1 correspondence with points in $\mathbb{R}^2$.
 
-\begin{example}
-The plane $x=2$ is the plane perpendicular to the $x$-axis at $x=2$. The plane $y=3$ is the plane perpendicular to the $y$-axis at $y=3$. The plane $z=5$ is the plane perpendicular to the $z$-axis at $z=5$. These planes are shown below, together with their intersection point $(2,3,5)$.
-\end{example}
+Note that if the coordinate $y=0$ so that the point $(x,0)$ lies on the $x$-axis (so that $\mathbf{x}$ is effectively a one-dimensional vector), we have
 
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/plane_235}
-\end{center}
-
-The planes $x=2$ and $y=3$ in the figure above intersect along a line parallel to the $z$-axis. This line is described by a pair of equations $L=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } y=3\}$.
-
-\begin{exercise}
-	Describe the other two lines of intersection in the figure above.
-\end{exercise}
-
-{\color{red} \flushleft {\bf Solution:}
-The line running parallel to the $x$-axis is given by $$L_1=\{(x,y,z) \in \mathbb{R}^3: y=3 \text{ and } z=5\},$$ while the line running parallel to the $y$-axis is given by $$L_2=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } z=5\}.$$}
-
-The three planes determined by the coordinate axes are the $xy$-plane, whose equation is $z=0$; the $yz$-plane, whose equation is $x=0$; and the $xz$-plane, whose equation is $y=0$. They meet at the origin, $(0,0,0)$.
-	
-The three coordinate planes $x=0, y=0,$ and $z=0$ divide space into eight cells called \ti{octants}. The octant in which the coordinates of all points are nonnegative is called the \ti{first octant}; there is no conventional numbering for the other seven octants.
+\begin{align*}
+	||\mathbf{x}||&=\sqrt{x^2+0^2} \\
+	&=\sqrt{x^2} \\
+	&=|x|,
+\end{align*}
+in agreement with the previous section.
 
 \begin{exercise}
-Write the coordinate equations and inequalities which define each of the following sets of points in space.
-\begin{enumerate}[(a)]
-	\item The half-space consisting of the points on and above the $xy$-plane.
-	\item  This plane is parallel to the $yz$-plane and lying 3 units behind it.
-	\item The second quadrant of the $xy$-plane.
-	\item The first octant.
-	\item The slab between the planes $y=-1$ and $y=1$, including these planes.
-	\item The line in which the planes $y=-2$ and $z=2$ intersect.
-\end{enumerate}	
+Verify that $\sqrt{x^2}$ is indeed equal to $|x|$.	
 \end{exercise}
 
-{\color{red} \flushleft {\bf Solution:} 
-\begin{enumerate}[(a)]
-	\item $z \geq 0$,
-	\item $x=-3$,
-	\item $z=0, x \leq 0, z \geq 0$,
-	\item $x \geq 0, y \geq 0, z \geq 0$,
-	\item $-1 \leq y \leq 1$,
-	\item $y=-2,z=2$.
-\end{enumerate}}
+Let us now consider \emph{any} vector $\mathbf{t}$ in two-dimensions, which is specified by a nonnegative real number $||\mathbf{t}||$ and an angle $\theta \in [0,2\pi)$. We can associate to $\mathbf{t}$ a unique ordered pair of real numbers $(x,y)$ by taking
+\begin{align*}
+	\mathbf{t}=(||\mathbf{t}||,\theta)=\begin{cases}
+		(\sqrt{x^2+y^2}, \tan^{-1}\left(\frac{y}{x}\right)), &\text{ if } ||\mathbf{t}|| \neq 0, \\
+		(0,0), &\text{ if } ||\mathbf{t}||=0.
+	\end{cases}
+\end{align*}
+Thus, vectors in two dimensions are in 1-1 correspondence with points in $\mathbb{R}^2$. Given a vector $\mathbf{t}$, we will denote the corresponding ordered pair of real numbers by $\mathbf{t}=(t_1,t_2)$. These numbers are called the \emph{components} of the vector $\mathbb{t}$ in our chosen coordinate system.
 
-\begin{exercise}
-	What points $P(x,y,z)$ satisfy the equations
-	\begin{align*}
-		x^2+y^2=4 \text{ and }z=3?
-	\end{align*}
-\end{exercise}
+As in one-dimension, for a given vector $\mathbf{t}$ the corresponding point in $\mathbb{R}^2$ does not necessarily represent a point in the physical space in which the particle is moving (which is also represented by $\mathbb{R}^2$). For example, if $\mathbf{v}=(v_1,v_2)$ is the velocity of the particle. Then $v_1$ is the component of velocity along the $x$-direction while $v_2$ is the component of velocity along the $y$-direction. These do not correspond to the location of the particle, and if we are only told its velocity, the particle may indeed be located anywhere in space for all we know.
 
-{\color{red} \flushleft {\bf Solution:} These equations describe a circle of radius 2 lying in a plane parallel to the $xy$-plane and lying 3 units above it.}
+\subsubsection{Vectors in three dimensions}
+Finally, consider a particle moving in three-dimensional space. The position of the particle is now specified by an ordered triple of real numbers $(x,y,z)$, which specifies its coordinates with respect to three mutually perpendicular coordinate axes. As before, we visualize the displacement vector of the particle as an arrow originating from the origin and terminating at the point $(x,y,z)$.
 
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/circle_z=3}
+\begin{figure}[h]
+	 \begin{center}
+	\includegraphics[scale=0.6]{figures_mvc/components}
 \end{center}
+\caption{Displacement vector in three dimensions.}
+\end{figure}
 
-\subsubsection{Components of a vector}
-Let us choose a Cartesian coordinate system for three-dimensional space. If a vector is positioned with its initial point at the origin, then the vector is completely determined by the coordinates of its terminal point.
-
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/components}
-\end{center}
-
-\begin{defn}[Components of a vector]
-	The coordinates of the terminal point of a vector ${\bf v}$ positioned with its initial point at the origin are called the \ti{components} of ${\bf v}$. We denote the components of a vector ${\bf v}$ by writing ${\bf v}=(v_1,v_2,v_3)$.
-\end{defn}
+The set of all ordered triples of real numbers is denoted $\mathbb{R}^3$.  Indeed, any vector $\mathbf{t}$ in three dimensions is uniquely specified by a point in $\mathbb{R}^3$, $\mathbf{t}=(t_1,t_2,t_3)$ called the \emph{components} of $\mathbf{t}$. The correspondence for nonzero $||\mathbf{t}||$ is given as follows. A direction in three-dimensions is specified by two angles, which we can take to be the angle $\mathbf{t}$ makes with respect to the positve $z$-axis, which we denote by $\varphi$, and the angle that the \emph{projection} \footnote{We will define precisely what this means later, but for now think of this as the shadow of the vector on the $xy$-plane you would see if the sun were directly overhead.} of $\mathbf{t}$ makes with respect to the positive $x$-axis in the $xy$-plane, which we denote by $\theta$ since it is the usual polar angle. Then a little trigonometry shows that the point $(x,y,z)$ has coordinates
+\begin{align*}
+	x &=||\mathbf{t}||\sin \varphi \cos \theta, \\
+	y &=||\mathbf{t}||\sin \varphi \sin\theta, \\
+	z &=||\mathbf{t}||\cos \varphi.
+\end{align*}
+So, given any vector $\mathbf{t}=(||\mathbf{t}||,\varphi,\theta)$ in three dimensions with $||\mathbf{t}||\neq 0$, the correspondence is given by
+\begin{align*}
+	||\mathbf{t}||&=\sqrt{x^2+y^2+z^2}, \\
+	\varphi &= \cos^{-1}\left(\frac{z}{||\mathbf{t}||}\right), \\
+	\theta &=\frac{x}{||\mathbf{t}||\sin \varphi}.
+\end{align*}
+Thus, vectors in three dimensions are in 1-1 correspondence with points in $\mathbb{R}^3$.
 
 \subsection{Vector arithmetic}
 We have now defined a set of objects called vectors, which we visualize as arrows. To build a mathematical structure on this set, we need to define various rules and operations for working with vectors. As mathematicians, we are free to define any consistent set of rules and operations we like, and there are many possibilities.  Of course, our motivation for the introduction of vectors was to describe physical phenomena, and we will continue to take our motivations from physics in order to define a mathematical structure on the set of vectors.
@@ -1737,5 +1657,82 @@ This motivates the following definition.
 
 \subsubsection{Applications of $n$-dimensional space}
 \fixme{Finish.}
+
+\subsubsection{3d Exercises}
+\begin{defn}[Cartesian coordinates]
+	The axis system in $\mathbb{E}^3$ is \ti{Cartesian} if the coordinate axes are mutually perpendicular and a common unit of distance (i.e., $|OQ_1|=|OQ_2|=|OQ_3|$) is used. The corresponding coordinates are called \ti{Cartesian coordinates}.
+\end{defn}
+A Cartesian coordinate system is shown below. \footnote{Cartesian coordinates are also often called \ti{rectangular coordinates} because the axes that define them meet at right angles.}
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/cartesian_coordinate_system}
+\end{center}
+The coordinate axes are labeled $x,y,$ and $z$, and are arranged such that if you take your right hand and curl your fingers from the positive $x$-axis toward the positive $y$-axis, your thumb points along the positive $z$-axis. Such a coordinate system is called \ti{right-handed}. \footnote{As you might have guessed, there are also left-handed coordinate systems. Choosing our coordinate system to be left- or right-handed is called choosing an \ti{orientation} for our coordinate system. We will discuss orientations more later. For now, just note that everything we do in the following could equivalently be formulated in terms of left-handed coordinate systems, so choosing a right-handed coordinate system for $\mathbb{E}^3$ is simply the standard convention.}
+
+As discussed in the previous section, the coordinates of a point $P$ are the numbers at which the planes through $P$ perpendicular to the coordinate axes intersect these axes. These are labeled $\theta(P)=(x,y,z)$. 
+
+Points on the $x$-axis have $y$- and $z$-coordinates equal to zero. That is, they have coordinates of the form $(x,0,0)$. Similarly points on the $y$- and $z$-axes have coordinates of the from $(0,y,0)$ and $(0,0,z)$, respectively.
+
+The points in a plane perpendicular to the $x$-axis all have the same $x$-coordinate, $x_0$, this being the number at which the plane intersects that $x$-axis. The plane is then the set 
+\begin{equation}
+	P=\{(x,y,z) \in \mathbb{R}^3 : x=x_0\} 
+\end{equation}
+That is, the plane consists of all points having coordinates $(x_0,y,z)$, where $y$ and $z$ are any real numbers. The constraint $x=x_0$ is the equation of the plane perpendicular to the $x$-axis and intersecting it at $x_0$. Similar formulas hold for planes perpendicular to the $y$- and $z$-axes.
+
+\begin{example}
+The plane $x=2$ is the plane perpendicular to the $x$-axis at $x=2$. The plane $y=3$ is the plane perpendicular to the $y$-axis at $y=3$. The plane $z=5$ is the plane perpendicular to the $z$-axis at $z=5$. These planes are shown below, together with their intersection point $(2,3,5)$.
+\end{example}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/plane_235}
+\end{center}
+
+The planes $x=2$ and $y=3$ in the figure above intersect along a line parallel to the $z$-axis. This line is described by a pair of equations $L=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } y=3\}$.
+
+\begin{exercise}
+	Describe the other two lines of intersection in the figure above.
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:}
+The line running parallel to the $x$-axis is given by $$L_1=\{(x,y,z) \in \mathbb{R}^3: y=3 \text{ and } z=5\},$$ while the line running parallel to the $y$-axis is given by $$L_2=\{(x,y,z) \in \mathbb{R}^3: x=2 \text{ and } z=5\}.$$}
+
+The three planes determined by the coordinate axes are the $xy$-plane, whose equation is $z=0$; the $yz$-plane, whose equation is $x=0$; and the $xz$-plane, whose equation is $y=0$. They meet at the origin, $(0,0,0)$.
+	
+The three coordinate planes $x=0, y=0,$ and $z=0$ divide space into eight cells called \ti{octants}. The octant in which the coordinates of all points are nonnegative is called the \ti{first octant}; there is no conventional numbering for the other seven octants.
+
+\begin{exercise}
+Write the coordinate equations and inequalities which define each of the following sets of points in space.
+\begin{enumerate}[(a)]
+	\item The half-space consisting of the points on and above the $xy$-plane.
+	\item  This plane is parallel to the $yz$-plane and lying 3 units behind it.
+	\item The second quadrant of the $xy$-plane.
+	\item The first octant.
+	\item The slab between the planes $y=-1$ and $y=1$, including these planes.
+	\item The line in which the planes $y=-2$ and $z=2$ intersect.
+\end{enumerate}	
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:} 
+\begin{enumerate}[(a)]
+	\item $z \geq 0$,
+	\item $x=-3$,
+	\item $z=0, x \leq 0, z \geq 0$,
+	\item $x \geq 0, y \geq 0, z \geq 0$,
+	\item $-1 \leq y \leq 1$,
+	\item $y=-2,z=2$.
+\end{enumerate}}
+
+\begin{exercise}
+	What points $P(x,y,z)$ satisfy the equations
+	\begin{align*}
+		x^2+y^2=4 \text{ and }z=3?
+	\end{align*}
+\end{exercise}
+
+{\color{red} \flushleft {\bf Solution:} These equations describe a circle of radius 2 lying in a plane parallel to the $xy$-plane and lying 3 units above it.}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/circle_z=3}
+\end{center}
+
 \end{document}
 
