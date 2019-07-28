@@ -26,6 +26,9 @@
 \usepackage{mathrsfs}
 \usepackage{calligra}
 \usepackage[titletoc,title]{appendix}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows}
 
 \definecolor{darkblue}{rgb}{0.1,0.1,0.7}
 \definecolor{darkred}{rgb}{0.5,0.1,0.1}
@@ -330,10 +333,10 @@ The earliest notion of a \emph{vector} comes from physics. In nature, we encount
 If the distance from town $A$ to town $B$ is 400 miles and we leave $A$ and travel at 50 miles per hour, then we will arrive at $B$ in 8 hours, but only if we travel in the direction from $A$ to $B$! Thus, displacement (400 mi, from $A$ to $B$) and velocity (50 mi/hr, from $A$ to $B$) are two examples of such physical quantities.
 \end{example}
 To distinguish physical quantities which depend on a numerical value alone from those which also depend on a direction, we make the following definitions. 
-\begin{defn}[Vector and scalar quantities]
+\begin{defn}[Vectors and scalars]
 \begin{enumerate}[(a)] \hspace{10cm}
-	\item A \emph{scalar quantity} is a physical quantity which is uniquely specified by a numerical value alone.
-	\item A \emph{vector quantity} is a physical quantity which is uniquely specified by a numerical value, called its \emph{magnitude}, and a direction.
+	\item A \emph{scalar} is a physical quantity which is uniquely specified by a numerical value alone.
+	\item A \emph{vector} is a physical quantity which is uniquely specified by a numerical value, called its \emph{magnitude}, and a direction.
 \end{enumerate}
 \end{defn}
 
@@ -347,49 +350,77 @@ Classify each of the following quantities are vector or scalar:
 \end{enumerate}	
 \end{exercise}
 
-In the following sections, we will develop a mathematical model of vector and scalar quantities.
+In the following sections, we will develop a mathematical model of vector and scalar quantities capable of modeling physical phenomena. As we will see, this model will have applications beyond physics as well.
 
 \subsection{Mathematical model}
-\subsubsection{Scalars}
-The examples above show that a scalar quantity is uniquely described by a real number (in some choice of units). So the set $\R$ of all real numbers is a model for the set of scalars. Geometrically, we visualize a scalar as a point on the real number line. Going forward, the word \emph{scalar} will be synonymous with \emph{real number}, unless stated otherwise. \footnote{In unit 4, we will generalize our mathematical model and in this context it will make sense to take other sets of scalars, such as the complex numbers. Nearly all of what follows will continue to hold true in this more general setting, so we will continue to use the word ``scalar" rather than ``real number" partly because this is conventional and partly in order to keep our options open later on.}
+\subsubsection{Scalars}\label{sec:scalars}
+Each scalar quantity in the examples above is uniquely specified by a \emph{real} number, which we can visualize geometrically as a point on a number line. Thus, in our model a scalar is simply a real number. We denote the set of all real numbers by $\R$.
 
-\subsubsection{Vectors in one-dimension}
-Consider driving on a road which is perfectly straight, running from east to west, say, without any curves or turns. At any instant on this road it is therefore only possible to be driving in one of two directions: either east or west. 
+\subsubsection{Vectors in one dimension}
+Consider a particle \footnote{By \emph{particle}, I mean an idealized object which is so small that all of its matter is concentrated at a single point in space.} constrained to move along a line. That is, it can only move to the left or right, and cannot move in any other direction. The position of the particle at any instant is uniquely specified by a single real number, $x$, which is the coordinate of the particle relative to some chosen origin. Since the coordinate of the particle consists of a single number, the motion along the line is said to be \emph{one-dimensional} or in \emph{one dimension}. \footnote{We will give a more precise definition of the notion of dimension in section \fixme{Insert section number.}} 
 
-Let us now develop a mathematical model of the displacement of the car. Modeling the straight road by the real number line, the location of the car relative to a chosen origin is simply given by a real number, specifying its coordinate. Since the location of the car is uniquely specified by a single real number, we say its motion is ``one-dimensional" or in ``one dimension". We will give a precise definition of the notion of dimension later in unit 4, but for now you can think of the dimension as being equal to the number of real numbers it takes to completely specify the car's coordinates relative to some origin, which will be obvious in all the examples we consider.
-
-As noted in Example \ref{ex:disp}, the coordinate of the car indeed uniquely specifies the magnitude and direction of the car's displacement at that instant. For example, if the car's coordinate is $-19$ m, then it is located a distance of 19 m to the left of the origin. Thus, given the coordinate $x$ of the car, the \emph{magnitude} of the displacement (i.e., the distance from the origin) is given by the \emph{absolute value} $|x|$ of the coordinate $x$, where 
+If $x \neq 0$ (that is, if the particle is not at the origin), we can rewrite $x$ as 
+\begin{equation}\label{eq:1_d_vector}
+	x=\frac{x}{|x|}|x|
+\end{equation}
+where 
 \begin{align*}
 	|x|=\begin{cases}
 		x, &\text{ if } x \geq 0, \\
 		-x, &\text{ if } x<0,
 	\end{cases}
 \end{align*}
-while the \emph{direction} (i.e., orientation of the car east or west) is given by the \emph{sign} of the coordinate $x$, which we will denote by $\sgn(x)$, where
+is the absolute value of $x$ and 
 \begin{align*}
-	\sgn(x)=\frac{x}{|x|}=\begin{cases}
+	\frac{x}{|x|}=\begin{cases}
 		+1, &\text{ if } x>0, \\
 		-1, &\text{ if } x<0 \\
 	\end{cases}
 \end{align*}
-and is undefined if $x=0$, since 0 is neither positive nor negative. 
+is the sign of $x$, which we will denote by $\sgn(x)\equiv \frac{x}{|x|}$. Geometrically, $|x|$ is the \emph{distance} of the particle from the origin, while $\sgn(x)$ is the \emph{orientation} of the particle; that is, $\sgn(x)=+1$ if the particle is to the right of the origin, and $\sgn(x)=-1$ if the particle is to the left of the origin. We see that the \emph{displacement vector} of a particle moving in one dimension, which we denote by $\mathbf{x}$, is given the ordered pair 
+\begin{align*}
+	\mathbf{x}=(|x|,\sgn(x))
+\end{align*}
+if $x \neq 0$. Since $\sgn(x)$ is not defined if $x=0$, if the particle is at the origin the displacement vector is given by the single number $\mathbf{x}=0$. In either case, equation \eqref{eq:1_d_vector} shows that the displacement vector $\mathbf{x}$ is equivalent to the coordinate $x$ of the particle.
 
-A model for the velocity of the car is also given by the real number line, with the origin corresponding to the car being at rest (with respect to our coordinate system). The velocity at any instant is a real number $v$, which encodes the speed $|v|$ and orientation $\sgn(x)$ of the car east or west. Similarly for the acceleration or any other vector quantity in one dimension. It should be noted in these examples, however, that the real number line \emph{does not necessarily represent physical space}. For the displacement of the car, this \emph{was} the case; the magnitude represented the distance in space of the car from the origin, while the orientation was the east/west direction. For the velocity $v$, $|v|$ represents the speed, which is not a distance in physical space, while the orientation $\sgn(v)$ was again the east/west direction in space. For the acceleration $a$, $|a|$ is again not a distance in physical space, and in this case neither is $\sgn(a)$; instead, $\sgn(a)$ signifies either that the car is ``speeding up" or ``slowing down".
+Geometrically, we can visualize a nonzero vector $\mathbf{x}$ by an arrow of length $|x|$ which originates at the origin and terminates at the point $x$. \fixme{Insert graphic.}
 
-These examples show that a vector in one-dimension is simply a real number. Recall that a scalar is also simply a real number. Thus,
+The velocity, $\mathbf{v}$, of the particle is specified by its speed and direction of motion. E.g., 25 m/s to the right. As in equation \eqref{eq:1_d_vector}, if the speed is nonzero we can encode this information into a single real number $v=\frac{v}{|v|}|v|$, as 
+\begin{align*}
+	\mathbf{v}=(|v|,\sgn(v))
+\end{align*}
+where $|v|$ is the speed of the particle and $\sgn(v)$ is taken to be $+1$ if the particle is moving to the right and $-1$ if the particle is moving to the left. We can again visualize $\mathbf{v}$ as an arrow originating at the origin of the number line and terminating at the number $v$, except in this case the points on the number line represent velocities, and not points along the physical line along which the particle is moving.
 
-\begin{center}
-	\emph{vectors in one-dimension are the same thing as scalars.}
-\end{center}
+Similarly, the acceleration vector $\mathbf{a}$  specified in terms of the real number $a=\frac{a}{|a|}|a|$ (if $a \neq 0$) by
+\begin{align*}
+	\mathbf{a}=(|a|,\sgn(a))
+\end{align*}
+where $|a|$ is the magnitude of the acceleration and $\sgn(a)$ is taken to be $+1$ if the particle is speeding up and $-1$ if it is slowing down. As before, we can visualize the vector $\mathbf{a}$ as an arrow of length $|a|$ originating at the origin and terminating at the point $a$.
 
-The difference between a vector in one-dimension and a scalar is therefore purely psychological, not mathematical. It is only because the sign of temperature, e.g. $-29^\circ$ C, has no physical relation to a direction in space that we prefer to think of it as a scalar rather than a one-dimensional vector, but mathematically these are the same. The mathematical difference between vectors and scalars will arise in higher dimensions, as we will see next.
+Indeed, \emph{any} nonzero vector $\mathbf{t}$ in one dimension whose magnitude is nonzero can be specified in terms of a real number 
+\begin{equation}\label{eq:general_1_d_vector_1}
+	t=\frac{t}{|t|}|t|
+\end{equation}
+by
+\begin{equation}\label{eq:general_1_d_vector_2}
+	\mathbf{t}=(|t|,\sgn(t))
+\end{equation} 
+where $|t|$ is the magnitude of $\mathbf{t}$ and, since $\mathbf{t}$ has only one of two  possible orientations in one dimension, we assign $\sgn(t)=+1$ to one of these orientations and $\sgn(t)=-1$ to the other. As in the previous examples, the vector $\mathbf{t}$ is visualized as an arrow originating from the origin and terminating at the real number $t$. A vector with zero magnitude has an undefined direction, and is simply represented by the real number 0. 
 
-\subsubsection{Vectors in 2-dimensions}
-A can be represented geometrically as a distance on a number line, that is, by a  \ti{line segment}. For example, we think of the number 3 as a length of 3 units. Clearly, any two line segments of the same length represent the same scalar, so we are free to measure every line segment by positioning its left end at the origin of a number line.
-\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/scalar_number_line}
-\end{center}
-A vector can therefore be represented as a \ti{directed} line segment, i.e., an arrow. As before, the length of the arrow will represent the magnitude of the vector. For example, if we wish to indicate a force of 2 pounds acting in the increasing \footnote{To represent a vector without ambiguity, when we specify the direction we must be sure to indicate the \ti{sense} of the vector. That is, in our present example, the word ``increasing'' denotes that we mean
+Together with equations \eqref{eq:general_1_d_vector_1} and \eqref{eq:general_1_d_vector_2}, this shows that vectors in one-dimension are in 1-1 correspondence with real numbers. In section \ref{sec:scalars}, we saw that scalars are also in 1-1 correspondence with real numbers, so \emph{there is a 1-1 correspondence between one-dimensional vectors and scalars}. Thus there is no essential difference between between a vector in one dimension and a scalar, since each a one-dimensional vector is associated to a unique scalar, and vice versa. The difference between vectors and scalars only arises in higher dimensions, as we will see next.
+
+\subsubsection{Vectors in  two dimensions}
+Let us now consider motion restricted to a \emph{plane}, rather than a line. Since each point in a plane specified by two coordinates $(x,y)$ with respect to some chosen origin, we say this motion is \emph{two-dimensional}. 
+
+As in the previous section, the displacement vector can be represented by a \emph{directed} line segment (arrow) stretching from the origin to the point $(x,y)$. \fixme{Include graphic.} Given the point $(x,y)$, the magnitude and direction of the vector are obtained by converting to \emph{polar coordinates}:
+\begin{align*}
+	r&=\sqrt{x^2+y^2} \\
+	\theta &=\tan^{-1}(\frac{y}{x}).
+\end{align*}
+
+
+
+ As before, the length of the arrow will represent the magnitude of the vector. For example, if we wish to indicate a force of 2 pounds acting in the increasing \footnote{To represent a vector without ambiguity, when we specify the direction we must be sure to indicate the \ti{sense} of the vector. That is, in our present example, the word ``increasing'' denotes that we mean
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/sense_1}
 \end{center}
