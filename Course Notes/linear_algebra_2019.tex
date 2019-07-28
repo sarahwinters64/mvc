@@ -358,139 +358,27 @@ In the following sections, we will develop a mathematical model of vector and sc
 \subsubsection{Scalars}\label{sec:scalars}
 Each scalar quantity in the examples above is uniquely specified by a \emph{real} number, which we can visualize geometrically as a point on a number line. Thus, in our model a scalar is simply a real number. We denote the set of all real numbers by $\R$.
 
-\subsubsection{Vectors in one dimension}
-Consider a particle \footnote{By \emph{particle}, I mean an idealized object which is so small that all of its matter is concentrated at a single point in space.} constrained to move along a line. That is, it can only move to the left or right, and cannot move in any other direction. The position of the particle at any instant is uniquely specified by a single real number, $x$, which is the coordinate of the particle relative to some chosen origin. Since the coordinate of the particle consists of a single number, the motion along the line is said to be \emph{one-dimensional} or in \emph{one dimension}. \footnote{We will give a more precise definition of the notion of dimension in section \fixme{Insert section number.}} 
-
-If $x \neq 0$ (that is, if the particle is not at the origin), we can rewrite $x$ as 
-\begin{equation}\label{eq:1_d_vector}
-	x=\frac{x}{|x|}|x|
-\end{equation}
-where 
-\begin{align*}
-	|x|=\begin{cases}
-		x, &\text{ if } x \geq 0, \\
-		-x, &\text{ if } x<0,
-	\end{cases}
-\end{align*}
-is the absolute value of $x$ and 
-\begin{align*}
-	\frac{x}{|x|}=\begin{cases}
-		+1, &\text{ if } x>0, \\
-		-1, &\text{ if } x<0 \\
-	\end{cases}
-\end{align*}
-is the sign of $x$, which we will denote by $\sgn(x)\equiv \frac{x}{|x|}$. Geometrically, $|x|$ is the \emph{distance} of the particle from the origin, while $\sgn(x)$ is the \emph{orientation} of the particle; that is, $\sgn(x)=+1$ if the particle is to the right of the origin, and $\sgn(x)=-1$ if the particle is to the left of the origin. We see that the \emph{displacement vector} of a particle moving in one dimension, which we denote by $\mathbf{x}$, is given the ordered pair 
-\begin{align*}
-	\mathbf{x}=(|x|,\sgn(x))
-\end{align*}
-if $x \neq 0$. Since $\sgn(x)$ is not defined if $x=0$, if the particle is at the origin the displacement vector is given by the single number $\mathbf{x}=0$. In either case, equation \eqref{eq:1_d_vector} shows that the displacement vector $\mathbf{x}$ is equivalent to the coordinate $x$ of the particle.
-
-Geometrically, we can visualize a nonzero vector $\mathbf{x}$ by an arrow of length $|x|$ which originates at the origin and terminates at the point $x$. \fixme{Insert graphic.}
-
-The velocity, $\mathbf{v}$, of the particle is specified by its speed and direction of motion. E.g., 25 m/s in the positive direction. \footnote{The standard choice is to take the \emph{positive direction} to be the direction of \emph{increasing} $x$; the \emph{negative direction} is then the direction of \emph{decreasing} $x$.} As in equation \eqref{eq:1_d_vector}, if the speed is nonzero we can encode this information into a single real number $v=\frac{v}{|v|}|v|$, as 
-\begin{align*}
-	\mathbf{v}=(|v|,\sgn(v))
-\end{align*}
-where $|v|$ is the speed of the particle and $\sgn(v)$ is taken to be $+1$ if the particle is moving in the positive direction and $-1$ if the particle is moving in the negative direction. We can again visualize $\mathbf{v}$ as an arrow originating at the origin of the number line and terminating at the number $v$, except in this case the points on the number line represent velocities, and not points along the physical line along which the particle is moving.
-
-Similarly, the acceleration vector $\mathbf{a}$  specified in terms of the real number $a=\frac{a}{|a|}|a|$ (if $a \neq 0$) by
-\begin{align*}
-	\mathbf{a}=(|a|,\sgn(a))
-\end{align*}
-where $|a|$ is the magnitude of the acceleration and $\sgn(a)$ is taken to be $+1$ if the particle is speeding up in the positive direction and $-1$ if it is slowing down in the positive direction (which is the same as speeding up in the negative direction). As before, we can visualize the vector $\mathbf{a}$ as an arrow of length $|a|$ originating at the origin and terminating at the point $a$.
-
-Indeed, \emph{any} nonzero vector $\mathbf{t}$ in one dimension whose magnitude is nonzero can be specified in terms of a real number 
-\begin{equation}\label{eq:general_1_d_vector_1}
-	t=\frac{t}{|t|}|t|
-\end{equation}
-by
-\begin{equation}\label{eq:general_1_d_vector_2}
-	\mathbf{t}=(|t|,\sgn(t))
-\end{equation} 
-where $|t|$ is the magnitude of $\mathbf{t}$ and, since $\mathbf{t}$ has only one of two  possible orientations in one dimension, we assign $\sgn(t)=+1$ to one of these orientations and $\sgn(t)=-1$ to the other. As in the previous examples, the vector $\mathbf{t}$ is visualized as an arrow originating from the origin and terminating at the real number $t$. A vector with zero magnitude has an undefined direction, and is simply represented by the real number 0. 
-
-Together with equations \eqref{eq:general_1_d_vector_1} and \eqref{eq:general_1_d_vector_2}, this shows that vectors in one-dimension are in 1-1 correspondence with real numbers. In section \ref{sec:scalars}, we saw that scalars are also in 1-1 correspondence with real numbers, so \emph{there is a 1-1 correspondence between one-dimensional vectors and scalars}. Thus there is no essential difference between between a vector in one dimension and a scalar, since each a one-dimensional vector is associated to a unique scalar, and vice versa. The difference between vectors and scalars only arises in higher dimensions, as we will see next.
-
-\subsubsection{Vectors in  two dimensions}
-Let us now consider motion restricted to a \emph{plane}, rather than a line. Since each point in a plane specified by \emph{two} coordinates $(x,y)$ with respect to some chosen origin, we say this motion is \emph{two-dimensional}. 
-
-Let's again consider the displacement vector, $\mathbf{x}$, of the particle. If the particle is not at the origin, this vector, as before, can be visualized as an arrow originating at the origin and terminating at the point $(x,y)$. The length of the arrow is the magnitude of $\mathbf{x}$, which is the distance of the particle from the origin. Denoting the magnitude of $\mathbf{x}$ by $||\mathbf{x}||$, \footnote{The double vertical bars are to differentiate this from the absolute value in one dimension.}
-this is given by the distance formula
-\begin{equation}\label{eq:pythagorean}
-	||\mathbf{x}||=\sqrt{x^2+y^2}.
-\end{equation}
-We can specify the direction of the arrow by giving the angle it makes with respect to the positive $x$-axis, which is given by
-\begin{align*}
-	\theta=\tan^{-1}\left(\frac{y}{x}\right).
-\end{align*}
-Note that this is just the usual conversion from rectangular to polar coordinates. By \eqref{eq:pythagorean}, $||\mathbf{x}||=0$ if and only if $(x,y)=(0,0)$, so we see that the possible displacement vectors of a particle in two dimensions are in 1-1 correspondence with points in $\mathbb{R}^2$.
-
-Note that if the coordinate $y=0$ so that the point $(x,0)$ lies on the $x$-axis (so that $\mathbf{x}$ is effectively a one-dimensional vector), we have
-
-\begin{align*}
-	||\mathbf{x}||&=\sqrt{x^2+0^2} \\
-	&=\sqrt{x^2} \\
-	&=|x|,
-\end{align*}
-in agreement with the previous section.
-
-\begin{exercise}
-Verify that $\sqrt{x^2}$ is indeed equal to $|x|$.	
-\end{exercise}
-
-Let us now consider \emph{any} vector $\mathbf{t}$ in two-dimensions, which is specified by a nonnegative real number $||\mathbf{t}||$ and an angle $\theta \in [0,2\pi)$. We can associate to $\mathbf{t}$ a unique ordered pair of real numbers $(x,y)$ by taking
-\begin{align*}
-	\mathbf{t}=(||\mathbf{t}||,\theta)=\begin{cases}
-		(\sqrt{x^2+y^2}, \tan^{-1}\left(\frac{y}{x}\right)), &\text{ if } ||\mathbf{t}|| \neq 0, \\
-		(0,0), &\text{ if } ||\mathbf{t}||=0.
-	\end{cases}
-\end{align*}
-Thus, vectors in two dimensions are in 1-1 correspondence with points in $\mathbb{R}^2$. Given a vector $\mathbf{t}$, we will denote the corresponding ordered pair of real numbers by $\mathbf{t}=(t_1,t_2)$. These numbers are called the \emph{components} of the vector $\mathbb{t}$ in our chosen coordinate system.
-
-As in one-dimension, for a given vector $\mathbf{t}$ the corresponding point in $\mathbb{R}^2$ does not necessarily represent a point in the physical space in which the particle is moving (which is also represented by $\mathbb{R}^2$). For example, if $\mathbf{v}=(v_1,v_2)$ is the velocity of the particle. Then $v_1$ is the component of velocity along the $x$-direction while $v_2$ is the component of velocity along the $y$-direction. These do not correspond to the location of the particle, and if we are only told its velocity, the particle may indeed be located anywhere in space for all we know.
-
-\subsubsection{Vectors in three dimensions}
-Finally, consider a particle moving in three-dimensional space. The position of the particle is now specified by an ordered triple of real numbers $(x,y,z)$, which specifies its coordinates with respect to three mutually perpendicular coordinate axes. As before, we visualize the displacement vector of the particle as an arrow originating from the origin and terminating at the point $(x,y,z)$.
-
-\begin{figure}[h]
-	 \begin{center}
-	\includegraphics[scale=0.6]{figures_mvc/components}
-\end{center}
-\caption{Displacement vector in three dimensions.}
-\end{figure}
-
-The set of all ordered triples of real numbers is denoted $\mathbb{R}^3$.  Indeed, any vector $\mathbf{t}$ in three dimensions is uniquely specified by a point in $\mathbb{R}^3$, $\mathbf{t}=(t_1,t_2,t_3)$ called the \emph{components} of $\mathbf{t}$. The correspondence for nonzero $||\mathbf{t}||$ is given as follows. A direction in three-dimensions is specified by two angles, which we can take to be the angle $\mathbf{t}$ makes with respect to the positve $z$-axis, which we denote by $\varphi$, and the angle that the \emph{projection} \footnote{We will define precisely what this means later, but for now think of this as the shadow of the vector on the $xy$-plane you would see if the sun were directly overhead.} of $\mathbf{t}$ makes with respect to the positive $x$-axis in the $xy$-plane, which we denote by $\theta$ since it is the usual polar angle. Then a little trigonometry shows that the point $(x,y,z)$ has coordinates
-\begin{align*}
-	x &=||\mathbf{t}||\sin \varphi \cos \theta, \\
-	y &=||\mathbf{t}||\sin \varphi \sin\theta, \\
-	z &=||\mathbf{t}||\cos \varphi.
-\end{align*}
-So, given any vector $\mathbf{t}=(||\mathbf{t}||,\varphi,\theta)$ in three dimensions with $||\mathbf{t}||\neq 0$, the correspondence is given by
-\begin{align*}
-	||\mathbf{t}||&=\sqrt{x^2+y^2+z^2}, \\
-	\varphi &= \cos^{-1}\left(\frac{z}{||\mathbf{t}||}\right), \\
-	\theta &=\frac{x}{||\mathbf{t}||\sin \varphi}.
-\end{align*}
-Thus, vectors in three dimensions are in 1-1 correspondence with points in $\mathbb{R}^3$.
+\subsubsection{Vectors}
+A vector quantity is uniquely specified by two pieces of information: a magnitude (which is a nonnegative real number) and a direction in three-dimensional space. We can therefore represent a vector geometrically as a \emph{directed line segment}, i.e., an arrow.  The arrow points in the direction specifying the vector while the length of the arrow represents the magnitude of the vector. For example, a force of 25 N directed at an angle of $45^\circ$ with respect to the positive $x$-axis is represented by the arrow \fixme{Insert graphic.}
 
 \subsection{Vector arithmetic}
-We have now defined a set of objects called vectors, which we visualize as arrows. To build a mathematical structure on this set, we need to define various rules and operations for working with vectors. As mathematicians, we are free to define any consistent set of rules and operations we like, and there are many possibilities.  Of course, our motivation for the introduction of vectors was to describe physical phenomena, and we will continue to take our motivations from physics in order to define a mathematical structure on the set of vectors.
+Now that we have a mathematical model of vectors and scalars, in this section we will define operations involving these objects. The motivations for these definitions will come from physics, but we will find that they have broader applications.
 
 \subsubsection{Equality of vectors}
-The most basic rule is one which will allow us to determine when two vectors are equal. As we have taken a vector to have only two defining properties, namely its magnitude and direction, we will agree that
+The most basic rule is one which will allow us to determine when two vectors are equal. \footnote{This is not trivial. Think about rational numbers, e.g., $\frac{1}{2},\frac{2}{4},\frac{3}{6},\dots$ are all considered to be equal.} As we have taken a vector to have only two defining properties, namely its magnitude and direction, we will agree that
 \begin{defn}[Equality of vectors]
 Two vectors are equal if they have the same magnitude and direction.	
 \end{defn}
-In particular, this definition of equality means that if we have two distinct parallel line segments of the same length and we orient them with the same sense then these two vectors are equal.
+In particular, this definition of equality means that if we have two distinct parallel line segments of the same length and orientation, then these two vectors are equal.
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/equal_vectors_new}
 \end{center}
-\begin{example}
-A 2 second time interval and a 2 g mass are completely different physical quantities, their magnitude is exactly the same scalar, namely 2. Similarly, by our definition of equality of vectors, a velocity of 45 miles per hour along the increasing $y=x$ direction and a 45 $N$ force along the increasing $y=x$ direction are represented by exactly the same vector. \footnote{This is one of the reasons why mathematicians study abstract mathematical structures. Though one might have two sets of objects which look nothing alike, if they have the same mathematical structure, then any conclusions drawn about the first system hold \ti{verbatim} for the second system, simply by renaming the objects under consideration. This frees us from having to repeat the exact same mathematical computations for each concrete system we wish to consider; all we have to do is identify the mathematical structure of the set of objects we are studying, and then we know immediately that they behave exactly like every other set of objects which have the same mathematical structure.} 
-\end{example}
+That is, two vectors are equal if they can be made to lie perfectly on top of each other by a  \emph{parallel translation}, i.e., a translation of the vector in which the image and preimage are parallel and have the same orientation. Note that vectors related by reflections and rotations are \emph{not} considered to be equal, as this results in a change in direction.
+
+Now that we know when two vectors are equal, we are now ready to define operations on our set of vectors. \footnote{It is important to know when two vectors are equal in order to make sure the operations involving vectors are well-defined. Going back to the example of rational numbers, suppose we try to define addition as $\frac{m}{n}+\frac{p}{q}=\frac{m+p}{n+q}$ instead of in the usual way. According to this rule, $\frac{1}{2}+\frac{1}{3}=\frac{2}{5}$. Now $\frac{2}{4}=\frac{1}{2}$, but $\frac{2}{4}+\frac{1}{3}=\frac{3}{7} \neq \frac{2}{5}$, so this definition of addition is not well-defined.}
 
 \subsubsection{Vector addition}
-Now that we know which vectors are distinct, our next step is to define operations on our set of vectors. The most basic operation is a \ti{binary operation}, which is a rule for combining any two vectors to produce a third. Exactly this kind operation can be studied in mechanics using a \ti{force table}.
+The most basic operation one can define on a set is a \emph{binary operation}, which is a rule for combining any two objects in the set to produce a third. There is a natural binary operation on the set of vectors which is suggested by the \emph{force table} experiment in mechanics.
 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/force_table_experiment_2}
@@ -683,6 +571,123 @@ For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$,
 \begin{pf}
 	\fixme{Add proof. Does 1 depend on the triangle inequality?}
 \end{pf}
+
+\subsection{Vectors in coordinate systems}
+\subsubsection{Vectors in one dimension}
+Consider a particle \footnote{By \emph{particle}, I mean an idealized object which is so small that all of its matter is concentrated at a single point in space.} constrained to move along a line. That is, it can only move to the left or right, and cannot move in any other direction. The position of the particle at any instant is uniquely specified by a single real number, $x$, which is the coordinate of the particle relative to some chosen origin. Since the coordinate of the particle consists of a single number, the motion along the line is said to be \emph{one-dimensional} or in \emph{one dimension}. \footnote{We will give a more precise definition of the notion of dimension in section \fixme{Insert section number.}} 
+
+If $x \neq 0$ (that is, if the particle is not at the origin), we can rewrite $x$ as 
+\begin{equation}\label{eq:1_d_vector}
+	x=\frac{x}{|x|}|x|
+\end{equation}
+where 
+\begin{align*}
+	|x|=\begin{cases}
+		x, &\text{ if } x \geq 0, \\
+		-x, &\text{ if } x<0,
+	\end{cases}
+\end{align*}
+is the absolute value of $x$ and 
+\begin{align*}
+	\frac{x}{|x|}=\begin{cases}
+		+1, &\text{ if } x>0, \\
+		-1, &\text{ if } x<0 \\
+	\end{cases}
+\end{align*}
+is the sign of $x$, which we will denote by $\sgn(x)\equiv \frac{x}{|x|}$. Geometrically, $|x|$ is the \emph{distance} of the particle from the origin, while $\sgn(x)$ is the \emph{orientation} of the particle; that is, $\sgn(x)=+1$ if the particle is to the right of the origin, and $\sgn(x)=-1$ if the particle is to the left of the origin. We see that the \emph{displacement vector} of a particle moving in one dimension, which we denote by $\mathbf{x}$, is given the ordered pair 
+\begin{align*}
+	\mathbf{x}=(|x|,\sgn(x))
+\end{align*}
+if $x \neq 0$. Since $\sgn(x)$ is not defined if $x=0$, if the particle is at the origin the displacement vector is given by the single number $\mathbf{x}=0$. In either case, equation \eqref{eq:1_d_vector} shows that the displacement vector $\mathbf{x}$ is equivalent to the coordinate $x$ of the particle.
+
+Geometrically, we can visualize a nonzero vector $\mathbf{x}$ by an arrow of length $|x|$ which originates at the origin and terminates at the point $x$. \fixme{Insert graphic.}
+
+The velocity, $\mathbf{v}$, of the particle is specified by its speed and direction of motion. E.g., 25 m/s in the positive direction. \footnote{The standard choice is to take the \emph{positive direction} to be the direction of \emph{increasing} $x$; the \emph{negative direction} is then the direction of \emph{decreasing} $x$.} As in equation \eqref{eq:1_d_vector}, if the speed is nonzero we can encode this information into a single real number $v=\frac{v}{|v|}|v|$, as 
+\begin{align*}
+	\mathbf{v}=(|v|,\sgn(v))
+\end{align*}
+where $|v|$ is the speed of the particle and $\sgn(v)$ is taken to be $+1$ if the particle is moving in the positive direction and $-1$ if the particle is moving in the negative direction. We can again visualize $\mathbf{v}$ as an arrow originating at the origin of the number line and terminating at the number $v$, except in this case the points on the number line represent velocities, and not points along the physical line along which the particle is moving.
+
+Similarly, the acceleration vector $\mathbf{a}$  specified in terms of the real number $a=\frac{a}{|a|}|a|$ (if $a \neq 0$) by
+\begin{align*}
+	\mathbf{a}=(|a|,\sgn(a))
+\end{align*}
+where $|a|$ is the magnitude of the acceleration and $\sgn(a)$ is taken to be $+1$ if the particle is speeding up in the positive direction and $-1$ if it is slowing down in the positive direction (which is the same as speeding up in the negative direction). As before, we can visualize the vector $\mathbf{a}$ as an arrow of length $|a|$ originating at the origin and terminating at the point $a$.
+
+Indeed, \emph{any} nonzero vector $\mathbf{t}$ in one dimension whose magnitude is nonzero can be specified in terms of a real number 
+\begin{equation}\label{eq:general_1_d_vector_1}
+	t=\frac{t}{|t|}|t|
+\end{equation}
+by
+\begin{equation}\label{eq:general_1_d_vector_2}
+	\mathbf{t}=(|t|,\sgn(t))
+\end{equation} 
+where $|t|$ is the magnitude of $\mathbf{t}$ and, since $\mathbf{t}$ has only one of two  possible orientations in one dimension, we assign $\sgn(t)=+1$ to one of these orientations and $\sgn(t)=-1$ to the other. As in the previous examples, the vector $\mathbf{t}$ is visualized as an arrow originating from the origin and terminating at the real number $t$. A vector with zero magnitude has an undefined direction, and is simply represented by the real number 0. 
+
+Together with equations \eqref{eq:general_1_d_vector_1} and \eqref{eq:general_1_d_vector_2}, this shows that vectors in one-dimension are in 1-1 correspondence with real numbers. In section \ref{sec:scalars}, we saw that scalars are also in 1-1 correspondence with real numbers, so \emph{there is a 1-1 correspondence between one-dimensional vectors and scalars}. Thus there is no essential difference between between a vector in one dimension and a scalar, since each a one-dimensional vector is associated to a unique scalar, and vice versa. The difference between vectors and scalars only arises in higher dimensions, as we will see next.
+
+\subsubsection{Vectors in  two dimensions}
+Let us now consider motion restricted to a \emph{plane}, rather than a line. Since each point in a plane specified by \emph{two} coordinates $(x,y)$ with respect to some chosen origin, we say this motion is \emph{two-dimensional}. 
+
+Let's again consider the displacement vector, $\mathbf{x}$, of the particle. If the particle is not at the origin, this vector, as before, can be visualized as an arrow originating at the origin and terminating at the point $(x,y)$. The length of the arrow is the magnitude of $\mathbf{x}$, which is the distance of the particle from the origin. Denoting the magnitude of $\mathbf{x}$ by $||\mathbf{x}||$, \footnote{The double vertical bars are to differentiate this from the absolute value in one dimension.}
+this is given by the distance formula
+\begin{equation}\label{eq:pythagorean}
+	||\mathbf{x}||=\sqrt{x^2+y^2}.
+\end{equation}
+We can specify the direction of the arrow by giving the angle it makes with respect to the positive $x$-axis, which is given by
+\begin{align*}
+	\theta=\tan^{-1}\left(\frac{y}{x}\right).
+\end{align*}
+Note that this is just the usual conversion from rectangular to polar coordinates. By \eqref{eq:pythagorean}, $||\mathbf{x}||=0$ if and only if $(x,y)=(0,0)$, so we see that the possible displacement vectors of a particle in two dimensions are in 1-1 correspondence with points in $\mathbb{R}^2$.
+
+Note that if the coordinate $y=0$ so that the point $(x,0)$ lies on the $x$-axis (so that $\mathbf{x}$ is effectively a one-dimensional vector), we have
+
+\begin{align*}
+	||\mathbf{x}||&=\sqrt{x^2+0^2} \\
+	&=\sqrt{x^2} \\
+	&=|x|,
+\end{align*}
+in agreement with the previous section.
+
+\begin{exercise}
+Verify that $\sqrt{x^2}$ is indeed equal to $|x|$.	
+\end{exercise}
+
+Let us now consider \emph{any} vector $\mathbf{t}$ in two-dimensions, which is specified by a nonnegative real number $||\mathbf{t}||$ and an angle $\theta \in [0,2\pi)$. We can associate to $\mathbf{t}$ a unique ordered pair of real numbers $(x,y)$ by taking
+\begin{align*}
+	\mathbf{t}=(||\mathbf{t}||,\theta)=\begin{cases}
+		(\sqrt{x^2+y^2}, \tan^{-1}\left(\frac{y}{x}\right)), &\text{ if } ||\mathbf{t}|| \neq 0, \\
+		(0,0), &\text{ if } ||\mathbf{t}||=0.
+	\end{cases}
+\end{align*}
+Thus, vectors in two dimensions are in 1-1 correspondence with points in $\mathbb{R}^2$. Given a vector $\mathbf{t}$, we will denote the corresponding ordered pair of real numbers by $\mathbf{t}=(t_1,t_2)$. These numbers are called the \emph{components} of the vector $\mathbb{t}$ in our chosen coordinate system.
+
+As in one-dimension, for a given vector $\mathbf{t}$ the corresponding point in $\mathbb{R}^2$ does not necessarily represent a point in the physical space in which the particle is moving (which is also represented by $\mathbb{R}^2$). For example, if $\mathbf{v}=(v_1,v_2)$ is the velocity of the particle. Then $v_1$ is the component of velocity along the $x$-direction while $v_2$ is the component of velocity along the $y$-direction. These do not correspond to the location of the particle, and if we are only told its velocity, the particle may indeed be located anywhere in space for all we know.
+
+\subsubsection{Vectors in three dimensions}
+Finally, consider a particle moving in three-dimensional space. The position of the particle is now specified by an ordered triple of real numbers $(x,y,z)$, which specifies its coordinates with respect to three mutually perpendicular coordinate axes. As before, we visualize the displacement vector of the particle as an arrow originating from the origin and terminating at the point $(x,y,z)$.
+
+\begin{figure}[h]
+	 \begin{center}
+	\includegraphics[scale=0.6]{figures_mvc/components}
+\end{center}
+\caption{Displacement vector in three dimensions.}
+\end{figure}
+
+The set of all ordered triples of real numbers is denoted $\mathbb{R}^3$.  Indeed, any vector $\mathbf{t}$ in three dimensions is uniquely specified by a point in $\mathbb{R}^3$, $\mathbf{t}=(t_1,t_2,t_3)$ called the \emph{components} of $\mathbf{t}$. The correspondence for nonzero $||\mathbf{t}||$ is given as follows. A direction in three-dimensions is specified by two angles, which we can take to be the angle $\mathbf{t}$ makes with respect to the positve $z$-axis, which we denote by $\varphi$, and the angle that the \emph{projection} \footnote{We will define precisely what this means later, but for now think of this as the shadow of the vector on the $xy$-plane you would see if the sun were directly overhead.} of $\mathbf{t}$ makes with respect to the positive $x$-axis in the $xy$-plane, which we denote by $\theta$ since it is the usual polar angle. Then a little trigonometry shows that the point $(x,y,z)$ has coordinates
+\begin{align*}
+	x &=||\mathbf{t}||\sin \varphi \cos \theta, \\
+	y &=||\mathbf{t}||\sin \varphi \sin\theta, \\
+	z &=||\mathbf{t}||\cos \varphi.
+\end{align*}
+So, given any vector $\mathbf{t}=(||\mathbf{t}||,\varphi,\theta)$ in three dimensions with $||\mathbf{t}||\neq 0$, the correspondence is given by
+\begin{align*}
+	||\mathbf{t}||&=\sqrt{x^2+y^2+z^2}, \\
+	\varphi &= \cos^{-1}\left(\frac{z}{||\mathbf{t}||}\right), \\
+	\theta &=\frac{x}{||\mathbf{t}||\sin \varphi}.
+\end{align*}
+Thus, vectors in three dimensions are in 1-1 correspondence with points in $\mathbb{R}^3$.
+
 
 
 \subsubsection{Norm of a vector}
