@@ -309,14 +309,15 @@
 
 
 \begin{center}
-\tb{Linear Algebra} \\
+\tb{Multivariable Calculus \\
+Semester 1: Linear Algebra} \\
 Anderson Trimm \\
 Gwinnett School of Mathematics, Science and Technology \\
 \end{center}
 
 {These are the notes for the Fall Semester 2019
-course in Linear Algebra at GSMST. They will updated frequently throughout the semester. The latest PDF can always be accessed
-at \small \url{https://github.com/atrimm/mvc/blob/master/Course%20Notes/linear_algebra_2019.pdf}.}
+of Multivariable Calculus at GSMST, which covers linear algebra. They will updated frequently throughout the semester. The latest PDF can always be accessed
+at \small \url{https://github.com/atrimm/mvc/blob/master/Course%20Notes/linear_algebra_2019.pdf}.} Please email me with comments and corrections, or send them to me directly as pull requests to the source repository hosted at \small \url{https://github.com/atrimm/mvc}.
 
 \tableofcontents
 \renewcommand{\listtheoremname}{Quick reference}
@@ -348,6 +349,7 @@ Classify each of the following quantities are vector or scalar:
 	\item Mass
 	\item Volume
 	\item Acceleration
+	\item Electric Charge
 	\item Density
 \end{enumerate}	
 \end{exercise}
@@ -356,50 +358,80 @@ In the following sections, we will develop a mathematical model of vector and sc
 
 \subsection{Mathematical model}
 \subsubsection{Scalars}\label{sec:scalars}
-Each scalar quantity in the examples above is uniquely specified by a \emph{real} number, which we can visualize geometrically as a point on a number line. Thus, in our model a scalar is simply a real number. We denote the set of all real numbers by $\R$.
+While electric charges are observed in nature to take only integer values, other scalar quantities, such as mass and temperature, are found to take any \emph{real} value. Thus, in our model a scalar is simply a real number. We denote the set of all real numbers by $\mathbb{R}$. We will denote a scalar by a lower case latin letter, such as $x$.
 
 \subsubsection{Vectors}
-A vector quantity is uniquely specified by two pieces of information: a magnitude (which is a nonnegative real number) and a direction in three-dimensional space. We can therefore represent a vector geometrically as a \emph{directed line segment}, i.e., an arrow.  The arrow points in the direction specifying the vector while the length of the arrow represents the magnitude of the vector. For example, a force of 25 N directed at an angle of $45^\circ$ with respect to the positive $x$-axis is represented by the arrow \fixme{Insert graphic.}
-
-\subsection{Vector arithmetic}
-Now that we have a mathematical model of vectors and scalars, in this section we will define operations involving these objects. The motivations for these definitions will come from physics, but we will find that they have broader applications.
+A vector quantity is uniquely specified by two pieces of information: a magnitude (which is a nonnegative real number) and a direction in three-dimensional space. We can therefore represent a vector geometrically as an \emph{arrow} (directed line segment) in space.  The arrow points in the direction specifying the vector while the length of the arrow represents the magnitude of the vector. For example, a force of 25 N directed at an angle of $45^\circ$ with respect to the positive $x$-axis is represented by the arrow \fixme{Insert graphic.} We will denote a vector by a boldface latin letter (either upper or lowercase), such as $\mathbf{x}$. When writing by hand, a more common notation is $\vec{x}$.
 
 \subsubsection{Equality of vectors}
-The most basic rule is one which will allow us to determine when two vectors are equal. \footnote{This is not trivial. Think about rational numbers, e.g., $\frac{1}{2},\frac{2}{4},\frac{3}{6},\dots$ are all considered to be equal.} As we have taken a vector to have only two defining properties, namely its magnitude and direction, we will agree that
+We will now discuss the notion of equivalence of two vectors. Recall first the equivalence of plane figures, say triangles. We consider two distinct triangles. Since the data defining a triangle are the side lengths and interior angle measures, any two triangles related by a transformation which leaves these unchanged represents an equivalent triangle; the only difference between them is the location in the plane. As you learned in basic algebra, any transformation of the plane which preserves lengths and angles can be written as a finite sequence of reflections, translations, and rotations and any two triangles related by such a transformation are said to be \emph{congruent}. 
+
+Since the defining data of a vector is the magnitude and direction, we will agree that
+
 \begin{defn}[Equality of vectors]
 Two vectors are equal if they have the same magnitude and direction.	
 \end{defn}
-In particular, this definition of equality means that if we have two distinct parallel line segments of the same length and orientation, then these two vectors are equal.
+That is, two vectors are equal if they are represented by parallel line segments which have the same length and orientation. 
+
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/equal_vectors_new}
 \end{center}
-That is, two vectors are equal if they can be made to lie perfectly on top of each other by a  \emph{parallel translation}, i.e., a translation of the vector in which the image and preimage are parallel and have the same orientation. Note that vectors related by reflections and rotations are \emph{not} considered to be equal, as this results in a change in direction.
+If two vectors $\mathbf{x}$ and $\mathbf{y}$ are equal, we will denote this by $\mathbf{x}=\mathbf{y}$.
 
-Now that we know when two vectors are equal, we are now ready to define operations on our set of vectors. \footnote{It is important to know when two vectors are equal in order to make sure the operations involving vectors are well-defined. Going back to the example of rational numbers, suppose we try to define addition as $\frac{m}{n}+\frac{p}{q}=\frac{m+p}{n+q}$ instead of in the usual way. According to this rule, $\frac{1}{2}+\frac{1}{3}=\frac{2}{5}$. Now $\frac{2}{4}=\frac{1}{2}$, but $\frac{2}{4}+\frac{1}{3}=\frac{3}{7} \neq \frac{2}{5}$, so this definition of addition is not well-defined.}
+It is important to note that we have defined equality of vectors so that \emph{location} in space does \emph{not} matter. As line segments, the two parallel arrows are congruent, \footnote{Since they have the same length; the fact that they are parallel or have the same orientation does not matter.} but still considered distinct due to their difference in location, but as \emph{vectors} they are regarded as exactly the same vector.
+
+\subsection{Vector arithmetic}
+We will now define operations involving vectors, whose motivation will come from physics. \footnote{In defining operations on the set of vectors, it is important that we have explicitly stated when two vectors are to be regarded being equal, as this will be needed to ensure that our definitions make sense. For instance, consider the definition of addition of rational numbers:
+\begin{align}\label{eq:sum_good}
+	\frac{m}{n}+\frac{p}{q}=\frac{mq+np}{nq}.
+\end{align}
+Suppose instead we try to define addition by 
+\begin{align}\label{eq:sum_bad}
+	\frac{m}{n}+\frac{p}{q}=\frac{m+p}{n+q}.
+\end{align}
+With this definition, we have, for example,
+	$\frac{1}{2}+\frac{1}{3}=\frac{1+1}{2+3}=\frac{2}{5}$.
+Now, in both these definitions, the formula for the sum has a \emph{massive} built-in ambiguity: the symbol ``$\frac{1}{2}$" is just one representative of the infinite set $\{\frac{1}{2}, \frac{2}{4}, \frac{3}{6},\dots\}$. Therefore the sum
+	$\frac{1}{2}+\frac{1}{3}$
+should be equivalent to 
+	$\frac{2}{4}+\frac{3}{9}$.
+However, with definition \eqref{eq:sum_bad}, we have
+$\frac{1}{2}+\frac{1}{3}=\frac{2}{5}$
+while
+$\frac{2}{4}+\frac{3}{9}=\frac{5}{13}$
+and $\frac{2}{5} \neq \frac{5}{13}$. Thus definition \eqref{eq:sum_bad} makes \emph{absolutely no sense}.
+
+On the other hand, using the proper definition \eqref{eq:sum_good}, we have
+	$\frac{1}{2}+\frac{1}{3}=\frac{5}{6}$
+while
+$\frac{2}{4}+\frac{3}{9}=\frac{30}{36}$ 
+and indeed $\frac{5}{6}=\frac{30}{36}$ as rational numbers.
+
+To see what went wrong for \eqref{eq:sum_bad}, note that the operation in both \eqref{eq:sum_bad} and \eqref{eq:sum_good} required \emph{choosing} one of the elements of the sets $\{\frac{1}{2},\frac{2}{4},\dots\}$ and $\{\frac{1}{3},\frac{3}{9},\dots\}$ and applying the formula on the right hand side. For the definition to make sense, the result of the operation must be \emph{independent} of this choice. We describe this issue by saying that we have to verify that our proposed operation is \emph{well-defined}.}
 
 \subsubsection{Vector addition}
-The most basic operation one can define on a set is a \emph{binary operation}, which is a rule for combining any two objects in the set to produce a third. There is a natural binary operation on the set of vectors which is suggested by the \emph{force table} experiment in mechanics.
+The most basic operation one can define on a set is a \emph{binary operation}, which is a rule for combining any two elements in the set to produce a third element in the set. There is a natural binary operation on the set of vectors, which is suggested by the \emph{force table} experiment in mechanics.
 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/force_table_experiment_2}
 \end{center}
 
-In a force table experiment, strings are tied to a metal ring which is positioned at the center of the table. The strings are then suspended over pulleys which are fixed at known angles, and known masses hung from the ends of the strings. The pull of gravity on a given mass creates tension in the string which pulls on the washer. 
+In a force table experiment, strings are tied to a metal ring which is positioned at the center of the table. The strings are then suspended over pulleys which are fixed at known angles, and known masses hung from the ends of the strings. The pull of gravity on a given mass creates tension in the string which pulls on the ring. 
 
-In an experiment in which \ti{two} strings are tied to the washer, the tension in each string gives rise to two forces pulling on the washer in different directions. However, the washer ultimately accelerates in a single direction, which is the direction of the \ti{net} (or \ti{total}) force acting on the washer. The rule for combining the two tension force vectors to produce the net force vector is exactly the binary operation we seek to define. Then, since we already have a definition which tells us when two vectors are equal, this rule will apply to \ti{all} vectors, whether they are forces, velocities, momenta, or any other type of vectors. 
+In an experiment in which \emph{two} strings are tied to the ring, the tension in each string gives rise to two forces pulling on the washer in different directions. However, the washer ultimately accelerates in a single direction, which is the direction of the \emph{net} (or \emph{total}) force acting on the ring. The rule for combining the two tension force vectors to produce the net force vector is exactly the binary operation we seek to define. 
 
-To determine the net force, a third string is connected to the washer with pulley positioned and mass chosen so that the washer is in \ti{static equilibrium} (i.e., it does not move at all under the influence of these three forces). This vector is called the \ti{equilibrant} vector. By Newton's third law, the net force vector (also called the \ti{resultant} vector) is then the \ti{opposite} of the equilibrant vector, that is, it has the same magnitude and is directed along the same line, but with the opposite sense.
+To determine the net force, a third string is connected to the ring with mass and pulley position chosen so that the ring is in \emph{static equilibrium} (i.e., it does not move at all under the influence of these three forces). This vector is called the \emph{equilibrant} vector. By Newton's third law, the net force vector (also called the \emph{resultant} vector) is then the \emph{opposite} of the equilibrant vector, that is, it has the same magnitude and is directed along the same line, but with the opposite orientation.
 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/force-table-equi-res}
 \end{center}
 
- We therefore define the \ti{sum} of two vectors as  
+ We therefore define the \emph{sum} of two vectors as follows:
  
  \begin{defn}[Vector addition]
  	The \ti{sum} ${\bf v}+{\bf w}$ of two vectors ${\bf v}$ and ${\bf w}$ is the resultant vector of ${\bf v}$ and ${\bf w}$.
  \end{defn}
-Note that when the two tension forces are along the \ti{same} direction (e.g., just add another mass on the same string), the resultant vector points in this same direction and has magnitude given by the sum of the magnitudes of the two tension vectors, and hence the addition of ${\bf v}$ and ${\bf w}$ reduces to addition of ordinary numbers in this special case. This is why we have decided to call this binary operation \ti{addition} and to continue to denote it by $+$; that is, it is a \ti{generalization} of ordinary addition. \footnote{To be completely rigorous and unambiguous, we should technically use some new symbol for this binary operation, such as ${\bf v}*{\bf w}$. However, it is standard practice to use the same symbol in such situations as it is conceptually useful to keep in mind the fact that this is a generalization of another operation.}
+Note that when the two tension forces are along the \emph{same} direction (e.g., just add another mass on the same string), the resultant vector points in this same direction and has magnitude given by the sum of the magnitudes of the two tension vectors, and hence the addition of ${\bf v}$ and ${\bf w}$ reduces to addition of ordinary numbers in this special case. This is why we have decided to call this binary operation \emph{addition} and to continue to denote it by $+$; it can therefore be thought of as a \emph{generalization} of the ordinary addition of scalars. 
  
 In terms of our geometric representation of vectors, the magnitude and direction of ${\bf v}+{\bf w}$ is determined as follows: Since the location of a vector is of no consequence (by our definition of equality of vectors), we may position the two vectors so that their initial points coincide. Then ${\bf v}$ and ${\bf w}$ form adjacent sides of a parallelogram, and the vector ${\bf v}+{\bf w}$ is the diagonal of the parallelogram, directed from the common initial point of ${\bf v}$ and ${\bf w}$ to the opposite vertex of the parallelogram, as shown below.	
 \begin{center}
@@ -414,23 +446,26 @@ This is called the \ti{triangle rule} or \ti{``tip to tail" rule} for vector add
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/translation_of_v_by_w}
 \end{center}
-Let us emphasize once more that nothing forced us to choose this definition of vector addition, but by making this choice we are sure that our definition has at least one real interpretation, namely as the resultant vector in mechanics.
 
-Let us now examine the properties of vector addition. Recall that the addition operation defined on the set of real numbers satisfies the following properties:
-\begin{enumerate}[(a)]
-	\item Commutativity: $x+y=y+x$ for all $x,y \in \mathbb{R}$.
+\begin{example}
+There is another physical interpretation of this addition rule which agrees with our intuition. Suppose a person walks 10 steps in a north-easterly direction, and then turns and walks another 5 steps to the east. The vector $\mathbf{v}$ then represents his \emph{displacement} from his initial position, with the length of $\mathbf{v}$ being his distance from where he started, and the direction of $\mathbf{v}$ pointing in the direction in which he moved. Similarly, the vector $\mathbf{w}$ represents his displacement from his position after he traveled along the vector $\mathbf{v}$. Their sum, added according to the tip to tail rule, is his \emph{total} displacement from his initial position.	
+\end{example}
+
+Let us now use this geometric picture to determine the properties of vector addition. Recall that the addition operation defined on the set of real numbers satisfies the following properties: \footnote{Any set $G$ on which there is a binary operation $*$ which satisfies the first three of these properties is said to form a \emph{group} under $*$. One also says that $(G,*)$ is a group, or just that $G$ is a group if $*$ is understood. If the fourth property (commutativity) also holds, $G$ is said to form a \emph{commutative} (or \emph{abelian}) under $*$.}
+\begin{enumerate}[(i)]
 	\item Associativity: $(x+y)+z=x+(y+z)$ for all $x,y,z \in \mathbb{R}$.
 	\item Existence of an additive identity: $\mathbb{R}$ contains an element 0 such that $0+x=x$ for every $x \in \mathbb{R}$.
 	\item Existence of additive inverses: For every $x \in \mathbb{R}$, there exists and element $y \in \mathbb{R}$ such that $x+y=0$.
+	\item Commutativity: $x+y=y+x$ for all $x,y \in \mathbb{R}$.
 \end{enumerate}
-Let us use our definition of vector addition to consider each of these in turn.
+We now consider each of these in turn. We consider commutativity first, since it is the simplest to analyze.
 
 \begin{prop}[Vector addition is commutative]
 	Vector addition is commutative. That is, 
 	\begin{align*}
 		{\bf v}+{\bf w}={\bf w}+{\bf v}
 	\end{align*}
-	for any two vectors ${\bf v}$ and ${\bf w}$.
+	for any two vectors ${\bf v}$ and ${\bf w}$, since each of these is the diagonal of the parallelogram whose edges are formed by $\mathbf{v}$ and $\mathbf{w}$.
 \end{prop}
 
 \begin{pf}
@@ -450,14 +485,14 @@ We therefore denote both expressions by ${\bf u}+{\bf v}+{\bf w}$.
 \end{prop}
 
 \begin{pf}
-One can construct ${\bf u}+{\bf v}+{\bf w}$ by placing the vectors ``tip to tail" in succession and then drawing the vector from the initial point of ${\bf u}$ to the terminal point of ${\bf w}$. One can easily verify associativity from this construction, as shown below.
+One can construct ${\bf u}+{\bf v}+{\bf w}$ by placing the vectors ``tip to tail" in succession and then drawing the vector from the initial point of ${\bf u}$ to the terminal point of ${\bf w}$. If the three vectors lie in the same plane, one can easily verify associativity from the diagram below.
 \end{pf}
 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/associativity_of_vector_addition}
 \end{center}
 
-The tip-to-tail method also makes it evident that if ${\bf u}, {\bf v},$ and ${\bf w}$ have a common initial point, then ${\bf u}+{\bf v}+{\bf w}$ is the diagonal of the parallelepiped that has the three vectors as adjacent sides.
+If the three vectors do not all lie in the same plane, then when placed at the same initial point the vectors ${\bf u}, {\bf v},$ and ${\bf w}$ from adjacent edges of a \emph{parallelepiped}. \footnote{A parallelepiped is a polygon whose faces are parallelograms, with each pair of opposite sides parallel.} Translating these vectors and adding tip to tail, we see that ${\bf u}+{\bf v}+{\bf w}$ is the diagonal of this parallelepiped.
 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/volume_of_parallelepiped_vectors}
@@ -468,7 +503,7 @@ The sum ${\bf v}_1+{\bf v}_2+\cdots + {\bf v}_k$ is independent of how the expre
 \end{cor}
 
 \begin{pf}
-As in the case of real numbers, the proof follows by induction on $k$. We will not repeat this here. \footnote{Of course, none of the proofs just presented are really proofs at all, since drawing pictures is not an acceptable substitute for airtight logic. For now, take them as plausibility arguments. We will prove these propositions rigorously in the next section.}	
+We postpone the proof until we discuss vectors in coordinates in \fixme{Insert section reference here.}, as the geometry is very complicated and difficult to analyze.	
 \end{pf}
 
 Let us now check whether there is a vector which plays the role of an additive identity. That is, given any vector ${\bf b}$, is there a vector ${\bf 0}$ such that ${\bf b}+{\bf 0}={\bf b}$? Let us suppose there is such a vector ${\bf 0}$ and denote its magnitude by $r$. Let us now add ${\bf 0}$ to ${\bf b}$ by the tip-to-tail method. Since ${\bf 0}$ has magnitude $r$, ${\bf b}+{\bf 0}$ must lie on a circle of radius $r$ centered on the tip of ${\bf b}$. However, the condition ${\bf b}+{\bf 0}={\bf b}$ means that ${\bf b}+{\bf 0}$ must have the same magnitude and direction as ${\bf b}$, and there is no point on the circle for which this is true. This shows that there is no such vector ${\bf 0}$ with nonzero length. 
@@ -476,29 +511,20 @@ Let us now check whether there is a vector which plays the role of an additive i
 	\includegraphics[scale=0.5]{figures_mvc/b_plus_zero_circle}
 \end{center}
 
-Thus, any vector of magnitude zero satisfies the requirement to serve as ${\bf 0}$, independently of direction. Now, for the real numbers, $0$ is unique, since if there are two numbers $0$ and $0'$ such that $x+0=x$ and $x+0'=x$ for all $x \in \mathbb{R}$, then $0=0+0'=0'$. However, our definition of equality of vectors says that two vectors of zero magnitude but different directions are not equal. Thus, if we want the zero vector to be unique, we must agree that we do not distinguish between two vectors of zero magnitude, even if they have different directions. This agrees with our geometric intuition, since a line segment of zero length is a point, which has no direction. Thus, with our modified definition of equality of vectors 
+A vector of length zero, does not have a defined direction. Thus, there is a unique vector which acts as an additive identity with respect to vector addition.
 
-\begin{defn}[Equality of vectors ']
-\begin{enumerate}[(1)] \hspace{10cm}
-	\item Two nonzero vectors are equal if they have the same magnitude and direction.
-	\item Any two vectors of zero magnitude are equal, even if their directions are different.
-\end{enumerate}	
-\end{defn}
-and our definition of the zero vector
 \begin{defn}[The zero vector]
-	The zero vector, ${\bf 0}$, is any vector of zero magnitude.
+	The zero vector, which we denote by ${\bf 0}$, is the unique vector of magnitude zero.
 \end{defn}
-then ${\bf a}+{\bf b}$ is defined for \ti{any} two vectors ${\bf a}$ and ${\bf b}$, even if one is zero, and the zero vector ${\bf 0}$ is unique. \footnote{Note from our definition that the zero vector ${\bf 0}$ is not a single vector, but is actually a collection of vectors; namely, ${\bf 0}$ is the \ti{equivalence class} of all vectors with zero magnitude.}
 
-Finally, we want to investigate whether, given any vector ${\bf a}$, we can find another vector ${\bf b}$ such that ${\bf a}+{\bf b}={\bf 0}$, where ${\bf 0}$ here denotes the zero vector. Since the zero vector has no length and since we add vectors from ``tip to tail", it follows that if ${\bf a}+{\bf b}={\bf 0}$, then the tail of ${\bf a}$ and the tip of ${\bf b}$ must coincide. This in turn means that ${\bf b}$ must have the same magnitude as ${\bf a}$ but opposite direction (directed along the same line, but with the opposite sense).  
+Finally, we want to investigate whether every vector has an additive inverse. That is, we want to determine if, when given any vector ${\bf a}$, we can find another vector ${\bf b}$ such that ${\bf a}+{\bf b}={\bf 0}$. Since the zero vector has zero length and since we add vectors from ``tip to tail", it follows that if ${\bf a}+{\bf b}={\bf 0}$, then the tail of ${\bf a}$ and the tip of ${\bf b}$ must coincide. Thus, any vector $\mathbf{a}$ has a \emph{unique} inverse, which we denote by $-\mathbf{a}$.   
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/a_plus_b_equals_zero}
-\end{center}
-In other words, if we wish for vector addition to have the same structure as that of numerical addition, we \ti{must} define 
+\end{center} 
 \begin{defn}[Inverse of a vector]
-The additive inverse of ${\bf a}$ to be the vector which has the same magnitude, but opposite direction. 	
+The additive inverse of a vector ${\bf a}$ is the unique vector $-\mathfrak{a}$, which has the same magnitude as $\mathbf{a}$ and opposite orientation.
 \end{defn}
-In analogy with the equation $x+(-x)=0$ for real numbers, we denote the additive inverse of ${\bf a}$ by $-{\bf a}$, so that ${\bf a}+(-{\bf a})={\bf 0}$ for any vector ${\bf a}$. We may again agree, as in the case of numerical addition, to abbreviate ${\bf a}-{\bf b}$ as ${\bf a}-{\bf b}$, which allows us to define vector subtraction:
+In analogy with the equation $x+(-x)=0$ for real numbers, we denote the additive inverse of ${\bf a}$ by $-{\bf a}$, so that ${\bf a}+(-{\bf a})={\bf 0}$ for any vector ${\bf a}$. We may again agree, as in the case of numerical addition, to abbreviate ${\bf a}+(-{\bf b})$ as ${\bf a}-{\bf b}$, which allows us to define vector subtraction:
 
 \begin{defn}[Vector subtraction]
 	The difference ${\bf a}-{\bf b}$ of two vectors ${\bf a}$ and ${\bf b}$ is the sum
@@ -529,17 +555,26 @@ We see from the tip-to-tail rule, that ${\bf b}+{\bf x}={\bf a}$. Adding $(-{\bf
 
 The previous exercise shows that, if ${\bf a}$ and ${\bf b}$ are any two vectors and we wish to find ${\bf a}-{\bf b}$, we place the two vectors tail-to-tail and ${\bf a}-{\bf b}$ is then the vector which extends from the tip of ${\bf b}$ to the tip of ${\bf a}$.
 
-We have just shown that our definition of vector addition satisfies the same properties as numerical addition. That is, the additive structures are exactly the same for vectors as for numbers. Therefore, any results that hold for numbers also hold for vectors, for exactly the same reasons. For example,
+We have just shown that our definition of vector addition satisfies the same properties as numerical addition. That is, the additive structures are exactly the same for vectors as for numbers. \footnote{To state this more formally, they both form an abelian group.} Therefore, any results that hold for numbers also hold for vectors, for exactly the same reasons. For example,
 
 \begin{thm}[Cancellation law]
 	If ${\bf a}, {\bf b},$ and ${\bf c}$ are vectors such that ${\bf a}+{\bf b}={\bf a}+{\bf c}$, then ${\bf b}={\bf c}$. 
 \end{thm}
 
 \begin{pf}
-The proof is exactly the same as for numbers, with the word ``vector" substituted for ``number".
+The proof for real numbers is as follows: let $x,y,z$ be real numbers such that 
+\begin{align*}
+	x+y=x+z
+\end{align*}
+Adding $-x$ to both sides of this equation, we have
+\begin{align*}
+	-x+(x+y)&=-x+(x+z) \\
+	(-x+x)+y&=(-x+x)+z \text{ (since $+$ is associative)} \\
+	0+y&=0+z \text{ (since $-x$ is the inverse of $x$)} \\
+	y&=z \text{ (since $0$ is the additive identity)}
+\end{align*}
+Since addition of vectors obeys exactly the same properties as addition of real numbers, this same proof holds for vectors simply by drawing arrows over $x,y$ and $z$!
 \end{pf}
-
-This is one illustration of the power of mathematical structure; namely, it is only the rules which determine how the various objects are related that are important, not the objects themselves.
 
 \subsubsection{Scalar multiplication}
 In physics, we observe that an unbalanced force on a body causes an acceleration in the direction of the force. It is also observed that the magnitude of acceleration of different bodies, when subjected to the same force, varies according to their mass. These observations are formalized in Newton's second law of motion
