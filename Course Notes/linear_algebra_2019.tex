@@ -410,7 +410,7 @@ and indeed $\frac{5}{6}=\frac{30}{36}$ as rational numbers.
 To see what went wrong for \eqref{eq:sum_bad}, note that the operation in both \eqref{eq:sum_bad} and \eqref{eq:sum_good} required \emph{choosing} one of the elements of the sets $\{\frac{1}{2},\frac{2}{4},\dots\}$ and $\{\frac{1}{3},\frac{3}{9},\dots\}$ and applying the formula on the right hand side. For the definition to make sense, the result of the operation must be \emph{independent} of this choice. We describe this issue by saying that we have to verify that our proposed operation is \emph{well-defined}.}
 
 \subsubsection{Vector addition}
-The most basic operation one can define on a set is a \emph{binary operation}, which is a rule for combining any two elements in the set to produce a third element in the set. There is a natural binary operation on the set of vectors, which is suggested by the \emph{force table} experiment in mechanics.
+The most basic operation one can define on a set is a \emph{binary operation}, which is a rule for combining any two elements in the set to produce a third element in the set. \footnote{More formally, we write this as a map $V \times V \to V$, where $V \times V=\{(v,w) \mid v,w \in V\}$ denotes the set of all ordered pairs of elements of $V$, called the \emph{Cartesian product} of $V$ with itself.} There is a natural binary operation on the set of vectors, which is suggested by the \emph{force table} experiment in mechanics.
 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/force_table_experiment_2}
@@ -581,31 +581,49 @@ In physics, we observe that an unbalanced force on a body causes an acceleration
 \begin{equation}
 	{\bf F}=m{\bf a}.
 \end{equation}
-On the right side of this equation, we see a new operation: the product of a scalar and a vector. Due to the fundamental nature of Newton's second law, if we want to build a mathematical structure which is capable of describing nature, we should include this operation.
+On the right side of this equation, we see a new operation: the product of a scalar and a vector. 
 
 \begin{defn}[Scalar multiplication]
-The \ti{scalar multiple} of the vector ${\bf v}$ by the scalar ${\bf k}$ is the vector ${\bf w}=k{\bf v}$. The length of ${\bf w}$ is $|k|$ times the length of ${\bf v}$. If $k>0$, ${\bf w}$ points in the same direction as ${\bf v}$, while if $k<0$, ${\bf w}$ points in the direction of $-{\bf v}$. If $k=0$ or ${\bf v}={\bf 0}$, then we defined $k{\bf v}$ to be ${\bf 0}$.
+Let $\mathbf{v}$ be a vector and $k$ a scalar. The \emph{scalar multiple} of ${\bf v}$ by $k$ is a vector $\mathbf{w}$, defined as follows:
+\begin{itemize}
+	\item The length of ${\bf w}$ is $|k|$ times the length of ${\bf v}$. If $|k|=0$, then $\mathbf{w}$ is the zero vector.
+	\item $\mathbf{w}$ is parallel to $\mathbf{v}$.
+	\item If $k>0$, then $\mathbf{w}$ has the same orientation as $\mathbf{v}$. If $k<0$, then $\mathbf{w}$ and $\mathbf{v}$ have opposite orientation.
+\end{itemize}
+If $\mathbf{w}$ is the scalar multiple of $\mathbf{v}$ by $k$, we write $\mathbf{w}=k\mathbf{v}$.
 \end{defn}
 
+Note that scalar multiplication is not a binary operation on $V$, since it does not take two vectors to a vector, but rather a scalar and a vector to a vector. More formally, scalar multiplication is a map $\R \times V \to V$.
+
 \begin{example}
-The vector $2{\bf v}$ has the same direction as ${\bf v}$ but twice its length, while $-2{\bf v}$ is oppositely directed to ${\bf v}$ and twice its length.	
+The vector $2{\bf v}$ has the same direction as ${\bf v}$ but twice its length, while $-2{\bf v}$ is oppositely directed to ${\bf v}$ and twice its length. \fixme{Insert graphic.}
 \end{example}
 
 \begin{prop}[Properties of scalar multiplication]
-For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$,
-	\begin{enumerate}[(a)]
+For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$, 
+	\begin{enumerate}[(i)]
 		\item $(c+d){\bf v}=c{\bf v}+d{\bf v}$,
 		\item $c({\bf v}+{\bf w})=c{\bf v}+c{\bf w}$,
 		\item $(dc){\bf v}=c(d{\bf v})$,
-		\item 1{\bf v}={\bf v},
-		\item 0{\bf v}={\bf 0},
-		\item $(-1){\bf v}=-{\bf v}$.
+		\item 1{\bf v}={\bf v}.
 	\end{enumerate}
 \end{prop}
 
 \begin{pf}
 	\fixme{Add proof. Does 1 depend on the triangle inequality?}
 \end{pf}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/simtri}
+\end{center}
+
+\begin{cor}
+The following properties hold:
+	\begin{enumerate}[(a)]
+		\item 0{\bf v}={\bf 0},
+		\item $(-1){\bf v}=-{\bf v}$.
+	\end{enumerate}
+\end{cor}
 
 \subsection{Vectors in coordinate systems}
 \subsubsection{Vectors in one dimension}
