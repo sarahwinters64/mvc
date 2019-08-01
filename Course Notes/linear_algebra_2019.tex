@@ -568,60 +568,44 @@ Let $\mathbf{v}$ be a vector and $k$ a scalar. The \emph{scalar multiple} of ${\
 	\item $\mathbf{w}$ is parallel to $\mathbf{v}$.
 	\item If $k>0$, then $\mathbf{w}$ has the same orientation as $\mathbf{v}$. If $k<0$, then $\mathbf{w}$ and $\mathbf{v}$ have opposite orientation.
 \end{itemize}
-If $\mathbf{w}$ is the scalar multiple of $\mathbf{v}$ by $k$, we write $\mathbf{w}=k\mathbf{v}$.
+If $\mathbf{w}$ is the scalar multiple of $\mathbf{v}$ by $k$, we write $\mathbf{w}=k\mathbf{v}$. \footnote{Note that scalar multiplication is not a binary operation on $V$, since it does not take two vectors to a vector, but rather a scalar and a vector to a vector. More formally, scalar multiplication is a map $\R \times V \to V$.}
 \end{defn}
-
-Note that scalar multiplication is not a binary operation on $V$, since it does not take two vectors to a vector, but rather a scalar and a vector to a vector. More formally, scalar multiplication is a map $\R \times V \to V$.
 
 \begin{example}
 The vector $2{\bf v}$ has the same direction as ${\bf v}$ but twice its length, while $-2{\bf v}$ is oppositely directed to ${\bf v}$ and twice its length. 
 
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/v2v}
+	\includegraphics[scale=0.4]{figures_mvc/v2v}
 \end{center}
 \end{figure}
 \end{example}
-
+\newpage
 \begin{thm}[Properties of scalar multiplication]\label{thm:properties_of_scalar_multiplication}
 For any scalars $c,d$ and vectors ${\bf v}, {\bf w}$, 
 	\begin{enumerate}[(i)]
+		\item $0{\bf v}={\bf 0}$,
+		\item $1{\bf v}={\bf v}$,
+		\item $(-1){\bf v}=-{\bf v}$,
 		\item $(c+d){\bf v}=c{\bf v}+d{\bf v}$,
 		\item $c({\bf v}+{\bf w})=c{\bf v}+c{\bf w}$,
-		\item $(dc){\bf v}=c(d{\bf v})$,
-		\item 1{\bf v}={\bf v}.
+		\item $(dc){\bf v}=c(d{\bf v})$.
 	\end{enumerate}
 \end{thm}
 
 \begin{pf}
-	We will prove (iv) and leave the rest as an exercise. The vector $1\mathbf{v}$ has length $|1|=1$ times the length of $\mathbf{v}$, and therefore has the same length as $\mathbf{v}$. The vector $1\mathbf{v}$ is parallel to $\mathbf{v}$, and since $1>0$ it has the same orientation as $\mathbf{v}$. This shows $1 \mathbf{v}$ has the same magnitude and direction as $\mathbf{v}$, and therefore $1 \mathbf{v}=\mathbf{v}$. 
+	We will prove pars (i) and (ii) and leave the rest as an exercise. In each case, we need to show that the vector on the left hand side has the same magnitude and direction as the vector on the right hand side. 
+	\begin{enumerate}[(i)]
+		\item The vector $1\mathbf{v}$ has length $|1|=1$ times the length of $\mathbf{v}$, and therefore has the same length as $\mathbf{v}$. The vector $1\mathbf{v}$ is parallel to $\mathbf{v}$, and since $1>0$ it has the same orientation as $\mathbf{v}$. This shows $1 \mathbf{v}$ has the same magnitude and direction as $\mathbf{v}$, and therefore $1 \mathbf{v}=\mathbf{v}$.
+		\item The length of $0\mathbf{v}$ is zero times the length of $\mathbf{v}$, which is zero. Hence, $0\mathbf{v}$ is the zero vector. 
+	\end{enumerate} 
 \end{pf}
 
 \begin{exercise}
-Prove parts (i)-(iii) of Theorem \ref{thm:properties_of_scalar_multiplication}.	
+Prove parts (iii)-(vi) of Theorem \ref{thm:properties_of_scalar_multiplication}.	
 \end{exercise}
 
-\begin{cor}\label{cor:scalar_mult}
-The following properties hold:
-	\begin{enumerate}[(a)]
-		\item $0{\bf v}={\bf 0}$,
-		\item $(-1){\bf v}=-{\bf v}$.
-	\end{enumerate}
-\end{cor}
-
-\begin{proof}
-	These can be proved geometrically as we did for (i)-(iv) above, but we can also prove them algebraically since they actually follow from (i)-(iv) (which is why we have written them separately). For example, to prove part (a) we write
-	\begin{align*}
-		0\mathbf{v}&=(0+0)\mathbf{v} \text{ (since $0=0+0$)} \\
-		0\mathbf{v}&=0\mathbf{v}+0\mathbf{v} \text{(by (i))} \\
-		\mathbf{0}+0\mathbf{v}&=0\mathbf{v}+0\mathbf{v} \text{ (since $\mathbf{0}$ is the additive identity)} \\
-		\mathbf{0}&=0\mathbf{v} \text{ (by cancellation)}
-	\end{align*}
-\end{proof}
-
-\begin{exercise}
-Work out a similar proof for property (b).	
-\end{exercise}
+The diligent reader who has worked through the exercises in this section has most likely found many of them to be quite tedious. While the geometric picture of vectors we have developed in this section will be essential for visualization purposes, it is indeed far from optimal for practical computations. This situation will be rectified in the next section by introducing Cartesian coordinate systems in which to describe vectors. \footnote{As should be familiar from freshman geometry, a coordinate system is called Cartesian (or rectangular) if its coordinate axes are all mutually perpendicular.} As we will see, all properties we deduced geometrically in this section will be seen to hold as simple consequences of the properties of real numbers. Despite this simplification of computations, it is important to remember that vectors are geometrical objects whose properties (length and magnitude) do not depend on any particular coordinate system which we may use to describe them.
 
 \subsection{Vectors in coordinate systems}\label{sec:coords}
 Let us now describe vectors with respect to a Cartesian coordinate system.
