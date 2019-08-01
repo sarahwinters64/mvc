@@ -691,10 +691,21 @@ Thus, the coordinates of the endpoint of $\mathbf{v}+\mathbf{w}$ are given by
 	\mathbf{v}+\mathbf{w}=(v_1+w_1,v_2+w_2,v_3+w_3).
 \end{align*}
 \begin{defn}[Vector addition in components]\label{def:vector_addition}
-	In terms of components, the rule for vector addition is given by
+	In terms of components, the rule for vector addition is given by:
+\begin{enumerate}[(i)]
+	\item Vectors in one-dimension:
+	\begin{align*}
+		(v_1)+(w_1)=(v_1+w_1)
+	\end{align*}
+	\item Vectors in two-dimensions:
+	\begin{align*}
+		(v_1,v_2)+(w_1,w_2)=(v_1+w_1,v_2+w_2).
+	\end{align*}
+	\item Vectors in three-dimensions:
 	\begin{align*}
 		(v_1,v_2,v_3)+(w_1,w_2,w_3)=(v_1+w_1,v_2+w_2,v_3+w_3).
 	\end{align*}
+\end{enumerate}
 \end{defn}
 
 This formula is illustrated in the diagram on the left in Figure \ref{fig:vector_operations}.
@@ -715,16 +726,31 @@ Let $\mathbf{v}=(1,2,3)$ and $\mathbf{w}=(-3,1,7)$. Then
 		\item Given a vector $\mathbf{v}=(v_1,v_2,v_3)$, what are the components of $-\mathbf{v}$ (the additive inverse of $\mathbf{v}$)?
 	\end{enumerate}
 \end{exercise}
-
+\newpage
 \begin{prop}\label{prop:scalar_multiple_formula}
 If $\mathbf{v}=(v_1,v_2,v_3)$ is a vector and $k$ a scalar, then the components of the scalar multiple $k\mathbf{v}$ of $\mathbf{v}$ by $k$ are given by
-\begin{align*}
-	k\mathbf{v}=(kv_1,kv_2,kv_3)
-\end{align*}	
+\begin{enumerate}[(i)]
+	\item Vectors in one dimension:
+	\begin{align*}
+		k(v_1)&=(kv_1) \\
+	\end{align*}
+	\item Vectors in two dimensions:
+	\begin{align*}
+		k(v_1,v_2)&=(kv_1,kv_2) \\
+	\end{align*}
+	\item Vectors in three dimensions:
+	\begin{align*}
+		k(v_1,v_2,v_3)&=(kv_1,kv_2,kv_3)
+	\end{align*}
+\end{enumerate}	
 \end{prop}
 
 \begin{exercise}
-	Use equation \eqref{eq:norm} to prove this.
+	\begin{enumerate}[(a)]
+		\item Prove these formulas for vectors in one and two dimensions.
+		\item Use this formula to prove that $||k\mathbf{v}||=|k| \cdot ||\mathbf{v}||$ for vectors in three dimensions.
+		\item Show that if $k>0$, then $k\mathbf{v}$ has the same direction as $\mathbf{v}$. \footnote{This formula still holds if $k<0$, but checking this case involves some care since $\varphi$ must stay in the range $[0,\pi)$ and $\theta$ in $[0,2\pi)$.} 
+	\end{enumerate}
 \end{exercise}
 
 \begin{example}
