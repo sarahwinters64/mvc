@@ -988,7 +988,16 @@ For instance, the two vectors
 	{\bf u}&=(3,-2,1) \\
 	{\bf v}&=(0,2,4).
 \end{align*}
-are orthogonal (perpendicular), but this does not seem obvious in the given form. We know from right triangle trigonometry that right angles are very special, so it would be nice to have a way to check if two vectors written in component form are perpendicular. Fortunately, the dot product gives us an easy way to determine this. 
+are orthogonal (see Fig. \ref{fig:orthog_vecz} below), but this does not seem obvious from looking at the components of the two vectors. 
+\begin{figure}[h]\label{fig:orthog_vecz}
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/orthog_vecz}
+	\end{center}
+	\caption{Orthogonal vectors $\mathbf{u}=(3,-2,1)$ and $\mathbf{v}=(0,2,4)$.}
+\end{figure}
+
+
+We know from trigonometry that right angles are special, so it would be nice to have a way to check if two vectors written in component form are orthogonal. Fortunately, the dot product gives us an easy way to determine this. 
 \begin{prop}[Orthogonal vectors]\label{prop:orthogonal_vectors}
 	Two nonzero vectors ${\bf a}$ and ${\bf b}$ are orthogonal if and only if ${\bf a}\cdot {\bf b}=0$.
 \end{prop}
@@ -1001,7 +1010,7 @@ are orthogonal (perpendicular), but this does not seem obvious in the given form
 If ${\bf a}$ and ${\bf b}$ are non-zero, then $||{\bf a}||$ and $||{\bf b}||$ are greater than zero, so ${\bf a}\cdot {\bf b}=0$ if and only if $\theta=\frac{\pi}{2}$, that is, if and only if ${\bf a}$ and ${\bf b}$ are orthogonal. 
 \end{pf}
 
-What if ${\bf b}={\bf 0}$? In this case, $\theta$ is not well-defined, since we have defined ${\bf 0}$ to be any vector with zero magnitude, independently of direction. For Proposition \ref{prop:orthogonal_vectors} to hold even if ${\bf a}$ or ${\bf b}$ are ${\bf 0}$, we simply define ${\bf a}\cdot {\bf b}=0$ if one of the vectors is the zero vector. With this definition, the zero vector is orthogonal to every vector, including itself.
+\fixme{Update this section.} What if ${\bf b}={\bf 0}$? In this case, $\theta$ is not defined, so . For Proposition \ref{prop:orthogonal_vectors} to hold even if ${\bf a}$ or ${\bf b}$ are ${\bf 0}$, we simply define ${\bf a}\cdot {\bf b}=0$ if one of the vectors is the zero vector. With this definition, the zero vector is orthogonal to every vector, including itself.
 
 \begin{example}
 The two vectors in the example above	
