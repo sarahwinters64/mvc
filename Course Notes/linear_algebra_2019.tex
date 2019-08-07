@@ -908,13 +908,18 @@ Since the dot product takes as input two vectors and returns a scalar, it is als
 \end{equation}
 Note that since this equation involves only lengths of segments and angles between segments, it holds in \emph{all} coordinate systems. However, it takes a particularly simple form in Cartesian coordinates. Writing out the norm of each vector in terms of its components gives
 
-\begin{align*}
+\begin{align}\label{eq:dot_mess}
 	{\bf u}\cdot {\bf v}&=\frac{u_1^2+u_2^2+u_3^2+v_1^2+v_2^2+v_3^2-(u_1-v_1)^2-(u_2-v_2)^2-(u_3-v_3)^2}{2}
-\end{align*}
+\end{align}
 Expanding the binomials and cancelling like terms, we find
-\begin{equation}
+\begin{equation}\label{eq:dot_simplified}
 	{\bf u}\cdot {\bf v}=u_1v_1+u_2v_2+u_3v_2.
 \end{equation}
+
+\begin{exercise} 
+Simplify equation \eqref{eq:dot_mess} to obtain \eqref{eq:dot_simplified}. 	
+\end{exercise}
+
 
 \begin{example}
 Compute the angle between the vectors ${\bf u}=(0,0,3)$ and ${\bf v}=(\sqrt{2},0,\sqrt{2})$.	
@@ -946,7 +951,7 @@ is a diagonal of the cube. The angle between ${\bf d}$ and ${\bf u}_1$ is
 	&\approx 54.74^\circ.
 \end{align*}
 }
-
+\newpage
 \begin{prop}[Properties of the dot product]\label{prop:dot}
 	Let ${\bf a}, {\bf b}, {\bf c}, {\bf d}$ be vectors and $k$ any scalar. Then 
 	\begin{enumerate}[(1)]
@@ -960,7 +965,7 @@ is a diagonal of the cube. The angle between ${\bf d}$ and ${\bf u}_1$ is
 \end{prop}
 
 \begin{pf}
-Each of these can be proved by writing out the vectors in components. For example, to prove (1)
+Each of these can be proved by writing out the vectors in components and using  \eqref{eq:dot_simplified}. For example, to prove (1)
 \begin{align*}
 	{\bf a}\cdot {\bf b}&=a_1b_1+a_2b_2+a_3b_3 \\
 	&=b_1a_1+b_2a_2+b_3a_3 \\
@@ -974,7 +979,7 @@ Prove properties (2)-(6) in Proposition \ref{prop:dot}.
 \end{exercise}
 
 
-Note, however, the differences between the dot product and ordinary multiplication. For instance, one might ask, ``Is the dot product associative?". This question doesn't even make any sense for the dot product, as expressions such as ${\bf a}\cdot ({\bf b}\cdot {\bf c})$ are not defined, since ${\bf a}$ is a vector and $({\bf b}\cdot {\bf c})$ is a scalar, and one can only form the dot product between two vectors. 
+Note, however, the differences between the dot product and ordinary multiplication. For instance, one might ask, ``Is the dot product associative?". This question doesn't even make sense for the dot product, as expressions such as ${\bf a}\cdot ({\bf b}\cdot {\bf c})$ are not defined, since ${\bf a}$ is a vector and $({\bf b}\cdot {\bf c})$ is a scalar, and one can only form the dot product between two vectors. 
 
 \subsubsection{Orthogonal vectors}
 While writing vectors in component form has the advantage of facilitating many computations, this form seems to obscure geometric relations between vectors.
