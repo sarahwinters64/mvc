@@ -886,12 +886,12 @@ Note that the information about $\theta$ is encoded in ${\bf u}-{\bf v}$, since 
 \end{equation}
 Let us make the following definition.
 \begin{defn}[Dot product]
-	The \ti{dot product} of two nonzero vectors ${\bf u}$ and ${\bf v}$ is defined by
+	The \emph{dot product} of two nonzero vectors ${\bf u}$ and ${\bf v}$ is defined by
 	\begin{equation}\label{eq:dot_product_def}
 		{\bf u}\cdot {\bf v}=||{\bf u}|| \ ||{\bf v}||\cos\theta.
 	\end{equation} 
 \end{defn}
-The angle between two vectors ${\bf u}$ and ${\bf v}$ is then given by
+The angle between two vectors ${\bf u}$ and ${\bf v}$ is then given in terms of their dot product by
 \begin{equation}\label{eq:angle_uv}
 	\theta=\cos^{-1}\left(\frac{{\bf u}\cdot {\bf v}}{||{\bf u}|| \ ||{\bf v}||}\right),
 \end{equation}	
@@ -902,11 +902,17 @@ and we see that
 	\item $\theta$ is right if ${\bf u} \cdot {\bf v} = 0$.
 \end{itemize}
 
-Since the dot product takes as input two vectors and returns a scalar, it is also called the \ti{scalar product}. Note that from Eq. \eqref{eq:law_of_cosines}, we can write ${\bf u}\cdot {\bf v}$ in terms of magnitudes only, as 
+Since the dot product takes as input two vectors and returns a scalar, it is also called the \emph{scalar product}. Note that from Eq. \eqref{eq:law_of_cosines}, we can write ${\bf u}\cdot {\bf v}$ in terms of magnitudes only, as 
 \begin{equation}\label{eq:dot_product_magnitudes}
 	{\bf u}\cdot {\bf v}=\frac{||{\bf u}||^2+||{\bf v}||^2-||{\bf u}-{\bf v}||^2}{2}.
 \end{equation}
-Note that since this equation involves only lengths of segments and angles between segments, it holds in \emph{all} coordinate systems. However, it takes a particularly simple form in Cartesian coordinates. Writing out the norm of each vector in terms of its components gives
+Note that, unlike \eqref{eq:dot_product_def}, the right hand side of \eqref{eq:dot_product_magnitudes} is defined if either $\mathbf{u}=\mathbf{0}$ or $\mathbf{v}=\mathbf{0}$, in which case $\mathbf{u}\cdot \mathbf{v}=0$. Thus, we define the dot product of any vector with the zero vector to be zero:
+\begin{align}
+	\mathbf{v}\cdot \mathbf{0}=0
+\end{align}
+for every vector $\mathbf{v}$.
+
+Since \eqref{eq:dot_product_magnitudes} involves only lengths of segments and angles between segments, it holds in \emph{all} coordinate systems. However, it takes a particularly simple form in Cartesian coordinates. Writing out the norm of each vector in terms of its components gives
 
 \begin{align}\label{eq:dot_mess}
 	{\bf u}\cdot {\bf v}&=\frac{u_1^2+u_2^2+u_3^2+v_1^2+v_2^2+v_3^2-(u_1-v_1)^2-(u_2-v_2)^2-(u_3-v_3)^2}{2}
@@ -979,7 +985,7 @@ Prove properties (2)-(6) in Proposition \ref{prop:dot}.
 \end{exercise}
 
 
-Note, however, the differences between the dot product and ordinary multiplication. For instance, one might ask, ``Is the dot product associative?". This question doesn't even make sense for the dot product, as expressions such as ${\bf a}\cdot ({\bf b}\cdot {\bf c})$ are not defined, since ${\bf a}$ is a vector and $({\bf b}\cdot {\bf c})$ is a scalar, and one can only form the dot product between two vectors. 
+Note, however, the differences between the dot product and ordinary multiplication. For instance, one might ask, ``Is the dot product associative?". This question doesn't even make sense for the dot product, as expressions such as ${\bf a}\cdot ({\bf b}\cdot {\bf c})$ are not defined, since ${\bf a}$ is a vector and $({\bf b}\cdot {\bf c})$ is a scalar, and one can only form the dot product between two vectors. Thus, even though we found that the additive structure on the set of vectors was exactly the same as that of the real numbers, the multiplicative structure induced by the dot product is very different from that of the real numbers. 
 
 \subsubsection{Orthogonal vectors}
 While writing vectors in component form has the advantage of facilitating many computations, this form seems to obscure geometric relations between vectors.
@@ -1010,7 +1016,7 @@ We know from trigonometry that right angles are special, so it would be nice to 
 If ${\bf a}$ and ${\bf b}$ are non-zero, then $||{\bf a}||$ and $||{\bf b}||$ are greater than zero, so ${\bf a}\cdot {\bf b}=0$ if and only if $\theta=\frac{\pi}{2}$, that is, if and only if ${\bf a}$ and ${\bf b}$ are orthogonal. 
 \end{pf}
 
-\fixme{Update this section.} What if ${\bf b}={\bf 0}$? In this case, $\theta$ is not defined, so . For Proposition \ref{prop:orthogonal_vectors} to hold even if ${\bf a}$ or ${\bf b}$ are ${\bf 0}$, we simply define ${\bf a}\cdot {\bf b}=0$ if one of the vectors is the zero vector. With this definition, the zero vector is orthogonal to every vector, including itself.
+What if ${\bf b}={\bf 0}$? In this case, $\theta$ is not defined, so . For Proposition \ref{prop:orthogonal_vectors} to hold even if ${\bf a}$ or ${\bf b}$ are ${\bf 0}$, we simply define ${\bf a}\cdot {\bf b}=0$ if one of the vectors is the zero vector. With this definition, the zero vector is orthogonal to every vector, including itself.
 
 \begin{example}
 The two vectors in the example above	
