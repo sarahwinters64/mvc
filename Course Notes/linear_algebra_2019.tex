@@ -1044,7 +1044,7 @@ is called the \ti{Kronecker delta symbol}. Since ${\bf e}_i \cdot {\bf e_j}=0$ w
 
 These examples illustrate another difference between the dot product of two vectors and the ordinary product of two numbers. For two real numbers, if $ab=0$, then either $a=0$ or $b=0$. These examples clearly show that if ${\bf a}\cdot {\bf b}=0$, then it need not be true that either ${\bf a}=0$ or ${\bf b}=0$.
 \subsubsection{Projection of a vector}
-Let ${\bf a}$ be a nonzero vector, ${\bf \hat{a}}=\frac{{\bf a}}{||{\bf a}||}$ the unit vector obtained by normalizing ${\bf a}$, and ${\bf b}$ another vector. Then Eq. \eqref{eq:dot_2} shows that
+Let ${\bf a}$ be a nonzero vector, ${\bf \hat{a}}=\frac{{\bf a}}{||{\bf a}||}$ the unit vector obtained by normalizing ${\bf a}$, and ${\bf b}$ another vector. Then Eq. \eqref{eq:dot_product_def} shows that
 \begin{align*}
 	{\bf \hat{a}}\cdot {\bf b}=\frac{{\bf a}}{||{\bf a}||} \cdot {\bf b}=||{\bf b}||\cos \theta
 \end{align*} 
@@ -1053,7 +1053,7 @@ is the component of ${\bf b}$ in the direction of ${\bf a}$. Multiplying by ${\b
 \begin{defn}[Vector projection]
 	The vector $\text{proj}_{\bf a}{\bf b}\equiv ({\bf \hat{a}}\cdot {\bf b}){\bf \hat{a}}=||{\bf b}||\cos \theta {\bf \hat{a}}$ is called the \ti{projection of ${\bf b}$ onto ${\bf a}$}.
 \end{defn}
-Geometrically, the projection of ${\bf b}=\overrightarrow{PQ}$ onto ${\bf a}=\overrightarrow{PS}$ is the vector $\overrightarrow{PR}$ determined by dropping a perpendicular from $Q$ to the line $PS$. \footnote{Note that by using the definitions of the dot product and the norm of ${\bf a}$, one may produce many equivalent expressions for $\text{proj}_{\bf a}{\bf b}$:
+Geometrically, the projection of ${\bf b}=\overrightarrow{PQ}$ onto ${\bf a}=\overrightarrow{PS}$ is the vector $\overrightarrow{PR}$ determined by connecting a perpendicular segment from $Q$ to the line $PS$. \footnote{Note that by using the definitions of the dot product and the norm of ${\bf a}$, one may produce many equivalent expressions for $\text{proj}_{\bf a}{\bf b}$:
 \begin{align*}
 	\text{proj}_{\bf a}{\bf b}&=(||{\bf b}||\cos \theta){\bf \hat{a}} \\
 	&=({\bf \hat{a}}\cdot {\bf b}){\bf \hat{a}} \\
@@ -1065,7 +1065,7 @@ The first of these is perhaps the easiest to remember, as it makes most transpar
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/vector_projection_def}
 \end{center}
-Physically, if ${\bf b}$ represents a force, then $\text{proj}_{\bf a}{\bf b}$ is the effective force in the ${\bf a}$ direction.
+Physically, if ${\bf b}$ represents a force, then $\text{proj}_{\bf a}{\bf b}$ is the 	``effective" force in the ${\bf a}$ direction; that is, the component of the force along ${\bf a}$.
 
 \begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/effective_force_box}
