@@ -1177,7 +1177,7 @@ describe an infinite line containing $P$ and $Q$ when we take $-\infty < t < \in
 
 with $-1 < t < 0$.}
 
-In $\mathbb{R}^2$, there is a unique normal direction to a given line. Let $\mathbf{n}=(n_1,n_2)$ be a normal vector to a line in $\mathbb{R}^2$ and $P_0(x_0,y_0)$ any point on the line. If $Q(x,y)$ is any other point on the line, then we must have
+In $\mathbb{R}^2$, there is a unique normal direction to a given line. Let $\mathbf{n}=(n_1,n_2)$ be a normal vector to a line in $\mathbb{R}^2$ and $P_0(x_0,y_0)$ any point on the line (see Fig. \ref{fig:point_normal_eq_for_line} below). If $Q(x,y)$ is any other point on the line, then we must have
 \begin{align*}
 	\overrightarrow{P_0Q}\cdot \mathbf{n}=0.
 \end{align*}
@@ -1191,12 +1191,22 @@ or
 \end{align}
 where $c=n_1x_0+n_2y_0$. Equation \eqref{eq:point_normal_equation_for_line} is called the \emph{point normal} equation of the line.
 
-\subsubsection{Planes in space}
-Similar to a line in $\mathbf{R}^2$, a plane in $\mathbb{R}^3$ has a unique normal direction. We will now derive a point normal equation for a given plane. Let $\mathbf{n}=(n_1,n_2,n_3)$ be a normal vector to the plane. Given a point $P_0(x_0,y_0,z_0)$ on the plane and a vector ${\bf n}$ normal to the plane, what is the condition for an arbitrary point in space $P(x,y,z)$ to lie on the plane? If $P$ lies in the plane, the $\overrightarrow{P_0P}$ is a vector lying in the plane. Then, since ${\bf n}$ is normal to the plane, we must have that ${\bf n} \cdot \overrightarrow{P_0P}=0$.
+\begin{figure}[h]\label{fig:point_normal_eq_for_line}
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/point_normal_eq_for_line}
+	\end{center}
+	\caption{Vectors involved in point normal equation of line.}
+\end{figure}
 
-\begin{center}
+\subsubsection{Planes in space}
+Similar to a line in $\mathbf{R}^2$, a plane in $\mathbb{R}^3$ has a unique normal direction. We will now derive a point normal equation for a given plane. Let $\mathbf{n}=(n_1,n_2,n_3)$ be a normal vector to the plane. Given a point $P_0(x_0,y_0,z_0)$ on the plane and a vector ${\bf n}$ normal to the plane, what is the condition for an arbitrary point in space $P(x,y,z)$ to lie on the plane? If $P$ lies in the plane, the $\overrightarrow{P_0P}$ is a vector lying in the plane (see Fig. \ref{vector_equation_of_a_plane} below). Then, since ${\bf n}$ is normal to the plane, we must have that ${\bf n} \cdot \overrightarrow{P_0P}=0$.
+
+\begin{figure}[h]\label{fig:vector_equation_of_a_plane}
+	\begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/vector_equation_of_a_plane}
 \end{center}
+\caption{Vectors involved in point normal equation of plane.}
+\end{figure}
 Expanding the dot product in terms of components of these vectors, we obtain
 	\begin{equation}
 		n_1(x-x_0)+n_2(y-y_0)+n_3(z-z_0)=0.
