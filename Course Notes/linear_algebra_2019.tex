@@ -1345,14 +1345,14 @@ are parallel since their normal vectors $(1,2,-2)$ and $(2,4,-4)$ are parallel v
 
 
 \section{Systems of linear equations}
-
+We will now change gears and turn to a seemingly distinct topic: that of finding solutions to systems of linear equations. However, we will quickly see that this task is intimately related to the vector operations we have just studied in the previous section.
 \subsection{Basic definitions}
 \begin{defn}[Linear equation]\label{def:linear_equation}
 	A \ti{linear equation} in the variables $x_1,\cdots, x_n$ is an equation that can be written in the form
 \begin{equation}
 	a_1 x_1+a_2 x_2+\cdots a_n x_n=b
 \end{equation}
-where $b$ and the \ti{coefficients} $a_1,\cdots, a_n$ are real or complex numbers	
+where $b$ and the \emph{coefficients} $a_1,\cdots, a_n$ are real numbers.	
 \end{defn}
 
 \begin{exercise}
@@ -1398,7 +1398,7 @@ The set of all solutions is called the \ti{solution set} of the linear system.
 \end{defn}
 
 \begin{defn}[Consistent and inconsistent systems]\label{def:consistent}
-If a system of equations has at least one solution it is said to be \ti{consistent}. Otherwise it is said to be \ti{inconsistent}.	
+If a system of equations has at least one solution it is said to be \emph{consistent}. If the system has no solutions, it is said to be \emph{inconsistent}.	
 \end{defn}
 
 \begin{exercise}
@@ -1414,18 +1414,18 @@ Is $(3,4,-2)$ a solution of the following linear system?
 Consider the most general linear system of two equations in two unknowns
 \begin{equation}\label{eq:2_eq_2_var}
 	\begin{split}
-				A_{11} x_1+A_{12}x_2&=b_1 \\
+				A_{11} x_1+A_{12}x_2&=b_1, \\
 		A_{21} x_1+A_{22}x_2&=b_2. 
 	\end{split}
 \end{equation}	
 Rewriting each equation in slope-intercept form, \eqref{eq:2_eq_2_var} becomes
 \begin{equation}
 	\begin{split}
-		x_2&=-\frac{A_{11}}{A_{12}}x_1+\frac{b_1}{A_{12}} \\
-		x_2&=-\frac{A_{21}}{A_{22}}x_1+\frac{b_2}{A_{22}}
+		x_2&=-\frac{A_{11}}{A_{12}}x_1+\frac{b_1}{A_{12}}, \\
+		x_2&=-\frac{A_{21}}{A_{22}}x_1+\frac{b_2}{A_{22}}.
 	\end{split}
 \end{equation}
-Geometrically, each equation describes a line in the Euclidean plane. Since these equations are in the same variables, the two lines lie in the same plane. A solution to the linear system corresponds to a point which lies on \ti{both} lines at the same time, so it is a point of intersection of the two lines. There are therefore three possibilities for the possible solution sets of the linear system \eqref{eq:2_eq_2_var}, depending on the coefficients:
+Geometrically, each equation describes a line in the plane. Since these equations are in the same variables, the two lines lie in the \emph{same} plane. A solution to the linear system corresponds to a point which lies on \emph{both} lines at the same time, i.e., it is a point of intersection of the two lines. It is geometrically evident that there are three possibilities for the possible solution sets of the linear system \eqref{eq:2_eq_2_var}, depending on the coefficients:
 \begin{enumerate}[(1)]
 	\item The linear system \eqref{eq:2_eq_2_var} has \emph{no solution} when 
 	\begin{align*}
@@ -1465,54 +1465,80 @@ In general, we will consider a linear system of $m$ equations in $n$ unknowns:
 \end{equation}
 where $y_1,\cdots, y_m$ and $A_{ij}, 1 \leq i \leq m, 1 \leq j \leq n$ are given. In \eqref{eq:m_eq_n_var}, we denote the coefficient of $x_j$ in the $i$th equation as $A_{ij}$.
 
+\begin{exercise}
+To get comfortable with this notation, write out the system \eqref{eq:m_eq_n_var} when 
+\begin{enumerate}[(a)]
+	\item $n=2,m=3$, 
+	\item $m=3,n=2$, and 
+	\item $m=n=3$. 
+\end{enumerate}	
+\end{exercise}
+
+
 
 \begin{defn}[Homogeneous and inhomogeneous sytems]\label{def:homogeneous_and_inhomogeneous_sytems}
 If $y_1=y_2=\cdots=y_m=0$ in 
-\eqref{eq:2_eq_2_var}, the system is said to be \ti{homogeneous}. Otherwise, it is said to be \ti{inhomogeneous}.
+\eqref{eq:2_eq_2_var}, the system is said to be \emph{homogeneous}. Otherwise, it is said to be \emph{inhomogeneous}.
 \end{defn}
-We see later that, for any linear system of $m$ equations and $n$ unknowns, the sizes of the possible solution sets are the same as in Example \ref{ex:two_linear_equations_in_two_unknowns}: any system of linear equations has either no solutions, a unique solutions, or an infinite number of solutions. \footnote{More precisely, by ``infinite number" of solutions here, we mean one solution for each real number. More formally, we say there are $\mathfrak{c}$ solutions, where $\mathfrak{c}=2^{\aleph_0}=|\mathbb{R}|$ is the cardinality of the set of real numbers, called the \ti{continuum}.}
+
+\begin{exercise}
+	Write down a homogeneous system of $3$ linear equations in $2$ unknowns.
+\end{exercise}
+
 \subsection{Elimination}
-A fundamental technique for finding the solutions of a system of linear equations is that of \ti{elimination} of variables. Roughly, this technique involves multiplying the equations in the system by numbers and then adding them together so that some of the variables drop out, leading to a simpler system of equation.
+A fundamental technique for finding the solutions of a system of linear equations is that of \emph{elimination} of variables. Roughly, this technique involves multiplying the equations in the system by numbers and then adding the resulting equations together so that some of the variables drop out, leading to a simpler system of equations.
 \begin{example}[Solving by elimination]
 To illustrate this technique, consider the homogeneous system
-	\begin{equation}
-		\begin{split}
-		2x_1-x_2+x_3&=0 \\
-		x_1+3x_2+4x_3&=0.
-		\end{split}
-	\end{equation} 
-Adding $(-2)$ (Eq. 4) +(Eq. 3)  gives $-7x_2-7x_3=0$ or $x_2=-x_3$. Adding
-$3$ (Eq. 3) + (Eq. 4) gives $7x_1+7x_3=0$ or $x_1=-x_3$. 
-Combining these, we see that this system has an infinite number of solutions. The solution set can be written in \ti{parametric form} as $\{(-t,-t,t): t \in \mathbb{R}\}$ in terms of a single \ti{parameter}, $t$. \footnote{In general, if a system of $m$ equations in $n$ unknowns is consistent but doesn't have a unique solution, then the solution set will depend on up to $n$ parameters. In this case, the solution set will be in 1-1 correspondence with $\mathbb{R}^n$. It is a fact that $|\mathbb{R}^n|=|\mathbb{R}|$ (I won't attempt to explain this here), so the statement that any system of linear equations has $0,1,$ or $\mathfrak{c}$ solutions is true in general. \fixme{Does this mean that we can, in principle, parametrize the solution set in terms of a single parameter? Can this not be done in practice (e.g., is the proof that there exists such a bijection not constructive)? or is this just not useful to do (e.g., that the bijection lacks some desirable properties, such as continuity)? For a historical account, see \cite{cantor_surprised}.}} 
-\end{example}
-We now begin to formalize the elimination process in order to carry it out in a systematic way and to understand why it works. Consider again the general linear system of $m$ equations in $n$ unknowns in \eqref{eq:m_eq_n_var}. If we select $m$ scalars $c_1,\cdots,c_m$, multiply the $j$th equation by $c_j$ for $j=1,\cdots,m$, and add all of the equations together, we obtain a new linear equation, given by
+	\begin{align}\label{eq:ex_2_10_eq_1}
+		2x_1-x_2+x_3&=0 \\ \label{eq:ex_2_10_eq_2}
+		x_1+3x_2+4x_3&=0. 
+	\end{align} 
+Adding $(-2) \cdot $ \eqref{eq:ex_2_10_eq_2} $+$\ \eqref{eq:ex_2_10_eq_1}  gives $-7x_2-7x_3=0$ or 
+\begin{equation}\label{eq:ex_2_10_cond_1}
+	x_2=-x_3.
+\end{equation}
+Adding
+$3$ \eqref{eq:ex_2_10_eq_1} $+$ \ \eqref{eq:ex_2_10_eq_2} gives $7x_1+7x_3=0$ or 
+\begin{equation}\label{eq:ex_2_10_cond_2}
+	x_1=-x_3.
+\end{equation}
+
+Thus, a solution of this system is obtained by setting $x_3=t$, where $t$ is any real number, and then solving for $x_1$ and $x_2$ in terms of $t$ using \eqref{eq:ex_2_10_cond_1} and \eqref{eq:ex_2_10_cond_2}. The solution set can therefore be written as $\{(-t,-t,t): t \in \mathbb{R}\}$, which is said to be written in \emph{parametric form}. We see that there is a solution for each $t \in \R$, so this system has an infinite number of solutions.
+  \end{example}
+ \begin{exercise}\label{ex:verify_is_indeed_solution}
+ Verify that $(-t,-t,t)$ is indeed a solution of the system of equations in the previous example for any $t \in \R$.	
+ \end{exercise}
+
+
+We now begin to formalize the elimination process in order to carry it out in a systematic way and to understand why it works. Consider again the general linear system of $m$ equations in $n$ unknowns in \eqref{eq:m_eq_n_var}. If we select $m$ scalars $c_1,\cdots,c_m$, multiply the $j$th equation by $c_j$ for $j=1,\cdots,m$, and add all of the equations together, we obtain a new linear equation, given by \footnote{In this language, equations \eqref{eq:ex_2_10_cond_1} and \eqref{eq:ex_2_10_cond_2} in the previous example were obtained in exactly this way, as linear combinations of equations \eqref{eq:ex_2_10_eq_1} and \eqref{eq:ex_2_10_eq_2}.}
 \begin{equation}\label{eq:linear_combination_of_equations}
 	\begin{split}
 		(c_1A_{11}+c_2A_{21}+\cdots+c_mA_{m1})x_1+\cdots+(&c_1A_{1n}+c_2A_{21}+\cdots+c_mA_{mn})x_n \\ &= c_1y_1+\cdots +c_m y_m.
 	\end{split}
 \end{equation}
 
-\begin{defn}[Linear combination]\label{eq:linear_combination_of_equations}
-The equation \eqref{eq:linear_combination_of_equations} is said to be a \ti{linear combination} of the equations in \eqref{eq:m_eq_n_var}.
+\begin{defn}[Linear combination]\label{def:linear_combination_of_equations}
+The equation \eqref{eq:linear_combination_of_equations} is said to be a \emph{linear combination} of the equations in \eqref{eq:m_eq_n_var}.
 \end{defn}
 
-\begin{prop}[Linear combinations of linear equations preserve solutions]\label{prop:linear_combinations_of_linear_equations_preserve_solutions}
+\begin{thm}[Linear combinations of linear equations preserve solutions]\label{prop:linear_combinations_of_linear_equations_preserve_solutions}
 If $(s_1,\cdots,s_n)$ is a solution of the linear system \eqref{eq:m_eq_n_var}, then it is also a solution of \eqref{eq:linear_combination_of_equations}.	
-\end{prop}
+\end{thm}
 
 \begin{pf}
 	Substituting $(x_1,\cdots,x_n)=(s_1,\cdots,s_n)$ in \eqref{eq:linear_combination_of_equations} gives
 \begin{align*}
 	&(c_1A_{11}+c_2A_{21}+\cdots+c_mA_{m1})s_1+\cdots+(c_1A_{1n}+c_2A_{21}+\cdots+c_mA_{mn})s_n  \\
 	&=c_1(A_{11}s_1+\cdots + A_{1n}s_n)+\cdots + c_m(A_{m1}s_1+\cdots + A_{mn}s_n) \\
-	&= c_1y_1 + \cdots + c_my_m.
+	&= c_1y_1 + \cdots + c_my_m,
 \end{align*}
+where we have used the fact that $A_{i1}s_1+\cdots + A_{in}s_n=y_i$ for $i=1,\dots,m$, that is, that $(s_1,\dots,s_n)$ is a solution to the original system of equations. \footnote{This is exactly what you verified in Exercise \ref{ex:verify_is_indeed_solution}.}
 \end{pf}
 
-\ti{Proposition \ref{prop:linear_combinations_of_linear_equations_preserve_solutions} is the fundamental idea of the elimination process}: if we have another system of linear equations
+\emph{Theorem \ref{prop:linear_combinations_of_linear_equations_preserve_solutions} is the fundamental idea of the elimination process}: given the linear system \eqref{eq:m_eq_n_var}, if we have another linear system 
 	\begin{equation}\label{eq:another_system}
 \begin{split}
-	B_{11}x_1+B_{12}x_2+\cdots + A_{1n}x_n &=z_1 \\
+	B_{11}x_1+B_{12}x_2+\cdots + B_{1n}x_n &=z_1 \\
 	B_{21}x_1+B_{22}x_2+\cdots + B_{2n}x_n &=z_2 \\
 	\vdots \hspace{1.5cm} \vdots \hspace{2.5cm} \vdots & \hspace{0.5cm}\vdots  \\
 	B_{k1}x_1+B_{k2}x_2+\cdots + B_{kn}x_n &=z_k \\
