@@ -1812,7 +1812,7 @@ whose solution set is given by taking $x_4=t$ to be any real number, and then us
 \end{equation}
  Since the coefficient matrices of \eqref{eq:hom_ex_original} and \eqref{eq:hom_ex_final} are row-equivalent, by Theorem \ref{thm:row_equivalence_implies_equivalence} the systems \eqref{eq:hom_ex_original} and \eqref{eq:hom_ex_final} are equivalent, and hence \eqref{eq:hom_ex_solution} is also the solution set of the original system \eqref{eq:hom_ex_original}.
 \end{example}
-In the previous example we were obviously not performing row operations at random. Instead, our choice of row operations was motivated by a desire to simplify the coefficient matrix in a manner analogous to `eliminating unknowns' in the system of linear equations. Roughly speaking, we use the $x_1$ term in the first equation of the system to eliminate the $x_1$ terms in the other equations. Then we use the $x_2$ term in the second equation to eliminate the $x_2$ terms in the other equations, and so on, until we obtain the simplest possible equivalent system of equations. In the following, we will discuss an algorithm for carrying out this process.
+In the previous example we were obviously not performing row operations at random. Instead, our choice of row operations was motivated by a desire to simplify the coefficient matrix in a manner analogous to `eliminating unknowns' in the system of linear equations. Roughly speaking, we use the $x_1$ term in the first equation of the system to eliminate the $x_1$ terms in the other equations. Then we use the $x_2$ term in the second equation to eliminate the $x_2$ terms in the other equations, and so on, until we obtain the simplest possible equivalent system of equations. In the following sections, we will discuss an algorithm for carrying out this process.
 
 \subsection{Echelon matrices}
 We now make a formal definition of the type of matrix at which we are attempting to arrive. In the following definitions, a \ti{nonzero} row of a matrix means a row that contains at least one nonzero entry; a \ti{leading entry} of a nonzero row is the leftmost nonzero entry in that row.
@@ -1891,7 +1891,7 @@ In the next section we will see a row-reduction algorithm which will put \ti{any
 
 
 \subsection{Pivots}
-Note that when row operations on a matrix reduce it to REF, further row operations to obtain the RREF \ti{do not change the positions of the leading entries.} Since the RREF is unique, \ti{the leading entries are always in the same positions in any echelon form obtained from a given matrix}. These leading entries correspond to leading 1's in the RREF.This motivates the following definitions:
+Note that when row operations on a matrix reduce it to REF, further row operations to obtain the RREF \emph{do not change the positions of the leading entries.} Since the RREF is unique, \emph{the leading entries are always in the same positions in any echelon form obtained from a given matrix}. These leading entries correspond to leading 1's in the RREF. This motivates the following definitions:
 
 \begin{defn}[Pivots, Pivot positions, pivot columns] \label{def:pivots_pivot_positions_pivot_columns} \hspace{10cm}
 	\begin{enumerate}[(i)]
