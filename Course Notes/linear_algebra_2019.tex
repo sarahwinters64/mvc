@@ -1664,17 +1664,13 @@ The three \ti{elementary row operations} are the following:
 \begin{enumerate}
 	\item (Replacement) Replace one row by the sum of itself and a multiple of another row.
 	\item (Interchange) Interchange two rows.
-	\item (Scaling) Multiply all entries in a row by a nonzero constant.
+	\item (Scaling) Multiply all entries in a row by a \emph{nonzero} constant.
 \end{enumerate}	
 \end{defn}
 
 More formally, we can view each elementary row operation as a \emph{function} $e$ which takes an $m \times n$ matrix $A$ to an $m \times n$ matrix $e(A)$. The function is specified on the matrix elements $A_{ij}$ of $A$ explicitly in each of the three cases above as follows:
 
 \begin{enumerate}
-	\item $e(A)_{ij}=\begin{cases}
-		A_{ij} \text{ if } i \neq r, \\
-		cA_{rj} \text{ if } i = r.
-	\end{cases}$
 	\item $e(A)_{ij}=\begin{cases}
 		A_{ij} \text{ if } i \neq r, \\
 		A_{rj}+c A_{sj} \text{ if } i = r.
@@ -1684,12 +1680,16 @@ More formally, we can view each elementary row operation as a \emph{function} $e
 		A_{sj} \text{ if } i = r, \\
 		A_{rj} \text{ if } i=s.
 	\end{cases}$
+	\item $e(A)_{ij}=\begin{cases}
+		A_{ij} \text{ if } i \neq r, \\
+		cA_{rj} \text{ if } i = r.
+	\end{cases}$
 \end{enumerate}
 
-One reason we restrict to these three elementary row operations is that they each have an inverse (which is itself an elementary row operation of the same type), allowing us to recover the original matrix $A$ from $e(A)$.
+One reason we restrict to these three elementary row operations is that they each have an inverse (which is itself an elementary row operation of the same type), allowing us to recover the original matrix $A$ from $e(A)$. This is crucial in making sure the resulting linear system is equivalent to the original one.
 
 \begin{exercise}
-For each pair of matrices below, find the elementary row operation that transforms the first matrix into the second, and then find the reverse row operation that transforms the second matrix into the first.
+For each pair of matrices below, find the elementary row operation that transforms the first matrix into the second, and then find the inverse row operation that transforms the second matrix into the first.
 	\begin{enumerate}
 		\item $\begin{bmatrix}
 			0&-2&5 \\ 1&4&-7 \\ 3&-1&6
@@ -1719,8 +1719,12 @@ For each pair of matrices below, find the elementary row operation that transfor
 	To each elementary row operation $e$ there corresponds an elementary row operation $e^{-1}$ of the \emph{same} type as $e$, such that $e^{-1}(e(A))=e(e^{-1}(A))=A$ for all $A$.
 \end{thm}
 
-\begin{pf} We consider each type of elementary row operation in turn.
-	(1) If $e$ be the operation which multiplies the $r$th row of a matrix by the non-zero scalar $c$, then $e^{-1}$ is the operation which multiplies the $r$th row by $\frac{1}{c}$. (2) If $e$ is the operation which replaces row $r$ by row $r$ plus $c$ times row $s$ ($r \neq s$), then $e^{-1}$ is the operation which replaces row $r$ by row $r$ plus $(-c)$ times row $s$. (3) If $e$ interchanges rows $r$ and $s$, then $e^{-1}=e$. 
+\begin{pf} We consider each type of elementary row operation in turn. 
+\begin{enumerate}[(1)]
+	\item If $e$ is the operation which replaces row $r$ by row $r$ plus $c$ times row $s$ ($r \neq s$), then $e^{-1}$ is the operation which replaces row $r$ by row $r$ plus $(-c)$ times row $s$. To see this, note that composing these operations leaves $A_{ij}$ unchanged if $i\neq r$ and sends $A_{rj} \mapsto A_{rj}+cA_{sj} \mapsto (A_{rj}+cA_{sj})-cA_{sj}=A_{rj}$.
+	\item If $e$ interchanges rows $r$ and $s$, then $e^{-1}=e$.
+	\item If $e$ be the operation which multiplies the $r$th row of a matrix by the non-zero scalar $c$, then $e^{-1}$ is the operation which multiplies the $r$th row by $\frac{1}{c}$, since composing these operations sends $A_{rj} \mapsto cA_{rj} \mapsto \frac{1}{c}(cA_{rj})=A_{rj}$ and leaves $A_{ij}$ unchanged if $i \neq r$. 
+\end{enumerate}
 \end{pf}
 
 \begin{defn}[Row-equivalent matrices]\label{def:row_equivalent_matrices}
@@ -1736,7 +1740,11 @@ Row-equivalence is an equivalence relation. That is, if $A,B$ and $C$ are any $m
 \end{enumerate}
 \end{lem}
 \begin{pf}
-	(Reflexivity) $A$ is equal to itself by an empty sequence of row-operations, hence $A$ is row-equivalent to itself. (Symmetry) If $A$ is row-equivalent to $B$, then $B=(e_n \circ e_{n-1} \circ \cdots e_1)(A)$. Then $A=(e_1^{-1}\circ \cdots \circ e_{n-1}^{-1} \circ e_n^{-1})(B)$, hence $B$ is row-equivalent to $A$. (Transitivity) If $A$ is row-equivalent to $B$ and $B$ is row-equivalent to $C$, then $B=(e_n \circ \cdots \circ e_1)(A)$ and $C=(\tilde{e}_m \circ \cdots \circ \tilde{e}_1)(B)$. We therefore have $C=(\tilde{e}_m \circ \cdots \circ \tilde{e}_1\circ e_n \cdots \circ e_1)(A)$, hence $A$ is row-equivalent to $C$.
+\begin{enumerate}[(i)]
+	\item (Reflexivity) $A$ is equal to itself by an empty sequence of elementary row operations, hence $A$ is row-equivalent to itself. 
+	\item (Symmetry) If $A$ is row-equivalent to $B$, then $B=(e_n \circ e_{n-1} \circ \cdots e_1)(A)$. Then $A=(e_1^{-1}\circ \cdots \circ e_{n-1}^{-1} \circ e_n^{-1})(B)$ (since $e_j^{-1}(e_j(A))=A$ and $e_j(e_j^{-1}(B))=B$ for all $j=1,\dots,n$), hence $B$ is row-equivalent to $A$. 
+	\item (Transitivity) If $A$ is row-equivalent to $B$ and $B$ is row-equivalent to $C$, then $B=(e_n \circ \cdots \circ e_1)(A)$ and $C=(\tilde{e}_m \circ \cdots \circ \tilde{e}_1)(B)$. We therefore have $C=(\tilde{e}_m \circ \cdots \circ \tilde{e}_1\circ e_n \cdots \circ e_1)(A)$, hence $A$ is row-equivalent to $C$.
+\end{enumerate}	
 \end{pf}
 
 \begin{thm}[Row-equivalence implies equivalence]\label{thm:row_equivalence_implies_equivalence}
@@ -1746,7 +1754,7 @@ Row-equivalence is an equivalence relation. That is, if $A,B$ and $C$ are any $m
 \begin{pf}
 	Since we pass from $A$ to $B$ by a finite sequence of elementary row operations
 $$A=A_0 \to A_1 \to \cdots \to A_k=B,$$
-by transitivity (see Lemma \ref{lem:row_equivalence_is_an_equivalence_relation}) it is enough to prove that the systems $A_jX=0$ and $A_{j+1}X=0$ have the same solutions, i.e., that one elementary row operation does not disturb the set of solutions. 
+by transitivity (see Lemma \ref{lem:row_equivalence_is_an_equivalence_relation}) it suffices to prove that the systems $A_jX=0$ and $A_{j+1}X=0$ have the same solutions, i.e., that one elementary row operation does not disturb the set of solutions. 
 
  Suppose now that $B$ is obtained from $A$ by a single elementary row operation. For each of the three types of elementary row operations, each equation in the system $BX=0$ will be a linear combination of the equations in the system $AX=0$. Since the inverse of an elementary row operation is an elementary row operation, each equation in $AX=0$ will also be a linear combination of the equations in $BX=0$. Hence, these two systems are equivalent.
 \end{pf}
@@ -1798,13 +1806,13 @@ The final matrix is the coefficient matrix of the system
 	x_3-\frac{11}{3}x_4&=0
 \end{split}
 \end{equation}
-whose solution set is obviously 
+whose solution set is given by taking $x_4=t$ to be any real number, and then using \eqref{eq:hom_ex_final} to solve for $x_1,x_2$, and $x_3$ in terms of $t$:
 \begin{equation}\label{eq:hom_ex_solution}
 \{(-\frac{17}{3}t,\frac{5}{3}t,\frac{11}{3}t,t):t \in \mathbb{R}\}.	
 \end{equation}
  Since the coefficient matrices of \eqref{eq:hom_ex_original} and \eqref{eq:hom_ex_final} are row-equivalent, by Theorem \ref{thm:row_equivalence_implies_equivalence} the systems \eqref{eq:hom_ex_original} and \eqref{eq:hom_ex_final} are equivalent, and hence \eqref{eq:hom_ex_solution} is also the solution set of the original system \eqref{eq:hom_ex_original}.
 \end{example}
-In the previous example we were obviously not performing row operations at random. Instead, our choice of row operations was motivated by a desire to simplify the coefficient matrix in a manner analogous to `eliminating unknowns' in the system of linear equations. Roughly speaking, we use the $x_1$ term in the first equation of the system to eliminate the $x_1$ terms in the other equations. Then we use the $x_2$ term in the second equation to eliminate the $x_2$ terms in the other equations, and so on, until we obtain the simplest possible equivalent system of equations. 
+In the previous example we were obviously not performing row operations at random. Instead, our choice of row operations was motivated by a desire to simplify the coefficient matrix in a manner analogous to `eliminating unknowns' in the system of linear equations. Roughly speaking, we use the $x_1$ term in the first equation of the system to eliminate the $x_1$ terms in the other equations. Then we use the $x_2$ term in the second equation to eliminate the $x_2$ terms in the other equations, and so on, until we obtain the simplest possible equivalent system of equations. In the following, we will discuss an algorithm for carrying out this process.
 
 \subsection{Echelon matrices}
 We now make a formal definition of the type of matrix at which we are attempting to arrive. In the following definitions, a \ti{nonzero} row of a matrix means a row that contains at least one nonzero entry; a \ti{leading entry} of a nonzero row is the leftmost nonzero entry in that row.
