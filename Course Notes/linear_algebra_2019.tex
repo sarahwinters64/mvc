@@ -1545,9 +1545,9 @@ where we have used the fact that $A_{i1}s_1+\cdots + A_{in}s_n=y_i$ for $i=1,\do
 \end{split}
 \end{equation}
 in which each of the $k$ equations is a linear combination of the equations in \eqref{eq:m_eq_n_var}, then \emph{every solution of \eqref{eq:m_eq_n_var} is a solution of this new system}. 
-Thus, \ti{the elimination process allows us to solve a linear system by forming linear combinations of the given equations to produce an system of equations which has the same solutions, but is easier to solve}. 
+Thus, \emph{the elimination process allows us to solve a linear system by forming linear combinations of the given equations to produce an system of equations which has the same solutions, but is easier to solve}. 
 
-However, we need to think carefully about how to do this, as it may happen that some solutions of \eqref{eq:another_system} are not solutions of \eqref{eq:m_eq_n_var}. As a simple example, consider the following two linear systems:
+Of course, it may happen that some solutions of \eqref{eq:another_system} are not solutions of \eqref{eq:m_eq_n_var}. As a simple example, consider the following two linear systems:
 \begin{align}
 		x_1-2x_2&=-1 \label{eq:e1}\\
 		-x_1+3x_2&=3 \label{eq:e2}
@@ -1557,7 +1557,7 @@ and
 		x_1-2x_2&=-1 \label{eq:e3}\\
 		-x_1+2x_2&=1 \label{eq:e4}
 \end{align}
-Using the elimination technique, the former system has a unique solution $(3,2)$ whereas the latter has an infinite number of solutions, which we can parametrize as $\{(2t-1,t):t \in \mathbb{R}\}$. By taking $t=2$, we see that $(3,2)$ is a solution of the second system, but for any solution of the second system with $t \neq 2$ is not a solution of the first.
+Using the elimination technique, the former system has a unique solution $(3,2)$ whereas the latter has an infinite number of solutions, which we can parametrize as $\{(2t-1,t):t \in \mathbb{R}\}$. By taking $t=2$, we see that $(3,2)$ is a solution of the second system, but any solution of the second system with $t \neq 2$ is not a solution of the first.
 
 This can be understood as follows: Both equations in the second system can be written as linear combinations of the equations in the first system, since 
 \begin{align*}
@@ -1582,17 +1582,17 @@ which has no solution.
 This motivates the following definition:
 
 \begin{defn}[Equivalent linear systems] \label{def: equivalent_linear_systems}
-	Two systems of linear equations are said to be \ti{equivalent} if they have the same set of solutions.
+	Two systems of linear equations are said to be \emph{equivalent} if they have the same set of solutions.
 \end{defn}
 
-We have just seen that two linear systems might fail to be equivalent if the equations in one system cannot be written as linear combinations of the equations in the other system. We thus have the following proposition:
+We have just seen that two linear systems might fail to be equivalent if the equations in one system cannot be written as linear combinations of the equations in the other system. We thus have the following theorem:
 
-\begin{prop}[Equivalent linear systems]\label{prop:equivalent_linear_systems}
+\begin{thm}[Equivalent linear systems]\label{prop:equivalent_linear_systems}
 	Two systems of linear equations are equivalent if each equation in each system is a linear combination of the equations in the other system. 
-\end{prop}
+\end{thm}
 
 \begin{pf}
-	The proof follows immediately from Proposition \ref{prop:linear_combinations_of_linear_equations_preserve_solutions}.
+	The proof follows immediately from Theorem \ref{prop:linear_combinations_of_linear_equations_preserve_solutions}.
 \end{pf}
 
 \begin{exercise}
@@ -1603,12 +1603,12 @@ Are the following two systems of linear equations equivalent? If so, express eac
 \end{align*}	
 \end{exercise}
 
-If the elimination process is to be effective in finding the solutions of the system \eqref{eq:m_eq_n_var}, then we must see how to form linear combinations of the given equations to produce an \ti{equivalent} system of equations which is easier to solve. In the next section, we will discuss one method of doing this.
+If the elimination process is to be effective in finding the solutions of the system \eqref{eq:m_eq_n_var}, then we must see how to form linear combinations of the given equations to produce an \emph{equivalent} system of equations which is easier to solve. In the next section, we will discuss one method of doing this. We begin by developing a more convenient notation.
 
 \subsection{Matrices}
-Given the general system of $m$ linear equations in $n$ unknowns in \eqref{eq:m_eq_n_var}, we wish to form linear combinations of these equations in such a way that we are guaranteed to produce an equivalent system which is easier to solve. In this section, we will formalize this process and make precise the kind of system at which we want to arrive.
+Given the general system of $m$ linear equations in $n$ unknowns in \eqref{eq:m_eq_n_var}, we wish to form linear combinations of these equations in such a way that we are guaranteed to produce an equivalent system which is easier to solve. In this section, we will formalize this process and make precise the kind of system at which we wish to arrive.
 
-	In forming linear combinations of the equations in \eqref{eq:m_eq_n_var}, notice that we are actually only computing with the coefficients $A_{ij}$ and scalars $y_i$. We shall therefore abbreviate the system by
+	In forming linear combinations of the equations in \eqref{eq:m_eq_n_var}, notice that we are actually only computing with the coefficients $A_{ij}$ and scalars $y_i$, with the variables $x_j$ more or less acting as placeholders. We shall therefore abbreviate the system by
 	\begin{equation}
 		AX=Y
 	\end{equation}
@@ -1628,8 +1628,8 @@ Given the general system of $m$ linear equations in $n$ unknowns in \eqref{eq:m_
 		\end{bmatrix}
 	\end{equation} 
 \begin{defn}[Coefficient matrix] \label{def:coefficient_matrix}
-	A rectangular array of numbers as in \eqref{eq:coeff_matrix} is called a \ti{matrix}. In \eqref{eq:coeff_matrix}, the matrix $A$ is called the \ti{coefficient matrix} of the system. The $mn$ numbers $A_{ij}$ (which are the coefficients of the equations in \eqref{eq:m_eq_n_var}) are called the \ti{entries} (or \ti{matrix elements}) of the matrix $A$. Since $A$ has $m$ rows and $n$ columns, it is said to be an $m \times n$ matrix. Note that the number of \ti{rows} is always listed first. \footnote{For now $AX=Y$ is simply a shorthand notation for the system \eqref{eq:m_eq_n_var}.
-	We will soon define matrix multiplication such that the product of $A$ and $X$ is $Y$.}
+	A rectangular array of numbers as in \eqref{eq:coeff_matrix} is called a \ti{matrix}. In \eqref{eq:coeff_matrix}, the matrix $A$ is called the \ti{coefficient matrix} of the system. The $mn$ numbers $A_{ij}$ (which are the coefficients of the equations in \eqref{eq:m_eq_n_var}) are called the \ti{entries} (or \ti{matrix elements}) of the matrix $A$. Since $A$ has $m$ rows and $n$ columns, it is said to be an $m \times n$ matrix. Note that the number of \emph{rows} is always listed first. \footnote{For now $AX=Y$ is simply a shorthand notation for the system \eqref{eq:m_eq_n_var}.
+	We will soon define a multiplication operation for matrices such that the product of $A$ and $X$ is $Y$.}
 \end{defn}
 
 \begin{example}[Coefficient matrix of a linear system]
