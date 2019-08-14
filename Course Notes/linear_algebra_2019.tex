@@ -1881,7 +1881,9 @@ is in reduced row echelon form.
 
 It will be proved in Theorem \ref{thm:uniqueness_of_reduced_row_echelon_form} that every $m \times n$ matrix $A$ is row-equivalent to a \emph{unique} row-reduced echelon matrix $U$, called the \emph{reduced row echelon form of $A$}.
 
-In the next section we will see a row-reduction algorithm which will put \ti{any} $m \times n$ matrix $A$ into reduced row echelon form. \footnote{This will prove there is \emph{at least} one row-reduced echelon matrix $U$ which is row-equivalent to $A$. Later, we will prove that there is \emph{only one} such $U$.} Theorem \ref{thm:uniqueness_of_reduced_row_echelon_form} shows that $U$ is unique. \fixme{Explain here why RREF is what we want to arrive at by performing elementary row operations. Columns with no leading 1s are called free variables. These will be parameters, and the leading 1s allow us to solve for the remaining variables in terms of the free ones, giving us the parametric description of the solution set.}
+In the next section we will see a row-reduction algorithm which will put \emph{any} $m \times n$ matrix $A$ into its unique reduced row echelon form. \footnote{Note that this algorithm will prove that a RREF of $A$ exists, while Theorem \ref{thm:uniqueness_of_reduced_row_echelon_form} shows that it is unique.}
+
+ \fixme{Explain here why RREF is what we want to arrive at by performing elementary row operations. Columns with no leading 1s are called free variables. These will be parameters, and the leading 1s allow us to solve for the remaining variables in terms of the free ones, giving us the parametric description of the solution set.}
 
 
 \subsection{Pivots}
