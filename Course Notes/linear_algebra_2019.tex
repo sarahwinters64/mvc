@@ -1988,7 +1988,9 @@ Consider the system $RX=0$, where $R$ is an $m \times n$ matrix in reduced row e
 		\vdots \hspace{1.8cm}& \hspace{0.5cm}\vdots \\
 		x_r+\sum_{j=1}^{n-r}C_{rj}u_j&=0 \label{eq:non-triv_last}
 	\end{align}
-where each $x_i, i=1,\cdots,r$ occurs (with non-zero coefficient) only in the $i$th equation. All solutions to the system $RX=0$ are obtained by assigning any real numbers to $u_1,\cdots, u_{n-r}$ and then computing the values of $x_1,\cdots, x_r$ using \eqref{eq:non-triv_first} - \eqref{eq:non-triv_last}. This shows that \ti{if $r<n$, the system $RX=0$ has an infinite number of solutions}. If $r=n$, then $R$ is the $n \times n$ identity matrix and the system $RX=0$ has only the trivial solution. We thus have the following theorem:
+where each $x_i, i=1,\cdots,r$ occurs (with non-zero coefficient) only in the $i$th equation. All solutions to the system $RX=0$ are obtained by assigning any real numbers to $u_1,\cdots, u_{n-r}$ and then computing the values of $x_1,\cdots, x_r$ using \eqref{eq:non-triv_first} - \eqref{eq:non-triv_last}. This shows that \ti{if $r<n$, the system $RX=0$ has an infinite number of solutions}. \footnote{See Exercise \ref{ex:hom_system_examp} below for an example of this case.} If $r=n$, then $R$ is the $n \times n$ identity matrix and the system $RX=0$ has only the trivial solution. 
+
+ We thus have the following theorem:
 
 \begin{thm}[Solution sets of homogeneous linear systems]\label{thm:solution_sets_of_homogeneous_linear_systems} \hspace{10cm}
 	\begin{enumerate}[(a)]
@@ -2004,7 +2006,7 @@ where each $x_i, i=1,\cdots,r$ occurs (with non-zero coefficient) only in the $i
 		$(\impliedby)$ Suppose $AX=0$ has only the trivial solution. Let $R$ be the unique RREF of $R$, and let $r$ be the number of non-zero rows of $R$. Since $R$ is row-equivalent to $A$, $RX=0$ has only the trivial solution. Thus $r \geq n$. But since $R$ has $n$ rows, $r \leq n$, and therefore $r=n$. Since $R$ is in RREF, it is the $n \times n$ identity matrix.
 	\end{enumerate}
 \end{pf}
-\begin{exercise}
+\begin{exercise}\label{ex:hom_system_examp}
 Consider the system $RX=0$ with coefficient matrix
 \begin{align*}
 	R=\begin{bmatrix}
