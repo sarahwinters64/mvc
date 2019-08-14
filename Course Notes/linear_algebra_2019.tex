@@ -1879,13 +1879,7 @@ is in reduced row echelon form.
 \end{enumerate}
 \end{exercise}
 
-\begin{thm}[Uniqueness of reduced row echelon form]\label{thm:uniqueness_of_reduced_row_echelon_form}
-	Every $m \times n$ matrix $A$ is row-equivalent to a \emph{unique} row-reduced echelon matrix $U$, called the \ti{reduced row echelon form of $A$}
-\end{thm}
-
-\begin{pf}
-Postponed. \fixme{Insert link to proof.}
-\end{pf}
+It will be proved in Theorem \ref{thm:uniqueness_of_reduced_row_echelon_form} that every $m \times n$ matrix $A$ is row-equivalent to a \emph{unique} row-reduced echelon matrix $U$, called the \emph{reduced row echelon form of $A$}.
 
 In the next section we will see a row-reduction algorithm which will put \ti{any} $m \times n$ matrix $A$ into reduced row echelon form. \footnote{This will prove there is \emph{at least} one row-reduced echelon matrix $U$ which is row-equivalent to $A$. Later, we will prove that there is \emph{only one} such $U$.} Theorem \ref{thm:uniqueness_of_reduced_row_echelon_form} shows that $U$ is unique. \fixme{Explain here why RREF is what we want to arrive at by performing elementary row operations. Columns with no leading 1s are called free variables. These will be parameters, and the leading 1s allow us to solve for the remaining variables in terms of the free ones, giving us the parametric description of the solution set.}
 
@@ -2121,6 +2115,42 @@ This example is illustrative of the general case.
 \end{enumerate}
 \fixme{Include a formal proof? Details are very similar to the homogeneous case, with the obvious modifications.}
 \end{thm}
+
+We are now ready to prove that every matrix $A$ has a unique RREF.
+
+\begin{thm}[Uniqueness of reduced row echelon form]\label{thm:uniqueness_of_reduced_row_echelon_form}
+	Every $m \times n$ matrix $A$ is row-equivalent to a \emph{unique} row-reduced echelon matrix $U$, called the \emph{reduced row echelon form of $A$}
+\end{thm}
+
+\begin{proof} \footnote{The following proof is due to W.H. Holzmann.}
+	(By contradiction.) Suppose $A$ can be reduced by finite sequences of elementary row operations to two distinct $R$ and $S$, both in RREF. Since $R \neq S$, there must be a pair of indices $(i,j)$ such that $R_{ij} \neq S_{ij}$. Corresponding to $R$ and $S$, respectively, form new $m \times k$ matrices ($k \leq n$) $R'$ and $S'$ by selecting the first (leftmost) column for which $R$ and $S$ differ along with all pivot columns to the left of this column. \footnote{For instance, if $R=\begin{pmatrix}
+		1 & 2 & 0 & 3 & 5 \\
+		0 & 0 & 1 & 4 & 6 \\
+		0 & 0 & 0 & 0 & 0
+	\end{pmatrix}$ and $S=\begin{pmatrix}
+		1 & 2 & 0 & 7 & 9 \\
+		0 & 0 & 1 & 8 & 9 \\
+		0 & 0 & 0 & 0 & 0
+	\end{pmatrix}$, then $R'=\begin{pmatrix}
+		1&0&3 \\ 0 & 1 & 4 \\ 0 & 0 & 0
+	\end{pmatrix}$ and $S'=\begin{pmatrix}
+		1&0&7 \\ 0 & 1 & 8 \\ 0 & 0 & 0
+	\end{pmatrix}$.} Noting that the leftmost column in which $R$ and $S$ differ must be a non-pivot column, the matrices $R'$ and $S'$ must therefore take the form
+	\begin{equation}\label{eq:uniqueness_of_rref}
+		R'=
+  \left(\begin{array}{c|c}
+    I_n & \mathbf{r'} \\ \hline
+    O & \mathbf{0} 
+  \end{array}\right) \hspace{0.5cm} \text{ and } \hspace{0.5cm} S'=
+  \left(\begin{array}{c|c}
+    I_n & \mathbf{s'} \\ \hline
+    O & \mathbf{0} 
+  \end{array}\right).
+\end{equation}
+Note that $R'$ and $S'$ are both row-equivalent to $A$ (since $R$ and $S$ are row-equivalent to $A$ and deleting columns does not affect row-equivalence) and therefore to each other. 
+
+Now interpret the matrices in \eqref{eq:uniqueness_of_rref} as augmented matrices. The system for $R'$ has a unique solution $\mathbf{r'}$, while the system for $S'$ has a unique solution $\mathbf{s'}$. Since the linear systems corresponding to row-equivalent matrices are equivalent, we must have $\mathbf{r'}=\mathbf{s'}$, which means $R'=S'$, and therefore $R=S$, which contradicts our assumption that these matrices are distinct. Hence, the RREF of $A$ must be unique.
+\end{proof}
 
 
 \subsection{Matrix operations}
