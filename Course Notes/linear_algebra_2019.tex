@@ -2025,7 +2025,7 @@ Verify the following:
 \end{exercise}
 
 \subsubsection{Inhomogeneous systems of linear equations}
-So far we have used elementary row operations to solve homogeneous systems of linear equations. What, then, do elementary row operations do toward solving an inhomogeneous system of linear equations? Happily, it turns out that we solve an inhomogeneous system of linear equations in exactly the same way as a homogeneous one, with one minor modification.
+So far we have used elementary row operations to solve homogeneous systems of linear equations. What, then, do elementary row operations do toward solving an \emph{inhomogeneous} system of linear equations? Happily, it turns out that we solve an inhomogeneous system of linear equations in exactly the same way as a homogeneous one, with one minor modification.
 
 \begin{defn}[Augmented matrix of an inhomogeneous linear system]\label{def:augmented_matrix}
 The \ti{augmented matrix} of an inhomogeneous system of linear equations $AX=Y$ is the $m \times (n+1)$ matrix whose first $n$ columns are the columns of the coefficient matrix $A$ and whose last column is $Y$. We denote this matrix as $A'=[A|Y]$.
@@ -2040,7 +2040,7 @@ The augmented matrix of the inhomogeneous linear system
 	5x_1-5x_3&=10 \\
 \end{split}
 \end{equation}
-is given by
+is given by \footnote{The vertical bar offsetting the final column in $A'$ has no meaning and is only there as a visual device to remind us that the matrix is an augmented matrix. Many authors do not typeset this vertical bar, and instead simply denote an augmented matrix exactly in the same way as a coefficient matrix. In this case, one determines whether the matrix is a coefficient matrix or augmented matrix from context.}
 \begin{align*}
 	A'=\left[\begin{array}{c c c | c}
 		1&-2&1&0 \\
@@ -2051,7 +2051,7 @@ is given by
 \end{example}
 
 
-Suppose we perform a sequence of elementary on the coefficient matrix $A$ of an inhomogeneous linear system $AX=Y$, arriving at it's unique reduced row echelon form, $R$. If we perform the same operations on $A'$, we will arrive at a matrix $R'$ in reduced row echelon form, whose first $n$ columns are those of $R$ and whose last column is the $m \times 1$ matrix $Z$ which results from applying the same sequence of elementary row operations to the matrix $Y$. By the same arguments as before, the system $RX=Z$ is equivalent to the original system $AX=Y$, and therefore we can read off the solution set from $RX=Z$.
+Suppose we perform a sequence of elementary row operations on the coefficient matrix $A$ of an inhomogeneous linear system $AX=Y$, arriving at it's unique reduced row echelon form, $R$. If we perform the same operations on $A'$, we will arrive at a matrix $R'$ in reduced row echelon form, whose first $n$ columns are those of $R$ and whose last column is the $m \times 1$ matrix $Z$ which results from applying the same sequence of elementary row operations to the matrix $Y$. By the same arguments as before, the system $RX=Z$ is equivalent to the original system $AX=Y$, and therefore we can read off the solution set from $RX=Z$.
 
 \begin{exercise}
 Verify that performing Gauss-Jordan elimination on the augmented matrix $A'$ of Example \ref{ex:augmented} gives
@@ -2120,7 +2120,7 @@ This example is illustrative of the general case.
 \fixme{Include a formal proof? Details are very similar to the homogeneous case, with the obvious modifications.}
 \end{thm}
 
-We are now ready to prove that every matrix $A$ has a unique RREF.
+Before we close this section, let us take care of a piece of unfinished business and prove that every matrix $A$ has a unique RREF.
 
 \begin{thm}[Uniqueness of reduced row echelon form]\label{thm:uniqueness_of_reduced_row_echelon_form}
 	Every $m \times n$ matrix $A$ is row-equivalent to a \emph{unique} row-reduced echelon matrix $U$, called the \emph{reduced row echelon form of $A$}
