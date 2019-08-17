@@ -1410,6 +1410,8 @@ Is $(3,4,-2)$ a solution of the following linear system?
 \end{align*} 	
 \end{exercise}
 
+We have just seen how to check if a given point is a solution to a linear system. Obviously checking points at random is not going to be an effective strategy to find the solution set of a given linear system. We will therefore need a systematic method of finding solution sets of systems of linear equations. But first, let us consider what kind of solution sets we might hope to find.
+
 \begin{example}[Two linear equations in two unknowns]\label{ex:two_linear_equations_in_two_unknowns}
 Consider the most general linear system of two equations in two unknowns
 \begin{equation}\label{eq:2_eq_2_var}
@@ -1465,8 +1467,28 @@ In general, we will consider a linear system of $m$ equations in $n$ unknowns:
 \end{equation}
 where $y_1,\cdots, y_m$ and $A_{ij}, 1 \leq i \leq m, 1 \leq j \leq n$ are given. In \eqref{eq:m_eq_n_var}, we denote the coefficient of $x_j$ in the $i$th equation as $A_{ij}$.
 
+As we will see \fixme{Insert link to proof.}, it turns out that the three possibilities in Example \ref{ex:two_linear_equations_in_two_unknowns} are the only possibilities in general; that is, the general linear system in \eqref{eq:m_eq_n_var} has either 
+\begin{enumerate}
+	\item No solution,
+	\item A unique solution, or
+	\item Infinitely many solutions.
+\end{enumerate}
+We can again understand this claim geometrically in the case of three linear equations in three unknowns:
+\begin{align*}
+	A_{11}x_1+A_{12}x_2+A_{13}x_3&=y_1 \\
+	A_{21}x_1+A_{22}x_2+A_{23}x_3&=y_1 \\
+	A_{31}x_1+A_{32}x_2+A_{33}x_3&=y_1.
+\end{align*}
+These are the point-normal equations of three planes in $\R^3$. The possible intersections are shown below, giving rise to the types of solution sets mentioned above:
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/plane_intersections_anton_fig}
+	\end{center}
+	\caption{The intersections of three planes give the solution sets of a linear system of three equations in three unknowns.}
+\end{figure}
+\newpage 
 \begin{exercise}
-To get comfortable with this notation, write out the system \eqref{eq:m_eq_n_var} when 
+To get comfortable with the notation in \eqref{eq:m_eq_n_var}, write out the system \eqref{eq:m_eq_n_var} when 
 \begin{enumerate}[(a)]
 	\item $n=2,m=3$, 
 	\item $m=3,n=2$, and 
