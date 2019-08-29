@@ -2192,33 +2192,20 @@ Now interpret the matrices in \eqref{eq:uniqueness_of_rref} as augmented matrice
 
 
 \subsection{Matrix operations}
-In order to define operations on the set of matrices, it will help to take a slightly more formal view of a matrix. First, recall that a \ti{sequence} is just a function $f:\mathbb{N} \to \mathbb{R}$. Denoting $f(n)$ by $f_n$, we visualize a sequence as a list of real numbers $(f_1,f_2,f_3,\cdots)$, indexed by $n \in \mathbb{N}$.
+In the preceding section, we viewed each elementary row operation as a function which takes as input a matrix and produces a new matrix. In the following, we will see that elementary row operations can equivalently be viewed as a function which takes as input \emph{two} matrices and returns a third matrix. This will lead us to define operations of addition and multiplication on \emph{entire matrices}, rather than on the just the rows of a matrix. We will also find it useful to define other operations on the set of matrices, which are not analogous to any familiar operations on the set of real numbers.
+\subsubsection{Formal definition of a matrix}
+In order to define operations on the set of matrices, it will help to take a slightly more formal view of a matrix. First, recall that a \emph{sequence} is just a function $f:\mathbb{N} \to \mathbb{R}$. \footnote{The notation $f:A \to B$ denotes a function $f$ from domain $A$ (the set of "inputs") to codomain $B$ (the set of "outputs") defined by $b=f(a)$ for all $a \in A$.} Denoting $f(n)$ by $f_n$, we visualize a sequence as a list of real numbers $(f_1,f_2,f_3,\cdots)$, indexed by $n \in \mathbb{N}$.
 
 \begin{example}
 Let $f:\mathbb{N} \to \mathbb{R}$ be defined by $f(n)=\frac{1}{n}$. Then we write the sequence $(f_1,f_2,f_3,\dots)=(1,\frac{1}{2},\frac{1}{3},\cdots)$.	
 \end{example}
 
 \begin{defn}[Matrix]\label{def:matrix}
-Let $\overline{n}=\{1,2,\cdots,n\}$. A \ti{matrix} is a function $A:\overline{m} \times \overline{n} \to \mathbb{R}$.	
+Let $\overline{n}=\{1,2,\cdots,n\}$. A \emph{matrix} is a function $A:\overline{m} \times \overline{n} \to \mathbb{R}$.	
 \end{defn}
 
-As we did with sequences, we denote $A(i,j)$ by $A_{ij}$. We then visualize the matrix $A$ as the rectangular array of the numbers $A_{ij}$ with $m$ rows and $n$ columns. Two matrices are \ti{equal} if they have the same size and if each of the corresponding entries are equal.
+As we did with sequences, we denote $A(i,j)$ by $A_{ij}$. We then visualize the matrix $A$ as the rectangular array of the numbers $A_{ij}$ with $m$ rows and $n$ columns. Two matrices are \emph{equal} if they have the same size and if each of the corresponding entries are equal.
 
-\begin{defn}[Diagonal matrix]
-\fixme{Do we use this for anything here? Should this be moved?}
-	The elements $A_{ii}$ (those with $i=j$) are the \ti{diagonal entries} of the matrix $A$. These form the \ti{main diagonal} of $A$. A matrix is said to be \ti{diagonal} if it is a square $(n \times n)$ matrix whose non-diagonal entries ($A_{ij}$ with $i \neq j$) are all zero.	
-\end{defn}
-
-\begin{example}
-The $n \times n$ \ti{identity matrix} is the diagonal matrix $I$ with elements
-\begin{align*}
-	I_{ij}=\delta_{ij}=\begin{cases}
-		1, \text{ if } i=j, \\
-		0, \text{ if } i \neq j
-	\end{cases}	
-	\end{align*}
-where $\delta$ is called the \ti{Kronecker delta symbol}.
-\end{example}
 
 \subsubsection{Matrix addition and scalar multiplication}
 The definition of a matrix in \ref{def:matrix} makes it clear how to define addition and scalar multiplication of matrices; namely, we define these operations pointwise, the same way we always do for any function: 
@@ -2252,54 +2239,79 @@ Let $A$ and $B$ be the same as in the previous exercise. Compute $2B$ and $A-2B$
 
 The usual rules of algebra apply to sums and scalar multiples of matrices, as the next theorem shows.
 
-\begin{thm}[Properties of matrix addition and scalar multiplication]
+\begin{thm}[Properties of matrix addition and scalar multiplication]\label{thm:matrix_add_scalar_multiply_properties}
 Let $A,B,$ and $C$ be matrices of the same size, and let $r$ and $s$ be scalars.
 	\begin{enumerate}[(i)]
-		\item $A+B=B+A$ (matrix addition is commutative)
 		\item $(A+B)+C=A+(B+C)$ (matrix addition is associative)
 		\item $A+0=A$ (the zero matrix is an additive identity)
+		\item Each matrix $A$ has an additive inverse $-A$ such that $A-A=0$.
+		\item $A+B=B+A$ (matrix addition is commutative) 
 		\item $r(A+B)=rA+rB$ (scalar multiplication distributes over matrix addition)
 		\item $(r+s)A=rA+sA$ (scalar multiplication distributes over scalar addition)
 		\item $r(sA)=(rs)A$ (associativity of scalar multiplication)
 	\end{enumerate}
+	These properties are exactly the same properties of addition and scalar multiplication of vectors. Indeed, we can view a vector in $\R^n$ as an $n \times 1$ (or $1 \times n$) matrix. \footnote{In \S 4 \fixme{Add link.}, we will see other sets which admit operations of addition and scalar multiplication which behave exactly like those of vectors. This will lead to the notion of an abstract \emph{vector space}.}
 \end{thm}
 
 
 \begin{pf}
-For each of these we need to show that $(1)$ the matrix on the left and right hand side of each equation has the same size, and $(2)$ each of the corresponding entries are equal. Condition $(1)$ holds for each since $A,B,$ and $C$ are all the same size. Condition $(2)$ holds in each case because of the corresponding properties of real numbers. For example, property $(i)$ holds for matrices $A$ and $B$ since $A_{ij}+B_{ij}=B_{ij}+A_{ij}$ holds for real numbers $A_{ij}$ and $B_{ij}$. The remaining properties are checked similarly and are left as an exercise.
+For each of these we need to show that $(1)$ the matrix on the left and right hand side of each equation has the same size, and $(2)$ each of the corresponding entries are equal. Condition $(1)$ holds for each since $A,B,$ and $C$ are all the same size. Condition $(2)$ holds in each case because of the corresponding properties of real numbers. For example, property $(iv)$ holds for matrices $A$ and $B$ since $A_{ij}+B_{ij}=B_{ij}+A_{ij}$ holds for real numbers $A_{ij}$ and $B_{ij}$. The remaining properties are checked similarly and are left as an exercise.
 \end{pf}
+
+\begin{exercise}
+Prove properties (ii)-(vii) in Theorem \ref{thm:matrix_add_scalar_multiply_properties}.	
+\end{exercise}
 
 \subsubsection{Matrix multiplication}
 We have seen in the previous sections that the process of forming linear combinations of the rows of a matrix is a fundamental one. We now introduce a systematic way of doing this. 
 
-Let $B$ be an $n \times p$ matrix with rows $\beta_1,\beta_2,\cdots, \beta_n$. Denote the $j$th entry of the $i$th row by $B_{ij}$. For example, if
+Let $B$ be an $m \times n$ matrix with rows $\beta_1,\beta_2,\cdots, \beta_m$. Denote the $j$th entry of the $i$th row by $B_{ij}$. For example, if
 \begin{align*}
 	B=\begin{bmatrix}
-		5&-1&2 \\ 15&4&8
+		1&2&3 \\ 4&5&6
 	\end{bmatrix}
 \end{align*}
-then $n=2, p=3, \beta_1=(5,-1,2), B_{12}=-1$, etc. Now construct an $m \times n$ matrix $C$ with rows $\gamma_1, \gamma_2,\cdots, \gamma_m$ by forming certain linear combinations of the rows of $B$. For example, let $C$ be given by
+then $m=2, n=3, \beta_1=(1,2,3), B_{12}=2$, etc. 
+Suppose we form a new $m \times n$ matrix $C$ whose rows $\gamma_1,\gamma_2, \cdots, \gamma_m$ are linear combinations of the rows of $B$. For example, if we take $B$ as above and let \footnote{These are not elementary row operations. We are just taking arbitrary linear combinations here.}
+\begin{align*}
+	\gamma_1&=2\beta_1-\beta_2, \\
+	\gamma_2&=\beta_1+2\beta_2,
+\end{align*}
+
+then 
+
 \begin{align*}
 	C=\begin{bmatrix}
-		2(5,-1,2)-1(15,4,8)\\
-		1(5,-1,2)+3(15,4,8)\\
-		-2(5,1,2)+6(15,4,8)
+		2(1,2,3)-1(4,5,6) \\
+		(1,2,3)+2(4,5,6)
 	\end{bmatrix}=\begin{bmatrix}
-		-5&-6&-4 \\
-		50&11&26 \\
-		80&22&44
-	\end{bmatrix}
-\end{align*} 
-Denoting the $i$th multiple of $j$th row of $B$ by $A_{ij}$, the $i$th row of $C$ is given by $\gamma_i=A_{i1}\beta_1+A_{i2}\beta_2+\cdots+A_{in}\beta_n=\sum_{j=1}^nA_{ij}\beta_j$. We see that the rows of $C$ are determined by $mn$ scalars $A_{ij}$ which are themselves the entries of an $m \times n$ matrix 
-	\begin{align*}
-		A=\begin{bmatrix}
-			2&-1\\1&3\\-2&6
-		\end{bmatrix}
-	\end{align*}
-Letting $C_{ik}$ denote the $k$th entry of the $i$th row of $C$, we see that $C_{ik}=\sum_{j=1}^n A_{ij}B_{jk}$. We define this matrix $C$ to be the \ti{product} of matrices $A$ and $B$.
+		-2&-1&0 \\ 9 & 12 & 15
+	\end{bmatrix}.
+\end{align*}
+
+Denoting the $i$th multiple of $j$th row of $B$ by $A_{ij}$, from the matrix above on the left we see that the rows of $C$ take the form
+\begin{align*}
+	\gamma_1&=A_{11}\beta_1+A_{12}\beta_2=\sum_{j=1}^2A_{1j}\beta_j, \\
+	\gamma_2&=A_{21}\beta_1+A_{22}\beta_2=\sum_{j=1}^2A_{2j}\beta_j.
+\end{align*}
+
+Thus, the rows of $C$ are determined by 4 scalars which are themselves entries in a $2 \times 2$ matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		A_{11} & A_{12} \\
+		A_{21} & A_{22}
+	\end{bmatrix}=\begin{bmatrix}
+		2 & -1 \\
+		1 & 2
+	\end{bmatrix}.
+\end{align*}
+
+Letting $C_{ik}$ denote the $k$th entry of the $i$th row of $C$, we see that $C_{ik}=\sum_{j=1}^2A_{ij}B_{jk}$. This is precisely the formula for the dot product of the $i$th row of $A$ with the $j$th column of $B$, viewing each as a vector in $\R^2$. For example, $C_{11}=A_{11}B_{11}+A_{12}B_{21}=2(1)+(-1)(4)=-2$.
+
+Generalizing this example, we wish to define the \emph{product} of two matrices $A$ and $B$ to be the matrix $C$ whose $ij$-entry $C_{ij}$ is the dot product of the $i$th row of $A$ with the $j$th column of $B$. We note immediately that, for this to make sense, the matrices $A$ and $B$ must be compatible sizes, in the sense that the set of rows of $A$ and the set of columns of $B$ must each consist of vectors of the same length, otherwise the dot products will not be defined. This leads us to the following definition.
 
 \begin{defn}[Matrix multiplication]\label{def:matrix_multiplication}
-	Let $A$ be an $m \times n$ matrix and $B$ be an $n \times p$ matrix. The \ti{product} of $A$ and $B$ is the $m \times p$ matrix $C$ whose $(i,j)$-entry is $C_{ij}=\sum_{k=1}^n A_{ik}B_{kj}$.
+	Let $A$ be an $m \times n$ matrix and $B$ be an $n \times p$ matrix. The \ti{product} of $A$ and $B$ is the $m \times p$ matrix $C$ whose $(i,j)$-entry is $C_{ij}=\sum_{k=1}^n A_{ik}B_{kj}$, which is the dot product of the $i$th row of $A$ with the $j$th column of $B$.
 \end{defn}
 
 \begin{example}[Row-column rule for matrix multiplication]
@@ -2313,7 +2325,16 @@ Letting $C_{ik}$ denote the $k$th entry of the $i$th row of $C$, we see that $C_
 
 
 \begin{example}
-Taking $A$ and $B$ to be the matrices in the discussion at the beginning of this section, their product is  
+Taking $A$ and $B$ to be the matrices
+\begin{align*}
+	A&=\begin{bmatrix}
+			2&-1\\1&3\\-2&6
+		\end{bmatrix}, \\
+	B&=	\begin{bmatrix}
+		5&-1&2 \\ 15&4&8
+	\end{bmatrix},
+\end{align*}
+their product is  
 \begin{align*}
 	C&=AB \\
 	&=\begin{bmatrix}
@@ -2329,7 +2350,7 @@ Taking $A$ and $B$ to be the matrices in the discussion at the beginning of this
 \end{align*}
 \end{example}
 
-Notice that the product of two matrices is only defined if the number of \ti{columns} in the first matrix coincides with the number of \ti{rows} in the second matrix. In this case, multiplying an $n \times p$ matrix and a $p \times m$ matrix gives an $n \times m$ matrix.
+As discussed above, the product of these matrices is defined since the length of the rows (or, equivalently, the number of \emph{columns}) in the first matrix coincides with the length of the columns (or, equivalently, the number of \emph{rows}) in the second matrix. In this case, multiplying an $3 \times 2$ matrix and a $2 \times 3$ matrix gave a $3 \times 3$ matrix.
 
 \begin{exercise}
 	If $A$ is a $3 \times 5$ matrix and $B$ is a $5 \times 2$ matrix, what are the sizes of $AB$ and $BA$, if they are defined?	
@@ -2355,13 +2376,6 @@ Note that this definition of matrix multiplication agrees with our notation $AX=
 			y_1 \\ y_2 \\ \vdots \\ y_m
 		\end{bmatrix}
 	\end{align*}
-
-\begin{defn}[Power of a matrx]
-	If $A$ is an $n\times n$ matrix and $k$ is a positive integer, then the \ti{$k$th power of $A$}, $A^k$, is the product of $k$ copies of $A$:
-\begin{align*}
-	A^k=\underbrace{A \cdots A}_{\text{$k$ times}}.
-\end{align*}
-\end{defn}
 
 \begin{thm}[Properties of matrix multiplication]\label{thm:properties_of_matrix_multiplication}
 	Let $A$ be an $m \times n$ matrix, and let $B$ and $C$ have sizes for which the indicated sums and products are defined. Then the following hold for all such matrices $A,B,$ and $C$.
@@ -2401,10 +2415,18 @@ Applying the definition of matrix multiplication, we have
 so the corresponding entries are equal, showing that (i) holds. Properties (ii) - (v) are checked similarly, and are left as exercises.	
 \end{pf}
 
-We have seen in theorem Theorem \ref{thm:properties_of_matrix_multiplication} that some of the properties of multiplication of real numbers also hold for matrices. However, it is not true that \ti{all} such properties hold for matrix multiplication, as the next three examples show.
+\begin{defn}[Power of a matrx]
+	If $A$ is an $n\times n$ matrix and $k$ is a positive integer, then the \ti{$k$th power of $A$}, $A^k$, is the product of $k$ copies of $A$:
+\begin{align*}
+	A^k=\underbrace{A \cdots A}_{\text{$k$ times}}.
+\end{align*}
+Since matrix multiplication is associative, there is no need to insert parenthesis into the expression above.
+\end{defn}
+
+We have seen in theorem Theorem \ref{thm:properties_of_matrix_multiplication} that some of the properties of multiplication of real numbers also hold for matrices (e.g., associativity). However, it is not true that \emph{all} such properties hold for matrix multiplication, as the next three examples show.
 
 \begin{example}[Matrix multiplication is not commutative] 
-	Let $A=\begin{bmatrix}
+If $A$ is a $3 \times 2$ matrix and $B$ is a $2 \times 4$ matrix, then their product is a $3 \times 4$ matrix. However, the product $BA$ is not even defined, since the sizes are not compatible! This shows that matrix multiplication is not commutative. Even if we choose $A$ and $B$ such that both $AB$ and $BA$ are defined, these might not be equal. For instance, let $A=\begin{bmatrix}
 		5&1\\3&-2
 	\end{bmatrix}$ and $B=\begin{bmatrix}
 		2&0 \\ 4&3
@@ -2412,10 +2434,10 @@ We have seen in theorem Theorem \ref{thm:properties_of_matrix_multiplication} th
 	16 & 9 \\ -18 & -15
 \end{bmatrix}$ and  $BA=\begin{bmatrix}
 	4 & 6 \\ 11 & -3
-\end{bmatrix}$. Since $AB \neq BA$, this example shows that matrix multiplication is not, in general, commutative.
+\end{bmatrix}$. Hence $AB$ and $BA$ are both defined, but $AB \neq BA$.
 \end{example}
 
-\begin{example}[Matrix multiplication does not satisfy cancellation laws]
+\begin{example}[Matrix multiplication does not satisfy the cancellation laws]
 For real numbers, the cancellation law says that if $AB=AC$, then $B=C$. This does not hold, in general, for matrices. As an example, let $A=\begin{bmatrix}
 		2&-3\\-4&6
 	\end{bmatrix},$ $B=\begin{bmatrix}
@@ -2424,7 +2446,7 @@ For real numbers, the cancellation law says that if $AB=AC$, then $B=C$. This do
 		5&-2\\3&1
 	\end{bmatrix}$.	We see that $AB=BC=\begin{bmatrix}
 	1 & -7 \\ -2 & 14
-\end{bmatrix}$, but $B \neq C$. One can show similarly that the other cancellation law ($BA=CA \implies B=C$) also does not hold in general for matrices.
+\end{bmatrix}$, but $B \neq C$. One can show similarly that the other cancellation law ($BA=CA \implies B=C$) \footnote{Note that the two cancellation laws are not equivalent  here since matrix multiplication is not commutative.} also does not hold in general for matrices.
 \end{example}
 
 \begin{example}[Zero products do not imply one matrix is zero]
@@ -2435,8 +2457,9 @@ For real numbers, the cancellation law says that if $AB=AC$, then $B=C$. This do
 \end{bmatrix}$. Then $AB=0$, but neither $A$ nor $B$ is the zero matrix. 
 \end{example}
 
-\subsubsection{Transpose of a matrix}
+We now define two operations which are not analogous to any familiar operations on the set of real numbers.
 
+\subsubsection{Transpose of a matrix}
 \begin{defn}[Transpose of a matrix]
 	Given an $m \times n$ matrix $A$, the \ti{transpose} of $A$ is the $n \times m$ matrix, denoted $A^T$, whose columns are formed from the corresponding rows of $A$, that is, given $A$, $A^T$ is the matrix with elements $(A^T)_{ij}=A_{ji}$. 
 \end{defn}
@@ -2449,7 +2472,7 @@ For real numbers, the cancellation law says that if $AB=AC$, then $B=C$. This do
 \end{bmatrix}$.
 \end{example}
 
-\begin{thm}[Properties of $A^T$]
+\begin{thm}[Properties of $A^T$]\label{thm:transpose_properties}
 	Let $A$ and $B$ be matrices whose sizes are appropriate for the following sums and products to be defined. Then
 \begin{enumerate}[(i)]
 	\item $(A^T)^T=A$
@@ -2471,8 +2494,44 @@ Clearly the matrices on each side are the same size since $A$ and $B$ are the sa
 This proves property (iv).
 \end{pf}
 
+\begin{exercise}
+Prove properties (i)-(iii) of Theorem \ref{thm:transpose_properties}.	
+\end{exercise}
+
+
 \subsubsection{Trace of a matrix}
-\fixme{Is this a good place for this?}
+There is another useful property defined for \emph{square} ($n \times n$) matrices.
+
+\begin{defn}[Trace of a matrix]
+	The \emph{trace} of an $n \times n$ matrix $A$ is the sum of its diagonal entries:
+	\begin{align*}
+		\text{Tr }A=\sum_{i=1}^n A_{ii}.
+	\end{align*}
+\end{defn}
+
+\begin{example}
+Let $A=\begin{bmatrix}
+	1&2&3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
+\end{bmatrix}$. Then
+\begin{align*}
+	\text{Tr }A=1+5+9=15.
+\end{align*}	
+\end{example}
+
+\begin{thm}[Properties of the trace]\label{thm:trace_properties}
+	Let $A,B$ be $n \times n$ matrices and $c$ a scalar. Then
+	\begin{enumerate}[(i)]
+		\item $\Tr (A+B)=\Tr A + \Tr B$,
+		\item $\Tr(cA)=c\Tr A$, 
+		\item $\Tr A^T=\Tr A$,
+		\item $\Tr AB= \Tr BA$,
+	\end{enumerate}
+\end{thm}
+
+\begin{exercise}
+Prove Theorem \ref{thm:trace_properties}.	
+\end{exercise}
+
 
 
 \subsection{Invertible matrices}
