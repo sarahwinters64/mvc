@@ -2748,7 +2748,7 @@ Let $E$ be the elementary matrix corresponding to the elementary row operation $
 \end{thm}
 
 \begin{pf}
-We will show that $(i) \implies (ii) \implies (iii) \implies (i)$. Assume $(i)$ is true. Let $R$ be the RREF of $A$. Then $R=E_k\cdots E_2 E_1 A$, where $E_1,\cdots,E_k$ are elementary matrices. Since each $E_j$ is invertible, we have $A=E_1^{-1} \cdots E_k^{-1}R$. Since products of invertible matrices are invertible, we see that $A$ is invertible if and only if $R$ is invertible. Since $R$ is a square matrix in RREF, $R$ is invertible iff it is the $n \times n$ identity matrix. Hence, $(i) \implies (ii)$. $(iii)$ follows immediately from $(ii)$. $(i)$ follows immediately from $(iii)$.	
+We will show that $(i) \implies (ii) \implies (iii) \implies (i)$. Assume $(i)$ is true. Let $R$ be the RREF of $A$. Then $R=E_k\cdots E_2 E_1 A$, where $E_1,\cdots,E_k$ are elementary matrices. Since each $E_j$ is invertible, we have $A=E_1^{-1} \cdots E_k^{-1}R$. Since products of invertible matrices are invertible, we see that $A$ is invertible if and only if $R$ is invertible. Since $R$ is a square matrix in RREF, $R$ is invertible iff it is the $n \times n$ identity matrix (otherwise, it would have a row of zeros; we will prove in section 3 \fixme{Add link.} that any such matrix is singular). Hence, $(i) \implies (ii)$. $(iii)$ follows immediately from $(ii)$. $(i)$ follows immediately from $(iii)$ by Theorem \ref{thm:properties_of_A_inverse}.	
 \end{pf}
 
 \begin{cor}[How to compute $A^{-1}$]\label{cor:how_to_compute_a_inverse}
@@ -2792,7 +2792,7 @@ Find the inverse of the matrix $A=\begin{bmatrix}
 \end{exercise}
 
 \begin{exercise}
-   Let $c$ be a  constant. Find the inverse of each elementary matrix and check your answer.
+   Let $c$ be a  constant. Find the inverse of each elementary matrix and check your answer by multiplying it by the original matrix.
     \begin{enumerate}[(a)]
         \item $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$,
         \item $\begin{bmatrix} 1 & c \\ 0 & 1 \end{bmatrix}$,
