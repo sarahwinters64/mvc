@@ -2532,18 +2532,16 @@ Let $A=\begin{bmatrix}
 Prove Theorem \ref{thm:trace_properties}.	
 \end{exercise}
 
-
-
 \subsection{Invertible matrices}
 \subsubsection{Elementary matrices}
-If $B$ is a given matrix and $C$ is obtained from $B$ by  an elementary row operation, then each row of $C$ is a linear combination of the rows of $B$, and hence there is a matrix $A$ such that $AB=C$. In general there are many such matrices $A$, and among all of these it is convenient and possible to choose one having a number of special properties. First, we need to introduce a class of matrices. \fixme{Give a better introduction here.} 
+We will now see that elementary row operations can be represented by multiplication by matrices. 
 
 \begin{defn}[Elementary matrix]\label{def:elementary_matrix}
-	An $n \times n$ (square) matrix is said to be an \ti{elementary matrix} if it can be obtained from the $n \times n$ identity matrix by means of a single elementary row operation.
+	An $n \times n$ (square) matrix is said to be an \emph{elementary matrix} if it can be obtained from the $n \times n$ identity matrix by means of a single elementary row operation.
 \end{defn}
 
 \begin{exercise}
-Verify that the complete list of $2 \times 2$ elementary matrices is 
+Let $c$ be a constant. Verify that the complete list of $2 \times 2$ elementary matrices is 
 	\begin{align*}
 	\begin{bmatrix}
 		0 & 1 \\ 1 & 0
@@ -2556,7 +2554,7 @@ Verify that the complete list of $2 \times 2$ elementary matrices is
 		c & 0 \\ 0 & 1
 	\end{bmatrix} (c \neq 0), \begin{bmatrix}
 		1 & 0 \\ 0 & c
-	\end{bmatrix} (c \neq 0)
+	\end{bmatrix} (c \neq 0).
 \end{align*}
 \end{exercise}
 
@@ -2567,7 +2565,7 @@ If $e$ is an elementary row operation and $E$ the $n \times n$ elementary matrix
 \begin{pf}
 We consider each type of elementary row operation separately.
 
-(i) Suppose $r \neq s$ and let $e$ be the elementary row operation which replaces row $r$ by row $r$ plus $c$ times row $s$. We need to show that $EA=e(A)$. We can write the elements of the corresponding elementary matrix $E$ as 
+(i) Suppose $r \neq s$ and let $e$ be the elementary row operation which replaces row $r$ by row $r$ plus $c$ times row $s$. We need to show that $EA=e(A)$. We can write the elements of the corresponding elementary matrix $E$ as \footnote{In the following $\delta_{ij}$ denotes the $ij$-component of the identity matrix; that is, $\delta_{ij}=1$ if $i=j$ and $\delta_{ij}=0$ if $i \neq j$.}
 	 \begin{align*}
 	 	E_{ik}=\begin{cases}
 	 		\delta_{ik}, &i \neq r \\
@@ -2625,15 +2623,12 @@ which shows $EA=e(A)$.
 \end{pf}
 
 \begin{exercise}
-Let $E_1=\begin{bmatrix}
-	1&0&0 \\ 0&1&0 \\ -4&0&1
-\end{bmatrix}, E_2=\begin{bmatrix}
-	0&1&0 \\ 1&0&0 \\ 0&0&1
-\end{bmatrix}$, and $E_3=\begin{bmatrix}
-	1&0&0 \\ 0&1&0 \\ 0&0&5
-\end{bmatrix}$, and let $A$ be an arbitrary $3 \times 3$ matrix. Compute 
-$E_1A, E_2A,$ and $E_3A$, and describe how these products can be obtained by elementary row operations on $A$.	
+\begin{enumerate}[(a)]
+    \item Let $E=\begin{bmatrix} 1 & 0 \\ -3 & 1 \end{bmatrix}$ be the elementary matrix obtained from the $2 \times 2$ identity matrix by replacing $R2 \mapsto R2-3R1$. Consider the matrix $A=\begin{bmatrix} 1& 2 \\ 3 & 4 \end{bmatrix}$. Show that the matrix product $EA$ is equal to the result of performing the row replacement $R2 \mapsto R2-3R1$ on $A$.
+    \item Let $E=\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ be the elementary matrix obtained from the $2 \times 2$ identity matrix by the interchange $R1 \leftrightarrow R2$. Consider the matrix $A=\begin{bmatrix} 1& 2 \\ 3 & 4 \end{bmatrix}$. Show that the matrix product $EA$ is equal to the result of interchanging the two rows of $A$.
+\end{enumerate}
 \end{exercise}
+
 
 \begin{cor}
 Let $A$ and $B$ be $m \times n$ matrices. Then $B$ is row-equivalent to $A$ if and only if $B=PA$, where $P$ is a product of $m \times m$ elementary matrices.	
@@ -2645,15 +2640,24 @@ $(\implies)$ Suppose $B$ is row-equivalent to $A$. Let $E_1, E_2, \cdots, E_s$ b
 $(\impliedby)$ Suppose $B=PA$ where $P=E_s \cdots E_2E_1$ and the $E_i$ are $m \times m$ elementary matrices. Then $E_1 A$ is row-equivalent to $A$, and $E_2(E_1 A)$ is row-equivalent to $E_1 A$, so by transitivity $E_2E_1A$ is row-equivalent to $A$. It follows by induction that $(E_s \cdots E_1)A$ is row-equivalent to $A$.	
 \end{pf}
 
-\fixme{Exercise here?}
+\begin{exercise}
+Let $E_1=\begin{bmatrix}
+	1&0&0 \\ 0&1&0 \\ -4&0&1
+\end{bmatrix}, E_2=\begin{bmatrix}
+	0&1&0 \\ 1&0&0 \\ 0&0&1
+\end{bmatrix}$, and $E_3=\begin{bmatrix}
+	1&0&0 \\ 0&1&0 \\ 0&0&5
+\end{bmatrix}$, and let $A$ be an arbitrary $3 \times 3$ matrix. Compute 
+$E_1A, E_2A,$ and $E_3A$, and describe how these products can be obtained by elementary row operations on $A$.	
+\end{exercise}
 
 \subsubsection{Invertible matrices}
-Suppose $P$ is an $m \times m$ matrix which is a product of elementary matrices. Then, for each $m \times n$ matrix $A$, the matrix $B=PA$ is row-equivalent to $A$. By symmetry, $A$ is therefore row-equivalent to $B$ and there is a product $Q$ of elementary matrices such that $A=QB$. In particular, this is true when $A$ is the $m \times m$ identity matrix. 
+Suppose $P$ is an $m \times m$ matrix which is a product of elementary matrices. Then, for each $m \times n$ matrix $A$, the matrix $B=PA$ is row-equivalent to $A$. By symmetry (see Lemma \ref{lem:row_equivalence_is_an_equivalence_relation}), $A$ is therefore row-equivalent to $B$ and there is a product $Q$ of elementary matrices such that $A=QB$. In particular, this is true when $A$ is the $m \times m$ identity matrix. 
 
 In other words, there is an $m \times m$ matrix $Q$, which is itself a product of elementary matrices, such that $QP=I$. As we shall soon see, the existence of a $Q$ with $QP=I$ is equivalent to the fact that $P$ is a product of elementary matrices.
 
 \begin{defn}[Invertible matrix]
-	Let $A$ be an $n \times n$ matrix. An $n \times n$ matrix $B$ such that $BA=I$ is called a \ti{left inverse} of $A$; an $n \times n$ matrix $B$ such that $AB=I$ is called a \ti{right inverse} of $A$. If $AB=BA=I$, then $B$ is called a \ti{two-sided inverse} (or just \ti{inverse}) of $A$ and $A$ is said to be \ti{invertible}.
+	Let $A$ be an $n \times n$ matrix. An $n \times n$ matrix $B$ such that $BA=I$ is called a \emph{left inverse} of $A$; an $n \times n$ matrix $B$ such that $AB=I$ is called a \emph{right inverse} of $A$. If $AB=BA=I$, then $B$ is called a \emph{two-sided inverse} (or just \emph{inverse}) of $A$ and $A$ is said to be \emph{invertible} or \emph{non-singular}. A matrix which is not invertible is called a \emph{singular} matrix.
 \end{defn}
 
 \begin{exercise}
@@ -2675,7 +2679,7 @@ Suppose $BA=I$ and $AC=I$. Then
 \end{align*}	
 \end{pf}
 
-Thus, if $A$ has a two-sided inverse, then it is unique. We denote the unique two-sided inverse by $A^{-1}$ and call it \ti{the inverse} of $A$.
+Theorem \ref{thm:uniqueness_of_inverses} says that if a matrix $A$ has a left inverse and a right inverse, then these must be equal. In particular, if $A$ has a two-sided inverse, this theorem shows that it is unique. We denote the unique two-sided inverse by $A^{-1}$ and call it \emph{the} inverse of $A$.
 
 \begin{thm}[Properties of $A^{-1}$]\label{thm:properties_of_A_inverse} \hspace{10cm}
 		\begin{enumerate}[(i)]
@@ -2787,116 +2791,34 @@ Find the inverse of the matrix $A=\begin{bmatrix}
 \end{bmatrix}$, if it exists.	
 \end{exercise}
 
-Let us now make some general statements about the invertibility of square matrices. The simplest square matrix is a $1 \times 1$ matrix, which is just a number, $a_{11}$. Obviously, a $1 \times 1$ matrix is invertible if and only if $a_{11} \neq 0$.
+\begin{exercise}
+   Let $c$ be a  constant. Find the inverse of each elementary matrix and check your answer.
+    \begin{enumerate}[(a)]
+        \item $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$,
+        \item $\begin{bmatrix} 1 & c \\ 0 & 1 \end{bmatrix}$,
+        \item $\begin{bmatrix} 1 & 0 \\ c & 1 \end{bmatrix}$,
+        \item $\begin{bmatrix} c & 0 \\ 0 & 1 \end{bmatrix}$, ($c \neq 0$)
+    \end{enumerate}
+\end{exercise}
 
-Let us now consider a general $2 \times 2$ matrix $A$:
-\begin{align*}
-	A=\begin{bmatrix}
-		a_{11} & a_{12} \\ a_{21} & a_{22}
-	\end{bmatrix}.
-\end{align*}
-and see what happens when its augmented matrix $A$ is row-reduced. For $A$ to be invertible each column must have a pivot, so we cannot have $a_{11}$ and $a_{12}$ both zero. We therefore assume $a_{11} \neq 0$ (swapping $R1$ and $R2$, if necessary). If we multiply the second row by $a_{11}$ and then subtract $a_{21} \times R1$ from $R2$, we find that $A$ is row-equivalent to the following two matrices:
-\begin{align*}
-	\begin{bmatrix}
-		a_{11}& a_{12} \\ a_{11}a_{12} & a_{11}a_{22}
-	\end{bmatrix} \sim \begin{bmatrix}
-		a_{11}& a_{12} \\ 
-		0 & a_{11}a_{22}-a_{12}a_{21}
-	\end{bmatrix}
-\end{align*} 
-To have a pivot in the $(2,2)$-position, we must have that
-\begin{equation}
-	a_{11}a_{22}-a_{12}a_{21} \neq 0.
-\end{equation}
+\begin{thm}[Properties of $A^{-1}$]\label{thm:properties_of_inverse_matrix}
+   Let $A$ be an $n \times n$ matrix.
+    \begin{enumerate}[(a)]
+        \item If $A$ is invertible, then so is $A^{-1}$ and $(A^{-1})^{-1}=A$.
+        \item If both $A$ and $B$ are invertible, then so is $AB$ and $(AB)^{-1}=B^{-1}A^{-1}$.
+        \item If $A$ is invertible, then so is $A^T$ and $(A^T)^{-1}=(A^{-1})^T$.
+    \end{enumerate}  
+    Property (b) generalizes to any finite product of matrices:
+    \begin{align*}
+        (A_1A_2\dots A_k)^{-1}=A_k^{-1}\cdots A_2^{-1} A_1^{-1}.
+    \end{align*}
+\end{thm}
 
-\begin{defn}[Determinant of a $2 \times 2$ matrix]
-Let $A$ be a $2 \times 2$ matrix. The quantity $a_{11}a_{22}-a_{12}a_{21}$ is called the \ti{determinant} of $A$, and is denoted $\det A$.
-\end{defn}
-
-\begin{prop}[Invertibility of a $2 \times 2$ matrix]\label{prop:2_by_2_invertibility}
-A $2 \times 2$ matrix $A$ is invertible if and only if $\det A \neq 0$.
-\end{prop}
-
-\begin{pf}
-We have just seen that if $A$ is invertible, then $\det A \neq 0$. 
-
-To prove the converse, assume $\det A \neq 0$. Since $\det A=a_{11}a_{22}-a_{12}a_{21}$, either $a_{11} \neq 0$ or $a_{12} \neq 0$. Assuming $a_{11} \neq 0$, we can divide by $a_{11}$ to solve for $a_{22}$:
-\begin{align*}
-	a_{22}=\frac{\det A+a_{12}a_{21}}{a_{11}}
-\end{align*} 
-	and therefore
-	\begin{align*}
-		A=\begin{bmatrix}
-			a_{11} & a_{12} \\
-			a_{21} & \frac{\det A+a_{12}a_{21}}{a_{11}}
-		\end{bmatrix}.
-	\end{align*}
-Multiplying $R2$ by $a_{11}$ and subtracting $a_{21} \times R1$ from the new $R2$, we find
-\begin{align*}
-	A \sim \begin{bmatrix}
-		a_{11} & a_{12} \\
-		a_{11}a_{21} & \det A + a_{12}a_{21}
-	\end{bmatrix} \sim \begin{bmatrix}
-		a_{11} & a_{12} \\
-		0 & \det A
-	\end{bmatrix}
-\end{align*}
-Hence, $A$ has two pivot columns, and is therefore invertible.
-\end{pf}
-
-The previous proposition turns out to hold for all square matrices. That is, the invertibility of any square matrix is determined by a single combination of its entries, and the matrix is invertible as long as this combination is not zero. Thus, if we know how to compute the determinant of a square matrix, we can check immediately if the matrix is invertible by checking whether the determinant is different from zero. 
-
-Let us see this for the $3 \times 3$ case. A general $3 \times 3$ matrix can be written as 
-\begin{align*}
-	A=\begin{bmatrix}
-		a_{11} & a_{12} & a_{13} \\
-		a_{21} & a_{22} & a_{23} \\
-		a_{31} & a_{32} & a_{33}
-	\end{bmatrix}
-\end{align*}
-As before, the first column must be a pivot column if $A$ is invertible, so let us again assume that $a_{11} \neq 0$ (again, we can achieve this by swapping rows, if necessary). If we multiply the second and third rows of $A$ by $a_{11}$ and then subtract appropriate multiples of the first row from the other two rows, we find that $A$ is row-equivalent to the following two matrices:
-\begin{align*}
-	\begin{bmatrix}
-		a_{11} & a_{12} & a_{13} \\
-		a_{11}a_{21} & a_{11}a_{22} & a_{11}a_{23} \\
-		a_{11}a_{31} & a_{11}a_{32} & a_{11}a_{33} 
-	\end{bmatrix} \sim \begin{bmatrix}
-		a_{11} & a_{12} & a_{13} \\
-		0 & a_{11}a_{22}-a_{12}a_{21} & a_{11}a_{23}-a_{13}a_{21} \\
-		0 & a_{11}a_{32}-a_{12}a_{31} & a_{11}a_{33}-a_{13}a_{31}
-	\end{bmatrix}
-\end{align*}
-For $A$ to be invertible, either the $(2,2)$- or $(3,2)$-entry in the matrix on the right must be nonzero. Making another row interchange if necessary, we assume the $(2,2)$-entry is non-zero. Now multiply the third row by $a_{11}a_{22}-a_{12}a_{21}$, and to the new row 3 add $-(a_{11}a_{32}-a_{12}a_{31}) \times R2$. This shows that 
-\begin{align*}
-	A \sim \begin{bmatrix}
-		a_{11} & a_{12} & a_{13} \\
-		0 & a_{11}a_{22}-a_{12}a_{21} & a_{11}a_{23}-a_{13}a_{21} \\
-		0 & 0 & a_{11}\det A
-	\end{bmatrix}
-\end{align*}
-where
-\begin{equation}\label{eq:det_3_by_3}
-	\det A=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31} \\
-\end{equation}
-Thus, for $A$ to be invertible, again we find that $\det A \neq 0$. We will not attempt to prove the converse in the same way as before, as the algebra is too unwieldy. 
-
-The determinant of a $3 \times 3$ matrix turned out to have a much more complicated dependence on the entries of $A$ than in the case of a $2 \times 2$ matrix. In a later section we will study the theory of determinants in a much more systematic way. Until then, we will assume that Proposition \ref{prop:2_by_2_invertibility} holds for any $n \times n$ matrix and use freely the formulas for the determinants of $2 \times 2$ and $3 \times 3$ matrices. It is worth noting that the formula for the determinant of a $3 \times 3$ matrix given in Eq. \eqref{eq:det_3_by_3} can be rewritten as 
-\begin{align*}
-	\det A &=a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{23}a_{31})+a_{13}(a_{21}a_{32}-a_{22}a_{31}) \\
-	&=a_{11}\begin{bmatrix}
-		a_{22} & a_{23} \\ a_{32} & a_{33}
-	\end{bmatrix}-a_{12}\begin{bmatrix}
-		a_{21} & a_{23} \\
-		a_{31} & a_{33}
-	\end{bmatrix}+a_{13}\begin{bmatrix}
-		a_{21} & a_{22} \\ 
-		a_{31} & a_{32}
-	\end{bmatrix}.
-\end{align*}
-which is easier to remember. The fact that the determinant of a $3 \times 3$ matrix $A$ can be written in terms of determinants of $2 \times 2$ matrices whose entries are certain entries in $A$ is no coincidence, and we shall see that the determinant for an $n \times n$ matrix for $n>3$ has a similar structure.
+\begin{exercise}
+    Prove Theorem \ref{thm:properties_of_inverse_matrix}.
+\end{exercise}
 
 \subsubsection{Relation to linear systems}
-
 \begin{thm}[Solution sets of $n$ linear equations in $n$ unknowns] \label{thm:solution_sets_n_equations_n_unknowns}
 		For an $n \times n$ matrix $A$, the following are equivalent.
 	\begin{enumerate}[(a)]
