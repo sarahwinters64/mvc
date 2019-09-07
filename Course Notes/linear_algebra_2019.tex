@@ -2540,7 +2540,7 @@ We will now see that elementary row operations can be represented by multiplicat
 	An $n \times n$ (square) matrix is said to be an \emph{elementary matrix} if it can be obtained from the $n \times n$ identity matrix by means of a single elementary row operation.
 \end{defn}
 
-\begin{exercise}
+\begin{exercise}\label{ex:2_by_2_elementary_matrices}
 Let $c$ be a constant. Verify that the complete list of $2 \times 2$ elementary matrices is 
 	\begin{align*}
 	\begin{bmatrix}
@@ -3394,7 +3394,7 @@ Let $A=\begin{bmatrix}
 \end{bmatrix}$. Compute $\det A$ and $\det A^T$. What do you notice?	
 \end{exercise}
 
-\begin{thm}[Determinant of a Transpose]
+\begin{thm}[Determinant of a Transpose]\label{thm:determinant_of_a_transpose}
 	For any $n \times n$ matrix, $\det A^T=\det A$.
 \end{thm}
 
@@ -3431,13 +3431,130 @@ Since $(A_{i1})^T$ is a $k \times k$ matrix, by the inductive hypothesis we have
 which is the cofactor expansion of $\det A$ along the first \emph{column}. Since the determinant of $A$ can be computed by cofactor expansion along any row or column, we have shown that $\det A^T=\det A$, as desired. 
 \end{proof}
 
+\subsection{Row Operations and Determinants}
+In the previous section, we saw that the determinant of an $n \times n$ matrix $A$ can be computed by cofactor expansion by the formula
+\begin{align*}
+	\det A=\sum_{j=1}^na_{ij}C_{ij}
+\end{align*}
+across any row or column. By choosing a row or column with many zero entries, the computation of the determinant is greatly simplified. However, for a matrix which has no zero entries, the computation quickly becomes very tedious, as cofactor expansion requires $\mathcal{O}(n!)$ operations. To see how quickly the complexity of the computation grows, for $n=25$, $n!\cong 1.5 \times 10^{25}$. A computer performing $10^{12}$ operations per second would take 500,000 years to compute the determinant of a $25 \times 25$ matrix by this method! By today's standards, a $25 \times 25$ matrix is \emph{very small}, so we clearly need a more practical way to compute determinants.
 
+It was proved in Theorem \ref{thm:determinant_of_a_triangular_matrix} that the determinant of a triangular $n \times n$ matrix $T$ requires only $n$ multiplications, since the determinant is simply the product of the diagonal entries of $T$. Since any row-echelon form, $U$, of an $n \times n$ matrix $A$ is an upper triangular matrix, a strategy to compute the determinant of $A$ efficiently would be to row-reduce $A$ to $U$, and then compute the determinant of $U$. To do so, we will need to know how $\det U$ is related to $\det A$.
 
+\begin{exercise}
+Consider a general $3 \times 3$ matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}. 
+\end{align*}	
+Let $B$ be a matrix row-equivalent to $A$ by the following elementary row operations. In each case, compute $\det B$ and compare it to $\det A$.
+\begin{enumerate}[(a)]
+	\item $R1 \mapsto c R_1, c \neq 0$.
+	\item $R1 \leftrightarrow R2$.
+	\item $R1 \mapsto R1+cR2$.
+\end{enumerate}
+\end{exercise}
 
+\begin{thm}[Elementary row operations and determinants]
+	Let $A$ be an $n \times n$ matrix. Then
+	\begin{enumerate}[(a)]
+		\item Row replacements do not change $\det A$.
+		\item Each interchange changes the sign of $\det A$.
+		\item Multiplying a row by $c$ multiplies $\det A$ by $c$.
+	\end{enumerate}
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/ero_and_det}
+	\end{center}
+\end{thm}
+To prove this theorem, it will be useful to rephrase it in terms of elementary matrices, as follows.
+\begin{thm}[Elementary matrices and determinants]\label{thm:elementary_matrices_and_determinants}
+	If $A$ is an $n \times n$ matrix and $E$ is an $n \times n$ elementary matrix, then
+	\begin{align*}
+		\det EA=(\det E)(\det A)
+	\end{align*}
+	where
+	\begin{align*}
+		\det E=\begin{cases}
+			&1 \text{ if $E$ is a row-replacement}, \\
+			&-1 \text{ if $E$ is an interchange}, \\
+			&c \text{ if $E$ is scaling by $c$}.
+		\end{cases}
+	\end{align*}
+\end{thm}
 
+\begin{proof}
+(By induction on $n$.) Using the list of $2 \times 2$ elementary matrices from Exercise \ref{ex:2_by_2_elementary_matrices}, we check that the determinant of each is indeed equal to $1,-1,$ or $c$, depending on the elementary row-operation. Taking a general $2 \times 2$ matrix $A=\begin{bmatrix}
+	a & b \\ c & d
+\end{bmatrix}$, we now check that the theorem holds in each case. For instance, if $E=\begin{bmatrix}
+	1 & 0 \\ k & 1
+\end{bmatrix}$, then we have
+\begin{align*}
+	\det EA&=\begin{vmatrix}
+		a+kc & b+kd \\
+		c & d
+	\end{vmatrix} \\
+	&=(a+kc)d-c(b+kd) \\
+	&=ad+kcd-cb-ckd \\
+	&=ad-bc \\
+	&=\det A.
+\end{align*} 
+This establishes the base case. Now suppose the theorem holds for $n=k$ and let $A$ be a $k \times k$ matrix. Expand $\det EA$ along a row which is unaffected by $E$, say row $i$:
+\begin{align*}
+	det EA=\sum_{j=1}^{k+1}a_{ij}(-1)^{i+j}\det (EA)_{ij}.
+\end{align*}
+Since the matrix $(EA)_{ij}$ is $k \times k$, by the inductive hypothesis $\det (EA)_{ij}=\alpha \det A_{ij}$, where $\alpha =1,-1,$ or $c$, depending on $E$. Thus
+\begin{align*}
+	\det EA &=\sum_{j=1}^{k+1}a_{ij}(-1)^{i+j}\det (EA)_{ij} \\
+	&=\sum_{j=1}^{k+1}a_{ij}(-1)^{i+j}(\alpha\det A_{ij}) \\
+	&=\alpha\sum_{j=1}^{k+1}a_{ij}(-1)^{i+j}\det A_{ij} \\
+	&=\alpha \det A,
+\end{align*}
+proving the theorem. In particular, taking $A=I$ to be the $n \times n$ identity matrix, we see that $\det E=1,-1$, or $c$, depending on $E$.
+\end{proof}
 
+Suppose now that an $n \times n$ matrix $A$ has been reduced to a row-echelon form $U$ by $r$ interchanges and any number of row-replacements. \footnote{Note that we do not need to scale any of the rows, since we only need to reduce $U$ to any REF, and not RREF.} Since $U$ is triangular, $\det U=\prod_{i=1}^n u_{ii}$ is the product of its diagonal entries $u_{ii}$. If $A$ is invertible, then each of these is nonzero. Otherwise, at lease one of the $u_{ii}$ is zero. Since we can write $U=PA$, where $P$ is a product of elementary matrices corresponding to the elementary row operations taking $A$ to $U$, by Theorem \ref{thm:elementary_matrices_and_determinants} we have
 
+\begin{cor}[Determinant of a matrix by row operations]\label{cor:determinant_of_a_matrix_by_row_operations}
+	Let $A$ be an $n \times n$ matrix which has been reduced to a row-echelon form $U$ by $r$ interchanges and any number of row-replacements. Then 
+	\begin{align*}
+		\det A=\begin{cases}
+			(-1)^r\prod_{i=1}^nu_{ii} \hspace{0.5cm}\text{ (if $A$ is invertible)}, \\
+			0 \hspace{2.7cm} \text{ (if $A$ is not invertible)},
+		\end{cases}
+	\end{align*}
+	where $\prod_{i=1}^nu_{ii}=\det U$.
+\end{cor}
 
+\fixme{Need to prove that, while $U$ is not unique, $\det U$ is. Or is this obvious?}
+
+\begin{cor}[Invertibility condition]
+	An $n \times n$ matrix $A$ is invertible if and only if $\det A \neq 0$.
+\end{cor}
+
+Most computers use the method of \ref{cor:determinant_of_a_matrix_by_row_operations} to compute $\det A$: when $A$ is $n \times n$, it can be shown that the computation of $\det A$ by row operations requires only $\mathcal{O}(n^3)$ operations. For $n=25$, this is only about 15,000 operations, which any modern computer can carry out in a fraction of a second.
+
+\begin{exercise}
+Use row-reduction to compute the determinant of 
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & -4 & 2 \\
+		-2 & 8 & -9 \\
+		-1 & 7 & 0
+	\end{bmatrix}.
+\end{align*}	
+\end{exercise}
+
+\begin{prop}[Matrices with proportional rows or columns]
+	If an $n \times n$ matrix $A$ has two rows or columns that are scalar multiples of each other, then $\det A=0$.
+\end{prop}
+
+\begin{proof}
+	If $A$ has two proportional rows, then by a row replacement it has a row of zeros and therefore $\det A=0$. If $A$ has two columns which are proportional, then $A^T$ has two rows which are proportional. By the same comments above applied to $A^T$, $det A^T=0$. Since $\det A^T=\det A$ (by Theorem \ref{thm:determinant_of_a_transpose}), $\det A=0$, completing the proof. 
+\end{proof}
+
+\subsection{Properties of Determinants}
 
 \end{document}
 
