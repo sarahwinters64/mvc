@@ -253,7 +253,7 @@
 \newcommand{\lo}{\text{\calligra o}\,}
 \newcommand{\dd}{\ensuremath{\mathscr{D}}}
 \newcommand{\sgn}{\text{sgn}}
-
+\newcommand\aug{\fboxsep=-\fboxrule\!\!\!\fbox{\strut}\!\!\!}
 
 \DeclareMathOperator{\ad}{ad}
 \DeclareMathOperator{\im}{Im}
@@ -2832,6 +2832,18 @@ Find the inverse of the matrix $A=\begin{bmatrix}
 It is clear that $(a) \implies $ both $(b)$ and $(c)$ by multiplying on the left by $A^{-1}$. If $(b)$ is true, then $A$ is row-equivalent to the identity matrix, hence $A$ is invertible by the previous theorem. This shows $(a)$ and $(b)$ are equivalent. Finally, suppose $(c)$ holds. Let $R$ be the RREF of $A$. We need to show that $R=I$. Let $Y=(0,\cdots,1)$. If $RX=E$ can be solved for this $Y$, then the last row of $R$ cannot be zero. Since $R$ is a square matrix in RREF, we must have $R=I$. This shows $(a)$ and $(c)$ are equivalent. $(b)$ and $(c)$ are equivalent, since they are both equivalent to $(a)$.	
 \end{pf}
 
+Note that Theorem \ref{thm:solution_sets_n_equations_n_unknowns} adds the following condition to the invertible matrix theorem:
+
+\begin{thm}[Invertible matrix theorem]\label{thm:invertible_matrix_theorem_part_2}
+	If $A$ is an $n \times n$ matrix, the following are equivalent.
+	\begin{enumerate}[(i)]
+		\item $A$ is invertible.
+		\item $A$ is row-equivalent to the $n \times n$ identity matrix.
+		\item $A$ is a product of elementary matrices.
+		\item The linear system $A\mathbf{x}=\mathbf{b}$ has a unique solution.
+	\end{enumerate} 	
+\end{thm}
+
 \begin{example}
 Consider the linear system
 \begin{align*}
@@ -3022,6 +3034,331 @@ Matrix products of the form $AA^T$ and $A^TA$ arise in a variety of applications
 		1 & -2 & 4 \\ 3 & 0 & -5
 	\end{bmatrix}$. Show explicitly that $A^TA$ and $AA^T$ are symmetric matrices.	
 \end{exercise}
+
+\section{Determinants}
+\subsection{Condition for invertibility}
+We have seen that not all $n \times n$ matrices have an inverse. We would now like to ask, given an arbitrary $n \times n$ matrix $A$, what is the set of conditions on the entries of $A$ which are both necessary and sufficient for $A$ to be invertible?
+
+In the case of a $1 \times 1$ matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		a
+	\end{bmatrix},
+\end{align*}
+we see immediately that $A$ is invertible if and only if $a \neq 0$.
+
+Consider now a general $2 \times 2$ matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{bmatrix}.
+\end{align*}
+If the first column of $A$ is zero, then $A$ is not invertible, so the first column of $A$ must have at least one nonzero entry. Interchanging the two rows if necessary, without loss of generality we may assume that $a_{11} \neq 0$. If $a_{21}=0$, then $A$ is of the form
+\begin{align*}
+	\begin{bmatrix}
+		a_{11} & a_{12} \\
+		0 & a_{22}
+	\end{bmatrix}
+\end{align*}
+and is therefore invertible if and only if $a_{22} \neq 0$, in which case the second column will also be a pivot column.
+
+If $a_{21}\neq 0$, then perform the following sequence of elementary row operations:
+\begin{align*}
+	\begin{bmatrix}
+		a_{11} & a_{12}  \\
+		a_{21} & a_{22}  
+	\end{bmatrix} \stackrel{\stackrel{R1 \mapsto a_{21}R1}{R2 \mapsto a_{11}R2}}{\longrightarrow} \begin{bmatrix}
+		a_{11}a_{21} & a_{12}a_{21}  \\
+		a_{11}a_{21} & a_{11}a_{22} 
+	\end{bmatrix} \stackrel{R2 \mapsto R2-R1}{\longrightarrow} \begin{bmatrix}
+		a_{11}a_{21} & a_{12}a_{21}\\
+		0 & a_{11}a_{22}-a_{12}a_{21}
+	\end{bmatrix}.
+\end{align*}
+Since $a_{11}a_{21} \neq 0$ by assumption, the first column is a pivot column. The second column is a pivot column if and only if the quantity $a_{11}a_{22}-a_{21}a_{12} \neq 0$. Note that the quantity $a_{11}a_{22}-a_{21}a_{12}$ is zero if any row or column of $A$ is zero, so the \emph{single} condition $a_{11}a_{22}-a_{21}a_{12} \neq 0$ is actually both necessary \emph{and sufficient} for $A$ to be invertible.
+
+Let $|A|\equiv a_{11}a_{22}-a_{21}a_{12}$. Assuming $|A| \neq 0$, we can continue to sequence of elementary row operations above on the augmented matrix $[A|I]$ to obtain a general formula for $A^{-1}$:
+\begin{align*}
+	\begin{bmatrix}
+		a_{11} & a_{12} & \aug & 1 & 0 \\
+		a_{21} & a_{22} & \aug & 0 & 1 
+	\end{bmatrix} \stackrel{\stackrel{R1 \mapsto a_{21}R1}{R2 \mapsto a_{11}R2}}{\longrightarrow} \begin{bmatrix}
+		a_{11}a_{21} & a_{12}a_{21} & \aug & a_{21} & 0 \\
+		a_{11}a_{21} & a_{11}a_{22} & \aug & 0 & a_{11}
+	\end{bmatrix} \stackrel{R2 \mapsto R2-R1}{\longrightarrow} \begin{bmatrix}
+		a_{11}a_{21} & a_{12}a_{21} & \aug & a_{21} & 0 \\
+		0 & a_{11}a_{22}-a_{12}a_{21} & \aug & -a_{21} & a_{11}
+	\end{bmatrix} \\
+	\stackrel{R2 \mapsto \frac{1}{|A|}R2}{\longrightarrow}\begin{bmatrix}
+		a_{11}a_{21} & a_{12}a_{21} & \aug & a_{21} & 0 \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|}
+	\end{bmatrix} \stackrel{R1 \mapsto -a_{12}a_{21}R2+R1}{\longrightarrow} \begin{bmatrix}
+		a_{11}a_{21} & 0 & \aug & a_{21}+\frac{a_{12}a_{21}^2}{|A|} & -\frac{a_{11}a_{12}a_{21}}{|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} \end{bmatrix} \\
+		\stackrel{R1 \mapsto \frac{1}{a_{11}a_{21}}R1}{\longrightarrow}
+	 \begin{bmatrix}
+		1 & 0 & \aug & \frac{a_{21}}{a_{11}a_{21}}+\frac{a_{12}a_{21}^2}{a_{11}a_{21}|A|} & -\frac{a_{11}a_{12}a_{21}}{a_{11}a_{21}|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} 
+	\end{bmatrix}= \begin{bmatrix}
+		1 & 0 & \aug & \frac{a_{21}|A|}{a_{11}a_{21}|A|}+\frac{a_{12}a_{21}^2}{a_{11}a_{21}|A|} & -\frac{a_{12}}{|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} 
+	\end{bmatrix} \\
+	=\begin{bmatrix}
+		1 & 0 & \aug & \frac{a_{21}(a_{11}a_{22}-a_{12}a_{21})}{a_{11}a_{21}|A|}+\frac{a_{12}a_{21}^2}{a_{11}a_{21}|A|} & -\frac{a_{12}}{|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} 
+	\end{bmatrix}=\begin{bmatrix}
+		1 & 0 & \aug & \frac{a_{21}(a_{11}a_{22}-a_{12}a_{21})+a_{12}a_{21}^2}{a_{11}a_{21}|A|} & -\frac{a_{12}}{|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} 
+	\end{bmatrix} \\
+	=\begin{bmatrix}
+		1 & 0 & \aug & \frac{a_{21}a_{11}a_{22}-a_{12}a_{21}^2+a_{12}a_{21}^2}{a_{11}a_{21}|A|} & -\frac{a_{12}}{|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} 
+	\end{bmatrix}=\begin{bmatrix}
+		1 & 0 & \aug & \frac{a_{21}a_{11}a_{22}}{a_{11}a_{21}|A|} & -\frac{a_{12}}{|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} 
+	\end{bmatrix}=\begin{bmatrix}
+		1 & 0 & \aug & \frac{a_{22}}{|A|} & -\frac{a_{12}}{|A|} \\
+		0 & 1 & \aug & -\frac{a_{21}}{|A|} & \frac{a_{11}}{|A|} 
+	\end{bmatrix}
+\end{align*}
+We have therefore proved the following:
+\begin{prop}[Formula for inverse of a $2 \times 2$ matrix]
+A $2 \times 2$ matrix 
+\begin{align*}
+	A=\begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{bmatrix}
+\end{align*}
+is invertible if and only if $|A|=a_{11}a_{22}a_{12}a_{21} \neq 0$, in which case $A^{-1}$ is given by the formula
+\begin{align*}
+	A^{-1}=\frac{1}{|A|}\begin{bmatrix}
+		a_{22} & -a_{12} \\
+		-a_{21} & a_{11}
+	\end{bmatrix}.
+\end{align*}	
+\end{prop}
+
+\begin{exercise}
+	Consider a general $3 \times 3$ matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		a_{21} & a_{22} & a_{23} \\
+		a_{31} & a_{32} & a_{33}
+	\end{bmatrix}.
+\end{align*}
+For $A$ to be invertible, the first column must have a nonzero entry. By exchanging rows, if necessary, we may assume without loss of generality that $a_{11} \neq 0$.
+\begin{enumerate}[(a)]
+	\item Perform a sequence of elementary row operations to put $A$ into the row-equivalent form
+	\begin{align*}
+		\begin{bmatrix}
+		a_{11} & a_{12} & a_{13} \\
+		0 & a_{11}a_{22}-a_{12}a_{21} & a_{11}a_{23} - a_{13}a_{21} \\
+		0 & a_{11}a_{32}-a_{12}a_{31} & a_{11}a_{33}-a_{13}a_{31}
+	\end{bmatrix}.
+	\end{align*}
+	\item For $A$ to be invertible, the second column must be a pivot column. Without loss of generality, we may assume the $(2,2)$-entry is nonzero. Continue performing elementary row operations to show that $A$ can be put in the row-equivalent form
+	\begin{align*}
+		\begin{bmatrix}
+			a_{11} & a_{12} & a_{13} \\
+			0 & a_{11}a_{22}-a_{12}a_{21} & a_{11}a_{23}-a_{13}a_{21} \\
+			0 & 0 & a_{11}|A|
+		\end{bmatrix}
+	\end{align*}
+	where now $|A|$ is given by 
+	\begin{align*}
+		|A|\equiv a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{23}a_{31})+a_{13}(a_{21}a_{32}-a_{22}a_{31}).
+	\end{align*}
+	Conclude that the single condition $|A| \neq 0$ is both necessary and condition for $A$ to be invertible.
+\end{enumerate}
+\end{exercise}
+
+We have just seen that for a $1 \times 1$, $2 \times 2$, or $3 \times 3$ matrix $A$, invertibility of $A$ is determined by a single number, $|A|$. We call this number the \emph{determinant} of the matrix $A$, which is also denoted $\det A$. \footnote{Note that the notation $|A|$ has nothing to do with absolute value.}
+
+Looking at the determinant formulas for each case above, we notice that these can be written in the following recursive fashion:
+\begin{align}
+	\begin{vmatrix}
+	a_{11}	
+	\end{vmatrix} &=a_{11} \\
+	\begin{vmatrix}
+		a_{11} & a_{12} \\ a_{21} & a_{22}
+	\end{vmatrix} &=a_{11}a_{22}-a_{12}a_{21} \label{eq:2_by_2_det} \\
+	&=a_{11}|a_{22}|-a_{12}|a_{21}|, \\
+	\begin{vmatrix}
+		a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33}
+	\end{vmatrix}&=a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{23}a_{31})+a_{13}(a_{21}a_{32}-a_{22}a_{31}) \\
+	&=a_{11}\begin{vmatrix}
+		a_{22} & a_{23} \\ a_{32} & a_{33}
+	\end{vmatrix}-a_{12}\begin{vmatrix}
+		a_{21} & a_{23} \\ a_{31} & a_{33}
+	\end{vmatrix}+a_{13} \begin{vmatrix}
+		a_{21} & a_{22} \\ a_{31} & a_{32}
+	\end{vmatrix}.
+\end{align}
+
+We can use this to recursively define the determinant of an $n \times n$ matrix.
+
+\begin{defn}[Determinant of an $n \times n$ matrix]
+	Let $A$ be an $n \times n$ matrix, and let $A_{ij}$ denote the $(n-1) \times (n-1)$ submatrix of $A$ obtained by deleting the $i$th row and $j$th column of $A$. Define the $(i,j)$-\emph{cofactor} of $A$ to be the number $C_{ij}=(-1)^{i+j}\det A_{ij}$. \footnote{The determinant $\det A_{ij}$ is called the $(i,j)$ \emph{minor determinant} of $A$.} We then define the determinant of $A$ to be the number
+	\begin{align}\label{eq:cof_along_first_row}
+		\det A=\sum_{j=1}^n a_{1j}C_{1j}.
+	\end{align}
+	This formula is said to be a \emph{cofactor expansion} along the first row of $A$.
+\end{defn}
+
+It remains to be shown that an $n \times n$ matrix $A$ is invertible if and only if $\det A \neq 0$ when $n>3$. This will be done in section \fixme{Add section.}. Therefore, we have added yet another equivalent condition to the Invertible Matrix Theorem:
+
+\begin{thm}[Invertible matrix theorem]\label{thm:invertible_matrix_theorem_part_3}
+	If $A$ is an $n \times n$ matrix, the following are equivalent.
+	\begin{enumerate}[(i)]
+		\item $A$ is invertible.
+		\item $A$ is row-equivalent to the $n \times n$ identity matrix.
+		\item $A$ is a product of elementary matrices.
+		\item The linear system $A\mathbf{x}=\mathbf{b}$ has a unique solution.
+		\item $\det A \neq 0$.
+	\end{enumerate} 	
+\end{thm}
+
+
+\begin{exercise}
+Show that the formula for the determinant of a $2 \times 2$ and $3 \times 3$ matrix are given by the formula in Equation \eqref{eq:cof_along_first_row}.
+\end{exercise}
+
+\begin{exercise}
+Let $A=\begin{bmatrix}
+	3 & 1 & -4 \\ 2 & 5 & 6 \\ 1 & 4 & 8
+\end{bmatrix}$. 
+\begin{enumerate}[(a)]
+	\item Compute the $(1,1)$ and $(1,2)$ minor determinants and cofactors of $A$.
+	\item Compute the determinant of $A$.
+\end{enumerate}	
+\end{exercise}
+
+Let us now consider again our $n \times n$ matrix $A$ to be the coefficient matrix of a system of linear equations. The Invertible Matrix Theorem (\ref{thm:invertible_matrix_theorem_part_3}) tells us that the system has a unique solution if and only if $A$ is invertible, that is, if and only if $\det A=0$. The solution set of our system of course does not depend on the order in which we list the equations. However, the formula
+\begin{align*}
+	\det A=\sum_{j=1}^na_{1j}C_{1j}
+\end{align*}
+singles out the first row of our matrix $A$ as special. This choice is immaterial, and only reflects one possible convention for the steps in the Gauss-Jordan elimination algorithm. Similarly, our ordering of the variables was also merely a choice, and could have been chosen differently (e.g., could have chosen the first column of the matrix to correspond to $x_5$ rather than $x_1$, etc.) Hence, we have the following theorem
+\begin{thm}[Cofactor expansion along any row or column]
+	The determinant of an $n \times n$ matrix $A$ can be computed by cofactor expansion along any row or column. The cofactor expansion across the $i$th row is given by
+	\begin{align*}
+		\det A=\sum_{j=1}^na_{ij}C_{ij}
+	\end{align*}
+	and the cofactor expansion down the $j$th column is given by
+	\begin{align*}
+		\det A=\sum_{i=1}^na_{ij}C_{ij}.
+	\end{align*}
+\end{thm}
+
+\begin{exercise}
+Compute the determinant of the matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & 5 & 0 \\
+		2 & 4 & -1 \\
+		0 & -2 & 0
+	\end{bmatrix}
+\end{align*}
+	by cofactor expansion along
+	\begin{enumerate}[(a)]
+		\item The second row.
+		\item The third row.
+		\item The third column.
+	\end{enumerate}	
+\end{exercise}
+
+\begin{exercise}
+Consider the sign $(-1)^{i+j}$ appearing in the $(i,j)$-cofactor $C_{ij}$ as an $n \times n$ matrix. Work out the entries for $n=2,3,4$. What do you notice? How can this help you work out the signs of the cofactors quickly when you are computing a determinant?	
+\end{exercise}
+
+\begin{exercise}
+Compute the determinant of the matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		3 & -7 & 8 & 9 & -6 \\
+		0 & 2 & -5 & 7 & 3 \\
+		0 & 0 & 1 & 5 & 0 \\
+		0 & 0 & 2 & 4 & -1 \\
+		0 & 0 & 0 & -2 & 0
+	\end{bmatrix}.
+\end{align*}
+\emph{Hint: Compute $\det A$ by cofactor expansion along the first column. Why is this the best choice?}	
+\end{exercise}
+
+\begin{exercise}
+We have argued previously that an $n \times n$ matrix with a row or column of zeros is not invertible. What is the determinant of a matrix a row or column of zeros?	
+\end{exercise}
+
+\begin{exercise}
+Compute the determinant of each of the following matrices:
+\begin{align*}
+	A=\begin{bmatrix}
+		2 & 0 & 0 \\
+		0 & -1 & 0 \\
+		0 & 0 & 3
+	\end{bmatrix}, \hspace{0.5cm} B=\begin{bmatrix}
+		2 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 0 & 3
+	\end{bmatrix}.
+\end{align*}	
+\end{exercise}
+
+\begin{thm}[Determinant of a diagonal matrix]
+	Let $D$ be a diagonal $n \times n$ matrix and let $d_{ii}$ denote the $(i,i)$-entry of $A$. Then $\det D=\prod_{i=1}^n d_{ii}$.
+\end{thm}
+
+\begin{proof}
+	(By induction on $n$.) For a $2 \times 2$ diagonal matrix $D=\begin{bmatrix}
+		d_{11} & 0 \\
+		0 & d_{22}
+	\end{bmatrix}$, the formula in Equation \eqref{eq:2_by_2_det} gives $\det D=d_{11}d_{22}$. Suppose now that the proposition is true for a $(k-1) \times (k-1)$ diagonal matrix and consider a $k \times k$ diagonal matrix
+	\begin{align*}
+		D=\begin{bmatrix}
+			d_{11} & 0 & 0 & \cdots & 0 \\
+			0 & d_{22} & 0 & \cdots & 0 \\
+			0 & 0 & d_{33} & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & d_{kk}
+		\end{bmatrix}.
+	\end{align*}
+	Computing $\det D$ by cofactor expansion along the first row, gives 
+	\begin{align*}
+		\det D=d_{11}\begin{vmatrix}
+			d_{22} & 0 & 0 & \cdots & 0 \\
+			0 & d_{33} & 0 & \cdots & 0 \\
+			0 & 0 & d_{44} & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & d_{kk}
+		\end{vmatrix}
+	\end{align*}.
+	Since $\begin{bmatrix}
+			d_{22} & 0 & 0 & \cdots & 0 \\
+			0 & d_{33} & 0 & \cdots & 0 \\
+			0 & 0 & d_{44} & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & d_{kk}
+		\end{bmatrix}$ is a $(k-1) \times (k-1)$ matrix, by the inductive hypothesis we have  $\begin{vmatrix}
+			d_{22} & 0 & 0 & \cdots & 0 \\
+			0 & d_{33} & 0 & \cdots & 0 \\
+			0 & 0 & d_{44} & \cdots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \cdots & d_{kk}
+		\end{vmatrix}=\prod_{i=2}^kd_{ii}$ and therefore $\det D=\prod_{i=1}^kd_{ii}$, as desired.
+\end{proof}
+
+\begin{cor}[Invertibility of a diagonal matrix]\label{cor:invertibility_of_a_diagonal_matrix}
+	A diagonal matrix is invertible if and only if each element on the main diagonal is nonzero.
+\end{cor}
+
+\begin{exercise}
+Prove Corollary	\ref{cor:invertibility_of_a_diagonal_matrix}.
+\end{exercise}
+
+
+
 
 
 \end{document}
