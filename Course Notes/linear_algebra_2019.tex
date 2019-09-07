@@ -3306,7 +3306,7 @@ Compute the determinant of each of the following matrices:
 \end{align*}	
 \end{exercise}
 
-\begin{thm}[Determinant of a diagonal matrix]
+\begin{thm}[Determinant of a diagonal matrix]\label{thm:determinant_of_a_diagonal_matrix}
 	Let $D$ be a diagonal $n \times n$ matrix and let $d_{ii}$ denote the $(i,i)$-entry of $A$. Then $\det D=\prod_{i=1}^n d_{ii}$.
 \end{thm}
 
@@ -3356,6 +3356,84 @@ Compute the determinant of each of the following matrices:
 \begin{exercise}
 Prove Corollary	\ref{cor:invertibility_of_a_diagonal_matrix}.
 \end{exercise}
+
+\begin{exercise}
+Compute the determinant of each of the following matrices:
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & -1 & 2 & 4 \\
+		0 & 2 & 4 & -5 \\
+		0 & 0 & 1 & 2 \\
+		0 & 0 & 0 & 3
+	\end{bmatrix}, \hspace{0.5cm} B=\begin{bmatrix}
+		1 & -1 & 2 & 4 \\
+		0 & 2 & 4 & -5 \\
+		0 & 0 & 0 & 2 \\
+		0 & 0 & 0 & 3
+	\end{bmatrix}.
+\end{align*}	
+\end{exercise}
+
+\begin{thm}[Determinant of a triangular matrix]\label{thm:determinant_of_a_triangular_matrix}
+	Let $T$ be an $n \times n$ triangular matrix. Let $d_{ii}$ denote the diagonal entries of $T$. Then $\det T=\prod_{i=1}^n d_{ii}$.
+\end{thm}
+
+\begin{exercise}
+	Prove Theorem \ref{thm:determinant_of_a_triangular_matrix} by induction. \emph{Hint:} Copy the steps in the proof of Theorem \ref{thm:determinant_of_a_diagonal_matrix}.
+\end{exercise}
+
+\begin{cor}[Invertibility of a triangular matrix]
+	A triangular matrix is invertible if and only if each element on the main diagonal is nonzero.
+\end{cor}
+
+\begin{exercise}
+Let $A=\begin{bmatrix}
+	3 & 0 & 0 \\
+	2 & -1 & 0 \\
+	1 & 9 & -4
+\end{bmatrix}$. Compute $\det A$ and $\det A^T$. What do you notice?	
+\end{exercise}
+
+\begin{thm}[Determinant of a Transpose]
+	For any $n \times n$ matrix, $\det A^T=\det A$.
+\end{thm}
+
+\begin{proof}
+We prove the theorem by induction on $n$. The theorem holds trivially for $n=1$ and is easily verified for $n=2$. Suppose now that the theorem holds for $n=k$. Let $A$ be a $(k+1) \times (k+1)$ matrix. Computing the determinant of $A^T$ along the first row gives
+\begin{align*}
+	\det A^T=\sum_{i=1}^n(a^T)_{1i}C_{1i}
+\end{align*}
+where $C_{1i}=(-1)^{1+i}\det A^T_{1i}$. Noting that $A^T_{1i}=(A_{i1})^T$, \footnote{This can be seen by thinking through the definitions of each side. To help with this, consider a $3 \times 3$ matrix $A=\begin{bmatrix}
+	a_{11} & a_{12} & a_{13} \\
+	a_{21} & a_{22} & a_{23} \\
+	a_{31} & a_{32} & a_{33}
+\end{bmatrix}$. Then $A^T=\begin{bmatrix}
+	a_{11} & a_{21} & a_{31} \\
+	a_{12} & a_{22} & a_{32} \\
+	a_{13} & a_{23} & a_{33}
+\end{bmatrix}$. Taking $i=3$, we have $(A^T)_{31}=\begin{bmatrix}
+	a_{21} & a_{31} \\
+	a_{22} & a_{32}
+\end{bmatrix}$. On the other hand, $A_{13}=\begin{bmatrix}
+	a_{21} & a_{22} \\
+	a_{31} & a_{32}
+\end{bmatrix}$, which is the transpose of $(A^T)_{31}$, so indeed $(A^T)_{31}=(A_{31})^T$.} we therefore have
+\begin{align*}
+	\det A^T=\sum_{i=1}^n(a^T)_{1i}(-1)^{1+i}\det (A_{i1})^T
+\end{align*} 
+Since $(A_{i1})^T$ is a $k \times k$ matrix, by the inductive hypothesis we have $\det (A_{i1})^T= \det A_{i1}$. Since we also have $(a^T)_{1i}=a_{i1}$, we find
+\begin{align*}
+	\det A^T&=\sum_{i=1}^n(a^T)_{1i}C_{1i} \\
+	&=\sum_{i=1}^n(a^T)_{1i}(-1)^{1+i}\det A^T_{1i} \\
+	&=\sum_{i=1}^n(a^T)_{1i}(-1)^{1+i}\det (A_{i1})^T \\
+	&=\sum_{i=1}^na_{i1}(-1)^{i+1}\det A_{i1}
+\end{align*} 
+which is the cofactor expansion of $\det A$ along the first \emph{column}. Since the determinant of $A$ can be computed by cofactor expansion along any row or column, we have shown that $\det A^T=\det A$, as desired. 
+\end{proof}
+
+
+
+
 
 
 
