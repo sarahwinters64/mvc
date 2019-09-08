@@ -4103,7 +4103,85 @@ Find a vector parallel to the line of intersection of the planes
 \end{align*}	
 \end{exercise}
 
+\subsection{Triple Scalar Product}
+Since $\mathbf{a} \times \mathbf{b}$ is a vector, the product $\mathbf{a} \times \mathbf{b} \cdot \mathbf{c}$ is defined. This product actually comes up frequently, so we will discuss its properties in this section.
+\begin{defn}[Triple scalar product]
+	For any vectors $\mathbf{a}, \mathbf{b}$, and $\mathbf{c}$ the \emph{triple scalar product} is defined by 
+	\begin{align*}
+		\mathbf{a} \times \mathbf{b} \cdot \mathbf{c}=||\mathbf{a} \times \mathbf{b}|| \ ||\mathbf{c}||\cos \theta,
+	\end{align*}
+	where $\theta$ is the angle between $\mathbf{a} \times \mathbf{b}$ and $\mathbf{c}$.
+\end{defn}
 
+\begin{prop}[Determinant formula for the triple scalar product]\label{prop:det_formula_for_stp}
+	The triple scalar product is given by
+	\begin{align*}
+		(\mathbf{a} \times \mathbf{b}) \cdot \mathbf{c}&=\begin{vmatrix}
+			c_1 & c_2 & c_3 \\
+			a_1 & a_2 & a_3 \\
+			b_1 & b_2 & b_3
+		\end{vmatrix} \\
+		&=(a_2b_3-a_3b_2)c_1-(a_1b_3-a_3b_1)c_2+(a_1b_2-a_2b_1)c_3.
+	\end{align*}
+\end{prop}
+
+\begin{exercise}
+Use the determinant formula for the cross product from Proposition \ref{prop:determinant_formula_for_the_cross_product} to prove this.
+\end{exercise}
+
+\begin{prop}[Cyclic symmetry of the triple scalar product]
+	The triple scalar product is invariant under cyclic permutation of the vectors $\mathbf{a}, \mathbf{b},$ and $\mathbf{c}$:
+	\begin{align*}
+		(\mathbf{a} \times \mathbf{b})\cdot \mathbf{c}=(\mathbf{b} \times \mathbf{c})\cdot \mathbf{a}=(\mathbf{c} \times \mathbf{a})\cdot \mathbf{b}.
+	\end{align*}
+\end{prop}
+
+\begin{exercise}
+Prove this using the fact that a row interchange changes the sign of the determinant.	
+\end{exercise}
+
+\begin{prop}[Interchange of dot and cross product in triple scalar product]
+	The triple scalar product is invariant under exchanging the dot and cross product, in the sense that 
+	\begin{align*}
+		(\mathbf{a} \times \mathbf{b})\cdot \mathbf{c}=\mathbf{a} \cdot (\mathbf{b}\times \mathbf{c}).
+	\end{align*}
+\end{prop}
+
+\begin{exercise}
+Prove this using the cyclic symmetry of the cross product together with the symmetry of the dot product.	
+\end{exercise}
+
+\begin{prop}[Relationships between dot and cross product]
+We have the following relationships between the dot and cross products:
+	\begin{figure}[h]
+			\includegraphics[scale=0.3]{figures_mvc/rel_dot_cross_p}
+	\end{figure}
+\end{prop}
+
+\begin{exercise}
+Prove these.	
+\end{exercise}
+
+Geometrically, the magnitude of $(\mathbf{a} \times \mathbf{b})\cdot \mathbf{c}$ is the volume of the parallelepiped whose adjacent sides are $\mathbf{a},\mathbf{b}$, and $\mathbf{c}$. The number $||\mathbf{a} \times \mathbf{b}||$ is the area of the base parallelogram, while $||\mathbf{c}||\cos \theta$ is the height of the paralleleliped.
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/ppiped}
+	\end{center}
+\end{figure}
+For this reason, the triple scalar product is also sometimes referred to as the \emph{box product} of $\mathbf{a},\mathbf{b}$, and $\mathbf{c}$.
+
+\begin{exercise}
+Use the triple scalar product to show that the volume of the parallelepiped with adjacent sides $\mathbf{a}=(1,2,-1), \mathbf{b}=(-2,0,3)$, and $\mathbf{c}=(0,7,-4)$ is 23 (units)$^3$.	
+\end{exercise}
+
+\begin{prop}[Geometric interpretation of determinants]
+We have the following geometric interpretation of determinants:
+	\begin{figure}[h]
+			\begin{center}
+				\includegraphics[scale=0.4]{figures_mvc/whole_enchilada}
+			\end{center}
+	\end{figure}
+\end{prop}
 
 \end{document}
 
