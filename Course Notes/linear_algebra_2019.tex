@@ -3652,5 +3652,156 @@ Let $A$ and $P$ be $n \times n$ matrices, with $P$ invertible. Show that $\det(P
 		\det A^{-1}=\frac{1}{\det A}.
 	\end{align*}
 \end{proof}
+
+\subsection{Cramer's Rule}
+Let's take a closer look at the formula for the inverse of a $2 \times 2$ matrix $A=\begin{bmatrix}
+	a_{11} & a_{12} \\ a_{21} & a_{22}
+\end{bmatrix}$, which is given by the formula
+\begin{align}\label{eq:2_by_2_transp_cofactor_matrix}
+	A^{-1}=\frac{1}{\det A}\begin{bmatrix}
+		a_{22} & -a_{12} \\
+		-a_{21} & a_{11}
+	\end{bmatrix}.
+\end{align}
+Using the definition of the $(i,j)$-cofactor $C_{ij}=(-1)^{i+j}\det A_{ij}$ and arranging these as a $2 \times 2$ matrix, we find
+\begin{align*}
+	C\equiv \begin{bmatrix}
+		C_{11} & C_{12} \\
+		C_{21} & C_{22}
+	\end{bmatrix}=\begin{bmatrix}
+		a_{22} & -a_{21} \\
+		-a_{12} & a_{11}
+	\end{bmatrix}.
+\end{align*} 
+\fixme{Bad notation for matrix of cofactors? Check.}
+Therefore, we see that we can identify the matrix in Equation \eqref{eq:2_by_2_transp_cofactor_matrix} as the transpose of the matrix of cofactors of $A$.  
+
+\begin{defn}[Adjugate matrix]
+	Let $A$ be an $n \times n$ matrix. The transpose of the matrix of cofactors of a $A$ is called the \emph{adjugate} or \emph{classical adjoint} of $A$, denoted $\text{adj }A$.
+\end{defn}
+
+The formula for $A^{-1}$ can therefore be written as 
+
+\begin{align*}
+	A^{-1}=\frac{1}{\det A}\text{adj }A.
+\end{align*}
+
+\begin{lem}\label{lem:transpose_of_adj_transpose}
+	Let $A$ be an $n \times n$ matrix. Then
+	\begin{align*}
+		\text{adj }A^T=(\text{adj }A)^T.
+	\end{align*}
+\end{lem}
+
+\begin{proof}
+	Since $A_{ij}^T=(A_{ji})^T$, we have
+	\begin{align*}
+		(-1)^{i+j}\det A_{ij}^T&=(-1)^{j+i}\det (A_{ji})^T \\
+		&=(-1)^{j+i}\det A_{ji},
+	\end{align*}
+	which says that the $(i,j)$-cofactor of $A^T$ is the $(j,i)$-cofactor of $A$. The former is the $(j,i)$-entry of $\text{adj }(A^T)$, while the latter is the $(i,j)$-entry of $\text{adj }(A)$, or, the $(j,i)$-entry of $[\text{adj }(A)]^T$. Since this is true for all $i,j=1,\dots,n$, $\text{adj }(A^T)=[\text{adj }(A)]^T$.
+\end{proof}
+
+
+\begin{thm}[Formula for $A^{-1}$]\label{thm:formula_for_a_inverse}
+	If $A$ is an invertible $n \times n$ matrix, then $A^{-1}=(\det A)^{-1}\text{adj }A$.
+\end{thm}
+
+\begin{proof}
+We need to show that $(\det A)^{-1}\text{adj }A$ is a two-sided inverse for $A$; that is, we need to show that $\frac{\text{adj }A}{\det A}A=A\frac{\text{adj }A}{\det A}=I$. Multiplying through by $\det A$, this becomes $A(\text{adj }A)=(\text{adj }A)A=(\det A)I$, which is what we will now prove. First, recall the cofactor expansion for $\det A$ along the $j$th column:
+\begin{align*}
+	\det A=\sum_{i=1}^n a_{ij}C_{ij}=\sum_{i=1}^n a_{ij}(-1)^{i+j}\det A_{ij}.
+\end{align*}
+We now claim that if $j \neq k$, then the expression
+\begin{align*}
+	\sum_{i=1}^n a_{ik}C_{ij}=0.
+\end{align*}
+To see this, let $B$ be the matrix obtained from $A$ by replacing the $j$th column of $A$ by the $k$th column of $A$. Since $B$ has two equal columns, $\det B=0$. Since $B_{ij}=A_{ij}$, computing $\det B$ by cofactor expansion along the $j$th column gives
+\begin{align*}
+	0=\det B&=\sum_{i=1}^n b_{ij}(-1)^{i+j}\det B_{ij} \\
+	&=\sum_{i=1}^n a_{ik}(-1)^{i+j}\det A_{ij} \\
+	&=\sum_{i=1}^na_{ik}C_{ij},
+\end{align*}
+as claimed. These two properties of cofactors can be summarized as 
+\begin{align}\label{eq:ij_comp_of_cofactor_inverse_formula}
+	\sum_{i=1}^n a_{ik}C_{ij}=\delta_{kj}(\det A).
+\end{align}
+Since left hand side of this equation is equal to $\sum_{i=1}^n a_{ik}C_{ji}^T=\sum_{i=1}^n C_{ji}^Ta_{ik}$, we see that Equation \eqref{eq:ij_comp_of_cofactor_inverse_formula} is the $kj$-component of the matrix equation
+\begin{align}\label{eq:adjugate_equation_det}
+	(\text{adj }A)A=(\det A)I.
+\end{align}
+Applying Equation \eqref{eq:adjugate_equation_det} to $A^T$ gives
+\begin{align*}
+	(\text{adj }A^T)A^T&=[(\det A^T)I] \\
+	&=[(\det A)I]^T. 
+\end{align*}
+Taking the transpose of both sides then gives
+\begin{align*}
+	A(\text{adj }A^T)^T=(\det A)I.
+\end{align*}
+Applying Lemma \ref{lem:transpose_of_adj_transpose}, this becomes
+Taking the transpose of both sides then gives
+\begin{align*}
+	A(\text{adj }A)=(\det A)I,
+\end{align*}
+completing the proof.
+\end{proof}
+
+\begin{exercise}
+Use the formula $A^{-1}=(\det A)^{-1}\text{adj }A$ to compute the inverse of each of the following matrices:
+\begin{enumerate}[(a)]
+	\item $A=\begin{bmatrix}
+		2 & 1 & 3 \\
+		1 & -1 & 1 \\
+		1 & 4 & -2
+	\end{bmatrix}$,
+	\item $B=\begin{bmatrix}
+		5 & 0 & 0 \\
+		-1 & 1 & 0 \\
+		-2 & 3 & -1
+	\end{bmatrix}$.
+\end{enumerate}	
+\end{exercise}
+
+\begin{thm}[Cramer's Rule]
+	Let $A$ be an invertible $n \times n$ matrix. For any $\mathbf{b} \in \mathbb{R}^n$, the unique solution $\mathbf{x}$ of the linear system $A\mathbf{x}=\mathbf{b}$ has entries given by 
+	\begin{align}\label{eq:cramers_rule}
+		x_i=\frac{\det A_i(\mathbf{b})}{\det A}, \hspace{0.5cm} i=1,2,\dots,n,
+	\end{align}
+	where $A_i(\mathbf{b})$ is the matrix obtained from $A$ by replacing the $i$th column of $A$ by $\mathbf{b}$. The formula in Equation \eqref{eq:cramers_rule} for computing the entries of $\mathbf{x}$ is called \emph{Cramer's rule}.
+\end{thm}
+
+\begin{proof}
+By the Invertible Matrix Theorem, if $A$ is invertible then the linear system $A\mathbf{x}=\mathbf{b}$ has the unique solution $\mathbf{x}=A^{-1}\mathbf{b}=(\det A)^{-1}(\text{adj }A)\mathbf{b}$, where we have applied the formula for $A^{-1}$ from Theorem \ref{thm:formula_for_a_inverse}. The $j$th component of the vector $\mathbf{x}$ is then given by
+\begin{align*}
+	x_j&=(\det A)^{-1}\sum_{i=1}^nC_{ji}^Tb_i \\
+	&=(\det A)^{-1}\sum_{i=1}^nC_{ij}b_i \\
+	&=(\det A)^{-1}\sum_{i=1}^nb_i(-1)^{i+j}\det A_{ij} \\
+	&=(\det A)^{-1}\det A_j(\mathbf{b}).
+\end{align*}	
+\end{proof}
+
+\begin{exercise}
+Use Cramer's rule to solve each of the following systems:
+\begin{enumerate}[(a)]
+	\item \begin{align*}
+	3x_1-2x_2&=6 \\
+	-5x_1+4x_2&=8.
+	\end{align*}
+	\item \begin{align*}
+	-5x_1+2x_2&=9, \\
+	3x_1-x_2&=-4.
+\end{align*}
+	\item \begin{align*}
+	x_1+x_2&=3, \\
+	-3x_1+2x_3&=0, \\
+	x_2-3x_3&=2.
+\end{align*}
+\end{enumerate}
+\end{exercise}
+The formula $A^{-1}=(\det A)^{-1}\text{adj }A$ is mainly useful for theoretical purposes, as it allows one to deduce properties of $A^{-1}$ for a general invertible matrix $A$. To compute $A^{-1}$ for a concrete matrix $A$, the method of row-reducing $[A|I]$ is much more efficient. Similarly, Cramer's rule is very inefficient for solving linear systems, as computing just \emph{one} determinant takes about as much work as solving $A\mathbf{x}=\mathbf{b}$ by row-reduction. Cramer's rule is also mostly useful as a theoretical tool. For instance, it can be used to study how sensitive the solution of $A\mathbf{x}=\mathbf{b}$ is to changes in an entry in $\mathbf{b}$ or in $A$.
+
+
+
 \end{document}
 
