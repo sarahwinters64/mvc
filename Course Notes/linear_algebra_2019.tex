@@ -3803,6 +3803,7 @@ Use Cramer's rule to solve each of the following systems:
 The formula $A^{-1}=(\det A)^{-1}\text{adj }A$ is mainly useful for theoretical purposes, as it allows one to deduce properties of $A^{-1}$ for a general invertible matrix $A$. To compute $A^{-1}$ for a concrete matrix $A$, the method of row-reducing $[A|I]$ is much more efficient. Similarly, Cramer's rule is very inefficient for solving linear systems, as computing just \emph{one} determinant takes about as much work as solving $A\mathbf{x}=\mathbf{b}$ by row-reduction. Cramer's rule is also mostly useful as a theoretical tool. For instance, it can be used to study how sensitive the solution of $A\mathbf{x}=\mathbf{b}$ is to changes in an entry in $\mathbf{b}$ or in $A$.
 
 \subsection{The Cross Product}
+\subsubsection{Motivation and Definition}
 We will now change gears and define a new type of product between two vectors in three-dimensional space, motivated by physics. We will find that this product is related to determinants. 
 
 Suppose we wish to tighten a bolt using a wrench. Applying a force $\mathbf{F}$ to the handle of the wrench produces a torque, $\vec{\tau}$, which acts along the axis of the bolt to drive the bolt forward. One observes that $\vec{\tau}=||\mathbf{r}||\ ||\mathbf{F}||\sin \theta \mathbf{\hat{n}}$,
@@ -3840,6 +3841,8 @@ A 3 ft metal bar is hinged at one of its ends. If a 20 lb force is applied at th
 \end{figure}	
 \end{example}
 
+\subsubsection{Basic Properties of the Cross Product}
+
 \begin{prop}[Geometry of the cross product]\label{prop:geometry_of_the_cross_product}
 Let $\mathbf{a}$ and $\mathbf{b}$ be two nonzero vectors. Then
 	\begin{enumerate}[(a)]
@@ -3862,7 +3865,7 @@ Let $\mathbf{a}$ and $\mathbf{b}$ be two nonzero vectors. Then
 \end{enumerate}
 \end{remark}
 We will now see that vector and scalar distributive laws \emph{do} hold for the cross product.
-\begin{prop}[Scalar distributive law]
+\begin{prop}[Scalar distributive law]\label{prop:scalar_distributive_law}
 	Scalar multiplication distributes over the cross product. That is if $\mathbf{a},\mathbf{b}$ are vectors and $r,s$ scalars, then
 	\begin{align*}
 		(r\mathbf{a}) \times (s\mathbf{b})=(rs)(\mathbf{a} \times \mathbf{b}).
@@ -3914,9 +3917,66 @@ We now have several cases to check, depending on $r$ and $s$.
 This exhausts the possibilities for $r$ and $s$, completing the proof.
 \end{proof}
 
+\begin{prop}[Vector distributive law]\label{prop:vector_distributive_law}
+	The cross product distributes over vector addition. That is,
+	\begin{align*}
+		\mathbf{a} \times (\mathbf{b}+\mathbf{c})=\mathbf{a} \times \mathbf{b}+\mathbf{a} \times \mathbf{c}.
+	\end{align*}
+\end{prop}
 
+\begin{proof}
+	Let $\mathbf{a}, \mathbf{b},$ and $\mathbf{c}$ be vectors in three-dimensional space. If any of these are $\mathbf{0}$, then equality holds, so assume now that none of these are $\mathbf{0}$. We will prove the vector distributive law by constructing $\mathbf{a} \times \mathbf{b}$ in a clever way, as illustrated in the diagram below:
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.5]{figures_mvc/cp_vector_dist_prop}
+		\end{center}
+		\caption{Steps to show that $\mathbf{a} \times \mathbf{b}=||\mathbf{a}||\mathbf{b}''$.}
+	\end{figure}
+	\begin{enumerate}[(1)]
+		\item Let $M$ be the plane perpendicular to the plane containing $\mathbf{a}$ and $\mathbf{b}$, and let $\mathbf{b}'$ be the projection of $\mathbf{b}$ onto $M$. Letting $\theta$ denote the angle between $\mathbf{a}$ and $\mathbf{b}$, as usual, we have $||\mathbf{b}'||=||\mathbf{b}||\sin\theta$.
+		\item Now rotate $\mathbf{b}'$ by $90^\circ$ counterclockwise about $\mathbf{a}$ to obtain $\mathbf{b}''$. Scalar multiplying $\mathbf{b}''$ by $||\mathbf{a}||$, we obtain the vector $||\mathbf{a}||\mathbf{b}''$. Noting that
+		\begin{align*}
+			||\ (||\mathbf{a}|| \mathbf{b}'') \ ||=||\mathbf{a}|| \ ||\mathbf{b}''|| = ||\mathbf{a}|| \ ||\mathbf{b}'||=||\mathbf{a}|| \ ||\mathbf{b}||\sin \theta
+		\end{align*}
+		and that $||\mathbf{a}||\mathbf{b}''$ is orthogonal to both $\mathbf{a}$ and $\mathbf{b}$ and points in the direction given by the right hand rule, we see that 
+		\begin{align}\label{eq:clever_b}
+			||\mathbf{a}||\mathbf{b}''=\mathbf{a} \times \mathbf{b}
+		\end{align}
+		as these two vectors have the same magnitude and direction.
+		\item Repeating the exact same steps with $\mathbf{c}$, we obtain
+		\begin{align}\label{eq:clever_c}
+			||\mathbf{a}||\mathbf{c}''=\mathbf{a} \times \mathbf{c}.
+		\end{align}
+		\item Consider now a triangle with legs $\mathbf{b}, \mathbf{c},$ and $\mathbf{b}+\mathbf{c}$. 
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.5]{figures_mvc/cp_proof_triangle_1}
+		\end{center}
+		\caption{Triangle from step (4), when $\mathbf{a}, \mathbf{b},$ and $\mathbf{c}$ do not all lie in the same plane. \fixme{Crop out writing in the corner of graphic.}}
+	\end{figure}
+	
+		If the plane of the triangle does not contain $\mathbf{a}$, then after projecting this triangle onto $M$, rotating by $90^\circ$ counterclockwise about $\mathbf{a}$, and multiplying each leg by $||\mathbf{a}||$, we obtain a triangle in the plane $M$ with legs $\mathbf{b}'', \mathbf{c}'',$ and $(\mathbf{b}+\mathbf{c})''$, which satisfy
+		\begin{align}\label{eq:triangle_cp}
+			||\mathbf{a}||\mathbf{b}''+||\mathbf{a}||\mathbf{c}''=||\mathbf{a}||(\mathbf{b}+\mathbf{c})''.
+		\end{align}
+		Substituting \eqref{eq:clever_b} and \eqref{eq:clever_c} into \eqref{eq:triangle_cp} then gives
+		\begin{align*}
+			\mathbf{a} \times \mathbf{b}+\mathbf{a} \times \mathbf{c}=\mathbf{a} \times (\mathbf{b}+\mathbf{c}),
+		\end{align*}
+		as desired.
+		\item Finally, if the vectors $\mathbf{a}, \mathbf{b}$, and $\mathbf{c}$ all lie in the same plane, then the triangle with legs $\mathbf{b}, \mathbf{c},$ and $\mathbf{b}+\mathbf{c}$ when projected onto $M$ projects to a line segment. 
+		\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.3]{figures_mvc/cp_proof_triangle_2}
+		\end{center}
+		\caption{Triangle from step (5), when $\mathbf{a}, \mathbf{b},$ and $\mathbf{c}$ all lie in the same plane.}
+	\end{figure}
+	
+		It then follows from the segment addition postulate that $(\mathbf{b}+\mathbf{c})'=\mathbf{b}'+\mathbf{c}'$. The rest of the proof then follows the same steps above, so we have now shown that equality holds for all vectors $\mathbf{a}, \mathbf{b},$ and $\mathbf{c}$.
+	\end{enumerate}
+\end{proof}
 
-
+\subsubsection{Cross Product in Coordinates}
 As we have seen in Section \ref{sec:vectors_and_geometry}, the study of the properties of vectors in three-dimensional space is greatly facilitated by choosing a Cartesian coordinate system. To write the cross product of two vectors 
 \begin{align*}
 	\mathbf{a}&=a_1\mathbf{\hat{i}}+a_2\mathbf{\hat{j}}+a_3\mathbf{\hat{k}}, \\
@@ -3935,5 +3995,115 @@ while
 	\mathbf{\hat{i}} \times \mathbf{\hat{k}}&=-\mathbf{\hat{j}}.
 \end{align*} 
 \fixme{Insert wheel graphic.}
+
+We can now use the scalar and vector distributive laws from Propositions \ref{prop:scalar_distributive_law} and \ref{prop:vector_distributive_law}, as well as the cross products of the standard unit vectors, to work out a formula for the components of $\mathbf{a} \times \mathbf{b}$. Let 
+	\begin{align*}
+	\mathbf{a}&=a_1\mathbf{\hat{i}}+a_2\mathbf{\hat{j}}+a_3\mathbf{\hat{k}}, \\
+	\mathbf{b}&=b_1\mathbf{\hat{i}}+b_2\mathbf{\hat{j}}+b_3\mathbf{\hat{k}}, \\
+\end{align*}
+be any two vectors. Then
+\begin{align*}
+	\mathbf{a} \times \mathbf{b}&=(a_1\mathbf{\hat{i}}+a_2\mathbf{\hat{j}}+a_3\mathbf{\hat{k}}) \times (b_1\mathbf{\hat{i}}+b_2\mathbf{\hat{j}}+b_3\mathbf{\hat{k}}) \\
+	&=a_1b_1\underbrace{(\mathbf{\hat{i}} \times \mathbf{\hat{i}})}_{=\mathbf{0}}+a_1b_2\underbrace{(\mathbf{\hat{i}} \times \mathbf{\hat{j}})}_{=\mathbf{\hat{k}}}+a_1b_3\underbrace{(\mathbf{\hat{i}} \times \mathbf{\hat{k}})}_{=-\mathbf{\hat{j}}} \\
+	&+a_2b_1\underbrace{(\mathbf{\hat{j}} \times \mathbf{\hat{i}})}_{=-\mathbf{\hat{k}}}+a_2b_2\underbrace{(\mathbf{\hat{j}} \times \mathbf{\hat{j}})}_{=\mathbf{0}}+a_2b_3\underbrace{(\mathbf{\hat{j}} \times \mathbf{\hat{k}})}_{=\mathbf{\hat{i}}} \\
+	&+a_3b_1\underbrace{(\mathbf{\hat{k}} \times \mathbf{\hat{i}})}_{=\mathbf{\hat{j}}}+a_3b_2\underbrace{(\mathbf{\hat{k}} \times \mathbf{\hat{j}})}_{=-\mathbf{\hat{i}}}+a_3b_3\underbrace{(\mathbf{\hat{k}} \times \mathbf{\hat{k}})}_{=\mathbf{0}}
+	\end{align*}
+	and collecting like terms gives
+	\begin{align}\label{eq:cp_comp}
+		\mathbf{a} \times \mathbf{b}&=(a_2b_3-a_3b_2)\mathbf{\hat{i}}-(a_1b_3-a_3b_1)\mathbf{\hat{j}}+(a_1b_2-a_2b_1)\mathbf{\hat{k}}.
+	\end{align}
+Note that the formula in Equation \eqref{eq:cp_comp} is exactly what one would obtain by \emph{formally} taking the determinant of the `matrix'
+\begin{align*}
+	\begin{vmatrix}
+		\mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
+		a_1 & a_2 & a_3 \\
+		b_1 & b_2 & b_3 
+	\end{vmatrix},
+\end{align*}
+where the `matrix' above has the standard unit vectors as entries in the first row, rather than numbers. \footnote{The use of the word `formally' here reflects the fact that the determinant is a function which is really only defined for matrices whose entries are numbers, and not a matrix whose entries are a mix of numbers and vectors, as we have not actually defined such a beast.}
+
+\begin{prop}[Determinant formula for the cross product]\label{prop:determinant_formula_for_the_cross_product}
+	The cross product of two vectors 
+	\begin{align*}
+	\mathbf{a}&=a_1\mathbf{\hat{i}}+a_2\mathbf{\hat{j}}+a_3\mathbf{\hat{k}}, \\
+	\mathbf{b}&=b_1\mathbf{\hat{i}}+b_2\mathbf{\hat{j}}+b_3\mathbf{\hat{k}}, \\
+\end{align*}
+has components given by the following formal determinant: 
+\begin{align*}
+	\mathbf{a} \times \mathbf{b}&=\begin{vmatrix}
+		\mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
+		a_1 & a_2 & a_3 \\
+		b_1 & b_2 & b_3 
+	\end{vmatrix} \\
+	&=(a_2b_3-a_3b_2)\mathbf{\hat{i}}-(a_1b_3-a_3b_1)\mathbf{\hat{j}}+(a_1b_2-a_2b_1)\mathbf{\hat{k}}.
+\end{align*}
+\end{prop}
+
+\begin{exercise}
+\begin{enumerate}[(a)]
+	\item Use the determinant formula in Proposition \ref{prop:determinant_formula_for_the_cross_product} to find the cross product $\mathbf{a} \times \mathbf{b}$ when $\mathbf{a}=(1,2,-2)$ and $\mathbf{b}=(3,0,1)$.
+	\item Compute $\mathbf{a} \times \mathbf{b}$ and $\mathbf{b} \times \mathbf{a}$ if $\mathbf{a}=(2,1,1)$ and $\mathbf{b}=(-4,3,1)$.
+\end{enumerate}	
+\end{exercise}
+
+\begin{thm}[Properties of the cross product]\label{thm:props_cp}
+	If $\mathbf{a},\mathbf{b},$ and $\mathbf{c}$ are any vectors in three-dimensional space and $k$ is any scalar, then:
+	\begin{enumerate}[(a)]
+		\item $\mathbf{a} \times \mathbf{b}=-\mathbf{b} \times \mathbf{a}$,
+		\item $\mathbf{a} \times (\mathbf{b}+\mathbf{c})=\mathbf{a} \times \mathbf{b}+\mathbf{a} \times \mathbf{c})$,
+		\item $(k\mathbf{a}) \times \mathbf{b}=\mathbf{a} \times (k\mathbf{b})=k(\mathbf{a} \times \mathbf{b})$
+		\item $\mathbf{a} \times \mathbf{a}$
+	\end{enumerate}
+\end{thm}
+
+\begin{exercise}
+We have proved Theorem \ref{thm:props_cp} already. Reprove it using the determinant formula in Proposition \ref{prop:determinant_formula_for_the_cross_product}.
+\end{exercise}
+
+\subsubsection{Applications to Geometry}
+Note that, geometrically, the magnitude of the cross product of two nonzero vectors $\mathbf{a}$ and $\mathbf{b}$
+\begin{align*}
+	||\mathbf{a} \times \mathbf{b}||=||\mathbf{a}|| \ ||\mathbf{b}||\sin\theta
+\end{align*}
+is the area of the parallelogram whose adjacent sides are formed by $\mathbf{a}$ and $\mathbf{b}$:
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/cp_pg}
+	\end{center}
+\end{figure}
+
+\begin{example}
+To find the area of the triangle with vertices $A(2,0), B(3,4)$, and $C(-1,2)$, we first form the vectors $\overrightarrow{AB}=(3-2,4-0)=(1,4)$ and $\mathbf{AC}=(-1-2,2-0)=(-3,2)$. Since the area of the triangle whose legs are $\overrightarrow{AB}, \overrightarrow{AC},$ and $\overrightarrow{AB}-\overrightarrow{AC}$ is half the area of the parallelogram whose adjacent sides are formed by $\overrightarrow{AB}$ and $\overrightarrow{AC}$, we compute the area by taking half the magnitude of the cross product of these two vectors:
+\begin{align*}
+	\text{Area}&=\frac{1}{2}||\overrightarrow{AB}\times \overrightarrow{AC}|| \\
+	&=\frac{1}{2} || \begin{vmatrix}
+		\mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\
+		1 & 4 & 0 \\
+		-3 & 2 & 0
+	\end{vmatrix} || \\
+	&=\frac{1}{2}||(2+12)\mathbf{\hat{k}}|| \\
+	&=\frac{1}{2}|14| \ ||\mathbf{\hat{k}}|| \\
+	&=7 \text{ (units)}^2.
+\end{align*}	
+\end{example}
+
+\begin{exercise}
+Find the area of the triangle with vertices $A(1,1), B(2,2), C(3,-3)$. \emph{Hint: To compute the cross product, write each of these vectors as a vector in $\mathbb{R}^3$, whose $z$-component is 0.}	
+\end{exercise}
+
+\begin{exercise}
+Find a vector perpendicular to the plane defined by the points $P(1,-1,0), Q(2,1,-1),$ and $R(-1,1,2)$. Find a unit normal to this plane.	
+\end{exercise}
+
+\begin{exercise}
+Find a vector parallel to the line of intersection of the planes
+\begin{align*}
+	3x-6y-2z&=15, \\
+	2x+y-2z&=5.
+\end{align*}	
+\end{exercise}
+
+
+
 \end{document}
 
