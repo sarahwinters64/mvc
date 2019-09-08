@@ -151,6 +151,7 @@
 \declaretheorem[name=Lemma,sibling=thm,style=theorem]{lem}
 \declaretheorem[name=Definition,sibling=thm,style=noital]{defn}
 \declaretheorem[name=Example,sibling=thm,style=noital]{example}
+\declaretheorem[name=Remark,sibling=thm,style=noital]{remark}
 \declaretheorem[name=Exercise,numberwithin=section,style=green]{exercise}
 \declaretheorem[name=Proof,style=proofstyle,numbered=no]{pf}
 
@@ -326,7 +327,7 @@ at \small \url{https://github.com/atrimm/mvc/blob/master/Course%20Notes/linear_a
 \newpage
 
 %\setcounter{page}{1}
-\section{Vectors and geometry}
+\section{Vectors and geometry}\label{sec:vectors_and_geometry}
 \subsection{Physical motivation}
 The earliest notion of a \emph{vector} comes from physics. In nature, we encounter certain physical quantities which cannot be uniquely specified by a number alone, but also depend on a direction in space. 
 
@@ -3801,7 +3802,138 @@ Use Cramer's rule to solve each of the following systems:
 \end{exercise}
 The formula $A^{-1}=(\det A)^{-1}\text{adj }A$ is mainly useful for theoretical purposes, as it allows one to deduce properties of $A^{-1}$ for a general invertible matrix $A$. To compute $A^{-1}$ for a concrete matrix $A$, the method of row-reducing $[A|I]$ is much more efficient. Similarly, Cramer's rule is very inefficient for solving linear systems, as computing just \emph{one} determinant takes about as much work as solving $A\mathbf{x}=\mathbf{b}$ by row-reduction. Cramer's rule is also mostly useful as a theoretical tool. For instance, it can be used to study how sensitive the solution of $A\mathbf{x}=\mathbf{b}$ is to changes in an entry in $\mathbf{b}$ or in $A$.
 
+\subsection{The Cross Product}
+We will now change gears and define a new type of product between two vectors in three-dimensional space, motivated by physics. We will find that this product is related to determinants. 
+
+Suppose we wish to tighten a bolt using a wrench. Applying a force $\mathbf{F}$ to the handle of the wrench produces a torque, $\vec{\tau}$, which acts along the axis of the bolt to drive the bolt forward. One observes that $\vec{\tau}=||\mathbf{r}||\ ||\mathbf{F}||\sin \theta \mathbf{\hat{n}}$,
+where $\mathbf{r}$ a vector stretching from the bolt to the point on the handle where the force is applied, $\mathbf{F}$ is the applied force vector, $\theta$ is the angle between the vectors $\mathbf{r}$ and $\mathbf{F}$, and $\mathbf{\hat{n}}$ is a unit vector pointing along the axis of the bolt. These are shown in the figure below:
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/torque_wrench}
+	\end{center}
+\end{figure}
+
+\begin{defn}[Cross product]
+	The \emph{cross product} of two nonzero vectors $\mathbf{a}$ and $\mathbf{b}$ is the vector
+	\begin{align*}
+		\mathbf{a} \times \mathbf{b}=||\mathbf{a}|| \ ||\mathbf{b}||\sin\theta \mathbf{\hat{n}}
+	\end{align*}
+	where $\theta$ is the angle between $\mathbf{a}$ and $\mathbf{b}$ and $\mathbf{\hat{n}}$ is a unit vector in the direction determined by the \emph{right hand rule}, as illustrated in the figure below:
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.3]{figures_mvc/rhrule}
+		\end{center}
+	\end{figure}
+	
+	If either $\mathbf{a}$ or $\mathbf{b}$ is the zero vector, then we define $\mathbf{a} \times \mathbf{b}$ to be $\mathbf{0}$.
+\end{defn}
+
+\begin{example}
+A 3 ft metal bar is hinged at one of its ends. If a 20 lb force is applied at the other endpoint at an angle of $70^\circ$ to the bar, then, choosing $xy$-coorindates centered at the hinge, the resulting torque is 
+\begin{align*}
+	||\vec{\tau}||=(3)(2)\sin(70^\circ)\mathbf{\hat{k}}.
+\end{align*}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/torque_example_bar}
+	\end{center}
+\end{figure}	
+\end{example}
+
+\begin{prop}[Geometry of the cross product]\label{prop:geometry_of_the_cross_product}
+Let $\mathbf{a}$ and $\mathbf{b}$ be two nonzero vectors. Then
+	\begin{enumerate}[(a)]
+		\item $\mathbf{a} \times \mathbf{b}$ is orthogonal to both $\mathbf{a}$ and $\mathbf{b}$.
+		\item $\mathbf{a}$ and $\mathbf{b}$ are parallel if and only if $\mathbf{a} \times \mathbf{b}=\mathbf{0}$.
+		\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\begin{enumerate}[(a)]
+	\item By the right hand rule, $\mathbf{a} \times \mathbf{b}$ is perpendicular to the plane containing $\mathbf{a}$ and $\mathbf{b}$. In particular, it is perpendicular to both $\mathbf{a}$ and $\mathbf{b}$.
+	\item Since $\mathbf{a}$ and $\mathbf{b}$ are nonzero, $||\mathbf{a}||\neq 0$ and $||\mathbf{b}|| \neq 0$, and therefore $||\mathbf{a} \times \mathbf{b}||=||\mathbf{a}|| \ ||\mathbf{b}||\sin\theta=0$ if and only if $\sin \theta=0$. Since $0 \leq \theta \leq \pi$, $\sin \theta=0$ if and only if $\theta=0$ or $\pi$, that is, when the vectors $\mathbf{a}$ and $\mathbf{b}$ are parallel.
+\end{enumerate}	
+\end{proof}
+
+\begin{remark}[The cross product is neither commutative nor associative] \hspace{15cm}
+\begin{enumerate}[(a)]
+	\item If $\mathbf{a} \times \mathbf{b}=||\mathbf{a}||\ ||\mathbf{b}||\sin\theta \mathbf{\hat{n}}$, then $\mathbf{b} \times \mathbf{a}=||\mathbf{a}||\ ||\mathbf{b}||\sin\theta \mathbf{(-\hat{n})}=-\mathbf{a} \times \mathbf{b}$, so the cross product is not commutative.
+	\item Consider $\mathbf{a} \times (\mathbf{b} \times \mathbf{c})$. By part (a) of Proposition \ref{prop:geometry_of_the_cross_product}, $\mathbf{a} \times (\mathbf{b} \times \mathbf{c})$ is orthogonal to both $\mathbf{a}$ and $\mathbf{b} \times \mathbf{c}$. Since $\mathbf{b} \times \mathbf{c}$ is, in turn, orthogonal to both $\mathbf{b}$ and $\mathbf{c}$, $\mathbf{a} \times (\mathbf{b} \times \mathbf{c})$ is therefore perpendicular to a perpendicular to the plane containing $\mathbf{b}$ and $\mathbf{c}$, and his hence parallel to this plane. \fixme{Insert figure.} Repeating the same argument for $(\mathbf{a} \times \mathbf{b}) \times \mathbf{c}$, we find it is parallel to the plane containing $\mathbf{a}$ and $\mathbf{b}$. In general, $\mathbf{a}, \mathbf{b},$ and $\mathbf{c}$ will not lie in the same plane, so the cross products $\mathbf{a} \times (\mathbf{b} \times \mathbf{c})$ and  $(\mathbf{a} \times \mathbf{b}) \times \mathbf{c}$ will not lie in the same plane, and hence cannot be equal. This shows that the cross product is not associative.
+\end{enumerate}
+\end{remark}
+We will now see that vector and scalar distributive laws \emph{do} hold for the cross product.
+\begin{prop}[Scalar distributive law]
+	Scalar multiplication distributes over the cross product. That is if $\mathbf{a},\mathbf{b}$ are vectors and $r,s$ scalars, then
+	\begin{align*}
+		(r\mathbf{a}) \times (s\mathbf{b})=(rs)(\mathbf{a} \times \mathbf{b}).
+	\end{align*} 
+\end{prop}
+
+\begin{proof}
+Let $\theta$ be the angle between $\mathbf{a}$ and $\mathbf{b}$, and let $\varphi$ be the angle between $r\mathbf{a}$ and $s\mathbf{b}$. Also, let $\mathbf{\hat{n}}$ be the unit vector determined by the right hand rule from $\mathbf{a}$ and $\mathbf{b}$, and $\mathbf{\hat{m}}$ be the unit vector determined by the right hand rule from $r\mathbf{a}$ and $s\mathbf{b}$. Then
+\begin{align*}
+	(r\mathbf{a}) \times (s\mathbf{b})&=||s\mathbf{b}|| \ ||s\mathbf{b}||\sin \varphi \ \mathbf{\hat{m}} \\
+	&=|r|\ |s|\ ||\mathbf{a}|| \ ||\mathbf{b}|| \sin \varphi \ \mathbf{\hat{m}} \\
+	&=|rs|\ ||\mathbf{a}|| \ ||\mathbf{b}|| \sin \varphi \ \mathbf{\hat{m}}
+\end{align*}
+We now have several cases to check, depending on $r$ and $s$.
+\begin{enumerate}[(1)]
+	\item If either $r=0$ or $s=0$, then both sides are $\mathbf{0}$, so equality holds.
+	\item If $r>0$ and $s>0$, then $\varphi=\theta$, $\mathbf{\hat{m}}=\mathbf{\hat{n}}$, and $|rs|=rs$, so equality holds.
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.5]{figures_mvc/cp_proof_case_2}
+		\end{center}
+		\caption{Case (2).}
+	\end{figure}
+	\item If either $r<0$ and $s>0$ or $r>0$ and $s<0$, then $\varphi=\pi-\theta$, $\mathbf{\hat{m}}=-\mathbf{\hat{n}}$, and $|rs|=-rs$, and therefore
+	\begin{align*}
+		(r\mathbf{a}) \times (s\mathbf{b})&=-rs||\mathbf{a}|| \ ||\mathbf{b}||  \sin (\pi-\theta) \ (-\mathbf{\hat{n}}) \\
+		&=rs||\mathbf{a}|| \ ||\mathbf{b}|| \sin\theta \mathbf{\hat{n}} \\
+		&=rs (\mathbf{a} \times \mathbf{b})
+	\end{align*}
+	where we have used the fact that $\sin(\pi-\theta)=\sin\theta$.
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.5]{figures_mvc/cp_proof_case_3}
+		\end{center}
+		\caption{Case (3).}
+	\end{figure}
+	\item If $r<0$ and $s<0$, then $\varphi=\theta$, $\mathbf{\hat{m}}=\mathbf{\hat{n}}$, and $|rs|=rs$, and therefore
+	\begin{align*}
+		(r\mathbf{a}) \times (s\mathbf{b})&=rs||\mathbf{a}|| \ ||\mathbf{b}||  \sin \theta \ \mathbf{\hat{n}} \\
+		&=rs(\mathbf{a} \times \mathbf{b})
+	\end{align*}
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.3]{figures_mvc/cp_proof_case_4}
+		\end{center}
+		\caption{Case (4).}
+	\end{figure}
+\end{enumerate}
+This exhausts the possibilities for $r$ and $s$, completing the proof.
+\end{proof}
 
 
+
+
+As we have seen in Section \ref{sec:vectors_and_geometry}, the study of the properties of vectors in three-dimensional space is greatly facilitated by choosing a Cartesian coordinate system. To write the cross product of two vectors 
+\begin{align*}
+	\mathbf{a}&=a_1\mathbf{\hat{i}}+a_2\mathbf{\hat{j}}+a_3\mathbf{\hat{k}}, \\
+	\mathbf{b}&=b_1\mathbf{\hat{i}}+b_2\mathbf{\hat{j}}+b_3\mathbf{\hat{k}}, \\
+\end{align*}
+in terms of their components, we begin by working out the cross products of the standard unit vectors $\mathbf{\hat{i}}, \mathbf{\hat{j}},$ and $\mathbf{\hat{k}}$. We note immediately that $\mathbf{\hat{i}} \times \mathbf{\hat{i}}=\mathbf{\hat{j}} \times \mathbf{\hat{j}}=\mathbf{\hat{k}} \times \mathbf{\hat{k}}=\mathbf{0}$ by part (b) of Proposition \ref{prop:geometry_of_the_cross_product}. Since the distinct vectors are all mutually orthogonal, by the right hand rule we find
+\begin{align*}
+	\mathbf{\hat{i}} \times \mathbf{\hat{j}}&=\mathbf{\hat{k}}, \\
+	\mathbf{\hat{j}} \times \mathbf{\hat{k}}&=\mathbf{\hat{i}}, \\
+	\mathbf{\hat{k}} \times \mathbf{\hat{i}}&=\mathbf{\hat{j}}
+\end{align*}
+while 
+\begin{align*}
+	\mathbf{\hat{j}} \times \mathbf{\hat{i}}&=-\mathbf{\hat{k}}, \\
+	\mathbf{\hat{k}} \times \mathbf{\hat{j}}&=-\mathbf{\hat{i}}, \\
+	\mathbf{\hat{i}} \times \mathbf{\hat{k}}&=-\mathbf{\hat{j}}.
+\end{align*} 
+\fixme{Insert wheel graphic.}
 \end{document}
 
