@@ -4182,5 +4182,201 @@ We have the following geometric interpretation of determinants:
 	\end{figure}
 \end{prop}
 
+\subsection{Vector Spaces}
+We have seen previously that various diverse applications, such as analyzing electrical circuits and balancing chemical equations, could all be solved in exactly the same way: since the solution of the problem involved forming linear combinations of a fixed number of unknown quantities, this gave rise to a system of linear equations which we were able to solve by our row-reduction algorithm. We therefore find it useful to generalize our concept of a vector, abstracting the essential properties which make it possible to solve any system which shares these properties. This gives rise to the notion of a \emph{vector space}.
+\begin{defn}[Vector space] \label{def:vector_space}
+	Let $V$ be a set and $\mathbb{R}$ be the set of real numbers. Define a function
+\begin{align*}
+	+:V\times V &\to V \\
+	({\bf v},{\bf w}) &\mapsto {\bf v}+{\bf w}
+\end{align*}
+called \emph{vector addition} (or just \emph{addition}) and a function
+\begin{align*}
+	\cdot :\mathbb{R}\times V &\to V \\
+	(x,{\bf v}) &\mapsto x{\bf v}
+\end{align*}
+called \emph{scalar multiplication}. \footnote{Rather than write $x \cdot \mathbf{v}$, it is more common to just write $x\mathbf{v}$.} The ordered triple $(V,+,\cdot)$ is called a \emph{real vector space} (or just a \emph{vector space}) if the following axioms hold: \\
+\\
+{\bf A1.} (Associativity of addition) ${\bf u}+({\bf v}+{\bf w})=({\bf u}+{\bf v})+{\bf w}$ for all  ${\bf u},{\bf v}, {\bf w} \in V$. \\
+{\bf A2.} (Commutativity of addition) ${\bf u}+{\bf v}={\bf v}+{\bf u}$ for all ${\bf u}, {\bf v} \in V$. \\
+{\bf A3.} (Existence of an additive identity) There exists an element ${\bf 0} \in V$ such that ${\bf v}+{\bf 0}={\bf v}$ for all ${\bf v} \in V$. \\
+{\bf A4.} (Existence of additive inverses) For every ${\bf v} \in V$ there exists a ${\bf w} \in V$ such that ${\bf v}+{\bf w}={\bf 0}$. \\
+\\
+{\bf S1.} (Associativity of multiplication) $(xy){\bf v}=x(y{\bf v})$ for all $x,y \in \mathbb{F}, {\bf v}\in V$. \\
+{\bf S2.} (Distributivity over scalar addition) $(x+y){\bf v}=x{\bf v}+y{\bf v}$ for all $x,y \in \mathbb{F}, {\bf v} \in V$ \\
+{\bf S3.} (Distributivity over vector addition) $x({\bf v}+{\bf w})=x{\bf v}+x{\bf w}$ for all $x \in \mathbb{F}, {\bf v}, {\bf w} \in V$. \\
+{\bf S4.} (Multiplication by 1 fixes each vector) $1{\bf v}={\bf v}$ for all ${\bf v} \in V$. 
+\end{defn}
+If the operations $+,\cdot$ are clear from context, then it is common to simply refer to $V$ as a vector space.
+
+Elements of a vector space $V$ are called \emph{vectors} and elements of $\mathbb{R}$ are called \emph{scalars}. \footnote{Since the scalars here are just real numbers, why call them scalars and not just continue to refer to them as real numbers? One reason is that this terminology is historical, coming from physics. Another is the following: If we replace $\mathbb{R}$ with $\mathbb{C}$ in the definition of a vector space, we get the definition of a \emph{complex vector space}. More generally, we can replace $\mathbb{R}$ in the definition of a vector space with any  \emph{field} $\mathbb{F}$, which is a set with two binary operations (called \emph{addition} and \emph{multiplication}), which have the same properties as ordinary addition and multiplication of real numbers ($\mathbb{C}$ is an example). This gives us a \emph{vector space over} $\mathbb{F}$. Most of the theory which will be developed going forward actually holds for a vector space over any field, so it is more common to just refer to elements of $\mathbb{R}$ as scalars to keep one's options open. However, in this class we will always take our scalars to be real numbers. This is actually slightly a lie, since in the next unit we will sometimes take them to be polynomials (which do not form a field since non-constant polynomials do not have multiplicative inverses), but these subtleties will not cause us any trouble at this level of study.}
+
+Let us now consider various examples of vector spaces. We begin with the simplest possible example of a vector space:
+
+\begin{example}[The zero vector space]
+	Let $V=\{0\}$ and define $0+0=0$ and $x0=0$ for all $x \in \mathbb{F}$. It is easy to check that A1-S4 are satisfied, so this is a vector space. This is called the \emph{zero vector space} or \emph{trivial vector space}.
+\end{example}
+
+\begin{exercise}
+Check that the zero vector space is indeed a vector space.
+\end{exercise}
+
+
+Of course, $\mathbb{R}^n$ is another example of a vector space, since we \emph{defined} a vector space to have the algebraic properties of $\mathbb{R}^n$. 
+
+\begin{example}[$\mathbb{R}^n$]
+	Let $V=\mathbb{R}^n$ and define
+\begin{align*}
+	{\bf v}+{\bf w} &=(v_1+w_1,v_2+w_2,\cdots, v_n+w_n) \\
+	x{\bf v} &=(xv_1, xv_2, \cdots, xv_n).
+\end{align*} These satisfy the vector space axioms because \emph{we based these axioms} on known properties of $\mathbb{R}^n$.
+\end{example}
+
+We can also consider \emph{infinite} sequences of elements of $\mathbb{F}$:
+
+\begin{example}[$\mathbb{R}^\omega$]
+	Let $\mathbb{R}^\omega$ denote the set of infinite sequences of elements of $\mathbb{R}$. An element of $\mathbb{R}^\omega$ is therefore of the form 
+	\begin{align*}{\bf v}=(v_1,v_2,\cdots, v_n,\cdots)
+	\end{align*} 
+	where we take ${\bf v}={\bf w}$ if and only if $v_i=w_i$ for all $i$. Defining addition and scalar multiplication componentwise by
+	\begin{align*}
+		{\bf v}+{\bf w} &=(v_1+w_1,v_2+w_2,\cdots, v_n+w_n,\cdots) \\
+	x{\bf v} &=(xv_1, xv_2, \cdots, xv_n,\cdots)
+	\end{align*}
+	one can verify that $\mathbb{R}^\omega$ is a vector space. \footnote{For the reader wondering about the notation, the symbol $\omega$ denotes the first infinite \emph{ordinal}.}
+\end{example}
+
+We have seen that matrices are composed of vectors (rows and columns). However, as we will now see, we can also view the \emph{entire} matrix itself as a vector.
+
+\begin{example}[$M^{m \times n}(\mathbb{R})$]
+	Let $M^{m \times n}(\mathbb{R})$ denote the set of $m \times n$ matrices with entries in $\mathbb{R}$. This is a vector space under the usual componentwise addition and scalar multiplication:
+	\begin{align*}
+		(a+b)_{ij}&=a_{ij}+b_{ij} \\
+		(xa)_{ij}&=xa_{ij}
+	\end{align*}
+\end{example}
+
+All of these examples so far were obtained by replacing $\mathbb{R}^n$ by another set $V$, but keeping essentially the same operations. In the next example, we illustrate the flexibility in choice of vector addition and scalar multiplication.
+
+\begin{example}[An Unusual Vector Space]\label{ex:unusual_vector_space}
+	Let $V$ be the set positive real numbers, $\mathbb{R}^+$, and define vector addition to be ordinary multiplication and scalar multiplication to be exponentiation. That is, for any $u,v \in \mathbb{R}^+$ and $k \in \mathbb{R}$,
+	\begin{align*}
+		u+v&=uv \\
+		ku&=u^k 
+	\end{align*}
+	With these definitions, we have, for instance, $1+1=(1)(1)=1$ and $(2)(1)=1^2=1$. If this is to be a vector space, we see that the zero vector must be ${\bf 0}=1$, since 
+	\begin{align*}
+		u+1=(u)(1)=u
+	\end{align*}
+	and that the additive inverse of $u$ is its reciprocal $\frac{1}{u}$, since
+	\begin{align*}
+		u+\frac{1}{u}=(u)(\frac{1}{u})=1={\bf 0}
+	\end{align*}
+One can check that all the vector space axioms are satisfied. For instance, axiom S4 holds due to the properties of exponents:
+\begin{align*}
+	k(u+v)=(uv)^k=u^kv^k=(ku)+(kv).
+\end{align*}
+\end{example}
+
+\begin{exercise}
+	Verify that Example \ref{ex:unusual_vector_space} is a vector space.
+\end{exercise}
+
+While the previous example shows that it is possible to give the same set different vector space structures, not every choice of operations will give rise to a vector space.
+
+\begin{exercise}
+Let $V=\mathbb{R}^2$ and define vector addition as usual, but scalar multiplication as 
+\begin{align*}
+	k(v_1,v_2)&=(kv_1,0).
+\end{align*}	
+Show that this is not a vector space. Which axiom(s) fail to hold?
+\end{exercise}
+
+\begin{example}
+Let $V=\{(x,y) \in \mathbb{R}^2:x \geq 0\}$ and define vector addition and scalar multiplication as the usual ones for $\mathbb{R}^2$. 
+\begin{align*}
+	(x_1,y_1)+(x_2,y_2)&:=(x_1+x_2,y_1+y_2) \\
+	k(x,y)&:=(kx,ky).
+\end{align*}
+
+Vector addition is a well-defined function $V \times V \to V$, since $x_1 \geq 0$ and $x_2 \geq 0$ together imply that $x_1+x_2 \geq 0$. However, if $k=-1$, then $(-x,-y)$ is not an element of $V$ if $x>0$. Thus, this is not a vector space since scalar multiplication is not a well-defined function $\mathbb{R} \times V \to V$.
+\end{example}
+There are additional properties of any vector space which follow directly from Definition \ref{def:vector_space}.
+
+\begin{thm}[Properties of vector spaces]\label{thm:properties_of_vector_spaces}
+	Let $V$ be a vector space, ${\bf v} \in V$, and $x \in \mathbb{R}$. Then:
+	\begin{enumerate}[(a)]
+		\item The element ${\bf 0} \in V$ of A3 is unique.
+		\item $x{\bf 0}={\bf 0}$ for all $x\in \mathbb{R}$ 
+		\item $0{\bf v}={\bf 0}$ for all ${\bf v} \in V$.
+		\item For each ${\bf v}$ the ${\bf w}$ of A4 is unique. We denote this vector by $-{\bf v}$.
+		\item $-{\bf v}=(-1){\bf v}$ for all ${\bf v} \in  V$.
+		\item If $x{\bf v}={\bf 0}$, then either $x=0$ or ${\bf v}={\bf 0}$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+(a) Suppose ${\bf 0},{\bf 0'} \in V$ such that 
+\begin{align}
+	{\bf 0}+{\bf v} &={\bf v} \\
+	{\bf 0'}+{\bf v} &={\bf v}
+\end{align}
+for all ${\bf v} \in V$. Then 
+\begin{align*}
+	{\bf 0'}&={\bf 0}+{\bf 0'} \text{ (by (1))} \\
+	&={\bf 0} \text{ (by (2))} \\
+\end{align*}
+Hence, ${\bf 0}$ is unique. 
+
+(b) We have, by A3, x{\bf 0}=x{\bf 0}+{\bf 0}. We also have
+\begin{align*}
+	x{\bf 0}&=x({\bf 0}+{\bf 0}) \text{ (since ${\bf 0}={\bf 0}+{\bf 0}$ by A3)} \\
+	&=x{\bf 0}+x{\bf 0} \text{ (by S3)}
+\end{align*} and therefore $x{\bf 0}+x{\bf 0}=x{\bf 0}+{\bf 0}$. Adding the inverse of $x{\bf 0}$ to both sides (A4), and using (A1), we find $x{\bf 0}={\bf 0}$.	
+(c) Applying A3, we have $0{\bf v}=0{\bf v}+{\bf 0}$. We also have
+$0{\bf v} =(0+0){\bf v}=0{\bf v} + 0{\bf v}$ by S2. Letting ${\bf w}$ be the inverse of $0{\bf v}$ (which exists by A4), we have
+\begin{align*}
+	0{\bf v}+{\bf 0}&=0{\bf v}+0{\bf v} \\
+	{\bf w}+0{\bf v}+{\bf 0}&={\bf w}+0{\bf v}+0{\bf v} \\
+	({\bf w}+0{\bf v})+{\bf 0}&=({\bf w}+0{\bf v})+0{\bf v} \text{ (by A1)}\\
+	0+{\bf 0}&=0+0{\bf v} \text{ (by A4)}
+\end{align*} and therefore $0{\bf v}={\bf 0}$. 
+
+(d) Suppose for some ${\bf v} \in V$ there exist ${\bf w},{\bf w'} \in V$ such that
+\begin{align}
+	{\bf v}+{\bf w} &={\bf 0} \\
+	{\bf v}+{\bf w'} &={\bf 0}
+\end{align} Then
+\begin{align*}
+	{\bf w'}&={\bf w'}+{\bf 0} \text{ (by A3)}\\
+	&={\bf w'}+({\bf v}+{\bf w}) \text{ (by (3))} \\
+	&=({\bf w'}+{\bf v})+{\bf w} \text{ (by A1)} \\
+	&={\bf 0}+{\bf w} \text{ (by (4))} \\
+	&={\bf w} \text{ (by A3).}
+\end{align*} Hence, for each ${\bf v}$, ${\bf w}\equiv -{\bf v}$ is unique.
+
+(e) We have
+	\begin{align*}
+		{\bf v}+(-1){\bf v} &=1{\bf v}+(-1){\bf v} \text{ (by S4)}\\
+		&=(1+(-1)){\bf v} \text{ (by S2)}\\
+		&=0{\bf v} \\
+		&={\bf 0} \text{ by (c)}
+	\end{align*}
+By (d), for each ${\bf v} \in V$ there exists a unique $-{\bf v}$ such that ${\bf v}+(-{\bf v})=0$. Hence, $-{\bf v}=(-1){\bf v}$.
+
+(f) Suppose $x{\bf v}={\bf 0}$. Then $x{\bf v}=0{\bf v}$ by (c) and therefore $x{\bf v}+(-0{\bf v})=0{\bf v}+(-0{\bf v})=0$ by A4. Applying (e), we have $(x-0){\bf v}={\bf 0}$. If $x=0$, we are done. If $x \neq 0$, we can multiply both sides by $\frac{1}{x-0}=\frac{1}{x}$ and we have ${\bf v}={\bf 0}$.
+\end{pf}
+
+We have just seen that the vector space structure establishes a connection between such diverse mathematical objects such as geometric vectors, vectors in $\mathbb{R}^n$, infinite sequences, matrices, and real-valued functions, to name a few. Consequently, whenever we discover a new theorem which holds for a general vector space, it will apply to \emph{all} of these vector spaces.
+
+As an example, consider the simple-looking result in part (a) of Theorem \ref{thm:properties_of_vector_spaces}. Applied to the vector space in Example \ref{ex:unusual_vector_space}, the equation
+\begin{align*}
+	0{\bf u}={\bf 0}
+\end{align*}
+becomes the statement of the fact that if $u$ is a positive real number, then
+\begin{align*}
+	u^0=1.
+\end{align*}
+
 \end{document}
 
