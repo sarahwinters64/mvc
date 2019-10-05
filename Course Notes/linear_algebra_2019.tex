@@ -4182,8 +4182,10 @@ We have the following geometric interpretation of determinants:
 	\end{figure}
 \end{prop}
 
-\subsection{Vector Spaces}
+\section{Vector Spaces}
 We have seen previously that various diverse applications, such as analyzing electrical circuits and balancing chemical equations, could all be solved in exactly the same way: since the solution of the problem involved forming linear combinations of a fixed number of unknown quantities, this gave rise to a system of linear equations which we were able to solve by our row-reduction algorithm. We therefore find it useful to generalize our concept of a vector, abstracting the essential properties which make it possible to solve any system which shares these properties. This gives rise to the notion of a \emph{vector space}.
+
+\subsection{Basic Definitions and Examples}\label{sec:basic_definitions_and_examples}
 \begin{defn}[Vector space] \label{def:vector_space}
 	Let $V$ be a set and $\mathbb{R}$ be the set of real numbers. Define a function
 \begin{align*}
@@ -4202,9 +4204,9 @@ called \emph{scalar multiplication}. \footnote{Rather than write $x \cdot \mathb
 {\bf A3.} (Existence of an additive identity) There exists an element ${\bf 0} \in V$ such that ${\bf v}+{\bf 0}={\bf v}$ for all ${\bf v} \in V$. \\
 {\bf A4.} (Existence of additive inverses) For every ${\bf v} \in V$ there exists a ${\bf w} \in V$ such that ${\bf v}+{\bf w}={\bf 0}$. \\
 \\
-{\bf S1.} (Associativity of multiplication) $(xy){\bf v}=x(y{\bf v})$ for all $x,y \in \mathbb{F}, {\bf v}\in V$. \\
-{\bf S2.} (Distributivity over scalar addition) $(x+y){\bf v}=x{\bf v}+y{\bf v}$ for all $x,y \in \mathbb{F}, {\bf v} \in V$ \\
-{\bf S3.} (Distributivity over vector addition) $x({\bf v}+{\bf w})=x{\bf v}+x{\bf w}$ for all $x \in \mathbb{F}, {\bf v}, {\bf w} \in V$. \\
+{\bf S1.} (Associativity of multiplication) $(xy){\bf v}=x(y{\bf v})$ for all $x,y \in \mathbb{R}, {\bf v}\in V$. \\
+{\bf S2.} (Distributivity over scalar addition) $(x+y){\bf v}=x{\bf v}+y{\bf v}$ for all $x,y \in \mathbb{R}, {\bf v} \in V$ \\
+{\bf S3.} (Distributivity over vector addition) $x({\bf v}+{\bf w})=x{\bf v}+x{\bf w}$ for all $x \in \mathbb{R}, {\bf v}, {\bf w} \in V$. \\
 {\bf S4.} (Multiplication by 1 fixes each vector) $1{\bf v}={\bf v}$ for all ${\bf v} \in V$. 
 \end{defn}
 If the operations $+,\cdot$ are clear from context, then it is common to simply refer to $V$ as a vector space.
@@ -4213,8 +4215,8 @@ Elements of a vector space $V$ are called \emph{vectors} and elements of $\mathb
 
 Let us now consider various examples of vector spaces. We begin with the simplest possible example of a vector space:
 
-\begin{example}[The zero vector space]
-	Let $V=\{0\}$ and define $0+0=0$ and $x0=0$ for all $x \in \mathbb{F}$. It is easy to check that A1-S4 are satisfied, so this is a vector space. This is called the \emph{zero vector space} or \emph{trivial vector space}.
+\begin{example}[The zero vector space]\label{ex:zero_vector_space}
+	Let $V=\{0\}$ and define $0+0:=0$ and $x0:=0$ for all $x \in \mathbb{R}$. It is easy to check that A1-S4 are satisfied, so this is a vector space. This is called the \emph{zero vector space} or the \emph{trivial vector space}.
 \end{example}
 
 \begin{exercise}
@@ -4224,31 +4226,31 @@ Check that the zero vector space is indeed a vector space.
 
 Of course, $\mathbb{R}^n$ is another example of a vector space, since we \emph{defined} a vector space to have the algebraic properties of $\mathbb{R}^n$. 
 
-\begin{example}[$\mathbb{R}^n$]
+\begin{example}[$\mathbb{R}^n$]\label{ex:r_n}
 	Let $V=\mathbb{R}^n$ and define
 \begin{align*}
-	{\bf v}+{\bf w} &=(v_1+w_1,v_2+w_2,\cdots, v_n+w_n) \\
-	x{\bf v} &=(xv_1, xv_2, \cdots, xv_n).
+	{\bf v}+{\bf w} &:=(v_1+w_1,v_2+w_2,\cdots, v_n+w_n) \\
+	x{\bf v} &:=(xv_1, xv_2, \cdots, xv_n).
 \end{align*} These satisfy the vector space axioms because \emph{we based these axioms} on known properties of $\mathbb{R}^n$.
 \end{example}
 
 We can also consider \emph{infinite} sequences of elements of $\mathbb{F}$:
 
-\begin{example}[$\mathbb{R}^\omega$]
+\begin{example}[$\mathbb{R}^\omega$]\label{ex:r_omega}
 	Let $\mathbb{R}^\omega$ denote the set of infinite sequences of elements of $\mathbb{R}$. An element of $\mathbb{R}^\omega$ is therefore of the form 
 	\begin{align*}{\bf v}=(v_1,v_2,\cdots, v_n,\cdots)
 	\end{align*} 
 	where we take ${\bf v}={\bf w}$ if and only if $v_i=w_i$ for all $i$. Defining addition and scalar multiplication componentwise by
 	\begin{align*}
-		{\bf v}+{\bf w} &=(v_1+w_1,v_2+w_2,\cdots, v_n+w_n,\cdots) \\
-	x{\bf v} &=(xv_1, xv_2, \cdots, xv_n,\cdots)
+		{\bf v}+{\bf w} &:=(v_1+w_1,v_2+w_2,\cdots, v_n+w_n,\cdots) \\
+	x{\bf v} &:=(xv_1, xv_2, \cdots, xv_n,\cdots)
 	\end{align*}
-	one can verify that $\mathbb{R}^\omega$ is a vector space. \footnote{For the reader wondering about the notation, the symbol $\omega$ denotes the first infinite \emph{ordinal}.}
+	one can verify that $\mathbb{R}^\omega$ is a vector space. \footnote{For the reader wondering about the notation, the symbol $\omega$ denotes the first infinite \emph{ordinal}, which is most likely an unfamiliar concept. For those who are interested, I encourage you to go ask Michael Rawlins about ordinal numbers.}
 \end{example}
 
 We have seen that matrices are composed of vectors (rows and columns). However, as we will now see, we can also view the \emph{entire} matrix itself as a vector.
 
-\begin{example}[$M^{m \times n}(\mathbb{R})$]
+\begin{example}[$M^{m \times n}(\mathbb{R})$]\label{ex:m_by_n}
 	Let $M^{m \times n}(\mathbb{R})$ denote the set of $m \times n$ matrices with entries in $\mathbb{R}$. This is a vector space under the usual componentwise addition and scalar multiplication:
 	\begin{align*}
 		(a+b)_{ij}&=a_{ij}+b_{ij} \\
@@ -4258,7 +4260,7 @@ We have seen that matrices are composed of vectors (rows and columns). However, 
 
 All of these examples so far were obtained by replacing $\mathbb{R}^n$ by another set $V$, but keeping essentially the same operations. In the next example, we illustrate the flexibility in choice of vector addition and scalar multiplication.
 
-\begin{example}[An Unusual Vector Space]\label{ex:unusual_vector_space}
+\begin{example}\label{ex:unusual_vector_space}
 	Let $V$ be the set positive real numbers, $\mathbb{R}^+$, and define vector addition to be ordinary multiplication and scalar multiplication to be exponentiation. That is, for any $u,v \in \mathbb{R}^+$ and $k \in \mathbb{R}$,
 	\begin{align*}
 		u+v&=uv \\
@@ -4301,6 +4303,152 @@ Let $V=\{(x,y) \in \mathbb{R}^2:x \geq 0\}$ and define vector addition and scala
 
 Vector addition is a well-defined function $V \times V \to V$, since $x_1 \geq 0$ and $x_2 \geq 0$ together imply that $x_1+x_2 \geq 0$. However, if $k=-1$, then $(-x,-y)$ is not an element of $V$ if $x>0$. Thus, this is not a vector space since scalar multiplication is not a well-defined function $\mathbb{R} \times V \to V$.
 \end{example}
+
+\subsection{Function Spaces}
+We can obtain a large number of examples of vector spaces in the following way. Note that, in Examples \ref{ex:r_n}, \ref{ex:r_omega}, and \ref{ex:m_by_n} above, the reason why the vector space axioms were satisfied was essentially because they are satisfied for real numbers. We can exploit this to systematically find other examples of vector spaces.
+
+Let $\overline{n}$ denote the first $n$ positive integers; that is, $\overline{n}:=\{1,2,\dots,n\}$. We can view an ordered $n$-tuples $\mathbf{x}=(x_1,x_2,\dots,x_n) \in \mathbb{R}^n$ as a \emph{function} 
+\begin{align*}
+	\mathbf{x}:\overline{n} \to \mathbb{R}
+\end{align*}
+defined by $\mathbf{x}(i)=x_i$. From this point of view, vector addition and scalar multiplication are just the usual definitions of pointwise addition and scalar multiplication of functions:
+\begin{align*}
+	({\bf x}+{\bf y})(i)&={\bf x}(i)+{\bf y}(i) \\
+	&=x_i+y_i \\
+	(c{\bf x})(i)&=c{\bf x}(i) \\
+	&=cx_i.
+\end{align*}
+Now, replace $\overline{n}\equiv \{1,2,\cdots,n\}$ by \emph{any} set $A$.
+	Denote by $\mathbb{R}^A$ the set of all functions from $A$ into $\mathbb{R}$, that is, $\mathbb{R}^A\equiv \{f|f:A \to \mathbb{R}\}$. This set is again a vector space under the operations
+ \begin{align}\label{eq:pointwise_1}
+	(f+g)(a)&=f(a)+g(a) \text{ for all } a \in A\\ \label{eq:pointwise_2}
+	(xf)(a)&=xf(a) \text{ for all } a \in A, x \in \mathbb{R} 
+\end{align}
+It then follows immediately that $\mathbb{R}^A$ is a vector space because $\mathbb{R}$ is.
+
+\begin{prop}[$\mathbb{R}^A$ is a vector space]
+The set $\mathbb{R}^A$ is a vector space under the operations \eqref{eq:pointwise_1} and \eqref{eq:pointwise_2}.
+\end{prop}
+
+\begin{proof}
+We will show that A1-A4, S1-S4 of Definition \ref{def:vector_space} hold. The key fact is that the values $f(a)$ of a function $f \in \mathbb{R}^A$ are real numbers. The reader should be able to justify each step in what follows.  \\
+\\
+{\bf A1.} Let $f,g,h \in \mathbb{R}^A$. Then, for all $a \in A$,
+\begin{align*}
+	[(f+g)+h](a)&=(f+g)(a)+h(a) \\
+	&=(f(a)+g(a))+h(a) \\
+	&=f(a)+(g(a)+h(a)) \text{ (Since addition of real numbers is associative.)}\\
+	&=f(a)+(g+h)(a) \\
+	&=[f+(g+h)](a).
+\end{align*}
+This shows that the functions $(f+g)+h$ and $f+(g+h)$ have the same value for every $a \in A$. Since a function is defined by its values, they are therefore the same function. This proves that vector addition is associative. \\
+\\
+{\bf A2.} Let $f,g \in \mathbb{R}^A$. Then, for all $a \in A$,
+\begin{align*}
+	(f+g)(a)&=f(a)+g(a) \\
+	&=g(a)+f(a) \text{ (Since addition of real numbers is commutative.)} \\
+	&=(g+f)(a).
+\end{align*}
+Hence, vector addition is commutative. \\
+\\
+{\bf A3.} Let $0$ denote the zero function in $\mathbb{R}^A$, defined as the function which maps every element of $A$ to the real number $0$; that is, $0(a)=0$ for all $a \in A$. The zero function is then the additive identity in $\mathbb{R}^A$, since for all $f \in \mathbb{R}^A$,
+\begin{align*}
+	(f+0)(a)&=f(a)+0(a) \\
+	&=f(a)+0 \\
+	&=f(a) \text{ (since the number 0 is the additive identity in $\mathbb{R}$).}
+\end{align*} 
+Hence, $\mathbb{R}^A$ has an additive identity. \\
+\\
+{\bf A4.} Given $f \in \mathbb{R}^A$, let $-f$ denote the function whose value at each $a \in A$ is given by the negative of the value of $f$ at $a$; that is, $(-f)(a)=-f(a)$. Then $-f$ is the additive inverse of $f$, since
+\begin{align*}
+	(f+(-f))(a)&=f(a)+(-f)(a) \\
+	&=f(a)-f(a) \\
+	&=0 \text{ (since subtracting a real number from itself gives 0).}\\
+\end{align*}
+This shows that $(f+(-f))(a)=0$ for all $a \in A$, hence it is the zero function (which is the additive identity in $\mathbb{R}^A$). This shows that $-f$ is the additive inverse of $f$. \\
+\\
+{\bf S1.} Let $x,y \in \mathbb{R}$ and $f \in \mathbb{R}^A$. Then for every $a \in A$, 
+\begin{align*}
+	[(xy)f](a)&=(xy)f(a) \\
+	&=x(yf(a)) \text{ Since multiplication of real numbers is associative.} \\
+	&=x((yf)(a)) \\
+	&=[x(yf)](a).
+\end{align*}
+Hence, scalar multiplication is associative. \\
+\\
+{\bf S2.} Let $x,y \in \mathbb{R}$ and $f \in \mathbb{R}^A$. Then for all $a \in A$,
+\begin{align*}
+	[(x+y)f](a)&=(x+y)f(a) \\
+	&=xf(a)+yf(a) \text{ (By the distributive property of real numbers.)}\\
+	&=(xf)(a)+(yf)(a) \\
+	&=(xf+yf)(a).
+\end{align*}
+Hence, scalar multiplication distributes over scalar addition. \\
+\\
+{\bf S3.} Let $x \in \mathbb{R}$ and $f,g \in \mathbb{R}^A$. Then for every $a \in A$,
+\begin{align*}
+	[x(f+g)](a)&=x(f+g)(a) \\
+	&=x(f(a)+g(a)) \\
+	&=xf(a)+xg(a) \text{ (By the distributive property of real numbers.)}\\
+	&=(xf+xg)(a).
+\end{align*}
+Hence, scalar multiplication distributes over vector addition. \\
+\\
+{\bf S4.} Let $f \in \mathbb{R}^A$. Then for every $a \in A$,
+\begin{align*}
+	(1f)(a)&=1f(a) \\
+	&=f(a) \text{ (Since 1 is the multiplicative identity in $\mathbb{R}$.)}
+\end{align*}
+Hence scalar multiplication by 1 fixes every function $f \in \mathbb{R}^A$. This completes the proof that $\mathbb{R}^A$ is a vector space.
+\end{proof}
+
+\begin{example}
+Let $f(x), g(x) \in \mathbb{R}^\mathbb{R}$ (the vector space of all functions $\mathbb{R} \to \mathbb{R}$), where $f(x)=\sin(x)$ and $g(x)=e^x$. Then their vector sum is given by
+\begin{align*}
+	(f+g)(x)&=f(x)+g(x)=\sin(x)+e^x \\
+\end{align*}
+and the scalar multiple of $f(x)$ by $\sqrt{\pi}$ is given by
+\begin{align*}
+	(\sqrt{\pi}f)(x)&=\sqrt{\pi}f(x)=\sqrt{\pi}\sin(x).
+\end{align*}	
+\end{example}
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/function_operations}
+\end{center}
+\caption{Visualization of the operations \eqref{eq:pointwise_1} and \eqref{eq:pointwise_2} for continuous functions from $\mathbb{R} \to \mathbb{R}$. The figure in (a) illustrates a vector sum, (b) illustrates a scalar multiple, and (c) an additive inverse.}
+\end{figure}
+
+
+
+
+
+Note that all of the examples of vector spaces in section \ref{sec:basic_definitions_and_examples} are examples of $\mathbb{R}^A$ for various choices of $A$:
+
+\begin{enumerate}[(i)]
+	\item $\mathbb{R}^n$ (the vector space of all ordered $n$-tuples of real numbers) is the same as $\mathbb{R}^{\overline{n}}$ (the vector space of all functions $\overline{n} \to \mathbb{R}$), since, as noted at the beginning of this section, the set of $n$ values of such a function can be taken to be the $n$ entries of a vector in $\mathbb{R}^n$.
+	\item $\mathbb{R}^\omega$ (the vector space of infinite sequences of real numbers) is the same as $\mathbb{R}^{\mathbb{N}}$ (the set of all functions $\mathbb{N} \to \mathbb{R}$), since the set of values of such a function is a sequence in $\mathbb{R}$.
+	\item $M^{m \times n}(\mathbb{R})$ (the vector space of $m \times n$ matrices) is the same as $\mathbb{R}^{\overline{m} \times \overline{n}}$ (the vector space of all functions $\overline{m} \times \overline{n} \to \mathbb{R}$), since the $mn$ values of such a function can then be taken to be the $mn$ entries of an $m \times n$ matrix.
+	\item $\{0\}$ (the zero vector space) is the same as $\mathbb{R}^\emptyset$ (the vector space of all functions from $\emptyset \to \mathbb{R}$). To see this, note that there is a unique function from the empty set into any non-empty set, $B$.  \footnote{For any non-empty set $B$, the Cartesian product $A \times B=\emptyset$ if $A=\emptyset$, since in this case there are no ordered pairs $(a,b)$ with $a \in A$ and $b \in B$ since there are no $a \in A$. Since the only subset of $\emptyset$ is $\emptyset$, the only relation between $\emptyset$ and a non-empty set $B$ is the empty relation. All that is left is to show that this is a function. A function from $A$ to $B$ is a relation $R \subset A \times B$ satisfying two conditions:
+\begin{enumerate}[(1)]
+	\item (Existence of images) For each $a \in A$, there exists a $b \in B$ such that $(a,b) \in R$
+	\item (Uniqueness of images) If $(a,b) \in R$ and $(a,b') \in R$, then $b=b'$. 
+\end{enumerate}
+Both of these conditions are vacuously true for the empty relation on $\emptyset \times B$ (since there is no $a \in \emptyset$ for which they could fail), so the empty relation $\emptyset \subset \emptyset \times B$ is indeed a function. This shows that there is indeed a unique function from $\emptyset$ to any non-zero set $B$.} Letting $0$ denote the only element of $\mathbb{R}^{\emptyset}$, we give $\mathbb{R}^{\emptyset}$ the structure of the zero vector space under the operations $0+0=0$ and $x0=0$ of example \ref{ex:zero_vector_space}. 
+\end{enumerate}
+
+We therefore obtain infinitely many examples of vector spaces by varying the set $A$. Here are a few more familiar examples:
+
+\begin{itemize}
+	\item $V=\mathbb{R}^{\{a\}}$, where $\{a\}$ is a singleton set, is $\mathbb{R}$ itself.
+	\item $V=\mathbb{R}^{\mathbb{R}}$ is the set of all real-valued functions of one real variable.
+	\item $V=\mathbb{R}^{\mathbb{R} \times \mathbb{R}}$ is the set of all real-valued functions of two real variables.
+	\item $V=\mathbb{R}^{\underbrace{\mathbb{R} \times \mathbb{R} \times \cdots \times \mathbb{R}}_{\text{$n$ times}}}$ is the set of all real-valued functions of $n$ real variables.
+\end{itemize}
+
+
+\subsection{Vector Space Properties}
 There are additional properties of any vector space which follow directly from Definition \ref{def:vector_space}.
 
 \begin{thm}[Properties of vector spaces]\label{thm:properties_of_vector_spaces}
@@ -4367,16 +4515,7 @@ By (d), for each ${\bf v} \in V$ there exists a unique $-{\bf v}$ such that ${\b
 (f) Suppose $x{\bf v}={\bf 0}$. Then $x{\bf v}=0{\bf v}$ by (c) and therefore $x{\bf v}+(-0{\bf v})=0{\bf v}+(-0{\bf v})=0$ by A4. Applying (e), we have $(x-0){\bf v}={\bf 0}$. If $x=0$, we are done. If $x \neq 0$, we can multiply both sides by $\frac{1}{x-0}=\frac{1}{x}$ and we have ${\bf v}={\bf 0}$.
 \end{pf}
 
-We have just seen that the vector space structure establishes a connection between such diverse mathematical objects such as geometric vectors, vectors in $\mathbb{R}^n$, infinite sequences, matrices, and real-valued functions, to name a few. Consequently, whenever we discover a new theorem which holds for a general vector space, it will apply to \emph{all} of these vector spaces.
-
-As an example, consider the simple-looking result in part (a) of Theorem \ref{thm:properties_of_vector_spaces}. Applied to the vector space in Example \ref{ex:unusual_vector_space}, the equation
-\begin{align*}
-	0{\bf u}={\bf 0}
-\end{align*}
-becomes the statement of the fact that if $u$ is a positive real number, then
-\begin{align*}
-	u^0=1.
-\end{align*}
+We have just seen that the vector space structure establishes a connection between such diverse mathematical objects such as geometric vectors, vectors in $\mathbb{R}^n$, infinite sequences, matrices, and real-valued functions, to name a few. Consequently, whenever we prove a new theorem which holds for a general vector space (such as Theorem \ref{thm:properties_of_vector_spaces}), it will apply to \emph{all} of these vector spaces.
 
 \end{document}
 
