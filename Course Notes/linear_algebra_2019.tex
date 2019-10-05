@@ -4517,5 +4517,161 @@ By (d), for each ${\bf v} \in V$ there exists a unique $-{\bf v}$ such that ${\b
 
 We have just seen that the vector space structure establishes a connection between such diverse mathematical objects such as geometric vectors, vectors in $\mathbb{R}^n$, infinite sequences, matrices, and real-valued functions, to name a few. Consequently, whenever we prove a new theorem which holds for a general vector space (such as Theorem \ref{thm:properties_of_vector_spaces}), it will apply to \emph{all} of these vector spaces.
 
+\subsection{Subspaces}
+Given a vector space $(V,+,\cdot)$, one way to get a new vector space is consider a nonempty subset $W \subseteq V$ and the restriction of the operations $+,\cdot$ to $W$.
+ 
+\begin{defn}[Subspace]\label{def:subspace}
+ Let $(V,+,\cdot)$ be any vector space, and let $W$ be a nonempty subset of $V$. Define vector addition and scalar multiplication on $W$ as the \emph{restrictions} of those on $V$.
+Then, if $(W,+\vert_W, \cdot \vert_W)$ satisfies axioms A1-A4 and S1-S4, it is a vector space in its own right. In this case, $W$ is called a \emph{subspace} of $V$. \footnote{We must require that $W$ be nonempty since if $W=\emptyset$, then it does not have a zero vector and therefore cannot be a vector space.}	
+\end{defn}
+
+\begin{prop}[Trivial subspaces]\label{prop:trivial_subspaces}
+	Every vector space $V$ has at least two subspaces: $V$ and $\{0\}$.
+\end{prop}
+
+\begin{proof}
+	By the definition of a subset ($A \subseteq B$ if, for every $a \in A$, $a \in A \implies a \in B$), every set is a subset of itself. Hence $V \subseteq V$, and the restriction of the vector operations of $V$ to itself are the same operations. Since $V$ is a vector space by assumption, this shows that $V$ is a subspace of itself.
+	
+	Now, since every vector space $V$ has a zero vector (by definition of a vector space), it is always possible to take  $W=\{0\}$. Let us now consider the restriction of the vector addition and scalar multiplication operations of $V$ to $W$. Since $0+v=0$ for every vector $v \in V$, this must also be true, in particular, for $v=0$. Therefore $0+0=0$ gives the restriction of $+$ to $W$. Now by part (b) of Theorem \ref{thm:properties_of_vector_spaces}, $x0=0$ for every $x \in \mathbb{R}$. Hence, the restriction of the vector operations of $V$ to $W$ are exactly those of Example \ref{ex:zero_vector_space}, and therefore $W$ is a zero vector space, and hence a subspace of $V$.
+\end{proof}
+
+In principle, we need to show that all the vector space axioms of Definition \ref{def:vector_space} hold for $W$ to show that it is a subspace. However, since one already knows that $V$ is a vector space, showing that $W \subseteq V$ is actually much easier: since the operations of vector addition and scalar multiplication on $W$ are the restrictions of those of $V$, certain axioms are satisfied \emph{automatically} since they are already satisfied for all vectors in $V$ and, in particular, those in $W$. For instance, if $+_V$ is commutative and associative for all vectors in $V$, then $+_W$ is also commutative and associative on $W$ since every vector in $W$ is also in $V$. We therefore only need to check the axioms that are not inherited from $V$ in this way. So which axioms are not inherited? 
+
+First, note that Definition \ref{def:subspace} of a subspace requires $W$ to be \emph{closed} under the operations of $V$. That is, the sum of two vectors in $W$ must be another vector in $W$, and, similarly, multiplying any vector $w$ in $W$ by a scalar $k$ must give another vector in $W$. As the following example shows, this is not automatically satisfied if we restrict to an arbitrary subset of $V$.
+
+\begin{example}
+Let $V=\mathbb{R}^2$ with the usual operations, and take $W \subseteq \R^2$ to be the set of points inside the unit disc; that is, $W=\{(x,y) \in \mathbb{R}^2:x^2+y^2 \leq 1 \}$. Consider $v=(1,0)$. Since $v+v=(2,0) \notin W$ (since $2^2+0^2=4>1$), $W$ is not closed under vector addition. Similarly, $2(1,0)=(2,0)$, so $W$ is also not closed under scalar multiplication. Hence, $W$ is not a subspace of $V$.	
+\end{example}
+Assume now that we have chosen a subset $W$ of a vector space $V$ which is closed under the operations of $V$. Going through the axioms in Definition \ref{def:vector_space}, we see that all but two hold automatically, simply because they hold for all vectors in $V$, and in particular those in $W$. The two do not hold automatically are 
+
+\begin{itemize}
+	\item A3 - Existence of an additive identity ${\bf 0}$ in $W$.
+	\item A4 - Existence of an additive inverse for each ${\bf w} \in W$.
+\end{itemize}
+
+Indeed, consider the following example:
+
+\begin{example}
+Let $V=\mathbb{R}$ and $W$ be the positive reals; that is, $W=(0,\infty)$. The zero vector of $V$ is the real number 0, which is not in $W$, so axiom A3 fails. Axiom A4 also fails for this choice of $W$: The additive inverse of the real number 1 in $V$ is $-1$. Now 1 belongs to $W$, but $-1$ does not, so we see that 1 has no additive inverse in $W$. 	
+\end{example}
+
+Thus, given a vector space $V$ and a subset $W \subseteq V$, to check that $W$ is a subspace it would seem that we need to
+\begin{enumerate}
+	\item check that $W$ is closed under the vector addition and scalar multiplication of $V$, and if so,
+	\item check that the zero vector is in $W$, and finally
+	\item check that every vector in $W$ has an additive inverse in $W$.
+\end{enumerate}
+However, the following lemma shows that if $W$ is closed under addition and scalar multiplication, then A3 and A4 actually follow \emph{automatically}.
+
+\begin{lem}\label{lem:subspace_criterion}
+	If $W$ is a nonempty subset of a vector space $V$, then $W$ is a subspace if and only if it is closed under the addition and scalar multiplication of $V$ when restricted to $W$.
+\end{lem}
+
+\begin{pf}
+The proof of necessity is trivial (if $W$ is a subspace, then it is closed under addition and multiplication by definition). To prove sufficiency, suppose $W$ is a non-empty subset of $V$ which is closed under the addition and scalar multiplication of $V$ when restricted to $W$. As noted above, all the axioms of Definition \ref{def:vector_space} are guaranteed to hold for the restricted operations, except for A3 and A4, so we need to check each of these. Since $W$ is not empty, there exists ${\bf w} \in W$. Since $W$ is closed under scalar multiplication, $0{\bf w}={\bf 0} \in W$, so $W$ contains the zero vector. Hence A3 holds for $W$. Similarly, for every ${\bf w} \in W$, $(-1){\bf w}=-{\bf w} \in W$, so A4 holds for $W$. Thus, all the axioms of Definition \ref{def:vector_space} hold for $W$, proving that it is a subspace of $V$.	
+\end{pf}
+
+Checking for closure of $W$ under the vector addition and scalar multiplication of $V$ can actually be combined into a single condition:
+
+\begin{thm}[Subspace criterion]\label{thm:subspace_criterion}
+A nonempty subset $W$ of $V$ is a subspace if and only if for each pair of vectors $\mathbf{v},\mathbf{w} \in W$ and each scalar $x \in \mathbb{R}$, the vector $x\mathbf{v}+\mathbf{w} \in W$.	
+\end{thm}
+
+\begin{pf}
+The proof of necessity is again trivial, since if $W$ is a subspace then by definition it is closed under vector addition and scalar multiplication, so $x\mathbf{v} \in W$ and therefore $x\mathbf{v}+\mathbf{w} \in W$. To prove sufficiency, we need to show that if $W$ is a nonempty subset of $V$ satisfying the stated hypothesis, then $W$ is closed under addition and scalar multiplication. Since $W$ is not empty, we can choose $\mathbf{v}, \mathbf{w} \in W$. By assumption, $1\mathbf{v}+\mathbf{w}=\mathbf{v}+\mathbf{w} \in W$, which shows $W$ is closed under addition. We also have, by assumption, $(-1)\mathbf{v}+\mathbf{v}=-\mathbf{v}+\mathbf{v}=\mathbf{0} \in W$. It follows that for any $x \in \mathbb{R}$ and $\mathbf{v} \in W$, $x\mathbf{v}+\mathbf{0}=x\mathbf{v}\in W$, which shows $W$ is closed under scalar multiplication. It then follows from Lemma \ref{lem:subspace_criterion} that $W$ is a subspace.	
+\end{pf}
+
+\begin{exercise}
+	Prove Proposition \ref{prop:trivial_subspaces} using Theorem \ref{thm:subspace_criterion}.
+\end{exercise}
+
+
+\begin{example}[Lines through the Origin in $\mathbb{R}^n$]
+	Let ${\bf v} \in \mathbb{R}^n$. Then the line $L_{\bf v}$ through the origin and ${\bf v}$ is given by $L_{\bf v}=\text{Span}\{{\bf v}\}\equiv\{{\bf w} \in \mathbb{R}^n : {\bf w}=t{\bf v} \text{ for some } t \in \mathbb{R}\}$. Then, if ${\bf v}_1,{\bf v}_2 \in L_{\bf v}$ and $x \in \mathbb{R}$, $x{\bf v}_1+{\bf v}_2=xt_1{\bf v}+t_2{\bf v}=(xt_1+t_2){\bf v} \in L_{\bf v}$, hence $L_{\bf v}$ is a subspace of $\mathbb{R}^n$ by the subspace criterion. \fixme{We have not introduced the span of a set of vectors yet.}
+\end{example}	
+	
+\begin{center}
+\includegraphics[scale=0.5]{figures_mvc/lines_through_origin}	
+\end{center}
+
+\begin{example}[Planes through the origin in $\mathbb{R}^n$]
+Let ${\bf v}, {\bf w}$ be any two non-proportional vectors in $\mathbb{R}^n$. Then $W=\text{Span}\{{\bf v}, {\bf w}\}\equiv \{t_1{\bf v}+t_2{\bf w}:t_1,t_2 \in \mathbb{R}\}$ is a plane through the origin in $\mathbb{R}^n$. If ${\bf v}_1, {\bf v}_2 \in W$ and $x \in \mathbb{R}$, then $x{\bf v_1}+{\bf v}_2=x(t_1{\bf v}+t_2{\bf w})+(t_1'{\bf v}+t_2'{\bf w})=(xt_1+t_1'){\bf v}+(xt_2+t_2'){\bf w} \in W$, hence $W$ is a subspace of $\mathbb{R}^n$. \fixme{We have not introduced the span of a set of vectors yet.}	
+\end{example}
+
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/plane_through_origin_subspace}
+\end{center}
+
+\begin{exercise}
+Show that a line or a plane that does not pass through the origin is \emph{not} a subspace of $\mathbb{R}^n$.	
+\end{exercise}
+
+\begin{exercise}
+Let $W=\{(x,y) \in \mathbb{R}^2 : x \geq 0 \text{ and }y \geq 0\}$. Is $W$ a subspace of $\mathbb{R}^2$?	
+\end{exercise}
+
+
+\begin{example}[Subspaces of $\mathbb{R}^{\overline{n} \times \overline{m}}$]
+The following sets of matrices are subspaces of $\mathbb{R}^{\overline{m} \times \overline{n}}$:
+\begin{itemize}
+	\item Symmetric matrices
+	\item Upper triangular matrices
+	\item Lower triangular matrices
+	\item Diagonal matrices
+\end{itemize}
+\begin{exercise}
+Show that each of these is a subspace of $\mathbb{R}^{\overline{m} \times \overline{n}}$.	
+\end{exercise}
+
+Note that the space of invertible matrices is \emph{not} a subspace of $\mathbb{R}^{\overline{m} \times \overline{n}}$. This set clearly fails to be closed under scalar multiplication: for any invertible matrix, $A$, $0A$ is the zero matrix, so it is not invertible. Similarly $A+(-A)=0$, which is not invertible.
+\end{example}
+
+\begin{example}[Function spaces]
+	Subspaces of $\mathbb{R}^A$ are called \emph{function spaces}.
+	\begin{itemize}
+	\item Take $V=\mathbb{R}^{[a,b]}$ and $W=\mathscr{C}([a,b])$ to be the set of all continuous real-valued functions on $[a,b]$. If $f,g$ are continuous and $x \in \mathbb{R}$, then from elementary calculus we know that $xf+g$ is also continuous, so $W=\mathscr{C}([a,b])$ is a subspace of $\mathbb{R}^{[a,b]}$.
+	\item The set $\mathscr{C}^1([a,b])$ of continuously differentiable functions (functions with a continuous first derivative) on $[a,b]$ is a subspace of $\mathbb{R}^{[a,b]}$. Similarly $\mathscr{C}^m([a,b])$ and $\mathscr{C}^\infty([a,b])$ are subspaces of $\mathbb{R}^{[a,b]}$.
+\end{itemize}
+\end{example}
+
+\begin{example}[Polynomials]
+	The set of all polynomials of degree $n$ is \emph{not} a subspace of $\mathbb{R}^\mathbb{R}$ as it is not closed under addition, e.g. ($(1+x)+(1-x)=2$). 
+	
+However, the set of all polynomials of degree $\leq n$ \ti{is} a subspace of $\mathbb{R}^\mathbb{R}$, denoted $P_n$. 
+
+The set of all polynomials, denoted $P_\infty$, is also a subspace of $\mathbb{R}^\mathbb{R}$.
+\end{example}
+
+\begin{exercise}
+Verify that $P_n$ and $P_\infty$ are subspaces of $\mathbb{R}^{\mathbb{R}}$ (in fact, they are subspaces of $\mathscr{C}^\infty(-\infty,\infty)$).	
+\end{exercise}
+
+
+\begin{thm}[Intersection of subspaces]\label{thm:intersection_of_subspaces}
+	If $\{W_i\}_{i \in I}$ is any collection of subspaces of a vector space $V$, then $W\equiv \cap_{i \in I}W_i$ is a subspace of $V$.
+\end{thm}
+
+\begin{pf}
+	Since ${\bf 0} \in W_i$ for all $i\in I$, ${\bf 0} \in W$, hence $W$ is not empty. For any ${\bf v},{\bf w} \in W$, ${\bf v},{\bf w} \in W_i$ for all $i \in I$, hence $x{\bf v}+{\bf w} \in W_i$ for all $i \in I$ and for all $x\in \mathbb{R}$ (since each $W_i$ is a subspace) and therefore $x{\bf v}+{\bf w} \in W$, hence $W$ is a subspace by the subspace criterion.
+\end{pf}
+
+\begin{thm}[Nested structure of subspaces]
+	\fixme{Need to edit this.} Let $V$ be a vector space and let $U,W$ be subsets of $V$ with $U \subseteq W$. If $W$ is a subspace of $V$ and $U$ is a subspace of $W$, then $U$ is a subspace of $V$.
+	
+	In other words, "a subspace of a subspace is a subspace."
+\end{thm}
+\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/nested}
+\end{center}
+
+\begin{pf}
+	Since $U$ is a subspace of $W$, it is not empty (in particular, it contains the zero vector of $W$, which is the zero vector of $V$). Since $U$ is a subspace of $W$, it is closed under $+_W\vert_U$ and $\cdot_W\vert_U$. But $+_W\vert_U=+_V\vert_{W \cap U}=+_V\vert_U$ and $\cdot_W\vert_U=+\cdot_V\vert_{W \cap U}=\cdot_V\vert_U$. This shows that $U$ is a subspace of $V$.
+\end{pf}
+
+\begin{example}[Solution sets of homogeneous linear systems]
+The solution set of a homogeneous linear system $A\mathbf{x}=\mathbf{0}$ in $n$ unknowns is a subspace of $\mathbf{R}^n$. \fixme{Work out the details.}
+
+The solution set of an inhomogeneous linear system in $n$ unknowns is \emph{not} a subspace of $\mathbb{R}^n$. \fixme{Work out the details.}
+\end{example}
 \end{document}
 
