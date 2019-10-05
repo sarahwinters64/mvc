@@ -4587,15 +4587,19 @@ The proof of necessity is again trivial, since if $W$ is a subspace then by defi
 
 
 \begin{example}[Lines through the Origin in $\mathbb{R}^n$]
-	Let ${\bf v} \in \mathbb{R}^n$. Then the line $L_{\bf v}$ through the origin and ${\bf v}$ is given by $L_{\bf v}=\text{Span}\{{\bf v}\}\equiv\{{\bf w} \in \mathbb{R}^n : {\bf w}=t{\bf v} \text{ for some } t \in \mathbb{R}\}$. Then, if ${\bf v}_1,{\bf v}_2 \in L_{\bf v}$ and $x \in \mathbb{R}$, $x{\bf v}_1+{\bf v}_2=xt_1{\bf v}+t_2{\bf v}=(xt_1+t_2){\bf v} \in L_{\bf v}$, hence $L_{\bf v}$ is a subspace of $\mathbb{R}^n$ by the subspace criterion. \fixme{We have not introduced the span of a set of vectors yet.}
+	Let ${\bf v} \in \mathbb{R}^n$. Then the line $L_{\bf v}$ through the origin and ${\bf v}$ is given by $L_{\bf v}=\{{\bf w} \in \mathbb{R}^n : {\bf w}=t{\bf v} \text{ for some } t \in \mathbb{R}\}$. Then, if ${\bf v}_1,{\bf v}_2 \in L_{\bf v}$ and $x \in \mathbb{R}$, $x{\bf v}_1+{\bf v}_2=xt_1{\bf v}+t_2{\bf v}=(xt_1+t_2){\bf v} \in L_{\bf v}$, hence $L_{\bf v}$ is a subspace of $\mathbb{R}^n$ by the subspace criterion. 
 \end{example}	
 	
 \begin{center}
 \includegraphics[scale=0.5]{figures_mvc/lines_through_origin}	
 \end{center}
 
+\begin{exercise}
+	Let $L_{\mathbf{v},\mathbf{b}}=\{\mathbf{w} \in \mathbf{R}^n: \mathbf{w}=t\mathbf{v}+\mathbf{b} \text{ for some } t \in \mathbb{R} \text{ and } \mathbf{b} \neq \mathbf{0}\}$ be a line which does not pass through the origin in $\mathbb{R}^n$. Show that such a line is \emph{not} a subspace of $\mathbb{R}^n$.
+\end{exercise}
+
 \begin{example}[Planes through the origin in $\mathbb{R}^n$]
-Let ${\bf v}, {\bf w}$ be any two non-proportional vectors in $\mathbb{R}^n$. Then $W=\text{Span}\{{\bf v}, {\bf w}\}\equiv \{t_1{\bf v}+t_2{\bf w}:t_1,t_2 \in \mathbb{R}\}$ is a plane through the origin in $\mathbb{R}^n$. If ${\bf v}_1, {\bf v}_2 \in W$ and $x \in \mathbb{R}$, then $x{\bf v_1}+{\bf v}_2=x(t_1{\bf v}+t_2{\bf w})+(t_1'{\bf v}+t_2'{\bf w})=(xt_1+t_1'){\bf v}+(xt_2+t_2'){\bf w} \in W$, hence $W$ is a subspace of $\mathbb{R}^n$. \fixme{We have not introduced the span of a set of vectors yet.}	
+Let ${\bf v}, {\bf w}$ be any two non-proportional vectors in $\mathbb{R}^n$. Then $W=\{t_1{\bf v}+t_2{\bf w}:t_1,t_2 \in \mathbb{R}\}$ is a plane through the origin in $\mathbb{R}^n$. If ${\bf v}_1, {\bf v}_2 \in W$ and $x \in \mathbb{R}$, then $x{\bf v_1}+{\bf v}_2=x(t_1{\bf v}+t_2{\bf w})+(t_1'{\bf v}+t_2'{\bf w})=(xt_1+t_1'){\bf v}+(xt_2+t_2'){\bf w} \in W$, hence $W$ is a subspace of $\mathbb{R}^n$. 
 \end{example}
 
 \begin{center}
@@ -4603,7 +4607,7 @@ Let ${\bf v}, {\bf w}$ be any two non-proportional vectors in $\mathbb{R}^n$. Th
 \end{center}
 
 \begin{exercise}
-Show that a line or a plane that does not pass through the origin is \emph{not} a subspace of $\mathbb{R}^n$.	
+Show that a plane that does not pass through the origin is \emph{not} a subspace of $\mathbb{R}^n$.	
 \end{exercise}
 
 \begin{exercise}
@@ -4626,15 +4630,15 @@ Show that each of these is a subspace of $\mathbb{R}^{\overline{m} \times \overl
 Note that the space of invertible matrices is \emph{not} a subspace of $\mathbb{R}^{\overline{m} \times \overline{n}}$. This set clearly fails to be closed under scalar multiplication: for any invertible matrix, $A$, $0A$ is the zero matrix, so it is not invertible. Similarly $A+(-A)=0$, which is not invertible.
 \end{example}
 
-\begin{example}[Function spaces]
+\begin{example}[Function spaces]\label{ex:function_spaces}
 	Subspaces of $\mathbb{R}^A$ are called \emph{function spaces}.
 	\begin{itemize}
-	\item Take $V=\mathbb{R}^{[a,b]}$ and $W=\mathscr{C}([a,b])$ to be the set of all continuous real-valued functions on $[a,b]$. If $f,g$ are continuous and $x \in \mathbb{R}$, then from elementary calculus we know that $xf+g$ is also continuous, so $W=\mathscr{C}([a,b])$ is a subspace of $\mathbb{R}^{[a,b]}$.
-	\item The set $\mathscr{C}^1([a,b])$ of continuously differentiable functions (functions with a continuous first derivative) on $[a,b]$ is a subspace of $\mathbb{R}^{[a,b]}$. Similarly $\mathscr{C}^m([a,b])$ and $\mathscr{C}^\infty([a,b])$ are subspaces of $\mathbb{R}^{[a,b]}$.
+	\item Take $V=\mathbb{R}^{(a,b)}$ and let $W=\mathscr{C}(a,b)$ denote the set of all \emph{continuous} real-valued functions on the open interval $(a,b)$. If $f,g$ are continuous on $(a,b)$ and $x \in \mathbb{R}$, then from elementary calculus we know that $xf+g$ is also continuous on $(a,b)$, so $W=\mathscr{C}(a,b)$ is a subspace of $\mathbb{R}^{(a,b)}$.
+	\item The set $\mathscr{C}^1(a,b)$ of continuously differentiable functions (functions with a continuous first derivative) on $(a,b)$ is a also subspace of $\mathbb{R}^{(a,b)}$, as are  $\mathscr{C}^m(a,b)$ (the set of functions whose $m$th derivative exists and is continuous on $(a,b)$) and $\mathscr{C}^\infty(a,b)$ (the set of functions whose derivatives all exist and are continuous on $(a,b)$).
 \end{itemize}
 \end{example}
 
-\begin{example}[Polynomials]
+\begin{example}[Polynomials]\label{ex:polynomials}
 	The set of all polynomials of degree $n$ is \emph{not} a subspace of $\mathbb{R}^\mathbb{R}$ as it is not closed under addition, e.g. ($(1+x)+(1-x)=2$). 
 	
 However, the set of all polynomials of degree $\leq n$ \ti{is} a subspace of $\mathbb{R}^\mathbb{R}$, denoted $P_n$. 
@@ -4643,35 +4647,44 @@ The set of all polynomials, denoted $P_\infty$, is also a subspace of $\mathbb{R
 \end{example}
 
 \begin{exercise}
-Verify that $P_n$ and $P_\infty$ are subspaces of $\mathbb{R}^{\mathbb{R}}$ (in fact, they are subspaces of $\mathscr{C}^\infty(-\infty,\infty)$).	
+Verify that $P_n$ and $P_\infty$ are subspaces of $\mathscr{C}^\infty(\R)\equiv \mathscr{C}^\infty(-\infty,\infty)$.
 \end{exercise}
 
+Since differentiability implies continuity, these subspaces have a nested structure, as shown in the figure below: \footnote{Here $F(-\infty,\infty)$ is what your book calls $\mathbb{R}^{(-\infty,\infty)}$. The latter is the more common notation.}
 
-\begin{thm}[Intersection of subspaces]\label{thm:intersection_of_subspaces}
-	If $\{W_i\}_{i \in I}$ is any collection of subspaces of a vector space $V$, then $W\equiv \cap_{i \in I}W_i$ is a subspace of $V$.
-\end{thm}
-
-\begin{pf}
-	Since ${\bf 0} \in W_i$ for all $i\in I$, ${\bf 0} \in W$, hence $W$ is not empty. For any ${\bf v},{\bf w} \in W$, ${\bf v},{\bf w} \in W_i$ for all $i \in I$, hence $x{\bf v}+{\bf w} \in W_i$ for all $i \in I$ and for all $x\in \mathbb{R}$ (since each $W_i$ is a subspace) and therefore $x{\bf v}+{\bf w} \in W$, hence $W$ is a subspace by the subspace criterion.
-\end{pf}
-
-\begin{thm}[Nested structure of subspaces]
-	\fixme{Need to edit this.} Let $V$ be a vector space and let $U,W$ be subsets of $V$ with $U \subseteq W$. If $W$ is a subspace of $V$ and $U$ is a subspace of $W$, then $U$ is a subspace of $V$.
-	
-	In other words, "a subspace of a subspace is a subspace."
-\end{thm}
-\begin{center}
+\begin{figure}[h]
+	\begin{center}
 	\includegraphics[scale=0.5]{figures_mvc/nested}
 \end{center}
+\caption{Nested structure of the function spaces of Examples \ref{ex:function_spaces} and \ref{ex:polynomials}.}
+\end{figure}
+
+More generally, one can prove that "a subspace of a subspace is a subspace."
+
+\begin{thm}[Transitivity of subspaces]
+	Let $V$ be a vector space and let $U,W$ be subsets of $V$ with $U \subseteq W$. If $W$ is a subspace of $V$ and $U$ is a subspace of $W$, then $U$ is a subspace of $V$.
+\end{thm}
 
 \begin{pf}
 	Since $U$ is a subspace of $W$, it is not empty (in particular, it contains the zero vector of $W$, which is the zero vector of $V$). Since $U$ is a subspace of $W$, it is closed under $+_W\vert_U$ and $\cdot_W\vert_U$. But $+_W\vert_U=+_V\vert_{W \cap U}=+_V\vert_U$ and $\cdot_W\vert_U=+\cdot_V\vert_{W \cap U}=\cdot_V\vert_U$. This shows that $U$ is a subspace of $V$.
 \end{pf}
 
 \begin{example}[Solution sets of homogeneous linear systems]
-The solution set of a homogeneous linear system $A\mathbf{x}=\mathbf{0}$ in $n$ unknowns is a subspace of $\mathbf{R}^n$. \fixme{Work out the details.}
-
-The solution set of an inhomogeneous linear system in $n$ unknowns is \emph{not} a subspace of $\mathbb{R}^n$. \fixme{Work out the details.}
+The solution set of a homogeneous linear system $A\mathbf{x}=\mathbf{0}$ in $n$ unknowns is a subspace of $\mathbf{R}^n$. To see this, let $\mathbf{x}_1, \mathbf{x}_2$ be solutions of this linear system and let $c$ be any scalar. By the rules of matrix multiplication, we then have
+\begin{align*}
+	A(c\mathbf{x}_1+\mathbf{x}_2)&=A(c\mathbf{x}_1)+A\mathbf{x}_2 \\
+	&=c(A\mathbf{x}_1)+A\mathbf{x}_2 \\
+	&=c0+0 \\
+	&=0,
+\end{align*}
+which shows that $c\mathbf{x}_1+\mathbf{x}_2$ is another solution of the linear system. Hence, the solution set is a subspace by the subspace criterion.
 \end{example}
+
+\begin{exercise}
+The solution set of an inhomogeneous linear system in $n$ unknowns is \emph{not} a subspace of $\mathbb{R}^n$. 	
+\end{exercise}
+
+
+
 \end{document}
 
