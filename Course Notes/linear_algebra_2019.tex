@@ -4305,7 +4305,7 @@ Let $V=\{(x,y) \in \mathbb{R}^2:x \geq 0\}$ and define vector addition and scala
 Vector addition is a well-defined function $V \times V \to V$, since $x_1 \geq 0$ and $x_2 \geq 0$ together imply that $x_1+x_2 \geq 0$. However, if $k=-1$, then $(-x,-y)$ is not an element of $V$ if $x>0$. Thus, this is not a vector space since scalar multiplication is not a well-defined function $\mathbb{R} \times V \to V$.
 \end{example}
 
-\subsection{Function Spaces}
+\subsection{$\mathbb{R}^A$}\label{sec:r_a}
 We can obtain a large number of examples of vector spaces in the following way. Note that, in Examples \ref{ex:r_n}, \ref{ex:r_omega}, and \ref{ex:m_by_n} above, the reason why the vector space axioms were satisfied was essentially because they are satisfied for real numbers. We can exploit this to systematically find other examples of vector spaces.
 
 Let $\overline{n}$ denote the first $n$ positive integers; that is, $\overline{n}:=\{1,2,\dots,n\}$. We can view an ordered $n$-tuples $\mathbf{x}=(x_1,x_2,\dots,x_n) \in \mathbb{R}^n$ as a \emph{function} 
@@ -4911,7 +4911,7 @@ Since we have previously seen that the standard unit vectors $\{e_i\}_{i=1}^3$ s
 $(\impliedby)$ $W \subseteq Span W' \implies Span W \subseteq Span W'$ and $W' \subseteq Span W \implies Span W' \subseteq Span W$, hence $Span W = SpanW'$. $(\implies)$ Each $w \in W$ belongs to $Span W$ and hence to $SpanW'$ (since these are equal), hence each $w \in W$ can be written as a linear combination of vectors in $W'$. By the same reasoning, each vector in $W'$ can be written as a linear combination of vectors in $W$.	
 \end{pf}
 
-\begin{example}
+\begin{example}\label{ex:a_different_spanning_set_for_r_3}
 Consider again the vectors ${\bf v}_1=(1,1,2), {\bf v}_2=(1,0,1), {\bf v}_3=(2,1,4)$. It is obvious that each of these is a linear combination of the standard unit vectors $\{e_i\}_{i=1}^n$. To express $\mathbf{e}_1$, say, as a linear combination of $\{\mathbf{v}_i\}_{i=1}^3$, we must find scalars $c_1,c_2,c_3$ such that $\mathbf{e}_1=\sum_{i=1}^3c_i\mathbf{v}_i$; that is, we must find a solution to the linear system whose augmented matrix is
 \begin{align*}
 	\left[\begin{array}{c c c| c}
@@ -4939,6 +4939,371 @@ we see that $e_1=\mathbf{v}_1+2\mathbf{v}_2-\mathbf{v}_3$. Of course, rather tha
 for a general $\mathbf{b}=(b_1,b_2,b_3) \in \mathbf{R}^3$, and then plugs in each $e_i$ to obtain each as a linear combination of $\{\mathbf{v}_i\}_{i=1}^3$.
 \end{example}
 
+\subsection{Linear Mappings}
+Recall that we are taking our prototypical example of a real vector space to be the general function space $\mathbb{R}^A$, which is the vector space of all real-valued functions on a set $A$.\footnote{We saw in Section \ref{sec:r_a} that all the examples of vector spaces we have studied so far are realized as $\mathbb{R}^A$ for particular choices of the set $A$.} Note that, in addition to the vector operations, $\mathbb{R}^A$ is also closed under the operation of (pointwise) multiplication of two functions: $$(fg)(a)=f(a)g(a) \ \forall a \in A.$$
+This is also true for the subspaces $\mathscr{C}^m([a,b])$ for $m=0,\cdots,\infty$. 
+
+With respect to these three operations, $\mathbb{R}^A$ and $\mathbb{C}^m([a,b])$ are examples of \emph{algebras}, which are vector spaces which are also closed under multiplication (satisfying certain axioms, of course). Why then do we bother with the notion of vector spaces? Why not study all three operations?
+
+The answer is that the vector operations are exactly the operations that are ``preserved" by many of the most important mappings of sets of functions. 
+
+\begin{example}
+Consider the laws of integration. The definite integral of a continuous function on $[a,b]$ is a mapping $T:\mathscr{C}([a,b]) \to \mathbb{R}$ defined by $T(f)=\int_{a}^bf(t)dt$. The laws of integration tell us that
+\begin{align*}
+	T(f+g)&=T(f)+T(g) \\
+	T(cf)&=cT(f)
+\end{align*}
+Thus T ``preserves" the vector operations, in the sense that performing the vector operations followed by $T$ is the same as performing $T$ and then performing the vector operations. However, $T$ does \emph{not} preserve multiplication: it is \emph{not} true in general that $T(fg)=T(f)T(g)$ (e.g., $\int_a^b x dx \int_a^b x^2 dx\neq \int_a^b x^3 dx$).
+\end{example}
+
+\begin{example}
+We may similarly view differentiation of a continuously differentiable function as a mapping $T:\mathscr{C}^1(a,b) \to \mathscr{C}(a,b)$ defined by $T(f)=\frac{df}{dx}$. The laws of differentiation tell us that 
+\begin{align*}
+	T(f+g)&=T(f)+T(g) \\
+	T(cf)&=cT(f).
+\end{align*}
+However, $\frac{d}{dx}(x)\frac{d}{dx}(x^2) \neq \frac{d}{dx}(x^3)$, so again we see that differentiation preserves the vector operations of $\mathscr{C}^1(a,b)$, but not the multiplication operation.
+\end{example}
+
+
+\begin{exercise}\label{ex:r_3_to_r_2}
+Define $T:\mathbb{R}^3 \to \mathbb{R}^2$ by
+\begin{align*}
+T(x_1,x_2,x_3)&=(y_1,y_2)=(2x_1-x_2+x_3, x_1+3x_2-5x_3)
+\end{align*}
+Verify that
+\begin{enumerate}[(a)]
+	\item $T({\bf x}+{\bf y})=T({\bf x})+T({\bf y})$
+	\item $T(c{\bf x})=cT({\bf x})$
+\end{enumerate}	
+\end{exercise}
+\newpage 
+{\color{red}
+\begin{solution}
+	\begin{enumerate}[(a)] Let $\mathbf{x}=(x_1,x_2,x_3)$ and $\mathbf{y}=(y_1,y_2,y_3)$. Then
+		\item 
+		\begin{align*}
+			T(\mathbf{x}+\mathbf{y})&=T(x_1+y_1,x_2+y_2,x_3+y_3) \\
+			&=(2(x_1+y_1)-(x_2+y_2)+x_3+y_3,x_1+y_1+3(x_2+y_2)-5(x_3+y_3)) \\
+			&=(2x_1+2y_1-x_2-y_2+x_3+y_3,x_1+y_1+3x_2+3y_2-5x_3-5y_3) \\
+			&=(2x_1-x_2+x_3+2y_1-y_2+y_3,x_1+3x_2-5x_3+y_1+3y_2-5y_3) \\
+			&=(2x_1-x_2+x_3,x_1+3x_2-5x_3)+(2y_1-y_2+y_3,y_1+3y_2-5y_3) \\
+			&=T(\mathbf{x})+T(\mathbf{y}).
+		\end{align*}
+		\item 
+		\begin{align*}
+			T(c\mathbf{x})&=T(cx_1,cx_2,cx_3) \\
+			&=(2cx_1-cx_2+cx_3,cx_1+3cx_2-5cx_3) \\
+			&=c(cx_1-x_2+x_3,x_1+3x_2-5x_3) \\
+			&=cT(\mathbf{x}).
+		\end{align*}
+	\end{enumerate}
+\end{solution}}
+
+\begin{defn}[Linear mapping]\label{def:linear_mapping}
+	Let $V$ and $W$ be vector spaces. A mapping $T:V \to W$ is said to be \emph{linear} if $T(\mathbf{v}_1+\mathbf{v}_2)=T(\mathbf{v}_1)+T(\mathbf{v}_2)$ for all $\mathbf{v}_1, \mathbf{v}_2 \in V$ and $T(c\mathbf{v})=cT(\mathbf{v})$ for all $\mathbf{v} \in V$ and all $c \in \mathbb{R}$.\footnote{Since our vectors are often themselves functions, we use the word "mapping" here rather than function, even though these two words are being used synonymously.} 
+	
+	If $W=V$, then a linear mapping $T:V \to V$ is said to be a \emph{linear operator} on $V$.	
+\end{defn}
+
+The two conditions in Definition \ref{def:linear_mapping} can be combined into a single one:
+
+\begin{prop}[Test for linearity]\label{prop:test_for_linearity}
+A mapping $T:V \to W$ of vector spaces is linear if and only if $T(c\mathbf{v}_1+\mathbf{v}_2)=cT(\mathbf{v}_1)+T(\mathbf{v}_2)$ for all $\mathbf{v}_1,\mathbf{v}_2 \in V$ and all $c \in \mathbb{R}$.
+\end{prop}
+
+\begin{proof}
+	The proof is very similar to that of Theorem \ref{thm:subspace_criterion}. The proof of necessity is trivial. To prove sufficiency, note that 
+	\begin{align*}
+		T(\mathbf{v}_1+\mathbf{v}_2)&=T(1\mathbf{v}_1+\mathbf{v}_2)\\
+		&=1T(\mathbf{v}_1)+T(\mathbf{v}_2) \\
+		&=T(\mathbf{v}_1)+T(\mathbf{v}_2),
+	\end{align*}
+	so $T$ preserves addition. To prove that $T$ preserves scalar multiplication, first note that, since $T$ preserves addition, it follows that 
+	\begin{align*}
+		T(\mathbf{0})&=T(-\mathbf{v}+\mathbf{v}) \\
+		&=T((-1)\mathbf{v}+\mathbf{v}) \\
+		&=(-1)T(\mathbf{v})+T(\mathbf{v}) \\
+		&=-T(\mathbf{v})+T(\mathbf{v}) \\
+		&=\mathbf{0}.
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		T(c\mathbf{v})&=T(c\mathbf{v}+\mathbf{0}) \\
+		&=cT(\mathbf{v})+T(\mathbf{0}) \\
+		&=cT(\mathbf{v})+\mathbf{0} \\
+		&=cT(\mathbf{v}),
+	\end{align*}
+	which shows that $T$ preserves scalar multiplication. Hence, $T$ is linear.
+\end{proof}
+
+\begin{exercise}
+Determine whether each of the following mappings are linear:
+\begin{enumerate}[(a)]
+	\item $T_1:M^{n \times n}(\mathbb{R}) \to M^{n \times n}(\mathbb{R})$ defined by $T_1(A)=A^{T}$,
+	\item $T_2:M^{n \times n}(\mathbb{R}) \to \mathbb{R}$ defined by $T_2(A)=\det(A)$.
+\end{enumerate}	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+\begin{enumerate}[(a)]
+	\item Let $A,B$ be $n \times n$ matrices and $c \in \mathbb{R}$. Then 
+	\begin{align*}
+		T_1(cA+B)&=(cA+B)^T \\
+		&=(cA)^T+B^T \\
+		&=cA^T+B^T \\
+		&=cT_1(A)+T_2(B).
+	\end{align*}
+	Hence, $T_1$ is linear.
+	\item Let $A$ be an $n \times n$ matrix and let $c \in \mathbb{R}$. Then
+	\begin{align*}
+		T_2(cA)&=\det(cA) \\
+		&=c^n\det(A) \neq c\det(A)
+	\end{align*}
+	if $n>1$. Hence, $T_2$ is not linear if $n>1$.
+\end{enumerate}	
+\end{solution}}
+
+\begin{example}[The zero mapping]
+	Define $T:V \to W$ by $T(\mathbf{v})=\mathbf{0}$ for all $\mathbf{v} \in V$. Then this is linear, since for all $\mathbf{v}, \mathbf{w} \in V$ and $c \in \mathbb{R}$ we have
+	\begin{align*}
+		T(c\mathbf{v}+\mathbf{w})&=\mathbf{0} \\
+		&=\mathbf{0}+\mathbf{0} \\
+		&=c\mathbf{0}+\mathbf{0} \\
+		&=cT(\mathbf{v})+T(\mathbf{w}).
+	\end{align*}
+\end{example}
+
+\begin{example}
+Let $V$ be any vector space. The map $I_V:V \to V$ defined by $I_V(\mathbf{v})=\mathbf{v}$ for all $\mathbf{v} \in V$ is called the \emph{identity map} on $V$. This is a linear operator on $V$, since for any $\mathbf{v},\mathbf{w} \in V$ and $c \in \mathbb{R}$ we have
+\begin{align*}
+	I_V(c\mathbf{v}+\mathbf{w})&=c\mathbf{v}+\mathbf{w} \\
+	&=cI_V(\mathbf{v})+I_V(\mathbf{w}).
+\end{align*}
+\end{example}
+
+\begin{exercise}
+Let $\varphi:A \to B$ be any mapping from a \emph{set} $A$ to a set $B$. Show that composition by $\varphi$ is a linear mapping from $\mathbb{R}^B$ to $\mathbb{R}^A$. That is, show that $T:\R^B \to \R^A$ defined by $T(f)=f \circ \varphi$ is linear.
+\end{exercise}
+
+{\color{red}\begin{solution}
+	Let $f,g \in \R^B$ and $c \in \mathbb{R}$. Note that $f\circ \varphi, g \circ \varphi:A \to \mathbb{R}$. For all $a \in A$ we have
+	\begin{align*}
+		T((cf+g)(a))&=[(cf+g)\circ \varphi](a)\text{ (by def of $T$)} \\
+		&=(cf+g)(\varphi(a)) \text{ (by def of composition)}\\
+		&=cf(\varphi(a))+g(\varphi(a)) \text{ (by def of addition and scalar multiplication in $\R^B$)}\\
+		&=c(f \circ \varphi)(a)+(g \circ \varphi)(a) \text{ (by def of composition)}\\
+		&=cT(f(a))+T(g(a)) \text{ (by def of $T$)}\\
+		&=[cT(f)+T(g)](a)\text{ (by def of addition and scalar multiplication in $\R^A$)}
+	\end{align*}
+	hence 
+	\begin{align*}
+		T(cf+g)=cT(f)+T(g)
+	\end{align*}
+	and therefore $T$ is linear.
+\end{solution}}
+
+
+\begin{prop}[Linear maps preserve linear combinations]\label{prop:linear_maps_preserve_linear_combinations}
+	If $T:V \to W$ is linear, then 
+	\begin{align*}
+		T\left(\sum_{i=1}^nc_i\mathbf{v}_i\right)=\sum_{i=1}^nc_iT(\mathbf{v}_i)
+	\end{align*}
+	for any linear combination $\sum_{i=1}^nc_i\mathbf{v}_i$ of $V$.
+\end{prop}
+
+\begin{proof}
+	(By induction on $n$.) The base case was established in Proposition \ref{prop:test_for_linearity}. Suppose now this holds for any linear combination of $n$ vectors $\sum_{i=1}^n c_i\mathbf{v}_i$ in $V$. Then
+	\begin{align*}
+		T(\sum_{i=1}^n c_i\mathbf{v}_i+c_{n+1}\mathbf{v}_{n+1})&=T(\sum_{i=1}^n c_i\mathbf{v}_i)+T(c_{n+1}\mathbf{v}_{n+1}) \\
+		&=\sum_{i=1}^n c_iT(\mathbf{v}_i)+c_{n+1}T(\mathbf{v}_{n+1}),
+	\end{align*}
+	completing the proof.
+\end{proof}
+
+\begin{example}
+For any $f_i \in \mathscr{C}([a,b])$ and $c_i \in \mathbb{R}$,
+\begin{align*}
+	\int_a^b (\sum_{i=1}^n c_if_i)=\sum_{i=1}^nc_i \int_a^b f_i.
+\end{align*}	
+\end{example}
+
+
+
+
+
+\begin{example}\label{ex:linear_mappings_from_r_to_r}
+Every linear mapping $\mathbb{R}\to \mathbb{R}$ is of the form $x \mapsto kx$ for some fixed $k \in \mathbb{R}$. To see this, for fixed $k \in \mathbb{R}$ denote this mapping by $T_k$. Then
+\begin{align*}
+	T_k(cx+y)&=k(cx+y) \\
+	&=kcx+ky \\
+	&=ckx+ky \\
+	&=cT_k(x)+T_k(y)
+\end{align*}
+so $T_k$ is indeed linear. Conversely, let $T:\mathbb{R} \to \mathbb{R}$ be any linear transformation. Then, since $1x=x$ for every $x \in \mathbb{R}$, we have
+\begin{align*}
+	T(x)&=T(1x) \\
+	&=xT(1) \\
+	&=T(1)x
+\end{align*}
+and therefore $T(x)=kx$, for $k=T(1)$, which is a fixed element of $\mathbb{R}$.
+\end{example}
+
+
+Example \ref{ex:linear_mappings_from_r_to_r} is a special case of the following theorem:
+
+\begin{thm}[Every linear mapping $\mathbb{R}^n \to \mathbb{R}^m$ can be represented by a matrix]\label{thm:matrix_of_a_linear_mapping}
+Let $A$ be an $m \times n$ matrix $T_A:\mathbb{R}^n \to \mathbb{R}^m$ be defined by multiplication by $A$:
+\begin{align*}
+	T_A(\mathbf{x})=A\mathbf{x}.
+\end{align*}	
+Then $T_A$ is linear. Moreover, every linear transformation $T:\mathbb{R}^n \to \mathbb{R}^m$ is of this form for some fixed matrix $A$.
+\end{thm}
+
+\begin{proof}
+	To show that $T_A$ is linear, let $\mathbf{x},\mathbf{y} \in \mathbb{R}^n$ and $c \in \mathbb{R}$. Then
+	\begin{align*}
+		T_A(c\mathbf{x}+\mathbf{y})&=A(c\mathbf{x}+\mathbf{y}) \\
+		&=A(c\mathbf{x})+A\mathbf{y} \\
+		&=cA\mathbf{x}+A\mathbf{y} \\
+		&=cT_A(\mathbf{x})+T_A(\mathbf{y}),
+	\end{align*}
+	hence $T_A$ is linear.
+	
+	Conversely, let $T:\mathbb{R}^n \to \mathbb{R}^m$ be any linear mapping. By Example \ref{ex:standard_unit_vectors_span_r_n}, we can write any vector $\mathbf{x} \in \mathbb{R}^n$ as $\mathbf{x}=\sum_{i=1}^nx_ie_i$, where $\{e_i\}_{i=1}^n$ are the standard unit vectors for $\mathbb{R}^n$. By Proposition \ref{prop:linear_maps_preserve_linear_combinations} we then have
+	\begin{align*}
+		T(\mathbf{x})&=T\left(\sum_{i=1}^nx_ie_i\right) \\
+		&=\sum_{i=1}^nx_iT(e_i),
+	\end{align*}
+	which is exactly the result of multiplying the vector $\mathbf{x} \in \mathbb{R}^n$ by the $m \times n$ matrix $A$ whose $i$th column is given by $T(e_i)$, which is a fixed vector in $\mathbb{R}^m$. 
+\end{proof}
+While Theorem \ref{thm:matrix_of_a_linear_mapping} proves that every linear transformation $T:\mathbb{R}^n \to \mathbb{R}^m$ can be represented by a matrix, this matrix is not unique. 
+
+\begin{example}
+	Consider the linear mapping in Exercise \ref{ex:r_3_to_r_2}. Since 
+	\begin{align*}
+		T(1,0,0)&=(2,1) \\
+		T(0,1,0)&=(-1,3) \\
+		T(0,0,1)&=(1,-5), \\
+	\end{align*}
+	by Theorem \ref{thm:matrix_of_a_linear_mapping} the linear mapping $T$ is multiplication by the matrix
+	\begin{align*}
+		A=\begin{bmatrix}
+			2 & -1 & 1 \\
+			1 & 3 & -5
+		\end{bmatrix}.
+	\end{align*}
+	However, we saw in Example \ref{ex:a_different_spanning_set_for_r_3} that the vectors ${\bf v}_1=(1,1,2), {\bf v}_2=(1,0,1), {\bf v}_3=(2,1,4)$ also span $\mathbb{R}^3$. Thus, for any $\mathbf{x} \in \mathbb{R}^3$ we can find coefficients $c_i$ such that $\mathbf{x}$ can also be written as $\mathbf{x}=\sum_{i=1}^3c_i\mathbf{v}_i$. Applying Proposition \ref{prop:linear_maps_preserve_linear_combinations} now gives
+	\begin{align*}
+		T(\mathbf{x})&=T(\sum_{i=1}^3c_i\mathbf{v}_i) \\
+		&=\sum_{i=1}^3c_iT(\mathbf{v}_i)
+	\end{align*}
+	which is the result of multiplying $\mathbf{x}$ by the matrix $A'$ whose $i$th column is given by $T(\mathbf{v}_i)$. Since
+	\begin{align*}
+		T(1,1,2)&=(2-1+2, 1+3-10)=(3, -6) \\
+		T(1,0,1)&=(2-0+1, 1+0-5)=(3,-4) \\
+		T(2,1,4)&=(4-1+4,2+3-20)=(7,-15),
+	\end{align*}
+	the matrix $A'$ given by
+	\begin{align*}
+		A'=\begin{bmatrix}
+			3 & 3 & 7 \\
+			-6 & -3 & -15
+		\end{bmatrix},
+	\end{align*}
+	represents the \emph{same} linear mapping $T$. For example, let $\mathbf{x}=(1,2,3)$. Then, we may write $\mathbf{x}=1e_1+2e_2+3e_3$ and then we have 
+	\begin{align*}
+		T(\mathbf{x})&=1T(e_1)+2T(e_2)+3T(e_3) \\
+		&=1\begin{bmatrix}
+			2 \\ 1
+		\end{bmatrix}+2\begin{bmatrix}
+			-1 \\ 3
+		\end{bmatrix}+3\begin{bmatrix}
+			1\\-5
+		\end{bmatrix} \\
+		&=\begin{bmatrix}
+			2 & -1 & 1 \\
+			1 & 3 & -5
+		\end{bmatrix}\begin{bmatrix}
+			1 \\ 2 \\ 3
+		\end{bmatrix} \\
+		&=\begin{bmatrix}
+			3 \\ -8
+		\end{bmatrix}.
+	\end{align*}
+But since 
+\begin{align*}
+	e_1&=\mathbf{v}_1+2\mathbf{v}_2-\mathbf{v}_3 \\
+	e_2&=2\mathbf{v}_1-\mathbf{v}_3 \\
+	e_3&=-\mathbf{v}_1-\mathbf{v}_2+\mathbf{v}_3 \\
+\end{align*}	
+we can also write
+\begin{align*}
+	\mathbf{x}&=1e_1+2e_3+3e_3 \\
+	&=(\mathbf{v}_1+2\mathbf{v}_2-\mathbf{v}_3)+2(2\mathbf{v}_1-\mathbf{v}_3)+3(-\mathbf{v}_1-\mathbf{v}_2+\mathbf{v}_3) \\
+	&=2\mathbf{v}_1-\mathbf{v}_2
+\end{align*}	
+and therefore
+\begin{align*}
+	T(\mathbf{x})&=2T(\mathbf{v}_1)-T(\mathbf{v}_2)+0T(\mathbf{v}_3) \\
+	&=2\begin{bmatrix}
+		3 \\ -6
+	\end{bmatrix}-\begin{bmatrix}
+		3 \\ -4
+	\end{bmatrix}+0\begin{bmatrix}
+		7 \\ -15
+	\end{bmatrix} \\
+	&=\begin{bmatrix}
+		3 & 3 & 7 \\
+		-6 & -4 & -15
+	\end{bmatrix}\begin{bmatrix}
+		2 \\ -1 \\ 0
+	\end{bmatrix} \\
+	&=\begin{bmatrix}
+		3 \\ -8
+	\end{bmatrix},
+\end{align*}	
+which is the same as above.
+\end{example}
+
+We have just seen that studying linear mappings $\mathbb{R}^n \to \mathbb{R}^m$ is essentially the same as studying $m \times n$ matrices. However, we have also seen that different matrices might represent the same linear mapping, so in practice we will have to make a particular choice for which matrix to use. We will see how to deal with keeping track of this choice later in section \fixme{Add link.}. For now, the standard choice will be the matrix whose columns are formed by the images of the standard unit vectors under $T$.
+
+\begin{defn}[Standard matrix of a linear mapping $\mathbb{R}^n \to \mathbb{R}^m$]
+	Let $T:\mathbb{R}^n \to \mathbb{R}^m$ be a linear mapping. The matrix 
+	\begin{align*}
+		A=\left[T(e_1),T(e_2),\dots,T(e_n)\right]
+	\end{align*}
+	is called the \emph{standard matrix} of the linear mapping $T$.
+\end{defn}
+
+\begin{exercise}
+Find the standard matrix of the linear transformation $T:\mathbb{R}^2 \to \mathbb{R}^3$ defined by $T(\mathbf{x})=\mathbf{w}$, where
+\begin{align*}
+	w_1&=-x_1+x_2 \\
+	w_2&=3x_1-2x_2 \\
+	w_3&=5x_1-7x_2.
+\end{align*}	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	Since
+	\begin{align*}
+		T(1,0)&=(-1,3,5) \\
+		T(0,1)&=(1,-2,7), \\
+	\end{align*}
+	the standard matrix $A$ of $T$ is given by
+	\begin{align*}
+		A=\begin{bmatrix}
+			-1 & 1 \\
+			3 & -2 \\
+			5 & 7
+		\end{bmatrix}.
+	\end{align*}
+\end{solution}}
+
+When a linear mapping is 1-1, it is usually referred to as a \emph{linear transformation}. Linear transformations have important applications in geometry. The case of linear transformations of the plane is treated in detail in section 4.9 of your textbook.
 
 
 
