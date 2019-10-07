@@ -4327,7 +4327,7 @@ Now, replace $\overline{n}\equiv \{1,2,\cdots,n\}$ by \emph{any} set $A$.
 \end{align}
 It then follows immediately that $\mathbb{R}^A$ is a vector space because $\mathbb{R}$ is.
 
-\begin{prop}[$\mathbb{R}^A$ is a vector space]
+\begin{prop}[$\mathbb{R}^A$ is a vector space]\label{prop:r_a_is_a_vector_space}
 The set $\mathbb{R}^A$ is a vector space under the operations \eqref{eq:pointwise_1} and \eqref{eq:pointwise_2}.
 \end{prop}
 
@@ -4883,7 +4883,7 @@ $$p=a_0+a_1x+\cdots+a_nx^n,$$
 we see that $P_n \subseteq \Span \{x^i\}_{i=0}^n$ and hence $P_n=Span\{x^i\}_{i=0}^n$.
 \end{solution}}
 
-\fixme{Hold of on this example until we have more theory?} 
+\fixme{Hold of on this next example until we have more theory?} 
 
 \begin{example}\label{ex:spanning_sets_are_not_unique}
 Determine whether the vectors ${\bf v}_1=(1,1,2), {\bf v}_2=(1,0,1), {\bf v}_3=(2,1,4)$ span $\mathbb{R}^3$. \\
@@ -5305,8 +5305,61 @@ Find the standard matrix of the linear transformation $T:\mathbb{R}^2 \to \mathb
 
 When a linear mapping is 1-1, it is usually referred to as a \emph{linear transformation}. Linear transformations have important applications in geometry. The case of linear transformations of the plane is treated in detail in section 4.9 of your textbook.
 
+\subsection{Properties of Linear Mappings}
+In section \ref{sec:r_a} we proved that the set of all real-valued functions on a common domain $A$, which we denoted $\mathbb{R}^A$, is a vector space under the operations 
+	\begin{align*}
+		(f+g)(a)&=f(a)+g(a) \\
+		(xf)(a)&=xf(a).
+	\end{align*}
+We can generalize $\mathbb{R}^A$ by replacing $\mathbb{R}$ by any other vector space $W$. 
+
+\begin{prop}
+Let $W$ be a vector space, and let $W^A\equiv \{f|f:A \to W\}$ denote the set of all $W$-valued functions on a common domain $A$. Then $W^A$ is a vector space under
+\begin{align*}
+(f+g)(a)&=f(a)+g(a) \\
+(xf)(a)&=xf(a)	
+\end{align*}
+where the operations on the right hand side are those of $W$.	
+\end{prop}
+
+\begin{pf}
+ As before, the vector space axioms hold for $W^A$ because they hold for $W$. The proof is exactly the same as that of Proposition \ref{prop:r_a_is_a_vector_space}, \emph{mutatis mutandis}.	
+\end{pf}
 
 
+\begin{example}
+The analog of $\mathbb{R}^n$ is $W^n$, the set of all $n$-tuples $({\bf w}_1, {\bf w}_2, \cdots, {\bf w}_n)$ of vectors in $W$. We can view this space as a function space $W^{\overline{n}}=\{f|f:\overline{n} \to W\}$. 
+
+For instance, if $W$ is the vector space of $2 \times 2$ matrices, then
+\begin{align*}
+	{\bf w}=(\begin{bmatrix}
+		1 & 2 \\ 3 & 4
+	\end{bmatrix}, \begin{bmatrix}
+		5 & 6 \\ 7 & 8
+	\end{bmatrix}, \begin{bmatrix}
+		e & \pi \\ \sqrt{2} & -4
+	\end{bmatrix}) \in W^3.
+\end{align*}	
+\end{example}
+
+In general, we will be most interested in the case where $A=V$ is another vector space. Then $W^V$ is the set of all functions from $V$ to $W$. The set of all \emph{linear} maps is naturally singled out, as they preserve the vector operations.
+
+\begin{prop}
+The set of all linear maps $T:V \to W$ is a subspace of $W^V$. We will denote this subspace by $\Hom(V,W)$. \footnote{In mathematics, once one defines a particular class of objects of interest it is customary to immediately define maps between objects which preserve the objects' defining properties. Such structure-preserving maps are called \emph{homomorphisms}, which comes from Greek words "homos" meaning "same" and "morphe" meaning "form". The set of all homomorphisms from an object $A$ to another object $B$ is then customarily denoted $\Hom(A,B)$. A class of objects together with all the hom-sets between objects forms a \emph{category}. The collection of all vector spaces together with all linear maps therefore gives us the category $\mathsf{Vect}$ of vector spaces.}	
+\end{prop}
+
+\begin{proof}
+Let $T_1,T_2 \in \Hom(V,W)$ and let $x \in \R$. Then for all $\mathbf{v}_1,\mathbf{v}_2 \in V$ and $c \in \mathbb{R}$,
+\begin{align*}
+	(xT_1+T_2)(c\mathbf{v}_1+\mathbf{v}_2)&=xT_1 (c\mathbf{v}_1+\mathbf{v}_2)+T_2 (c\mathbf{v}_1+\mathbf{v}_2) \text{ (by def of addition and scalar mult in $W^V$) }\\
+	&=x(cT_1 (\mathbf{v}_1)+T_1 (\mathbf{v}_2))+cT_2 (\mathbf{v}_1)+T_2 (\mathbf{v}_2) \text{ (since $T_1$ and $T_2$ are linear) } \\
+	&=xcT_1(\mathbf{v}_1)+xT_1(\mathbf{v}_2)+cT_2(\mathbf{v}_1)+T_2(\mathbf{v}_2) \text{ (by S3, Def. \ref{def:vector_space} for $W$) }\\
+	&=xcT_1(\mathbf{v}_1)+cT_2(\mathbf{v}_1)+xT_1(\mathbf{v}_2)+T_2(\mathbf{v}_2) \text{ (by commutativity of addition in $W$)} \\
+	&=cxT_1(\mathbf{v}_1)+cT_2(\mathbf{v}_1)+xT_1(\mathbf{v}_2)+T_2(\mathbf{v}_2) \text{ (by commutativity of multiplication in $\R$)} \\
+	&=c(xT_1+T_2)(\mathbf{v}_1)+(xT_1+T_2)(\mathbf{v}_2) \text{ (by def of addition in $W^V$)}.
+\end{align*}	
+Hence, $xT_1+T_2$ is linear and therefore $\Hom(V,W)$ is a subspace of $W^V$ by the subspace criterion.
+\end{proof}
 
 \end{document}
 
