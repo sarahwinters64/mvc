@@ -4305,6 +4305,75 @@ Let $V=\{(x,y) \in \mathbb{R}^2:x \geq 0\}$ and define vector addition and scala
 Vector addition is a well-defined function $V \times V \to V$, since $x_1 \geq 0$ and $x_2 \geq 0$ together imply that $x_1+x_2 \geq 0$. However, if $k=-1$, then $(-x,-y)$ is not an element of $V$ if $x>0$. Thus, this is not a vector space since scalar multiplication is not a well-defined function $\mathbb{R} \times V \to V$.
 \end{example}
 
+\subsection{Vector Space Properties}
+There are additional properties of any vector space which follow directly from Definition \ref{def:vector_space}.
+
+\begin{thm}[Properties of vector spaces]\label{thm:properties_of_vector_spaces}
+	Let $V$ be a vector space, ${\bf v} \in V$, and $x \in \mathbb{R}$. Then:
+	\begin{enumerate}[(a)]
+		\item The element ${\bf 0} \in V$ of A3 is unique.
+		\item $x{\bf 0}={\bf 0}$ for all $x\in \mathbb{R}$ 
+		\item $0{\bf v}={\bf 0}$ for all ${\bf v} \in V$.
+		\item For each ${\bf v}$ the ${\bf w}$ of A4 is unique. We denote this vector by $-{\bf v}$.
+		\item $-{\bf v}=(-1){\bf v}$ for all ${\bf v} \in  V$.
+		\item If $x{\bf v}={\bf 0}$, then either $x=0$ or ${\bf v}={\bf 0}$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+(a) Suppose ${\bf 0},{\bf 0'} \in V$ such that 
+\begin{align}
+	{\bf 0}+{\bf v} &={\bf v} \\
+	{\bf 0'}+{\bf v} &={\bf v}
+\end{align}
+for all ${\bf v} \in V$. Then 
+\begin{align*}
+	{\bf 0'}&={\bf 0}+{\bf 0'} \text{ (by (1))} \\
+	&={\bf 0} \text{ (by (2))} \\
+\end{align*}
+Hence, ${\bf 0}$ is unique. 
+
+(b) We have, by A3, x{\bf 0}=x{\bf 0}+{\bf 0}. We also have
+\begin{align*}
+	x{\bf 0}&=x({\bf 0}+{\bf 0}) \text{ (since ${\bf 0}={\bf 0}+{\bf 0}$ by A3)} \\
+	&=x{\bf 0}+x{\bf 0} \text{ (by S3)}
+\end{align*} and therefore $x{\bf 0}+x{\bf 0}=x{\bf 0}+{\bf 0}$. Adding the inverse of $x{\bf 0}$ to both sides (A4), and using (A1), we find $x{\bf 0}={\bf 0}$.	
+(c) Applying A3, we have $0{\bf v}=0{\bf v}+{\bf 0}$. We also have
+$0{\bf v} =(0+0){\bf v}=0{\bf v} + 0{\bf v}$ by S2. Letting ${\bf w}$ be the inverse of $0{\bf v}$ (which exists by A4), we have
+\begin{align*}
+	0{\bf v}+{\bf 0}&=0{\bf v}+0{\bf v} \\
+	{\bf w}+0{\bf v}+{\bf 0}&={\bf w}+0{\bf v}+0{\bf v} \\
+	({\bf w}+0{\bf v})+{\bf 0}&=({\bf w}+0{\bf v})+0{\bf v} \text{ (by A1)}\\
+	0+{\bf 0}&=0+0{\bf v} \text{ (by A4)}
+\end{align*} and therefore $0{\bf v}={\bf 0}$. 
+
+(d) Suppose for some ${\bf v} \in V$ there exist ${\bf w},{\bf w'} \in V$ such that
+\begin{align}
+	{\bf v}+{\bf w} &={\bf 0} \\
+	{\bf v}+{\bf w'} &={\bf 0}
+\end{align} Then
+\begin{align*}
+	{\bf w'}&={\bf w'}+{\bf 0} \text{ (by A3)}\\
+	&={\bf w'}+({\bf v}+{\bf w}) \text{ (by (3))} \\
+	&=({\bf w'}+{\bf v})+{\bf w} \text{ (by A1)} \\
+	&={\bf 0}+{\bf w} \text{ (by (4))} \\
+	&={\bf w} \text{ (by A3).}
+\end{align*} Hence, for each ${\bf v}$, ${\bf w}\equiv -{\bf v}$ is unique.
+
+(e) We have
+	\begin{align*}
+		{\bf v}+(-1){\bf v} &=1{\bf v}+(-1){\bf v} \text{ (by S4)}\\
+		&=(1+(-1)){\bf v} \text{ (by S2)}\\
+		&=0{\bf v} \\
+		&={\bf 0} \text{ by (c)}
+	\end{align*}
+By (d), for each ${\bf v} \in V$ there exists a unique $-{\bf v}$ such that ${\bf v}+(-{\bf v})=0$. Hence, $-{\bf v}=(-1){\bf v}$.
+
+(f) Suppose $x{\bf v}={\bf 0}$. Then $x{\bf v}=0{\bf v}$ by (c) and therefore $x{\bf v}+(-0{\bf v})=0{\bf v}+(-0{\bf v})=0$ by A4. Applying (e), we have $(x-0){\bf v}={\bf 0}$. If $x=0$, we are done. If $x \neq 0$, we can multiply both sides by $\frac{1}{x-0}=\frac{1}{x}$ and we have ${\bf v}={\bf 0}$.
+\end{pf}
+
+We have just seen that the vector space structure establishes a connection between such diverse mathematical objects such as geometric vectors, vectors in $\mathbb{R}^n$, infinite sequences, matrices, and real-valued functions, to name a few. Consequently, whenever we prove a new theorem which holds for a general vector space (such as Theorem \ref{thm:properties_of_vector_spaces}), it will apply to \emph{all} of these vector spaces.
+
 \subsection{$\mathbb{R}^A$}\label{sec:r_a}
 We can obtain a large number of examples of vector spaces in the following way. Note that, in Examples \ref{ex:r_n}, \ref{ex:r_omega}, and \ref{ex:m_by_n} above, the reason why the vector space axioms were satisfied was essentially because they are satisfied for real numbers. We can exploit this to systematically find other examples of vector spaces.
 
@@ -4325,7 +4394,26 @@ Now, replace $\overline{n}\equiv \{1,2,\cdots,n\}$ by \emph{any} set $A$.
 	(f+g)(a)&=f(a)+g(a) \text{ for all } a \in A\\ \label{eq:pointwise_2}
 	(xf)(a)&=xf(a) \text{ for all } a \in A, x \in \mathbb{R} 
 \end{align}
-It then follows immediately that $\mathbb{R}^A$ is a vector space because $\mathbb{R}$ is.
+It then follows immediately that $\mathbb{R}^A$ is a vector space because $\mathbb{R}$ is (we will prove this in Proposition \ref{prop:r_a_is_a_vector_space} below).
+
+\begin{example}
+Let $f(x), g(x) \in \mathbb{R}^\mathbb{R}$ (the vector space of all functions $\mathbb{R} \to \mathbb{R}$), where $f(x)=\sin(x)$ and $g(x)=e^x$. Then their vector sum is given by
+\begin{align*}
+	(f+g)(x)&=f(x)+g(x)=\sin(x)+e^x \\
+\end{align*}
+and the scalar multiple of $f(x)$ by $\sqrt{\pi}$ is given by
+\begin{align*}
+	(\sqrt{\pi}f)(x)&=\sqrt{\pi}f(x)=\sqrt{\pi}\sin(x).
+\end{align*}	
+\end{example}
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/function_operations}
+\end{center}
+\caption{Visualization of the operations \eqref{eq:pointwise_1} and \eqref{eq:pointwise_2} for continuous functions from $\mathbb{R} \to \mathbb{R}$. The figure in (a) illustrates a vector sum, (b) illustrates a scalar multiple, and (c) an additive inverse.}
+\end{figure}
+
 
 \begin{prop}[$\mathbb{R}^A$ is a vector space]\label{prop:r_a_is_a_vector_space}
 The set $\mathbb{R}^A$ is a vector space under the operations \eqref{eq:pointwise_1} and \eqref{eq:pointwise_2}.
@@ -4403,28 +4491,6 @@ Hence, scalar multiplication distributes over vector addition. \\
 Hence scalar multiplication by 1 fixes every function $f \in \mathbb{R}^A$. This completes the proof that $\mathbb{R}^A$ is a vector space.
 \end{proof}
 
-\begin{example}
-Let $f(x), g(x) \in \mathbb{R}^\mathbb{R}$ (the vector space of all functions $\mathbb{R} \to \mathbb{R}$), where $f(x)=\sin(x)$ and $g(x)=e^x$. Then their vector sum is given by
-\begin{align*}
-	(f+g)(x)&=f(x)+g(x)=\sin(x)+e^x \\
-\end{align*}
-and the scalar multiple of $f(x)$ by $\sqrt{\pi}$ is given by
-\begin{align*}
-	(\sqrt{\pi}f)(x)&=\sqrt{\pi}f(x)=\sqrt{\pi}\sin(x).
-\end{align*}	
-\end{example}
-
-\begin{figure}[h]
-	\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/function_operations}
-\end{center}
-\caption{Visualization of the operations \eqref{eq:pointwise_1} and \eqref{eq:pointwise_2} for continuous functions from $\mathbb{R} \to \mathbb{R}$. The figure in (a) illustrates a vector sum, (b) illustrates a scalar multiple, and (c) an additive inverse.}
-\end{figure}
-
-
-
-
-
 Note that all of the examples of vector spaces in section \ref{sec:basic_definitions_and_examples} are examples of $\mathbb{R}^A$ for various choices of $A$:
 
 \begin{enumerate}[(i)]
@@ -4447,76 +4513,6 @@ We therefore obtain infinitely many examples of vector spaces by varying the set
 	\item $V=\mathbb{R}^{\mathbb{R} \times \mathbb{R}}$ is the set of all real-valued functions of two real variables.
 	\item $V=\mathbb{R}^{\underbrace{\mathbb{R} \times \mathbb{R} \times \cdots \times \mathbb{R}}_{\text{$n$ times}}}$ is the set of all real-valued functions of $n$ real variables.
 \end{itemize}
-
-
-\subsection{Vector Space Properties}
-There are additional properties of any vector space which follow directly from Definition \ref{def:vector_space}.
-
-\begin{thm}[Properties of vector spaces]\label{thm:properties_of_vector_spaces}
-	Let $V$ be a vector space, ${\bf v} \in V$, and $x \in \mathbb{R}$. Then:
-	\begin{enumerate}[(a)]
-		\item The element ${\bf 0} \in V$ of A3 is unique.
-		\item $x{\bf 0}={\bf 0}$ for all $x\in \mathbb{R}$ 
-		\item $0{\bf v}={\bf 0}$ for all ${\bf v} \in V$.
-		\item For each ${\bf v}$ the ${\bf w}$ of A4 is unique. We denote this vector by $-{\bf v}$.
-		\item $-{\bf v}=(-1){\bf v}$ for all ${\bf v} \in  V$.
-		\item If $x{\bf v}={\bf 0}$, then either $x=0$ or ${\bf v}={\bf 0}$.
-	\end{enumerate}
-\end{thm}
-
-\begin{pf}
-(a) Suppose ${\bf 0},{\bf 0'} \in V$ such that 
-\begin{align}
-	{\bf 0}+{\bf v} &={\bf v} \\
-	{\bf 0'}+{\bf v} &={\bf v}
-\end{align}
-for all ${\bf v} \in V$. Then 
-\begin{align*}
-	{\bf 0'}&={\bf 0}+{\bf 0'} \text{ (by (1))} \\
-	&={\bf 0} \text{ (by (2))} \\
-\end{align*}
-Hence, ${\bf 0}$ is unique. 
-
-(b) We have, by A3, x{\bf 0}=x{\bf 0}+{\bf 0}. We also have
-\begin{align*}
-	x{\bf 0}&=x({\bf 0}+{\bf 0}) \text{ (since ${\bf 0}={\bf 0}+{\bf 0}$ by A3)} \\
-	&=x{\bf 0}+x{\bf 0} \text{ (by S3)}
-\end{align*} and therefore $x{\bf 0}+x{\bf 0}=x{\bf 0}+{\bf 0}$. Adding the inverse of $x{\bf 0}$ to both sides (A4), and using (A1), we find $x{\bf 0}={\bf 0}$.	
-(c) Applying A3, we have $0{\bf v}=0{\bf v}+{\bf 0}$. We also have
-$0{\bf v} =(0+0){\bf v}=0{\bf v} + 0{\bf v}$ by S2. Letting ${\bf w}$ be the inverse of $0{\bf v}$ (which exists by A4), we have
-\begin{align*}
-	0{\bf v}+{\bf 0}&=0{\bf v}+0{\bf v} \\
-	{\bf w}+0{\bf v}+{\bf 0}&={\bf w}+0{\bf v}+0{\bf v} \\
-	({\bf w}+0{\bf v})+{\bf 0}&=({\bf w}+0{\bf v})+0{\bf v} \text{ (by A1)}\\
-	0+{\bf 0}&=0+0{\bf v} \text{ (by A4)}
-\end{align*} and therefore $0{\bf v}={\bf 0}$. 
-
-(d) Suppose for some ${\bf v} \in V$ there exist ${\bf w},{\bf w'} \in V$ such that
-\begin{align}
-	{\bf v}+{\bf w} &={\bf 0} \\
-	{\bf v}+{\bf w'} &={\bf 0}
-\end{align} Then
-\begin{align*}
-	{\bf w'}&={\bf w'}+{\bf 0} \text{ (by A3)}\\
-	&={\bf w'}+({\bf v}+{\bf w}) \text{ (by (3))} \\
-	&=({\bf w'}+{\bf v})+{\bf w} \text{ (by A1)} \\
-	&={\bf 0}+{\bf w} \text{ (by (4))} \\
-	&={\bf w} \text{ (by A3).}
-\end{align*} Hence, for each ${\bf v}$, ${\bf w}\equiv -{\bf v}$ is unique.
-
-(e) We have
-	\begin{align*}
-		{\bf v}+(-1){\bf v} &=1{\bf v}+(-1){\bf v} \text{ (by S4)}\\
-		&=(1+(-1)){\bf v} \text{ (by S2)}\\
-		&=0{\bf v} \\
-		&={\bf 0} \text{ by (c)}
-	\end{align*}
-By (d), for each ${\bf v} \in V$ there exists a unique $-{\bf v}$ such that ${\bf v}+(-{\bf v})=0$. Hence, $-{\bf v}=(-1){\bf v}$.
-
-(f) Suppose $x{\bf v}={\bf 0}$. Then $x{\bf v}=0{\bf v}$ by (c) and therefore $x{\bf v}+(-0{\bf v})=0{\bf v}+(-0{\bf v})=0$ by A4. Applying (e), we have $(x-0){\bf v}={\bf 0}$. If $x=0$, we are done. If $x \neq 0$, we can multiply both sides by $\frac{1}{x-0}=\frac{1}{x}$ and we have ${\bf v}={\bf 0}$.
-\end{pf}
-
-We have just seen that the vector space structure establishes a connection between such diverse mathematical objects such as geometric vectors, vectors in $\mathbb{R}^n$, infinite sequences, matrices, and real-valued functions, to name a few. Consequently, whenever we prove a new theorem which holds for a general vector space (such as Theorem \ref{thm:properties_of_vector_spaces}), it will apply to \emph{all} of these vector spaces.
 
 \subsection{Subspaces}
 Given a vector space $(V,+,\cdot)$, one way to get a new vector space is consider a nonempty subset $W \subseteq V$ and the restriction of the operations $+,\cdot$ to $W$.
@@ -4670,7 +4666,7 @@ More generally, one can prove that "a subspace of a subspace is a subspace."
 	Since $U$ is a subspace of $W$, it is not empty (in particular, it contains the zero vector of $W$, which is the zero vector of $V$). Since $U$ is a subspace of $W$, it is closed under $+_W\vert_U$ and $\cdot_W\vert_U$. But $+_W\vert_U=+_V\vert_{W \cap U}=+_V\vert_U$ and $\cdot_W\vert_U=+\cdot_V\vert_{W \cap U}=\cdot_V\vert_U$. This shows that $U$ is a subspace of $V$.
 \end{pf}
 
-\begin{example}[Solution sets of homogeneous linear systems]
+\begin{example}[Solution sets of homogeneous linear systems]\label{ex:solution_sets_of_homogeneous_linear_systems}
 The solution set of a homogeneous linear system $A\mathbf{x}=\mathbf{0}$ in $n$ unknowns is a subspace of $\mathbf{R}^n$. To see this, let $\mathbf{x}_1, \mathbf{x}_2$ be solutions of this linear system and let $c$ be any scalar. By the rules of matrix multiplication, we then have
 \begin{align*}
 	A(c\mathbf{x}_1+\mathbf{x}_2)&=A(c\mathbf{x}_1)+A\mathbf{x}_2 \\
@@ -4743,7 +4739,7 @@ Let $W=\{{\bf w}_i\}_{i\in I}$ be a nonempty subset of a vector space $V$. The s
 \begin{enumerate}[(a)]
 	\item $\Span W$ is a subspace of $V$ containing $W$.
 	\item Let $\cap_{i \in I}W_i$ be the intersection of all subspaces $W_i$ of $V$ containing $W$. Then $\Span W=\cap_{i \in I}W_i$.
-	\item $\Span W$ is the smallest subspace of $V$ that contains $W$. That is, if $U$ is any other subspace of $V$ that contains $W$, then $\Span W \subseteq U$.
+	\item If $W$ is a subspace of $V$, then $\Span W=W$.
 \end{enumerate}	
 \end{thm}
 
@@ -4765,6 +4761,7 @@ In either case, each vector $\mathbf{w}_i$ in $W$ can be written as a linear com
 \item By part (a), $\Span W$ is a subspace of $V$ containing $W$, so $\Span W=W_i$ for some $i\in I$ and therefore $\cap_{i \in I}W_i \subseteq \Span W$ by definition of the intersection.
 
 Conversely, since $\cap_{i \in I}W_i$ is a subspace of $V$ containing $W$, it must contain $\Span W$ since it is closed under addition and scalar multiplication. Hence $\Span W \subseteq \cap_{i \in I}W_i$, and therefore $\Span W = \cap_{i \in I}W_i$.
+\item Suppose $W$ be a subspace of $V$. We have seen in part (a) that $W \subseteq \Span W$.  Conversely, since $W$ is a subspace, it is closed under addition and scalar multiplication, so $\Span W \subseteq W$ and therefore $\Span W=W$.
 \end{enumerate}
 \end{pf}
 
@@ -5360,6 +5357,194 @@ Let $T_1,T_2 \in \Hom(V,W)$ and let $x \in \R$. Then for all $\mathbf{v}_1,\math
 \end{align*}	
 Hence, $xT_1+T_2$ is linear and therefore $\Hom(V,W)$ is a subspace of $W^V$ by the subspace criterion.
 \end{proof}
+
+We will now study some important properties of linear maps.
+
+\begin{thm}[Linear maps preserve subspaces]\label{thm:linear_maps_preserve_subspaces}
+	Let $T:V \to W$ be a linear map, and $A$ a subset of $V$. Denote by $T(A)$ the image of $A$ under $T$; that is, $T(A)$ is the set $T(A)=\{T(\mathbf{v}_i):\mathbf{v}_i \in A\}$. Then
+	\begin{enumerate}[(a)]
+		\item $T(\Span(A))=\Span(T(A))$. In particular, if $A$ is a subspace of $V$, then $T(A)$ is a subspace of $W$.
+		\item Furthermore, if $Y$ is a subspace of $W$, then $T^{-1}(Y)$ is a subspace of $V$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+\begin{enumerate}[(a)]
+	\item Let $A=\{\mathbf{v}_i\}_{i \in I}$. Then $T(A)=\{T(\mathbf{v}_i)\}_{i \in I}.$ Since $T$ is linear, by Proposition \ref{prop:linear_maps_preserve_linear_combinations}
+	\begin{align*}
+		T\left(\sum_{i=1}^nc_i\mathbf{v}_i\right)=\sum_{i=1}^nc_iT(\mathbf{v}_i)
+	\end{align*}
+	for any linear combination $\sum_{i=1}^nc_i\mathbf{v}_i$ in $V$. This formula shows that $\mathbf{w} \in T(\Span(A))$ if and only if $\mathbf{w} \in \Span(T(A))$, hence $T(\Span(A))=\Span(T(A))$. If $A$ is a subspace of $V$, then by part (c) of Theorem \ref{thm:span_w_is_a_subspace} $A=\Span(A)$. Then by the preceding arguments $T(A)=T(\Span(A))=\Span(T(A))$, which is a subspace of $W$.
+	\item Let $Y$ be a subspace of $W$. Since $T$ is linear, $\mathbf{0} \in T^{-1}(\mathbf{0})$, so $T^{-1}(Y)$ is not empty. Let $\mathbf{v}_1, \mathbf{v}_2 \in T^{-1}(Y)$ and $c \in \R$. Then there exist $\mathbf{w}_1, \mathbf{w}_2 \in Y$ such that $\mathbf{v}_1=T(\mathbf{w}_1)$ and $\mathbf{v}_2=T(\mathbf{w}_2)$, and therefore
+	\begin{align*}
+		c\mathbf{v}_1+\mathbf{v}_2&=cT(\mathbf{w}_1)+T(\mathbf{w}_2) \\
+		&=T(c\mathbf{w}_1+\mathbf{w}_2) \text{ (since $T$ is linear),}
+	\end{align*}
+	which shows that $c\mathbf{w}_1+\mathbf{w}_2 \in T^{-1}(Y)$. Thus, $T^{-1}(Y)$ is a subspace of $V$ by Theorem \ref{thm:subspace_criterion}.
+\end{enumerate}	
+\end{pf}
+
+\begin{example}
+Let $T \in \Hom(\R^3,\R^4)$ have standard matrix $$A=\begin{bmatrix}
+	1 & 5 & 9 \\
+	2 & 6 & 10 \\
+	3 & 7 & 11 \\
+	4 & 8 & 12
+\end{bmatrix}$$ and let $$V=\left\{\begin{bmatrix}
+	1 \\ 2 \\ 0
+\end{bmatrix}, \begin{bmatrix}
+	2 \\ -1 \\ 0
+\end{bmatrix}
+\right\} \subseteq \R^3.$$ Then
+\begin{align*}
+	\Span V&=\left\{c_1\begin{bmatrix}
+	1 \\ 2 \\ 0
+\end{bmatrix}+c_2\begin{bmatrix}
+	2 \\ -1 \\ 0
+\end{bmatrix}:c_1,c_2 \in \R\right\} \\
+&=\left\{\begin{bmatrix}
+	c_1+2c_2 \\ 2c_1-c_2 \\ 0
+\end{bmatrix}:c_1,c_2 \in \R\right\}
+\end{align*}	
+and therefore
+\begin{align*}
+	T(\Span(A))&=\left\{\begin{bmatrix}
+	1 & 5 & 9 \\
+	2 & 6 & 10 \\
+	3 & 7 & 11 \\
+	4 & 8 & 12
+\end{bmatrix}\begin{bmatrix}
+	c_1+2c_2 \\ 2c_1-c_2 \\ 0
+\end{bmatrix}:c_1,c_2 \in \R\right\} \\
+&=\left\{\begin{bmatrix}
+	11c_1-3c_2 \\ 14c_1-2c_2 \\ 17c_1-c_2 \\ 20c_1
+\end{bmatrix}:c_1, c_2 \in \R \right\} \\
+&=\left\{c_1\begin{bmatrix}
+	11 \\ 14 \\ 17 \\ 20
+\end{bmatrix}+c_2\begin{bmatrix}
+	-3 \\ -2 \\ -1 \\ 0
+\end{bmatrix}:c_1,c_2 \in \R\right\} \\
+&=\Span \left\{\begin{bmatrix}
+	11 \\ 14 \\ 17 \\ 20
+\end{bmatrix}, \begin{bmatrix}
+	-3 \\ -2 \\ -1 \\ 0
+\end{bmatrix}\right\} \\
+&=\Span \left\{T\left(\begin{bmatrix}
+	1 \\ 2 \\ 0
+\end{bmatrix}\right), T\left(\begin{bmatrix}
+	2 \\ -1 \\ 0
+\end{bmatrix}\right)\right\} \\
+&=\Span(T(A)).
+\end{align*}
+\end{example}
+
+\begin{thm}[Kernel and Image of a Linear Map]
+	Let $T:V \to W$ be a linear mapping between two vector spaces. Then
+	\begin{enumerate}[(a)]
+		\item the set $T^{-1}(\mathbf{0})=\{\mathbf{v}\in V:T(\mathbf{v})=\mathbf{0}\}$ is a subspace of $V$, called the \emph{kernel} of $T$, denoted $\ker T$.
+		\item The set $T(V)=\{\mathbf{W} \in W:\mathbf{w}=T(\mathbf{v}) \text{ for some } \mathbf{v} \in V\}$ is a subspace of $W$ called the \emph{image of $V$ under $T$}, denoted $\im V$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+\begin{enumerate}[(a)]
+	\item $\{\mathbf{0}\}$ is a subspace of $W$, so by part (b) of Theorem \ref{thm:linear_maps_preserve_subspaces} $T^{-1}(\mathbf{0})$ is a subspace of $V$.
+	\item By part (a) of Theorem \ref{thm:linear_maps_preserve_subspaces} , linear maps preserve subspaces so $\im V$ is a subspace of $W$.
+\end{enumerate}	
+\end{pf}
+
+\begin{example}
+\begin{enumerate}[(a)]
+	\item The zero map $0:V \to W$ defined by $0(\mathbf{v})=\mathbf{0}$ for all $\mathbf{v} \in V$ has 
+\begin{align*}
+	\ker 0=V, \ \im V=\{\mathbf{0}\}.
+\end{align*}
+\item The identity map $I_V:V \to V$ defined by $I_V(\mathbf{v})=\mathbf{v}$ for all $\mathbf{v} \in V$ has 
+\begin{align*}
+	\ker I_V=\{\mathbf{0}\}, \ \im V=V.
+\end{align*} 
+\end{enumerate}	
+\end{example}
+
+\begin{example}
+Consider the matrix transformation $T:\R^2 \to \R^3$ whose standard matrix is 
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & 4 \\
+		-1 & 1 \\
+		 0 & 2		
+	\end{bmatrix}.
+\end{align*}	
+By definition, $\ker T=\{\mathbf{x} \in \R^2:A\mathbf{x}=\mathbf{0}\}=$ the solution set of the homogeneous system $A\mathbf{x}=\mathbf{0}$ (which we indeed saw was always a subspace of $V$ in Example \ref{ex:solution_sets_of_homogeneous_linear_systems}). Since 
+\begin{align*}
+	\begin{bmatrix}
+		1 & 4 \\ 
+		-1 & 1 \\
+		0 & 2
+	\end{bmatrix}
+\end{align*}
+is row-equivalent to
+\begin{align*}
+	\begin{bmatrix}
+		1 & 0 \\
+		0 & 1 \\
+		0 & 0
+	\end{bmatrix},
+\end{align*}
+we see that this system has only the trivial solution and therefore $\ker T=\{\mathbf{0}\}$.
+
+Now $\im T=\{\mathbf{b}\in \R^3:\mathbf{b}=A\mathbf{x} \text{ for some } \mathbf{x} \in \R^2\}=$ the set of all $\mathbf{b} \in \R^3$ such that the inhomogeneous linear system $A\mathbf{x}=\mathbf{b}$ is consistent. Since
+\begin{align*}
+	\begin{bmatrix}
+		1 & 4 & b_1 \\
+		-1 & 1 & b_2 \\
+		0 & 2 & b_3
+	\end{bmatrix}
+\end{align*}
+is row-equivalent to 
+\begin{align*}
+	\begin{bmatrix}
+		1 & 4 & b_1 \\
+		0 & 5 & b_1+b_2 \\
+		0 & 0 & -\frac{2}{5}b_1-\frac{2}{5}b_2+b_3
+	\end{bmatrix},
+\end{align*}
+the system is consistent if and only if $-\frac{2}{5}b_1-\frac{2}{5}b_2+b_3=0 \implies b_3=\frac{2}{5}(b_1+b_2)$. Therefore
+\begin{align*}
+	\im V&=\left\{\begin{bmatrix}
+		b_1 \\ b_2 \\ \frac{2}{5}(b_1+b_2)
+ 	\end{bmatrix}:b_1,b_2 \in \R\right\} \\
+ 	&=\left\{b_1\begin{bmatrix}
+		1 \\ 0 \\ \frac{2}{5}
+ 	\end{bmatrix}+b_2\begin{bmatrix}
+		0 \\ 1 \\ \frac{2}{5}
+ 	\end{bmatrix}:b_1,b_2 \in \R\right\} \\
+ 	&=\Span\left\{\begin{bmatrix}
+		1 \\ 0 \\ \frac{2}{5}
+ 	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1 \\ \frac{2}{5}
+ 	\end{bmatrix}\right\}.
+\end{align*}
+\end{example}
+
+\begin{thm}[Kernel of an injective linear map]
+	A linear mapping $T$ is injective (1-1) if and only if $\ker T=\{\mathbf{0}\}$.
+\end{thm}
+
+\begin{pf}
+Suppose $T$ is injective. Since $T$ is linear $T(\mathbf{0})=\mathbf{0}$. Now suppose $T(\mathbf{x})=\mathbf{0}$ for some $\mathbf{x} \in V$. Since $T$ is injective, $T(\mathbf{x})=T(\mathbf{0}) \implies \mathbf{x}=\mathbf{0}$, hence $\ker T=\{\mathbf{0}\}$.
+
+Now suppose $\ker T=\{\mathbf{0}\}$, and suppose $T(\mathbf{x})=T(\mathbf{y})$ for some $\mathbf{x}, \mathbf{y} \in V$. Since $T$ is linear,
+\begin{align*}
+	T(\mathbf{x})&=T(\mathbf{y}) \\
+	\implies T(\mathbf{x})-T(\mathbf{y})&=\mathbf{0} \\
+	\implies T(\mathbf{x}-\mathbf{y})&=\mathbf{0}, \\
+\end{align*}
+which says that $\mathbf{x}-\mathbf{y} \in \ker T=\{\mathbf{0}\}$ and therefore $\mathbf{x}-\mathbf{y}=\mathbf{0}$ and thus $\mathbf{x}=\mathbf{y}$, which proves that $T$ is injective. 
+\end{pf}
+
+\fixme{Include example.}
+
 
 \end{document}
 
