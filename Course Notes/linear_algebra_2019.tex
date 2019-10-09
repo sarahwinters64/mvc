@@ -4261,7 +4261,7 @@ We have seen that matrices are composed of vectors (rows and columns). However, 
 
 All of these examples so far were obtained by replacing $\mathbb{R}^n$ by another set $V$, but keeping essentially the same operations. In the next example, we illustrate the flexibility in choice of vector addition and scalar multiplication.
 
-\begin{example}\label{ex:unusual_vector_space}
+\begin{example}[An "unusual" vector space]\label{ex:unusual_vector_space}
 	Let $V$ be the set positive real numbers, $\mathbb{R}^+$, and define vector addition to be ordinary multiplication and scalar multiplication to be exponentiation. That is, for any $u,v \in \mathbb{R}^+$ and $k \in \mathbb{R}$,
 	\begin{align*}
 		u+v&=uv \\
@@ -4638,7 +4638,7 @@ Note that the space of invertible matrices is \emph{not} a subspace of $\mathbb{
 \begin{example}[Polynomials]\label{ex:polynomials}
 	The set of all polynomials of degree $n$ is \emph{not} a subspace of $\mathbb{R}^\mathbb{R}$ as it is not closed under addition, e.g. ($(1+x)+(1-x)=2$). 
 	
-However, the set of all polynomials of degree $\leq n$ \ti{is} a subspace of $\mathbb{R}^\mathbb{R}$, denoted $P_n$. 
+However, the set of all polynomials of degree $\leq n$ \emph{is} a subspace of $\mathbb{R}^\mathbb{R}$, denoted $P_n$. 
 
 The set of all polynomials, denoted $P_\infty$, is also a subspace of $\mathbb{R}^\mathbb{R}$.
 \end{example}
@@ -5546,6 +5546,120 @@ which says that $\mathbf{x}-\mathbf{y} \in \ker T=\{\mathbf{0}\}$ and therefore 
 \fixme{Include example.}
 
 \subsection{Isomorphisms}
+We have now seen a variety of examples of vector spaces. Some of these, however, are not essentially different. For instance, any singleton set $\{a\}$ can be given the structure of the zero vector space by defining $a+a=a$ and $xa=a$ for all $x \in \R$. There is no real difference, then, between any two zero vector spaces $\{a\}$ and $\{b\}$; all we have done is label the only vector in the set by a different symbol. Algebraically, these are exactly the same. In general, two vector spaces are the same in this sense if 
+\begin{enumerate}
+	\item there is a 1-1 correspondence (i.e., a bijective map) between the underlying sets, and
+	\item this 1-1 correspondence preserves vector addition and scalar multiplication in the sense of Definition \ref{def:linear_mapping}; that is, it is linear. 
+\end{enumerate}
+
+\begin{defn}[Isomorphism]
+	Let $V$ and $W$ be vector spaces. A bijective linear map $T:V \to W$ is called an \emph{isomorphism}. If such a map exists, then $V$ and $W$ are said to be \emph{isomorphic} as vector spaces, and we denote this by $V \cong W$.
+\end{defn}
+
+\begin{example}
+Let $P_{n-1}$ denote the vector space of all polynomials of degree $\leq n-1$ as in Example \ref{ex:polynomials}. For each $\mathbf{c}=(c_0,c_1,\dots,c_{n-1}) \in \R^n$, define $T:\R^n \to P_{n-1}$ by $T(\mathbf{c})=\sum_{i=0}^{n-1}c_ix^i$. We will show this mapping is an isomorphism. Let $\mathbf{c}, \mathbf{d} \in \R^n$ and let $k \in \R$. Then
+\begin{align*}
+	T(k\mathbf{c}+\mathbf{d})&=\sum_{i=0}^{n-1}(k\mathbf{c}+\mathbf{d})_ix^i \\
+	&=\sum_{i=0}^{n-1}(kc_i+d_i)x^i \\
+	&=\sum_{i=0}^{n-1}kc_ix^i+\sum_{i=0}^{n-1}d_ix^i \\
+	&=k\sum_{i=0}^{n-1}c_ix^i+\sum_{i=0}^{n-1}d_ix^i \\
+	&=kT(\mathbf{c})+T(\mathbf{d}),
+\end{align*}
+hence $T$ is linear.
+
+The map $T$ is clearly surjective, since for any polynomial $\sum_{i=0}^{n-1}c_ix^i \in P_{n-1}$, $\sum_{i=0}^{n-1}c_ix^i=T(\mathbf{c})$. To see that $T$ is injective, suppose $T(\mathbf{c})=T(\mathbf{d})$ for some $\mathbf{c},\mathbf{d} \in \R^n$. Then, for all $x \in \R$,
+\begin{align*}
+	\sum_{i=0}^{n-1}c_ix^i&=\sum_{i=0}^{n-1}cd_ix^i \\
+	\implies \sum_{i=0}^{n-1}(c_i-d_i)x^i&=0.
+\end{align*}
+By the fundamental theorem of algebra, a degree $n-1$ polynomial has only $n-1$ roots. Therefore, the only way this can vanish for all $x \in \R$ is if $\mathbf{c}=\mathbf{d}$. Hence, $T$ is also injective, and therefore an isomorphism. We have proved that $P_{n-1} \cong \R^n$.
+\end{example}
+
+\begin{example}
+	Consider the "unusual" vector space $V$ in Example \ref{ex:unusual_vector_space}, defined by $V=\R^+$ (the positive reals) with addition and multiplication defined by
+	\begin{align*}
+		x+y&:=xy \\
+		kx&:=x^k 
+	\end{align*}
+	for all $x,y \in V$ and all $k \in \R$. Let $b$ be any fixed positive real number, and define $T_b:\R \to \R^+$ by $T_b(x)=b^x$ for all $x \in \R$. This mapping is linear, since for all $x,y,k \in \R$, 
+	\begin{align*}
+		T_b(kx+y)&=b^{kx+y} \\
+		&=b^{kx}b^y \\
+		&=(b^x)^kb^y \\
+		&=kT_b(x)+T_b(y).
+	\end{align*}
+	Of course, $T_b(x)=b^x$ has a two-sided inverse given by $T_b^{-1}(x)=\log_b(x)$, so $T_b$ is a bijection, and therefore $T_b$ is an isomorphism. Thus, $V \cong \R$. This shows that this "unusual" vector space is actually not unusual at all; it is the same as the "ordinary" vector space $\R$.
+\end{example}
+
+\begin{exercise}
+Show that the mapping $T:M^{2 \times 2}(\R) \to \R^4$ defined by
+\begin{align*}
+	T\left(\begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{bmatrix}\right)=(a_{11},a_{12},a_{21},a_{22})
+\end{align*}	
+is an isomorphism.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+Since
+\begin{align*}
+	T\left(c\begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{bmatrix}+\begin{bmatrix}
+		b_{11} & b_{12} \\
+		b_{21} & b_{22}
+	\end{bmatrix}\right)&=T\left(\begin{bmatrix}
+		ca_{11}+b_{11} & ca_{12}+b_{12} \\
+		ca_{21}+b_{21} & ca_{22}+b_{22}\end{bmatrix}\right)\\
+		&=(ca_{11}+b_{11}, ca_{12}+b_{12}, ca_{21}+b_{21}, ca_{22}+b_{22}) \\
+		&=c(a_{11}, a_{12}, a_{21}, a_{22})+(b_{11}, b_{12}, b_{21}, b_{22}) \\
+		&=T\left(\begin{bmatrix}
+		a_{11} & a_{12} \\
+		a_{21} & a_{22}
+	\end{bmatrix}\right)+T\left(\begin{bmatrix}
+		b_{11} & b_{12} \\
+		b_{21} & b_{22}
+	\end{bmatrix}\right),
+\end{align*}	
+$T$ is linear. Let $(x,y,z,w) \in \R^4$. Then $(x,y,z,w)=T\left(\begin{bmatrix}
+	x & y \\
+	z & w
+\end{bmatrix}\right)$, so $T$ is surjective. Finally, suppose
+\begin{align*}
+	T\left(\begin{bmatrix}
+	a_{11} & a_{12} \\
+	a_{21} & a_{22}
+\end{bmatrix}\right)=T\left(\begin{bmatrix}
+	b_{11} & b_{12} \\
+	b_{21} & b_{22}
+\end{bmatrix}\right).
+\end{align*}
+Then
+\begin{align*}
+	(a_{11}, a_{12}, a_{21}, a_{22})&=(b_{11}, b_{12}, b_{21}, b_{22}).
+\end{align*}
+Two vectors are equal if and only if their corresponding entries are equal, so this implies
+\begin{align*}
+	a_{11}=b_{11}, a_{12}=b_{12}, a_{21}=b_{21}, a_{22}=b_{22}
+\end{align*}
+and therefore
+\begin{align*}
+	\begin{bmatrix}
+	a_{11} & a_{12} \\
+	a_{21} & a_{22}
+\end{bmatrix}=\begin{bmatrix}
+	b_{11} & b_{12} \\
+	b_{21} & b_{22}
+\end{bmatrix}.
+\end{align*}
+Thus, $T$ is also injective, and therefore an isomorphism. Hence $M^{2 \times 2}(\R) \cong \R^4$. The same argument shows that $M^{m \times n}(\R) \cong \R^{mn}$. The reader is invited to fill in the details of the proof.
+\end{solution}
+
+
 
 \end{document}
 
