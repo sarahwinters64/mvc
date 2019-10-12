@@ -5346,7 +5346,7 @@ For instance, if $W$ is the vector space of $2 \times 2$ matrices, then
 In general, we will be most interested in the case where $A=V$ is another vector space. Then $W^V$ is the set of all functions from $V$ to $W$. The set of all \emph{linear} maps is naturally singled out, as they preserve the vector operations.
 
 \begin{prop}
-The set of all linear maps $T:V \to W$ is a subspace of $W^V$. We will denote this subspace by $\Hom(V,W)$. \footnote{In mathematics, once one defines a particular class of objects of interest it is customary to immediately define maps between objects which preserve the objects' defining properties. Such structure-preserving maps are called \emph{homomorphisms}, which comes from Greek words "homos" meaning "same" and "morphe" meaning "form". The set of all homomorphisms from an object $A$ to another object $B$ is then customarily denoted $\Hom(A,B)$. A class of objects together with all the hom-sets between objects forms a \emph{category}. The collection of all vector spaces together with all linear maps therefore gives us the category $\mathsf{Vect}$ of vector spaces, where $\Obj(\Vect)$ is the collection of all vector spaces, and for any $V,W \in \Obj(\Vect)$, $\Hom(V,W)$ is the set of linear maps from $V \to W$.}	
+The set of all linear maps $T:V \to W$ is a subspace of $W^V$. We will denote this subspace by $\Hom(V,W)$. \footnote{In mathematics, once one defines a particular class of objects of interest it is customary to immediately define maps between objects which preserve the objects' defining properties. Such structure-preserving maps are called \emph{homomorphisms}, which comes from Greek words "homos" meaning "same" and "morphe" meaning "form". The set of all homomorphisms from an object $A$ to another object $B$ is then customarily denoted $\Hom(A,B)$. A class of objects together with all the hom-sets between objects forms a \emph{category}. The collection of all vector spaces together with all linear maps therefore gives us the category $\mathsf{Vect}$ of vector spaces, where $\Obj(\Vect)$ is the collection of all vector spaces, and for any $V,W \in \Obj(\Vect)$, $\Hom(V,W)$ is the set of linear maps from $V \to W$.} If $V=W$, we will simply write $\Hom(V)$ instead of $\Hom(V,V)$.	
 \end{prop}
 
 \begin{proof}
@@ -5670,6 +5670,10 @@ We will now prove that any two isomorphic vector spaces are equivalent. We will 
 \begin{enumerate}[(a)]
 	\item If $\varphi:V \to W$ is an isomorphism, then so is $\varphi^{-1}:W \to V$.
 	\item If $\varphi:U \to V$ and $\psi:V \to W$ are isomorphisms, then so is $\psi \circ \varphi: U \to W$.
+	\item If $\varphi:U \to V$ and $\psi:V \to W$ are isomorphisms, then $(\psi \circ \varphi)^{-1}:W \to U$ is an isomorphism and 
+	\begin{align*}
+		(\psi \circ \varphi)^{-1}=\varphi^{-1} \circ \psi^{-1}.
+	\end{align*}
 \end{enumerate}
 \end{lem}
 
@@ -5708,8 +5712,37 @@ We will now prove that any two isomorphic vector spaces are equivalent. We will 
 		\psi(\varphi(\mathbf{u}))=\mathbf{w},
 	\end{align*}
 	which proves that $\psi \circ \varphi$ is also surjective, and hence an isomorphism.
+	\item By part (a) $\psi^{-1}:W \to V$ and $\varphi^{-1}: V \to U$ are isomorphisms and therefore by part (b) so is $\varphi^{-1} \circ \psi^{-1}:W \to U$. Now for any $\mathbf{w} \in W$ we have
+	\begin{align*}
+	(\psi \circ \varphi) \circ (\varphi^{-1} \circ \psi^{-1})(\mathbf{w})&=\psi \circ (\varphi \circ \varphi^{-1}) \circ \psi^{-1}(\mathbf{w}) \text{ (by associativity of composition)} \\
+	&=\psi \circ (id_V) \circ \psi^{-1}(\mathbf{w}) \text{ (since $\varphi$ and $\varphi^{-1}$ are inverses)} \\
+	&=\psi \circ \psi^{-1}(\mathbf{w}) \text{ (by def of the identity map)}\\
+	&=id_W(\mathbf{w}) \text{ (by def of the identity map)}\\
+	&=\mathbf{w}
+	\end{align*}
+and for any $\bu \in U$ we have
+\begin{align*}
+	 (\varphi^{-1} \circ \psi^{-1}) \circ (\psi \circ \varphi)(\bu)&=\varphi^{-1} \circ (\psi^{-1} \circ \psi) \circ \varphi(\bu) \text{ (by associativity of composition)}\\
+	 &=\varphi^{-1} \circ id_V \circ \varphi(\bu) \text{ (since $\psi$ and $\psi^{-1}$ are inverses)}\\
+	 &=\varphi^{-1} \circ \varphi(\bu) \text{ (by def of the identity map)}\\
+	 &=id_U(\bu) \\
+	 &=\bu.
+\end{align*}
+This shows that 
+\begin{align*}
+	(\psi \circ \varphi) \circ (\varphi^{-1} \circ \psi^{-1})=id_W
+\end{align*}
+and 
+\begin{align*}
+	(\varphi^{-1} \circ \psi^{-1}) \circ (\psi \circ \varphi)(\bu)=id_U,
+\end{align*}
+and therefore $\varphi^{-1} \circ \psi^{-1}$
+is the unique inverse of $\psi \circ \varphi$.
 \end{enumerate}	
 \end{pf}
+\fixme{Need to show that composition of functions is associative and that inverses are unique, or at least link to this when we do it in a later section.}
+
+
 
 
 \begin{thm}[Isomorphism is an equivalence relation]
@@ -6537,6 +6570,222 @@ We will now see that every subspace of a finite-dimensional vector space is also
 		\item If $W=V$, then $\text{dim }W=\text{dim }V$. Conversely, suppose that $\text{dim } W = \text{dim }V$ and let $B=\{\bw_1,\bw_2,\cdots,\bw_n \}$ be a basis for $W$. If $B$ is not also a basis for $V$, then since $B$ is linearly independent, it can be extended to a basis for $V$. But this implies $\text{dim }V > \text{dim }W$, which is a contradiction. Thus, $B$ must also be a basis for $V$, and therefore $\text{dim }W=\text{dim }V$.
 	\end{enumerate}
 \end{pf}
+
+\subsection{Change of Basis}
+Sometimes a given basis is not the most convenient for a particular problem, and it becomes desirable to change basis. Consider, for example, the motion of a box sliding down an inclined plane:
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/inclined_plane}
+	\end{center}
+	\caption{The forces on a box sliding down an inclined plane.}
+\end{figure}
+
+With respect to the standard basis for $\R^2$, the equations of motion are 
+\begin{align}
+N\sin \theta-f\cos\theta &=ma_{e_1} \\
+N\cos \theta-mg &=ma_{e_2}. 	
+\end{align}
+Since we have components of acceleration in both the $x$ and $y$ directions to solve for, this obscures the fact that the motion is one-dimensional. It is therefore more convenient to choose a basis $B'=\{e_1',e_2'\}$ where these basis vectors are the image of $e_1$ and $e_2$, respectively, under a counterclockwise rotation by $\theta$ radians. With respect to $B'$, the equations of motion are
+\begin{align}\label{eq:eom}
+mg\sin\theta-f&=ma_{e_1'} \\ \label{eq:constraint}
+N-mg\cos\theta &=0.	
+\end{align}
+Now the frictional force $f$ is proportional to the normal force
+\begin{align*}
+	f=\mu N,
+\end{align*}
+where $\mu$ is the coefficient of kinetic friction, so solving \eqref{eq:constraint} for $N$ and substituting into \eqref{eq:eom} gives
+\begin{align*}
+	mg\sin\theta-\mu mg\cos\theta &=ma_{e_1'}
+\end{align*}
+or 
+\begin{align*}
+	g(\sin\theta-\mu\cos\theta)=a_{e_1'},
+\end{align*}
+which is the acceleration along the plane.
+
+How are the coordinates $(x,y)$ and $(x',y')$ with respect to these two bases related? This is most easily determined by writing $(x,y)$ in polar coordinates $(r,\alpha)$:
+\begin{align}
+x&=r\cos\alpha \\
+y&=r\sin\alpha. 	
+\end{align}
+The polar coordinates of $(x',y')$ are then
+\begin{align*}
+x'&=r\cos(\alpha-\theta) \\
+&=r\cos\alpha\cos\theta+r\sin\alpha\sin\theta \\
+&=x\cos\theta+y\sin\theta \\
+y'&=r\sin(\alpha-\theta) \\	
+&=r\sin\alpha\cos\theta-r\cos\alpha\sin\theta \\
+&=-x\sin\theta+y\cos\theta,
+\end{align*}
+which we can write as 
+\begin{align*}
+	\begin{bmatrix}
+		x'\\y'
+	\end{bmatrix}=\begin{bmatrix}
+		\cos\theta & \sin\theta \\
+		-\sin\theta & \cos\theta
+	\end{bmatrix}\begin{bmatrix}
+		x \\ y
+	\end{bmatrix}.
+\end{align*}
+Thus, the two coordinate vectors are related by multiplication by the matrix $\begin{bmatrix}
+		\cos\theta & \sin\theta \\
+		-\sin\theta & \cos\theta
+	\end{bmatrix}$.
+	
+In general, given a finite-dimensional vector space $V$ and a vector $\mathbf{v} \in V$, if we change basis from $B$ to $B'$, we would like to know how $[\mathbf{v}]_B$ and $[\mathbf{v}]_{B'}$ are related. To this end, let $B,B'$ be two bases for $V$, and let $L_B:\R^n \to V$ and $L_{B'}:\R^n \to V$  be the corresponding basis isomorphisms. Then $L_{B'}^{-1}\circ L_B \in \Hom(\R^n)$ is the isomorphism taking $[\mathbf{v}]_B \mapsto [\mathbf{v}]_{B'}$, which makes the following diagram commute: \footnote{We proved in Lemma \ref{lem:inverse_and_composition_of_isomorphisms} that the composition of two isomorphisms is an isomorphism, so $L_{B'}^{-1} \circ L_B$ is an isomorphism.}
+\begin{equation*}
+	\begin{tikzcd}[column sep=small]
+& V \arrow[dl, leftarrow, swap,"L_B"] \arrow[dr, "L_{B'}^{-1}"] & \\
+\R^n \arrow{rr}[swap]{L_{B'}^{-1} \circ L_B} & & \R^n
+\end{tikzcd}	
+\end{equation*}
+\begin{defn}[Change of coordinates isomorphism, transition matrix]
+This isomorphism is called the \emph{change of coordinates isomorphism}. We have seen in Theorem \ref{thm:matrix_of_a_linear_mapping} that every element of $\Hom(\R^n,\R^m)$ can be represented by a matrix. In fact, $\Hom(\R^n,\R^m)\cong M^{m \times n}(\R)$, as we will prove in \fixme{Add link.}. The matrix representation of $L_{B'}^{-1}\circ L_B$ is called the \emph{transition matrix} from $B \to B'$, and is denoted $P_{B \to B'}$.	
+\end{defn}
+
+We will now work out explicitly the form of the transition matrix. Let $B=\{\bu_i\}_{i=1}^n$ and $B'=\{\bu_i'\}_{i=1}^n$ be two ordered bases for $\R^n$. For any vector $\bv \in V$, we can write the coordinate vector of $\bv$ with respect to the ordered basis $B$ uniquely as 
+\begin{align*}
+	[\bv]_B&=(x_1,x_2,\dots,x_n) \\ 
+\end{align*}
+for some $x_1,x_2,\dots,x_n \in \R$. Then
+\begin{align*}
+	[\bv]_{B'}&=(L_{B'}^{-1} \circ L_B)([\bv]_B) \\
+	&=L_{B'}^{-1}(L_B([\bv]_B)) \text{ (by def of composition)}\\
+	&=L_{B'}^{-1}(x_1\bu_1+x_2\bu_2) \text{ (by def $L_B$)} \\
+	&=x_1L_{B'}^{-1}(\bu_1)+x_2L_{B'}^{-1}(\bu_2) \text{ (since $L_{B'}^{-1}$ is linear)} \\
+	&=x_1[\bu_1]_{B'}+x_2[\bu_2]_{B'} \text{ (by def of $L_{B'}^{-1}$).} \\
+	&=P_{B \to B'}[\bv]_{B} \text{ (by def of matrix multiplication)}
+\end{align*}	
+where $P_{B \to B'}:=[[\bu_1]_{B'}, [\bu_2]_{B'},\dots,[\bu_n]_{B'}]$ is the $n \times n$ matrix whose $i$th row is $[\bu_i]_{B'}$, the coordinate vector of the $i$th basis vector in the ordered basis $B$.
+
+\begin{example}\label{ex:transition_matrix_from_std_r_2}
+Let $B=\{e_1,e_2\}$ be the standard basis for $\R^2$, and let $B'=\{\bu_1',\bu_2'\}$ be the ordered basis given by
+\begin{align*}
+	\bu_1'=(1,1), \ \bu_2'=(2,1).
+\end{align*}
+We need the coordinate vectors of $e_1$ and $e_2$ with respect to $B'$,. Writing 
+\begin{align*}
+	e_1&=c_1\bu_1'+c_2\bu_2' \\
+	\begin{bmatrix}
+		1\\ 0 
+	\end{bmatrix}&=c_1\begin{bmatrix}
+1 \\1	
+\end{bmatrix}+c_2\begin{bmatrix}
+	2 \\1
+\end{bmatrix} \\
+&=\begin{bmatrix}
+	1 & 2 \\ 1 & 1
+\end{bmatrix}\begin{bmatrix}
+	c_1 \\ c_2
+\end{bmatrix}
+\end{align*}
+and therefore
+\begin{align*}
+	\begin{bmatrix}
+		c_1 \\ c_2
+	\end{bmatrix}&=\begin{bmatrix}
+	1 & 2 \\ 1 & 1
+\end{bmatrix}^{-1}\begin{bmatrix}
+	1 \\ 0
+\end{bmatrix} \\
+&=\begin{bmatrix}
+	-1 & 2 \\ 1 & -1
+\end{bmatrix}\begin{bmatrix}
+	1 \\ 0
+\end{bmatrix} \\
+&=\begin{bmatrix}
+		-1 \\ 1
+	\end{bmatrix}.
+\end{align*}
+Similarly, writing
+\begin{align*}
+	e_2&=c_1'\bu_1'+c_2'\bu_2' \\
+\end{align*}
+we obtain
+\begin{align*}
+	\begin{bmatrix}
+		c_1' \\ c_2'
+	\end{bmatrix}&=\begin{bmatrix}
+	-1 & 2 \\ 1 & -1
+\end{bmatrix}\begin{bmatrix}
+	0 \\ 1
+\end{bmatrix} \\
+&=\begin{bmatrix}
+	2 \\ -1
+\end{bmatrix}
+\end{align*}
+and therefore
+\begin{align*}
+	[e_1]_{B'}&=\begin{bmatrix}
+		-1 \\ 1
+	\end{bmatrix}, \\
+	[e_2]_{B'}&=\begin{bmatrix}
+		2 \\ -1
+	\end{bmatrix}.	
+\end{align*}
+The transition matrix from $B \to B'$ is therefore given by
+\begin{align*}
+	P_{B \to B'}=\begin{bmatrix}
+		-1 & 2 \\
+		1 & -1
+	\end{bmatrix}.
+\end{align*}
+\end{example}
+
+\begin{exercise}
+	Let $B,B'$ be the two ordered bases in Example \ref{ex:transition_matrix_from_std_r_2}. If a vector $\bv \in \R^2$ has coordinates $[\bv]_B=(-3,5)$ with respect to $B$, what are the coordinates of $\bv$ with respect to $B'$?
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+\begin{align*}
+	[\bv]_{B'}&=P_{B \to B'}[\bv]_B \\
+&=\begin{bmatrix}
+	-1 & 2 \\
+	1 & -1
+\end{bmatrix}\begin{bmatrix}
+	-3 \\ 5
+\end{bmatrix} \\
+&=\begin{bmatrix}
+	13 \\ -8
+\end{bmatrix}.
+\end{align*}	
+\end{solution}}
+
+Since the ordered bases $B$ and $B'$ are arbitrary, the transition matrix $P_{B \to B'}$ should be invertible and equal to $P_{B' \to B}$. We will now prove that this is indeed the case.
+
+\begin{prop}[$P_{B' \to B} \to P_{B \to B'}^{-1}$]\label{prop:inverse_transition_matrix}
+	$P_{B' \to B} \to P_{B \to B'}^{-1}$
+\end{prop}
+
+\begin{pf}
+By part (c) of Lemma \ref{lem:inverse_and_composition_of_isomorphisms}, the inverse of $L_{B'}^{-1} \circ L_B \in \Hom(\R^n)$ is an isomorphism and equal to $L_B^{-1} \circ L_{B'}=P_{B' \to B}$.	
+\end{pf}
+
+\begin{example}\label{ex:transition_to_std_basis_r_2_example}
+Let $B,B'$ be the bases in Example \ref{ex:transition_matrix_from_std_r_2}. Since $P_{B \to B'}=\begin{bmatrix}
+	-1 & 2 \\ 
+	1 & -1
+\end{bmatrix}$, by Proposition \ref{prop:inverse_transition_matrix}, the transition matrix from $B' \to B$ is
+\begin{align*}
+	P_{B' \to B}&=P_{B \to B'}^{-1} \\
+	&=\begin{bmatrix}
+		-1 & 2 \\ 
+	1 & -1
+	\end{bmatrix}^{-1} \\
+	&=\begin{bmatrix}
+		1 & 2 \\
+		1 & 1
+	\end{bmatrix}.
+\end{align*}	
+\end{example}
+Note that the columns of the transition matrix from $B'$ to the standard basis in Example \ref{ex:transition_to_std_basis_r_2_example} are simply the basis vectors of $B'$ themselves. This is always the case for a transition matrix to the standard basis of $\R^n$.
+
+\begin{prop}[Transition matrix to the standard basis of $\R^n$]
+	Any nonsingular $n \times n$ matrix $A$ is a transition matrix from ordered basis $B'$ to the standard basis of $\R^n$, where the basis vectors in $B'$ are the columns of the matrix $A$.
+\end{prop}
 
 \end{document}
 
