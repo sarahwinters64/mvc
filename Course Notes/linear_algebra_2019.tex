@@ -242,6 +242,15 @@
 \newcommand{\bv}{\mathbf{v}}
 \newcommand{\bw}{\mathbf{w}}
 \newcommand{\bu}{\mathbf{u}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\br}{\mathbf{r}}
+\newcommand{\Nul}{\text{Nul }}
+\newcommand{\Col}{\text{Col }}
+\newcommand{\Row}{\text{Row }}
+\newcommand{\nullity}{\text{nullity }}
+
 
 \newcommand{\abs}[1]{\lvert#1\rvert}
 \newcommand{\norm}[1]{\lVert#1\rVert}
@@ -2256,7 +2265,7 @@ Let $A,B,$ and $C$ be matrices of the same size, and let $r$ and $s$ be scalars.
 		\item $(r+s)A=rA+sA$ (scalar multiplication distributes over scalar addition)
 		\item $r(sA)=(rs)A$ (associativity of scalar multiplication)
 	\end{enumerate}
-	These properties are exactly the same properties of addition and scalar multiplication of vectors. Indeed, we can view a vector in $\R^n$ as an $n \times 1$ (or $1 \times n$) matrix. \footnote{In \S 4 \fixme{Add link.}, we will see other sets which admit operations of addition and scalar multiplication which behave exactly like those of vectors. This will lead to the notion of an abstract \emph{vector space}.}
+	These properties are exactly the same properties of addition and scalar multiplication of vectors. Indeed, we can view a vector in $\R^n$ as an $n \times 1$ (or $1 \times n$) matrix. \footnote{In Section \ref{sec:vector_spaces}, we will see other sets which admit operations of addition and scalar multiplication which behave exactly like those of vectors. This will lead to the notion of an abstract \emph{vector space}.}
 \end{thm}
 
 
@@ -2268,7 +2277,7 @@ For each of these we need to show that $(1)$ the matrix on the left and right ha
 Prove properties (ii)-(vii) in Theorem \ref{thm:matrix_add_scalar_multiply_properties}.	
 \end{exercise}
 
-\subsubsection{Matrix multiplication}
+\subsubsection{Matrix multiplication}\label{sec:matrix_multiplication}
 We have seen in the previous sections that the process of forming linear combinations of the rows of a matrix is a fundamental one. We now introduce a systematic way of doing this. 
 
 Let $B$ be an $m \times n$ matrix with rows $\beta_1,\beta_2,\cdots, \beta_m$. Denote the $j$th entry of the $i$th row by $B_{ij}$. For example, if
@@ -2754,7 +2763,7 @@ Let $E$ be the elementary matrix corresponding to the elementary row operation $
 \end{thm}
 
 \begin{pf}
-We will show that $(i) \implies (ii) \implies (iii) \implies (i)$. Assume $(i)$ is true. Let $R$ be the RREF of $A$. Then $R=E_k\cdots E_2 E_1 A$, where $E_1,\cdots,E_k$ are elementary matrices. Since each $E_j$ is invertible, we have $A=E_1^{-1} \cdots E_k^{-1}R$. Since products of invertible matrices are invertible, we see that $A$ is invertible if and only if $R$ is invertible. Since $R$ is a square matrix in RREF, $R$ is invertible iff it is the $n \times n$ identity matrix (otherwise, it would have a row of zeros; we will prove in section 3 \fixme{Add link.} that any such matrix is singular). Hence, $(i) \implies (ii)$. $(iii)$ follows immediately from $(ii)$. $(i)$ follows immediately from $(iii)$ by Theorem \ref{thm:properties_of_A_inverse}.	
+We will show that $(i) \implies (ii) \implies (iii) \implies (i)$. Assume $(i)$ is true. Let $R$ be the RREF of $A$. Then $R=E_k\cdots E_2 E_1 A$, where $E_1,\cdots,E_k$ are elementary matrices. Since each $E_j$ is invertible, we have $A=E_1^{-1} \cdots E_k^{-1}R$. Since products of invertible matrices are invertible, we see that $A$ is invertible if and only if $R$ is invertible. Since $R$ is a square matrix in RREF, $R$ is invertible iff it is the $n \times n$ identity matrix (otherwise, it would have a row of zeros; we will prove in section \ref{sec:determinants} that any such matrix is singular). Hence, $(i) \implies (ii)$. $(iii)$ follows immediately from $(ii)$. $(i)$ follows immediately from $(iii)$ by Theorem \ref{thm:properties_of_A_inverse}.	
 \end{pf}
 
 \begin{cor}[How to compute $A^{-1}$]\label{cor:how_to_compute_a_inverse}
@@ -3041,7 +3050,7 @@ Matrix products of the form $AA^T$ and $A^TA$ arise in a variety of applications
 	\end{bmatrix}$. Show explicitly that $A^TA$ and $AA^T$ are symmetric matrices.	
 \end{exercise}
 
-\section{Determinants}
+\section{Determinants}\label{sec:determinants}
 \subsection{Condition for invertibility}
 We have seen that not all $n \times n$ matrices have an inverse. We would now like to ask, given an arbitrary $n \times n$ matrix $A$, what is the set of conditions on the entries of $A$ which are both necessary and sufficient for $A$ to be invertible?
 
@@ -3214,7 +3223,7 @@ We can use this to recursively define the determinant of an $n \times n$ matrix.
 	This formula is said to be a \emph{cofactor expansion} along the first row of $A$.
 \end{defn}
 
-It remains to be shown that an $n \times n$ matrix $A$ is invertible if and only if $\det A \neq 0$ when $n>3$. This will be done in section \fixme{Add section.}. Therefore, we have added yet another equivalent condition to the Invertible Matrix Theorem:
+It remains to be shown that an $n \times n$ matrix $A$ is invertible if and only if $\det A \neq 0$ when $n>3$. This will be done in Section \ref{sec:cramer}. Therefore, we have added yet another equivalent condition to the Invertible Matrix Theorem:
 
 \begin{thm}[Invertible matrix theorem]\label{thm:invertible_matrix_theorem_part_3}
 	If $A$ is an $n \times n$ matrix, the following are equivalent.
@@ -3659,7 +3668,7 @@ Let $A$ and $P$ be $n \times n$ matrices, with $P$ invertible. Show that $\det(P
 	\end{align*}
 \end{proof}
 
-\subsection{Cramer's Rule}
+\subsection{Cramer's Rule}\label{sec:cramer}
 Let's take a closer look at the formula for the inverse of a $2 \times 2$ matrix $A=\begin{bmatrix}
 	a_{11} & a_{12} \\ a_{21} & a_{22}
 \end{bmatrix}$, which is given by the formula
@@ -4187,7 +4196,7 @@ We have the following geometric interpretation of determinants:
 	\end{figure}
 \end{prop}
 
-\section{Vector Spaces}
+\section{Vector Spaces}\label{sec:vector_spaces}
 We have seen previously that various diverse applications, such as analyzing electrical circuits and balancing chemical equations, could all be solved in exactly the same way: since the solution of the problem involved forming linear combinations of a fixed number of unknown quantities, this gave rise to a system of linear equations which we were able to solve by our row-reduction algorithm. We therefore find it useful to generalize our concept of a vector, abstracting the essential properties which make it possible to solve any system which shares these properties. This gives rise to the notion of a \emph{vector space}.
 
 \subsection{Basic Definitions and Examples}\label{sec:basic_definitions_and_examples}
@@ -5142,7 +5151,7 @@ Every linear mapping $\mathbb{R}\to \mathbb{R}$ is of the form $x \mapsto kx$ fo
 	&=ckx+ky \\
 	&=cT_k(x)+T_k(y)
 \end{align*}
-so $T_k$ is indeed linear. Conversely, let $T:\mathbb{R} \to \mathbb{R}$ be any linear transformation. Then, since $1x=x$ for every $x \in \mathbb{R}$, we have
+so $T_k$ is indeed linear. Conversely, let $T:\mathbb{R} \to \mathbb{R}$ be any linear mapping. Then, since $1x=x$ for every $x \in \mathbb{R}$, we have
 \begin{align*}
 	T(x)&=T(1x) \\
 	&=xT(1) \\
@@ -5159,7 +5168,7 @@ Let $A$ be an $m \times n$ matrix $T_A:\mathbb{R}^n \to \mathbb{R}^m$ be defined
 \begin{align*}
 	T_A(\mathbf{x})=A\mathbf{x}.
 \end{align*}	
-Then $T_A$ is linear. Moreover, every linear transformation $T:\mathbb{R}^n \to \mathbb{R}^m$ is of this form for some fixed matrix $A$.
+Then $T_A$ is linear. Moreover, every linear mapping $T:\mathbb{R}^n \to \mathbb{R}^m$ is of this form for some fixed matrix $A$.
 \end{thm}
 
 \begin{proof}
@@ -5179,7 +5188,7 @@ Then $T_A$ is linear. Moreover, every linear transformation $T:\mathbb{R}^n \to 
 	\end{align*}
 	which is exactly the result of multiplying the vector $\mathbf{x} \in \mathbb{R}^n$ by the $m \times n$ matrix $A$ whose $i$th column is given by $T(e_i)$, which is a fixed vector in $\mathbb{R}^m$. 
 \end{proof}
-While Theorem \ref{thm:matrix_of_a_linear_mapping} proves that every linear transformation $T:\mathbb{R}^n \to \mathbb{R}^m$ can be represented by a matrix, this matrix is not unique. 
+While Theorem \ref{thm:matrix_of_a_linear_mapping} proves that every linear mapping $T:\mathbb{R}^n \to \mathbb{R}^m$ can be represented by a matrix, this matrix is not unique. 
 
 \begin{example}
 	Consider the linear mapping in Exercise \ref{ex:r_3_to_r_2}. Since 
@@ -5268,7 +5277,7 @@ and therefore
 which is the same as above.
 \end{example}
 
-We have just seen that studying linear mappings $\mathbb{R}^n \to \mathbb{R}^m$ is essentially the same as studying $m \times n$ matrices. However, we have also seen that different matrices might represent the same linear mapping, so in practice we will have to make a particular choice for which matrix to use. We will see how to deal with keeping track of this choice later in section \fixme{Add link.}. For now, the standard choice will be the matrix whose columns are formed by the images of the standard unit vectors under $T$.
+We have just seen that studying linear mappings $\mathbb{R}^n \to \mathbb{R}^m$ is essentially the same as studying $m \times n$ matrices. However, we have also seen that different matrices might represent the same linear mapping, so in practice we will have to make a particular choice for which matrix to use. We will see how to deal with keeping track of this choice later in section \ref{sec:matrix_of_a_linear_mapping}. For now, the standard choice will be the matrix whose columns are formed by the images of the standard unit vectors under $T$.
 
 \begin{defn}[Standard matrix of a linear mapping $\mathbb{R}^n \to \mathbb{R}^m$]
 	Let $T:\mathbb{R}^n \to \mathbb{R}^m$ be a linear mapping. The matrix 
@@ -5279,7 +5288,7 @@ We have just seen that studying linear mappings $\mathbb{R}^n \to \mathbb{R}^m$ 
 \end{defn}
 
 \begin{exercise}
-Find the standard matrix of the linear transformation $T:\mathbb{R}^2 \to \mathbb{R}^3$ defined by $T(\mathbf{x})=\mathbf{w}$, where
+Find the standard matrix of the linear mapping $T:\mathbb{R}^2 \to \mathbb{R}^3$ defined by $T(\mathbf{x})=\mathbf{w}$, where
 \begin{align*}
 	w_1&=-x_1+x_2 \\
 	w_2&=3x_1-2x_2 \\
@@ -5442,7 +5451,7 @@ and therefore
 \end{align*}
 \end{example}
 
-\begin{thm}[Kernel and Image of a Linear Map]
+\begin{thm}[Kernel and Image of a Linear Map]\label{thm:kernel_and_image_of_a_linear_map}
 	Let $T:V \to W$ be a linear mapping between two vector spaces. Then
 	\begin{enumerate}[(a)]
 		\item the set $T^{-1}(\mathbf{0})=\{\mathbf{v}\in V:T(\mathbf{v})=\mathbf{0}\}$ is a subspace of $V$, called the \emph{kernel} of $T$, denoted $\ker T$.
@@ -5471,7 +5480,7 @@ and therefore
 \end{example}
 
 \begin{example}
-Consider the matrix transformation $T:\R^2 \to \R^3$ whose standard matrix is 
+Consider the matrix mapping $T:\R^2 \to \R^3$ whose standard matrix is 
 \begin{align*}
 	A=\begin{bmatrix}
 		1 & 4 \\
@@ -5596,7 +5605,7 @@ By the fundamental theorem of algebra, a degree $n-1$ polynomial has only $n-1$ 
 	Of course, $T_b(x)=b^x$ has a two-sided inverse given by $T_b^{-1}(x)=\log_b(x)$, so $T_b$ is a bijection, and therefore $T_b$ is an isomorphism. Thus, $V \cong \R$. This shows that this "unusual" vector space is actually not unusual at all; it is the same as the "ordinary" vector space $\R$.
 \end{example}
 
-\begin{exercise}
+\begin{exercise}\label{ex:matrix_of_a_linear_transformation_of_r_n_to_r_m}
 Show that the mapping $T:M^{2 \times 2}(\R) \to \R^4$ defined by
 \begin{align*}
 	T\left(\begin{bmatrix}
@@ -5740,10 +5749,6 @@ and therefore $\varphi^{-1} \circ \psi^{-1}$
 is the unique inverse of $\psi \circ \varphi$.
 \end{enumerate}	
 \end{pf}
-\fixme{Need to show that composition of functions is associative and that inverses are unique, or at least link to this when we do it in a later section.}
-
-
-
 
 \begin{thm}[Isomorphism is an equivalence relation]
 Isomorphism is an equivalence relation on the collection of vector spaces.
@@ -5765,7 +5770,7 @@ An \emph{invariant} of a vector space $V$ is any quantity associated to $V$ whic
 \begin{enumerate}[(a)]\hspace{15cm}
 	\item $\mathbb{R}^n$ is finite-dimensional, since $\mathbb{R}^n=\Span\{e_1,e_2,\dots,e_n\}$.
 	\item $P_{n-1}$ is also finite-dimensional, since $P_{n-1}=\Span\{1,x,x^2,\dots,x^{n-1}\}$.
-	\item The vector space $P_\infty$ of all polynomials is infinite-dimensional. To see this, suppose that $S=\{p_1,p_2,\dots,p_k\}$ is a finite spanning set for $P_\infty$. It is immediately clear that any polynomial of degree $> \max\{\deg p_i\}_{i=1}^k$ cannot be in the span of $S$, so $P_\infty$ cannot be spanned by any finite set of polynomials. Hence, it is infinite-dimensional. \footnote{We will prove later in section \fixme{Add link.} that every subspace of a finite-dimensional vector space is finite-dimensional, so this implies that $\R^\R$ and $\mathscr{C}^{m}(\R)$ for $m=0,1,\dots,\infty$ are all infinite-dimensional (since $P_\infty$ is an infinite-dimensional subspace of each of these).}
+	\item The vector space $P_\infty$ of all polynomials is infinite-dimensional. To see this, suppose that $S=\{p_1,p_2,\dots,p_k\}$ is a finite spanning set for $P_\infty$. It is immediately clear that any polynomial of degree $> \max\{\deg p_i\}_{i=1}^k$ cannot be in the span of $S$, so $P_\infty$ cannot be spanned by any finite set of polynomials. Hence, it is infinite-dimensional. \footnote{We will prove later in Theorem \ref{thm:sub_fin_is_fin} that every subspace of a finite-dimensional vector space is finite-dimensional, so this implies that $\R^\R$ and $\mathscr{C}^{m}(\R)$ for $m=0,1,\dots,\infty$ are all infinite-dimensional (since $P_\infty$ is an infinite-dimensional subspace of each of these).}
 \end{enumerate}	
 \end{example}
 
@@ -6376,10 +6381,10 @@ for $P_2$ from part (b) of Example \ref{ex:basis_for_p_2}.
 \end{solution}}
 
 \subsubsection{Dimension of a Vector Space}
-We have defined a vector space $V$ to be finite-dimensional if it admits a finite spanning set. Here, we will see that we can assign to each such $V$ a unique integer, called the \emph{dimension} of $V$, which satisfies our intuitive requirements about dimensionality and which turns out to be an important tool in deeper studies of the properties of such spaces. We will also see that a finite-dimensional vector space is one which can be characterized as a vector space isomorphic to $\mathbb{R}^n$. This isomorphism allows a linear transformation between two such spaces to be uniquely represented by a matrix. The theory of linear transformations between finite-dimensional vector spaces is therefore completely equivalent to the theory of matrices.
+We have defined a vector space $V$ to be finite-dimensional if it admits a finite spanning set. Here, we will see that we can assign to each such $V$ a unique integer, called the \emph{dimension} of $V$, which satisfies our intuitive requirements about dimensionality and which turns out to be an important tool in deeper studies of the properties of such spaces. We will also see that a finite-dimensional vector space is one which can be characterized as a vector space isomorphic to $\mathbb{R}^n$. This isomorphism allows a linear mapping between two such spaces to be uniquely represented by a matrix. The theory of linear mappings between finite-dimensional vector spaces is therefore completely equivalent to the theory of matrices.
 
 Our first task will be to show that every finite-dimensional vector space has a basis. We will need the following facts.
-\begin{lem}[Plus/minus lemma] Let $S$ be a nonempty subset of a vector space $V$.
+\begin{lem}[Plus/minus lemma]\label{lem:plus_minus} Let $S$ be a nonempty subset of a vector space $V$.
 \begin{enumerate}[(a)]
 	\item If $S$ is linearly independent and ${\bf v}\in V-\text{Span}(S)$, then $S\cup \{{\bf v}\}$ is linearly independent.
 	\item If ${\bf v} \in S$ can be expressed as a linear combination of vectors in $S-\{ {\bf v}\}$, then $\text{Span}(S-\{ {\bf v}\})=\text{Span}(S)$.
@@ -6554,7 +6559,7 @@ which shows $S \circ T$ is also injective, and  hence an isomorphism.
 
 We will now see that every subspace of a finite-dimensional vector space is also finite-dimensional.
 
-\begin{thm}
+\begin{thm}[Dimension of a subspace]\label{thm:sub_fin_is_fin}
 	Let $W$ be a subspace of a finite-dimensional vector space $V$. Then
 	\begin{enumerate}[(a)]
 		\item $W$ is finite-dimensional.
@@ -6634,7 +6639,7 @@ Thus, the two coordinate vectors are related by multiplication by the matrix $\b
 		-\sin\theta & \cos\theta
 	\end{bmatrix}$.
 	
-In general, given a finite-dimensional vector space $V$ and a vector $\mathbf{v} \in V$, if we change basis from $B$ to $B'$, we would like to know how $[\mathbf{v}]_B$ and $[\mathbf{v}]_{B'}$ are related. To this end, let $B,B'$ be two bases for $V$, and let $L_B:\R^n \to V$ and $L_{B'}:\R^n \to V$  be the corresponding basis isomorphisms. Then $L_{B'}^{-1}\circ L_B \in \Hom(\R^n)$ is the isomorphism taking $[\mathbf{v}]_B \mapsto [\mathbf{v}]_{B'}$, which makes the following diagram commute: \footnote{We proved in Lemma \ref{lem:inverse_and_composition_of_isomorphisms} that the composition of two isomorphisms is an isomorphism, so $L_{B'}^{-1} \circ L_B$ is an isomorphism.}
+In general, given a finite-dimensional vector space $V$ and a vector $\mathbf{v} \in V$, if we change basis from $B$ to $B'$, we would like to know how $[\mathbf{v}]_B$ and $[\mathbf{v}]_{B'}$ are related. To this end, let $B,B'$ be two bases for $V$, and let $L_B:\R^n \to V$ and $L_{B'}:\R^n \to V$  be the corresponding basis isomorphisms. Then $L_{B'}^{-1}\circ L_B \in \Hom(\R^n)$ is the isomorphism \footnote{We proved in Lemma \ref{lem:inverse_and_composition_of_isomorphisms} that the composition of two isomorphisms is an isomorphism, so $L_{B'}^{-1} \circ L_B$ is an isomorphism.} taking $[\mathbf{v}]_B \mapsto [\mathbf{v}]_{B'}$, which makes the following diagram commute: \footnote{A diagram showing various mappings together with their respective domains and codomains is said to \emph{commute} if one always obtains the same value independent of the path taken.} 
 \begin{equation*}
 	\begin{tikzcd}[column sep=small]
 & V \arrow[dl, leftarrow, swap,"L_B"] \arrow[dr, "L_{B'}^{-1}"] & \\
@@ -6642,7 +6647,7 @@ In general, given a finite-dimensional vector space $V$ and a vector $\mathbf{v}
 \end{tikzcd}	
 \end{equation*}
 \begin{defn}[Change of coordinates isomorphism, transition matrix]
-This isomorphism is called the \emph{change of coordinates isomorphism}. We have seen in Theorem \ref{thm:matrix_of_a_linear_mapping} that every element of $\Hom(\R^n,\R^m)$ can be represented by a matrix. In fact, $\Hom(\R^n,\R^m)\cong M^{m \times n}(\R)$, as we will prove in \fixme{Add link.}. The matrix representation of $L_{B'}^{-1}\circ L_B$ is called the \emph{transition matrix} from $B \to B'$, and is denoted $P_{B \to B'}$.	
+This isomorphism is called the \emph{change of coordinates isomorphism}. We have seen in Theorem \ref{thm:matrix_of_a_linear_mapping} that every element of $\Hom(\R^n,\R^m)$ can be represented by a matrix. In fact, $\Hom(\R^n,\R^m)\cong M^{m \times n}(\R)$, as we will prove in Section \ref{sec:matrix_of_a_linear_mapping}. The matrix representation of $L_{B'}^{-1}\circ L_B$ is called the \emph{transition matrix} from $B \to B'$, and is denoted $P_{B \to B'}$.	
 \end{defn}
 
 We will now work out explicitly the form of the transition matrix. Let $B=\{\bu_i\}_{i=1}^n$ and $B'=\{\bu_i'\}_{i=1}^n$ be two ordered bases for $\R^n$. For any vector $\bv \in V$, we can write the coordinate vector of $\bv$ with respect to the ordered basis $B$ uniquely as 
@@ -6781,11 +6786,943 @@ Let $B,B'$ be the bases in Example \ref{ex:transition_matrix_from_std_r_2}. Sinc
 	\end{bmatrix}.
 \end{align*}	
 \end{example}
-Note that the columns of the transition matrix from $B'$ to the standard basis in Example \ref{ex:transition_to_std_basis_r_2_example} are simply the basis vectors of $B'$ themselves. This is always the case for a transition matrix to the standard basis of $\R^n$.
+Note that the columns of the transition matrix from $B'$ to the standard basis in Example \ref{ex:transition_to_std_basis_r_2_example} are simply the basis vectors of $B'$ themselves. This is always the case for a transition matrix to the standard basis of $\R^n$, as we will prove in Proposition \ref{prop:trans_matrix_to_std_basis}.
 
-\begin{prop}[Transition matrix to the standard basis of $\R^n$]
+\subsubsection{Computing Transition Matrices Efficiently}
+We now discuss an algorithm for computing transition matrices efficiently. To save writing, we go through the derivation for a three-dimensional vector space $V$, but the derivation is exactly the same for any finite-dimensional vector space. 
+
+Given two bases $B=\{\bu_1,\bu_2,\bu_3\}$ and $B'=\{\bu_1',\bu_2',\bu_3'\}$ for $V$, we have seen that the transition matrix, $P_{B \to B'}$ is given by 
+\begin{align*}
+	P_{B \to B'}=\left[[\bu_1]_{B'},[\bu_2]_{B'},[\bu_3]_{B'}\right]
+\end{align*}
+where the $i$th column, $[\bu_i]_{B'}$, is the coordinate of the ``old" basis vector $\bu_i$ with respect to the ``new" basis $B'$:
+\begin{align*}
+	\bu_1&=([\bu_1]_{B'})_1\bu_1'+([\bu_1]_{B'})_2\bu_2'+([\bu_1]_{B'})_3\bu_3' \\
+	\bu_2&=([\bu_2]_{B'})_1\bu_1'+([\bu_2]_{B'})_2\bu_2'+([\bu_2]_{B'})_3\bu_3' \\
+	\bu_3&=([\bu_3]_{B'})_1\bu_1'+([\bu_3]_{B'})_2\bu_2'+([\bu_3]_{B'})_3\bu_3'. \\
+\end{align*}
+To solve for $[\bu_1]_{B'}$, we need to solve the linear system
+\begin{align*}
+	\begin{bmatrix}
+		(\bu_1)_1 \\ (\bu_1)_2 \\ (\bu_1)_3
+	\end{bmatrix}&=([\bu_1]_{B'})_1\begin{bmatrix}
+		 (\bu_1')_1 \\ (\bu_1')_2 \\ (\bu_1')_3
+	\end{bmatrix} +([\bu_1]_{B'})_2\begin{bmatrix}
+		 (\bu_2')_1 \\ (\bu_2')_2 \\ (\bu_2')_3
+	\end{bmatrix}+([\bu_1]_{B'})_3\begin{bmatrix}
+		 (\bu_3')_1 \\ (\bu_3')_2 \\ (\bu_3')_3
+	\end{bmatrix}\\
+	&=\begin{bmatrix}
+		(\bu_1')_1 & (\bu_2')_1 & (\bu_3')_1 \\
+		(\bu_1')_2 & (\bu_2')_2 & (\bu_3')_2 \\
+		(\bu_1')_3 & (\bu_2')_3 & (\bu_3')_3 \\
+	\end{bmatrix}\begin{bmatrix}
+		([\bu_1]_{B'})_1 \\ ([\bu_1]_{B'})_2 \\ ([\bu_1]_{B'})_3.
+	\end{bmatrix}
+\end{align*}
+As we have seen many times, we can solve for the components of $[\bu_1]_{B'}$ by row-reducing the augmented matrix
+\begin{align*}
+	\left[\begin{array}{c c c | c}
+		(\bu_1')_1 & (\bu_2')_1 & (\bu_3')_1 & (\bu_1)_1  \\
+		(\bu_1')_2 & (\bu_2')_2 & (\bu_3')_2 & (\bu_1)_2\\
+		(\bu_1')_3 & (\bu_2')_3 & (\bu_3')_3 & (\bu_1)_3 \\
+	\end{array}\right]
+\end{align*}
+Note that the corresponding systems of equations for $[\bu_2]_{B'}$ and $[\bu_3]_{B'}$ have \emph{exactly the same coefficient matrix}. Thus, rather than repeating the Gauss-Jordan procedure three times, we might as well append the other two basis vectors in $B$ as well:
+\begin{align*}
+	\left[\begin{array}{c c c | c c c}
+		(\bu_1')_1 & (\bu_2')_1 & (\bu_3')_1 & (\bu_1)_1 & (\bu_2)_1 & (\bu_3)_1   \\
+		(\bu_1')_2 & (\bu_2')_2 & (\bu_3')_2 & (\bu_1)_2 & (\bu_2)_2 & (\bu_3)_3\\
+		(\bu_1')_3 & (\bu_2')_3 & (\bu_3')_3 & (\bu_1)_3 & (\bu_2)_2 & (\bu_3)_3 \\
+	\end{array}\right]
+\end{align*}
+Since $B$ and $B'$ are bases for $V$, we know there exists a unique solution for each $[\bu_1]_{B'}, [\bu_2]_{B'}$,  and $[\bu_3]_{B'}$. Thus, the $3 \times 3$ submatrix whose columns are given by the $\bu_i'$ is row-equivalent to the $3 \times 3$ identity matrix and the other three columns of the reduced matrix
+\begin{align*}
+	\left[\begin{array}{c c c | c c c}
+		1 & 0 & 0 & ([\bu_1]_{B'})_1 & ([\bu_2]_{B'})_1 & ([\bu_3]_{B'})_1   \\
+		0 & 1 & 0 & ([\bu_1]_{B'})_2 & ([\bu_2]_{B'})_2 & ([\bu_3]_{B'})_3\\
+		0 & 0 & 1 & ([\bu_1]_{B'})_3 & ([\bu_2]_{B'})_2 & ([\bu_3]_{B'})_3  \\
+	\end{array}\right]
+\end{align*}
+give us the components of the $[\bu_i]_{B'}$ (as functions of of the entries of the basis vectors $\bu_j$ and $\bu_k'$). But these are exactly the columns of $P_{B \to B'}$. This therefore gives us an algorithm for computing $P_{B \to B'}$:
+\begin{enumerate}
+	\item Form the matrix $\left[B'|B\right]$, where $B=\left[\bu_1|\bu_2|\cdots|\bu_n\right]$ and similarly for $B'$.
+	\item Row-reduce this matrix to RREF. The resulting matrix will be $\left[I|P_{B\ \to B'}\right]$, from which we read off the transition matrix $P_{B\ \to B'}$.
+\end{enumerate}
+
+\begin{example}
+Let $B, B'$ be bases for $\mathbb{R}^3$ where $\bu_1=(2,1,1), \ \bu_2=(2,-1,1), \ \bu_3=(1,2,1)$ and $\bu_1'=(3,1,-5), \ \bu_2'=(1,1,-3), \ \bu_3'=(-1,0,2)$. To compute $P_{B \to B'}$, we simply row-reduce
+\begin{align*}
+	\left[\begin{array}{c c c | c c c}
+		3 & 1 & -1 & 2 & 2 & 1 \\
+		1 & 1 & 0 & 1 & -1 & 2 \\
+		-5 & -3 & 2 & 1 & 1 & 1
+	\end{array}\right] \sim \left[\begin{array}{c c c | c c c}
+		1 & 0 & 0 & 3 & 2 &\frac{5}{2} \\
+		0 & 1 & 0 & -2 & -3 & -\frac{1}{2}\\
+		0 & 0 & 1 & 5 & 1 & 6
+	\end{array}\right]
+\end{align*}
+from which we read off $P_{B \to B'}=\begin{bmatrix}
+	 3 & 2 &\frac{5}{2} \\
+		-2 & -3 & -\frac{1}{2}\\
+		5 & 1 & 6
+\end{bmatrix}$. \\
+\\
+We can check, e.g., that
+\begin{align*}
+	\bu_1&=\begin{bmatrix}
+		2 \\ 1 \\ 1
+	\end{bmatrix}=3\begin{bmatrix}
+		3 \\ 1 \\ -5
+	\end{bmatrix}-2\begin{bmatrix}
+		1 \\ 1 \\ -3
+	\end{bmatrix}+5\begin{bmatrix}
+		-1 \\ 0 \\ 2
+	\end{bmatrix} \\
+	&=3\bu_1'-2\bu_2'+5\bu_3',
+\end{align*}
+so that $[\bu_1]_{B'}=\begin{bmatrix}
+	3 \\ -2 \\ 5
+\end{bmatrix}$ is indeed the first column of $P_{B \to B'}$, and similarly for $[\bu_2]_{B'}$ and $[\bu_3]_{B'}$.
+\end{example}
+
+\fixme{Add exercise.}
+
+\begin{prop}[Transition matrix to the standard basis of $\R^n$]\label{prop:trans_matrix_to_std_basis}
 	Any nonsingular $n \times n$ matrix $A$ is a transition matrix from ordered basis $B'$ to the standard basis of $\R^n$, where the basis vectors in $B'$ are the columns of the matrix $A$.
 \end{prop}
+
+\begin{pf}
+If $B$ is any basis for $\R^n$ and $B'$ is the standard basis, then $[B'|B]=[I|B']$, where $I$ is the $n \times n$ identity matrix. By the above, $B'=P_{B \to B'}$.
+\end{pf}
+
+
+\subsection{Matrix of a Linear Mapping}\label{sec:matrix_of_a_linear_mapping}
+We will show here that every linear mapping between finite dimensional vector spaces can be represented by a matrix. Therefore, the theory of linear mappings on these spaces is completely mirrored by the theory of matrices.
+
+Let $V$ be a finite-dimensional vector space, $B=\{\bv_i\}_{i=1}^n$ be a basis for $V$, and $L_B: {\bf x} \mapsto \sum_{i=1}^nx_i\bv_i$ in $Hom(\mathbb{R}^n,V)$ the corresponding basis isomorphism.
+
+\begin{defn}
+	Let $V$ be a vector space. The $n$-fold Cartesian product $$V^n=\{(\bv_1,\bv_2,\cdots,\bv_n):\bv_i \in V \text{ for all }i=1,\cdots,n\}$$
+	is a vector space under the operations
+	\begin{align*}
+		(\bv_1,\bv_2,\cdots,\bv_n)+(\bw_1,\bw_2,\cdots,\bw_n)&=(\bv_1+\bw_1,\bv_2+\bw_2,\cdots,\bv_n+\bw_n) \\
+		k(\bv_1,\bv_2,\cdots,\bv_n)&=(k\bv_1,k\bv_2,\cdots,k\bv_n)
+	\end{align*}
+\end{defn}
+
+\begin{pf}
+	We have seen that $W^A=\{f|f:A \to W\}$ is a vector space for any common domain $A$. $V^n \cong V^{\overline{n}}$ (the RHS being the set of all maps from $\overline{n} \to V$), so this is a vector space.
+\end{pf}
+
+\begin{prop}[$Hom(\mathbb{R}^n,V) \cong V^n$]
+	$Hom(\mathbb{R}^n,V) \cong V^n$.
+\end{prop}
+
+\begin{pf}
+	Let ${\bf v}=(\bv_1,\cdots,\bv_n) \in V^n$  and consider the mapping $\psi:V^n \to Hom(\mathbb{R}^n,V)$ defined by $\psi(\bv)=L_{\bv}$, where $L_{\bv}({\bf x})=\sum_{i=1}^nx_i\bv_i$. This is linear since for every $\bv$ and $\bw$ in $V^n$ and every $k \in \mathbb{R}$ we have 
+	\begin{align*}
+		\psi(k\bv+\bw)(\bx)&=L_{k\bv+\bw}(\bx) \\
+		&=\sum_{i=1}^nx_i(k\bv+\bw)_i \\
+		&=\sum_{i=1}^nx_i(k\bv_i+\bw_i) \\
+		&=k\sum_{i=1}^nx_i\bv_i+\sum_{i=1}^nx_i\bw_i \\
+		&=kL_{\bv}(\bx)+L_{\bw}(\bx) \\
+		&=k\psi(\bv)(\bx)+\psi(\bw)(\bx)
+	\end{align*}
+for all $\bx \in \mathbb{R}^n$ and therefore
+\begin{align*}
+	\psi(k\bv+\bw)=k\psi(\bv)+\psi(\bw),
+\end{align*}
+hence $\psi$ is linear. 
+
+To show that $\psi$ is surjective, let $T \in Hom(\mathbb{R}^n,W)$. Then, for any $\bx \in \mathbb{R}^n$, we have 
+\begin{align*}
+	T(\bx)&=T(x_1e_1+x_2e_2+\cdots+x_ne_n) \\
+	&=x_1T(e_1)+x_2T(e_2)+\cdots+x_nT(e_n) \\
+	&=L_{\bv}(\bx) 
+\end{align*} 
+where $\bv=(T(e_1), T(e_2), \cdots, T(e_n))$. Therefore $T=L_{\bv}=\psi(\bv)$, hence $\psi$ is surjective.
+
+Finally, to show that $\psi$ is injective, suppose $\psi(\bv)=\psi(\bw)$. Then, for all $\bx \in \mathbb{R}^n$,
+\begin{align*}
+	L_{\bv}(\bx)&=L_{\bw}(\bx) \\
+	\sum_{i=1}^nx_i \bv_i &= \sum_{i=1}^nx_i\bw_i \\
+	\implies \sum_{i=1}^nx_i(\bv_i-\bw_i)&={\bf 0}.  \\
+\end{align*}
+This can only be zero for all $\bx \in \mathbb{R}^n$ if $\bv_i=\bw_i$ for all $i=1,\cdots,n$, i.e., if $\bv=\bw$. Thus, $\psi$ is also injective and hence an isomorphism.
+\end{pf}
+
+\begin{prop}[$Hom(\mathbb{R}^n,\mathbb{R}^m) \cong M^{m \times n}(\mathbb{R})$]\label{prop:r_n_to_r_m_rep_by_matrix}
+	$Hom(\mathbb{R}^n,\mathbb{R}^m) \cong M^{m \times n}(\mathbb{R})$.
+\end{prop} 
+
+\begin{pf}
+	By the previous proposition, $Hom(\mathbb{R}^n,\mathbb{R}^m) \cong (\mathbb{R}^m)^n$. Each element of the latter is an $n$-tuple of $m$-tuples, which we can view as an $m \times n$ matrix. Thus  $Hom(\mathbb{R}^n,\mathbb{R}^m) \cong M^{m \times n}(\mathbb{R})$.
+\end{pf}
+
+\begin{lem}[Composition by a fixed linear map]
+Composition on the right by a fixed $T \in Hom(V,W)$ is a linear mapping from the vector space $Hom(W,X)$ to the vector space $Hom(V,X)$. It is an isomorphism if $T$ is an isomorphism. Similar statements hold for composition on the left by $T$.
+\end{lem}
+
+\begin{pf}
+	Let $\psi:Hom(W,X) \to Hom(V,X)$ be defined by $\psi(S)=S \circ T$. To show that $\psi$ is linear, we need to show that $\psi(kS_1+S_2)=k\psi(S_1)+\psi(S_2)$ for all $S_1,S_2 \in Hom(W,X)$ and all $k \in \mathbb{R}$. Letting $\bv \in V$, we have
+	\begin{align*}
+		\psi(kS_1+S_2)(\bv)&=[(kS_1+S_2)\circ T](\bv) \hspace{1.25cm} \text{(def of $\psi$)}\\
+		&=(kS_1+S_2)(T(\bv)) \hspace{1.5cm} \text{(def of $\circ$)}\\
+		&=kS_1(T(\bv))+S_2(T(\bw)) \hspace{0.65cm} \text{(def of $+$ for $Hom(W,X)$)}\\
+		&=k(S_1 \circ T)(\bv)+(S_2 \circ T)(\bv) \hspace{0.05cm} \text{(def of $\circ$)}\\
+		&=k\psi(S_1)(\bv)+\psi(S_2)(\bv) \hspace{0.75cm} \text{(def of $\psi$)}
+	\end{align*}
+	This holds for all $\bv \in V$, so $\psi(kS_1+S_2)=k\psi(S_1)+\psi(S_2)$, hence $\psi$ is linear. 
+	
+	Now suppose $T \in Hom(V,W)$ is an isomorphism and let $T^{-1} \in Hom(W,V)$ be its inverse. Let $\varphi: Hom(V,X) \to Hom(W,X)$ be defined by $\varphi(R)=S \circ T^{-1}$. Then $\varphi \circ \psi:Hom(W,X) \to Hom(W,X)$ gives
+	\begin{align*}
+		(\varphi \circ \psi)(S)&=\varphi(\psi(S)) \\
+		&=\varphi(S \circ T) \\
+		&=(S \circ T) \circ T^{-1} \\
+		&=S \circ (T \circ T^{-1}) \\
+		&=S \circ I_V \\
+		&=S
+	\end{align*}
+	Similarly, one can check that $\psi \circ \varphi:Hom(V,X) \to Hom(V,X)$ is the identity map on $V$. Hence $\varphi$ is a two-sided inverse for $\psi$, which shows $\psi$ is a bijection and hence an isomorphism.
+\end{pf}
+
+\begin{thm}
+	If $V$ and $W$ are finite-dimensional vector spaces, then $Hom(V,W) \cong  M^{m \times n}(\mathbb{R})$.
+\end{thm}
+
+\begin{pf}
+	We will prove that $Hom(V,W) \cong Hom(\mathbb{R}^n, \mathbb{R}^m)$, and theorem will then follow from Proposition \ref{prop:r_n_to_r_m_rep_by_matrix}. Let $B=\{\bv_i\}_{i=1}^n$ be a basis for $V$, $B'=\{\bw_i\}_{i=1}^n$ a basis for $W$, and $L_B \in Hom(\mathbb{R}^n,V)$, $L_{B'} \in Hom(\mathbb{R}^m,W)$ the corresponding basis isomorphisms. Then $L_{B'}^{-1} \circ T \circ L_B \in Hom(\mathbb{R}^n,\mathbb{R}^m)$. By the previous lemma, the mapping $T \mapsto T \circ L_B$ is an isomorphism from $Hom(V,W)$ to $Hom(\mathbb{R}^n,W)$ and the mapping $T \circ L_B \mapsto L_{B'}^{-1} \circ T \circ L_B$ is an isomorphism from $Hom(\mathbb{R}^n,W)$ to $Hom(\mathbb{R}^n,\mathbb{R}^m)$. Since the composition of isomorphisms is an isomorphism, the mapping $T \mapsto L_{B'}^{-1} \circ T \circ L_B$ is an isomorphism from $Hom(V,W)$ to $Hom(\mathbb{R}^n,\mathbb{R}^m)$. Thus, $Hom(V,W)\cong Hom(\mathbb{R}^n,\mathbb{R}^m) \cong M^{m \times n}(\R)$.
+\end{pf}
+\subsubsection{Explicit Form of the Matrix of a Linear Mapping}
+We now explicitly compute the entries of the matrix of a given linear transformation, given bases $B$ and $B'$ for $V$ and $W$. Let $B$ and $B'$ be bases for $V$ and $W$, respectively, and let $L_B:\R^n \to V$ and  $L_{B'}:\R^m \to V$ be the corresponding basis isomorphisms. Then, given $T \in \Hom(V,W)$, $L_{B'}^{-1} \circ T \circ L_B \in \Hom(\R^n,\R^m)$ is the unique linear map making the following diagram commute:
+\begin{equation*}
+	\begin{tikzcd}
+	& V  \arrow[r,"T"] & W\\
+	& \R^n  \arrow[u,"L_B"]  \arrow[r,swap,"L_{B'}^{-1} \circ T \circ L_B"] &  \R^m \arrow[u,leftarrow,swap,"L_{B'}"]	
+	\end{tikzcd}
+\end{equation*}
+Note that, for all $\bx \in \R^n$,
+\begin{align*}
+	L_{B'}^{-1} \circ T \circ L_B(\bx)&=L_{B'}^{-1}(T(L_B(\bx))) \\
+	&=L_{B'}^{-1}(T(\sum_{i=1}^nx_i\bv_i))) \\
+	&=\sum_{i=1}^nx_iL_{B'}^{-1}(T(\bv_i)) \\
+	&=\sum_{i=1}^nx_i[T(\bv_i)]_{B'} \\
+	&=[[T(\bv_1)]_{B'}, [T(\bv_2)]_{B'},\dots, [T(\bv_n)]_{B'}]\bx,
+\end{align*}
+where $[[T(\bv_1)]_{B'}, [T(\bv_2)]_{B'},\dots, [T(\bv_n)]_{B'}]$ is the matrix whose $i$th column is given by $[T(\bv_i)]_{B'}$, the coordinate vector with respect to $B'$ of the image under $T$ of the $i$th basis vector of $B$.
+
+\begin{defn}[Matrix of a linear mapping]
+	The matrix $T_{B,B'}=[[T(\bv_1)]_{B'}, [T(\bv_2)]_{B'},\dots, [T(\bv_n)]_{B'}]$ is called the \emph{matrix of the linear mapping} $T$.
+\end{defn}
+
+\begin{example}
+Let $T \in \Hom(P_1,P_2)$ be defined by $T(p(x))=xp(x)$. Let $B=\{\bv_1,\bv_2\}=\{1,x\}$ and $B'=\{\bu_1,\bu_2,\bu_3\}=\{1,x,x^2\}$ be the standard bases for $P_1$ and $P_2$, respectively. Since
+\begin{align*}
+	T(\bv_1)&=x\cdot 1=x=\bu_2 \\
+	T(\bv_2)&=x \cdot x=x^2=\bu_3,
+\end{align*}	
+we have 
+\begin{align*}
+	[T(\bv_1)]_{B'}&=\begin{bmatrix}
+		0 \\ 1 \\ 0
+	\end{bmatrix}, \ 
+	[T(\bv_2)]_{B'}=\begin{bmatrix}
+		0 \\ 0 \\ 1
+	\end{bmatrix},
+\end{align*}
+and therefore
+\begin{align*}
+	T_{B,B'}=\begin{bmatrix}
+		0 & 0 \\ 1 & 0 \\ 0 & 1
+	\end{bmatrix}.
+\end{align*}
+For example, if $p(x)=2-x$, then $T(p(x))=x(2-x)=2x-x^2$. Note that $[p(x)]_B=\begin{bmatrix}
+	2 \\ -1
+\end{bmatrix}$, and 
+\begin{align*}
+	T_{B,B'}[p(x)]_B&=\begin{bmatrix}
+		0 & 0 \\ 1 & 0 \\ 0 & 1
+	\end{bmatrix}\begin{bmatrix}
+	2 \\ -1
+\end{bmatrix} \\
+&=\begin{bmatrix}
+	0 \\ 2 \\ -1
+\end{bmatrix} \\
+&=[T(p(x))]_{B'}.
+\end{align*}
+\end{example}
+
+\subsubsection{Matrix of a Composition of Linear Mappings}
+In Lemma \ref{lem:inverse_and_composition_of_isomorphisms} it was shown that if $S \in \Hom(U,V)$ and $T \in \Hom(V,W)$, then $T \circ S \in \Hom(U,W)$. Choosing bases for these vector spaces, let us now see how the matrix representing $T \circ S$ is related to those representing $T$ and $S$.
+
+Let $B=\{\bu_i\}_{i=1}^\ell$, $B'=\{\bv_i\}_{i=1}^m$, and $B=\{\bw_i\}_{i=1}^n$ be bases for $U,V,$ and $W$, respectively.   
+Consider the diagram below:
+\begin{equation*}
+	\begin{tikzcd}
+		U \arrow[rr, "T \circ S", bend left=30]\arrow[r,"S"] & V \arrow[r,"T"] & W \\
+		\R^\ell \arrow[rr, swap, "L_{B''}^{-1}\circ T \circ L_{B'} \circ L_{B'}^{-1}\circ S \circ L_B", bend right=100]\arrow[u,"L_B"] \arrow[r,swap,"L_{B'}^{-1}\circ S \circ L_B"]& \R^m \arrow[u,"L_{B'}"] \arrow[r,swap,"L_{B''}^{-1}\circ T \circ L_{B'}"]& \R^n \arrow[u,"L_{B''}"]
+	\end{tikzcd}
+\end{equation*}
+From the previous section, given $T \circ S:U \to W$, the matrix representing $T \circ S$ is the $n \times \ell$ matrix whose $i$th column is $[T(S(\bu_i))]_{B''}$. On the other hand, since $L_{B''}^{-1}\circ T \circ S \circ L_B=L_{B''}^{-1}\circ T \circ L_{B'} \circ L_{B'}^{-1}\circ S \circ L_B$, for any vector $\bx \in \R^\ell$ we have
+\begin{align*}
+	L_{B''}^{-1}\circ T \circ S \circ L_B(\bx)&=L_{B''}^{-1}\circ T \circ L_{B'} \circ L_{B'}^{-1}\circ S \circ L_B(\bx) \\
+	&=L_{B''}^{-1}(T(L_{B'}(L_{B'}^{-1}(S(L_B(\bx)))))) \\
+	&=L_{B''}^{-1}(T(L_{B'}(L_{B'}^{-1}(S(\sum_{i=1}^\ell x_i\bu_i))))) \\
+	&=\sum_{i=1}^\ell x_iL_{B''}^{-1}(T(L_{B'}(L_{B'}^{-1}(S(\bu_i))))) \\
+	&=\sum_{i=1}^\ell x_iL_{B''}^{-1}(T(L_{B'}([S(\bu_i)]_{B'}))) \\
+	&=\sum_{i=1}^\ell x_iL_{B''}^{-1}(T(\sum_{j=1}^m([S(\bu_i)]_{B'})_j\bv_j)) \\
+	&=\sum_{i=1}^\ell \sum_{j=1}^m([S(\bu_i)]_{B'})_jx_iL_{B''}^{-1}(T(\bv_j)) \\
+	&=\sum_{i=1}^\ell \sum_{j=1}^m([S(\bu_i)]_{B'})_jx_i[T(\bv_j)]_{B''} \\
+	&=\sum_{i=1}^\ell \left(\sum_{j=1}^m[T(\bv_j)]_{B''}([S(\bu_i)]_{B'})_j\right)x_i \\
+	&=\left[\sum_{j=1}^m[T(\bv_j)]_{B''}([S(\bu_i)]_{B'})_j\right]\bx
+\end{align*}
+and therefore
+\begin{align}\label{eq:matrix_mult_again}
+	[T(S(\bu_i))]_{B''}=\sum_{j=1}^m[T(\bv_j)]_{B''}([S(\bu_i)]_{B'})_j;
+\end{align}
+that is, the $i$th column of the matrix representing $T \circ S$ is given by the $i$th column of the \emph{product} of the matrices representing $T$ and $S$. \footnote{Note that the matrix representing $T$ is $n \times m$ and the matrix representing $S$ is $m \times \ell$, so their product is indeed well-defined and gives and $n \times \ell$ matrix.}
+
+\begin{example}
+Let $S \in \Hom(P_2,P_3)$ be defined by $S(p(x))=xp(x)$ for all $p(x) \in P_2$ and let $T\in \Hom(P_3,M^{2 \times 2}(\R))$ be defined by $T(a_0+a_1x+a_2x^2+a_3x^3)=\begin{bmatrix}
+	a_0 & a_1 \\
+	a_2 & a_3
+\end{bmatrix}$. Let us choose the standard basis for each space, but let us choose a nonstandard ordering for the basis vectors in $B'$ just to make things interesting: 
+\begin{align*}
+	B&=\{\bu_1,\bu_2,\bu_3\}=\{1,x,x^2\} \\
+	B'&=\{\bv_1,\bv_2,\bv_3,\bv_4\}=\{1,x,x^2,x^3\} \\
+	B''&=\{\bw_1,\bw_2,\bw_3,\bw_4\}=\left\{
+	\begin{bmatrix}
+		0 & 0 \\ 
+		0 & 1
+	\end{bmatrix}, \begin{bmatrix}
+		0 & 1 \\ 
+		0 & 0
+	\end{bmatrix}, \begin{bmatrix}
+		1 & 0 \\ 
+		0 & 0
+	\end{bmatrix}, \begin{bmatrix}
+		0 & 0 \\ 
+		1 & 0
+	\end{bmatrix}
+	\right\}.
+\end{align*}
+Then
+\begin{align*}
+	S(\bu_1)&=x\cdot 1=x=\bv_2 \\
+	S(\bu_2)&=x\cdot x=x^2=\bv_3 \\
+	S(\bu_3)&=x\cdot x^2=x^3=\bv_4
+\end{align*}
+and therefore 
+\begin{align*}
+	[S(\bu_1)]&=\begin{bmatrix}
+		0 \\ 1 \\ 0 \\ 0
+	\end{bmatrix}, \ [S(\bu_2)]=\begin{bmatrix}
+		0 \\ 0 \\ 1 \\ 0
+	\end{bmatrix}, \ [S(\bu_3)]=\begin{bmatrix}
+		0 \\ 0 \\ 0 \\ 1
+	\end{bmatrix}
+\end{align*}
+so the matrix representing $S$ with respect to these bases is 
+\begin{align*}
+	S_{B,B'}=\begin{bmatrix}
+		0 & 0 & 0 \\
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}.
+\end{align*}
+Since 
+\begin{align*}
+	T(\bv_1)&=\bw_3 \\
+	T(\bv_2)&=\bw_2 \\
+	T(\bv_3)&=\bw_4 \\
+	T(\bv_4)&=\bw_1 \\
+\end{align*}
+we have 
+\begin{align*}
+	[T(\bv_1)]_{B''}=\begin{bmatrix}
+		0 \\ 0 \\ 1 \\ 0
+	\end{bmatrix}, \ [T(\bv_2)]_{B''}=\begin{bmatrix}
+		0 \\ 1 \\ 0 \\ 0
+	\end{bmatrix}, \ [T(\bv_3)]_{B''}=\begin{bmatrix}
+		0 \\ 0 \\ 0 \\ 1
+	\end{bmatrix}, \ [T(\bv_4)]_{B''}=\begin{bmatrix}
+		1 \\ 0 \\ 0 \\ 0
+	\end{bmatrix}
+\end{align*}
+and therefore the matrix representing $T$ with respect to these basis is 
+\begin{align*}
+	T_{B',B''}=\begin{bmatrix}
+		0 & 0 & 0 & 1 \\
+		0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0
+	\end{bmatrix}.
+\end{align*}
+Finally,
+\begin{align*}
+	T(S(\bu_1))&=T(\bv_2)=\bw_2, \\
+	T(S(\bu_2))&=T(\bv_3)=\bw_4, \\
+	T(S(\bu_3))&=T(\bv_4)=\bw_1, \\
+\end{align*}
+so
+\begin{align*}
+	[T(S(\bu_1))]_{B''}=\begin{bmatrix}
+		0 \\ 1 \\ 0 \\ 0
+	\end{bmatrix}, \ [T(S(\bu_2))]_{B''}=\begin{bmatrix}
+		0 \\ 0 \\ 0 \\ 1 
+	\end{bmatrix} \ [T(S(\bu_3))]_{B''}=\begin{bmatrix}
+		1 \\ 0 \\ 0 \\ 0
+	\end{bmatrix}
+\end{align*}
+and therefore the matrix representing $T \circ S$ is given by
+\begin{align*}
+	(T \circ S)_{B,B''}&=\begin{bmatrix}
+		0 & 0 & 1 \\
+		1 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 1 & 0
+	\end{bmatrix}.
+\end{align*}
+We see that	
+\begin{align*}
+	(T \circ S)_{B,B''}&=\begin{bmatrix}
+		0 & 0 & 1 \\
+		1 & 0 & 0 \\
+		0 & 0 & 0 \\
+		0 & 1 & 0
+	\end{bmatrix}=\begin{bmatrix}
+		0 & 0 & 0 & 1 \\
+		0 & 1 & 0 & 0 \\
+		1 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 0
+	\end{bmatrix}\begin{bmatrix}
+		0 & 0 & 0 \\
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{bmatrix}=T_{B',B''}S_{B,B'},
+\end{align*}
+as expected.
+\end{example}
+
+\begin{exercise}
+Show that in the special case where $T_A \in Hom(\mathbb{R}^n,\mathbb{R}^m)$ is multiplication by $A$, and where $B$ and $B'$ are the \emph{standard bases} for $\mathbb{R}^n$ and $\mathbb{R}^m$, that $T_{B,B'}=A$.	
+\end{exercise}
+
+\fixme{Add solution.}
+
+It is worth noting that the considerations of this section give \emph{independent} motivation for Definition \ref{def:matrix_multiplication} of matrix multiplication, as we have arrived at Equation \ref{eq:matrix_mult_again} by \emph{completely different} considerations than those in Section \ref{sec:matrix_multiplication} (where we were studying linear combinations of rows of matrices). There is further motivation for this definition of the matrix product: if we take $W=V$, then $Hom(V)$ is closed under composition as well as vector addition, and moreover forms an \emph{algebra} with respect to the two operations. Taking Definition \ref{def:matrix_multiplication} of multiplication, $M^{n \times n}(\R)$ also forms an algebra and we find that $\Hom(V)$ and $M^{n \times n}(\R)$ are isomorphic at the level of \emph{algebras}, and not just as vector spaces. We will study some of the implications of this additional structure in Section \ref{sec:eigen}.
+
+\subsection{Fundamental Matrix Spaces}
+We have just seen that for any finite-dimensional vector spaces $V$ and $W$, $\Hom(V,W)\cong M^{m \times n}(\R)$. We have also seen that given any $T \in \Hom(V,W)$, there are important subspaces associated to $T$, namely the kernel $\ker T \subseteq V$ and image $T(V) \subseteq W$ (see Theorem \ref{thm:kernel_and_image_of_a_linear_map}).  In this section we study the corresponding subspaces in $\R^n$ and $\R^m$. These are together called the \emph{Fundamental Matrix Spaces}. The first is the analog of $\ker T$. For the rest of this section, let $A$ be an $m \times n$ matrix. 
+
+\begin{defn}[Null space]
+The \emph{null space} of $A$ is the solution set of the homogeneous linear system $A\bx=\mathbf{0}$. If we denote this by $\Nul A$, then
+	\begin{align*}
+		\Nul A:=\{\bx \in \R^n:A\bx=\mathbf{0}\}.
+	\end{align*}
+\end{defn}
+
+\begin{prop}[$\Nul A$ is a subspace of $\R^n$]
+	$\Nul A$ is a subspace of $\R^n$.
+\end{prop}
+
+\begin{pf}
+$\Nul A = \ker T_A$, where $T_A \in \Hom(\R^n,\R^m)$ is the corresponding matrix transformation, which by Theorem \ref{thm:kernel_and_image_of_a_linear_map} is a subspace of $\R^n$. 
+
+We can also prove this directly: for any $\bx, \by \in \Nul A$ and $c \in \R$, we have
+\begin{align*}
+	A(c\bx + \by)=cA\bx+\by=c\cdot \mathbf{0}+\mathbf{0}=\mathbf{0}
+\end{align*}	
+so $c\bx + \by \in \Nul A$. Hence, $\Nul A$ is a subspace of $\R^n$ by the subspace criterion.
+\end{pf}
+
+\begin{defn}[Column space]
+	The \emph{column space} of $A$ is the set of all linear combinations of the columns of $A$. We denote this set by $\Col A$. If we denote the $i$th column of $A$ by $\mathbf{a}_i$, then $A=[\ba_1,\ba_2,\dots,\ba_n]$ and 
+	\begin{align*}
+		\Col A:=\Span\{\ba_1,\ba_2,\dots,\ba_n\}.
+	\end{align*}
+\end{defn}
+
+\begin{prop}[$\Col A$ is a subspace of $\R^m$]
+	$\Col A$ is a subspace of $\R^m$
+\end{prop}
+
+\begin{pf}
+By Theorem \ref{thm:span_w_is_a_subspace} if $S \subseteq \R^m$, then $\Span S$ is a subspace of $\R^m$. 	
+\end{pf}
+
+\subsubsection{Finding Bases for $\Nul A$ and $\Col A$}
+The following theorem is useful for finding bases for the fundamental matrix spaces.
+
+\begin{thm}\label{thm:counting_argument}
+	Let $V$ be a finite-dimensional vector space of dimension $\dim V=n$, and let $S$ be a set of $n$ vectors in $V$. If either $S$ is linearly independent or $\Span S=V$, then $S$ is a basis for $V$.
+\end{thm}
+
+\begin{pf}
+Suppose $S$ is linearly independent. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), $S$ can be extended to a basis for $V$. Thus, $\dim V \geq |S|$. But $|S|=\dim V$ so $S$ must already be a basis for $V$.
+
+Now suppose $\Span S=V$. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), $S$ contains a basis for $V$. Thus, $\dim V \leq |S|$. But $|S|=\dim V$, so $S$ must already be a basis for $V$.	
+\end{pf}
+
+We will now illustrate the method of finding bases for the fundamental matrix spaces through examples.
+
+\begin{example}
+Consider the matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		-3 & 6 & -1 & 1 & -7 \\
+		1 & -2 & 2 & 3 & -1 \\
+		2 & -4 & 5 & 8 & -4
+	\end{bmatrix}.
+\end{align*}	
+We can find a parametric description of $\Nul A$ by row reducing this matrix. The reduced row echelon form of $A$ is 
+\begin{align*}
+	\begin{bmatrix}
+		1 & -2 & 0 & -1 & 3 \\
+		0 & 0 & 1 & 2 & -2 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{align*}
+We see that $x_2, x_4, x_5$ are free variables, so we set
+\begin{align*}
+	x_2&=t_1 \\
+	x_4&=t_2 \\
+	x_5&=t_3. 	
+\end{align*}
+A vector $\bx \in \R^5$ is therefore a solution to this system of equations if it is of the form
+\begin{align*}
+	\begin{bmatrix}
+		x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
+	\end{bmatrix}&=\begin{bmatrix}
+		2t_1+t_2-3t_3 \\
+		t_1 \\
+		-2t_2+2t_3 \\
+		t_2 \\
+		t_3
+	\end{bmatrix} \\
+	&=t_1\begin{bmatrix}
+		2 \\ 1 \\ 0 \\ 0 \\0
+	\end{bmatrix}+t_2\begin{bmatrix}
+		1 \\ 0 \\ -2 \\ 1 \\0
+	\end{bmatrix}+t_3\begin{bmatrix}
+		-3 \\ 0 \\ 2 \\ 0 \\1
+	\end{bmatrix}.
+\end{align*}
+Therefore
+\begin{align*}
+	\Nul A=\Span\left\{\begin{bmatrix}
+		2 \\ 1 \\ 0 \\ 0 \\0
+	\end{bmatrix},\begin{bmatrix}
+		1 \\ 0 \\ -2 \\ 1 \\0
+	\end{bmatrix},\begin{bmatrix}
+		-3 \\ 0 \\ 2 \\ 0 \\1
+	\end{bmatrix}\right\}.
+\end{align*}
+To see that these vectors are linearly independent, apply the $+/-$ lemma (Lemma \ref{lem:plus_minus}): We think of building up this set one vector at a time. The first vector is not the zero vector, so the set containing just that vector is linearly independent. The second vector is not a scalar multiple of the first (look at the third-fifth entries of both vectors), so the set containing just the first two vectors is linearly independent. Finally, since the fifth entry of both of the first two vectors is zero, the third vector cannot be a linear combination of the first two. Hence, the set containing all three vectors is linearly independent. Since the span of three linearly independent vectors is three-dimensional, by Theorem \ref{thm:counting_argument} these vectors therefore form a basis for $\Nul A$. \fixme{Is this example really the best illustration of this theorem?}
+\end{example}
+
+\begin{thm}\label{thm:basis_for_nul_a}
+	
+\end{thm}
+
+\fixme{Prove that this procedure always produces a basis for $\Nul A$.}
+
+\begin{example}
+Let us find a basis for the column space of the matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & 4 & 0 & 2 & 0 \\
+		0 & 0 & 1 & -1 & 0 \\
+		0 & 0 & 0 & 0 & 1 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{align*}
+By definition,
+\begin{align*}
+	\Col A=\Span \left\{\underbrace{\begin{bmatrix}
+		1 \\ 0 \\ 0 \\0
+	\end{bmatrix}}_{\mathbf{b}_1}, \underbrace{\begin{bmatrix}
+		4 \\ 0 \\ 0 \\0
+	\end{bmatrix}}_{\mathbf{b}_2}, \underbrace{\begin{bmatrix}
+		0 \\ 1 \\ 0 \\0
+	\end{bmatrix}}_{\mathbf{b}_3}, \underbrace{\begin{bmatrix}
+		2 \\ -1 \\ 0 \\0
+	\end{bmatrix}}_{\mathbf{b}_4}, \underbrace{\begin{bmatrix}
+		0 \\ 0 \\ 1 \\0
+	\end{bmatrix}}_{\mathbf{b}_5} \right\}
+\end{align*}
+Note that $\mathbf{b}_2=4\mathbf{b}_1$ and $\mathbf{b}_4=2\mathbf{b}_1-\mathbf{b}_3$. By the $+/-$ Lemma (Lemma \ref{lem:plus_minus}), we can remove these two vectors are the remaining vectors still span $\Col A$:
+\begin{align*}
+	\Col A=\Span\left\{\begin{bmatrix}
+		1 \\ 0 \\ 0 \\0
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1 \\ 0 \\0
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 0 \\ 1 \\0
+	\end{bmatrix}\right\}.
+\end{align*}
+This set of vectors is linearly independent, and therefore form a basis for $\Col A$.
+\end{example}
+
+\begin{prop}[Basis for $\Col A$ when $A$ is in RREF]
+	If $A$ is in reduced row echelon form, then its pivot columns form a basis for $\Col A$.
+\end{prop}
+
+\begin{proof}
+	We omit a formal proof (which would be tedious), as the previous example illustrates why this is true: since $A$ is in RREF, each non-pivot column is a linear combination of the pivot columns to the left of it, and can therefore be removed from the set of column vectors without affecting their span.
+\end{proof}
+What is $A$ is not in RREF? First note that \emph{elementary row operations change the column space}. For instance, the matrices
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & 3 \\
+		2 & 6
+	\end{bmatrix} \hspace{0.5cm} \text{ and } \hspace{0.5cm} B=\begin{bmatrix}
+		1 & 3 \\
+		0 & 0
+	\end{bmatrix}
+\end{align*}
+are row equivalent, being related by a row-replacement. However,
+\begin{align*}
+	\Col A=\Span \left\{\begin{bmatrix}
+		1 \\ 2 
+	\end{bmatrix} \right\}
+\end{align*}
+while 
+\begin{align*}
+	\Col B=\Span \left\{\begin{bmatrix}
+		1 \\ 0 
+	\end{bmatrix}\right\},
+\end{align*}
+which are different spaces. However, elementary row operations do not change the \emph{linear dependence relationships} among the columns of $A$. 
+
+\begin{lem}[Elementary row operations do not change the linear dependence relationships among the columns of $A$]\label{lem:col_lemma}
+Elementary row operations do not change the linear dependence relationships among the columns of $A$
+\end{lem}
+
+\begin{pf}
+A linear dependence relationship among the columns of $A$ is a solution to the homogeneous linear system $A\bx=\mathbf{0}$. If $A$ and $B$ are row-equivalent, then $B\bx=\mathbf{0}$ has exactly the same solution set as $A\bx=\mathbf{0}$.
+\end{pf}
+
+\begin{thm}[Basis for $\Col A$]\label{thm:pivot_columns_form_basis_col_a}
+	The pivot columns of $A$ form a basis for $\Col A$.
+\end{thm}
+
+\begin{pf}
+Let $B$ be any REF of $A$. The set of pivot columns of $B$ is linearly independent, since the leftmost pivot column is nonzero and no vector in the set is a linear combination of the vectors that precede it. Since $A$ is row-equivalent to $B$, by Lemma \ref{lem:col_lemma} the pivot columns of $A$ are linearly independent as well. Since the set of non-pivot columns of $B$ are linear combinations of the pivot columns of $B$, the same is true for $A$. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), removing the non pivot columns of $A$ therefore does not change $\Col A$. This shows that the pivot columns of $A$ span $\Col A$ and are linearly independent, and hence form a basis for $\Col A$.
+\end{pf}
+
+Thus, to find a basis for $\Col A$ for \emph{any} matrix $A$,
+\begin{enumerate}
+	\item Row-reduce $A$ to REF, $U$. 
+	\item Locate the pivot columns.
+	\item The corresponding columns in $A$ form a basis for $\Col A$.
+\end{enumerate}
+We illustrate this procedure in the next example.
+
+\begin{example}
+Consider the matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & 4 & 0 & 2 & -1 \\
+		3 & 12 & 1 & 5 & 5 \\
+		2 & 8 & 1 & 3 & 2 \\
+		5 & 20 & 2 & 8 & 8 
+	\end{bmatrix}.
+\end{align*}	
+Its reduced row echelon form is 
+\begin{align*}
+	B=\begin{bmatrix}
+		1 & 4 & 0 & 2 & 0 \\
+		0 & 0 & 1 & -1 & 0 \\
+		0 & 0 & 0 & 0 & 1 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{align*}
+We see that columns 1,3 and 5 of $B$ are linearly independent. Thus, the corresponding columns of $A$ form a basis for $\Col A$:
+\begin{align*}
+	\Col A=\Span \left\{\begin{bmatrix}
+		1 \\ 3 \\ 2 \\ 5
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1 \\ 1 \\ 2
+	\end{bmatrix}, \begin{bmatrix}
+		-1 \\ 5 \\ 2 \\ 8
+	\end{bmatrix}\right\}.
+\end{align*}
+\end{example}
+
+\begin{exercise}\label{ex:rank_and_nullity_exercise}
+Find a basis for the null space and column space of the matrix
+\begin{align*}
+	A=\begin{bmatrix}
+		-3 & 6 & -1 & 1 & -7 \\
+		1 & -2 & 2 & 3 & -1 \\
+		2 & -4 & 5 & 8 & -4
+	\end{bmatrix}.
+\end{align*}	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+The matrix $A$ is row-equivalent to 
+\begin{align*}
+	B=\begin{bmatrix}
+		1 & -2 & 0 & -1 & 3 \\
+		0 & 0 & 1 & 2 & -2 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{align*}
+Thus,
+\begin{align*}
+	\Nul A&=\left\{\begin{bmatrix}
+		2t_1+t_2-3t_3 \\
+		t_1 \\
+		-2t_2+2t_3 \\
+		t_2 \\
+		t_3
+	\end{bmatrix}:t_1,t_2,t_3 \in \R\right\} \\
+	&=\left\{t_1\begin{bmatrix}
+		2 \\ 1 \\ 0 \\ 0 \\ 0
+	\end{bmatrix}+t_2\begin{bmatrix}
+		1 \\ 0 \\ -2 \\ 1 \\ 0
+	\end{bmatrix}+t_3\begin{bmatrix}
+		-3 \\ 0 \\ 2 \\ 0 \\1
+	\end{bmatrix}:t_1,t_2,t_3 \in \R\right\} \\
+	&=\Span\left\{\begin{bmatrix}
+		2 \\ 1 \\ 0 \\ 0 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		1 \\ 0 \\ -2 \\ 1 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		-3 \\ 0 \\ 2 \\ 0 \\1
+	\end{bmatrix}\right\}.
+\end{align*}
+Thus, $\left\{\begin{bmatrix}
+		2 \\ 1 \\ 0 \\ 0 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		1 \\ 0 \\ -2 \\ 1 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		-3 \\ 0 \\ 2 \\ 0 \\1
+	\end{bmatrix}\right\}$ is a basis for $\Nul A$.
+	
+	Since only the first and third columns of $A$ are pivot columns, a basis for $\Col A$ is given by
+	\begin{align*}
+		\left\{\begin{bmatrix}
+			-3 \\ 1 \\ 2
+		\end{bmatrix}, \begin{bmatrix}
+			-1 \\ 2 \\5 
+		\end{bmatrix}\right\}.
+	\end{align*} 
+\end{solution}}
+
+
+\subsubsection{Dimensions of $\Nul A$ and $\Col A$}
+\begin{defn}[Rank and nullity]
+	\begin{enumerate}[(a)]
+		\item The dimension of $\Col A$ is called the \emph{rank} of $A$, denoted $\text{rank }A$.
+		\item The dimension of $\Nul A$ is called the \emph{nullity} of $A$, denoted $\text{nullity }A$.
+	\end{enumerate}
+\end{defn}
+
+\begin{thm}[Dimensions of $\Nul A$ and $\Col A$]
+Given any matrix $A$.
+	\begin{enumerate}[(a)]
+		\item $\text{rank }A=$ the number of pivot columns of $A$,
+		\item $\text{nullity }A=$ the number of non-pivot columns of $A$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+\begin{enumerate}[(a)]
+	\item By Theorem \ref{thm:pivot_columns_form_basis_col_a}, the pivot columns of $A$ form a basis for $\Col A$, so the dimension of $\Col A$ is the number of pivot columns of $A$.
+	\item By Theorem \ref{thm:basis_for_nul_a}, the dimension of $\Nul A$ is the number of free variables in the equation $A\bx=\mathbf{0}$, which is equal to the number of non-pivot columns of $A$. 
+\end{enumerate}	
+\end{pf}
+
+\begin{thm}[The rank theorem]\label{thm:the_rank_theorem}
+Let $A$ be an $m \times n$ matrix. Then
+	$\text{rank }A+\text{nullity }A=n$.
+\end{thm}
+
+\begin{pf}
+The number of pivot columns plus the number of non-pivot columns equals the total number of columns.	
+\end{pf}
+
+\begin{exercise}
+	 Determine the rank and nullity of the matrix $A$ in Exercise \ref{ex:rank_and_nullity_exercise} and verify Theorem \ref{thm:the_rank_theorem}.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	In Exercise \ref{ex:rank_and_nullity_exercise}, we found the set $\left\{\begin{bmatrix}
+		2 \\ 1 \\ 0 \\ 0 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		1 \\ 0 \\ -2 \\ 1 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		-3 \\ 0 \\ 2 \\ 0 \\1
+	\end{bmatrix}\right\}$ is a basis for $\Nul A$, so $\text{nullity }A=3$. We found that the set $\left\{\begin{bmatrix}
+			-3 \\ 1 \\ 2
+		\end{bmatrix}, \begin{bmatrix}
+			-1 \\ 2 \\5 
+		\end{bmatrix}\right\}$ is a basis for $\Col A$, so $\rank A=2$. Indeed, $3+2=5$, which is the number of columns of $A$.
+\end{solution}}
+
+\begin{exercise}
+\begin{enumerate}[(a)]
+	\item If $A$ is a $7 \times 9$ matrix with nullity 2, what is the rank of $A$?
+	\item Could a $6 \times 9$ matrix have nullity 2?
+\end{enumerate}	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	\begin{enumerate}[(a)]
+		\item By Theorem \ref{thm:the_rank_theorem},
+		\begin{align*}
+			\text{rank }A+\text{nullity }A&=\text{number of columns} \\
+			\text{rank }A+2&=9 
+		\end{align*}
+		therefore $\text{rank }A=7$.
+		\item Since the matrix $A$ has 9 columns, if $\text{nullity }A=2$, then by Theorem \ref{thm:the_rank_theorem} $\text{rank }A$ must satisfy
+		\begin{align*}
+			\text{rank }A+2=9
+		\end{align*}
+		and therefore $\text{rank }A=7$. But $A$ has only 6 rows, and therefore at most 6 pivot columns, which implies $\text{rank }A \leq 6$. Thus, it is not possible for $A$ to have nullity 2.
+	\end{enumerate}
+\end{solution}}
+
+\subsubsection{The Row Space of a Matrix}
+It is also frequently useful to consider the span of the \emph{rows} of an $m \times n$ matrix $A$.
+\begin{defn}[Row Space]
+	The set of all linear combinations of the row vectors of $A$ is called the \emph{row space} of $A$, denoted $\Row A$.	If $\br_1,\dots,\br_m$ denote the rows of $A$, then
+	\begin{align*}
+		\Row A=\Span\{\br_1,\dots,\br_m\}.
+	\end{align*}
+\end{defn}
+
+\begin{prop}[$\Row A$ is a subspace of $\R^n$]
+	$\Row A$ is a subspace of $\R^n$.
+\end{prop}
+
+\begin{pf}
+The span of a subset of $\R^n$ is a subspace of $\R^n$.	
+\end{pf}
+
+\begin{lem}[Elementary row operations do not change $\Row A$]\label{lem:row_space_lemma}
+	If $A$ is row-equivalent to $B$, then $\Row A=\Row B$.
+\end{lem}
+
+\begin{pf}
+By transitivity of row-equivalence, it suffices to show that this is true for a single elementary row operation of each type. Since an elementary row operation of any of the three types produces a matrix $B$ whose rows are linear combinations of the rows of $A$, then any linear combination of the rows of $B$ is a linear combination of the rows of $A$. Hence $\Row B \subseteq \Row A$. Since elementary row operations are invertible, the same argument shows that $\Row A \subseteq \Row B$, and therefore that $\Row A=\Row B$.
+\end{pf}
+
+\begin{cor}[Basis for $\Row A$]
+	If $B$ is any row echelon form of a matrix $A$, then the non-zero rows of $B$ form a basis for $\Row A$.
+\end{cor}
+
+\begin{pf}
+	Since $B$ is in row echelon form, the first row is nonzero. Since the remaining nonzero rows are not linear combinations of the preceding ones, these are linearly independent, hence they form a basis for $\Row B$, which, by Lemma \ref{lem:row_space_lemma} is equal to $\Row A$.
+\end{pf}
+
+\begin{exercise}
+Find a basis for the row space of the matrix in Exercise \ref{ex:rank_and_nullity_exercise}.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	In Exercise \ref{ex:rank_and_nullity_exercise} we found that the RREF of $A$ is 
+	\begin{align*}
+	B=\begin{bmatrix}
+		1 & -2 & 0 & -1 & 3 \\
+		0 & 0 & 1 & 2 & -2 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{align*}
+Thus a basis for $\Row A$ is given by
+\begin{align*}
+	\left\{\begin{bmatrix}
+		1\\-2\\0\\-1\\3
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 0 \\ 1 \\ 2 \\ -2
+	\end{bmatrix}\right\}.
+\end{align*}
+\end{solution}}
+
+\begin{thm}[$\dim \Row A=\dim \Col A$]
+	For any matrix $A$, $\dim \Row A=\dim \Col A$.
+\end{thm}
+
+\begin{pf}
+Let $B$	be any REF of $A$. The nonzero rows of $B$ form a basis for $\Row B$. Since $B$ is in REF, each nonzero row contains a pivot, hence
+\begin{align*}
+	\dim \Row A=\dim \Row B=\text{ number of nonzero rows}=\text{ number of pivots}=\dim \Col A.
+\end{align*}
+\end{pf}
+
+In the following example we will find a bases for all three fundamental matrix spaces.
+\begin{example}
+Let 
+\begin{align*}
+	A=\begin{bmatrix}
+		-2 & -5 & 8 & 0 & -17 \\
+		1 & 3 & -5 & 1 & 5 \\
+		3 & 11 & -19 & 7 & 1 \\
+		1 & 7 & -13 & 5 & -3
+	\end{bmatrix}.
+\end{align*}	
+The RREF of $A$ is
+\begin{align*}
+	B=\begin{bmatrix}
+		1 & 0 & 1 & 0 & 1 \\
+		0 & 1 & -2 & 0 & 3 \\
+		0 & 0 & 0 & 1 & -5 \\
+		0 & 0 & 0 & 0 & 0
+	\end{bmatrix}.
+\end{align*}
+The nonzero rows of $B$ give a basis for $\Row A$, so
+\begin{align*}
+	\Row A=\Span\left\{\begin{bmatrix}
+		1 \\ 0 \\ 1 \\ 0 \\ 1
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1 \\ -2 \\ 0 \\ 3
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 0 \\ 0\\ 1 \\ -5
+	\end{bmatrix}\right\}.
+\end{align*}
+We see that the first, second, and fourth columns of $B$ are pivot columns, so the corresponding columns of $A$ form a basis for $\Col A$:
+\begin{align*}
+	\Col A=\Span \left\{\begin{bmatrix}
+		-2 \\ 1  \\ 3 \\ 1
+	\end{bmatrix}, \begin{bmatrix}
+		-5 \\ 3 \\ 11 \\ 7
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1 \\ 7 \\ 5
+	\end{bmatrix}\right\}.
+\end{align*}
+Finally, $\Nul A$ is the solution set of the corresponding homogeneous linear system $A\bx=\mathbf{0}$, so 
+\begin{align*}
+	\Nul A=\Span\left\{\begin{bmatrix}
+		-1 \\ 2 \\ 1 \\ 0 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		-1 \\ -3 \\ 0 \\ 5 \\ 1
+	\end{bmatrix}\right\}.
+\end{align*} 
+\end{example}
+
+\subsubsection{Invertible Matrix Theorem, Revisited}
+Note that the considerations of this section adds several additional equivalent conditions for an $n \times n$ matrix $A$ to be invertible:
+\begin{thm}[Invertible Matrix Theorem, Revisited]
+\end{thm}
+\begin{figure}[h]
+		\includegraphics[scale=0.5]{figures_mvc/imt_long}
+	\end{figure}	
+
+\section{Eigenvalues and Eigenvectors}\label{sec:eigen}
+
+
+
 
 \end{document}
 
