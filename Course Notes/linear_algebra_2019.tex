@@ -5355,7 +5355,7 @@ For instance, if $W$ is the vector space of $2 \times 2$ matrices, then
 In general, we will be most interested in the case where $A=V$ is another vector space. Then $W^V$ is the set of all functions from $V$ to $W$. The set of all \emph{linear} maps is naturally singled out, as they preserve the vector operations.
 
 \begin{prop}
-The set of all linear maps $T:V \to W$ is a subspace of $W^V$. We will denote this subspace by $\Hom(V,W)$. \footnote{In mathematics, once one defines a particular class of objects of interest it is customary to immediately define maps between objects which preserve the objects' defining properties. Such structure-preserving maps are called \emph{homomorphisms}, which comes from Greek words "homos" meaning "same" and "morphe" meaning "form". The set of all homomorphisms from an object $A$ to another object $B$ is then customarily denoted $\Hom(A,B)$. A class of objects together with all the hom-sets between objects forms a \emph{category}. The collection of all vector spaces together with all linear maps therefore gives us the category $\mathsf{Vect}$ of vector spaces, where $\Obj(\Vect)$ is the collection of all vector spaces, and for any $V,W \in \Obj(\Vect)$, $\Hom(V,W)$ is the set of linear maps from $V \to W$.} If $V=W$, we will simply write $\Hom(V)$ instead of $\Hom(V,V)$.	
+The set of all linear maps $T:V \to W$ is a subspace of $W^V$. We will denote this subspace by $\Hom(V,W)$. \footnote{In mathematics, once one defines a particular class of objects of interest it is customary to immediately define maps between objects which preserve the objects' defining properties. Such structure-preserving maps are called \emph{homomorphisms}, which comes from Greek words "homos" meaning "same" and "morphe" meaning "form". The set of all homomorphisms from an object $A$ to another object $B$ is then customarily denoted $\Hom(A,B)$. A class of objects together with all the Hom-sets between objects forms a \emph{category}. The collection of all vector spaces together with all linear maps therefore gives us the category $\mathsf{Vect}$ of vector spaces, where $\Obj(\Vect)$ is the collection of all vector spaces, and for any $V,W \in \Obj(\Vect)$, $\Hom(V,W)$ is the set of linear maps from $V \to W$.} If $V=W$, we will simply write $\Hom(V)$ instead of $\Hom(V,V)$.	
 \end{prop}
 
 \begin{proof}
@@ -5569,6 +5569,22 @@ We have now seen a variety of examples of vector spaces. Some of these, however,
 \begin{defn}[Isomorphism]
 	Let $V$ and $W$ be vector spaces. A bijective linear map $T:V \to W$ is called an \emph{isomorphism}. If such a map exists, then $V$ and $W$ are said to be \emph{isomorphic} as vector spaces, and we denote this by $V \cong W$.
 \end{defn}
+
+\begin{example}
+We have noted before that $\R^2$ is not a subspace of $\R^3$. Indeed, $\R^2$ is not even a \emph{subset} of $\R^3$, since elements of the former are ordered pairs of real numbers while elements of the latter are ordered triples of real numbers. However, the set $W=\{(x,y,0)\}\subseteq \R^3$ is a subspace of $\R^3$ which is \emph{isomorphic} to $\R^2$. An isomorphism is given by the map
+\begin{align*}
+	\psi:W &\to \R^2 \\
+	\psi(x,y,0)&=(x,y).
+\end{align*}
+To verify, note that this map is surjective since $(x,y)=\psi(x,y,0)$ for all $(x,y) \in \R^2$ and is injective since if $\psi(x_1,y_1,0)=\psi(x_2,y_2,0)$ then $(x_1,y_1)=(x_2,y_2) \implies x_1=x_2$ and $y_1=y_2$ and therefore $(x_1,y_1,0)=(x_2,y_2,0)$. Finally, it is linear since for any $(x_1,y_1,0),(x_2,y_2,0) \in W$ and $c \in \R$ we have
+\begin{align*}
+	\psi(c(x_1,y_1,0)+(x_2,y_2,0))&=\psi(cx_1+x_2,cy_1+y_2,0) \\
+	&=(cx_1+x_2,cy_1+y_2) \\
+	&=c(x_1,y_1)+(x_2,y_2) \\
+	&=c\psi(x_1,y_1,0)+\psi(x_2,y_2,0).
+\end{align*}
+\end{example}
+
 
 \begin{example}[$P_{n-1} \cong \R^n$]\label{ex:p_n_minus_one_cong_r_n}
 Let $P_{n-1}$ denote the vector space of all polynomials of degree $\leq n-1$ as in Example \ref{ex:polynomials}. For each $\mathbf{c}=(c_0,c_1,\dots,c_{n-1}) \in \R^n$, define $T:\R^n \to P_{n-1}$ by $T(\mathbf{c})=\sum_{i=0}^{n-1}c_ix^i$. We will show this mapping is an isomorphism. Let $\mathbf{c}, \mathbf{d} \in \R^n$ and let $k \in \R$. Then
