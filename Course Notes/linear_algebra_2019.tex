@@ -5890,7 +5890,7 @@ We first make some general observations.
 \begin{example}[Some special sets]
 Let $V$ be any vector space.
 \begin{enumerate}[(a)]
-	\item If $S=\emptyset$, then the condition that $\sum_{i=1}^nx_i\mathbf{v}_i=\mathbf{0} \implies \mathbf{x}=\mathbf{0}$ is vacuously true. So $\emptyset$ is linearly independent. We define $\Span \emptyset=\{\mathbf{0}\}$ so that $\emptyset$ is a basis for $\{\mathbf{0}\}$.
+	\item If $S=\emptyset$, then the condition that $\sum_{i=1}^nx_i\mathbf{v}_i=\mathbf{0} \implies \mathbf{x}=\mathbf{0}$ is vacuously true. So $\emptyset$ is linearly independent.  
 	\item  If $S=\{\mathbf{v}\}$, then $x\mathbf{v}=\mathbf{0}$ has only the trivial solution if and only if $\mathbf{v} \neq \mathbf{0}$. Thus, a set with a single vector $\mathbf{v}$ is linearly independent if and only if $\mathbf{v}$ is not the zero vector.
 	\item In fact, if $S$ is any set of vectors which contains $\mathbf{0}$, then it is linearly dependent. To see this, write $S=\{\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_k,\mathbf{0}\}$. Then
 	\begin{align*}
@@ -6520,12 +6520,12 @@ We will now show that every basis has the same number of elements.
 	The set $\{e_i\}_{i=1}^n$ forms a basis for $\mathbb{R}^n$, so $\mathbb{R}^n$ is $n$-dimensional.
 \end{example}
 
-\begin{prop}
+\begin{prop}\label{prop:trivial_vector_space}
 The trivial vector space $\{{\bf 0}\}$ has dimension $0$.
 \end{prop}
 
 \begin{pf}
-	We will show that the empty set is a basis for $\{{\bf 0}\}$. We have seen that $\emptyset$ is linearly independent, since it is vacuously true that $\sum_{i}c_i\bv_i={\bf 0}$ has only the trivial solution for any empty collection of vectors $\bv_i$. If $V$ is any vector space, then $\text{Span}(\emptyset)$ is the intersection of all subspaces of $V$ which contain $\emptyset$, which is the intersection of all subspaces of $V$, which is $\{{\bf 0}\}$. This shows $\text{Span}(\emptyset)=\{{\bf 0}\}$. Since $\emptyset$ is linearly independent and spans $\{{\bf 0}\}$, it is a basis for $\{{\bf 0}\}$. Thus $\text{dim}(\{{\bf 0}\})=|\emptyset|=0$.
+	We will show that the empty set is a basis for $\{{\bf 0}\}$. We have seen that $\emptyset$ is linearly independent, since it is vacuously true that $\sum_{i}c_i\bv_i={\bf 0}$ has only the trivial solution for any empty collection of vectors $\bv_i$. We then define $\Span \emptyset=\{\mathbf{0}\}$ so that $\emptyset$ is a basis for $\{\mathbf{0}\}$. This definition is consistent with the characterization of $\Span W$ for a nonempty subset $W \subseteq V$ in Theorem \ref{thm:span_w_is_a_subspace}: If $V$ is any vector space, then we define $\text{Span}(\emptyset)$ to be equal to the intersection of all subspaces of $V$ which contain $\emptyset$, which is the intersection of all subspaces of $V$ (since the empty set is a subset of every set), which is precisely $\{{\bf 0}\}$. Since $\emptyset$ is linearly independent and spans $\{{\bf 0}\}$, it is a basis for $\{{\bf 0}\}$. Thus $\text{dim}(\{{\bf 0}\})=|\emptyset|=0$.
 \end{pf}
 
 We will now classify all finite-dimensional vector spaces up to isomorphism.
