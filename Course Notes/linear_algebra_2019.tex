@@ -6429,7 +6429,7 @@ so $\bw \in \text{Span}(S-\{\bv\})$, and therefore $\text{Span}(S)=\text{Span}(S
 \end{enumerate}
 \end{pf}
 
-\begin{thm}
+\begin{thm}\label{thm:every_f_d_v_s_has_a_basis}
 	Let $V$ be a finite-dimensional vector space and $S=\{{\bf v}_i\}_{i=1}^n$ be a subset of $V$. Then
 \begin{enumerate}[(a)]
 	\item If $\text{Span}(S)=V$, then $S$ contains a subset $B$ which is a basis for $V$.
@@ -6451,7 +6451,7 @@ so $\bw \in \text{Span}(S-\{\bv\})$, and therefore $\text{Span}(S)=\text{Span}(S
 \end{cor}
 
 \begin{pf}
-	Since $V$ is finite-dimensional, there exists some finite spanning set $S$ for $V$. By part (a) of the previous theorem, $S$ contains a basis for $V$.
+	Since $V$ is finite-dimensional, there exists some finite spanning set $S$ for $V$. By part (a) of Theorem \ref{thm:every_f_d_v_s_has_a_basis}, $S$ contains a basis for $V$.
 \end{pf}
 
 We will now show that every basis has the same number of elements.
@@ -6486,7 +6486,7 @@ We will now show that every basis has the same number of elements.
 		for each $i=1,\cdots,n$. This is a homogeneous linear system of $n$ equations in $m>n$ unknowns, so it has nontrivial solutions for the $y_k$s. Thus, $S$ is linearly dependent.
 		\item Suppose $|S|=m<n$. Suppose $\text{Span}(S)=V$. Then each $\bv \in V$ can be written as a linear combination of $S$. In particular, this is true for each vector in $B$:
 		\begin{align}\label{eq:basis_expanded}
-			\bv_i=\sum_{k=1}^nx_{i,k}\bw_k.
+			\bv_i=\sum_{k=1}^m x_{i,k}\bw_k.
 		\end{align}
 		Consider now the equation 
 		\begin{align}\label{eq:nontriv_lc}
@@ -6586,9 +6586,9 @@ We will now see that every subspace of a finite-dimensional vector space is also
 
 \begin{pf}
 	\begin{enumerate}[(a)]
-		\item If $W=\{{\bf 0}\}$, then $W$ is finite-dimensional. If $W \neq \{{\bf 0}\}$, then choose a nonzero vector $\bw_1 \in W$. If $W=\text{Span}\{\bw_1\}$, $W$ is finite-dimensional. If $\text{Span}(\bw_1) \neq W$, then choose a vector $\bw_2 \in W-\text{Span}\{\bw_1\}$. If $W=\text{Span}\{\bw_1,\bw_2\}$, then $W$ is finite-dimensional. Otherwise, choose $\bw_3 \in W-\text{Span}\{\bw_1,\bw_2\}$ and consider $\text{Span}\{\bw_1,\bw_2, \bw_3\}$. Note that by Theorem 1, this in each step we have constructed a linearly independent set. This process cannot continue indefinitely, since, by Theorem 4, any set with more than $n=\text{dim }V$ vectors will be linearly dependent. Thus, this process must terminate, which means $W$ is finite-dimensional.
-		\item Any basis of $W$ is a linearly independent set of vectors in $V$ By by Theorem 2 (b), this set can therefore be extended to a basis for $V$. Hence, the number of vectors in this set is less than or equal to the number of vectors in a basis for $V$. Thus, $\text{dim } W \leq \text{dim }V$.
-		\item If $W=V$, then $\text{dim }W=\text{dim }V$. Conversely, suppose that $\text{dim } W = \text{dim }V$ and let $B=\{\bw_1,\bw_2,\cdots,\bw_n \}$ be a basis for $W$. If $B$ is not also a basis for $V$, then since $B$ is linearly independent, it can be extended to a basis for $V$. But this implies $\text{dim }V > \text{dim }W$, which is a contradiction. Thus, $B$ must also be a basis for $V$, and therefore $\text{dim }W=\text{dim }V$.
+		\item Since $V$ is finite-dimensional, it has a finite spanning set $S$. Since $W \subset V=\Span S$, $W$ is finite-dimensional.
+		\item Any basis of $W$ is a linearly independent set of vectors in $V$ By by part (b) of Theorem \ref{thm:every_f_d_v_s_has_a_basis}, this set can therefore be extended to a basis for $V$. Hence, the number of vectors in this set is less than or equal to the number of vectors in a basis for $V$. Thus, $\text{dim } W \leq \text{dim }V$.
+		\item If $W=V$, then $\text{dim }W=\text{dim }V$. Conversely, suppose that $\text{dim } W = \text{dim }V$ and let $B=\{\bw_1,\bw_2,\cdots,\bw_n \}$ be a basis for $W$. If $B$ is not also a basis for $V$, then since $B$ is linearly independent, it can be extended to a basis for $V$. But this implies $\text{dim }V > \text{dim }W$, which is a contradiction. Thus, $B$ must also be a basis for $V$. Thus, $W=\Span B=V$.
 	\end{enumerate}
 \end{pf}
 
