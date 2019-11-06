@@ -6418,12 +6418,12 @@ If $x=0$, then we have
 			x_1\bv_1+\cdots+x_n\bv_n+{\bf 0}&={\bf 0}  \\
 			x_1\bv_1+\cdots+x_n\bv_n &={\bf 0}  \\
 		\end{align*}
-and therefore $x_i=0$ for all $i=1,\cdots,n$ since $S$ is linearly independent. If $x \neq 0$, we can divide by $x$ and solve for ${\bf v}$ to obtain $\bv=x_1\bv_1+\cdots +x_n \bv_n$, which says $\bv \in \text{Span}(S)$, which is a contradiction. We therefore have that $x_1\bv_1+\cdots+x_n\bv_n+x\bv={\bf 0} \implies x_1=\cdots=x_n=x=0$, therefore $S\cup \{\bv \}$ is linearly independent. 
+and therefore $x_i=0$ for all $i=1,\cdots,n$ since $S$ is linearly independent. If $x \neq 0$, we can divide by $x$ and solve for ${\bf v}$ to obtain $\bv=-\frac{x_1}{x}\bv_1-\cdots -\frac{x_n}{x} \bv_n$, which says $\bv \in \text{Span}(S)$, which is a contradiction. We therefore have that $x_1\bv_1+\cdots+x_n\bv_n+x\bv={\bf 0} \implies x_1=\cdots=x_n=x=0$, therefore $S\cup \{\bv \}$ is linearly independent. 
 \item Let $S=\{\bv_1,\cdots, \bv_{r-1}, \bv\}$ and suppose there exist $c_1,\cdots,c_{r-1}$ such that $\bv=c_1\bv_1+\cdots+c_{r-1} \bv_{n-1}$.	Let $\bw \in \Span(S-\{\bv \})$. Then $\bw =x_1\bv_1+\cdots+x_{r-1}\bv_{r-1}=x_1\bv_1+\cdots+x_{r-1}\bv_{r-1}+0 \bv \in \Span(S)$. Now let $\bw \in \Span(S)$. Then 
 \begin{align*}
 	\bw&=x_1\bv_1+\cdots+x_{r-1}\bv_{r-1}+x\bv \\
-	&=x_1\bv_1+\cdots+x_{r-1}\bv_{r-1}+(c_1\bv_1+\cdots+c_{r-1}\bv_{r-1}) \\
-	&=(x_1+c_1)\bv_1+\cdots+(x_{r-1}+c_{r-1})\bv_{r-1}
+	&=x_1\bv_1+\cdots+x_{r-1}\bv_{r-1}+x(c_1\bv_1+\cdots+c_{r-1}\bv_{r-1}) \\
+	&=(x_1+xc_1)\bv_1+\cdots+(x_{r-1}+xc_{r-1})\bv_{r-1}
 \end{align*} 
 so $\bw \in \text{Span}(S-\{\bv\})$, and therefore $\text{Span}(S)=\text{Span}(S-\{\bv\})$.
 \end{enumerate}
