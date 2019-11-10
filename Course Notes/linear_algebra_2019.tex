@@ -8317,9 +8317,6 @@ Show that the eigenspaces associated to the eigenvalues in the previous example 
 \end{align*}	
 \end{exercise}
 
-
-
-
 To help with finding eigenvalues of $3 \times 3$ matrices or larger (which may not be triangular) with integer entries, the following theorem from elementary algebra is often helpful.
 
 \begin{thm}[Rational root theorem]\label{thm:rrt}
@@ -8380,7 +8377,560 @@ Show that the eigenspaces corresponding to the eigenvalues found in the previous
 \end{align*}	
 \end{exercise}
 
+\subsection{Diagonalizable Operators}
 
+\subsection{Orthonormal Bases}
+\subsubsection{Orthonormal Bases for $\R^3$}
+Recall that two vectors $\bx$ and $\by$ in $\mathbb{R}^3$ are said to be \emph{orthogonal} if their dot product is zero:
+\begin{align*}
+	\bx \cdot \by = 0.
+\end{align*}
+Recall that, geometrically, the dot product is 
+\begin{align*}
+	\bx \cdot \by = ||\bx || \ || \by ||\cos \theta
+\end{align*}
+so orthogonality is the same thing as perpendicularity for two nonzero vectors. 
+
+\begin{defn}
+\
+\begin{enumerate}[(a)]
+	\item Let $S=\{\bv_1,\cdots\,\bv_k\}$ be a collection of vectors in $\mathbb{R}^3$. Then $S$ is said to be an {\bf orthogonal set} if all the vectors in $S$ are mutually orthogonal, that is, if 
+		$\bv_i \cdot \bv_j = 0 \text{ when }i \neq j$.
+	\item If, in addition, we have $\bv_i \cdot \bv_i=1$ for all $i=1,\cdots,k$, we say that $S$ is an \emph{orthonormal set}.
+\end{enumerate}
+\end{defn}
+
+\begin{example}
+	Let
+	\begin{align*}
+		\bu_1=(0,1,0), \ \bu_2=(1,0,1), \ \bu_3=(1,0,-1).
+	\end{align*}
+The set $S=\{\bu_1,\bu_2,\bu_3\}$ is orthogonal since $\bu_1 \cdot \bu_2=\bu_1 \cdot \bu_3=\bu_2\cdot \bu_3=0$.	
+\end{example}
+
+Note that, from any orthogonal set $S$ of nonzero vectors in $\mathbb{R}^3$, we can obtain an orthonormal set by normalizing each vector in $S$.	
+ 
+ \begin{example}\label{ex:on_basis_r3}
+ 	The lengths of the vectors in the previous example are given by
+ 	\begin{align*}
+ 		||\bu_1||=1, \ ||\bu_2||=\sqrt{2}, \ ||\bu_3||=\sqrt{2}.
+ 	\end{align*}
+ Normalizing these vectors yields
+ \begin{align*}
+ 	\bv_1=\frac{\bu_1}{||\bu_1||}=(0,1,0), \ \bv_2=\frac{\bu_2}{||\bu_2||}=(\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}}), \ \bv_3=\frac{\bu_3}{||\bu_3||}=(\frac{1}{\sqrt{2}},0,-\frac{1}{\sqrt{2}}).
+ \end{align*}
+ This set $S=\{\bv_1,\bv_2,\bv_3\}$ is orthonormal since
+ 	$\bv_1 \cdot \bv_2 = \bv_1 \cdot \bv_3 = \bv_2 \cdot \bv_3 = 0$ and $||\bv_1||=||\bv_2||=||\bv_3||=1$.  
+ \end{example}
+Note that the set $S=\{\bv_1,\bv_2,\bv_3\}$ from the example above is a basis for $\mathbb{R}^3$.
+
+\begin{defn}
+	Let $B$ be a basis for $\mathbb{R}^3$. If $B$ is also orthogonal, it is said to be an {\bf orthogonal basis}. If $B$ is orthonormal, it is said to be an {\bf orthonormal basis}.
+\end{defn}
+
+Let $B=\{\bv_1,\bv_2,\bv_3\}$ be an orthonormal basis for $\mathbb{R}^3$ and let $\bx \in \mathbb{R}^3$. Since $B$ is a basis for $\mathbb{R}^3$, there exist scalars $c_1,c_2,c_3$ such that 
+\begin{align*}
+	\bx=c_1\bv_1+c_2\bv_2+c_3\bv_3
+\end{align*} 
+As we have seen before, to find the coefficient vector ${\bf c}\equiv [\bx]_B$, we need to find the inverse of the matrix whose $i$th column is $\bv_i$. Then $c_i=(L_B^{-1}(\bx))_i$.
+
+\begin{example}\label{ex:long}
+	Let $B$ be the orthonormal basis from Example \ref{ex:on_basis_r3} and let $\bx=(2,1,3)$. Find $[\bx]_B$.
+\begin{align*}
+	\begin{bmatrix}
+		2 \\ 1 \\ 3
+	\end{bmatrix}&=c_1\begin{bmatrix}
+		0 \\ 1 \\ 0
+	\end{bmatrix}+c_2\begin{bmatrix}
+		1/\sqrt{2} \\ 0 \\ 1/\sqrt{2}
+	\end{bmatrix}+c_3\begin{bmatrix}
+		1/\sqrt{2} \\ 0 \\ -1/\sqrt{2}
+	\end{bmatrix} \\
+	&=\begin{bmatrix}
+		0 & 1/\sqrt{2} & 1/\sqrt{2} \\
+		1 & 0 & 0 \\
+		0 & 1/\sqrt{2} & -1/\sqrt{2}
+	\end{bmatrix}\begin{bmatrix}
+		c_1 \\ c_2 \\ c_3
+	\end{bmatrix}
+\end{align*}
+Thus
+\begin{align*}
+	[\bx]_B\equiv\begin{bmatrix}
+		c_1 \\ c_2 \\ c_3
+	\end{bmatrix}&=\begin{bmatrix}
+		0 & 1/\sqrt{2} & 1/\sqrt{2} \\
+		1 & 0 & 0 \\
+		0 & 1/\sqrt{2} & -1/\sqrt{2}
+	\end{bmatrix}^{-1}\begin{bmatrix}
+		2 \\ 1 \\ 3
+	\end{bmatrix} \\
+	&=\begin{bmatrix}
+		0 & 1 & 0 \\
+		1/\sqrt{2} & 0 & 1/\sqrt{2} \\
+		1/\sqrt{2} & 0 & -1/\sqrt{2}
+	\end{bmatrix}\begin{bmatrix}
+		2 \\ 1 \\ 3
+	\end{bmatrix} \\
+	&=\begin{bmatrix}
+		1 \\ 5/\sqrt{2} \\ -1/\sqrt{2}
+	\end{bmatrix}
+\end{align*}
+\end{example}
+We will now see that the fact that the basis is orthonormal allows us to find $[\bx]_B$ much more easily. Again, let $B=\{\bv_1,\bv_2,\bv_3\}$ be a basis for $\mathbb{R}^3$ and write $\bx \in \mathbb{R}^3$ as 
+\begin{align*}
+	\bx=c_1\bv_1+c_2\bv_2+c_3\bv_3.
+\end{align*}
+Taking the dot product of both sides with $\bv_1$, we find
+\begin{align*}
+	\bv_1 \cdot \bx & =c_1 \bv_1 \cdot \bv_1+c_2 \bv_1 \cdot \bv_2+c_3 \bv_1 \cdot \bv_3 \\
+	&=c_1\cdot 1+c_2 \cdot 0+c_3\cdot 0 \\
+	&=c_1.
+\end{align*}
+Similarly, we find $\bv_2 \cdot \bx = c_2$ and $\bv_3 \cdot \bx = c_3$. Thus, by choosing an orthonormal basis, we find an explicit formula for the coefficients $c_i$ in terms of $\bx$ and the basis vectors $\bv_i$:
+\begin{align}\label{eq:coeffs}
+	\bx=(\bv_1 \cdot \bx)\bv_1+(\bv_2 \cdot \bx)\bv_2+(\bv_3 \cdot \bx)\bv_3
+\end{align}
+\begin{exercise}
+	Verify Eq. \eqref{eq:coeffs} for the vector in Example \ref{ex:long}.
+\end{exercise}
+
+\subsubsection{Inner Products}
+In the previous section, we found that it was very convenient to work with an orthonormal basis for $\mathbb{R}^3$. Everything that was said in the previous section generalizes immediately to $\mathbb{R}^n$. It is also possible to generalize these ideas to general vector spaces. To do so, we need to generalize the concepts of ``length" and ``angle" to these abstract spaces. Since these are defined in terms of the dot product in $\mathbb{R}^3$, we need to define a ``dot product" for these spaces. To do so, we will do what we have done in the past for vector addition and scalar multiplication: we will take the most important properties of the dot product as axioms, define a function valid for an arbitrary vector space $V$ satisfying these axioms.
+
+\begin{defn}
+	Let $V$ be a vector space. An {\bf inner product} on $V$ is a function $f:V \times V \to \mathbb{R}$ satisfying the following three properties for all $\bv_1,\bv_2,\bw \in V$ and all $c \in \mathbb{R}$:
+	\begin{enumerate}
+		\item Symmetry:
+		\begin{align*}
+			f(\bv_1,\bv_2)=f(\bv_2,\bv_1)
+		\end{align*}
+		\item Bilinearity:
+		\begin{align*}
+			f(c\bv_1+\bv_2,\bw)&=cf(\bv_1,\bw)+f(\bv_2,\bw) \\
+			f(\bw,c\bv_1+\bv_2)&=cf(\bw,\bv_1)+f(\bw,\bv_2)
+		\end{align*}
+		\item Positive-definite:
+		\begin{align*}
+			f(\bv_1,\bv_1) \geq 0 \text{ ($=0$ iff $\bv_1={\bf 0}$)}
+		\end{align*}
+	\end{enumerate} 
+	
+If $f$ is an inner product, we will denote it by $f(\bv_1,\bv_2)=\langle \bv_1,\bv_2 \rangle$.
+
+A vector space together with an inner product is called an \emph{inner product space}.
+\end{defn}
+
+\begin{prop}
+	It follows from these axioms that $\langle {\bf 0}, \bv \rangle=\langle \bv,{\bf 0}\rangle = 0$ for every $\bv \in V$.
+\end{prop}
+
+\begin{example}
+\
+\begin{enumerate}[(a)]
+	\item The dot product on $\mathbb{R}^n$ is an inner product:
+	\begin{align*}
+		\langle \bu,\bv \rangle = \bu \cdot \bv =\sum_{i=1}^nu_iv_i
+	\end{align*}
+	This is called the {\bf Euclidean inner product} or {\bf standard inner product} on $\mathbb{R}^n$.
+	\item Let $V=\mathbb{R}^2$. The function $\langle \bu,\bv\rangle = 3u_1v_1+2u_2v_2$ is an inner product on $\mathbb{R}^2$. This is an example of a {\bf weighted Euclidean inner product}.
+	\item Let $V=P_n$ and let ${\bf p}=\sum_{i=0}^n a_ix^i$ and ${\bf q}=\sum_{i=0}^n b_ix^i$ be polynomials in $P_n$. Then
+	\begin{align*}
+		\langle {\bf p}, {\bf q}\rangle=\sum_{i=0}^na_ib_i
+	\end{align*}
+	is an inner product on $P_n$ called the {\bf standard inner product} on $P_n$.
+	\item Let $V=P_n$ and let ${\bf p}=p(x)=\sum_{i=0}^n a_ix^i$ and ${\bf q}=q(x)=\sum_{i=0}^n b_ix^i$ be polynomials in $P_n$. Let $x_0, x_1, \cdots,x_n$ be distinct real numbers. Then
+	\begin{align*}
+		\langle {\bf p}, {\bf q}\rangle = \sum_{i=0}^np(x_i)q(x_i)
+	\end{align*}
+	is an inner product on $P_n$ called the {\bf evaluation inner product} at $x_0, x_1,\cdots,x_n$. This can be viewed as the dot product on $\mathbb{R}^n$ of the $n$-tuples
+	\begin{align*}
+		(p(x_0),p(x_1),\cdots,p(x_n)) \text{ and } (q(x_0),q(x_1),\cdots,q(x_n)) 
+	\end{align*}
+	so the first two axioms hold due to the properties of the dot product on $\mathbb{R}^n$. The third axiom follows from the fact that 
+	\begin{align*}
+		\langle {\bf p}, {\bf p}\rangle =[p(x_0)]^2+[p(x_1)]^2+\cdots+[p(x_n)]^2 \geq 0
+	\end{align*}
+	with equality holding if and only if 
+	\begin{align*}
+		p(x_0)=p(x_1)=\cdots=p(x_n)=0.
+	\end{align*}
+	But a nonzero polynomial of degree $\leq n$ can have at most $n$ distinct roots, so it must be that ${\bf p}={\bf 0}$, which shows the third axiom holds.
+	\item Let $V=M^{n \times n}(\mathbb{R})$ and let $A,B \in V$. Then 
+	\begin{align*}
+		\langle A,B \rangle = \text{tr}(A^TB)
+	\end{align*}
+	is an inner product.
+	\item Let $V=\mathscr{C}([a,b])$ and let ${\bf f}=f(x)$ and ${\bf g}=g(x)$ be functions in $\mathscr{C}([a,b])$. Then
+	\begin{align*}
+		\langle {\bf f}, {\bf g}\rangle = \int_a^b f(x)g(x)dx
+	\end{align*}
+	is an inner product on $\mathscr{C}([a,b])$.
+\end{enumerate}	
+\end{example}
+	
+\begin{exercise}
+	Verify that each example above is an inner product.
+\end{exercise}
+
+\begin{exercise}
+	Let $P_2$ have the evaluation inner product on the points
+	\begin{align*}
+		x_0=-2, \ x_1 = 0, \ x_2=2.
+	\end{align*}
+	Compute $\langle {\bf p}, {\bf q}\rangle$ for the polynomials ${\bf p}=p(x)=x^2$ and ${\bf q}=q(x)=1+x$.
+\end{exercise}
+An inner product can be used to define notions of length and angle in a general vector space $V$ just as in $\mathbb{R}^n$.
+
+\begin{defn}
+	Let $V$ be an inner product space. The {\bf norm} (or {\bf length}) of a vector ${\bf v} \in V$ is defined by
+	\begin{align*}
+		||\bv||=\sqrt{\langle {\bf v}, {\bf v}\rangle}.
+	\end{align*}
+	The distance between two vectors $\bu$ and $\bv$ is 
+	\begin{align*}
+		d(\bu,\bv)\equiv||\bu-\bv||=\sqrt{\langle \bu-\bv,\bu-\bv \rangle}
+	\end{align*}
+	A vector of unit length ($||\bv || =1$) is called a {\bf unit vector}.
+\end{defn}
+The following theorem shows that, with this definition, lengths and distances behave as they should.
+\begin{thm}
+	Let $V$ be an inner product space and let $\bu,\bv \in V$ and $k \in \mathbb{R}$. Then
+	\begin{enumerate}[(a)]
+		\item $||\bv|| \geq 0$, ($=0$ iff $\bv=0$),
+		\item $||k\bv||=|k| \ ||\bv||$,
+		\item $d(\bu,\bv)=d(\bv,\bu)$,
+		\item $d(\bu,\bv) \geq 0$, ($=0$ iff $\bu=\bv$).
+	\end{enumerate}
+\end{thm}
+
+\begin{lem}
+	(Cauchy-Schwarz inequality.) Let $V$ be an inner product space and let $\bu,\bv \in V$. Then $|\langle \bu,\bv \rangle| \leq ||\bu || \ ||\bv||$.	 
+\end{lem}
+It follows from the Cauchy-Schwarz inequality that, for any two vectors $\bu,\bv in V$,
+\begin{align*}
+	-1 \leq \frac{\langle \bu,\bv \rangle}{||\bu|| \ ||\bv||} \leq 1
+\end{align*}
+\begin{defn}
+	Let $V$ be an inner product space. The angle $\theta$ between two vectors $\bu, \bv$ is defined to be
+	\begin{align*}
+		\theta=\cos\left(\frac{\langle \bu, \bv \rangle}{||\bu|| \ ||\bv||}\right)
+	\end{align*}
+\end{defn}
+
+\begin{thm}
+	(Triangle inequality.) Let $\bu,\bv,\bw$ be vectors in an inner product space $V$. Then
+	\begin{enumerate}[(a)]
+		\item $||\bu+\bv|| \leq ||\bu||+||\bv||$
+		\item $d(\bu,\bv) \leq d(\bu,\bw)+d(\bw,\bv)$
+	\end{enumerate}
+\end{thm}
+
+\begin{defn}
+	Two vectors $\bu, \bv$ in an inner product space are said to be {\bf orthogonal} if $\langle \bu,\bv\rangle = 0$.
+\end{defn}
+Note that orthogonality depends on the inner product, i.e., the same two vectors might be orthogonal with respect to one inner product, but not another.
+
+\begin{example}
+	Let $V=\mathbb{R}^2$ and let $\bu=(1,1)$ and $\bv=(1,-1)$. Then $\bu$ and $\bv$ are orthogonal with respect to the Euclidean inner product $\langle \bu,\bv\rangle=u_1v_1+u_2v_2$ but not with respect to the weighted inner product $\langle \bu,\bv\rangle=3u_1v_1+2u_2v_2$.
+\end{example}
+
+\begin{exercise}
+	Let $V=M^{2 \times 2}(\mathbb{R})$. Show that the matrices
+	\begin{align*}
+		A=\begin{bmatrix}
+			1 & 0 \\
+			1 & 1
+		\end{bmatrix} \text{ and }B=\begin{bmatrix}
+			0 & 2 \\ 0 & 0
+		\end{bmatrix}
+	\end{align*}
+are orthogonal 
+	 with respect to the inner product $\langle A,B\rangle=\text{tr}(A^TB)$.
+\end{exercise}
+
+\begin{exercise}
+	Let $P_2$ have the inner product
+	\begin{align*}
+		\langle {\bf p}, {\bf q}\rangle=\int_{-1}^1 p(x)q(x)dx.
+	\end{align*}
+	Show that the polynomials ${\bf p}=x$ and ${\bf q}=x^2$ are orthogonal with respect to this inner product.
+\end{exercise}
+
+\begin{thm}
+	(Generalized Pythagorean theorem.) If $\bu$ and $\bv$ are orthogonal vectors in an inner product space, then
+	\begin{align*}
+		||\bu+\bv||^2=||\bu||^2+||\bv||^2.
+	\end{align*}
+\end{thm}
+
+\begin{exercise}
+	Show that the generalized Pythagorean theorem holds from the two polynomials in the previous example.
+\end{exercise}
+
+\subsubsection{Orthogonal Complements}
+\begin{defn}
+Let $W$ be a subspace of an inner product space $V$. The set of all vectors in $V$ that are orthogonal to every vector in $W$ is called the {\bf orthogonal complement} of $W$, denoted $W^\perp$. That is,
+\begin{align*}
+	W^\perp = \{\bv \in V : \langle \bv,\bw \rangle = 0 \text{ for all } \bw \in W\}.
+\end{align*}	
+\end{defn}
+
+\begin{thm}\label{thm:orthogonal_complement}\
+	\begin{enumerate}[(a)]
+		\item $W^\perp$ is a subspace of $V$.
+		\item $W \cap W^\perp=\{{\bf 0}\}$.
+		\item $(W^\perp)^\perp=W$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+	\
+	\begin{enumerate}[(a)]
+		\item $\langle {\bf 0},\bw \rangle = 0$ for all $\bw \in W$, so ${\bf 0} \in W^\perp$, and therefore $W^\perp \neq \emptyset$. Let $\bv_1,\bv_2 \in W^\perp$ and $c \in \mathbb{R}$. Then
+		\begin{align*}
+			\langle c\bv_1+\bv_2,\bw \rangle &=c\langle c\bv_1,\bw \rangle+\langle c\bv_2,\bw \rangle \\
+			&=c \cdot 0 + 0 = 0.
+		\end{align*}
+		This shows $c\bv_1+\bv_2 \in W^\perp$, and hence $W^\perp$ is a subspace of $V$ by the subspace criterion.
+		\item Since $\langle {\bf 0}, \bv \rangle=0$ for all $\bv \in V$, in particular $\langle {\bf 0}, \bv \rangle=0$ for all $\bv \in W$ and for all $\bv \in W^\perp$. Hence $\{{\bf 0}\} \subset W \cap W^\perp$. Now suppose $\bw \in W \cap W^\perp$. Then $\langle \bw,\bw \rangle = 0$, and therefore $\bw=0$. This shows $W \cap W^\perp \subset \{{\bf 0}\}$ and therefore $W \cap W^\perp = \{{\bf 0}\}$.
+		\item This follows immediately from the symmetry of the inner product, for if every vector $\bw' \in W^\perp$ is orthogonal to every vector $\bw \in W$, then every vector $\bw \in W$ is orthogonal to every vector $\bw' \in W^\perp$. Thus, $(W^\perp)^\perp$.
+	\end{enumerate}
+\end{pf}
+
+\begin{prop}
+	Let $A \in M^{n \times n}(\mathbb{R})$. Then $\text{Row }A=(\text{Nul }A)^\perp$.
+\end{prop}
+
+\begin{pf}
+	Let $\bx \in \text{Nul }A$. Then $A\bx = {\bf 0}$. Letting $\ba_j\equiv A_{ij}$ denote the $jth$ row of $A$, this is equivalent to $\ba_j \cdot \bx = 0$ for all $j=1,\cdots, n$. If $\bv \in \text{Row }A$, by definition $\bv$ is a linear combination of the rows of $A$. We then have 
+	\begin{align*}
+		\bv \cdot \bx &=\sum_{i=1}^nc_i\ba_i \cdot \bx \\
+		&=c_1 \cdot 0 + \cdots + c_n \cdot 0 \\
+		&=0.
+	\end{align*}
+Thus, we have proved that $\text{Row }A=(\text{Nul }A)^\perp$.	
+\end{pf}
+
+\begin{exercise}
+	Show that $\text{Col }A=(\text{Nul }A^T)^\perp$.
+\end{exercise}
+
+\begin{thm} 
+	Let $W$ be a finite-dimensional subspace of an inner product space $V$. Every vector  $\bu \in V$ can be expressed uniquely as
+	\begin{align*}
+		\bu = \bw_1 + \bw_2
+	\end{align*}
+	for some $\bw_1 \in W$ and $\bw_2 \in W^\perp$.
+\end{thm}
+
+\begin{pf}
+	Let $\bw$ be a nonzero vector in $W$. Then $\bw_1=\text{proj}_{\bw}\bu =\frac{\langle \bw,\bu \rangle}{\langle \bw,\bw \rangle}\bw$ is a scalar multiple of $\bw$, and so $\bw_1 \in W$. Let $\bw_2=\bu-\bw_1$. Since 
+	\begin{align*}
+		\langle \bw_1,\bw_2\rangle &=\langle \bw_1,\bu-\bw_1\rangle \\
+		&=\frac{\langle \bw,\bu \rangle}{\langle \bw,\bw \rangle}\left[\langle \bw,\bu-\frac{\langle \bw,\bu \rangle}{\langle \bw,\bw \rangle}\bw\rangle\right] \\
+		&=\frac{\langle \bw,\bu \rangle}{\langle \bw,\bw \rangle}\left[\langle \bw,\bu\rangle -\frac{\langle \bw,\bu \rangle}{\langle \bw,\bw \rangle}\langle\bw,\bw\rangle\right] \\
+		&=\frac{\langle \bw,\bu \rangle}{\langle \bw,\bw \rangle}\left[\langle \bw,\bu\rangle -\langle\bw,\bu\rangle\right] \\
+		&=0,
+	\end{align*}
+	$\bw_2 \in W^\perp$. Then $\bu=\text{proj}_{\bw}\bu+(\bu-\text{proj}_{\bw}\bu)=\bw_1+\bw_2$. Suppose now that there exist other vectors $\bw_1' \in W$ and $\bw_2' \in W^\perp$ such that $\bu=\bw_1'+\bw_2'$. Then we have
+	\begin{align*}
+		\bw_1+\bw_2&=\bw_1'+\bw_2' \\
+		\implies \bw_1-\bw_1'+\bw_2-\bw_2'&=0.
+	\end{align*}
+Taking the inner product of both sides of this equation with $\bw_1$ gives
+\begin{align*}
+	\langle \bw_1-\bw_1'+\bw_2-\bw_2', \bw_1 \rangle &= 0 \\
+	\langle \bw_1, \bw_1 \rangle - \langle \bw_1',\bw_1 \rangle+\underbrace{\langle \bw_2, \bw_1 \rangle}_{=0}- \underbrace{\langle \bw_2', \bw_1 \rangle}_{=0} &= 0 \\
+\langle \bw_1-\bw_1',\bw_1 \rangle &=0
+\end{align*}
+which shows $\bw_1-\bw_1' \in W^\perp$. Since $W$ is a subspace,  $\bw_1-\bw_1' \in W$ and therefore $\bw_1-\bw_1' \in W \cap W^\perp$. By part (b) of Theorem \eqref{thm:orthogonal_complement}, $W \cap W^\perp =\{{\bf 0}\}$, so we must have $\bw_1-\bw_1'=0$ and therefore $\bw_1=\bw_1'$. Repeating these steps by taking the inner product of the same equation with $\bw_2$, we find $\bw_2=\bw_2'$. Thus, the decomposition $\bu=\bw_1+\bw_2$ with $\bw_1 \in W$ and $\bw_2 \in W^\perp$ is unique. 
+\end{pf}
+
+\begin{prop}
+Let $W$ be a finite-dimensional subspace of an inner product space $V$. If $\{\bv_1, \bv_2, \cdots, \bv_r\}$ be an orthonormal basis for $W$, and $\bu$ is any vector in $V$, then
+\begin{align*}
+	\text{proj}_W \bu  = \langle \bu, \bv_1 \rangle \bv_1+\cdots \langle \bu, \bv_r \rangle \bv_r.
+\end{align*}	
+\end{prop}
+
+\begin{pf}
+	We have seen that $\bu$ can be written uniquely as $\bu=\bw_1+\bw_2$, where $\bw_1 \in W$. Then
+	\begin{align*}
+		\text{proj}_W \bu  = \bw_1 &= \langle \bw_1, \bv_1 \rangle \bv_1+\cdots \langle \bw_1, \bv_r \rangle \bv_r \\
+	\end{align*}
+ 	since $\langle \bw_2, \bv_i \rangle=0$ for all $i=1, \cdots, r$,
+ 	\begin{align*}
+ 		\bw_1 &= \langle \bw_1, \bv_1 \rangle \bv_1+\cdots \langle \bw_1, \bv_r \rangle \bv_r \\
+ 		&= \langle \bw_1+\bw_2, \bv_1 \rangle \bv_1+\cdots \langle \bw_1+\bw_2, \bv_r \rangle \bv_r \\ 
+ 		&=\langle \bu, \bv_1 \rangle \bv_1+\cdots \langle \bu, \bv_r \rangle \bv_r. \\
+ 	\end{align*} 
+\end{pf}
+
+\begin{exercise}
+	Consider $\mathbb{R}^3$ with the Euclidean inner product, and let $W=\text{Span}\{\bv_1,\bv_2\}$ where $\bv_1=(0,1,0)$ and $\bv_2=(-\frac{4}{5},0,\frac{3}{5})$. If $\bu = (1,1,1)$, find $\text{proj}_W \bu$.
+\end{exercise}
+
+\subsubsection{Gram-Schmidt Algorithm}
+We now turn to the task of finding orthonormal bases for a general vector space.
+\begin{defn}
+	A set of two or more vectors in an inner product space is said to be {\bf orthogonal} if all pairs of distinct vectors in the set are orthogonal. An orthogonal set in which each vector has norm 1 is said to be {\bf orthonormal}.
+\end{defn}
+
+\begin{thm}
+	Let $S=\{\bv_1,\cdots,\bv_n\}$ be an orthogonal set of nonzero vectors in an inner product space. Then $S$ is linearly independent.
+\end{thm}
+
+\begin{pf}
+	Suppose $c_1 \bv_1+\cdots + c_n \bv_n={\bf 0}$. Then we have for each $\bv_i \in S$
+	\begin{align*}
+		\langle c_1\bv_1+\cdots c_n\bv_n,\bv_i\rangle =\langle {\bf 0},\bv_i\rangle = 0
+	\end{align*}
+	Using the linearity in the first argument of the inner product, this says that
+	\begin{align*}
+		0&=c_1\langle \bv_1,\bv_i\rangle+\cdots c_n\langle \bv_n,\bv_i\rangle \\
+		&=c_i\langle \bv_i,\bv_i\rangle
+	\end{align*}
+	which implies $c_i=0$ since the inner product is positive-definite. Hence, $S$ is linearly independent.
+\end{pf}
+As in $\mathbb{R}^n$, any nonzero vector $\bv$ can be normalized by multiplying by $\frac{1}{||\bv||}$. 
+
+\begin{thm}
+	Every nontrivial finite-dimensional inner product space has an orthonormal basis.
+\end{thm}
+
+\begin{pf}
+	Let $V$ be a finite-dimensional inner product space and let $B=\{\bu_1,\cdots, \bu_n\}$ be a basis for $V$. We will obtain an orthonormal basis $B'=\{\bv_1,\cdots,\bv_n\}$ by means of a construction known as the {\bf Gram-Schmidt orthogonalization process}. First, let $\bv_1=\bu_1$. Then $\bv_1 \neq {\bf 0}$, so the set $\{\bv_1\}$ is linearly independent. Now define the other vectors inductively, as follows: Suppose $\bv_1,\cdots,\bv_m$ ($1 \leq m < n$) have been chosen so that for every $k$
+	\begin{align*}
+		\{\bv_1,\cdots,\bv_k\}, \ 1 \leq k \leq m
+	\end{align*}
+	is an orthogonal basis for the subspace of $V$ spanned by $\{\bu_1,\cdots,\bu_k\}$. To construct the next vector $\bv_{m+1}$, let 
+	\begin{align*}
+		\bv_{m+1}&=\bu_{m+1}-\sum_{k=1}^{m}\text{proj}_{\bv_k}\bu_{m+1} \\
+		&=\bu_{m+1}-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\bv_k.
+	\end{align*}
+Then $\bv_{k+1} \neq 0$, since otherwise $\bu_{m+1}$ would be a linear combination of $\bv_1,\cdots,\bv_m$ and hence a linear combination of $\bu_1,\cdots,\bu_m$, which is contradicts the fact that $\{\bu_1,\cdots,\bu_m\}$ is linearly independent. \footnote{Note that any nonempty subset of a linearly independent set is linearly independent.} Furthermore, if $1 \leq j \leq m$, then 
+\begin{align*}
+	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1}-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\bv_k, \bv_j \rangle \\
+	&=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle
+\end{align*}
+Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set, every term in the sum is zero except for the $j$th term, so we find
+\begin{align*}
+	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle \\
+	&=\langle \bu_{m+1},\bv_j\rangle-\frac{\langle \bu_{m+1},\bv_{j}\rangle}{\langle \bv_{j},\bv_{j}\rangle}\langle \bv_{j}, \bv_j \rangle \\
+	&=\langle \bu_{m+1},\bv_j\rangle-\langle \bu_{m+1},\bv_{j}\rangle \\
+	&=0.
+\end{align*}
+Therefore $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set consisting of $m+1$ nonzero vectors in the subspace spanned by $\bu_1,\cdots,\bu_{m+1}$, and is therefore a basis for this subspace. Thus, we see that we can take the vectors in $B$, and apply the Gram-Schmidt algorithm to obtain $B'$, which is an orthogonal basis for $V$. By normalizing each vector in $B'$, we obtain an orthonormal basis $B''=\{\frac{\bv_1}{||\bv_1||}, \cdots, \frac{\bv_n}{||\bv_n||}\}$ for $V$.
+\end{pf}
+
+\begin{exercise}
+	Let $V=\mathbb{R}^3$ equipped with the standard inner product. Consider the basis $B=\{\bu_1,\bu_2,\bu_3\}$, where 
+	\begin{align*}
+		\bu_1=(3,0,4), \ \bu_2=(-1,0,7), \ \bu_3=(2,9,11).
+	\end{align*}
+	Apply the Gram-Schmidt algorithm to construct an orthonormal basis $B'=\{\bv_1,\bv_2,\bv_3\}$ for $\mathbb{R}^3$. If $\bx=(1,2,3)$, find $[\bx]_{B'}$.
+\end{exercise}
+\subsubsection{Orthogonal Matrices}
+Let $B=\{\bu_1,\cdots,\bu_n\}$ and $B'=\{\bu_1',\cdots,\bu_n'\}$ be two orthonormal bases for a finite-dimensional inner product space $V$. Recall that the $i$th column of the transition matrix $P_{B' \to B}$ is given by $[\bu_i']_B$. Writing $\bu_i'$ in the $B$-basis and using the orthonormality of $B$,
+\begin{align*}
+	\bu_i'&=c_1\bu_1+\cdots+c_n\bu_n \\
+	\bu_i'&=\langle \bu_i',\bu_1\rangle \bu_1+\cdots+\langle \bu_i' \cdot \bu_n\rangle\bu_n
+\end{align*}
+so we find
+\begin{align*}
+	[\bu_i']_B=\begin{bmatrix}
+		\langle \bu_i', \bu_1 \rangle \\
+		\langle \bu_i', \bu_2 \rangle \\
+		\vdots \\
+		\langle \bu_i', \bu_n \rangle
+	\end{bmatrix}.
+\end{align*}
+Thus, $(P_{B' \to B})_{ij}=\langle\bu_i',\bu_j\rangle$. Since $P_{B' \to B}^{-1}=P_{B \to B'}$, we find 
+\begin{align*}
+(P_{B' \to B}^{-1})_{ij}&=\langle \bu_i ,\bu_j'\rangle \\
+&=\langle\bu_j',\bu_i\rangle \\
+&=(P_{B' \to B})_{ji} \\
+&=(P_{B' \to B}^T)_{ij}.
+\end{align*}
+\begin{defn}
+	An $n \times n$ matrix $A$ is called {\bf orthogonal} if $A^T=A^{-1}$.
+\end{defn}
+Note that, if $A$ is orthogonal, then we have $AA^T=A^TA=I$. We have just proven the following proposition.
+
+\begin{prop}
+	The transition matrix $P$ between orthonormal bases is an orthogonal matrix.
+\end{prop}
+
+\begin{exercise}
+	Show that the matrix
+	\begin{align*}
+		A=\begin{bmatrix}
+			3/7 & 2/7 & 6/7 \\
+			-6/7 & 3/7 & 2/7 \\
+			2/7 & 6/7 & -3/7
+		\end{bmatrix}
+	\end{align*}
+is orthogonal.
+\end{exercise}
+
+\begin{exercise}
+	Show that the matrix
+	\begin{align*}
+		A=\begin{bmatrix}
+			\cos \theta & -\sin \theta \\
+			\sin \theta & \cos \theta
+		\end{bmatrix}
+	\end{align*}
+	is orthogonal.
+\end{exercise}
+
+\begin{thm}
+	The following are equivalent for an $n \times n$ matrix $A$.
+	\begin{enumerate}[(a)]
+		\item $A$ is orthogonal.
+		\item The row vectors of $A$ form an orthonormal set in $\mathbb{R}^n$ with respect to the Euclidean inner product.
+		\item The column vectors of $A$ form an orthonormal set in $\mathbb{R}^n$ with respect to the Euclidean inner product.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}\
+	Suppose $A$ is orthogonal. Then $AA^T=I$. Letting ${\bf r}_i$ denote the $i$th row of $A$ and ${\bf c}_i$ denote the $i$th row of $A^T$, we have $(AA^T)_{ij}={\bf r}_i \cdot {\bf c}_j={\bf r}_i \cdot {\bf r}_j=\delta_{ij}$, where we have used the fact that the $j$th column of $A^T$ is equal to the $j$th row of $A$. Thus, (a) implies (b). \fixme{Finish.}
+\end{pf}
+
+\begin{thm} \
+	\begin{enumerate}[(a)]
+		\item If $A$ is an orthogonal matrix, then $\text{det}(A)=\pm 1$.
+		\item If $A$ is an orthogonal matrix, then $A$ is invertible and $A^{-1}$ is also orthogonal.
+		\item If $A$ and $B$ are orthogonal matrices, then so is $AB$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}\
+	\begin{enumerate}[(a)]
+		\item Taking the determinant of both sides of $AA^T=I$ gives
+		\begin{align*}
+			\text{det}(AA^T)&=\text{det}(I) \\
+			\text{det}(A)\text{det}(A^T) &= 1 \\
+			\text{det}(A)^2&=1 
+		\end{align*}
+		and therefore $\text{det}(A) = \pm 1$.
+		\item Since $\text{det}(A)=\pm 1 \neq 0$, $A$ is invertible. $A^{-1}(A^{-1})^T=A^T(A^T)^T=A^TA=I$, so $A^{-1}$ is invertible.
+		\item $(AB)(AB)^T=A(BB^T)A^T=AA^T=I$, which shows $AB$ is orthogonal.
+	\end{enumerate}
+\end{pf}
+
+\begin{thm}
+	If $A$ is an $n \times n$ matrix, then the following are equivalent.
+	\begin{enumerate}[(a)]
+		\item $A$ is orthogonal.
+		\item $||A\bx||=||\bx||$ for all $\bx \in \mathbb{R}^n$ 
+		\item $A\bx \cdot A\by = \bx \cdot \by$ for all $\bx$ and $\by$ in $\mathbb{R}^n$
+	\end{enumerate}
+\end{thm}
+\begin{pf}
+	Suppose $A$ is orthogonal. Then $||A\bx||^2=A\bx \cdot A\bx=\bx \cdot A^TA\bx=\bx \cdot I\bx =\bx \cdot \bx = ||\bx||^2$. Thus (a) implies (b). \fixme{Finish.}
+\end{pf}
 
 \end{document}
 
