@@ -7978,5 +7978,409 @@ That is the determinant (resp. rank, nullity, trace) of a linear operator $T$ is
 \end{defn}
 
 \fixme{Add example.}
+
+\subsection{Eigenvalues and Eigenvectors}
+We saw in the previous section that 
+\begin{itemize}
+	\item If $V$ is a finite-dimensional vector space, $T \in Hom(V)$, and $B,B'$ bases for $V$, then $[T]_{B'}$ and $[T]_B$ are similar matrices:
+\begin{align*}
+	[T]_{B'}=P_{B' \to B}^{-1}[T]_BP_{B' \to B}
+\end{align*}
+\item Similar matrices all have the same determinant, trace, rank, and nullity, which allowed us to define these quantities for $T \in Hom(V)$ as the corresponding quantity for $[T]_B$ in any basis.
+\end{itemize}
+Given $T \in Hom(V)$, we therefore seek a basis in which $[T]_B$ takes a form which is as simple as possible. 
+If we can find a basis in which $[T]_B$ is diagonal, then the determinant, trace, rank, and nullity can all be found immediately by inspection.
+\begin{example}
+Suppose a linear operator $T$ can be represented in some basis by the matrix
+\begin{align*}
+	[T]_B=\begin{bmatrix}
+		2 & 0 & 0 \\
+		0 & -1 & 0 \\
+		0 & 0 & 0
+	\end{bmatrix}
+\end{align*}
+We see immediately that
+\begin{enumerate}[(a)]
+	\item $\det T=0$;
+	\item $\text{tr } T=1$;
+	\item $\text{rk } T=2$;
+	\item $\nullity T=1$;
+	\item $\left\{\begin{bmatrix}
+		2 \\ 0 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ -1 \\ 0
+	\end{bmatrix}\right\}$ is a basis for $\text{Col }T$ and $\text{Row }T$.
+	\item $\left\{\begin{bmatrix}
+		0 \\ 0 \\ 1
+	\end{bmatrix}\right\}$ is a basis for $\text{Nul }T$.
+\end{enumerate}
+\end{example}
+The previous example showed that if we can find a basis in which $T$ is represented by a diagonal matrix, we can readily answer any question about the properties of $T$. This leads to the following questions:
+\begin{enumerate}[(1)]
+	\item Can each linear operator $T \in Hom(V)$ be represented by a diagonal matrix in some basis?
+	\item If not, for which operators $T$ does such a basis exist?
+	\item How can be find such a basis if there is one?
+	\item If no such basis exists, what is the simplest type of matrix by which we can represent $T$?
+\end{enumerate}
+We begin by noting the following.
+\begin{prop}[Diagonality condition]
+Let $V$ be a finite-dimensional vector space, $B=\{\bv_i\}_{i=1}^n$ a basis for $V$, and $T \in Hom(V)$. Then
+\begin{align*}
+	[T]_B=\begin{bmatrix}
+		c_1 & 0 & 0 & \cdots & 0 \\
+		0 & c_2 & 0 & \cdots & 0 \\
+		0 & 0 & c_3 & \cdots & 0 \\
+		\vdots & \vdots & \vdots
+		 & & \vdots \\
+		 0 & 0 & 0 & \cdots & c_n
+	\end{bmatrix}
+\end{align*}
+is diagonal if and only if $T(\bv_i)=c_i\bv_i$ for all $i=1,\cdots,n$.	
+\end{prop}
+
+\begin{pf}
+Recall that the $i$th column of $[T]_B$ is given by $[T(\bv_i)]_B$. ($\implies$) If $[T]_B$ is diagonal, then $[T(\bv_i)]_B=(0, \dots, 0, c_i,0,\dots,0)$. Then $L_B([T(\bv_i)]_B)=T(\bv_i)=L_B(0, \dots, 0, c_i,0,\dots,0)=c_i\bv_i$. ($\impliedby$) If $T(\bv_i)=c_i\bv_i$, then the $i$th column of $T(\bv)$ is $[T(\bv_i)]_B=L_B^{-1}(c_i\bv_i)=	(0, \dots, 0, c_i,0,\dots,0)$, hence $[T]_B$ is diagonal.
+\end{pf}
+
+\begin{defn}[Eigenvalue of a linear operator]
+Let $V$ be a vector space and $T \in Hom(V)$. An \emph{eigenvalue} of $T$ is a scalar $\lambda$ such that there is a non-zero vector $\bv \in V$ such that 
+	\begin{align*}
+		T(\bv)=\lambda\bv.
+	\end{align*}
+The vector $\bv$ is called an \emph{eigenvector} of $T$ associated with the eigenvalue $\lambda$. 
+\end{defn}
+Note that, if $\bv$ is an eigenvector of $T$ associated with eigenvalue $\lambda$ and if $B$ is a basis for $V$, then 
+\begin{align*}
+[T(\bv)]_B=[T]_B[\bv]_B=[\lambda\bv]_B=\lambda[\bv]_B.
+\end{align*}
+
+\begin{defn}[Eigenvalue of an $n \times n$ matrix]
+An eigenvalue of an $n\times n$ matrix $A$ is a scalar $\lambda$ such that there exists a nonzero vector $\bx \in \mathbb{R}^n$ such that 
+\begin{align*}
+	A\bx=\lambda\bx
+\end{align*}
+The vector $\bx$ is called an \emph{eigenvector} of $A$ associated with the eigenvalue $\lambda$.	
+\end{defn}
+
+\begin{exercise}
+\begin{enumerate}[(a)]
+	\item Let $A=\begin{bmatrix}
+	1 & 6 \\
+	5 & 2
+\end{bmatrix}$, $\bu=\begin{bmatrix}
+	6 \\ -5
+\end{bmatrix}$, and $\bv=\begin{bmatrix}
+	3 \\ -2
+\end{bmatrix}$. Are $\bu$ and $\bv$ eigenvectors of $A$?
+	\item Show that 7 is an eigenvalue of $A$. Find the corresponding eigenvalues.
+\end{enumerate}	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	\begin{enumerate}[(a)]
+		\item $A\bu=\begin{bmatrix}
+			1 & 6 \\
+			5 & 2
+		\end{bmatrix}\begin{bmatrix}
+			6 \\ -5
+		\end{bmatrix}=\begin{bmatrix}
+			-24 \\ 20
+		\end{bmatrix}=-4\begin{bmatrix}
+			6 \\ -5
+		\end{bmatrix}=-4\bu$, so $\bu$ is an eigenvector of $A$ with eigenvalue $-4$.
+		\item $A\bv=\begin{bmatrix}
+			1 & 6 \\
+			5 & 2
+		\end{bmatrix}\begin{bmatrix}
+			3 \\ -2
+		\end{bmatrix}=\begin{bmatrix}
+			-9 \\ 11
+		\end{bmatrix}$ is not a scalar multiple of $\bv$, so $\bv$ is not an eigenvalue of $A$.
+	\end{enumerate}
+\end{solution}}
+
+\begin{thm}[Similar matrices have the same eigenvalues]
+Similar matrices have the same eigenvalues.	
+\end{thm}
+
+\begin{pf}
+	Suppose $B=P^{-1}AP$ for some invertible matrix $P$. Suppose $\bv$ is an eigenvector of $B$ with eigenvalue $\lambda$; that is, $\bv \neq \mathbf{0}$ such that $B\bv=\lambda \bv$. Then
+	\begin{align*}
+		B\bv &=\lambda \bv \\
+		P^{-1}AP\bv &=\lambda \bv \\
+		PP^{-1}AP\bv &=P\lambda \bv \\
+		AP\bv &=\lambda P\bv,
+	\end{align*}
+	which shows that $P\bv$ is an eigenvector of $A$ if eigenvalue $\lambda$. Thus, every eigenvalue of $B$ is an eigenvalue of $A$. Since $A=PBP^{-1}$, the exact same argument shows that every eigenvalue of $A$ is also an eigenvalue of $B$. Thus, $A$ and $B$ have exactly the same eigenvalues.
+\end{pf}
+
+\begin{cor}
+Let $T \in \Hom(V)$. Then any matrix representing $T$ has the same eigenvalues as $T$.	
+\end{cor}
+
+We now discuss how to systematically find eigenvalues of a given matrix. A scalar $\lambda$ is an eigenvalue of $A$ if and only if $A\bx=\lambda\bx$ has a nontrivial solution. This is equivalent to the homogeneous linear system
+\begin{align}\label{eq:characteristic_equation}
+	(A-\lambda I)\bx=\mathbf{0},
+\end{align}
+where $I$ is the $n \times n$ identity matrix.
+
+\begin{defn}[Eigenspace]
+	The set of all solutions of Equation \eqref{eq:characteristic_equation} is called the \emph{eigenspace} of $A$ associated to the eigenvalue $\lambda$, which we will denote by $W_\lambda$.
+\end{defn}
+
+\begin{prop}
+	Suppose $A \in M^{n \times n}(\R)$ has an eigenvalue $\lambda$. Then the eigenspace of $A$ corresponding to $\lambda$ is a subspace of $\R^n$.
+\end{prop}
+
+\begin{pf}
+By definition, $W_\lambda=\Nul(A-\lambda I)$, which is a subspace of $\R^n$. Note that $W_\lambda$ consists of the zero vector together with all the eigenvectors corresponding to $\lambda$.	
+\end{pf}
+
+Note that the equation $(A-\lambda I)\bx=\mathbf{0}$ has a nontrivial solution if and only if $\det (A-\lambda I)=0$, or, equivalently, if $\det (\lambda I-A)=0$.
+
+\begin{thm}
+Let $A$ be an $n \times n$ matrix. Then $\det(\lambda I-A)$ is a monic (leading coefficient is 1), degree $n$ polynomial.	
+\end{thm}
+
+\begin{pf}
+(By induction on $n$). Let $A$ be a $2 \times 2$ matrix. Then
+\begin{align*}
+	\det (\lambda I-A)=\begin{vmatrix}
+		\lambda-a_{11} & -a_{12} \\
+		-a_{21} & \lambda-a_{22}
+	\end{vmatrix}&=(\lambda-a_{11})(\lambda-a_{22})-a_{12}a_{21} \\
+	&=\lambda^2-(a_{11}+a_{22})\lambda+a_{11}a_{22}-a_{12}a_{21}
+\end{align*}	
+is a monic, degree 2 polynomial. Suppose the assertion is true for $n=k$, and let $A$ be a $(k+1) \times (k+1)$ matrix. Then
+\begin{align*}
+	\det (\lambda I-A)=\begin{vmatrix}
+		\lambda-a_{11} & a_{12} & \dots & a_{1,k+1} \\
+		a_{21} & \lambda-a_{22}& \dots & a_{a,k+1} \\
+		\vdots & & & \\
+		a_{k+1,1} & a_{k+2,2} & \dots & \lambda-a_{k+1,k+1}
+	\end{vmatrix}.
+\end{align*}
+Evaluating the determinant by cofactor expansion along the first row, we obtain
+\begin{align*}
+	\det (\lambda I-A)=(\lambda-1_{11})C_{11}+a_{12}C_{12}+\dots a_{k+1}C_{1,k+1}.
+\end{align*}
+Since $C_{1j}=(-1)^{1+j}\det A_{1j}$ with $A_{1j}$ $k \times k$, by the inductive hypothesis  $C_{1j}=(-1)^{1+j}(\lambda^n+\dots)$, where the $\dots$ denote lower-degree terms in $\lambda$. Thus, 
+\begin{align*}
+	\det (\lambda I-A)=(\lambda-a_{11})(\lambda^k+\dots)+a_{12}(-\lambda^k+\dots)+\dots a_{k+1}(-1)^{k+1}(\lambda^k+\dots)=\lambda^{k+1}+\dots,
+	\end{align*}
+which proves the assertion holds for all $n \in \mathbb{N}$.
+\end{pf}
+
+\begin{defn}[Characteristic equation]
+	Given any $n \times n$ matrix $A$, the monic, degree $n$ polynomial $\det(\lambda I-A)$ is called the \emph{characteristic polynomial} of $A$. The equation
+	\begin{align*}
+		\det(\lambda I-A)=0
+	\end{align*}
+	is called the \emph{characteristic equation} of $A$.
+\end{defn}
+
+\begin{prop}
+An $n \times n$ matrix $A$ has at most $n$ distinct eigenvalues.	
+\end{prop}
+
+\begin{pf}
+Note that the eigenvalues of $A$ are the roots of the characteristic polynomial of $A$. By the fundamental theorem of algebra, every non-constant polynomial has $n$ roots in $\C$.
+\end{pf}
+
+The next example shows how to find the eigenvalues and corresponding eigenspaces of a given $n \times n$ matrix.
+
+\begin{example}
+Let $A=\begin{bmatrix}
+	1 & 6 \\
+	5 & 2
+\end{bmatrix}$. The characteristic equation of $A$ is given by
+\begin{align*}
+	0&=\begin{vmatrix}
+		1-\lambda & 6 \\
+		5 & 2-\lambda
+	\end{vmatrix}=(1-\lambda)(2-\lambda)-30 \\
+	&=2-3\lambda+\lambda^2-30 \\
+	&=\lambda^2-3\lambda-28 \\
+	&=(\lambda-7)(\lambda+4)
+\end{align*}	
+so $A$ has two eigenvalues $\lambda=7,-4$. To find a parametric description of $W_7$, we row reduce the matrix
+\begin{align*}
+	A-7I=\begin{bmatrix}
+		-6 & 6 \\
+		5 & -5
+	\end{bmatrix}
+\end{align*} 
+giving
+\begin{align*}
+	\begin{bmatrix}
+		1 & -1 \\
+		0 & 0
+	\end{bmatrix},
+\end{align*}
+which shows that $W_7=\Span\{(1,1)\}$. Geometrically, this is the line $y=x$ in the plane.
+\end{example}
+
+\begin{exercise}
+Work out $W_{-4}$ from the previous example.	
+\end{exercise}
+
+Note that eigenvalues might turn out to be complex.
+\begin{example}
+The matrix $A=\begin{bmatrix}
+	0 & -1 \\
+	1 & 0
+\end{bmatrix}$ has characteristic equation $\lambda^2+1=0$ and thus eigenvalues $\lambda=\pm i$.	
+\end{example}
+We see that a full study of eigenvalues therefore requires us to allow our matrices to have complex entries. We will not consider this generalization in this course, instead considering matrices with real eigenvalues only. Complex eigenvalues will be of importance in the study of differential equations, for instance.
+
+\begin{prop}
+Similar matrices have the same characteristic equation.	
+\end{prop}
+
+\begin{pf}
+Suppose $B=P^{-1}AP$ for some invertible matrix $P$. Then
+\begin{align*}
+	\det(\lambda I -B)&=\det (\lambda P^{-1}IP -P^{-1}AP) \\
+	&=\det (P^{-1}(\lambda I-A)P) \\
+	&=\det (P^{-1})\det(\lambda I-A) \\
+	&=\det (P^{-1})\det(P)\det(\lambda I-A) \\
+	&=\frac{1}{\det P}\det P\det(\lambda I-A) \\ 
+	&=P\det(\lambda I-A).
+\end{align*}	
+\end{pf}
+{\color{red} \flushleft WARNING!} We have seen that similar matrices have the same eigenvalues. However, the converse is not true: two matrices which have the same eigenvalues are not necessarily similar, as the next example shows.
+
+\begin{example}
+Consider the matrices $A=\begin{bmatrix}
+	2 & 1 \\
+	0 & 2
+\end{bmatrix}$ and $B=\begin{bmatrix}
+	2 & 0 \\ 
+	0 & 2
+\end{bmatrix}$. We note that $B=2I$. If $C$ is any matrix similar to $B$, then there exists an invertible matrix $P$ such that $C=P^{-1}BP$. But then $C=P^{-1}BP=P^{-1}2IP=2P^{-1}IP=2I=B$. Thus, the only matrix similar to $B$ is $B$ itself. In particular, $A$ is not similar to $B$. However, $A$ and $B$ have the same characteristic polynomials and therefore the same eigenvalues.
+\end{example}
+
+Computing eigenvalues of larger matrices require solving polynomial equations of degree $n$. If a matrix $A$ is triangluar, then this is easy.
+
+\begin{prop}
+The eigenvalues of a triangular matrix are the entries on the main diagonal.	
+\end{prop}
+
+\begin{pf}
+Let 
+\begin{align*}
+	A=\begin{bmatrix}
+		a_{11} & * & * & \dots & * \\
+		0 & a_{22} & * & \dots & * \\
+		0 & 0 & \ddots & \dots & * \\
+		\vdots  & \vdots  &        & \ddots & \vdots  \\
+		0 & 0 & 0 & \dots & a_{nn}
+	\end{bmatrix}.
+\end{align*}	
+Then the characteristic equation  
+\begin{align*}
+0=\det(\lambda I-A)=\begin{vmatrix}
+		a_{11} & * & * & \dots & * \\
+		0 & a_{22} & * & \dots & * \\
+		0 & 0 & \ddots & \dots & * \\
+		\vdots  & \vdots  &        & \ddots & \vdots  \\
+		0 & 0 & 0 & \dots & a_{nn}
+	\end{vmatrix}=\prod_{i=1}^n(\lambda-a_{ii})
+\end{align*}
+has solutions $a_{11}, a_{22},\dots,a_{nn}$.
+\end{pf}
+
+\begin{example}
+The distinct eigenvalues of
+\begin{align*}
+	A=\begin{bmatrix}
+		5 & -2 & 6 & 1 \\
+		0 & 3 & -8 & 0 \\
+		0 & 0 & 5 & 4 \\
+		0 & 0 & 0 & 1
+	\end{bmatrix}
+\end{align*}	
+are 1,3,5.
+\end{example}
+
+\begin{exercise}
+Show that the eigenspaces associated to the eigenvalues in the previous example are
+\begin{align*}
+	W_1=\Span\left\{\begin{bmatrix}
+		-1/4 \\ -4 \\ -1 \\ 1
+	\end{bmatrix}\right\}, \ W_3=\Span\left\{\begin{bmatrix}
+		1 \\ 1 \\ 0 \\ 0
+	\end{bmatrix}\right\}, \ W_5=\Span\left\{\begin{bmatrix}
+		1 \\ 0 \\ 0 \\ 0
+	\end{bmatrix}\right\}.
+\end{align*}	
+\end{exercise}
+
+
+
+
+To help with finding eigenvalues of $3 \times 3$ matrices or larger (which may not be triangular) with integer entries, the following theorem from elementary algebra is often helpful.
+
+\begin{thm}[Rational root theorem]\label{thm:rrt}
+	Let $p(x)=a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_0$ be a degree $n$ polynomial with integer coefficients. If $x=\frac{p}{q}$ is a \emph{rational} root of $p(x)$, then $p \ \vert \ a_0$ and $q \ \vert \ a_n$. \footnote{We write $a \ \vert \ b$ if $a$ divides $b$; that is, if there exists a positive integer $k$ such that $b=ka$.}
+\end{thm}
+
+\begin{pf}
+	Assume $x=\frac{p}{q}$ is a root of $p(x)=0$. Assume also that $\frac{p}{q}$ is in lowest terms, so that $p$ and $q$ have no common factors. Then
+	\begin{align*}
+		a_n\frac{p^n}{q^n}+a_{n-1}\frac{p^{n-1}}{q^{n-1}}+\cdots +a_1\frac{p}{q}+a_0=0.
+	\end{align*}
+	Multiplying both sides by $q^n$, we obtain
+	\begin{align}\label{eq:rrt_main_eqn}
+		a_np^n+a_{n-1}p^{n-1}q+a_{n-2}q^{n-2}q^2+\dots+a_1pq^{n-1}+a_0q^n=0.
+	\end{align}
+	and therefore
+	\begin{align*}
+		a_np^n+a_{n-1}p^{n-1}q+a_{n-2}q^{n-2}q^2+\dots+a_1pq^{n-1}=-a_0q^n.
+	\end{align*}
+	The left hand side is divisible by $p$ (since each term has at least one factor of $p$), so the right hand side must be as well. Since $p$ does not divide $q$, it also does not divide $q^n$, and therefore $p$ must divide $a_0$.
+	
+	We can also rewrite Equation \eqref{eq:rrt_main_eqn} as 
+	\begin{align*}
+		a_{n-1}p^{n-1}q+a_{n-2}q^{n-2}q^2+\dots+a_1pq^{n-1}+a_0q^n=-a_np^n+.
+	\end{align*}
+	Since the left-hand side is divisible by $q$, the right-hand side must be as well. Since $q$ does not divide $p$, it also does not divide $p^n$ and therefore $q$ must divide $a_n$, completing the proof.
+\end{pf}
+Note that Theorem \ref{thm:rrt} does \emph{not} say that every polynomial with integer coefficients has a rational root. It only says that \emph{if} such a polynomial has a rational root, then it must be of the form in the theorem.
+
+\begin{example}
+Let $A=\begin{bmatrix}
+	3 & 1 & -1 \\
+	2 & 2 & -1 \\
+	2 & 2 & 0
+\end{bmatrix}$. The characteristic equation of $A$ is given by
+\begin{align*}
+	0&=\det(\lambda I-A)=\begin{vmatrix}
+		3-\lambda & 1 & -1 \\
+	2 & 2-\lambda & -1 \\
+	2 & 2 & -\lambda
+	\end{vmatrix}=\lambda^3-5\lambda^2+8\lambda-4.
+\end{align*}	
+By Theorem \ref{thm:rrt}, the possible rational roots are $\pm 1, \pm 2$, and $\pm 4$. We can test these by synthetic division to check if any is a root of the characteristic polynomial. Doing this shows that $1$ is a root, so we have 
+\begin{align*}
+	\lambda^3-5\lambda^2+8\lambda-4&=(\lambda-1)(\lambda^2-4\lambda+4)=(\lambda-1)(\lambda-2)^2=0
+\end{align*}
+and therefore the distinct eigenvalues of $A$ are $\lambda =1,2$.
+\end{example}
+
+\begin{exercise}
+Show that the eigenspaces corresponding to the eigenvalues found in the previous example are 
+\begin{align*}
+	W_1=\Span \left\{\begin{bmatrix}
+		1 \\ 0 \\ 2
+	\end{bmatrix}\right\}, \ W_2=\Span \left\{\begin{bmatrix}
+		1 \\ 1 \\ 2
+	\end{bmatrix}\right\}.
+\end{align*}	
+\end{exercise}
+
+
+
 \end{document}
 
