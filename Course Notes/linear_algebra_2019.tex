@@ -251,7 +251,6 @@
 \newcommand{\Row}{\text{Row }}
 \newcommand{\nullity}{\text{nullity }}
 
-
 \newcommand{\abs}[1]{\lvert#1\rvert}
 \newcommand{\norm}[1]{\lVert#1\rVert}
 \newcommand{\IP}[1]{\langle#1\rangle}
@@ -7756,9 +7755,228 @@ Note that the considerations of this section adds several additional equivalent 
 	\end{figure}	
 
 \section{Eigenvalues and Eigenvectors}\label{sec:eigen}
+\subsection{Similarity}
+Let $V$ and $W$ be finite dimensional vector spaces. We have seen that 
+\begin{itemize}
+	\item $Hom(V,W)$ is a vector space.
+	\item  By choosing bases $B=\{\bv_i\}_{i=1}^n$ for $V$ and $B'=\{\bv'_i\}_{i=1}^n$ for $W$, 
+	\begin{align*}
+		Hom(V,W) \cong M^{m \times n}(\mathbb{R})
+	\end{align*}
+	where $[T]_{\bar{B},B}=L_{\bar{B}}^{-1} \circ T \circ L_B$.
+	\item When $V=W$, $Hom(V,V) \equiv Hom(V)$ becomes an \emph{algebra} over $\mathbb{R}$ whose multiplication is composition. This algebra has a unit, given by the identity map, $I$, and is commutative when $\text{dim }V=1$.
+	\item In this case, it is most convenient to choose the same basis for the domain and codomain, and we find that 
+	\begin{align*}
+		Hom(V) \cong M^{n \times n}(\mathbb{R})
+	\end{align*}
+	as algebras, where $T \mapsto [T]_B$ satisfies
+	\begin{align*}
+	[c_1T_1+c_2T_2]_B&=c_1[T_1]_B+c_2[T_2]_B \\
+		[T_2 \circ T_1]_B&=[T_2]_B[T_1]_B.
+	\end{align*}
+\end{itemize}
 
+\begin{example}
+	Let $D:P_3 \to P_3$ be the differentiation operator, defined by 
+	\begin{align*}
+	D(c_0+c_1x+c_2x^2+c_3x^3)=c_1+2c_2x+3c_3x^2.
+	\end{align*}
+	Choosing the standard basis $B=\{1,x,x^2,x^3\}$ for $P_3$, the $i$th column of $[D]_B$ (the matrix representing $D$) is given by \fixme{Add reference to theorem.} $[D(\bv_i)]_B$. Since
+	\begin{align*}
+		D(\bv_1)&=0=\mathbf{0} \\
+		D(\bv_2)&=1=\bv_1 \\
+		D(\bv_3)&=2x=2\bv_2 \\
+		D(\bv_4)&=3x^2=3\bv_3
+	\end{align*}
+	we have
+	\begin{align*}
+		[D(\bv_1)]_B=\begin{bmatrix}
+			0 \\ 0 \\ 0 \\0
+		\end{bmatrix}, \ [D(\bv_2)]_B=\begin{bmatrix}
+			1 \\ 0 \\ 0 \\0
+		\end{bmatrix}, [D(\bv_3)]_B=\begin{bmatrix}
+			0 \\ 2 \\ 0 \\0
+		\end{bmatrix}, [D(\bv_4)]_B=\begin{bmatrix}
+			0 \\ 0 \\ 3 \\0
+		\end{bmatrix}
+	\end{align*}
+	and therefore
+	\begin{align*}
+		[D]_B=\begin{bmatrix}
+			0 & 1 & 0 & 0 \\
+			0 & 0 & 2 & 0 \\
+			0 & 0 & 0 & 3 \\
+			0 & 0 & 0 & 0
+		\end{bmatrix}.
+	\end{align*}
+	Indeed,
+	\begin{align*}
+		\begin{bmatrix}
+			0 & 1 & 0 & 0 \\
+			0 & 0 & 2 & 0 \\
+			0 & 0 & 0 & 3 \\
+			0 & 0 & 0 & 0
+		\end{bmatrix}\begin{bmatrix}
+			c_0 \\ c_1 \\ c_2 \\ c_3
+		\end{bmatrix}=\begin{bmatrix}
+			c_1 \\ 2c_2 \\ 3c_3 \\ 0
+		\end{bmatrix}
+	\end{align*}
+	and $L_B(c_1,2c_2,3c_3,0)=c_1+2c_2x+3c_3x^2=D(c_0+c_1x+c_2x^2+c_3x^3)$.
+\end{example}
+Given a linear operator $T$ on an $n$-dimensional vector space $V$, the entries of the matrix $[T]_B$ representing $T$ depend on the basis $B$. If we choose another basis $B'$ for $V$, how are the matrices $[T]_B$ and $[T]_{B'}$ related? 
 
+Given any $\bv \in V$, we have seen previously that 
+\begin{equation}\label{eq:b_prime_to_b}
+	[\bv]_B=P_{B' \to B}[\bv]_{B'}.
+\end{equation}
+Now 
+\begin{equation}\label{eq:t_v_1}
+	[T(\bv)]_B=[T]_B[\bv]_B
+\end{equation}
+and by Equation \eqref{eq:b_prime_to_b} we also have
+\begin{equation}\label{eq:t_v_2}
+	[T(\bv)]_B=P_{B' \to B}[T(\bv)]_{B'}=P_{B' \to B}[T]_{B'}[\bv]_{B'}.
+\end{equation}
+Setting the right hand sides of Equations \eqref{eq:t_v_1} and \eqref{eq:t_v_2} equal to each other and using Equation \eqref{eq:b_prime_to_b}, we find
+\begin{align*}
+	P_{B' \to B}[T]_{B'}[\bv]_{B'}&=[T]_BP_{B' \to B}[\bv]_{B'} \\
+	[T]_{B'}[\bv]_{B'}&=P_{B' \to B}^{-1}[T]_BP_{B' \to B}[\bv]_{B'}.
+\end{align*}
+Since this is true for all $\bv \in V$, we must have
+\begin{align*}
+	[T]_{B'}=P^{-1}_{B' \to B}[T]_BP_{B' \to B}.
+\end{align*}
 
+\begin{defn}[Similar matrices]
+Let $A,B \in M^{n \times n}(\R)$. The matrix $B$ is said to be \emph{similar} to $A$ if there exists an invertible matrix $P \in M^{n \times n}(\R)$ such that $B=P^{-1}AP$. If $B$ is similar to $A$, we indicate this by writing $B \sim A$.	
+\end{defn}
 
+\begin{prop}
+Similarity is an equivalence relation on $M^{n \times n}(\R)$.	
+\end{prop}
+
+\begin{pf}
+\begin{enumerate}[(i)]
+	\item (Reflexivity): Let $A \in M^{n \times n}(\R)$. Taking $P=I$, $A=I^{-1}AI=IAI=A$. Therefore $A \sim A$ for all $A \in M^{n \times n}(\R)$.
+	\item (Symmetry): Suppose $B \sim A$. Then there exists an invertible matrix $P$ such that $B=P^{-1}AP$. Multiplying this equation on the left by $P$ and on the right by $P^{-1}$, we find that $PBP^{-1}=PP^{-1}APP^{-1}=A$. Hence, $B \sim A \implies A \sim B$.
+	\item (Transitivity): Suppose $C \sim B$ and $B \sim A$. Then there exist invertible matrices $P,Q \in M^{n \times n}(\R)$ such that $C=Q^{-1}BQ$ and $B=P^{-1}AP$. Then
+		\begin{align*}
+			C=Q^{-1}BQ=Q^{-1}P^{-1}APQ=(PQ)^{-1}A(PQ)
+		\end{align*}
+		so $C \sim A$.
+\end{enumerate}	
+\end{pf}
+Thus, if $B$ is similar to $A$, we will just say that $A$ and $B$ are similar. If there exists an invertible $n \times n$ matrix $P$ such that $[T]_{B'}=P^{-1}[T]_BP$, we see that $[T]_{B'}$ and $[T]_B$ represent exactly the same linear operator $T$.
+
+\begin{example}
+Consider the linear operator on $\R^2$ defined by $T(x_1,x_2)=(x_1,0)$. Consider the bases
+\begin{align*}
+	B=\left\{\begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1
+	\end{bmatrix}\right\}, \hspace{0.25cm} \text{ and } \hspace{0.25cm} B'=\left\{\begin{bmatrix}
+		1 \\ 1
+	\end{bmatrix}, \begin{bmatrix}
+		2 \\ 1
+	\end{bmatrix}\right\}
+\end{align*}
+for $\R^2$. The matrices representing $T$ with respect to each of these bases are 
+\begin{align*}
+	[T]_{B}&=[[T(e_1)]_B,[T(e_2)]_B]=\begin{bmatrix}
+		1 & 0 \\
+		0 & 0
+	\end{bmatrix}, \\
+	[T]_{B'}&=[[T(\bu_1')]_{B'},[T(\bu_2')]_{B'}]=\begin{bmatrix}
+		-1 & -2 \\
+		1 & 2
+	\end{bmatrix}.
+\end{align*}
+Since $P_{B' \to B}=\begin{bmatrix}
+	1 & 2 \\
+	1 & 1
+\end{bmatrix}$, we can check that
+\begin{align*}
+	P_{B' \to B}^{-1}[T]_BP_{B' \to B}&=\begin{bmatrix}
+		-1 & 2 \\
+		1 & -1
+	\end{bmatrix}\begin{bmatrix}
+		1 & 0 \\
+		0 & 0
+	\end{bmatrix}\begin{bmatrix}
+		1 & 2 \\ 1 & 1 
+	\end{bmatrix}=\begin{bmatrix}
+		-1 & -2 \\
+		1 & 2
+	\end{bmatrix}=[T]_{B'}
+\end{align*}
+\end{example}
+\begin{defn}[Similarity invariant]
+	Let $A \in M^{n \times n}(\R)$. A property of $A$ shared by all matrices similar to $A$ is called a \emph{similarity invariant}.
+\end{defn}
+
+\newpage 
+\begin{thm}[Similarity invariants]\label{thm:similarity_invariants}
+	Let $A,B$ be similar matrices in $M^{n \times n}(\R)$. Then
+	\begin{enumerate}[(a)]
+		\item $\det A=\det B$;
+		\item $A$ is invertible if and only if $B$ is invertible;
+		\item $\rank A= \rank B$;
+		\item $\nullity A=\nullity B$;
+		\item $\text{tr } A=\text{tr } B$.
+	\end{enumerate}
+\end{thm}
+\begin{pf}
+Let $B=P^{-1}AP$.
+	\begin{enumerate}[(a)]
+		\item $\text{det }B=\text{det }(P^{-1}AP)=\text{det }P^{-1} \ \text{det }A \ \text{det }P=\frac{1}{\text{det }P} \ \text{det }A \ \text{det }P=\text{det }A$.
+		\item Suppose the nullity of $B$ is $k$. Choose a basis $\mathcal{B}=\{\bv_1, \cdots, \bv_k\}$ for $\text{Nul }B=\text{Nul }(P^{-1}AP)$. We will show  that the nullity of $A$ is equal to the nullity of $B$ by constructing a basis for the null space of $A$ and showing that it has the same number of elements as $\mathcal{B}$. For all $\bv_i \in \mathcal{B}$, we have $B\bv_i=P^{-1}AP\bv_i={\bf 0}$. Multiplying this equation on the left by $P$, we have $A(P\bv_i)={\bf 0}$, which shows the vectors $P\mathcal{B}=\{P\bv_1,\cdots,P\bv_k\} \subset \text{Nul }A$. Suppose that $c_1P\bv_1+\cdots + c_kP\bv_k={\bf 0}$ for some scalars $c_1,\cdots, c_k$. Multiplying both sides of this equation on the left by $P^{-1}$, it becomes $c_1\bv_1+\cdots+c_k\bv_k={\bf 0}$ and so we must have $c_1=\cdots=c_k=0$ by linear independence of $\mathcal{B}$. This shows $P\mathcal{B}$ is also linearly independent. We will now show that these vectors also span $\text{Nul }A$, and are therefore a basis for $\text{Nul }A$. Let $\bv \in \text{Nul }A$. Then $A\bv=PBP^{-1}\bv={\bf 0}$. Multiplying both sides of this equation on the left by $P^{-1}$ gives $B(P^{-1}\bv)={\bf 0}$, which shows that $P^{-1}\bv \in \text{Nul }B$. We can therefore write $P^{-1}\bv$ in the basis $\mathcal{B}$ as 
+		\begin{align*}
+			P^{-1}\bv=c_1\bv_1+\cdots+c_k\bv_k
+		\end{align*}
+		for some scalars $c_1,\cdots,c_k$. Multiplying both sides on the left by $P$ then gives
+		\begin{align*}
+			\bv = c_1(P\bv_1)+\cdots+c_k(P\bv_k)
+		\end{align*}
+		which shows $P\mathcal{B}$ spans $\text{Nul }A$, and is therefore a basis for $\text{Nul }A$. Thus, $\text{nullity }A=\text{nullity }B$.
+	
+	\item Since $A$ and $B$ are both $n \times n$ matrices, we have 
+	\begin{align*}
+		\text{rank }B &=n-\text{nullity }B \\
+		&=n-\text{nullity }A \\
+		&=\text{rank }A.
+	\end{align*}
+	\item First note that, for any two matrices $A$ and $B$, 
+	\begin{align*}
+		\text{tr }AB &= \sum_{i=1}^n\sum_{j=1}^n a_{ij}b_{ji} \\
+		&= \sum_{j=1}^n\sum_{i=1}^n b_{ji}a_{ij} \\
+		&=\text{tr }BA.
+	\end{align*}
+	Then, if $B=P^{-1}AP$, we have
+	\begin{align*}
+		\text{tr }B&=\text{tr }P^{-1}AP \\
+		&=\text{tr }P^{-1}(AP) \\
+		&=\text{tr }(AP)P^{-1} \\
+		&=\text{tr }A(PP^{-1}) \\
+		&=\text{tr }AI \\
+		&=\text{tr }A.
+	\end{align*} 
+	\end{enumerate}
+	
+\end{pf}
+Theorem \ref{thm:similarity_invariants} allows us to define the following:
+\begin{defn}[Similarity invariants of a linear operator]
+	Let $V$ be a vector space, $T \in Hom(V)$, and $B$ any basis for $V$. Then 
+\begin{enumerate}[(a)]
+	\item $\text{det }T=\text{det }[T]_B$
+	\item $\text{nullity }T=\text{nullity }[T]_B$
+	\item $\text{rank }T=\text{rank }[T]_B$
+	\item $\text{tr }T=\text{tr }[T]_B$
+\end{enumerate}
+That is the determinant (resp. rank, nullity, trace) of a linear operator $T$ is the determinant (resp. rank, nullity, trace) of any matrix representing $T$.
+\end{defn}
+
+\fixme{Add example.}
 \end{document}
 
