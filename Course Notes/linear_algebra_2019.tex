@@ -6439,11 +6439,9 @@ so $\bw \in \text{Span}(S-\{\bv\})$, and therefore $\text{Span}(S)=\text{Span}(S
 
 \begin{pf}
 	\begin{enumerate}[(a)]
-		\item If $S$ spans $V$ but is not a basis, then $S$ is linearly dependent. Then $S$ contains some vector $\bv$ which can be written as a linear combination of the vectors in $S-\{\bv\}$. By the previous lemma, $\text{Span}(S-\{\bv\})=\text{Span}(S)=V$. If $S-\{\bv\}$ is linearly independent, we are done. If not, continue this process until we arrive at a set which is linearly independent and therefore a basis for $V$. This process must eventually terminate on a linearly independent set, since the empty set is linearly independent.
-		\item First suppose $S$ is empty. Part (a) shows that any spanning set $S'$ for $V$ contains a basis. By part (a) of the previous theorem, if we add a vector in $S'$ to $S$, then $S$ is still independent. Now look for another vector in $S'$ which is not in the span of $S$. Adding this vector to $S$, $S$ is still independent. Continue adding vectors to $S$ from $S'$ which increase the linear span of $S$ until $\text{Span}(S)=V$. By this process, $S$ is independent at each step, so $S$ is now a basis for $V$.  
-		
-		Suppose now that $S$ is not empty. If $S=\{\bv_i\}_{i=1}^m\subset V$ is linearly independent but not  a basis, then it does not span $V$. Let $S'=\{\bw_j\}_{j=1}^n \subset V$ be a spanning set for $V$. If $S' \subset \text{Span}(S)$, then $\text{Span}(S')=V \subset \text{Span}(S)$, which is a contradiction. So there must be some vector $\bw_k \in S'$ which is not in $\text{Span}(S)$. From the previous lemma, $S\cup \{\bw_k\}$ is linearly independent. By continuing in this way, we will eventually arrive at a linearly independent spanning set, and hence a basis for $V$.
-	\end{enumerate}
+		\item If $S$ spans $V$ but is not a basis, then $S$ is linearly dependent. Then $S$ contains some vector $\bv$ which can be written as a linear combination of the vectors in $S-\{\bv\}$. By Lemma \ref{lem:plus_minus}, $\text{Span}(S-\{\bv\})=\text{Span}(S)=V$. If $S-\{\bv\}$ is linearly independent, we are done. If not, continue this process until we arrive at a set which is linearly independent and therefore a basis for $V$. This process must eventually terminate on a linearly independent set, since the empty set is linearly independent.
+		\item If $S$ is linearly independent but not a basis, then $S$ does not span $V$. Since $V$ is finite-dimensional, there exists a finite spanning set $S'=\{\mathbf{w}_k\}_{k=1}^n$ for $V$. First, note that $S'$ contains at least one vector which is not in $\Span S$. To see this, suppose otherwise. Then $S' \subset \Span S$, and therefore $\Span S'=V \subset \Span S$, which is a contradiction, since $S$ does not span $V$. Hence, $S'$ must have some vector, $\mathbf{w}_{i_1}$, which is not in $\Span S$. By Lemma \ref{lem:plus_minus}, the set $S \cup \{\mathbf{w}_{i_1}\}$ is linearly independent. If this set now spans $V$, we are done. Otherwise, there must exist exist some vector $\mathbf{w}_{i_2} \in S'$ which is not in the span of $S \cup \{\mathbf{w}_{i_1}\}$, so that $S \cup \{\mathbf{w}_{i_1},\mathbf{w}_{i_2}\}$ is linearly independent. Continuing in this way, we eventually obtain a spanning set for $V$, since if we all vectors of $S'$ to $S$ then $S \cup S'$ will span $V$.
+			\end{enumerate}
 \end{pf}
 
 \begin{cor}
@@ -6542,14 +6540,10 @@ We will now classify all finite-dimensional vector spaces up to isomorphism.
 		&=xS(T(\bu_1))+S(T(\bu_2)) \hspace{0.75cm} \text{(since $S$ is linear)} \\
 		&=x(S \circ T)(\bu_1)+(S \circ T)(\bu_2),
 	\end{align*}
-so $S \circ T$ is linear. To show that $S \circ T$ is surjective, let $\bw \in W$. Since $S$ is surjective, there exists $\bv \in V$ such that $\bw=S(\bv)$. Since $T$ is surjective, there exists $\bu \in U$ such that $\bv=T(\bu)$ and therefore $\bw=S(T(\bu))=(S\circ T)(\bu)$, which shows $S \circ T$ is surjective. To see $S \circ T$ is injective, suppose $(S \circ T)(\bu_1)=(S \circ T)(\bu_2)$. Then
-\begin{align*}
-	(S \circ T)(\bu_1)&=(S \circ T)(\bu_2) \\
-	S(T(\bu_1))&=S(T(\bu_2)) \\
-	\implies T(\bu_1)&=T(\bu_2) \hspace{1.25cm} \text{(since $S$ is injective)} \\
-	\implies \bu_1 &=\bu_2 \hspace{1.75cm} \text{(since $T$ is injective)} \\
-\end{align*}
-which shows $S \circ T$ is also injective, and  hence an isomorphism.
+so $S \circ T$ is linear. To show that $S \circ T$ is surjective, let $\bw \in W$. Since $S$ is surjective, there exists $\bv \in V$ such that $\bw=S(\bv)$. Since $T$ is surjective, there exists $\bu \in U$ such that $\bv=T(\bu)$ and therefore $\bw=S(T(\bu))=(S\circ T)(\bu)$, which shows $S \circ T$ is surjective. 
+
+
+To see $S \circ T$ is injective, suppose $\bu \in \ker S \circ T$. Then $(S \circ T)(\bu)=S(T(\bu))=\mathbf{0}$. This says that $T(\bu)\in \ker S$. Since $S$ is injective, $\ker S=\{\mathbf{0}\}$, and therefore $T(\bu)=\mathbf{0}$. But this says that $\bu \in \ker T$. Since $T$ is injective, $\ker T=\{\mathbf{0}\}$, $\bu=\mathbf{0}$. This shows that $\ker S \circ T=\{\mathbf{0}\}$, and hence $S \circ T$ is injective, completing the proof that $S \circ T$ is an isomorphism.
 \end{pf}
 
 \begin{thm}
@@ -6557,7 +6551,7 @@ which shows $S \circ T$ is also injective, and  hence an isomorphism.
 \end{thm}
 
 \begin{pf}
-	Since $B$ is a basis for $V$, the corresponding linear combination mapping $L_B \in Hom(\mathbb{R}^n,V)$ is an isomorphism. By the previous lemma $T \circ L_B \in Hom(\mathbb{R}^n,W)$ is also an isomorphism. Its skeleton, $T(B)$, is therefore a basis for $W$.
+	Since $B$ is a basis for $V$, the corresponding linear combination mapping $L_B \in Hom(\mathbb{R}^n,V)$ is an isomorphism. By the previous lemma $T \circ L_B \in Hom(\mathbb{R}^n,W)$ is also an isomorphism. The set $T(B)$ is therefore a basis for $W$.
 \end{pf}
 
 \begin{thm}
@@ -6903,15 +6897,28 @@ so that $[\bu_1]_{B'}=\begin{bmatrix}
 \end{bmatrix}$ is indeed the first column of $P_{B \to B'}$, and similarly for $[\bu_2]_{B'}$ and $[\bu_3]_{B'}$.
 \end{example}
 
-\fixme{Add exercise.}
-
 \begin{prop}[Transition matrix to the standard basis of $\R^n$]\label{prop:trans_matrix_to_std_basis}
 	Any nonsingular $n \times n$ matrix $A$ is a transition matrix from ordered basis $B'$ to the standard basis of $\R^n$, where the basis vectors in $B'$ are the columns of the matrix $A$.
 \end{prop}
 
 \begin{pf}
-If $B$ is any basis for $\R^n$ and $B'$ is the standard basis, then $[B'|B]=[I|B']$, where $I$ is the $n \times n$ identity matrix. By the above, $B'=P_{B \to B'}$.
+If $B$ is any ordered basis for $\R^n$ and $B'$ is the standard basis, then $[B'|B]=[I|B]$, where $I$ is the $n \times n$ identity matrix. By the above, $B=P_{B \to B'}$.
 \end{pf}
+
+\begin{example}
+	Consider the ordered basis $B=\left\{\begin{bmatrix}
+		1 \\ 2
+	\end{bmatrix}, \begin{bmatrix}
+		-7 \\ 15
+	\end{bmatrix}\right\}$ for $\R^2$. If $B'$ denotes the standard basis, then
+	\begin{align*}
+		P_{B \to B'}=\begin{bmatrix}
+			1 & -7 \\
+			2 & 15
+		\end{bmatrix}.
+	\end{align*}
+\end{example}
+
 
 
 \subsection{Matrix of a Linear Mapping}\label{sec:matrix_of_a_linear_mapping}
