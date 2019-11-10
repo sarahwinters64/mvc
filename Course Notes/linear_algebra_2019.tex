@@ -6586,6 +6586,26 @@ We will now see that every subspace of a finite-dimensional vector space is also
 	\end{enumerate}
 \end{pf}
 
+If we are given a vector space $V$ with known dimension $n$, then the following theorem shows that if we find a set $S$ of $n$ vectors which is \emph{either} linearly independent \emph{or} spans $V$, then $S$ must already be a basis for $V$.
+
+\begin{thm}\label{thm:counting_argument}
+	Let $V$ be a finite-dimensional vector space of dimension $\dim V=n$, and let $S$ be a set of $n$ vectors in $V$. If either $S$ is linearly independent or $\Span S=V$, then $S$ is a basis for $V$.
+\end{thm}
+
+\begin{pf}
+Suppose $S$ is linearly independent. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), $S$ can be extended to a basis for $V$. Thus, $\dim V \geq |S|$. But $|S|=\dim V$ so $S$ must already be a basis for $V$.
+
+Now suppose $\Span S=V$. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), $S$ contains a basis for $V$. Thus, $\dim V \leq |S|$. But $|S|=\dim V$, so $S$ must already be a basis for $V$.	
+\end{pf}
+
+\begin{example}
+Consider the set $S=\left\{\begin{bmatrix}
+	-5 \\ 3
+\end{bmatrix}, \begin{bmatrix}
+	21 \\ 16
+\end{bmatrix}\right\} \subset \mathbb{R}^2$. Since these two vectors are not scalar multiples of each other, $S$ is linearly independent and hence a basis for $\mathbb{R}^2$ by Theorem \ref{thm:counting_argument}.
+\end{example}
+
 \subsection{Change of Basis}
 Sometimes a given basis is not the most convenient for a particular problem, and it becomes desirable to change basis. Consider, for example, the motion of a box sliding down an inclined plane:
 \begin{figure}[h]
@@ -7279,19 +7299,7 @@ By Theorem \ref{thm:span_w_is_a_subspace} if $S \subseteq \R^m$, then $\Span S$ 
 \end{pf}
 
 \subsubsection{Finding Bases for $\Nul A$ and $\Col A$}
-The following theorem is useful for finding bases for the fundamental matrix spaces.
-
-\begin{thm}\label{thm:counting_argument}
-	Let $V$ be a finite-dimensional vector space of dimension $\dim V=n$, and let $S$ be a set of $n$ vectors in $V$. If either $S$ is linearly independent or $\Span S=V$, then $S$ is a basis for $V$.
-\end{thm}
-
-\begin{pf}
-Suppose $S$ is linearly independent. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), $S$ can be extended to a basis for $V$. Thus, $\dim V \geq |S|$. But $|S|=\dim V$ so $S$ must already be a basis for $V$.
-
-Now suppose $\Span S=V$. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), $S$ contains a basis for $V$. Thus, $\dim V \leq |S|$. But $|S|=\dim V$, so $S$ must already be a basis for $V$.	
-\end{pf}
-
-We will now illustrate the method of finding bases for the fundamental matrix spaces through examples.
+We will now illustrate a method of finding bases for the fundamental matrix spaces through examples.
 
 \begin{example}
 Consider the matrix
@@ -7345,17 +7353,20 @@ Therefore
 		-3 \\ 0 \\ 2 \\ 0 \\1
 	\end{bmatrix}\right\}.
 \end{align*}
-To see that these vectors are linearly independent, apply the $+/-$ lemma (Lemma \ref{lem:plus_minus}): We think of building up this set one vector at a time. The first vector is not the zero vector, so the set containing just that vector is linearly independent. The second vector is not a scalar multiple of the first (look at the third-fifth entries of both vectors), so the set containing just the first two vectors is linearly independent. Finally, since the fifth entry of both of the first two vectors is zero, the third vector cannot be a linear combination of the first two. Hence, the set containing all three vectors is linearly independent. Since the span of three linearly independent vectors is three-dimensional, by Theorem \ref{thm:counting_argument} these vectors therefore form a basis for $\Nul A$. \fixme{Is this example really the best illustration of this theorem?}
+To see that these vectors are linearly independent, apply the $+/-$ lemma (Lemma \ref{lem:plus_minus}): We think of building up this set one vector at a time. The first vector is not the zero vector, so the set containing just that vector is linearly independent. The second vector is not a scalar multiple of the first, so the set containing just the first two vectors is linearly independent. Finally, since the fifth entry of both of the first two vectors is zero, the third vector cannot be a linear combination of the first two. Hence, the set containing all three vectors is linearly independent. Since the span of three linearly independent vectors is three-dimensional, by Theorem \ref{thm:counting_argument} these vectors therefore form a basis for $\Nul A$. 
 \end{example}
 
 \begin{thm}\label{thm:basis_for_nul_a}
-	
+	Let $A$ be an $m \times n$ matrix and $R$ its reduced row echelon form. Then the pivot columns of $R$ form a basis for $\Nul A$.
 \end{thm}
 
-\fixme{Prove that this procedure always produces a basis for $\Nul A$.}
+\begin{pf}
+By the definition of reduced row echelon form, the pivot column vectors are linearly independent. Since $\Nul A$ is the span of these vectors, they form a basis for $\Nul A$.	
+\end{pf}
+
 
 \begin{example}
-Let us find a basis for the column space of the matrix
+Let us first find a basis for the column space of a matrix which is already in reduced row echelon form. Consider the matrix
 \begin{align*}
 	A=\begin{bmatrix}
 		1 & 4 & 0 & 2 & 0 \\
@@ -7391,14 +7402,14 @@ Note that $\mathbf{b}_2=4\mathbf{b}_1$ and $\mathbf{b}_4=2\mathbf{b}_1-\mathbf{b
 This set of vectors is linearly independent, and therefore form a basis for $\Col A$.
 \end{example}
 
-\begin{prop}[Basis for $\Col A$ when $A$ is in RREF]
+\begin{thm}[Basis for $\Col A$ when $A$ is in RREF]
 	If $A$ is in reduced row echelon form, then its pivot columns form a basis for $\Col A$.
-\end{prop}
+\end{thm}
 
 \begin{proof}
-	We omit a formal proof (which would be tedious), as the previous example illustrates why this is true: since $A$ is in RREF, each non-pivot column is a linear combination of the pivot columns to the left of it, and can therefore be removed from the set of column vectors without affecting their span.
+	Since $A$ is in RREF, each non-pivot column is a linear combination of the pivot columns to the left of it, and can therefore be removed from the set of column vectors without affecting their span.
 \end{proof}
-What is $A$ is not in RREF? First note that \emph{elementary row operations change the column space}. For instance, the matrices
+Now consider a matrix $A$ which is not in reduced row echelon form. We first note that \emph{elementary row operations change the column space}. For instance, the matrices
 \begin{align*}
 	A=\begin{bmatrix}
 		1 & 3 \\
@@ -7420,14 +7431,14 @@ while
 		1 \\ 0 
 	\end{bmatrix}\right\},
 \end{align*}
-which are different spaces. However, elementary row operations do not change the \emph{linear dependence relationships} among the columns of $A$. 
+which are different spaces. However, \emph{elementary row operations do not change the linear dependence relationships} among the columns of $A$.
 
 \begin{lem}[Elementary row operations do not change the linear dependence relationships among the columns of $A$]\label{lem:col_lemma}
 Elementary row operations do not change the linear dependence relationships among the columns of $A$
 \end{lem}
 
 \begin{pf}
-A linear dependence relationship among the columns of $A$ is a solution to the homogeneous linear system $A\bx=\mathbf{0}$. If $A$ and $B$ are row-equivalent, then $B\bx=\mathbf{0}$ has exactly the same solution set as $A\bx=\mathbf{0}$.
+A linear dependence relationship among the columns of $A$ is a (non-trivial) solution to the homogeneous linear system $A\bx=\mathbf{0}$. If $A$ and $B$ are row-equivalent, then $B\bx=\mathbf{0}$ has exactly the same solution set as $A\bx=\mathbf{0}$.
 \end{pf}
 
 \begin{thm}[Basis for $\Col A$]\label{thm:pivot_columns_form_basis_col_a}
@@ -7435,7 +7446,7 @@ A linear dependence relationship among the columns of $A$ is a solution to the h
 \end{thm}
 
 \begin{pf}
-Let $B$ be any REF of $A$. The set of pivot columns of $B$ is linearly independent, since the leftmost pivot column is nonzero and no vector in the set is a linear combination of the vectors that precede it. Since $A$ is row-equivalent to $B$, by Lemma \ref{lem:col_lemma} the pivot columns of $A$ are linearly independent as well. Since the set of non-pivot columns of $B$ are linear combinations of the pivot columns of $B$, the same is true for $A$. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), removing the non pivot columns of $A$ therefore does not change $\Col A$. This shows that the pivot columns of $A$ span $\Col A$ and are linearly independent, and hence form a basis for $\Col A$.
+Let $B$ be any row echelon form of $A$. The set of pivot columns of $B$ is linearly independent, since the leftmost pivot column is nonzero and no vector in the set is a linear combination of the vectors that precede it (by definition of reduced row echelon form). Since $A$ is row-equivalent to $B$, by Lemma \ref{lem:col_lemma} the pivot columns of $A$ are linearly independent as well. Since the set of non-pivot columns of $B$ are linear combinations of the pivot columns of $B$, the same is true for $A$. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), removing the non-pivot columns of $A$ therefore does not change $\Col A$. This shows that the pivot columns of $A$ span $\Col A$ and are linearly independent, and hence form a basis for $\Col A$.
 \end{pf}
 
 Thus, to find a basis for $\Col A$ for \emph{any} matrix $A$,
@@ -7542,7 +7553,7 @@ Thus, $\left\{\begin{bmatrix}
 
 
 \subsubsection{Dimensions of $\Nul A$ and $\Col A$}
-\begin{defn}[Rank and nullity]
+\begin{defn}[Rank and nullity]\hspace{15cm}
 	\begin{enumerate}[(a)]
 		\item The dimension of $\Col A$ is called the \emph{rank} of $A$, denoted $\text{rank }A$.
 		\item The dimension of $\Nul A$ is called the \emph{nullity} of $A$, denoted $\text{nullity }A$.
@@ -7634,7 +7645,7 @@ The span of a subset of $\R^n$ is a subspace of $\R^n$.
 \end{pf}
 
 \begin{lem}[Elementary row operations do not change $\Row A$]\label{lem:row_space_lemma}
-	If $A$ is row-equivalent to $B$, then $\Row A=\Row B$.
+	 If $A$ is row-equivalent to $B$, then $\Row A=\Row B$.
 \end{lem}
 
 \begin{pf}
@@ -7646,7 +7657,7 @@ By transitivity of row-equivalence, it suffices to show that this is true for a 
 \end{cor}
 
 \begin{pf}
-	Since $B$ is in row echelon form, the first row is nonzero. Since the remaining nonzero rows are not linear combinations of the preceding ones, these are linearly independent, hence they form a basis for $\Row B$, which, by Lemma \ref{lem:row_space_lemma} is equal to $\Row A$.
+	Since $B$ is in row echelon form, the first row is nonzero. By definition of reduced row echelon form, the remaining nonzero rows are not linear combinations of the preceding ones, so these are linearly independent and hence they form a basis for $\Row B$. By Lemma \ref{lem:row_space_lemma}, $\Row B=\Row A$.
 \end{pf}
 
 \begin{exercise}
@@ -7695,7 +7706,7 @@ Let
 		1 & 7 & -13 & 5 & -3
 	\end{bmatrix}.
 \end{align*}	
-The RREF of $A$ is
+The reduced row echelon form of $A$ is
 \begin{align*}
 	B=\begin{bmatrix}
 		1 & 0 & 1 & 0 & 1 \\
@@ -7733,6 +7744,8 @@ Finally, $\Nul A$ is the solution set of the corresponding homogeneous linear sy
 	\end{bmatrix}\right\}.
 \end{align*} 
 \end{example}
+
+\newpage
 
 \subsubsection{Invertible Matrix Theorem, Revisited}
 Note that the considerations of this section adds several additional equivalent conditions for an $n \times n$ matrix $A$ to be invertible:
