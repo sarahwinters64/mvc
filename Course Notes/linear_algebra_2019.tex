@@ -8378,7 +8378,215 @@ Show that the eigenspaces corresponding to the eigenvalues found in the previous
 \end{exercise}
 
 \subsection{Diagonalizable Operators}
+We proved in Theorem \fixme{Add reference.} that  if $V$ has a basis $B$ in which every vector in $B$ is an eigenvector of $T$, then $[T]_B$ is diagonal.
 
+\begin{defn}
+A linear operator $T \in Hom(V)$ is said to be \emph{diagonalizable} if there exists a basis consisting of eigenvectors of $T$. Such a basis is called an \emph{eigenbasis}.	
+\end{defn}
+We saw in the previous section how to find the eigenvalues and eigenvectors of any linear operator $T$. We will now see when such a basis for $V$ exists and how to find it.
+
+\begin{example}
+\begin{enumerate}[(a)]
+	\item The matrix $A=\begin{bmatrix}
+		0 & -1 \\
+		1 & 0
+	\end{bmatrix}$ has no real eigenvalues, so it is not diagonalizable.
+	\item The matrix $B=\begin{bmatrix}
+			3 & 1 & -1 \\
+			2 & 2 & -1 \\
+			2 & 2 & 0
+		\end{bmatrix}$ has eigenvalues $1, 2$. The eigenspace corresponding to each of these eigenvalues is 1 dimensional:
+	\begin{align*}
+		W_1=\text{Span}\{(1,0,2)\}, \hspace{0.25cm} W_2&=\text{Span}\{(1,1,2)\}
+	\end{align*}
+While we see that any vector in $W_1$ is not a scalar multiple of any vector in $W_2$, it is not possible to find 3 linearly independent eigenvectors of $B$, so $V$ does not have a basis consisting of eigenvectors of $B$. Hence, $B$ is not diagonalizable. 
+\end{enumerate}	
+\end{example}
+We now give the criteria for a matrix to be diagonalizable. We will need the following lemma.
+
+\begin{lem}
+Let $V$ be an $n$-dimensional vector space. Then any linearly independent set of $n$ vectors is a basis for $V$. Thus, an $n \times n$ matrix $A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvalues.	
+\end{lem}
+
+\begin{pf}
+Let $S$ be a linearly independent set of $n$ vectors. By the $+/-$ lemma \fixme{Add reference.}, $S$ can be extended to a basis for $V$. Since $V$ is $n$-dimensional, by Theorem \fixme{Add link.} $S$ is a basis for $V$. If $S$ consists of eigenvectors of $A$, then it is an eigenbasis for $V$.
+\end{pf}
+
+
+\begin{thm}
+	Eigenvectors corresponding to different eigenvalues are linearly independent.
+\end{thm}
+
+\begin{pf}
+(By contradiction.) Let $\lambda_1,\dots,\lambda_m$ be the distinct eigenvalues of $A$, and $\{\bv_i\}_{i=1}^m$ corresponding eigenvectors. Assume $\{\bv_i\}_{i=1}^m$ is linearly dependent. Since $\bv_1 \neq \mathbf{0}$ by definition, $\{\bv_1\}$ is linearly independent. Let $r$ be the largest integer $1 \leq r <m$ such that $\{\bv_i\}_{i=1}^r$ is linearly independent (after reindexing the vectors, if necessary). Then $\{\bv_i\}_{i=1}^{r+1}$ is linearly dependent, so there exist scalars $c_1,\dots,c_{r+1}$ not all zero such that 
+\begin{equation}\label{eq:diag_cond_1}
+	c_1\bv_1+\cdots+c_{r+1}\bv_{r+1}=\mathbf{0}.
+\end{equation}	
+Multiplying both sides by the matrix $A$ gives
+\begin{equation}\label{eq:diag_cond_2}
+	c_1\lambda_1\bv_1+\cdots+c_{r+1}\lambda_{r+1}\bv_{r+1}=\mathbf{0}.
+\end{equation}
+Since $\{\bv_i\}_{i=1}^r$ is linearly independent, we must have $c_i(\lambda_i-\lambda_{r+1})=0$ for all $i=1,\dots,r$. Since the $\lambda_i$ are all distinct, this implies $c_i=0$ for all $i=1,\dots,r$. Equation \eqref{eq:diag_cond_1} then becomes $c_{r+1}\bv_{r+1}=\mathbf{0}$ which implies $c_{r+1}=0$ (since $\bv_{r+1} \neq \mathbf{0}$), which is a contradiction. Thus, $\{\bv_i\}_{i=1}^m$ is linearly independent.
+\end{pf}
+
+
+\begin{cor}[Diagonalization criteria]
+	An $n \times n$ matrix with $n$ distinct eigenvalues is diagonalizable.
+\end{cor}
+What is an $n \times n$ matrix $A$ does not have $n$ distinct eigenvalues? Let $\lambda_1,\dots,\lambda_m$, denote the distinct eigenvalues of $A$.
+
+\begin{defn}
+\begin{enumerate}[(a)]
+	\item The multiplicity of $\lambda_k$ as a root of the characteristic polynomial of $A$ is called the \emph{algebraic multiplicity} of $\lambda_k$.
+	\item The dimension of the eigenspace corresponding to $\lambda_k$ is called the \emph{geometric multiplicity} of $\lambda_k$.
+\end{enumerate}	
+\end{defn}
+
+\begin{lem}
+For each $1 \leq k \leq m$, the geometric multiplicity of $\lambda_k$ is less than or equal to the algebraic multiplicity of $\lambda_k$.	
+\end{lem}
+
+\begin{pf}
+Let $d_k=\dim W_{\lambda_k}$. Choose $d_k$ linearly independent eigenvectors with eigenvalue $\lambda_k$. If we choose a basis for $V$ where the first $d_k$ vectors are these eigenvectors, then $A$ will take the form
+\begin{align*}
+	A=\begin{bmatrix}
+		\lambda_k I_k & B \\
+		0 & C
+	\end{bmatrix}
+\end{align*}
+where $I_k$ is the $d_k \times d_k$ identity matrix. Since the characteristic polynomial of $A$ is a similarity invariant, the characteristic polynomial of $A$ is 
+\begin{align*}
+	(\lambda-\lambda_k)^{d_k}\det(\lambda I-C)
+\end{align*}
+so the algebraic multiplicity of $\lambda_k$ is at least $d_k$.
+\end{pf}
+
+\begin{thm}[Diagonalization theorem]\label{thm:diagonalization_thm}
+	Let $A$ be an $n \times n$ matrix whose distinct eigenvalues are $\lambda_1,\dots,\lambda_m$. Let $d_k=\dim W_{\lambda_k}$. Then the following are equivalent.
+	\begin{enumerate}[(a)]
+		\item $A$ is diagonalizable.
+		\item The characteristic polynomial for $A$ is 
+		\begin{align*}
+			f(\lambda)=(\lambda-\lambda_1)^{d_1}\cdots (\lambda-\lambda_m)^{d_m} 
+		\end{align*}
+		and $\dim W_{\lambda_i}=d_i$ for all $i=1,\dots,m$.
+		\item $\sum_{i=1}^m\dim W_{\lambda_i}=\dim V$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+If $A$ is diagonalizable, then there is a basis for $V$ in which $A$ takes the form
+\begin{align*}
+	A=\begin{bmatrix}
+		\lambda_1 I_1 & 0 & \dots & 0 \\
+		0 & \lambda_2 I_2 & \dots & 0 \\
+		\vdots & \vdots & \ddots & 0 \\
+		0 & 0 & \dots & \lambda_m I_m 
+	\end{bmatrix},
+\end{align*}	
+where $I_k$ is the $d_k \times d_k$ identity matrix. The characteristic polynomial of $A$ is then $\prod_{i=1}^m(\lambda-\lambda_i)^{d_i}$. Thus, (a) $\implies$ (b). Now suppose (b) holds. Then $\sum_{i=1}^m d_i=\deg(f)=\dim V$. Since $d_i=\dim W_{\lambda_i}$ for all $i=1,\dots,m$, we arrive at (c). Finally, suppose (c) holds. Let $B_i$ be a basis for $W_{\lambda_i}$. Since eigenvectors corresponding to different eigenvalues are linearly independent, $\cup_{i=1}^m B_i$ is a linearly independent set, and hence a basis for $V$. Therefore (c) $\implies$ (a).
+\end{pf}
+
+\begin{thm}
+Suppose $A$ is diagonalizable with distinct eigenvalues $\lambda_1,\dots,\lambda_m$. Let $B_i$ be a basis for the $i$th eigenspace $W_{\lambda_i}$. Then
+\begin{align*}
+	B=\cup_{i=1}^m B_i
+\end{align*}	
+is a basis for $V$.
+\end{thm}
+
+\begin{pf}
+	By Theorem \ref{thm:diagonalization_thm}, if $A$ is diagonalizable, then $\sum_{i=1}^m \dim W_{\lambda_i}=\dim V$. Since eigenvectors corresponding to distinct eigenvalues are linearly independent, $\cup_{i=1}^m B_i$ is linearly independent and hence a basis for $V$.
+\end{pf}
+ 
+\begin{example}
+Let 
+\begin{align*}
+	A=\begin{bmatrix}
+		0 & 0 & -2 \\
+		1 & 2 & 1 \\
+		1 & 0 & 3
+	\end{bmatrix}.
+\end{align*}	
+The characteristic equation of $A$ is 
+\begin{align*}
+	\lambda^3-5\lambda^2+8\lambda-4=(\lambda-1)(\lambda-2)^2=0
+\end{align*}
+and therefore the distinct eigenvalues of $A$ are $\lambda=1,2$. We find
+\begin{align*}
+	W_1=\Span \left\{\begin{bmatrix}
+		-2 \\ 1 \\ 1
+	\end{bmatrix}\right\}, \ W_2=\Span \left\{\begin{bmatrix}
+		0 \\ 1 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		-1 \\ 0 \\ 1
+	\end{bmatrix}\right\}.
+\end{align*}
+Since $\dim W_1+\dim W_2=1+2=3=\dim V$, by Theorem \ref{thm:diagonalization_thm} $A$ is diagonalizable. Choosing the basis 
+\begin{align*}
+	\left\{\begin{bmatrix}
+		-2 \\ 1 \\ 1
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		-1 \\ 0 \\ 1
+	\end{bmatrix}, \right\}
+\end{align*}
+we have 
+\begin{align*}
+	A=\begin{bmatrix}
+		1 & 0 & 0 \\
+		0 & 2 & 0 \\
+		0 & 0 & 2
+	\end{bmatrix}.
+\end{align*}
+\end{example}
+ 
+\begin{exercise}
+Let 
+\begin{align*}
+	A=\begin{bmatrix}
+		5 & -6 & -6 \\
+		-1 & 4 & 2 \\
+		3 & -6 & -4
+	\end{bmatrix}.
+\end{align*}	
+Diagonalize $A$, if possible.
+\end{exercise}
+
+{\color{red} \flushleft \begin{solution}
+ The eigenvalues of $A$ are $2,1$. The corresponding eigenspaces are
+ \begin{align*}
+ 	W_2=\Span\left\{\begin{bmatrix}
+ 		2 \\ 0 \\ 1
+ 	\end{bmatrix}, \begin{bmatrix}
+ 		2 \\ 1 \\ 0
+ 	\end{bmatrix}\right\}, \ W_1=\Span\left\{\begin{bmatrix}
+ 		3 \\ -1 \\ 3
+ 	\end{bmatrix}\right\}.
+ \end{align*}	
+ Since $\dim W_2+\dim W_1=\dim V$, by Theorem \ref{thm:diagonalization_thm}, $A$ is diagonalizable. By choosing the eigenbasis 
+ \begin{align*}
+ 	B=\left\{\begin{bmatrix}
+ 		2 \\ 0 \\ 1
+ 	\end{bmatrix}, \begin{bmatrix}
+ 		2 \\ 1 \\ 0
+ 	\end{bmatrix}, \begin{bmatrix}
+ 		3 \\ -1 \\ 3
+ 	\end{bmatrix}\right\}
+ \end{align*}
+ we have 
+ \begin{align*}
+ 	A=\begin{bmatrix}
+ 		2 & 0 & 0 \\
+ 		0 & 2 & 0 \\
+ 		0 & 0 & 1
+ 	\end{bmatrix}.
+ \end{align*}
+ \end{solution}}
+
+
+ 
 \subsection{Orthonormal Bases}
 \subsubsection{Orthonormal Bases for $\R^3$}
 Recall that two vectors $\bx$ and $\by$ in $\mathbb{R}^3$ are said to be \emph{orthogonal} if their dot product is zero:
