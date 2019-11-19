@@ -8702,7 +8702,7 @@ In the previous section, we found that it was very convenient to work with an or
 			f(c\bv_1+\bv_2,\bw)&=cf(\bv_1,\bw)+f(\bv_2,\bw) \\
 			f(\bw,c\bv_1+\bv_2)&=cf(\bw,\bv_1)+f(\bw,\bv_2)
 		\end{align*}
-		\item Positive-definite:
+		\item Positive-definiteness:
 		\begin{align*}
 			f(\bv_1,\bv_1) \geq 0 \text{ ($=0$ iff $\bv_1={\bf 0}$)}
 		\end{align*}
@@ -8969,9 +8969,9 @@ We now turn to the task of finding orthonormal bases for a general vector space.
 	A set of two or more vectors in an inner product space is said to be {\bf orthogonal} if all pairs of distinct vectors in the set are orthogonal. An orthogonal set in which each vector has norm 1 is said to be {\bf orthonormal}.
 \end{defn}
 
-\begin{thm}
+\begin{lem}\label{lem:orth_lin}
 	Let $S=\{\bv_1,\cdots,\bv_n\}$ be an orthogonal set of nonzero vectors in an inner product space. Then $S$ is linearly independent.
-\end{thm}
+\end{lem}
 
 \begin{pf}
 	Suppose $c_1 \bv_1+\cdots + c_n \bv_n={\bf 0}$. Then we have for each $\bv_i \in S$
@@ -8985,36 +8985,96 @@ We now turn to the task of finding orthonormal bases for a general vector space.
 	\end{align*}
 	which implies $c_i=0$ since the inner product is positive-definite. Hence, $S$ is linearly independent.
 \end{pf}
+
+Note that the converse to Lemma  \ref{lem:orth_lin} is \emph{false}. For instance, the set $S=\{(1,0), (1,1)\}$ is a linearly independent subset of $\mathbb{R}^2$, but $S$ is not orthogonal. 
+
+\begin{lem}\label{lem:LI_subset}
+	Any subset of a linearly independent set is linearly independent.
+\end{lem}
+
+\begin{proof}
+	Let $S=\{\bu_1,\cdots,\bu_n\}$ be a linearly independent set, and let $S'$ be any subset. If $S'$ is empty, then it is linearly independent (this is vacuously true, since there are no vectors in $S'$ for which the zero linear combination could have a non-trivial solution). If $S'$ is all of $S$, then it is linearly independent by assumption. Suppose now that $S'$ is a proper subset of $S$, and list the elements (reordering the vectors, if necessary) as $S'=\{\bu_1,\cdots,\bu_r\}$, where $1 \leq r < n$. Suppose that $S'$ is linearly dependent. Then there exist scalars $c_1,\cdots,c_r$ not all zero such that
+	\begin{align*}
+		c_1 \bu_1+\cdots+c_r \bu_r={\bf 0}.
+	\end{align*}
+But then we have 
+\begin{align*}
+	c_1 \bu_1+\cdots+c_r \bu_r+ 0\cdot \bu_{r+1}+\cdots+0\cdot \bu_n={\bf 0},
+\end{align*}
+which is a contradiction since $S$ is linearly independent. Thus, $S'$ must be linearly independent as well.
+\end{proof}
+
 As in $\mathbb{R}^n$, any nonzero vector $\bv$ can be normalized by multiplying by $\frac{1}{||\bv||}$. 
 
 \begin{thm}
-	Every nontrivial finite-dimensional inner product space has an orthonormal basis.
+	Every finite-dimensional inner product space has an orthonormal basis.
 \end{thm}
 
 \begin{pf}
-	Let $V$ be a finite-dimensional inner product space and let $B=\{\bu_1,\cdots, \bu_n\}$ be a basis for $V$. We will obtain an orthonormal basis $B'=\{\bv_1,\cdots,\bv_n\}$ by means of a construction known as the {\bf Gram-Schmidt orthogonalization process}. First, let $\bv_1=\bu_1$. Then $\bv_1 \neq {\bf 0}$, so the set $\{\bv_1\}$ is linearly independent. Now define the other vectors inductively, as follows: Suppose $\bv_1,\cdots,\bv_m$ ($1 \leq m < n$) have been chosen so that for every $k$
+	Let $V$ be a finite-dimensional inner product space and let $B=\{\bu_1,\cdots, \bu_n\}$ be a basis for $V$. We will obtain an orthonormal basis $B'=\{\bv_1,\cdots,\bv_n\}$ by means of a construction known as the {\bf Gram-Schmidt orthogonalization algorithm}, which we now describe. The first part of the algorithm successively builds an orthogonal basis. One then simply normalizes each vector to obtain an orthonormal basis.
+	
+	 First, let $\bv_1=\bu_1$. Then $\bv_1 \neq {\bf 0}$, so the set $\{\bv_1\}$ is linearly independent. Now define the other vectors inductively, as follows: Suppose $\bv_1,\cdots,\bv_m$ ($1 \leq m < n$) have been chosen so that for every $k$
 	\begin{align*}
 		\{\bv_1,\cdots,\bv_k\}, \ 1 \leq k \leq m
 	\end{align*}
-	is an orthogonal basis for the subspace of $V$ spanned by $\{\bu_1,\cdots,\bu_k\}$. To construct the next vector $\bv_{m+1}$, let 
-	\begin{align*}
+	is an orthogonal basis for the subspace of $V$ spanned by $\{\bu_1,\cdots,\bu_k\}$ (we have just seen that this is true for $m=1$, establishing the base case). We will show how to construct the next vector, $\bv_{m+1}$, so that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for the subspace of $\mathbb{R}^n$ spanned by $\{\bu_1,\cdots,\bu_{m+1}\}$. This shows that we can continue this process until we have an orthogonal basis for $\mathbb{R}^n$. 
+	
+	To construct the next vector $\bv_{m+1}$, let 
+	\begin{equation}\label{eq:next_vector}
+	\begin{split}
 		\bv_{m+1}&=\bu_{m+1}-\sum_{k=1}^{m}\text{proj}_{\bv_k}\bu_{m+1} \\
 		&=\bu_{m+1}-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\bv_k.
-	\end{align*}
-Then $\bv_{k+1} \neq 0$, since otherwise $\bu_{m+1}$ would be a linear combination of $\bv_1,\cdots,\bv_m$ and hence a linear combination of $\bu_1,\cdots,\bu_m$, which is contradicts the fact that $\{\bu_1,\cdots,\bu_m\}$ is linearly independent. \footnote{Note that any nonempty subset of a linearly independent set is linearly independent.} Furthermore, if $1 \leq j \leq m$, then 
+			\end{split}
+	\end{equation}
+We need to show that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set of nonzero vectors and that $\{\bv_1,\cdots,\bv_{m+1}\}\subset \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Since an orthogonal set is linearly independent by Lemma \ref{lem:orth_lin}, $\{\bv_1,\cdots,\bv_{m+1}\}$ will then be an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a set of $m+1$ linearly independent vectors in an $(m+1)$-dimensional vector space is automatically a basis for that vector space. 
+	
+First, we note that $\bv_{k+1} \neq 0$, since otherwise we would have 
+\begin{align*}
+	\bu_{m+1}=\sum_{k=1}^m\frac{\bu_{m+1} \cdot \bv_k}{\bv_k \cdot \bv_k }\bv_k
+\end{align*}
+
+which says $\bu_{m+1}$ is a linear combination of $\bv_1,\cdots,\bv_m$ and hence a linear combination of $\bu_1,\cdots,\bu_m$, which contradicts the fact that $\{\bu_1,\cdots,\bu_{m+1}\}$ is linearly independent. \footnote{Note that we have used Lemma \ref{lem:LI_subset} here.} Thus, $\bv_{m+1} \neq 0$. 
+
+All that is left is to show that $\bv_{m+1}$ is orthogonal to every vector in the set $\{\bv_1,\cdots,\bv_m\}$. Let $1 \leq j \leq m$. Then 
 \begin{align*}
 	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1}-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\bv_k, \bv_j \rangle \\
 	&=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle
 \end{align*}
-Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set, every term in the sum is zero except for the $j$th term, so we find
+Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set, every term in the sum is zero except for $k=j$, so we find
 \begin{align*}
 	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle \\
 	&=\langle \bu_{m+1},\bv_j\rangle-\frac{\langle \bu_{m+1},\bv_{j}\rangle}{\langle \bv_{j},\bv_{j}\rangle}\langle \bv_{j}, \bv_j \rangle \\
 	&=\langle \bu_{m+1},\bv_j\rangle-\langle \bu_{m+1},\bv_{j}\rangle \\
 	&=0.
 \end{align*}
-Therefore $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set consisting of $m+1$ nonzero vectors in the subspace spanned by $\bu_1,\cdots,\bu_{m+1}$, and is therefore a basis for this subspace. Thus, we see that we can take the vectors in $B$, and apply the Gram-Schmidt algorithm to obtain $B'$, which is an orthogonal basis for $V$. By normalizing each vector in $B'$, we obtain an orthonormal basis $B''=\{\frac{\bv_1}{||\bv_1||}, \cdots, \frac{\bv_n}{||\bv_n||}\}$ for $V$.
+Thus we have shown that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set consisting of $m+1$ nonzero vectors. 
+
+All that remains is to show that this set is a basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. As mentioned above, it will suffice to show that $\{\bv_1,\cdots,\bv_{m+1}\} \subset  \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a linearly independent subset of an $(m+1)$-dimensional vector space consisting of $m+1$ vectors is automatically a basis. The set $\{\bv_1,\cdots,\bv_m\} \subset   \text{Span}\{\bu_1,\cdots,\bu_{m}\} \subset\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$ by the inductive hypothesis. Eq. \eqref{eq:next_vector} then shows that $\bv_{m+1} \in \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Thus, we have shown that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$ and therefore $\{\bv_1,\cdots,\bv_{n}\}$ is an orthogonal basis for $\mathbb{R}^n$.
+
+Finally, since none of these vectors are zero, we obtain an orthonormal basis for $\mathbb{R}^n$ by normalizing each vector as $\bv_i \mapsto \frac{\bv_i}{||\bv_i||}$.
 \end{pf}
+
+\begin{example}
+	Let $\bu_1=(1,1,1)$, $\bu_2=(0,1,1)$, $\bu_3=(0,0,1)$ be a basis for $\mathbb{R}^3$. Taking the standard inner product on $\mathbb{R}^3$, we now follow the Gram-Schmidt algorithm to obtain an orthogonal basis $\{\bv_1,\bv_2,\bv_3\}$:
+	\begin{align*}
+		\bv_1&=\bu_1=(1,1,1) \\
+		\bv_2&=\bu_2-\frac{\bu_2 \cdot \bv_1}{\bv_1 \cdot \bv_1}\bv_1=(0,1,1)-\frac{2}{3}(1,1,1)=(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
+		\bv_3&=\bu_3-\frac{\bu_3 \cdot \bv_1}{\bv_1 \cdot \bv_1}\bv_1-\frac{\bu_3 \cdot \bv_2}{\bv_2 \cdot \bv_2}\bv_2 \\
+		&=(0,0,1)-\frac{1}{3}(1,1,1)-\frac{1/3}{2/3}(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
+		&=(0,0,1)-\frac{1}{3}(1,1,1)-\frac{1}{2}(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
+		&=(0,-\frac{1}{2},\frac{1}{2})
+	\end{align*} 
+	Noting that 
+	\begin{align*}
+		||\bv_1||=\sqrt{3}, \ ||\bv_2||=\sqrt{\frac{2}{3}}, \ ||\bv_3||=\frac{1}{\sqrt{2}}
+	\end{align*}
+	normalizing each vector as $\bv_i \mapsto {\bf q}_i\equiv \frac{\bv_i}{||\bv_i||}$ results in the orthonormal basis ${\bf q}_1, {\bf q}_2, {\bf q}_3$, where
+	\begin{align*}
+	{\bf q}_1&=(\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}), \\
+	 {\bf q}_2&=(-\frac{2}{\sqrt{6}},\frac{1}{\sqrt{6}},\frac{1}{\sqrt{6}}), \\
+	 {\bf q}_3&=(0,-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}). \\	
+	\end{align*} 
+\end{example}
 
 \begin{exercise}
 	Let $V=\mathbb{R}^3$ equipped with the standard inner product. Consider the basis $B=\{\bu_1,\bu_2,\bu_3\}$, where 
@@ -9023,7 +9083,7 @@ Therefore $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set consisting of $m+1$ 
 	\end{align*}
 	Apply the Gram-Schmidt algorithm to construct an orthonormal basis $B'=\{\bv_1,\bv_2,\bv_3\}$ for $\mathbb{R}^3$. If $\bx=(1,2,3)$, find $[\bx]_{B'}$.
 \end{exercise}
-\subsubsection{Orthogonal Matrices}
+\subsection{Orthogonal Matrices}
 Let $B=\{\bu_1,\cdots,\bu_n\}$ and $B'=\{\bu_1',\cdots,\bu_n'\}$ be two orthonormal bases for a finite-dimensional inner product space $V$. Recall that the $i$th column of the transition matrix $P_{B' \to B}$ is given by $[\bu_i']_B$. Writing $\bu_i'$ in the $B$-basis and using the orthonormality of $B$,
 \begin{align*}
 	\bu_i'&=c_1\bu_1+\cdots+c_n\bu_n \\
