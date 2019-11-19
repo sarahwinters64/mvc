@@ -6453,7 +6453,7 @@ so $\bw \in \text{Span}(S-\{\bv\})$, and therefore $\text{Span}(S)=\text{Span}(S
 
 We will now show that every basis has the same number of elements.
 
-\begin{thm}
+\begin{thm}\label{thm:bigger_smaller_dim}
 	Let $V$ be a finite-dimensional vector space, $B=\{\bv_i\}_{i=1}^n$ a basis for $V$, and $S=\{\bw_i\}_{i \in I}$ any subset of $V$. Then
 	\begin{enumerate}
 		\item If $S$ has more than $n$ vectors, it is linearly dependent.
@@ -8007,7 +8007,7 @@ The previous example showed that if we can find a basis in which $T$ is represen
 	\item If no such basis exists, what is the simplest type of matrix by which we can represent $T$?
 \end{enumerate}
 We begin by noting the following.
-\begin{prop}[Diagonality condition]
+\begin{thm}[Diagonality condition]\label{thm:diagonality_condition}
 Let $V$ be a finite-dimensional vector space, $B=\{\bv_i\}_{i=1}^n$ a basis for $V$, and $T \in Hom(V)$. Then
 \begin{align*}
 	[T]_B=\begin{bmatrix}
@@ -8020,7 +8020,7 @@ Let $V$ be a finite-dimensional vector space, $B=\{\bv_i\}_{i=1}^n$ a basis for 
 	\end{bmatrix}
 \end{align*}
 is diagonal if and only if $T(\bv_i)=c_i\bv_i$ for all $i=1,\cdots,n$.	
-\end{prop}
+\end{thm}
 
 \begin{pf}
 Recall that the $i$th column of $[T]_B$ is given by $[T(\bv_i)]_B$. ($\implies$) If $[T]_B$ is diagonal, then $[T(\bv_i)]_B=(0, \dots, 0, c_i,0,\dots,0)$. Then $L_B([T(\bv_i)]_B)=T(\bv_i)=L_B(0, \dots, 0, c_i,0,\dots,0)=c_i\bv_i$. ($\impliedby$) If $T(\bv_i)=c_i\bv_i$, then the $i$th column of $T(\bv)$ is $[T(\bv_i)]_B=L_B^{-1}(c_i\bv_i)=	(0, \dots, 0, c_i,0,\dots,0)$, hence $[T]_B$ is diagonal.
@@ -8362,7 +8362,7 @@ Show that the eigenspaces corresponding to the eigenvalues found in the previous
 \end{exercise}
 
 \subsection{Diagonalizable Operators}
-We proved in Theorem \fixme{Add reference.} that  if $V$ has a basis $B$ in which every vector in $B$ is an eigenvector of $T$, then $[T]_B$ is diagonal.
+We proved in Theorem \ref{thm:diagonality_condition} that  if $V$ admits a basis $B$ in which every vector in $B$ is an eigenvector of $T$, then $[T]_B$ is diagonal.
 
 \begin{defn}
 A linear operator $T \in Hom(V)$ is said to be \emph{diagonalizable} if there exists a basis consisting of eigenvectors of $T$. Such a basis is called an \emph{eigenbasis}.	
@@ -8393,7 +8393,7 @@ Let $V$ be an $n$-dimensional vector space. Then any linearly independent set of
 \end{lem}
 
 \begin{pf}
-Let $S$ be a linearly independent set of $n$ vectors. By the $+/-$ lemma \fixme{Add reference.}, $S$ can be extended to a basis for $V$. Since $V$ is $n$-dimensional, by Theorem \fixme{Add link.} $S$ is a basis for $V$. If $S$ consists of eigenvectors of $A$, then it is an eigenbasis for $V$.
+Let $S$ be a linearly independent set of $n$ vectors. By the $+/-$ lemma (Lemma \ref{lem:plus_minus}), $S$ can be extended to a basis for $V$. Since $V$ is $n$-dimensional, by Theorem \ref{thm:bigger_smaller_dim} $S$ is a basis for $V$. If $S$ consists of eigenvectors of $A$, then it is an eigenbasis for $V$.
 \end{pf}
 
 
@@ -8514,7 +8514,7 @@ Since $\dim W_1+\dim W_2=1+2=3=\dim V$, by Theorem \ref{thm:diagonalization_thm}
 		0 \\ 1 \\ 0
 	\end{bmatrix}, \begin{bmatrix}
 		-1 \\ 0 \\ 1
-	\end{bmatrix}, \right\}
+	\end{bmatrix} \right\}
 \end{align*}
 we have 
 \begin{align*}
