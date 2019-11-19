@@ -7055,7 +7055,7 @@ Note that, for all $\bx \in \R^n$,
 \end{align*}
 where $[[T(\bv_1)]_{B'}, [T(\bv_2)]_{B'},\dots, [T(\bv_n)]_{B'}]$ is the matrix whose $i$th column is given by $[T(\bv_i)]_{B'}$, the coordinate vector with respect to $B'$ of the image under $T$ of the $i$th basis vector of $B$.
 
-\begin{defn}[Matrix of a linear mapping]
+\begin{defn}[Matrix of a linear mapping]\label{def:matrix_of_a_linear_mapping}
 	The matrix $T_{B,B'}=[[T(\bv_1)]_{B'}, [T(\bv_2)]_{B'},\dots, [T(\bv_n)]_{B'}]$ is called the \emph{matrix of the linear mapping} $T$.
 \end{defn}
 
@@ -7756,32 +7756,14 @@ Note that the considerations of this section adds several additional equivalent 
 
 \section{Eigenvalues and Eigenvectors}\label{sec:eigen}
 \subsection{Similarity}
-Let $V$ and $W$ be finite dimensional vector spaces. We have seen that 
-\begin{itemize}
-	\item $Hom(V,W)$ is a vector space.
-	\item  By choosing bases $B=\{\bv_i\}_{i=1}^n$ for $V$ and $B'=\{\bv'_i\}_{i=1}^n$ for $W$, 
-	\begin{align*}
-		Hom(V,W) \cong M^{m \times n}(\mathbb{R})
-	\end{align*}
-	where $[T]_{\bar{B},B}=L_{\bar{B}}^{-1} \circ T \circ L_B$.
-	\item When $V=W$, $Hom(V,V) \equiv Hom(V)$ becomes an \emph{algebra} over $\mathbb{R}$ whose multiplication is composition. This algebra has a unit, given by the identity map, $I$, and is commutative when $\text{dim }V=1$.
-	\item In this case, it is most convenient to choose the same basis for the domain and codomain, and we find that 
-	\begin{align*}
-		Hom(V) \cong M^{n \times n}(\mathbb{R})
-	\end{align*}
-	as algebras, where $T \mapsto [T]_B$ satisfies
-	\begin{align*}
-	[c_1T_1+c_2T_2]_B&=c_1[T_1]_B+c_2[T_2]_B \\
-		[T_2 \circ T_1]_B&=[T_2]_B[T_1]_B.
-	\end{align*}
-\end{itemize}
-
+Let $V$ and $W$ be finite dimensional vector spaces, and let $T:V \to W$ be a linear mapping. By choosing ordered bases $B=\{\bv_i\}_{i=1}^n$ for $V$ and $B'=\{\bv'_i\}_{i=1}^n$ for $W$, we can represent $T$ by the matrix $[T]_{B',B}$ whose $i$th column is $[T(\bv_i)]_{B'}$, where $\bv_i$ is the $i$th basis vector in the ordered basis $B$ (see Section \ref{sec:matrix_of_a_linear_mapping}). In the case where $W=V$ (in which case we say that $T$ is a \emph{linear operator} on $V$), then it is most convenient to take $B'=B$. In this case, we will denote the matrix of the linear operator $T$ with respect to the basis $B$ by $[T]_B$, rather than $[T]_{B,B}$.
+ 
 \begin{example}
 	Let $D:P_3 \to P_3$ be the differentiation operator, defined by 
 	\begin{align*}
 	D(c_0+c_1x+c_2x^2+c_3x^3)=c_1+2c_2x+3c_3x^2.
 	\end{align*}
-	Choosing the standard basis $B=\{1,x,x^2,x^3\}$ for $P_3$, the $i$th column of $[D]_B$ (the matrix representing $D$) is given by \fixme{Add reference to theorem.} $[D(\bv_i)]_B$. Since
+	Choosing the standard basis $B=\{1,x,x^2,x^3\}$ for $P_3$, the $i$th column of $[D]_B$ (the matrix representing $D$) is given by (see section \ref{sec:matrix_of_a_linear_mapping}) $[D(\bv_i)]_B$. Since
 	\begin{align*}
 		D(\bv_1)&=0=\mathbf{0} \\
 		D(\bv_2)&=1=\bv_1 \\
@@ -7824,7 +7806,7 @@ Let $V$ and $W$ be finite dimensional vector spaces. We have seen that
 	\end{align*}
 	and $L_B(c_1,2c_2,3c_3,0)=c_1+2c_2x+3c_3x^2=D(c_0+c_1x+c_2x^2+c_3x^3)$.
 \end{example}
-Given a linear operator $T$ on an $n$-dimensional vector space $V$, the entries of the matrix $[T]_B$ representing $T$ depend on the basis $B$. If we choose another basis $B'$ for $V$, how are the matrices $[T]_B$ and $[T]_{B'}$ related? 
+Given a linear operator $T$ on an $n$-dimensional vector space $V$, the entries of the matrix $[T]_B$ representing $T$ depend on the chosen basis $B$. If we choose another basis $B'$ for $V$, how are the matrices $[T]_B$ and $[T]_{B'}$ related? 
 
 Given any $\bv \in V$, we have seen previously that 
 \begin{equation}\label{eq:b_prime_to_b}
@@ -7909,14 +7891,13 @@ Since $P_{B' \to B}=\begin{bmatrix}
 	\end{bmatrix}=\begin{bmatrix}
 		-1 & -2 \\
 		1 & 2
-	\end{bmatrix}=[T]_{B'}
+	\end{bmatrix}=[T]_{B'}.
 \end{align*}
 \end{example}
 \begin{defn}[Similarity invariant]
-	Let $A \in M^{n \times n}(\R)$. A property of $A$ shared by all matrices similar to $A$ is called a \emph{similarity invariant}.
+	Let $A \in M^{n \times n}(\R)$. A property of $A$ which holds for all matrices similar to $A$ is called a \emph{similarity invariant}.
 \end{defn}
 
-\newpage 
 \begin{thm}[Similarity invariants]\label{thm:similarity_invariants}
 	Let $A,B$ be similar matrices in $M^{n \times n}(\R)$. Then
 	\begin{enumerate}[(a)]
@@ -7927,6 +7908,9 @@ Since $P_{B' \to B}=\begin{bmatrix}
 		\item $\text{tr } A=\text{tr } B$.
 	\end{enumerate}
 \end{thm}
+
+\newpage
+
 \begin{pf}
 Let $B=P^{-1}AP$.
 	\begin{enumerate}[(a)]
@@ -7977,7 +7961,7 @@ Theorem \ref{thm:similarity_invariants} allows us to define the following:
 That is the determinant (resp. rank, nullity, trace) of a linear operator $T$ is the determinant (resp. rank, nullity, trace) of any matrix representing $T$.
 \end{defn}
 
-\fixme{Add example.}
+We will see many examples in the following section.
 
 \subsection{Eigenvalues and Eigenvectors}
 We saw in the previous section that 
@@ -8003,7 +7987,7 @@ We see immediately that
 \begin{enumerate}[(a)]
 	\item $\det T=0$;
 	\item $\text{tr } T=1$;
-	\item $\text{rk } T=2$;
+	\item $\text{rank } T=2$;
 	\item $\nullity T=1$;
 	\item $\left\{\begin{bmatrix}
 		2 \\ 0 \\ 0
