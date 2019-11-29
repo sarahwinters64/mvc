@@ -8397,15 +8397,20 @@ Let $S$ be a linearly independent set of $n$ vectors. By the $+/-$ lemma (Lemma 
 \end{thm}
 
 \begin{pf}
-(By contradiction.) Let $\lambda_1,\dots,\lambda_m$ be the distinct eigenvalues of $A$, and $\{\bv_i\}_{i=1}^m$ corresponding eigenvectors. Assume $\{\bv_i\}_{i=1}^m$ is linearly dependent. Since $\bv_1 \neq \mathbf{0}$ by definition, $\{\bv_1\}$ is linearly independent. Let $r$ be the largest integer $1 \leq r <m$ such that $\{\bv_i\}_{i=1}^r$ is linearly independent (after reindexing the vectors, if necessary). Then $\{\bv_i\}_{i=1}^{r+1}$ is linearly dependent, so there exist scalars $c_1,\dots,c_{r+1}$ not all zero such that 
+(By contradiction.) Let $\lambda_1,\dots,\lambda_m$ be the distinct eigenvalues of $A$, and $\{\bv_i\}_{i=1}^m$ an ordered set of corresponding eigenvectors (where $\bv_i$ corresponds to $\lambda_i$ for each $i=1,\dots,m$). Assume $\{\bv_i\}_{i=1}^m$ is linearly dependent. Since $\bv_1 \neq \mathbf{0}$ by definition, $\{\bv_1\}$ is linearly independent. Let $r$ be the largest integer $1 \leq r <m$ such that $\{\bv_i\}_{i=1}^r$ is linearly independent (after reindexing the vectors, if necessary). Then $\{\bv_i\}_{i=1}^{r+1}$ is linearly dependent (by definition of $r$), so there exist scalars $c_1,\dots,c_{r+1}$ not all zero such that 
 \begin{equation}\label{eq:diag_cond_1}
-	c_1\bv_1+\cdots+c_{r+1}\bv_{r+1}=\mathbf{0}.
+	c_1\bv_1+\cdots+c_{r}\bv_{r}+c_{r+1}\bv_{r+1}=\mathbf{0}.
 \end{equation}	
-Multiplying both sides by the matrix $A$ gives
+Multiplying both sides of Equation \eqref{eq:diag_cond_1} by the matrix $A$ gives
 \begin{equation}\label{eq:diag_cond_2}
-	c_1\lambda_1\bv_1+\cdots+c_{r+1}\lambda_{r+1}\bv_{r+1}=\mathbf{0}.
+	c_1\lambda_1\bv_1+\cdots+\cdots+ c_{r}\lambda_r \bv_{r}+c_{r+1}\lambda_{r+1}\bv_{r+1}=\mathbf{0}.
 \end{equation}
-Since $\{\bv_i\}_{i=1}^r$ is linearly independent, we must have $c_i(\lambda_i-\lambda_{r+1})=0$ for all $i=1,\dots,r$. Since the $\lambda_i$ are all distinct, this implies $c_i=0$ for all $i=1,\dots,r$. Equation \eqref{eq:diag_cond_1} then becomes $c_{r+1}\bv_{r+1}=\mathbf{0}$ which implies $c_{r+1}=0$ (since $\bv_{r+1} \neq \mathbf{0}$), which is a contradiction. Thus, $\{\bv_i\}_{i=1}^m$ is linearly independent.
+Multiplying Equation \eqref{eq:diag_cond_1} by $\lambda_{r+1}$ and subtracting Equation \eqref{eq:diag_cond_1} from Equation \eqref{eq:diag_cond_2}
+ then gives
+ \begin{align*}
+ 	c_1(\lambda_1-\lambda_{r+1})\bv_1+\cdots+c_r(\lambda_r-\lambda_{r+1})\bv_r=\mathbf{0}.
+ \end{align*}
+ Since the set $\{\bv_i\}_{i=1}^r$ is linearly independent, we must have $c_i(\lambda_i-\lambda_{r+1})=0$ for all $i=1,\dots,r$. Since the $\lambda_i$ are all distinct, this implies $c_i=0$ for all $i=1,\dots,r$. Equation \eqref{eq:diag_cond_1} then becomes $c_{r+1}\bv_{r+1}=\mathbf{0}$ which implies $c_{r+1}=0$ (since $\bv_{r+1} \neq \mathbf{0}$), which is a contradiction since the set $c_1,\dots,c_{r+1}$ are not all zero. Thus, $\{\bv_i\}_{i=1}^m$ is linearly independent.
 \end{pf}
 
 
