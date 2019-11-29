@@ -9030,11 +9030,11 @@ As in $\mathbb{R}^n$, any nonzero vector $\bv$ can be normalized by multiplying 
 \begin{pf}
 	Let $V$ be a finite-dimensional inner product space and let $B=\{\bu_1,\cdots, \bu_n\}$ be a basis for $V$. We will obtain an orthonormal basis $B'=\{\bv_1,\cdots,\bv_n\}$ by means of a construction known as the {\bf Gram-Schmidt orthogonalization algorithm}, which we now describe. The first part of the algorithm successively builds an orthogonal basis. One then simply normalizes each vector to obtain an orthonormal basis.
 	
-	 First, let $\bv_1=\bu_1$. Then $\bv_1 \neq {\bf 0}$, so the set $\{\bv_1\}$ is linearly independent. Now define the other vectors inductively, as follows: Suppose $\bv_1,\cdots,\bv_m$ ($1 \leq m < n$) have been chosen so that for every $k$
+	 First, let $\bv_1=\bu_1$. Then $\bv_1 \neq {\bf 0}$, so the set $\{\bv_1\}$ is linearly independent. Now define the other vectors inductively, as follows: Suppose $\bv_1,\cdots,\bv_m$ ($1 \leq m < n$) have been chosen such that for every $k$ in $1 \leq k \leq m$, the set
 	\begin{align*}
-		\{\bv_1,\cdots,\bv_k\}, \ 1 \leq k \leq m
+		\{\bv_1,\cdots,\bv_k\}
 	\end{align*}
-	is an orthogonal basis for the subspace of $V$ spanned by $\{\bu_1,\cdots,\bu_k\}$ (we have just seen that this is true for $m=1$, establishing the base case). We will show how to construct the next vector, $\bv_{m+1}$, so that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for the subspace of $\mathbb{R}^n$ spanned by $\{\bu_1,\cdots,\bu_{m+1}\}$. This shows that we can continue this process until we have an orthogonal basis for $\mathbb{R}^n$. 
+	is an orthogonal basis for the subspace of $V$ spanned by $\{\bu_1,\cdots,\bu_k\}$ (we have just seen that this is true for $m=1$, since $\{\bu_1\}$ is trivially an orthogonal basis for the subspace of $V$ spanned by $\bu_1$, so this establishes the base case). We will show how to construct the next vector, $\bv_{m+1}$, so that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for the subspace of $\mathbb{R}^n$ spanned by $\{\bu_1,\cdots,\bu_{m+1}\}$. This will complete the inductive proof that we can continue this process until we have an orthogonal basis for $\mathbb{R}^n$. 
 	
 	To construct the next vector $\bv_{m+1}$, let 
 	\begin{equation}\label{eq:next_vector}
@@ -9045,19 +9045,18 @@ As in $\mathbb{R}^n$, any nonzero vector $\bv$ can be normalized by multiplying 
 	\end{equation}
 We need to show that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set of nonzero vectors and that $\{\bv_1,\cdots,\bv_{m+1}\}\subset \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Since an orthogonal set is linearly independent by Lemma \ref{lem:orth_lin}, $\{\bv_1,\cdots,\bv_{m+1}\}$ will then be an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a set of $m+1$ linearly independent vectors in an $(m+1)$-dimensional vector space is automatically a basis for that vector space. 
 	
-First, we note that $\bv_{k+1} \neq 0$, since otherwise we would have 
+First, we note that $\bv_{m+1} \neq 0$, since otherwise we would have 
 \begin{align*}
 	\bu_{m+1}=\sum_{k=1}^m\frac{\bu_{m+1} \cdot \bv_k}{\bv_k \cdot \bv_k }\bv_k
 \end{align*}
-
-which says $\bu_{m+1}$ is a linear combination of $\bv_1,\cdots,\bv_m$ and hence a linear combination of $\bu_1,\cdots,\bu_m$, which contradicts the fact that $\{\bu_1,\cdots,\bu_{m+1}\}$ is linearly independent. \footnote{Note that we have used Lemma \ref{lem:LI_subset} here.} Thus, $\bv_{m+1} \neq 0$. 
+which says $\bu_{m+1}$ is a linear combination of $\{\bv_1,\cdots,\bv_m\}$ and hence a linear combination of $\{\bu_1,\cdots,\bu_m\}$, which contradicts the fact that $\{\bu_1,\cdots,\bu_{m+1}\}$ is linearly independent. \footnote{Note that we have used Lemma \ref{lem:LI_subset} here.} Thus, $\bv_{m+1} \neq 0$. 
 
 All that is left is to show that $\bv_{m+1}$ is orthogonal to every vector in the set $\{\bv_1,\cdots,\bv_m\}$. Let $1 \leq j \leq m$. Then 
 \begin{align*}
 	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1}-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\bv_k, \bv_j \rangle \\
 	&=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle
 \end{align*}
-Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set, every term in the sum is zero except for $k=j$, so we find
+Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set (by our inductive hypothesis), every term in the sum is zero except for $k=j$, so we find
 \begin{align*}
 	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle \\
 	&=\langle \bu_{m+1},\bv_j\rangle-\frac{\langle \bu_{m+1},\bv_{j}\rangle}{\langle \bv_{j},\bv_{j}\rangle}\langle \bv_{j}, \bv_j \rangle \\
@@ -9066,7 +9065,7 @@ Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set, every term in the sum is z
 \end{align*}
 Thus we have shown that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set consisting of $m+1$ nonzero vectors. 
 
-All that remains is to show that this set is a basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. As mentioned above, it will suffice to show that $\{\bv_1,\cdots,\bv_{m+1}\} \subset  \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a linearly independent subset of an $(m+1)$-dimensional vector space consisting of $m+1$ vectors is automatically a basis. The set $\{\bv_1,\cdots,\bv_m\} \subset   \text{Span}\{\bu_1,\cdots,\bu_{m}\} \subset\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$ by the inductive hypothesis. Eq. \eqref{eq:next_vector} then shows that $\bv_{m+1} \in \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Thus, we have shown that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$ and therefore $\{\bv_1,\cdots,\bv_{n}\}$ is an orthogonal basis for $\mathbb{R}^n$.
+All that remains is to show that this set is a basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. As mentioned above, it will suffice to show that $\{\bv_1,\cdots,\bv_{m+1}\} \subset  \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a linearly independent subset of an $(m+1)$-dimensional vector space consisting of $m+1$ vectors is automatically a basis. The set $\{\bv_1,\cdots,\bv_m\} \subset   \text{Span}\{\bu_1,\cdots,\bu_{m}\} \subset\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$ by the inductive hypothesis. Eq. \eqref{eq:next_vector} then shows that $\bv_{m+1} \in \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Thus, we have shown that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, completing the proof by induction that $\{\bv_1,\cdots,\bv_{n}\}$ is an orthogonal basis for $\mathbb{R}^n$.
 
 Finally, since none of these vectors are zero, we obtain an orthonormal basis for $\mathbb{R}^n$ by normalizing each vector as $\bv_i \mapsto \frac{\bv_i}{||\bv_i||}$.
 \end{pf}
@@ -9100,6 +9099,25 @@ Finally, since none of these vectors are zero, we obtain an orthonormal basis fo
 	\end{align*}
 	Apply the Gram-Schmidt algorithm to construct an orthonormal basis $B'=\{\bv_1,\bv_2,\bv_3\}$ for $\mathbb{R}^3$. If $\bx=(1,2,3)$, find $[\bx]_{B'}$.
 \end{exercise}
+{\color{red} \begin{solution}
+ 	\begin{align*}
+ 		\{\bv_1,\bv_2,\bv_3\}&=\left\{\begin{bmatrix}
+ 			3/5 \\ 0 \\ 4/5
+ 		\end{bmatrix}, \begin{bmatrix}
+ 			-4/5 \\ 0 \\ 3/5
+ 		\end{bmatrix}, \begin{bmatrix}
+ 			0 \\ 1 \\ 0
+ 		\end{bmatrix}\right\}, \\
+ 		[\bx]_{B'}&=\begin{bmatrix}
+ 			\bv_1 \cdot \bx \\ 
+ 			\bv_2 \cdot \bx \\
+ 			\bv_3 \cdot \bx
+ 		\end{bmatrix}=\begin{bmatrix}
+ 			3 \\ 1 \\ 2
+ 		\end{bmatrix}.
+ 	\end{align*} 	
+\end{solution}}
+
 \subsection{Orthogonal Matrices}
 Let $B=\{\bu_1,\cdots,\bu_n\}$ and $B'=\{\bu_1',\cdots,\bu_n'\}$ be two orthonormal bases for a finite-dimensional inner product space $V$. Recall that the $i$th column of the transition matrix $P_{B' \to B}$ is given by $[\bu_i']_B$. Writing $\bu_i'$ in the $B$-basis and using the orthonormality of $B$,
 \begin{align*}
