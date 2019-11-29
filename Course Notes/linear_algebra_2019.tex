@@ -8047,23 +8047,19 @@ The vector $\bx$ is called an \emph{eigenvector} of $A$ associated with the eige
 \end{defn}
 
 \begin{exercise}
-\begin{enumerate}[(a)]
-	\item Let $A=\begin{bmatrix}
+Let $A=\begin{bmatrix}
 	1 & 6 \\
 	5 & 2
 \end{bmatrix}$, $\bu=\begin{bmatrix}
 	6 \\ -5
 \end{bmatrix}$, and $\bv=\begin{bmatrix}
 	3 \\ -2
-\end{bmatrix}$. Are $\bu$ and $\bv$ eigenvectors of $A$?
-	\item Show that 7 is an eigenvalue of $A$. Find the corresponding eigenvalues.
-\end{enumerate}	
+\end{bmatrix}$. Are $\bu$ and $\bv$ eigenvectors of $A$? If so, find the corresponding eigenvalues.
 \end{exercise}
 
 {\color{red}
 \begin{solution}
-	\begin{enumerate}[(a)]
-		\item $A\bu=\begin{bmatrix}
+$A\bu=\begin{bmatrix}
 			1 & 6 \\
 			5 & 2
 		\end{bmatrix}\begin{bmatrix}
@@ -8072,8 +8068,8 @@ The vector $\bx$ is called an \emph{eigenvector} of $A$ associated with the eige
 			-24 \\ 20
 		\end{bmatrix}=-4\begin{bmatrix}
 			6 \\ -5
-		\end{bmatrix}=-4\bu$, so $\bu$ is an eigenvector of $A$ with eigenvalue $-4$.
-		\item $A\bv=\begin{bmatrix}
+		\end{bmatrix}=-4\bu$, so $\bu$ is an eigenvector of $A$ with eigenvalue $-4$. 
+$A\bv=\begin{bmatrix}
 			1 & 6 \\
 			5 & 2
 		\end{bmatrix}\begin{bmatrix}
@@ -8081,7 +8077,6 @@ The vector $\bx$ is called an \emph{eigenvector} of $A$ associated with the eige
 		\end{bmatrix}=\begin{bmatrix}
 			-9 \\ 11
 		\end{bmatrix}$ is not a scalar multiple of $\bv$, so $\bv$ is not an eigenvalue of $A$.
-	\end{enumerate}
 \end{solution}}
 
 \begin{thm}[Similar matrices have the same eigenvalues]
