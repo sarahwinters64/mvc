@@ -8381,7 +8381,7 @@ We saw in the previous section how to find the eigenvalues and eigenvectors of a
 While we see that any vector in $W_1$ is not a scalar multiple of any vector in $W_2$, it is not possible to find 3 linearly independent eigenvectors of $B$, so $V$ does not have a basis consisting of eigenvectors of $B$. Hence, $B$ is not diagonalizable. 
 \end{enumerate}	
 \end{example}
-We now give the criteria for a matrix to be diagonalizable. We will need the following lemma.
+We now give sufficient conditions for a matrix to be diagonalizable. We will need the following lemma.
 
 \begin{lem}
 Let $V$ be an $n$-dimensional vector space. Then any linearly independent set of $n$ vectors is a basis for $V$. Thus, an $n \times n$ matrix $A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvalues.	
@@ -8414,10 +8414,10 @@ Multiplying Equation \eqref{eq:diag_cond_1} by $\lambda_{r+1}$ and subtracting E
 \end{pf}
 
 
-\begin{cor}[Diagonalization criteria]
+\begin{cor}[An $n \times n$ matrix with $n$ distinct eigenvalues is diagonalizable.]
 	An $n \times n$ matrix with $n$ distinct eigenvalues is diagonalizable.
 \end{cor}
-What is an $n \times n$ matrix $A$ does not have $n$ distinct eigenvalues? Let $\lambda_1,\dots,\lambda_m$, denote the distinct eigenvalues of $A$.
+What is an $n \times n$ matrix $A$ does not have $n$ distinct eigenvalues? Let $\lambda_1,\dots,\lambda_m$, denote the distinct eigenvalues of $A$, where $m < n$.
 
 \begin{defn}
 \begin{enumerate}[(a)]
@@ -8431,19 +8431,36 @@ For each $1 \leq k \leq m$, the geometric multiplicity of $\lambda_k$ is less th
 \end{lem}
 
 \begin{pf}
-Let $d_k=\dim W_{\lambda_k}$. Choose $d_k$ linearly independent eigenvectors with eigenvalue $\lambda_k$. If we choose a basis for $V$ where the first $d_k$ vectors are these eigenvectors, then $A$ will take the form
+Let $d_k=\dim W_{\lambda_k}$. Choose $d_k$ linearly independent eigenvectors with eigenvalue $\lambda_k$. If we choose a basis for $V$ where the first $d_k$ vectors are these eigenvectors, it follows from Theorem \ref{thm:diagonality_condition} that $A$ will take the form
 \begin{align*}
 	A=\begin{bmatrix}
 		\lambda_k I_k & B \\
 		0 & C
 	\end{bmatrix}
 \end{align*}
-where $I_k$ is the $d_k \times d_k$ identity matrix. Since the characteristic polynomial of $A$ is a similarity invariant, the characteristic polynomial of $A$ is 
-\begin{align*}
+where $I_k$ is the $d_k \times d_k$ identity matrix. The characteristic polynomial of $A$, being a similarity invariant, can therefore be factored as 
+\begin{align}\label{eq:factored_char_poly}
 	(\lambda-\lambda_k)^{d_k}\det(\lambda I-C)
-\end{align*}
+\end{align}
 so the algebraic multiplicity of $\lambda_k$ is at least $d_k$.
 \end{pf}
+
+\begin{exercise}
+	Show that the characteristic polynomial of the matrix
+	\begin{align*}
+		A=\begin{pmatrix}
+			\lambda_1 & 0 & 0 & 0 & 0 & a & b \\
+			0 & \lambda_1 & 0 & 0 & 0 & c & d \\
+			0 & 0 & \lambda_2 & 0 & 0 & e & f \\
+			0 & 0 & 0 & \lambda_2 & 0 & g & h \\
+			0 & 0 & 0 & 0 & \lambda_2 & i & j \\
+			0 & 0 & 0 & 0 & 0 & k & l \\
+			0 & 0 & 0 & 0 & 0 & m & n \\
+		\end{pmatrix}
+	\end{align*}
+	takes the form in Equation \eqref{eq:factored_char_poly}.
+\end{exercise}
+
 
 \begin{thm}[Diagonalization theorem]\label{thm:diagonalization_thm}
 	Let $A$ be an $n \times n$ matrix whose distinct eigenvalues are $\lambda_1,\dots,\lambda_m$. Let $d_k=\dim W_{\lambda_k}$. Then the following are equivalent.
