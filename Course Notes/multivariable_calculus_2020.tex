@@ -829,5 +829,90 @@ Find $\lim_{t \to 1}\bbr(t)$, where $\bbr(t)=\left(\frac{t^2-t}{t-1},\sqrt{t+8},
  	\end{align*}
  \end{solution}}
 
+\begin{thm}[Limit laws for vector-valued functions]
+	Let $\bu, \bv$ be vector valued functions defined on the same open interval containing $t_0$ and let $c \in \R$ be a constant. Then
+	\begin{enumerate}[(i)]
+		\item $\lim_{t \to t_0}(c_1,c_2,\dots,c_n)=(c_1,c_2,\dots,c_n)$ if $(c_1,c_2,\dots,c_n)$ is a constant vector in $\R^n$.
+		\item $\lim_{t \to t_0}c\bu(t)=c\lim_{t \to t_0}\bu(t)$
+		\item $\lim_{t \to t_0}[\bu(t)+\bv(t)]=\lim_{t \to t_0}\bu(t)+\lim_{t \to t_0}\bv(t)$
+		\item $\lim_{t \to t_0}[\bu(t)\cdot\bv(t)]=\lim_{t \to t_0}\bu(t)\cdot\lim_{t \to t_0}\bv(t)$
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+The proof of each of these follows by applying Theorems \ref{thm:limit_laws_for_single-variable_functions} and \ref{thm:limit_of_a_vector-valued_function}.
+\begin{enumerate}[(i)]
+	\item If $(c_1,c_2,\dots,c_n)$ is a constant vector in $\R^n$, then
+		\begin{align*}
+			\lim_{t \to t_0}(c_1,c_2,\dots,c_n)=(\lim_{t \to t_0} c_1,\lim_{t \to t_0} c_2,\dots,\lim_{t \to t_0} c_n)=(c_1,c_2, \dots, c_n).
+		\end{align*}
+	\item If $c \in \R$ is a constant, then
+	\begin{align*}
+		\lim_{t \to t_0}c\bu(t)&=\lim_{t \to t_0}c(u_1(t),u_2(t),\dots,u_n(t)) \\
+		&=\lim_{t \to t_0}(cu_1(t),cu_2(t),\dots,cu_n(t)) \\
+		&=(\lim_{t \to t_0}cu_1(t),\lim_{t \to t_0}cu_2(t),\dots,\lim_{t \to t_0}cu_n(t)) \\
+		&=(c\lim_{t \to t_0}u_1(t),c\lim_{t \to t_0}u_2(t),\dots,c\lim_{t \to t_0}u_n(t)) \\
+		&=c(\lim_{t \to t_0}u_1(t),\lim_{t \to t_0}u_2(t),\dots,\lim_{t \to t_0}u_n(t)) \\
+		&=c\lim_{t \to t_0}(u_1(t),u_2(t),\dots,u_n(t)) \\
+		&=c\lim_{t \to t_0}\bu(t).
+	\end{align*}
+	\item If $\bu(t),\bv(t)$ are vector-valued functions into $\R^n$, then
+	\begin{align*}
+		\lim_{t \to t_0}[\bu(t)+\bv(t)]&=\lim_{t \to t_0}[(u_1(t),\dots,u_n(t))+(v_1(t),\dots,v_n(t))] \\
+		&=\lim_{t \to t_0}(u_1(t)+v_1(t),\dots,u_n(t)+v_n(t)) \\
+		&=(\lim_{t \to t_0}(u_1(t)+v_1(t)),\dots,\lim_{t \to t_0}(u_n(t)+v_n(t))) \\
+		&=(\lim_{t \to t_0}u_1(t)+\lim_{t \to t_0}v_1(t),\dots,\lim_{t \to t_0}u_n(t)+\lim_{t \to t_0}v_n(t)) \\
+		&=(\lim_{t \to t_0}u_1(t),\lim_{t \to t_0}u_2(t),\lim_{t \to t_0}u_3(t))+(\lim_{t \to t_0}v_1(t),\lim_{t \to t_0}v_2(t),\lim_{t \to t_0}v_3(t)) \\
+		&=\lim_{t \to t_0}(u_1(t),u_2(t),u_3(t))+\lim_{t \to t_0}(v_1(t),v_2(t),v_3(t)) \\
+		&=\lim_{t \to t_0}\bu(t)+\lim_{t \to t_0}\bv(t).
+	\end{align*}
+	\item If $\bu(t),\bv(t)$ are vector-valued functions into $\R^n$, then
+	\begin{align*}
+		\lim_{t \to t_0}[\bu(t)\cdot\bv(t)]&=\lim_{t \to t_0} \sum_{i=1}^n u_i(t)v_i(t)\\
+		&=\sum_{i=1}^n \lim_{t \to t_0} u_i(t)v_i(t)\\
+		&=\sum_{i=1}^n \lim_{t \to t_0} u_i(t) \lim_{t \to t_0} v_i(t)\\
+		&=\lim_{t \to t_0} \bu(t) \cdot \lim_{t \to t_0} \bv(t). 
+	\end{align*}
+\end{enumerate}
+\end{pf}
+
+
+\begin{thm}[Limit law for cross product]
+	If $\bu,\bv$ are vector-valued functions into $\R^3$, then
+	\begin{align*}
+		\lim_{t \to t_0}[\bu(t)\times\bv(t)]=\lim_{t \to t_0}\bu(t)\times\lim_{t \to t_0}\bv(t).
+	\end{align*}
+\end{thm}
+
+\begin{pf}
+	If $\bu,\bv$ are vector-valued functions into $\R^3$, then
+	\begin{align*}
+		&\lim_{t \to t_0}[\bu(t)\times\bv(t)]=\lim_{t \to t_0}(u_2(t)v_3(t)-u_3(t)v_2(t),-u_1(t)v_3(t)+u_3(t)v_1(t),u_1(t)v_2(t)-u_2(t)v_1(t)) \\
+		&=(\lim_{t \to t_0}(u_2(t)v_3(t)-u_3(t)v_2(t)),\lim_{t \to t_0}(-u_1(t)v_3(t)+u_3(t)v_1(t)),\lim_{t \to t_0}(u_1(t)v_2(t)-u_2(t)v_1(t))) \\
+		&=(\lim_{t \to t_0}u_2(t)\lim_{t \to t_0}v_3(t)-\lim_{t \to t_0}u_3(t)\lim_{t \to t_0}v_2(t),-\lim_{t \to t_0}u_1(t)\lim_{t \to t_0}v_3(t)+\lim_{t \to t_0}u_3(t)\lim_{t \to t_0}v_1(t), \\
+		& \hspace{10cm}\lim_{t \to t_0}u_1(t)\lim_{t \to t_0}v_2(t)-\lim_{t \to t_0}u_2(t)\lim_{t \to t_0}v_1(t)) \\
+		&=\lim_{t \to t_0}\bu(t)\times\lim_{t \to t_0}\bv(t).
+	\end{align*}
+\end{pf}
+
+\fixme{Add examples.}
+
+\begin{defn}[Continuity]
+	Let $\bbr(t)$ be defined on an open interval $(a,b)$ containing a point $t_0$. We say that $\bbr(t)$ is \emph{continuous at $t_0$} if $\lim_{t \to t_0}\bbr(t)=\bbr(t_0)$. We then say that $\bbr(t)$ is \emph{continuous on $(a,b)$} if $\bbr(t)$ is continuous at every point in $(a,b)$.
+\end{defn}
+
+\begin{thm}[Continuity of vector-valued functions]
+	A vector-valued function $\bbr(t)=(r_1(t),\dots,r_n(t))$ is continuous at $t_0$ if and only if its component functions are all continuous at $t_0$.
+\end{thm}
+
+\begin{pf}
+This follows immediately from Theorem \ref{thm:limit_of_a_vector-valued_function}.	
+\end{pf}
+
+\begin{example}
+The vector-valued function $\bbr(t)=(\cos t, \sin t, t)$ is continuous on $\R$ since its component functions are each continuous on $\R$.	
+\end{example}
+
+
 \end{document}
 
