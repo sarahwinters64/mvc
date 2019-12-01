@@ -488,7 +488,7 @@ Following the reasoning in this example,  the precise definition of a limit is t
 	\end{align*}
 \end{defn}
 
-\begin{thm}[Uniqueness of limits]
+\begin{thm}[Uniqueness of limits]\label{thm:uniqueness_of_limits}
 	If $f(x)$ has a limit $L$ at $x_0$, then the limit is unique.
 \end{thm}
 
@@ -707,12 +707,127 @@ Consider the function $f(x)=e^{x^2}$. We can view $f(x)$ as the composition $(h 
 \end{example}
 
 \subsubsection{Limits of vector-valued functions}
+Throughout this section, let $I=(a,b)$ denote an open interval in $\R$ containing a point $t_0$, and let $\bbr(t)$ be a vector-valued function defined on $I$, except perhaps at $t_0$ itself. 
 \begin{defn}[Limit of a vector-valued function]
-	Let $I=(a,b)$ be an open interval in $\R$ containing $t_0$, let $\bbr:I\to \mathbb{R}^3$ be a vector valued function defined on $I$, except perhaps at $t_0$ itself, and let $\bl$ be a fixed vector in $\mathbb{R}^n$. We say that $\bl$ $\lim_{t \to t_0}\bbr(t)={\bf L}$ if for every $\epsilon >0$ there exists a corresponding $\delta > 0$ such that
+	A fixed vector $\bl \in \mathbb{R}^n$ is said to be the \emph{limit as $\bbr(t)$ approaches $t_0$} if for every $\epsilon >0$ there exists a corresponding $\delta > 0$ such that
 	\begin{align*}
 		0 < |t-t_0|<\delta \implies ||\bbr(t)-{\bf L}||<\epsilon.
 	\end{align*}
+	If $\bl$ exists, we write $\lim_{t \to t_0}\bbr(t)=\bl$. 
 \end{defn}
+We will now show that the limit of a vector-valued function can be computed in terms of the limits of its component functions. We will need the following lemma.
+
+\begin{lem}\label{lem:useful_vector_inequalities}
+Let $\bx=(x_1,x_2,\dots,x_n)$ and $\by=(y_1,y_2,\dots,y_n)$ be vectors in $\R^n$. Then
+\begin{align*}
+	|x_i-y_i| \leq ||\bx-\by|| \leq \sum_{i=1}^3|x_i-y_i|
+\end{align*}	
+for all $i=1,2,\dots,n$.
+\end{lem}
+
+\begin{pf}
+For any fixed index $i$, we have
+\begin{align*}
+	||\bx-\by||^2&=\sum_{i=1}^n(x_i-y_i)^2 \\
+	&=(x_i-y_i)^2+\underbrace{\sum_{j \neq i}(x_j-y_j)^2}_{\geq 0} \\
+	&\geq (x_i-y_i)^2.
+\end{align*}	
+Since both sides are nonnegative, this implies that 
+\begin{align*}
+	||\bx-\by||\geq \sqrt{(x_i-y_i)^2}=|x_i-y_i|,
+\end{align*}
+so the first inequality holds. 
+
+To see that the second inequality holds, note that 
+\begin{align*}
+	\left(\sum_{i=1}^n|x_i-y_i|\right)^2&=\sum_{i=1}^n|x_i-y_i|^2+\underbrace{2\sum_{1 \leq i<j \leq n}|x_i-y_i||x_j-y_j|}_{\geq 0} \\
+	&\geq \sum_{i=1}^n|x_i-y_i|^2 \\
+	&= \sum_{i=1}^n(x_i-y_i)^2 \\
+	&=||\bx-\by||^2.
+\end{align*}
+Since both sides are nonnegative, this implies that 
+\begin{align*}
+	\sum_{i=1}^n|x_i-y_i| \geq ||\bx-\by||,
+\end{align*}
+so the second inequality holds.
+\end{pf}
+
+\begin{exercise}
+Verify that	
+\begin{align*}
+	\left(\sum_{i=1}^n|x_i-y_i|\right)^2&=\sum_{i=1}^n|x_i-y_i|^2+2\sum_{1 \leq i<j \leq n}|x_i-y_i||x_j-y_j|
+\end{align*}
+for $n=3$ by explicitly writing out both sides.
+\end{exercise}
+
+
+\begin{thm}[Limit of a vector-valued function]\label{thm:limit_of_a_vector-valued_function}
+Let $\bbr:I\to \mathbb{R}^n$ be a vector-valued function. Then
+	\begin{align}\label{eq:lim_defn_for_vv_f}
+		\lim_{t\to t_0}{\bf r}(t)=(\lim_{t\to t_0}r_1(t),\lim_{t\to t_0}r_2(t),\lim_{t\to t_0}r_3(t)).
+	\end{align}	
+\end{thm}
+
+\begin{pf}
+Let $\bl=(L_1,L_2,\dots,L_n)$ be a fixed vector in $\R^n$. We will prove that $\lim_{t \to t_0}\bbr(t)=\bl$ if and only if $\lim_{t \to t_0}r_i(t)=L_i$ for all $i=1,\dots,n$; that is, both sides of Equation \eqref{eq:lim_defn_for_vv_f} are either undefined, or they are both equal to $\bl$ and hence to each other.
+
+($\implies$) First, suppose that $\lim_{t \to t_0}\bbr(t)=\bl$. Then, given $\epsilon>0$, there exists $\delta>0$ such that $||\bbr(t)-\bl||<\epsilon$ whenever $0<|t-t_0|<\delta$. By Lemma \ref{lem:useful_vector_inequalities}, for each $i=1,\dots,n$
+\begin{align*}
+	|r_i(t)-L_i|<||\bbr(t)-\bl||
+\end{align*}
+so we have $|r_i(t)-L_i|<\epsilon$ for each $i=1,\dots,n$ whenever $0<|t-t_0|<\delta$. Thus, $\lim_{t \to t_0}\bbr(t)=\bl$ implies that $\lim_{t \to t_0}r_i(t)=L_i$ for all $i=1,\dots,n$.
+
+($\impliedby$) Now suppose that $\lim_{t \to t_0}r_i(t)=L_i$ for all $i=1,\dots,n$. Given $\epsilon>0$, there exist positive numbers $\delta_1,\delta_2,\dots,\delta_n$ such that $|r_i(t)-L_i|<\frac{\epsilon}{n}$ whenever $0<|t-t_0|<\delta_i$. By Lemma \ref{lem:useful_vector_inequalities}, 
+\begin{align*}
+	||\bbr(t)-\bl||<\sum_{i=1}^n|r_i(t)-L_i|,
+\end{align*}
+so by taking $\delta=\min\{\delta_1,\delta_2,\dots,\delta_n\}$, we have 
+  \begin{align*}
+	||\bbr(t)-\bl||<\sum_{i=1}^n|r_i(t)-L_i|<\epsilon
+\end{align*}
+whenever $|t-t_0|<\delta$. Thus, $\lim_{t \to t_0}r_i(t)=L_i$ for all $i=1,\dots,n$ implies that $\lim_{t \to t_0}\bbr(t)=\bl$.
+\end{pf}
+
+\begin{cor}[Uniqueness of the limit of a vector-valued function]
+	If $\lim_{t \to t_0}\bbr(t)=\bl$, then the limit is unique.
+\end{cor}
+
+\begin{pf}
+	Since the limits $\lim_{t \to t_0}r_i(t)=L_i$ are unique (if they exist) by Theorem \ref{thm:uniqueness_of_limits}, it follows immediately from Theorem \ref{thm:limit_of_a_vector-valued_function} that $\lim_{t \to t_0}\bbr(t)=\bl$ is unique if it exists.
+\end{pf}
+
+
+\begin{example}
+Let $\bbr(t)=(1+t^3,te^{-t},\frac{\sin t}{t})$. Since
+\begin{align*}
+	\lim_{t \to 0}(1+t^3)&=1, \\
+	\lim_{t \to 0}te^{-t}&=\lim_{t \to 0}t \lim_{t \to 0}e^{-t}=0 \cdot 1=0, \\
+	\lim_{t \to 0}\frac{\sin t}{t}&=\lim_{t \to 0}\cos t=1 \hspace{0.5cm}\text{( by L'Hospital's rule)}
+\end{align*}	
+by Theorem \ref{thm:limit_of_a_vector-valued_function}
+\begin{align*}
+	\lim_{t \to 0}\bbr(t)&=\left(\lim_{t \to 0}(1+t^3),\lim_{t \to 0}te^{-t},\lim_{t \to 0}\frac{\sin t}{t}\right) \\
+	&=(1,0,1).
+\end{align*}
+\end{example}
+
+\begin{exercise}
+Find $\lim_{t \to 1}\bbr(t)$, where $\bbr(t)=\left(\frac{t^2-t}{t-1},\sqrt{t+8},\frac{\sin(\pi t)}{\ln(t)}\right)$, if it exists.	
+\end{exercise}
+
+{\color{red} \begin{solution}
+ 	Since
+ 	\begin{align*}
+ 		\lim_{t \to 1}\frac{t^2-t}{t-1}&=\lim_{t \to 1}\frac{t(t-1)}{t-1}=\lim_{t \to 1}t=1, \\
+ 		\lim_{t \to 1}\sqrt{t+8}&=\sqrt{1+8}=\sqrt{9}=3, \\
+ 		\lim_{t \to 1}\frac{\sin(\pi t)}{\ln(t)}&=\lim_{t \to 1}\frac{\pi \cos(\pi t)}{\frac{1}{t}}=\lim_{t \to 1}\pi t\cos(\pi t)=\pi(1)\cos(\pi)=-\pi,
+ 	\end{align*}
+ 	by Theorem \ref{thm:limit_of_a_vector-valued_function}
+ 	\begin{align*}
+ 		\lim_{t \to 1}\bbr(t)&=\left(\lim_{t \to 1}\frac{t^2-t}{t-1},\lim_{t \to 1}\sqrt{t+8},\lim_{t \to 1}\frac{\sin(\pi t)}{\ln(t)}\right) \\
+ 		&=(1,3,-\pi).
+ 	\end{align*}
+ \end{solution}}
 
 \end{document}
 
