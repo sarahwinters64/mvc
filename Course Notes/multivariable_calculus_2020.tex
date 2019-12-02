@@ -692,7 +692,14 @@ Prove that $f(x)=|x|$ is continuous on $\R$.
 {\color{red} \begin{solution}
  	If $x>0$, then $f(x)=x$ which is continuous since it is a polynomial. The same is true for $x<0$ since then $f(x)=-x$. By taking $\delta=\epsilon$, $|f(x)-0|=||x||=|x|<\epsilon$ whenever $|x|<\delta=\epsilon$, so $\lim_{x \to 0}f(x)=0=f(0)$, which shows that $f(x)$ is also continuous at $x=0$. Thus, $f(x)$ is continuous on $\R$.
  \end{solution}}
-The following theorem is also very useful.
+
+\begin{thm}[New continuous functions from old]
+	Let $f(x)$ and $g(x)$ be defined on the same open interval containing $x_0$. If $f(x)$ and $g(x)$ are continuous at $x_0$, then so are
+	\begin{enumerate}[(i)]
+		\item $cf(x)$
+	\end{enumerate}
+\end{thm}
+
 
 \begin{thm}[A composition of continuous functions is continuous]\label{thm:a_composition_of_continuous_functions_is_continuous}
 	Suppose $f(x)$ is defined on an open interval containing $x_0$ and  $g(x)$ is defined on an open interval containing $f(x_0)$. If $f$ is continuous at $x_0$ and $g(x)$ is continuous at $f(x_0)$, then $(g \circ f)(x)$ is continuous at $x_0$.
@@ -829,13 +836,14 @@ Find $\lim_{t \to 1}\bbr(t)$, where $\bbr(t)=\left(\frac{t^2-t}{t-1},\sqrt{t+8},
  	\end{align*}
  \end{solution}}
 
-\begin{thm}[Limit laws for vector-valued functions]
-	Let $\bu, \bv$ be vector valued functions defined on the same open interval containing $t_0$ and let $c \in \R$ be a constant. Then
+\begin{thm}[Limit laws for vector-valued functions]\label{thm:limit_laws_for_vector-valued_functions}
+	Let $\bu, \bv$ be vector valued functions into $\R^n$ defined on the same open interval containing $t_0$ and let $c \in \R$ be a constant. Then
 	\begin{enumerate}[(i)]
 		\item $\lim_{t \to t_0}(c_1,c_2,\dots,c_n)=(c_1,c_2,\dots,c_n)$ if $(c_1,c_2,\dots,c_n)$ is a constant vector in $\R^n$.
 		\item $\lim_{t \to t_0}c\bu(t)=c\lim_{t \to t_0}\bu(t)$
 		\item $\lim_{t \to t_0}[\bu(t)+\bv(t)]=\lim_{t \to t_0}\bu(t)+\lim_{t \to t_0}\bv(t)$
 		\item $\lim_{t \to t_0}[\bu(t)\cdot\bv(t)]=\lim_{t \to t_0}\bu(t)\cdot\lim_{t \to t_0}\bv(t)$
+		\item $\lim_{t \to t_0}[\bu(t)\times\bv(t)]=\lim_{t \to t_0}\bu(t)\times\lim_{t \to t_0}\bv(t)$ (for $n=3$)
 	\end{enumerate}
 \end{thm}
 
@@ -873,19 +881,7 @@ The proof of each of these follows by applying Theorems \ref{thm:limit_laws_for_
 		&=\sum_{i=1}^n \lim_{t \to t_0} u_i(t) \lim_{t \to t_0} v_i(t)\\
 		&=\lim_{t \to t_0} \bu(t) \cdot \lim_{t \to t_0} \bv(t). 
 	\end{align*}
-\end{enumerate}
-\end{pf}
-
-
-\begin{thm}[Limit law for cross product]
-	If $\bu,\bv$ are vector-valued functions into $\R^3$, then
-	\begin{align*}
-		\lim_{t \to t_0}[\bu(t)\times\bv(t)]=\lim_{t \to t_0}\bu(t)\times\lim_{t \to t_0}\bv(t).
-	\end{align*}
-\end{thm}
-
-\begin{pf}
-	If $\bu,\bv$ are vector-valued functions into $\R^3$, then
+	\item If $\bu,\bv$ are vector-valued functions into $\R^3$, then
 	\begin{align*}
 		&\lim_{t \to t_0}[\bu(t)\times\bv(t)]=\lim_{t \to t_0}(u_2(t)v_3(t)-u_3(t)v_2(t),-u_1(t)v_3(t)+u_3(t)v_1(t),u_1(t)v_2(t)-u_2(t)v_1(t)) \\
 		&=(\lim_{t \to t_0}(u_2(t)v_3(t)-u_3(t)v_2(t)),\lim_{t \to t_0}(-u_1(t)v_3(t)+u_3(t)v_1(t)),\lim_{t \to t_0}(u_1(t)v_2(t)-u_2(t)v_1(t))) \\
@@ -893,6 +889,7 @@ The proof of each of these follows by applying Theorems \ref{thm:limit_laws_for_
 		& \hspace{10cm}\lim_{t \to t_0}u_1(t)\lim_{t \to t_0}v_2(t)-\lim_{t \to t_0}u_2(t)\lim_{t \to t_0}v_1(t)) \\
 		&=\lim_{t \to t_0}\bu(t)\times\lim_{t \to t_0}\bv(t).
 	\end{align*}
+\end{enumerate}
 \end{pf}
 
 \fixme{Add examples.}
@@ -912,6 +909,100 @@ This follows immediately from Theorem \ref{thm:limit_of_a_vector-valued_function
 \begin{example}
 The vector-valued function $\bbr(t)=(\cos t, \sin t, t)$ is continuous on $\R$ since its component functions are each continuous on $\R$.	
 \end{example}
+
+\begin{thm}[New continuous vector-valued functions from old]
+Let $\bu$ and $\bv$ be two vector-valued functions on $\R^n$ which are continuous at $t_0$ and let $c$ be a constant. Then the following functions are also continuous at $t_0$:
+\begin{enumerate}[(i)]
+	\item $c\bu(t)$
+	\item $\bu(t)+\bv(t)$
+	\item $\bu(t) \cdot \bv(t)$
+	\item $\bu(t) \times \bv(t)$ (for $n=3$)
+\end{enumerate}	
+\end{thm}
+
+\begin{pf}
+	The proof follows immediately from Theorem \ref{thm:limit_laws_for_vector-valued_functions}. 
+\end{pf}
+
+\begin{thm}[Continuity of composite function]
+	Let $\bbr:\R \to \R^3$ be a continuous vector-valued function and $\varphi:\R \to \R$ a continuous real-valued function. Then the composite function $\tilde{\bbr}=\bbr \circ \varphi:\R \to \R^3$ is continuous.
+\end{thm}
+
+\begin{pf}
+Since $\bbr(t)$ is continuous, given $\epsilon>0$ there exists $\eta>0$ such that $||\bbr(\varphi(t))-\bbr(\varphi(t_0))||<\epsilon$ whenever $|\varphi(t)-\varphi(t_0)|<\eta$. Since $\varphi(t)$ is continuous, corresponding to $\eta$ there exists $\delta>0$ such that $|\varphi(t)-\varphi(t_0)|<\eta$ whenever $|t-t_0|<\delta$. Thus, given $\epsilon>0$, there exists $\delta>0$ such that $||\bbr(\varphi(t))-\bbr(\varphi(t_0))||<\epsilon$ whenever $|t-t_0|<\delta$.
+\end{pf}
+
+\fixme{Add example.}
+
+\subsubsection{Derivatives of vector-valued functions}
+\begin{defn}[Derivative of a vector-valued function]
+	The \emph{derivative} of a vector-valued function $\bbr(t)$ is the limit
+	\begin{align*}
+		\bbr'(t)=\lim_{h \to 0}\frac{\bbr(t+h)-\bbr(t)}{h}.
+	\end{align*}
+	The function $\bbr$ is said to be \emph{differentiable at $t_0$} if $\bbr'(t_0)$ exists, and $\bbr$ is said to be \emph{differentiable on $(a,b)$} if $\bbr'(t)$ exists for all $t \in (a,b)$.
+\end{defn}
+Geometrically, $\bbr'(t_0)$ is the \emph{tangent vector} to the curve $\bbr$ at $\bbr(t)$.
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.4]{figures_mvc/tangent_vector_secant_vector}
+\end{center}
+\caption{The derivative $\bbr'(t)$ is the tangent vector to the curve $\bbr$ at $\bbr(t)$.}
+\end{figure}
+The next theorem shows that we can compute the derivative of a vector-valued function in terms of the derivatives of its component functions.
+
+\begin{thm}[Derivative of a vector-valued function]
+	The derivative of a vector-valued function $\bbr(t)=(r_1(t),r_2(t),r_3(t))$ is given by 
+	\begin{align*}
+		\bbr'(t)=(r_1'(t),r_2'(t),r_3'(t)).
+	\end{align*}
+\end{thm}
+
+\begin{pf}
+By Theorem \ref{thm:limit_of_a_vector-valued_function}
+\begin{align*}
+	\bbr'(t)&=\lim_{h \to 0}\frac{\bbr(t+h)-\bbr(t)}{h} \\
+	&=\lim_{h \to 0}\frac{(r_1(t+h),r_2(t+h),r_3(t+h))-(r_1(t),r_2(t),r_3(t))}{h} \\
+	&=\lim_{h \to 0}\frac{(r_1(t+h)-r_1(t),r_2(t+h)-r_2(t),r_3(t+h)-r_3(t))}{h} \\
+	&=\lim_{h \to 0}\left(\frac{r_1(t+h)-r_1(t)}{h},\frac{r_2(t+h)-r_2(t)}{h},\frac{r_3(t+h)-r_3(t)}{h}\right) \\
+	&=\left(\lim_{h \to 0}\frac{r_1(t+h)-r_1(t)}{h},\lim_{h \to 0}\frac{r_2(t+h)-r_2(t)}{h},\lim_{h \to 0}\frac{r_3(t+h)-r_3(t)}{h}\right) \\
+	&=(r_1'(t),r_2'(t),r_3'(t)).
+\end{align*}	
+\end{pf}
+
+\fixme{Add examples.}
+
+\begin{thm}[Differentiation formulas]
+	Let $\bu,\bv$ be differentiable vector-valued functions into $\R^n$, $c$ a constant, and $\varphi:\mathbb{R} \to \mathbb{R}$ a real-valued function. Then
+\begin{enumerate}[(1)]
+		\item $[\bu(t)+\bv(t)]'=\bu'(t)+\bv'(t)$
+		\item $[c\bu(t)]'=c\bu'(t)$
+		\item $[\varphi(t)\bu(t)]'=\varphi'(t)\bu(t)+\varphi(t)\bu'(t)$
+		\item $[\bu(t)\cdot \bv(t)]'=\bu'(t)\cdot \bv(t)+\bu(t) \cdot \bv'(t)$
+		\item $[\bu(t)\times \bv(t)]'=\bu'(t)\times \bv(t)+\bu(t) \times \bv'(t)$ (for $n=3$)
+		\item $[\bu(\varphi(t))]'=\varphi'(t)\bu'(\varphi(t))$
+	\end{enumerate}	
+\end{thm}
+
+\begin{pf}
+\fixme{Add proof.}	
+\end{pf}
+
+
+\begin{defn}[Higher derivatives]
+	\begin{enumerate}[(a)]
+		\item The \emph{second derivative}, $\bbr''$, of a vector-valued function $\bbr$ is the derivative of $\bbr'$: $\bbr''=(\bbr')'$. Thus,
+\begin{align*}
+	\bbr''(t)=(f''(t), g''(t), h''(t))
+\end{align*}
+Similarly, for $k$ a positive integer, the $k$th derivative of $\bbr$ is given by the formula
+\begin{align*}
+	\bbr^{(k)}(t)=(f^{(k)}(t), g^{(k)}(t), h^{(k)}(t)).
+\end{align*}
+\item A vector-valued function is said to be of class $\mathscr{C}^k$ if its first $k$ derivatives exist and are continuous and of class $\mathscr{C}^\infty$ if all of its derivatives exist. Functions in the class $\mathscr{C}^\infty$ are also called \emph{smooth}.
+	\end{enumerate}
+\end{defn}
 
 
 \end{document}
