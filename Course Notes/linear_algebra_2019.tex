@@ -8981,7 +8981,43 @@ Let $W$ be a finite-dimensional subspace of an inner product space $V$. If $\{\b
 \end{exercise}
 
 \subsubsection{Gram-Schmidt Algorithm}
-We now turn to the task of finding orthonormal bases for an abstract vector space.
+We now turn to the task of finding orthonormal bases for an abstract vector space. First, we note that every finite-dimensional vector space is an inner product space.
+
+\begin{thm}[Every finite-dimensional vector space is an inner product space.]
+	Every finite-dimensional vector space is an inner product space.
+\end{thm}
+
+\begin{pf}
+Let $V$ be a finite-dimensional vector space,  let $B$ be an ordered basis for $V$, and let $L_B:\R^n \to V$ the corresponding basis isomorphism. Define the map 
+\begin{align*}
+	L_B \times L_B:\R^n \times \R^n \to V \times V
+\end{align*}
+by $L_B \times L_B (\bx,\by)=(L_B(\bx),L_B(\by))$. It is straightforward to check that $L_B \times L_B$ is an isomorphism. 	We then define an inner product $\langle \ ,\ \rangle:V \times V \to \R$ as the unique map which makes the following diagram commute:
+\begin{equation*}
+	\begin{tikzcd}
+	& V \times V \arrow{r}{\langle \ , \ \rangle} & \R \\
+	& \R^n \times \R^n  \arrow[u,"L_B \times L_B"]  \arrow[ur,swap,"\bullet"] &  	
+	\end{tikzcd}
+\end{equation*}
+That is, $\langle \ ,\ \rangle$ is defined for every $\bv_1,\bv_2 \in V$ by 
+\begin{align}\label{eq:inner_prod_defni}
+	\langle \bv_1,\bv_2 \rangle=[\bv_1]_B \cdot [\bv_2]_B,
+\end{align}
+since $\bv_i=L_B([\bv_i]_B)$ for $i=1,2$.
+\end{pf}
+
+\fixme{Add example.}
+
+
+\begin{exercise}
+\begin{enumerate}[(a)]
+	\item Verify that the map $L_B \times L_B$ defined above is an isomorphism.
+	\item Use the diagram above to obtain Equation \ref{eq:inner_prod_defni}.
+\end{enumerate}	
+\end{exercise}
+
+
+
 \begin{defn}
 	A set of two or more vectors in an inner product space is said to be {\bf orthogonal} if all pairs of distinct vectors in the set are orthogonal. An orthogonal set in which each vector has norm 1 is said to be {\bf orthonormal}.
 \end{defn}
@@ -9049,7 +9085,7 @@ First, we note that $\bv_{m+1} \neq 0$, since otherwise we would have
 \begin{align*}
 	\bu_{m+1}=\sum_{k=1}^m\frac{\bu_{m+1} \cdot \bv_k}{\bv_k \cdot \bv_k }\bv_k
 \end{align*}
-which says $\bu_{m+1}$ is a linear combination of $\{\bv_1,\cdots,\bv_m\}$ and hence a linear combination of $\{\bu_1,\cdots,\bu_m\}$, which contradicts the fact that $\{\bu_1,\cdots,\bu_{m+1}\}$ is linearly independent. \footnote{Note that we have used Lemma \ref{lem:LI_subset} here.} Thus, $\bv_{m+1} \neq 0$. 
+which says $\bu_{m+1}$ is a linear combination of $\{\bv_1,\cdots,\bv_m\}$ and hence a linear combination of $\{\bu_1,\cdots,\bu_m\}$, \footnote{Since, by assumption, $\{\bv_1,\cdots,\bv_m\}$ is a basis for $\Span\{\bu_1,\cdots,\bu_m\}$ and, in particular, $\Span\{\bv_1,\cdots,\bv_m\}=\Span\{\bu_1,\cdots,\bu_m\}$} which contradicts the fact that $\{\bu_1,\cdots,\bu_{m+1}\}$ is linearly independent. \footnote{Note that we have used Lemma \ref{lem:LI_subset} here.} Thus, $\bv_{m+1} \neq 0$. 
 
 All that is left is to show that $\bv_{m+1}$ is orthogonal to every vector in the set $\{\bv_1,\cdots,\bv_m\}$. Let $1 \leq j \leq m$. Then 
 \begin{align*}
