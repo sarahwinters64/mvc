@@ -8589,21 +8589,20 @@ Diagonalize $A$, if possible.
 
  
 \subsection{Orthonormal Bases}
-\subsubsection{Orthonormal Bases for $\R^3$}
-Recall that two vectors $\bx$ and $\by$ in $\mathbb{R}^3$ are said to be \emph{orthogonal} if their dot product is zero:
+Recall that two vectors $\bx$ and $\by$ in $\mathbb{R}^n$ are said to be \emph{orthogonal} if their dot product is zero:
 \begin{align*}
 	\bx \cdot \by = 0.
 \end{align*}
-Recall that, geometrically, the dot product is 
+Recall that, for nonzero vectors, the dot product is given by
 \begin{align*}
 	\bx \cdot \by = ||\bx || \ || \by ||\cos \theta
 \end{align*}
-so orthogonality is the same thing as perpendicularity for two nonzero vectors. 
+two nonzero vectors are orthogonal if and only if they are perpendicular. 
 
 \begin{defn}
 \
 \begin{enumerate}[(a)]
-	\item Let $S=\{\bv_1,\cdots\,\bv_k\}$ be a collection of vectors in $\mathbb{R}^3$. Then $S$ is said to be an {\bf orthogonal set} if all the vectors in $S$ are mutually orthogonal, that is, if 
+	\item Let $S=\{\bv_1,\cdots\,\bv_k\}$ be a collection of vectors in $\mathbb{R}^n$. Then $S$ is said to be an \emph{orthogonal set} if all the vectors in $S$ are mutually orthogonal, that is, if 
 		$\bv_i \cdot \bv_j = 0 \text{ when }i \neq j$.
 	\item If, in addition, we have $\bv_i \cdot \bv_i=1$ for all $i=1,\cdots,k$, we say that $S$ is an \emph{orthonormal set}.
 \end{enumerate}
@@ -8634,8 +8633,23 @@ Note that, from any orthogonal set $S$ of nonzero vectors in $\mathbb{R}^3$, we 
 Note that the set $S=\{\bv_1,\bv_2,\bv_3\}$ from the example above is a basis for $\mathbb{R}^3$.
 
 \begin{defn}
-	Let $B$ be a basis for $\mathbb{R}^3$. If $B$ is also orthogonal, it is said to be an {\bf orthogonal basis}. If $B$ is orthonormal, it is said to be an {\bf orthonormal basis}.
+	Let $B$ be a basis for $\mathbb{R}^n$. If $B$ is also orthogonal, it is said to be an \emph{orthogonal basis}. If $B$ is orthonormal, it is said to be an \emph{orthonormal basis}.
 \end{defn}
+
+\begin{example}
+The standard basis for $\R^n$
+\begin{align*}
+	B=\left\{\begin{bmatrix}
+		1 \\ 0 \\ \vdots \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		0 \\ 1 \\ \vdots \\ 0
+	\end{bmatrix}, \dots, \begin{bmatrix}
+		0 \\ \vdots \\ 0 \\ 1
+	\end{bmatrix}\right\}
+\end{align*}	
+is an orthonormal basis.
+\end{example}
+
 
 Let $B=\{\bv_1,\bv_2,\bv_3\}$ be an orthonormal basis for $\mathbb{R}^3$ and let $\bx \in \mathbb{R}^3$. Since $B$ is a basis for $\mathbb{R}^3$, there exist scalars $c_1,c_2,c_3$ such that 
 \begin{align*}
@@ -8701,14 +8715,184 @@ Similarly, we find $\bv_2 \cdot \bx = c_2$ and $\bv_3 \cdot \bx = c_3$. Thus, by
 	\bx=(\bv_1 \cdot \bx)\bv_1+(\bv_2 \cdot \bx)\bv_2+(\bv_3 \cdot \bx)\bv_3
 \end{align}
 \begin{exercise}
-	Verify Eq. \eqref{eq:coeffs} for the vector in Example \ref{ex:long}.
+	Use Eq. \eqref{eq:coeffs} to find $[\bx]_B$ for the vector in Example \ref{ex:long}.
 \end{exercise}
 
-\subsubsection{Inner Products}
-In the previous section, we found that it was very convenient to work with an orthonormal basis for $\mathbb{R}^3$. Everything that was said in the previous section generalizes immediately to $\mathbb{R}^n$. It is also possible to generalize these ideas to abstract vector spaces. To do so, we need to generalize the concepts of ``length" and ``angle" to these abstract spaces. Since these are defined in terms of the dot product in $\mathbb{R}^3$, we need to define a ``dot product" for these spaces. To do so, we will do what we have done in the past for vector addition and scalar multiplication: we will take the most important properties of the dot product as axioms, define a function valid for an arbitrary vector space $V$ satisfying these axioms.
+{\color{red} \begin{solution}
+ 	If $\bx=(2,1,3)$, then
+ 	\begin{align*}
+ 		[\bx]_B=\begin{bmatrix}
+ 			\bv_1 \cdot \bx \\
+ 			\bv_2 \cdot \bx \\
+ 			\bv_3 \cdot \bx 
+ 		\end{bmatrix}=\begin{bmatrix}
+ 			1 \\
+ 			5/\sqrt{2} \\
+ 			-1/\sqrt{2}
+ 		\end{bmatrix}.
+ 	\end{align*}
+ \end{solution}}
+The previous example shows that it is much more convenient to work with orthonormal bases. We will now show that one can always take a given basis for a subspace of $\R^n$ and construct an orthonormal basis for the same subspace. We will use the following two results.
 
-\begin{defn}
-	Let $V$ be a vector space. An {\bf inner product} on $V$ is a function $f:V \times V \to \mathbb{R}$ satisfying the following three properties for all $\bv_1,\bv_2,\bw \in V$ and all $c \in \mathbb{R}$:
+\begin{lem}[An orthogonal set of nonzero vectors is linearly independent.]\label{lem:orth_lin}
+	An orthogonal set of nonzero vectors is linearly independent.
+\end{lem}
+
+\begin{pf}
+Let $S=\{\bv_1,\dots,\bv_n\}$ be an orthogonal set and suppose that 
+\begin{align}\label{eq:eq_to_dot}
+	c_1\bv_1+c_2\bv_2+\dots+c_n\bv_n=0.
+\end{align}
+If we take the dot product of both sides of Equation \eqref{eq:eq_to_dot} with $\bv_1$, since $S$ is an orthogonal set we obtain
+\begin{align*}
+	c_1\underbrace{\bv_1 \cdot \bv_1}_{=||\bv_1||^2}+c_2\underbrace{\bv_1 \cdot \bv_2}_{=0}+\dots+c_n\underbrace{\bv_1 \cdot \bv_n}_{=0} &=0 \\
+	c_1 ||\bv_1||^2 &=0.
+\end{align*}
+Since $\bv_1 \neq 0$, we must have $c_1=0$. Dotting Equation \eqref{eq:eq_to_dot} with $\bv_2,\dots,\bv_n$, we similarly find that $c_2=\cdots=c_n=0$. Thus, $S$ is linearly independent.
+\end{pf}
+
+Note that the converse to Lemma \ref{lem:orth_lin} is \emph{false}. For instance, consider the set 
+\begin{align*}
+	S=\left\{\begin{bmatrix}
+		1 \\ 0
+	\end{bmatrix}, \begin{bmatrix}
+		1 \\ 1
+	\end{bmatrix}\right\}.
+\end{align*}
+Since
+\begin{align*}
+	\begin{vmatrix}
+		1 & 1 \\
+		0 & 1
+	\end{vmatrix}=1 \neq 0,
+\end{align*}
+$S$ is a linearly independent subset of $\R^2$, but since
+\begin{align*}
+	\begin{bmatrix}
+		1 & 0
+	\end{bmatrix} \begin{bmatrix}
+		1 \\ 1
+	\end{bmatrix}=1 \neq 0,
+\end{align*}
+$S$ is not an orthogonal set.
+
+\begin{lem}\label{lem:LI_subset}
+	Any subset of a linearly independent set is linearly independent.
+\end{lem}
+
+\begin{proof}
+	Let $S=\{\bu_1,\cdots,\bu_n\}$ be a linearly independent set, and let $S'$ be any subset. If $S'$ is empty, then it is linearly independent (this is vacuously true, since there are no vectors in $S'$ for which the zero linear combination could have a non-trivial solution). If $S'$ is all of $S$, then it is linearly independent by assumption. Suppose now that $S'$ is a proper subset of $S$, and list the elements (reordering the vectors, if necessary) as $S'=\{\bu_1,\cdots,\bu_r\}$, where $1 \leq r < n$. Suppose that $S'$ is linearly dependent. Then there exist scalars $c_1,\cdots,c_r$ not all zero such that
+	\begin{align*}
+		c_1 \bu_1+\cdots+c_r \bu_r={\bf 0}.
+	\end{align*}
+But then we have 
+\begin{align*}
+	c_1 \bu_1+\cdots+c_r \bu_r+ 0\cdot \bu_{r+1}+\cdots+0\cdot \bu_n={\bf 0},
+\end{align*}
+which is a contradiction since $S$ is linearly independent. Thus, $S'$ must be linearly independent as well.
+\end{proof}
+
+\begin{thm}
+	Given a basis $B$ for a subspace of $\R^m$, one can convert $B$ into an orthonormal basis for the same subspace.
+\end{thm}
+
+\begin{pf}
+	Let $V$ be an $n$-dimensional subspace of $\R^m$, and let $B=\{\bu_1,\cdots, \bu_n\}$ be a basis for $V$. We will obtain an orthonormal basis $B'=\{\bv_1,\cdots,\bv_n\}$ by means of a construction known as the \emph{Gram-Schmidt orthogonalization algorithm}, which we now describe. The first part of the algorithm successively builds an orthogonal basis. One then simply normalizes each vector to obtain an orthonormal basis.
+	
+	 First, let $\bv_1=\bu_1$. Then $\bv_1 \neq {\bf 0}$, so the set $\{\bv_1\}$ is linearly independent. Now define the other vectors inductively, as follows: Suppose $\bv_1,\cdots,\bv_m$ ($1 \leq m < n$) have been chosen such that for every $k$ in $1 \leq k \leq m$, the set
+	\begin{align*}
+		\{\bv_1,\cdots,\bv_k\}
+	\end{align*}
+	is an orthogonal basis for the subspace of $V$ spanned by $\{\bu_1,\cdots,\bu_k\}$ (we have just seen that this is true for $m=1$, since $\{\bu_1\}$ is trivially an orthogonal basis for the subspace of $V$ spanned by $\bu_1$, so this establishes the base case). We will show how to construct the next vector, $\bv_{m+1}$, so that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for the subspace of $\mathbb{R}^n$ spanned by $\{\bu_1,\cdots,\bu_{m+1}\}$. This will complete the inductive proof that we can continue this process until we have an orthogonal basis for $V$. 
+	
+	To construct the next vector $\bv_{m+1}$, let 
+	\begin{equation}\label{eq:next_vector}
+	\begin{split}
+		\bv_{m+1}&=\bu_{m+1}-\sum_{k=1}^{m}\text{proj}_{\bv_k}\bu_{m+1} \\
+		&=\bu_{m+1}-\sum_{k=1}^{m}\frac{ \bu_{m+1}\cdot \bv_k}{\bv_k\cdot\bv_k }\bv_k.
+			\end{split}
+	\end{equation}
+We need to show that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set of nonzero vectors and that $\{\bv_1,\cdots,\bv_{m+1}\}\subset \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Since an orthogonal set is linearly independent by Lemma \ref{lem:orth_lin}, $\{\bv_1,\cdots,\bv_{m+1}\}$ will then be an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a set of $m+1$ linearly independent vectors in an $(m+1)$-dimensional vector space is automatically a basis for that vector space. 
+	
+First, we note that $\bv_{m+1} \neq 0$, since otherwise we would have 
+\begin{align*}
+	\bu_{m+1}=\sum_{k=1}^m\frac{\bu_{m+1} \cdot \bv_k}{\bv_k \cdot \bv_k }\bv_k
+\end{align*}
+which says $\bu_{m+1}$ is a linear combination of $\{\bv_1,\cdots,\bv_m\}$ and hence a linear combination of $\{\bu_1,\cdots,\bu_m\}$, \footnote{Since, by assumption, $\{\bv_1,\cdots,\bv_m\}$ is a basis for $\Span\{\bu_1,\cdots,\bu_m\}$ and, in particular, $\Span\{\bv_1,\cdots,\bv_m\}=\Span\{\bu_1,\cdots,\bu_m\}$} which contradicts the fact that $\{\bu_1,\cdots,\bu_{m+1}\}$ is linearly independent. \footnote{Note that we have used Lemma \ref{lem:LI_subset} here.} Thus, $\bv_{m+1} \neq 0$. 
+
+All that is left is to show that $\bv_{m+1}$ is orthogonal to every vector in the set $\{\bv_1,\cdots,\bv_m\}$. Let $1 \leq j \leq m$. Then 
+\begin{align*}
+	\bv_{m+1}\cdot\bv_j &= \bu_{m+1}-\sum_{k=1}^{m}\frac{\bu_{m+1}\cdot\bv_k}{\bv_k\cdot\bv_k}\bv_k\cdot \bv_j  \\
+	&=\bu_{m+1}\cdot\bv_j-\sum_{k=1}^{m}\frac{\bu_{m+1}\cdot\bv_k}{\bv_k\cdot\bv_k}\bv_k\cdot\bv_j
+\end{align*}
+Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set (by our inductive hypothesis), every term in the sum is zero except for $k=j$, so we find
+\begin{align*}
+	\bv_{m+1}\cdot\bv_j &=\bu_{m+1}\cdot\bv_j-\sum_{k=1}^{m}\frac{\bu_{m+1}\cdot\bv_k}{\bv_k\cdot\bv_k}\bv_k\cdot\bv_j\\
+	&=\bu_{m+1}\cdot\bv_j-\frac{\bu_{m+1}\cdot\bv_{j}}{\bv_{j}\cdot\bv_{j}}\bv_{j}\cdot \bv_j \\
+	&=\bu_{m+1}\cdot\bv_j-\bu_{m+1}\cdot\bv_{j} \\
+	&=0.
+\end{align*}
+Thus we have shown that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set consisting of $m+1$ nonzero vectors. 
+
+All that remains is to show that this set is a basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. As mentioned above, it will suffice to show that $\{\bv_1,\cdots,\bv_{m+1}\} \subset  \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a linearly independent subset of an $(m+1)$-dimensional vector space consisting of $m+1$ vectors is automatically a basis. The set $\{\bv_1,\cdots,\bv_m\} \subset   \text{Span}\{\bu_1,\cdots,\bu_{m}\} \subset\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$ by the inductive hypothesis. Eq. \eqref{eq:next_vector} then shows that $\bv_{m+1} \in \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Thus, we have shown that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, completing the proof by induction that $\{\bv_1,\cdots,\bv_{n}\}$ is an orthogonal basis for $V$.
+
+Finally, since none of these vectors are zero, we obtain an orthonormal basis for $V$ by normalizing each vector as $\bv_i \mapsto \frac{\bv_i}{||\bv_i||}$.
+\end{pf}
+
+\begin{example}
+	Let $\bu_1=(1,1,1)$, $\bu_2=(0,1,1)$, $\bu_3=(0,0,1)$ be a basis for $\mathbb{R}^3$. Taking the standard inner product on $\mathbb{R}^3$, we now follow the Gram-Schmidt algorithm to obtain an orthogonal basis $\{\bv_1,\bv_2,\bv_3\}$:
+	\begin{align*}
+		\bv_1&=\bu_1=(1,1,1) \\
+		\bv_2&=\bu_2-\frac{\bu_2 \cdot \bv_1}{\bv_1 \cdot \bv_1}\bv_1=(0,1,1)-\frac{2}{3}(1,1,1)=(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
+		\bv_3&=\bu_3-\frac{\bu_3 \cdot \bv_1}{\bv_1 \cdot \bv_1}\bv_1-\frac{\bu_3 \cdot \bv_2}{\bv_2 \cdot \bv_2}\bv_2 \\
+		&=(0,0,1)-\frac{1}{3}(1,1,1)-\frac{1/3}{2/3}(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
+		&=(0,0,1)-\frac{1}{3}(1,1,1)-\frac{1}{2}(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
+		&=(0,-\frac{1}{2},\frac{1}{2})
+	\end{align*} 
+	Noting that 
+	\begin{align*}
+		||\bv_1||=\sqrt{3}, \ ||\bv_2||=\sqrt{\frac{2}{3}}, \ ||\bv_3||=\frac{1}{\sqrt{2}}
+	\end{align*}
+	normalizing each vector as $\bv_i \mapsto {\bf q}_i\equiv \frac{\bv_i}{||\bv_i||}$ results in the orthonormal basis ${\bf q}_1, {\bf q}_2, {\bf q}_3$, where
+	\begin{align*}
+	{\bf q}_1&=(\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}), \\
+	 {\bf q}_2&=(-\frac{2}{\sqrt{6}},\frac{1}{\sqrt{6}},\frac{1}{\sqrt{6}}), \\
+	 {\bf q}_3&=(0,-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}). \\	
+	\end{align*} 
+\end{example}
+
+\begin{exercise}
+	Let $V=\mathbb{R}^3$ equipped with the standard inner product. Consider the basis $B=\{\bu_1,\bu_2,\bu_3\}$, where 
+	\begin{align*}
+		\bu_1=(3,0,4), \ \bu_2=(-1,0,7), \ \bu_3=(2,9,11).
+	\end{align*}
+	Apply the Gram-Schmidt algorithm to construct an orthonormal basis $B'=\{\bv_1,\bv_2,\bv_3\}$ for $\mathbb{R}^3$. If $\bx=(1,2,3)$, find $[\bx]_{B'}$.
+\end{exercise}
+{\color{red} \begin{solution}
+ 	\begin{align*}
+ 		\{\bv_1,\bv_2,\bv_3\}&=\left\{\begin{bmatrix}
+ 			3/5 \\ 0 \\ 4/5
+ 		\end{bmatrix}, \begin{bmatrix}
+ 			-4/5 \\ 0 \\ 3/5
+ 		\end{bmatrix}, \begin{bmatrix}
+ 			0 \\ 1 \\ 0
+ 		\end{bmatrix}\right\}, \\
+ 		[\bx]_{B'}&=\begin{bmatrix}
+ 			\bv_1 \cdot \bx \\ 
+ 			\bv_2 \cdot \bx \\
+ 			\bv_3 \cdot \bx
+ 		\end{bmatrix}=\begin{bmatrix}
+ 			3 \\ 1 \\ 2
+ 		\end{bmatrix}.
+ 	\end{align*} 	
+\end{solution}}
+
+
+\subsection{Inner Product Spaces}
+In the previous section, we found that it was very convenient to work with an orthonormal basis for $\mathbb{R}^n$ and its subspaces. It is also possible to generalize these ideas to abstract vector spaces. To do so, we need to generalize the concepts of ``length" and ``angle" to these abstract spaces. Since these are defined in terms of the dot product in $\mathbb{R}^n$, we need to define a ``dot product" for these spaces. To do so, we will do what we have done in the past for vector addition and scalar multiplication: we will take the most important properties of the dot product as axioms, define a function valid for an arbitrary vector space $V$ satisfying these axioms.
+
+\begin{defn}[Inner product]
+	Let $V$ be a vector space. An \emph{inner product} on $V$ is a function $f:V \times V \to \mathbb{R}$ satisfying the following three properties for all $\bv_1,\bv_2,\bw \in V$ and all $c \in \mathbb{R}$:
 	\begin{enumerate}
 		\item Symmetry:
 		\begin{align*}
@@ -8733,6 +8917,15 @@ A vector space together with an inner product is called an \emph{inner product s
 \begin{prop}
 	It follows from these axioms that $\langle {\bf 0}, \bv \rangle=\langle \bv,{\bf 0}\rangle = 0$ for every $\bv \in V$.
 \end{prop}
+
+\begin{pf}
+The first equality follows from symmetry, and the second from bilinearity since
+\begin{align*}
+	\langle {\bf 0},\bv\rangle &= \langle {\bf 0}+{\bf 0},\bv\rangle=\langle{\bf 0},\bv\rangle+\langle{\bf 0},\bv\rangle
+\end{align*}	
+implies that $\langle {\bf 0},\bv\rangle=0$.
+\end{pf}
+
 
 \begin{example}
 \
@@ -8782,6 +8975,25 @@ A vector space together with an inner product is called an \emph{inner product s
 	Verify that each example above is an inner product.
 \end{exercise}
 
+{\color{red} \begin{solution}
+ 	We will verify this for (f), leaving the rest as an exercise.
+ 	\begin{enumerate}[(1)]
+ 		\item Symmetry:
+ 		\begin{align*}
+ 			\langle {\bf f}, {\bf g}\rangle = \int_a^b f(x)g(x)dx=\int_a^b g(x)f(x)dx =\langle {\bf g}, {\bf f}\rangle
+ 		\end{align*}
+ 		\item Bilinearity:
+ 		\begin{align*}
+ 			\langle c_1{\bf f_1}+{\bf f_2}, {\bf g}\rangle=\int_a^b (c_1f_1(x)+f_2(x))g(x)dx=c_1\int_a^b f_1(x)g(x)dx+\int_a^b f_2(x)g(x)dx=c_1\langle{\bf f_1}, {\bf g}\rangle+\langle{\bf f_2}, {\bf g}\rangle
+ 		\end{align*}
+ 		\item Positive-definiteness:
+ 		\begin{align*}
+ 			\langle {\bf f}, {\bf g}\rangle = \int_a^b f(x)^2dx\geq 0
+ 		\end{align*}
+ 		since $f(x)^2\geq 0$ on $[a,b]$.
+ 	\end{enumerate}
+ \end{solution}}
+ 
 \begin{exercise}
 	Let $P_2$ have the evaluation inner product on the points
 	\begin{align*}
@@ -8876,6 +9088,50 @@ are orthogonal
 \begin{exercise}
 	Show that the generalized Pythagorean theorem holds from the two polynomials in the previous example.
 \end{exercise}
+
+We now turn to the task of finding orthonormal bases for an abstract vector space. First, we note that every finite-dimensional vector space is an inner product space.
+
+\begin{thm}[Every finite-dimensional vector space is an inner product space.]
+	Every finite-dimensional vector space is an inner product space.
+\end{thm}
+
+\begin{pf}
+Let $V$ be a finite-dimensional vector space,  let $B$ be an ordered basis for $V$, and let $L_B:\R^n \to V$ the corresponding basis isomorphism. Define the map 
+\begin{align*}
+	L_B \times L_B:\R^n \times \R^n \to V \times V
+\end{align*}
+by $L_B \times L_B (\bx,\by)=(L_B(\bx),L_B(\by))$. It is straightforward to check that $L_B \times L_B$ is an isomorphism. 	We then define an inner product $\langle \ ,\ \rangle:V \times V \to \R$ as the unique map which makes the following diagram commute:
+\begin{equation*}
+	\begin{tikzcd}
+	& V \times V \arrow{r}{\langle \ , \ \rangle} & \R \\
+	& \R^n \times \R^n  \arrow[u,"L_B \times L_B"]  \arrow[ur,swap,"\bullet"] &  	
+	\end{tikzcd}
+\end{equation*}
+That is, $\langle \ ,\ \rangle$ is defined for every $\bv_1,\bv_2 \in V$ by 
+\begin{align}\label{eq:inner_prod_defni}
+	\langle \bv_1,\bv_2 \rangle=[\bv_1]_B \cdot [\bv_2]_B,
+\end{align}
+since $\bv_i=L_B([\bv_i]_B)$ for $i=1,2$.
+\end{pf}
+
+\fixme{Add example.}
+
+
+\begin{exercise}
+\begin{enumerate}[(a)]
+	\item Verify that the map $L_B \times L_B$ defined above is an isomorphism.
+	\item Use the diagram above to obtain Equation \ref{eq:inner_prod_defni}.
+\end{enumerate}	
+\end{exercise}
+
+\begin{thm}
+	Every finite-dimensional inner product space has an orthonormal basis.
+\end{thm}
+
+\begin{pf}
+Apply the Gram-Schmidt procedure with respect to $\langle \ , \ \rangle$.	
+\end{pf}
+
 
 \subsubsection{Orthogonal Complements}
 \begin{defn}
@@ -8980,210 +9236,107 @@ Let $W$ be a finite-dimensional subspace of an inner product space $V$. If $\{\b
 	Consider $\mathbb{R}^3$ with the Euclidean inner product, and let $W=\text{Span}\{\bv_1,\bv_2\}$ where $\bv_1=(0,1,0)$ and $\bv_2=(-\frac{4}{5},0,\frac{3}{5})$. If $\bu = (1,1,1)$, find $\text{proj}_W \bu$.
 \end{exercise}
 
-\subsubsection{Gram-Schmidt Algorithm}
-We now turn to the task of finding orthonormal bases for an abstract vector space. First, we note that every finite-dimensional vector space is an inner product space.
-
-\begin{thm}[Every finite-dimensional vector space is an inner product space.]
-	Every finite-dimensional vector space is an inner product space.
-\end{thm}
-
-\begin{pf}
-Let $V$ be a finite-dimensional vector space,  let $B$ be an ordered basis for $V$, and let $L_B:\R^n \to V$ the corresponding basis isomorphism. Define the map 
-\begin{align*}
-	L_B \times L_B:\R^n \times \R^n \to V \times V
-\end{align*}
-by $L_B \times L_B (\bx,\by)=(L_B(\bx),L_B(\by))$. It is straightforward to check that $L_B \times L_B$ is an isomorphism. 	We then define an inner product $\langle \ ,\ \rangle:V \times V \to \R$ as the unique map which makes the following diagram commute:
-\begin{equation*}
-	\begin{tikzcd}
-	& V \times V \arrow{r}{\langle \ , \ \rangle} & \R \\
-	& \R^n \times \R^n  \arrow[u,"L_B \times L_B"]  \arrow[ur,swap,"\bullet"] &  	
-	\end{tikzcd}
-\end{equation*}
-That is, $\langle \ ,\ \rangle$ is defined for every $\bv_1,\bv_2 \in V$ by 
-\begin{align}\label{eq:inner_prod_defni}
-	\langle \bv_1,\bv_2 \rangle=[\bv_1]_B \cdot [\bv_2]_B,
-\end{align}
-since $\bv_i=L_B([\bv_i]_B)$ for $i=1,2$.
-\end{pf}
-
-\fixme{Add example.}
-
-
-\begin{exercise}
-\begin{enumerate}[(a)]
-	\item Verify that the map $L_B \times L_B$ defined above is an isomorphism.
-	\item Use the diagram above to obtain Equation \ref{eq:inner_prod_defni}.
-\end{enumerate}	
-\end{exercise}
-
-
-
-\begin{defn}
-	A set of two or more vectors in an inner product space is said to be {\bf orthogonal} if all pairs of distinct vectors in the set are orthogonal. An orthogonal set in which each vector has norm 1 is said to be {\bf orthonormal}.
-\end{defn}
-
-\begin{lem}\label{lem:orth_lin}
-	Let $S=\{\bv_1,\cdots,\bv_n\}$ be an orthogonal set of nonzero vectors in an inner product space. Then $S$ is linearly independent.
-\end{lem}
-
-\begin{pf}
-	Suppose $c_1 \bv_1+\cdots + c_n \bv_n={\bf 0}$. Then we have for each $\bv_i \in S$
-	\begin{align*}
-		\langle c_1\bv_1+\cdots c_n\bv_n,\bv_i\rangle =\langle {\bf 0},\bv_i\rangle = 0
-	\end{align*}
-	Using the linearity in the first argument of the inner product, this says that
-	\begin{align*}
-		0&=c_1\langle \bv_1,\bv_i\rangle+\cdots c_n\langle \bv_n,\bv_i\rangle \\
-		&=c_i\langle \bv_i,\bv_i\rangle
-	\end{align*}
-	which implies $c_i=0$ since the inner product is positive-definite. Hence, $S$ is linearly independent.
-\end{pf}
-
-Note that the converse to Lemma  \ref{lem:orth_lin} is \emph{false}. For instance, the set $S=\{(1,0), (1,1)\}$ is a linearly independent subset of $\mathbb{R}^2$, but $S$ is not orthogonal. 
-
-\begin{lem}\label{lem:LI_subset}
-	Any subset of a linearly independent set is linearly independent.
-\end{lem}
-
-\begin{proof}
-	Let $S=\{\bu_1,\cdots,\bu_n\}$ be a linearly independent set, and let $S'$ be any subset. If $S'$ is empty, then it is linearly independent (this is vacuously true, since there are no vectors in $S'$ for which the zero linear combination could have a non-trivial solution). If $S'$ is all of $S$, then it is linearly independent by assumption. Suppose now that $S'$ is a proper subset of $S$, and list the elements (reordering the vectors, if necessary) as $S'=\{\bu_1,\cdots,\bu_r\}$, where $1 \leq r < n$. Suppose that $S'$ is linearly dependent. Then there exist scalars $c_1,\cdots,c_r$ not all zero such that
-	\begin{align*}
-		c_1 \bu_1+\cdots+c_r \bu_r={\bf 0}.
-	\end{align*}
-But then we have 
-\begin{align*}
-	c_1 \bu_1+\cdots+c_r \bu_r+ 0\cdot \bu_{r+1}+\cdots+0\cdot \bu_n={\bf 0},
-\end{align*}
-which is a contradiction since $S$ is linearly independent. Thus, $S'$ must be linearly independent as well.
-\end{proof}
-
-As in $\mathbb{R}^n$, any nonzero vector $\bv$ can be normalized by multiplying by $\frac{1}{||\bv||}$. 
-
-\begin{thm}
-	Every finite-dimensional inner product space has an orthonormal basis.
-\end{thm}
-
-\begin{pf}
-	Let $V$ be a finite-dimensional inner product space and let $B=\{\bu_1,\cdots, \bu_n\}$ be a basis for $V$. We will obtain an orthonormal basis $B'=\{\bv_1,\cdots,\bv_n\}$ by means of a construction known as the {\bf Gram-Schmidt orthogonalization algorithm}, which we now describe. The first part of the algorithm successively builds an orthogonal basis. One then simply normalizes each vector to obtain an orthonormal basis.
-	
-	 First, let $\bv_1=\bu_1$. Then $\bv_1 \neq {\bf 0}$, so the set $\{\bv_1\}$ is linearly independent. Now define the other vectors inductively, as follows: Suppose $\bv_1,\cdots,\bv_m$ ($1 \leq m < n$) have been chosen such that for every $k$ in $1 \leq k \leq m$, the set
-	\begin{align*}
-		\{\bv_1,\cdots,\bv_k\}
-	\end{align*}
-	is an orthogonal basis for the subspace of $V$ spanned by $\{\bu_1,\cdots,\bu_k\}$ (we have just seen that this is true for $m=1$, since $\{\bu_1\}$ is trivially an orthogonal basis for the subspace of $V$ spanned by $\bu_1$, so this establishes the base case). We will show how to construct the next vector, $\bv_{m+1}$, so that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for the subspace of $\mathbb{R}^n$ spanned by $\{\bu_1,\cdots,\bu_{m+1}\}$. This will complete the inductive proof that we can continue this process until we have an orthogonal basis for $\mathbb{R}^n$. 
-	
-	To construct the next vector $\bv_{m+1}$, let 
-	\begin{equation}\label{eq:next_vector}
-	\begin{split}
-		\bv_{m+1}&=\bu_{m+1}-\sum_{k=1}^{m}\text{proj}_{\bv_k}\bu_{m+1} \\
-		&=\bu_{m+1}-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\bv_k.
-			\end{split}
-	\end{equation}
-We need to show that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set of nonzero vectors and that $\{\bv_1,\cdots,\bv_{m+1}\}\subset \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Since an orthogonal set is linearly independent by Lemma \ref{lem:orth_lin}, $\{\bv_1,\cdots,\bv_{m+1}\}$ will then be an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a set of $m+1$ linearly independent vectors in an $(m+1)$-dimensional vector space is automatically a basis for that vector space. 
-	
-First, we note that $\bv_{m+1} \neq 0$, since otherwise we would have 
-\begin{align*}
-	\bu_{m+1}=\sum_{k=1}^m\frac{\bu_{m+1} \cdot \bv_k}{\bv_k \cdot \bv_k }\bv_k
-\end{align*}
-which says $\bu_{m+1}$ is a linear combination of $\{\bv_1,\cdots,\bv_m\}$ and hence a linear combination of $\{\bu_1,\cdots,\bu_m\}$, \footnote{Since, by assumption, $\{\bv_1,\cdots,\bv_m\}$ is a basis for $\Span\{\bu_1,\cdots,\bu_m\}$ and, in particular, $\Span\{\bv_1,\cdots,\bv_m\}=\Span\{\bu_1,\cdots,\bu_m\}$} which contradicts the fact that $\{\bu_1,\cdots,\bu_{m+1}\}$ is linearly independent. \footnote{Note that we have used Lemma \ref{lem:LI_subset} here.} Thus, $\bv_{m+1} \neq 0$. 
-
-All that is left is to show that $\bv_{m+1}$ is orthogonal to every vector in the set $\{\bv_1,\cdots,\bv_m\}$. Let $1 \leq j \leq m$. Then 
-\begin{align*}
-	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1}-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\bv_k, \bv_j \rangle \\
-	&=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle
-\end{align*}
-Since $\{\bv_1,\cdots, \bv_m\}$ is an orthogonal set (by our inductive hypothesis), every term in the sum is zero except for $k=j$, so we find
-\begin{align*}
-	\langle \bv_{m+1},\bv_j\rangle &=\langle \bu_{m+1},\bv_j\rangle-\sum_{k=1}^{m}\frac{\langle \bu_{m+1},\bv_k\rangle}{\langle \bv_k,\bv_k \rangle}\langle \bv_k,\bv_j\rangle \\
-	&=\langle \bu_{m+1},\bv_j\rangle-\frac{\langle \bu_{m+1},\bv_{j}\rangle}{\langle \bv_{j},\bv_{j}\rangle}\langle \bv_{j}, \bv_j \rangle \\
-	&=\langle \bu_{m+1},\bv_j\rangle-\langle \bu_{m+1},\bv_{j}\rangle \\
-	&=0.
-\end{align*}
-Thus we have shown that $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal set consisting of $m+1$ nonzero vectors. 
-
-All that remains is to show that this set is a basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. As mentioned above, it will suffice to show that $\{\bv_1,\cdots,\bv_{m+1}\} \subset  \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, since a linearly independent subset of an $(m+1)$-dimensional vector space consisting of $m+1$ vectors is automatically a basis. The set $\{\bv_1,\cdots,\bv_m\} \subset   \text{Span}\{\bu_1,\cdots,\bu_{m}\} \subset\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$ by the inductive hypothesis. Eq. \eqref{eq:next_vector} then shows that $\bv_{m+1} \in \text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$. Thus, we have shown that the set $\{\bv_1,\cdots,\bv_{m+1}\}$ is an orthogonal basis for $\text{Span}\{\bu_1,\cdots,\bu_{m+1}\}$, completing the proof by induction that $\{\bv_1,\cdots,\bv_{n}\}$ is an orthogonal basis for $\mathbb{R}^n$.
-
-Finally, since none of these vectors are zero, we obtain an orthonormal basis for $\mathbb{R}^n$ by normalizing each vector as $\bv_i \mapsto \frac{\bv_i}{||\bv_i||}$.
-\end{pf}
-
-\begin{example}
-	Let $\bu_1=(1,1,1)$, $\bu_2=(0,1,1)$, $\bu_3=(0,0,1)$ be a basis for $\mathbb{R}^3$. Taking the standard inner product on $\mathbb{R}^3$, we now follow the Gram-Schmidt algorithm to obtain an orthogonal basis $\{\bv_1,\bv_2,\bv_3\}$:
-	\begin{align*}
-		\bv_1&=\bu_1=(1,1,1) \\
-		\bv_2&=\bu_2-\frac{\bu_2 \cdot \bv_1}{\bv_1 \cdot \bv_1}\bv_1=(0,1,1)-\frac{2}{3}(1,1,1)=(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
-		\bv_3&=\bu_3-\frac{\bu_3 \cdot \bv_1}{\bv_1 \cdot \bv_1}\bv_1-\frac{\bu_3 \cdot \bv_2}{\bv_2 \cdot \bv_2}\bv_2 \\
-		&=(0,0,1)-\frac{1}{3}(1,1,1)-\frac{1/3}{2/3}(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
-		&=(0,0,1)-\frac{1}{3}(1,1,1)-\frac{1}{2}(-\frac{2}{3},\frac{1}{3},\frac{1}{3}) \\
-		&=(0,-\frac{1}{2},\frac{1}{2})
-	\end{align*} 
-	Noting that 
-	\begin{align*}
-		||\bv_1||=\sqrt{3}, \ ||\bv_2||=\sqrt{\frac{2}{3}}, \ ||\bv_3||=\frac{1}{\sqrt{2}}
-	\end{align*}
-	normalizing each vector as $\bv_i \mapsto {\bf q}_i\equiv \frac{\bv_i}{||\bv_i||}$ results in the orthonormal basis ${\bf q}_1, {\bf q}_2, {\bf q}_3$, where
-	\begin{align*}
-	{\bf q}_1&=(\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}), \\
-	 {\bf q}_2&=(-\frac{2}{\sqrt{6}},\frac{1}{\sqrt{6}},\frac{1}{\sqrt{6}}), \\
-	 {\bf q}_3&=(0,-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}). \\	
-	\end{align*} 
-\end{example}
-
-\begin{exercise}
-	Let $V=\mathbb{R}^3$ equipped with the standard inner product. Consider the basis $B=\{\bu_1,\bu_2,\bu_3\}$, where 
-	\begin{align*}
-		\bu_1=(3,0,4), \ \bu_2=(-1,0,7), \ \bu_3=(2,9,11).
-	\end{align*}
-	Apply the Gram-Schmidt algorithm to construct an orthonormal basis $B'=\{\bv_1,\bv_2,\bv_3\}$ for $\mathbb{R}^3$. If $\bx=(1,2,3)$, find $[\bx]_{B'}$.
-\end{exercise}
-{\color{red} \begin{solution}
- 	\begin{align*}
- 		\{\bv_1,\bv_2,\bv_3\}&=\left\{\begin{bmatrix}
- 			3/5 \\ 0 \\ 4/5
- 		\end{bmatrix}, \begin{bmatrix}
- 			-4/5 \\ 0 \\ 3/5
- 		\end{bmatrix}, \begin{bmatrix}
- 			0 \\ 1 \\ 0
- 		\end{bmatrix}\right\}, \\
- 		[\bx]_{B'}&=\begin{bmatrix}
- 			\bv_1 \cdot \bx \\ 
- 			\bv_2 \cdot \bx \\
- 			\bv_3 \cdot \bx
- 		\end{bmatrix}=\begin{bmatrix}
- 			3 \\ 1 \\ 2
- 		\end{bmatrix}.
- 	\end{align*} 	
-\end{solution}}
-
 \subsection{Orthogonal Matrices}
-Let $B=\{\bu_1,\cdots,\bu_n\}$ and $B'=\{\bu_1',\cdots,\bu_n'\}$ be two orthonormal bases for a finite-dimensional inner product space $V$. Recall that the $i$th column of the transition matrix $P_{B' \to B}$ is given by $[\bu_i']_B$. Writing $\bu_i'$ in the $B$-basis and using the orthonormality of $B$,
+Consider the following orthonormal bases for $\mathbb{R}^3$:
+\begin{align*}
+	B=\{\begin{bmatrix}
+		2/3 \\ -2/3 \\ 1/3
+	\end{bmatrix}, \begin{bmatrix}
+		2/3 \\ 1/3 \\ -2/3
+	\end{bmatrix}, \begin{bmatrix}
+		1/3 \\ 2/3 \\ 2/3
+	\end{bmatrix}\}, \\
+	B'=\{\begin{bmatrix}
+		1/\sqrt{3}\\ 1/\sqrt{3}\\1/\sqrt{3} 
+	\end{bmatrix}, \begin{bmatrix}
+		-2/\sqrt{6} \\ 1/\sqrt{6} \\ 1/\sqrt{6} 
+	\end{bmatrix}, \begin{bmatrix}
+		0\\ -1/\sqrt{2}\\1/\sqrt{2} 
+	\end{bmatrix}\}
+\end{align*}
+The transition matrix $P_{B \to B'}$ is obtained by row-reducing the augmented matrix
+\begin{align*}
+\left[\begin{array}{c c c | c c c }
+		1/\sqrt{3} & -2 / \sqrt{6} & 0 & 2/3 & 2/3 & 1/3 \\
+		1/\sqrt{3} & 1/\sqrt{6} & -1/\sqrt{2} & -2/3 & 1/3 & 2/3 \\
+		1/\sqrt{3} & 1/\sqrt{6} & 1/\sqrt{2} & 1/3 & -2/3 & 2/3
+	\end{array}\right] \sim \left[\begin{array}{c c c | c c c }
+		1 & 0 & 0 & \frac{1}{3\sqrt{3}} & \frac{1}{3\sqrt{3}} & \frac{5}{3\sqrt{3}} \\
+		0 & 1 & 0 & -\frac{5}{3\sqrt{6}} & -\frac{5}{3\sqrt{6}} & \frac{\sqrt{2}}{3\sqrt{3}} \\
+		0 & 0 & 1 & \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0
+	\end{array}\right]
+\end{align*}
+and therefore
+\begin{align}\label{eq:b2bp}
+	P_{B \to B'}=\begin{bmatrix}
+		 \frac{1}{3\sqrt{3}} & \frac{1}{3\sqrt{3}} & \frac{5}{3\sqrt{3}} \\
+		 -\frac{5}{3\sqrt{6}} & -\frac{5}{3\sqrt{6}} & \frac{\sqrt{2}}{3\sqrt{3}} \\
+		 \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} & 0
+	\end{bmatrix}
+\end{align}
+Similarly, one can compute $P_{B' \to B}$, which is given by
+\begin{align}\label{eq:bp2b}
+	P_{B' \to B}=\begin{bmatrix}
+		 \frac{1}{3\sqrt{3}} & -\frac{5}{3\sqrt{6}} & \frac{1}{\sqrt{2}} \\
+		 \frac{1}{\sqrt{3}} & -\frac{5}{3\sqrt{6}} & -\frac{1}{\sqrt{2}} \\
+		 \frac{5}{3\sqrt{3}} & \frac{2}{3\sqrt{3}} & 0
+	\end{bmatrix}
+\end{align}
+We have seen before that $P_{B' \to B}=P_{B \to B'}^{-1}$. However, note from the matrices above that $P_{B' \to B}=P_{B \to B'}^{T}$.
+
+\begin{prop}
+	If $B$ and $B'$ are orthonormal bases for $\mathbb{R}^n$, then $P_{B' \to B}=P^T_{B \to B'}$.
+\end{prop}
+
+\begin{pf}
+	Let $B=\{\bu_1,\cdots,\bu_n\}$ and $B'=\{\bu_1',\cdots,\bu_n'\}$ be two orthonormal bases for $\mathbb{R}^n$. Recall that the $i$th column of the transition matrix $P_{B' \to B}$ is given by $[\bu_i']_B$. Writing $\bu_i'$ in the $B$-basis and using the orthonormality of $B$,
 \begin{align*}
 	\bu_i'&=c_1\bu_1+\cdots+c_n\bu_n \\
-	\bu_i'&=\langle \bu_i',\bu_1\rangle \bu_1+\cdots+\langle \bu_i' \cdot \bu_n\rangle\bu_n
+	\bu_i'&=  (\bu_i' \cdot \bu_1)  \bu_1+\cdots+ (\bu_i' \cdot \bu_n)\bu_n
 \end{align*}
 so we find
 \begin{align*}
 	[\bu_i']_B=\begin{bmatrix}
-		\langle \bu_i', \bu_1 \rangle \\
-		\langle \bu_i', \bu_2 \rangle \\
+		 \bu_i'\cdot  \bu_1 \\
+		 \bu_i'\cdot \bu_2  \\
 		\vdots \\
-		\langle \bu_i', \bu_n \rangle
+		 \bu_i' \cdot \bu_n 
 	\end{bmatrix}.
 \end{align*}
-Thus, $(P_{B' \to B})_{ij}=\langle\bu_i',\bu_j\rangle$. Since $P_{B' \to B}^{-1}=P_{B \to B'}$, we find 
+Thus, $(P_{B' \to B})_{ij}= \bu_i'\cdot\bu_j$. Since $P_{B' \to B}^{-1}=P_{B \to B'}$, we find 
 \begin{align*}
-(P_{B' \to B}^{-1})_{ij}&=\langle \bu_i ,\bu_j'\rangle \\
-&=\langle\bu_j',\bu_i\rangle \\
+(P_{B' \to B}^{-1})_{ij}&= \bu_i \cdot \bu_j' \\
+&=\bu_j'\cdot\bu_i \\
 &=(P_{B' \to B})_{ji} \\
 &=(P_{B' \to B}^T)_{ij}.
 \end{align*}
+\end{pf}
+
 \begin{defn}
-	An $n \times n$ matrix $A$ is called {\bf orthogonal} if $A^T=A^{-1}$.
+	An $n \times n$ matrix $A$ is said to be an {\bf orthogonal matrix} if $A$ is invertible and $A^{-1}=A^T$. This is equivalent to the condition that $A$ satisfies $AA^T=A^TA=I$.
 \end{defn}
-Note that, if $A$ is orthogonal, then we have $AA^T=A^TA=I$. We have just proven the following proposition.
+
+We have just proven above the following proposition.
 
 \begin{prop}
 	The transition matrix $P$ between orthonormal bases is an orthogonal matrix.
 \end{prop}
+
+Note from Equations \eqref{eq:b2bp} and \eqref{eq:bp2b} above that the rows and columns each form orthonormal bases for $\mathbb{R}^n$. 
+
+\begin{thm}
+	The following are equivalent for an $n \times n$ matrix $A$.
+	\begin{enumerate}[(a)]
+		\item $A$ is orthogonal.
+		\item The row vectors of $A$ form an orthonormal basis for $\mathbb{R}^n$ with respect to the Euclidean inner product.
+		\item The column vectors of $A$ form an orthonormal basis for $\mathbb{R}^n$ with respect to the Euclidean inner product.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+
+ Suppose $A$ is orthogonal. Then $AA^T=I$. Letting ${\bf r}_i$ denote the $i$th row of $A$ and ${\bf c}_i$ denote the $i$th row of $A^T$, we have $(AA^T)_{ij}={\bf r}_i \cdot {\bf c}_j={\bf r}_i \cdot {\bf r}_j=\delta_{ij}$, where we have used the fact that the $j$th column of $A^T$ is equal to the $j$th row of $A$. Thus, the row vectors of an orthogonal matrix form an orthonormal set of $n$ vectors in $\mathbb{R}^n$, and therefore an orthonormal basis for $\mathbb{R}^n$. This shows (a) implies (b). Now let ${\bf r}_i$ denote the $i$th row of $A^T$ and ${\bf c}_i$ the $i$th row of $A$. Since $A^TA=I$, $(A^TA)_{ij}={\bf r}_i \cdot {\bf c}_j={\bf c}_i \cdot {\bf c}_j=\delta_{ij}$. Thus, (a) implies (c). These equations in reverse direction shows that (b) and (c) imply (a). This also shows that (b) $\iff$ (c), since we have seen that (b) implies (a) and (a) implies (c) and vice versa.
+\end{pf}
 
 \begin{exercise}
 	Show that the matrix
@@ -9196,52 +9349,7 @@ Note that, if $A$ is orthogonal, then we have $AA^T=A^TA=I$. We have just proven
 	\end{align*}
 is orthogonal.
 \end{exercise}
-
-\begin{exercise}
-	Show that the matrix
-	\begin{align*}
-		A=\begin{bmatrix}
-			\cos \theta & -\sin \theta \\
-			\sin \theta & \cos \theta
-		\end{bmatrix}
-	\end{align*}
-	is orthogonal.
-\end{exercise}
-
-\begin{thm}
-	The following are equivalent for an $n \times n$ matrix $A$.
-	\begin{enumerate}[(a)]
-		\item $A$ is orthogonal.
-		\item The row vectors of $A$ form an orthonormal set in $\mathbb{R}^n$ with respect to the Euclidean inner product.
-		\item The column vectors of $A$ form an orthonormal set in $\mathbb{R}^n$ with respect to the Euclidean inner product.
-	\end{enumerate}
-\end{thm}
-
-\begin{pf}\
-	Suppose $A$ is orthogonal. Then $AA^T=I$. Letting ${\bf r}_i$ denote the $i$th row of $A$ and ${\bf c}_i$ denote the $i$th row of $A^T$, we have $(AA^T)_{ij}={\bf r}_i \cdot {\bf c}_j={\bf r}_i \cdot {\bf r}_j=\delta_{ij}$, where we have used the fact that the $j$th column of $A^T$ is equal to the $j$th row of $A$. Thus, (a) implies (b). \fixme{Finish.}
-\end{pf}
-
-\begin{thm} \
-	\begin{enumerate}[(a)]
-		\item If $A$ is an orthogonal matrix, then $\text{det}(A)=\pm 1$.
-		\item If $A$ is an orthogonal matrix, then $A$ is invertible and $A^{-1}$ is also orthogonal.
-		\item If $A$ and $B$ are orthogonal matrices, then so is $AB$.
-	\end{enumerate}
-\end{thm}
-
-\begin{pf}\
-	\begin{enumerate}[(a)]
-		\item Taking the determinant of both sides of $AA^T=I$ gives
-		\begin{align*}
-			\text{det}(AA^T)&=\text{det}(I) \\
-			\text{det}(A)\text{det}(A^T) &= 1 \\
-			\text{det}(A)^2&=1 
-		\end{align*}
-		and therefore $\text{det}(A) = \pm 1$.
-		\item Since $\text{det}(A)=\pm 1 \neq 0$, $A$ is invertible. $A^{-1}(A^{-1})^T=A^T(A^T)^T=A^TA=I$, so $A^{-1}$ is invertible.
-		\item $(AB)(AB)^T=A(BB^T)A^T=AA^T=I$, which shows $AB$ is orthogonal.
-	\end{enumerate}
-\end{pf}
+We have seen that, in general, multiplication of a vector $\bx \in \mathbb{R}^n$ by an $n \times n$ matrix $A$ changes both the length and direction of $A$. One reason why orthogonal matrices are important is that the preserve the lengths of vectors as well as the angle between any two vectors in $\mathbb{R}^n$.
 
 \begin{thm}
 	If $A$ is an $n \times n$ matrix, then the following are equivalent.
@@ -9251,9 +9359,112 @@ is orthogonal.
 		\item $A\bx \cdot A\by = \bx \cdot \by$ for all $\bx$ and $\by$ in $\mathbb{R}^n$
 	\end{enumerate}
 \end{thm}
-\begin{pf}
-	Suppose $A$ is orthogonal. Then $||A\bx||^2=A\bx \cdot A\bx=\bx \cdot A^TA\bx=\bx \cdot I\bx =\bx \cdot \bx = ||\bx||^2$. Thus (a) implies (b). \fixme{Finish.}
+
+\begin{pf} 
+Since
+	\begin{align*}
+		A\bx \cdot A\by &=(A\bx)^TA\by \\
+		&=\bx^TA^TA\by
+	\end{align*}
+$A\bx \cdot A\by$ if and only if $A^TA=I$, that is, if and only if $A$ is orthogonal. This shows (a) $\iff$ (c). By taking $\by=\bx$, the same computation shows that (a) $\iff$ (b). We then have also that (b) $\iff$ (c) since (b) implies (a) and (a) implies (c) and vice versa.
 \end{pf}
+
+The next theorem shows that the set of orthogonal matrices forms a \emph{group} under matrix multiplication.
+
+\begin{thm}\label{thm:orthogonal_group} \
+	\begin{enumerate}[(a)]
+		\item If $A$ is an orthogonal matrix, then $\text{det}(A)=\pm 1$.
+		\item If $A$ is an orthogonal matrix, then $A^{-1}$ is also orthogonal.
+		\item If $A$ and $B$ are orthogonal matrices, then so is $AB$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+	\begin{enumerate}[(a)]
+		\item Taking the determinant of both sides of $AA^T=I$ gives
+		\begin{align*}
+			\text{det}(AA^T)&=\text{det}(I) \\
+			\text{det}(A)\text{det}(A^T) &= 1 \\
+			\text{det}(A)^2&=1 
+		\end{align*}
+		and therefore $\text{det}(A) = \pm 1$.
+		\item $A^{-1}(A^{-1})^T=A^T(A^T)^T=A^TA=I$, so $A^{-1}$ is invertible.
+		\item $(AB)(AB)^T=A(BB^T)A^T=AA^T=I$, which shows $AB$ is orthogonal.
+	\end{enumerate}
+\end{pf}
+
+Note that the converse of Theorem \ref{thm:orthogonal_group} is \emph{false}. For instance, the matrix $\begin{bmatrix}
+	2 & 1 \\
+	5 & 3
+\end{bmatrix}$ has determinant 1, but is not orthogonal.
+
+\begin{example}
+	A rotation in three-dimensions can be represented by an orthogonal matrix. For instance, a counter-clockwise rotation by an angle $\theta$ about the $z$-axis is represented by the matrix
+	\begin{align*}
+		A=\begin{bmatrix}
+			\cos \theta & -\sin \theta & 0 \\
+			\sin \theta & \cos \theta & 0 \\
+			0 & 0 & 1
+		\end{bmatrix}
+	\end{align*}
+\end{example}
+
+\subsubsection{Orthogonal Diagonalization}
+\begin{defn}
+\begin{enumerate}[(a)]
+	\item Two square matrices $A$ and $B$ are \emph{orthogonally similar} if there exists and orthogonal matrix $P$ such that $B=P^TAP$.
+	\item If $A$ is orthogonally similar to a diagonal matrix, then we say that $A$ is {\bf orthogonally diagonalizable}.
+\end{enumerate}
+\end{defn}
+	
+\begin{thm}
+	If $A$ is an $n \times n$ matrix, then the following are equivalent.
+	\begin{enumerate}[(a)]
+		\item $A$ is orthogonally diagonalizable.
+		\item $A$ has an orthonormal set of $n$ eigenvectors.
+		\item $A$ is symmetric.
+	\end{enumerate}
+\end{thm}	
+	
+\begin{pf}
+	Suppose $A$ is orthogonally diagonalizable. Then there exists an orthogonal matrix $P$ such that $P^TAP$ is diagonal. The $n$ column vectors of $P$ are eigenvectors of $A$. Since $P$ is orthogonal, these column vectors are orthonormal, so $A$ has $n$ orthonormal eigenvectors. Thus, (a) implies (b).
+	
+Now suppose $A$ is an $n \times n$ matrix with an orthonormal set of $n$ eigenvectors. The matrix $P$ whose column vectors are these eigenvectors diagonalizes $A$. Since these eigenvectors are orthonormal, $P$ is orthogonal and thus orthogonally diagonalizes $A$. This shows (b) implies (a).
+
+If $A$ is orthogonally diagonalizable, then there exists an orthogonal matrix $P$ and a diagonal matrix $D$ such that $D=P^TAP$. Multiplying both sides of this equation on the left by $P$ and on the right by $P^T$ gives $A=PDP^T$. Taking the transpose gives $A^T=(PDP^T)^T=(P^T)^TD^TP^T=PDP^T=A$ (where we have used the fact that $D^T=D$ since $D$ is diagonal). Thus, $A$ is symmetric, proving (a) implies (c).
+
+We will now prove by induction on $n$ that a symmetric  $n\times n$ matrix $A$ is orthogonally diagonalizable. \fixme{Finish.}
+\end{pf}
+
+\begin{thm}
+	If $A$ is a symmetric matrix, then
+	\begin{enumerate}[(a)]
+		\item The eigenvalues of $A$ are real.
+		\item Eigenvectors from different eigenspaces are orthogonal.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+	\fixme{Finish.}
+\end{pf}
+
+To orthogonally diagonalize a symmetric $n \times n$ matrix $A$:
+\begin{enumerate}
+	\item Find a basis for each eigenspace of $A$.
+	\item Apply the Gram-Schmidt algorithm to each of these bases to obtain an orthonormal basis for each eigenspace.
+	\item Form the matrix $P$ whose columns are the basis vectors from each of these orthonormal bases. Then $D=P^TAP$ will be diagonal, and the entries on the main diagonal will be the eigenvalues of $A$. \footnote{Recall that eigenvectors from different eigenspaces are orthogonal, and applying the Gram-Schmidt algorithm ensures that the eigenvectors within the \emph{same} eigenspace are orthonormal. It follows that the \emph{entire} set of eigenvectors obtained by this procedure will be orthonormal.}
+\end{enumerate} 
+
+\begin{exercise}
+	Orthogonally diagonalize the matrix
+	\begin{align*}
+		A=\begin{bmatrix}
+			4 & 2 & 2 \\
+			2 & 4 & 2 \\
+			2 & 2 & 4
+		\end{bmatrix}.
+	\end{align*}
+\end{exercise}
 
 \end{document}
 
