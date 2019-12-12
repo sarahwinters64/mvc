@@ -697,6 +697,7 @@ Prove that $f(x)=|x|$ is continuous on $\R$.
 	Let $f(x)$ and $g(x)$ be defined on the same open interval containing $x_0$. If $f(x)$ and $g(x)$ are continuous at $x_0$, then so are
 	\begin{enumerate}[(i)]
 		\item $cf(x)$
+		\item \fixme{Finish.}
 	\end{enumerate}
 \end{thm}
 
@@ -1003,6 +1004,100 @@ Similarly, for $k$ a positive integer, the $k$th derivative of $\bbr$ is given b
 \item A vector-valued function is said to be of class $\mathscr{C}^k$ if its first $k$ derivatives exist and are continuous and of class $\mathscr{C}^\infty$ if all of its derivatives exist. Functions in the class $\mathscr{C}^\infty$ are also called \emph{smooth}.
 	\end{enumerate}
 \end{defn}
+
+\subsection{Parametrized Curves}
+We will now focus on a special class of vector-valued functions, which model the motion of a particle through space. Throughout this section, let $I=(a,b)$ be an open interval in $\R$.
+
+\begin{defn}[Parametrized curve]
+	A \emph{parametrized curve} (or just \emph{curve}) is a smooth mapping $\bbr:I \to \mathbb{R}^n$. For $n=2$, a curve is also called a \emph{plane curve} while for $n=3$ it is also called a \emph{space curve}. The variable $t$ is called the \emph{parameter}. The image $\bbr(I)$ is called the \emph{trace} of the curve $\bbr$.
+\end{defn}
+
+\begin{example}
+The graph of any function $y=f(x)$ can be written as a parametrized curve by defining
+\begin{align*}
+	\bbr:\R &\to \R^2 \\
+	\bbr(t)&=(t,f(t)).
+\end{align*}
+For example, the function $y=x^2$ can be written the parametrized curve $\bbr(t)=(t,t^2)$ for all $-\infty < t < \infty$.	The trace of a plane curve can be plotted in \emph{Mathematica} as shown below:
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/parab_param_plot}
+	\end{center}
+	\caption{The trace of the plane curve $\bbr(t)=(t,t^2)$.}
+\end{figure} 
+
+The particle moves down the parabola from the upper left starting at $t=-\infty$, reaches the origin at $t=0$, and then continues up the parabola to the upper right for all $t>0$.
+\end{example}
+
+\begin{exercise}
+Sketch the trace of the plane curve $\bbr(t)=(t^2-2t,t+1)$, $-\infty < t < \infty$ in by making a table of the coordinates $(x(t),y(t))$ for integer values of $t$ from $-2 \leq t \leq 4$. Compare your sketch with the curve produced in \emph{Mathematica} using the ``ParametricPlot" command.	
+\end{exercise}
+\newpage 
+{\color{red}
+\begin{solution}
+	The curve is a parabola, which we can confirm by eliminating $t$ as follows. First, solve for $t$ in terms of $y$ to obtain
+\begin{align*}
+	y=t+1 \implies y-1=t.
+\end{align*}
+Substituting into $x(t)$ then gives $x$ in terms of $y$:
+\begin{align*}
+	x=t^2-2t=(y-1)^2-2(y-1)=y^2-4y+3=(y-2)^2-1.
+\end{align*}
+which is the equation of a parabola in vertex form, with vertex at $(x,y)=(-1,2)$. 
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/sideways_parab_mma}
+	\end{center}
+	\caption{The trace of the plane curve $\bbr(t)=(t^2-2t,t+1)$ from $-2 \leq t \leq 4$.}
+\end{figure}
+
+The particle travels upwards along the parabola from $t=-\infty$, reaches the vertex at $t=1$, and then continues upward to the right for $t>0$.
+\end{solution}}
+
+\begin{example}
+Consider the following three plane curves
+\begin{enumerate}[(1)]
+	\item $\bbr_1(t)=(\cos t, \sin t), 0 \leq t \leq 2\pi$, 
+	\item $\bbr_2(t)=(-\sin 2t, \cos 2t), 0 \leq t \leq 2\pi$,
+	\item $\bbr_3(t)=(\cos(-t), \sin(-t)), 0 \leq t \leq 2\pi$.
+\end{enumerate}	
+For all three curves, $x(t)^2+y(t)^2=1$, so the trace of each curve is the unit circle. However, the curves are different. The reader can easily verify the following by making a table for each curve and sketching the trace:
+\begin{enumerate}[(1)]
+	\item In $\bbr_1$, the particle begins at $(x,y)=(1,0)$ at $t=0$ and completes one full circle, moving in the counterclockwise direction.
+	\item In $\bbr_2$, the particle begins at $(x,y)=(0,1)$ at $t=0$ and completes \emph{two} full circles, moving in the counterclockwise direction.
+	\item In $\bbr_3$, the particle begins at $(x,y)=(1,0)$ at $t=0$ and completes one full circle, moving in the \emph{clockwise} direction.
+\end{enumerate}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/circ_param_plot_mma}
+	\end{center}
+	\caption{The trace of the curves $\bbr_1,\bbr_2,\bbr_3$.}
+\end{figure}
+\end{example}
+The previous example shows that a parametrized curve is more than just the trace: it is the trace together with a choice of how to traverse the trace of curve.
+
+\begin{example}
+Consider now the trace of the plane curve $\bbr(t)=(t^3,t^2)$, $-\infty<t<\infty$.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/cusp_mma}
+	\end{center}
+\end{figure}
+Since the component functions are smooth, the reader may be surprised by the cusp at the origin. Solving for $y$ in terms of $x$ by eliminating $t$, we find that $y=x^{2/3}$, which is indeed not differentiable at the origin. Note that $\bbr'(t)=(3t^2,2t)\neq (0,0)$ everywhere except the origin, where the tangent vector vanishes.
+\end{example}
+\newpage 
+\begin{defn}[Regular curve]
+	Let $\bbr:I \to \R^n$ be a parametrized curve.
+	\begin{enumerate}[(a)]
+		\item A point where $\bbr'(t)={\bf 0}$ is called a \emph{singular point}, while a point where $\bbr'(t) \neq {\bf 0}$ is called a \emph{regular point}.
+		\item A \emph{regular curve} is a curve with no singular points; that is, it is a curve for whice $\bbr'(t) \neq {\bf 0}$ for all $t \in I$.
+	\end{enumerate}
+\end{defn}
+In our study of the geometry of curves, we will need the curve to have a tangent vector at every point. Thus, from now on we will assume all curves are regular.
+
 
 
 \end{document}
