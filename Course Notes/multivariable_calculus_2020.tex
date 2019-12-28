@@ -1248,85 +1248,14 @@ Writing the function as a parametrized curve $\bbr(t)=(t,f(t))$, we have $\bbr'(
 	s=\int_a^b||\bbr'(t)||dt.
 \end{align}
 \fixme{Add example.}
-How do we compute the arc length if $\bbr(t)$ is not the graph of a function? If $\bbr(t)$ is not the graph of a function, it turns out that Equation \eqref{eq:arc_length_gen} is still valid. In this case, we obtain the formula as the limit of a sequence of polygonal approximations of the curve: 
+How do we compute the arc length if $\bbr(t)$ is not the graph of a function? If $\bbr(t)$ is not the graph of a function, it turns out that Equation \eqref{eq:arc_length_gen} is still valid. In this case, we obtain the formula as the limit of a sequence of polygonal approximations of the curve (the proof is given in Appendix \ref{app:arc_length}). 
 
-\begin{figure}[h]
-	\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/polygonal_approx}
-\end{center}
-\end{figure}
-
-\begin{prop}
-Let $\bbr:[a,b] \to \R^n$ be a regular curve. Then the arc length between the points $\bbr(a)$ and $\bbr(b)$ on the curve is given by
+\begin{defn}{Arc length}\label{def:arc_length}
+Let $\bbr:[a,b] \to \R^n$ be a regular curve. We define the \emph{arc length} between the points $\bbr(a)$ and $\bbr(b)$ on the curve by
 \begin{align*}
 	s=\int_a^b||\bbr'(t)||dt.
 \end{align*}	
-\end{prop}
-
-\begin{pf}
-\fixme{This proof references an idea here and there which are most likely unfamiliar. Attempts to give a rough explanation are given, but may not be entirely satisfactory.} Let $\bbr:I \to \R^n$ be a parametrized curve and let $[a,b] \subseteq I$. Let $a\equiv t_0<t_1<t_2	<\cdots<t_n\equiv b$ be a partition of $[a,b]$ where, for simplicity, we take each interval $t_i-t_{i-1}$ to have equal width $\Delta t\equiv \frac{b-a}{n}$. Approximate the length of curve between $\bbr(t_{i-1})$ and $\bbr(t_i)$ by a straight line. We then define the arc length $s$ between $\bbr(a)$ and $\bbr(b)$ by
-\begin{align*}
-	s&\equiv \lim_{n \to \infty}\sum_{i=1}^n||\bbr(t_i)-\bbr(t_{i-1})|| \\
-	&=\equiv \lim_{n \to \infty}\sum_{i=1}^n\sqrt{(x(t_i)-x(t_{i-1}))^2+(y(t_i)-y(t_{i-1}))^2}.
-\end{align*}
-Since the coordinate functions $x(t)$ and $y(t)$ are continuous on $[a,b]$ and differentiable on $(a,b)$, by the Mean Value Theorem there exist $t_i^*$ and $t_i^{**}$ in $(a,b)$ such that
-\begin{align*}
-	x(t_i)-x(t_{i-1})&=x'(t_i^*)(t_i-t_{i-1}) \\
-	&=x'(t_i^*)\Delta t \\
-	y(t_i)-y(t_{i-1})&=y'(t_i^{**})(t_i-t_{i-1}) \\
-	&=y'(t_i^{**})\Delta t
-\end{align*}
-and therefore
-\begin{align*}
-	s&=\lim_{n \to \infty}\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\Delta t.
-\end{align*}
-If $t_i^*$ were equal to $t_i^{**}$ for all $i=1,\cdots,n$, then this would be a Riemann sum for $\int_a^b||\bbr'(t)||dt$. However, in general they are not equal, so we will instead show that the difference between this expression and the Riemann sum
-\begin{align*}
-\int_a^b||\bbr'(t)||dt\equiv\lim_{n \to \infty}\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^*))^2}\Delta t	
-\end{align*}
- goes to zero as $n \to \infty$. \footnote{Intuitively, this should make sense, since $t_i^*$ and $t_i^{**}$ both lie within $[t_{i-1},t_i]$ and by shrinking $\Delta t$, each of these subintervals also shrinks and therefore we should be able to make the points $t_i^*$ and $t_i^{**}$ become arbitrarily close to each other by making $\Delta t$ arbitrarily small.} First, note that since $\bbr$ is, in particular, continuously differentiable on each closed interval $[t_{i-1},t_i]$, the functions $x'$ and $y'$ are uniformly continuous on $[t_{i-1},t_i]$. \footnote{The proof of this involves the notion of ``compactness", the explanation of which would take us beyond the scope of this course. A function is said to be \emph{uniformly continuous} if for every $\epsilon>0$ there exists $\delta>0$ such that for any point $t \in [t_{i-1},t_i]$, $|t'-t|<\delta$ implies $||f(t)-f(t')||<\epsilon$; that is, the \emph{same} $\delta$ works for every point $t \in [t_{i-1},t_i]$. This is not true when a function is continuous but not uniformly continuous, since in that case $\delta$ depends on both $\epsilon$ \emph{and} $t$.} Thus, given any $\epsilon >0$ there exists a $\delta > 0$ such that $|t_i^*-t_i^{**}|< \delta$ implies $|y'(t_i^*)-y'(t_i^{**})|<\epsilon$. Since $|t_i^*-t_i^{**}|<t_i-t_{i-1}=\Delta t$, if we take $\Delta t < \delta$, then we will have $|y'(t_i^*)-y'(t_i^{**})|<\epsilon$. Note that this is possible since, given any $\delta > 0$, by the Archimedean property of the real numbers we can find a positive integer $n$ such that $\Delta t =\frac{b-a}{n}<\delta$. Assuming now that we have chosen $\Delta t<\delta$, we then have
-\begin{align*}
-	&\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\\
-	=& \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2+(y'(t_i^{*}))^2-(y'(t_i^{*}))^2}\right| \\
-	=& \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+(y'(t_i^{**}))^2-(y'(t_i^{*}))^2}\right|.
-\end{align*}
-Now $(y'(t_i^{**}))^2-(y'(t_i^{*}))^2 \leq |(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|$, so, by the triangle inequality,
-\begin{align*}
-	\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+(y'(t_i^{**}))^2-(y'(t_i^{*}))^2} &\leq \sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|} \\
-	&\leq \sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}+\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|} 
-\end{align*}
-and therefore
-\begin{align*}
-	&\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\\
-	=& \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+(y'(t_i^{**}))^2-(y'(t_i^{*}))^2}\right| \\
-	& \leq \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\left(\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}+\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|}\right)\right| \\
-	&=\left|-\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|}\right| \\
-	&=\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|} \\
-	&=\sqrt{|(y'(t_i^{**})+(y'(t_i^{*}))(y'(t_i^{**})-(y'(t_i^{*}))|} \\
-	&=\sqrt{|(y'(t_i^{**})+(y'(t_i^{*}))|}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|} \\
-\end{align*}
-Since $y'$ is continuous and $[a,b]$ a closed interval, $y'([a,b])$ is bounded by some $M>0$, so \footnote{Here we have used the facts that the image of a compact set under a continuous mapping is compact, and that a compact set is bounded.}
-\begin{align*}
-	&=\sqrt{|(y'(t_i^{**})+(y'(t_i^{*}))|}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|} \\
-	&\leq \sqrt{2M}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|},
-\end{align*}
-so by choosing $\Delta t<\delta$ such that $|(y'(t_i^{**})-(y'(t_i^{*}))|<\frac{\epsilon^2}{4M^2(b-a)^2}$, then 
-\begin{align*}
-	&\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\\
-	&\leq \sqrt{2M}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|} \\
-	&< \sqrt{2M}\sqrt{\frac{\epsilon^2}{4M^2(b-a)^2}} \\
-	&=\frac{\epsilon}{b-a}
-\end{align*}
-and therefore
-\begin{align*}
-	&\left|\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}\Delta t-\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\Delta t\right| \\
-	=&\left|\sum_{i=1}^n\left(\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right)\right|\Delta t \\
-	&\leq \sum_{i=1}^n\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\Delta t \\
-	&<n\frac{\epsilon}{b-a} \Delta t \\
-	&=n\frac{\epsilon}{b-a}\frac{(b-a)}{n} \\
-	&=\epsilon.
-\end{align*}
-\end{pf}
+\end{defn}
 
 \begin{example}\label{ex:unit_circl_ex}
 We now compute the arc length along the portion of the unit circle from $(1,0)$ to $(0,1)$. If we use the parametrization
@@ -2270,5 +2199,87 @@ Let $\bv\equiv \bbr'$, $\ba\equiv \bbr''$, ${\bf j}\equiv \bbr'''$ and drop the 
 		\tau=\frac{\bv \times \ba \cdot {\bf j}}{||\bv \times \ba||^2}.
 	\end{align*}
 \end{enumerate}
+
+\appendix
+\section{Proof of the Arc Length Formula}\label{app:arc_length}
+\begin{prop}
+The arc length formula 
+\begin{align}
+	s=\int_a^b||\bbr'(t)||dt.
+\end{align}
+can be obtained as the limit of a polygonal approximation of the curve.
+\end{prop}
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/polygonal_approx}
+\end{center}
+\caption{A polygonal approximation of a regular curve.}
+\end{figure}
+
+\begin{pf}
+\fixme{This proof references an idea here and there which are most likely unfamiliar. Attempts to give a rough explanation are given, but may not be entirely satisfactory.} Let $\bbr:I \to \R^n$ be a parametrized curve and let $[a,b] \subseteq I$. Let $a\equiv t_0<t_1<t_2	<\cdots<t_n\equiv b$ be a partition of $[a,b]$ where, for simplicity, we take each interval $t_i-t_{i-1}$ to have equal width $\Delta t\equiv \frac{b-a}{n}$. Approximate the length of curve between $\bbr(t_{i-1})$ and $\bbr(t_i)$ by a straight line. We then define the arc length $s$ between $\bbr(a)$ and $\bbr(b)$ by
+\begin{align*}
+	s&\equiv \lim_{n \to \infty}\sum_{i=1}^n||\bbr(t_i)-\bbr(t_{i-1})|| \\
+	&=\equiv \lim_{n \to \infty}\sum_{i=1}^n\sqrt{(x(t_i)-x(t_{i-1}))^2+(y(t_i)-y(t_{i-1}))^2}.
+\end{align*}
+Since the coordinate functions $x(t)$ and $y(t)$ are continuous on $[a,b]$ and differentiable on $(a,b)$, by the Mean Value Theorem there exist $t_i^*$ and $t_i^{**}$ in $(a,b)$ such that
+\begin{align*}
+	x(t_i)-x(t_{i-1})&=x'(t_i^*)(t_i-t_{i-1}) \\
+	&=x'(t_i^*)\Delta t \\
+	y(t_i)-y(t_{i-1})&=y'(t_i^{**})(t_i-t_{i-1}) \\
+	&=y'(t_i^{**})\Delta t
+\end{align*}
+and therefore
+\begin{align*}
+	s&=\lim_{n \to \infty}\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\Delta t.
+\end{align*}
+If $t_i^*$ were equal to $t_i^{**}$ for all $i=1,\cdots,n$, then this would be a Riemann sum for $\int_a^b||\bbr'(t)||dt$. However, in general they are not equal, so we will instead show that the difference between this expression and the Riemann sum
+\begin{align*}
+\int_a^b||\bbr'(t)||dt\equiv\lim_{n \to \infty}\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^*))^2}\Delta t	
+\end{align*}
+ goes to zero as $n \to \infty$. \footnote{Intuitively, this should make sense, since $t_i^*$ and $t_i^{**}$ both lie within $[t_{i-1},t_i]$ and by shrinking $\Delta t$, each of these subintervals also shrinks and therefore we should be able to make the points $t_i^*$ and $t_i^{**}$ become arbitrarily close to each other by making $\Delta t$ arbitrarily small.} First, note that since $\bbr$ is, in particular, continuously differentiable on each closed interval $[t_{i-1},t_i]$, the functions $x'$ and $y'$ are uniformly continuous on $[t_{i-1},t_i]$. \footnote{The proof of this involves the notion of ``compactness", the explanation of which would take us beyond the scope of this course. A function is said to be \emph{uniformly continuous} if for every $\epsilon>0$ there exists $\delta>0$ such that for any point $t \in [t_{i-1},t_i]$, $|t'-t|<\delta$ implies $||f(t)-f(t')||<\epsilon$; that is, the \emph{same} $\delta$ works for every point $t \in [t_{i-1},t_i]$. This is not true when a function is continuous but not uniformly continuous, since in that case $\delta$ depends on both $\epsilon$ \emph{and} $t$.} Thus, given any $\epsilon >0$ there exists a $\delta > 0$ such that $|t_i^*-t_i^{**}|< \delta$ implies $|y'(t_i^*)-y'(t_i^{**})|<\epsilon$. Since $|t_i^*-t_i^{**}|<t_i-t_{i-1}=\Delta t$, if we take $\Delta t < \delta$, then we will have $|y'(t_i^*)-y'(t_i^{**})|<\epsilon$. Note that this is possible since, given any $\delta > 0$, by the Archimedean property of the real numbers we can find a positive integer $n$ such that $\Delta t =\frac{b-a}{n}<\delta$. Assuming now that we have chosen $\Delta t<\delta$, we then have
+\begin{align*}
+	&\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\\
+	=& \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2+(y'(t_i^{*}))^2-(y'(t_i^{*}))^2}\right| \\
+	=& \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+(y'(t_i^{**}))^2-(y'(t_i^{*}))^2}\right|.
+\end{align*}
+Now $(y'(t_i^{**}))^2-(y'(t_i^{*}))^2 \leq |(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|$, so, by the triangle inequality,
+\begin{align*}
+	\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+(y'(t_i^{**}))^2-(y'(t_i^{*}))^2} &\leq \sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|} \\
+	&\leq \sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}+\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|} 
+\end{align*}
+and therefore
+\begin{align*}
+	&\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\\
+	=& \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2+(y'(t_i^{**}))^2-(y'(t_i^{*}))^2}\right| \\
+	& \leq \left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\left(\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}+\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|}\right)\right| \\
+	&=\left|-\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|}\right| \\
+	&=\sqrt{|(y'(t_i^{**}))^2-(y'(t_i^{*}))^2|} \\
+	&=\sqrt{|(y'(t_i^{**})+(y'(t_i^{*}))(y'(t_i^{**})-(y'(t_i^{*}))|} \\
+	&=\sqrt{|(y'(t_i^{**})+(y'(t_i^{*}))|}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|} \\
+\end{align*}
+Since $y'$ is continuous and $[a,b]$ a closed interval, $y'([a,b])$ is bounded by some $M>0$, so \footnote{Here we have used the facts that the image of a compact set under a continuous mapping is compact, and that a compact set is bounded.}
+\begin{align*}
+	&=\sqrt{|(y'(t_i^{**})+(y'(t_i^{*}))|}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|} \\
+	&\leq \sqrt{2M}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|},
+\end{align*}
+so by choosing $\Delta t<\delta$ such that $|(y'(t_i^{**})-(y'(t_i^{*}))|<\frac{\epsilon^2}{4M^2(b-a)^2}$, then 
+\begin{align*}
+	&\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\\
+	&\leq \sqrt{2M}\sqrt{|(y'(t_i^{**})-(y'(t_i^{*}))|} \\
+	&< \sqrt{2M}\sqrt{\frac{\epsilon^2}{4M^2(b-a)^2}} \\
+	&=\frac{\epsilon}{b-a}
+\end{align*}
+and therefore
+\begin{align*}
+	&\left|\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}\Delta t-\sum_{i=1}^n\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\Delta t\right| \\
+	=&\left|\sum_{i=1}^n\left(\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right)\right|\Delta t \\
+	&\leq \sum_{i=1}^n\left|\sqrt{(x'(t_i^*))^2+(y'(t_i^{*}))^2}-\sqrt{(x'(t_i^*))^2+(y'(t_i^{**}))^2}\right|\Delta t \\
+	&<n\frac{\epsilon}{b-a} \Delta t \\
+	&=n\frac{\epsilon}{b-a}\frac{(b-a)}{n} \\
+	&=\epsilon.
+\end{align*}
+\end{pf}
 
 \end{document}
