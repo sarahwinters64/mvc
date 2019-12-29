@@ -1832,7 +1832,7 @@ In this section we will prove the following theorem:
 	\fixme{Explain the sign.}
 \end{thm}
 
-\begin{prop}
+\begin{prop}\label{prop:global_angle_function}
 	Let $\bbr:I \to \R^2$ be a unit-speed plane curve. Then there exists a smooth \emph{angle function}, $\theta:I \to \R$, such that for all $t \in I$, we have
 	\begin{align}\label{eq:angle_function_for_plane_curve}
 		\bv(t)=(\cos\theta(t),\sin\theta(t)).
@@ -1902,7 +1902,33 @@ If $\psi$ is another global angle function, then $\bv(t)=(\cos \Theta(t),\sin \T
 \end{enumerate}
 \end{proof}
 
+\begin{defn}[Rotation index]
+	The \emph{rotation index} of a unit-speed closed plane curve $\bbr:[a,b] \to \R^2$  is the integer
+	\begin{align*}
+		\text{Ind}(\bbr)=\frac{1}{2\pi}(\Theta(b)-\Theta(a))
+	\end{align*}
+	where $\Theta$ is the global angle function of Proposition \ref{prop:global_angle_function}.
+\end{defn}
 
+\begin{exercise}
+Let $\bbr:[a,b] \to \R^2$ be a regular (not necessarily unit-speed) closed plane curve.
+\begin{enumerate}[(1)]
+	\item Prove there exists a smooth function $\Theta:[a,b] \to \R$ such that for all $t \in [a,b]$, the unit tangent vector satisfies
+	\begin{align*}
+		\ut(t)=(\cos \Theta(t), \sin \Theta(t))
+	\end{align*}
+	and that the rotation index of $\bbr$ equals $\frac{1}{2\pi}(\Theta(b)-\Theta(a))$.
+	\item Prove that the rotation index of $\bbr$ equals 
+	\begin{align*}
+		\text{Ind}(\bbr)=\frac{1}{2\pi}\int_a^b\kappa_s(t)||\bbr'(t)||dt.
+	\end{align*}
+\end{enumerate}	
+\emph{Hint: For both parts, verify that the formula is valid for unit-speed curves and is unchanged by orientation-preserving reparametrizations.}
+\end{exercise}
+
+\begin{example}
+	
+\end{example}
 
 
 \subsection{Space Curves}
@@ -2236,6 +2262,49 @@ The torsion function is
 
 Notice that the torsion takes its minimal value of 3 at $t=0$, and then strictly decreases as $|t| \to \infty$.
 \end{example}
+
+Physically, we can think of a curve in $\R^3$ a being obtained from a straight line by bending (curvature) and twisting (torsion).
+
+\subsection{The Fundamental Theorems of Plane and Space Curves}
+
+\begin{thm}[Fundamental Theorem of the Local Theory of Curves]
+	\begin{enumerate}[(1)]
+		\item Given a smooth function $\kappa_s(s)$, $s \in I$, then there exists a regular parametrized plane curve $\bbr:I \to \R^2$ such that $s$ is the arc length and $\kappa_s(s)$ is the signed curvature. This curve is unique up to rotations and translations.
+		\item Given smooth functions $\kappa(s)>0$ and $\tau(s)$, $s \in I$, there exists a regular parametrized curve $\bbr:I \to \R^3$ such that $s$ is the arc length, $\kappa(s)$ is the curvature, and $\tau(s)$ is the torsion of $\bbr$. This curve is unique up to rotations and translations.
+	\end{enumerate}
+\end{thm}
+
+The complete proof of this theorem involves the theorem of existence and uniqueness of solutions of ordinary differential equations. However, we can prove the construction of the plane curve in part (1).
+
+\begin{proof}
+	(1) Choose any $t_0 \in I$. For this, define the angle function $\Theta:I \to \R$ by
+	\begin{align*}
+		\Theta(t)=\int_{t_0}^t \kappa_s(u)du+\Theta(t_0)
+	\end{align*}
+	and the velocity function as $\bv(t)=(\cos \Theta(t),\sin \Theta(t))$. Then define $\bbr:I \to \R^2$ by
+	\begin{align*}
+		\bbr(t)=\int_{t_0}^t \bv(u)du+\bbr(t_0).
+	\end{align*}
+	As desired, $\bbr$ is a unit-speed plane curve for which $\Theta$ is an angle function. Its signed curvature function is $\kappa_s=\Theta'$. The initial conditions $\bbr(t_0), \Theta(t_0)$ can be chosen arbitrarily.
+	
+	For the second statement, let $\bbr,\hat{\bbr}:I \to \R^2$ be two unit-speed plane curves each of whose signed curvature functions equals $\kappa_s$. Each angle function (denoted $\Theta$ and $\hat{\Theta}$, respectively) is an antiderivative of $\kappa_s$; since antiderivatives are unique up to an additive constant, we have $\hat{\Theta}=\Theta+\Theta_0$ for some $\Theta_0 \in \R$. Let $\bv, \hat{\bv}$ denote the velocity functions of the two curves. Then
+	\begin{align*}
+		\hat{\bv}(t)=(\cos \hat{\Theta}, \sin \hat{\Theta})=(\cos(\Theta(t)+\Theta_0), \sin(\Theta(t)+\Theta_0))=L_A\bv(t)
+	\end{align*}
+	where $L_A:\R^2 \to \R^2$ is the linear transformation which multiplies $\bv$ by the rotation matrix 
+	\begin{align*}
+		A=\begin{bmatrix}
+			\cos \Theta_0 & -\sin \Theta_0 \\
+			\sin \Theta_0 & \cos \Theta_0
+		\end{bmatrix}.
+	\end{align*}
+	\fixme{Show this.} Let $T_{\bf q}:\R \to \R$ denote translation by the fixed vector ${\bf q}$:
+	\begin{align*}
+		T_{\bf q}\bv=\bv+{\bf q}
+	\end{align*}
+	and let $f=T_{\bf q} \circ L_A$. Consider the curve $\widetilde{\bbr}=f \circ \bbr$, where ${\bf q} \in \R^2$ has been chosen so that $\widetilde{\bbr}(t_0)=\hat{\bbr}(t_0)$. Since $\widetilde{\bbr}$ and $\hat{\bbr}$ have the same derivative function and the same initial value, the uniqueness of antiderivatives implies that $\widetilde{\bbr}=\hat{\bbr}$. \fixme{Add some details.}
+	\end{proof}
+
 
 \subsection{Summary of formulas}
 Let $\bv\equiv \bbr'$, $\ba\equiv \bbr''$, ${\bf j}\equiv \bbr'''$ and drop the dependence on the parameter $t$.
