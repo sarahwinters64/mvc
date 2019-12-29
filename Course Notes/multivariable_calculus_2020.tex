@@ -2340,6 +2340,341 @@ Let $\bv\equiv \bbr'$, $\ba\equiv \bbr''$, ${\bf j}\equiv \bbr'''$ and drop the 
 	\end{align*}
 \end{enumerate}
 
+\section{Multivariable Functions}
+\subsection{Basic Definitions}
+In the last section we studied functions with one input and multiple outputs. In this section, we study functions with multiple input and one output. That is, we study functions of the form
+\begin{align*}
+	f:U \subseteq \R^n \to \R.
+\end{align*}
+
+Examples abound.
+
+\begin{example}
+\begin{enumerate}[(a)]
+	\item The volume of a right circular cylinder of radius $r$ and height $h$ is a function $V:U \subseteq \R^2 \to \R$ defined by $V(r,h)=\pi r^2h$.
+	\item The Euclidean norm on $\R^n$ is a function $\rho:\R^n \to \R$ defined by $\rho(x_1,x_2,\dots,x_n)=\sqrt{x_1^2+x_2^2+\cdots+x_n^2}$.
+	\item The ideal gas law is a function giving the pressure in terms of the temperature and volume:
+	\begin{align*} 
+		p:\R^2 &\to \R\\
+		p(T,V)&=\frac{nRT}{V}.
+	\end{align*}
+\end{enumerate}	
+\end{example}
+In calculus, one generally defines a function by writing $y=f(x)$, where it is understood that the domain of the function is the largest set for which it is defined. This is common practice for multivariable functions as well, and one writes $z=f(x,y)$ meaning that the value of the function $f$ at $(x,y) \in \R^2$ is $z$. Similarly, one writes $u=f(x,y,z)$, $w=f(x,y,z,u)$, etc., if $f$ depends on more variables.
+
+\begin{example}
+Consider the function $f:D \subseteq \R^2 \to \R$ defined by $f(x,y)=\sqrt{y-x^2}$. For the square root to be defined, we must have $y-x^2\geq 0$. Taking the domain $D$ to be the largest set where the function is defined, we have then $D=\{(x,y) \in \R^2:y \geq x^2\}$, which is the shaded region above (and including) the parabola $y=x^2$ shown below. Note that $D$ is closed (since it contains its boundary $y=x^2$) and unbounded. (See Appendix \ref{app:topology} for definitions of these terms.)
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/domain_parab}
+	\end{center}
+	\caption{The domain of the function $z=\sqrt{y-x^2}$.}
+\end{figure}
+\end{example}
+
+\begin{exercise}
+Describe the domain $D$ of the function $f:D \subseteq \R^2 \to \R$ defined by 
+\begin{align*}
+	f(x,y)=\frac{1}{\sqrt{16-x^2-y^2}}.
+\end{align*}	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	For the square root to be defined, we must have $16 \geq x^2+y^2$. However, we cannot take $16=x^2+y^2$ since then we divide by zero. Therefore
+	\begin{align*}
+		D=\{(x,y):x^2+y^2<16\}=B_4(0)
+	\end{align*}
+	is the open ball of radius 4 centered at $(0,0)$. Note that $D$ is open and bounded.
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.3]{figures_mvc/dom_ball_4}
+		\end{center}
+		\caption{The domain of the function $z=\frac{1}{\sqrt{16-x^2-y^2}}$}.
+	\end{figure}
+\end{solution}}
+
+\begin{exercise}
+For each of the following functions, evaluate $f(3,2)$ and find and sketch the domain.
+\begin{enumerate}
+	\item $f(x,y)=\frac{\sqrt{x+y+1}}{x-1}$
+	\item $f(x,y)=x\ln(y^2-x)$
+\end{enumerate} 	
+\end{exercise}
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/dom_range_solution}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.35]{figures_mvc/dom_range_solution_part_2}
+\end{center}
+\end{figure}
+\subsection{Visualizing Multivariable Functions}
+\begin{defn}
+	Let $f:U \subset \mathbb{R}^2 \to \mathbb{R}$ be a real-valued function of two variables.  
+\begin{enumerate}[(1)]
+	\item The \emph{graph} of $f$ is the set $$\Gamma(f)=\{(x,y,z) \subset \mathbb{R}^3:z=f(x,y)\}$$.
+	\item A \emph{level curve} of $f$ is the set
+	$$L(f)=\{(x,y) \in U \subset \mathbb{R}^2:f(x,y)=\text{constant}\}$$
+	\item To each level curve in the domain we associate a \emph{contour line}, which is the intersection of the plane $z=c$ with the surface $z=f(x,y)$. \\
+\end{enumerate}
+\end{defn}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/graph_def}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/contour_lines_example}
+\end{subfigure}
+\caption{The graph of a function $z=f(x,y)$ is shown on the left. On the right, contour lines are shown in the domain which are the projections onto the $xy$-plane of the contour lines on the graph.}
+\end{figure}
+
+\newpage
+\begin{example}
+The graph of the function $z=100-x^2-y^2$ is shown below, along with the contour line at $z=75$, and the corresponding level curve.
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/contour}
+\end{center}
+\caption{Graph of $z=100-x^2-y^2$. The contour line at $z=75$ and corresponding level curve are shown.}
+\end{figure}
+	
+\end{example}
+\begin{example}[Elevation maps]
+	On maps, contour lines (really level curves; many people use these terms interchangibly) represent constant elevation.
+	\begin{figure}[h]
+		\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/mt_greylock}
+	\end{center}
+	\end{figure}
+\end{example}
+\newpage 
+\begin{example}
+Consider the function $f:\mathbb{R}^2 \to \mathbb{R}$ defined by $f(x,y)=y^2$. For any fixed value $x_0$ of $x$, a cross section of the graph is the parabola $z=y^2$ in the $zy$ plane at $x_0$. Since $f(x,y)$ is independent of $x$, the graph has a translational symmetry in the $x$ direction. The graph and level curves can be plotted in \emph{Mathematica} using the commands shown below.
+
+	\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/half_pipe_ex}
+  \caption{The graph of the function $z=y^2$.}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/half_pipe_contour}
+  \caption{Level curves of the function $z=y^2$.}
+\end{subfigure}
+\caption{The graph and level curves of the function $z=y^2$.}
+\end{figure}
+\end{example}
+
+\begin{exercise}
+Sketch the graph and level curves of the function $f:\mathbb{R}^2 \to \mathbb{R}$ defined by $f(x,y)=x^2+y^2$. 	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+		\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/paraboloid}
+  \caption{The graph of the function $z=x^2+y^2$.}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/paraboloid_contour}
+  \caption{Level curves of the function $z=x^2+y^2$.}
+\end{subfigure}
+\caption{The graph and level curves of the function $z=x^2+y^2$.}
+\end{figure}
+\end{solution}}
+If $f:U \subset \mathbb{R}^3 \to \mathbb{R}$ is a function of three variables, its graph $\{(x,y,z,f(x,y,z)\}$ is a subset of $\mathbb{R}^4$, and therefore is impossible to visualize. Instead, we visualize the function by its three-dimensional \emph{level surfaces}.
+
+\begin{defn}[Level surfaces]
+A \emph{level surface} of $f$ is the set
+\begin{align*}
+	L(f)=\{(x,y,z) \in U \subset \mathbb{R}^3:f(x,y,z)=\text{constant}\}
+\end{align*}	
+\end{defn}
+\newpage
+\begin{example}
+The level surfaces of the function $f:\R^3 \to \R$ defined by $f(x,y,z)=x^2+y^2+z^2$ are concentric spheres. These can be plotted in \emph{Mathematica} using the command shown below:
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/concentric_spheres_contour}
+	\end{center}
+	\caption{Level surfaces of $f(x,y,z)=x^2+y^2+z^2$.}
+\end{figure}
+\end{example}
+\newpage 
+\begin{exercise}
+Plot the level surfaces of the function $f:\R^3 \to \R$ defined by $f(x,y,z)=z$.	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/planes_level}
+	\end{center}
+	\caption{Level surfaces of $f(x,y,z)=z$.}
+\end{figure}
+\end{solution}}
+
+\begin{exercise}
+Plot the level surfaces of the function $f:\R^3 \to \R$ defined by $f(x,y,z)=x+z$.	
+\end{exercise}
+{\color{red}
+\begin{solution}
+	\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/level_surf_x_p_z}
+	\end{center}
+	\caption{Level surfaces of $f(x,y,z)=x+z$.}
+\end{figure}
+\end{solution}}
+
+\subsection{Limits}
+Let's compare the behavior of the functions
+\begin{align*}
+	f(x,y)=\frac{\sin{(x^2+y^2)}}{x^2+y^2} \hspace{0.5cm} \text{ and } \hspace{0.5cm} g(x,y)=\frac{x^2-y^2}{x^2+y^2}
+\end{align*}
+as $(x,y) \to (0,0)$. Note that neither function is defined at $(0,0)$:
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.5]{figures_mvc/tables_f_g}
+\end{center}	
+\end{figure}
+It looks like $\lim_{(x,y) \to (0,0)}f(x,y)=1$ (since the values of the function approach 1 from all directions) while $\lim_{(x,y) \to (0,0)}g(x,y)$ does not exist (since the values of the function near $(0,0)$ do not approach any fixed value).
+
+\begin{defn}[Limit]\label{def:limit}
+	Let $f:U-\{\bx_0\} \subset \mathbb{R}^n \to \mathbb{R}$, and $L \in \mathbb{R}$. We say that $f(\bx) \to L$ as $\bx \to \bx_0$ if for every $\epsilon > 0$ there exists a corresponding $\delta>0$ such that
+\begin{align*}
+	0<||\bx-\bx_0||<\delta \implies |f(\bx)-L|<\epsilon.
+\end{align*}
+In this case $L$ is called the \emph{limit} of $f$ as $\bx$ approaches $\bx_0$, and  we write $\lim_{\bx \to \bx_0}f(\bx)=L$.
+\end{defn}
+This definition says that the distance between $f(\bx)$ and $L$ can be made arbitrarily small by making the distance between $\bx$ and  $\bx_0$ sufficiently small. \footnote{Two points $x_1,x_2$ are said to be \emph{arbitrarily close} if, for \emph{every} $\epsilon>0$, $d(x_1,x_2)<\epsilon$. A point $x_1$ is said to be \emph{sufficiently close} to $x_2$ if there exists \emph{some} (fixed) $\delta>0$ such that $d(x_1,x_2)<\delta$.}
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.4]{figures_mvc/limit_def}
+\end{center}
+\caption{A function $f(\bx)$ has limit $L$ as $\bx \to \bx_0$ if $f(\bx)$ can be made arbitrarily close to $L$ by taking $\bx$ sufficiently close to $\bx_0$.}
+\end{figure}
+
+\newpage
+
+As in single-variable calculus, another illustration of the definition of a limit can be given in terms of its graph: For any $\epsilon>0$, we can find $\delta>0$ such that if $\bx \in B_\delta(\bx_0)$ and $\bx \neq \bx_0$, then $f(x)$ lies between the horizontal planes $z=L-\epsilon$ and $z=L+\epsilon$.
+
+	\begin{figure}[h]
+		\begin{center}
+	\includegraphics[scale=0.7]{figures_mvc/limit_def_graph}
+	\end{center}
+	\caption{A function $f$ has limit $L$ as $\bx \to \bx_0$ if the graph can be bounded between two arbitrarily close planes whenever for all $\bx$ sufficiently close to $\bx_0$.}
+	\end{figure}
+	
+For functions of a single variable, when we let $x \to a$, there are only two directions of approach: from the left or from the right. Recall that if $\lim_{x \to a^-}f(x) \neq \lim_{x \to a^+}f(x)$, then $\lim_{x \to a}f(x)$ does not exist. For functions of two variables, we can let $(x,y)$ approach $(a,b)$ from an infinite number of directions, as long as $(x,y)$ stays within the domain of $f$.
+	
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/approach}
+	\end{center}
+	\caption{Various paths in the domain of a function $f:\R^2 \to \R$ along which we can approach a point $(a,b)$.}
+\end{figure}	
+	
+	
+Note that the definition of a limit only depends on the \emph{distance} from $(x,y)$ and $(a,b)$. It does \emph{not} refer to the direction of the approach. Therefore, if the limit exists, then $f(x,y)$ must approach the same limit no matter how $(x,y)$ approaches $(a,b)$. Thus, if we can find two different paths of approach along which the function $f(x,y)$ has different limits, then it follows that $\lim_{(x,y) \to (a,b)}f(x,y)$ does not exist.
+
+\begin{example}
+Consider $\lim_{(x,y) \to (0,0)}\frac{x^2-y^2}{x^2+y^2}$. Consider approaching $(0,0)$ along the $x$-axis, that is, along the curve $\bbr(t)=(t,0)$. Then
+\begin{align*}
+	\lim_{(x(t),y(t)) \to (0,0)}\frac{x(t)^2-y(t)^2}{x(t)^2+y(t)^2}=\lim_{t \to 0}\frac{t^2-0}{t^2+0}=\lim_{t \to 0}\frac{t^2}{t^2}=\lim_{t \to 0}1=1.
+\end{align*}
+Approaching $(0,0)$ along the $y$-axis, i.e., along the path $\bbr(t)=(0,t)$, we find
+	\begin{align*}
+	\lim_{(x(t),y(t)) \to (0,0)}\frac{x(t)^2-y(t)^2}{x(t)^2+y(t)^2}=\lim_{t \to 0}\frac{0-t^2}{0+t^2}=\lim_{t \to 0}\frac{-t^2}{t^2}=\lim_{t \to 0}(-1)=-1.
+\end{align*}
+We have found two paths along which $\lim_{(x,y) \to (0,0)}\frac{x^2-y^2}{x^2+y^2}$ has different values, so $\lim_{(x,y) \to (0,0)}\frac{x^2-y^2}{x^2+y^2}$ does not exist.
+\end{example}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/no_limit_ex}
+	\end{center}
+	\caption{The function $f(x,y)=\frac{x^2-y^2}{x^2+y^2}$ has no limit as $(x,y) \to (0,0)$.}
+\end{figure}
+
+\begin{example}
+	Consider $\lim_{(x,y) \to (0,0)}\frac{xy}{x^2+y^2}$. Approaching $(0,0)$ along the $x$-axis gives
+	\begin{align*}
+		\lim_{x \to 0} \frac{x \cdot 0}{x^2+0}=\lim_{x \to 0} \frac{0}{x^2}=0.
+	\end{align*}
+	Approaching $(0,0)$ along the $y$-axis gives
+	\begin{align*}
+		\lim_{y \to 0} \frac{0 \cdot y}{0+y^2}=\lim_{y \to 0} \frac{0}{y^2}=0.
+	\end{align*}
+While these limits agree, this is \emph{not} sufficient to conclude that $\lim_{(x,y) \to (0,0)}\frac{xy}{x^2+y^2}=0$, since we must show that we obtain the same limit along \emph{every} path approaching $(0,0)$. Indeed, if we approach $(0,0)$ along the line $y=x$, we obtain
+\begin{align*}
+	\lim_{x \to 0}\frac{x^2}{x^2+x^2}=\lim_{x \to 0}\frac{x^2}{2x^2}=\lim_{x \to 0}\frac{1}{2}=\frac{1}{2}.
+\end{align*}
+Thus, $\lim_{(x,y) \to (0,0)}\frac{xy}{x^2+y^2}$ does not exist.
+\end{example}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/xy_not_suff}
+	\end{center}
+	\caption{The function $f(x,y)=\frac{xy}{x^2+y^2}$ has no limit as $(x,y) \to (0,0)$.}
+\end{figure}
+\newpage 
+The previous example showed that it is not sufficient to compute the limit of a multivariable function by restricting the function to paths in the domain. We now show how to use Definition \ref{def:limit} to show that a limit \emph{does} exist.
+
+\begin{prop}\label{prop:simple_limits}
+Let $a,b,c$ be fixed real numbers. Then
+\begin{enumerate}[(a)]
+	\item $\lim_{(x,y) \to (a,b)} c=c$.
+	\item $\lim_{(x,y) \to (a,b)} x = a$.
+	\item $\lim_{(x,y) \to (a,b)} y = b$.
+\end{enumerate}	
+\end{prop}
+
+\begin{proof}\hspace{15cm}
+	\begin{enumerate}[(a)]
+		\item Let $\epsilon>0$. Since $|c-c|=0$, by taking $\delta$ to be any positive real number, then \newline $0<\sqrt{(x-a)^2+(y-b)^2}<\delta$ implies $|f(x,y)-f(a,b)|=|c-c|=0<\epsilon$. This proves that $\lim_{(x,y) \to (a,b)} c=c$.
+		\item Let $\epsilon>0$. We have $|f(x,y)-f(a,b)|=|x-a|$. Since 
+		\begin{align*}
+			|x-a|=\sqrt{(x-a)^2} \leq \sqrt{(x-a)^2+(y-b)^2},
+		\end{align*}
+		by taking $\delta=\epsilon$, $0<\sqrt{(x-a)^2+(y-b)^2}<\delta$ implies that $|f(x,y)-f(a,b)|=|x-a|<\epsilon$. This proves that $\lim_{(x,y) \to (a,b)} x = a$.
+		\item The proof is essentially the same as that of part (b) and is left as an exercise.
+	\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+Prove part (c) of Proposition \ref{prop:simple_limits}. 	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	Let $\epsilon>0$. We have $|f(x,y)-f(a,b)|=|y-b|$. Since 
+		\begin{align*}
+			|y-b|=\sqrt{(y-b)^2} \leq \sqrt{(x-a)^2+(y-b)^2},
+		\end{align*}
+		by taking $\delta=\epsilon$, $0<\sqrt{(x-a)^2+(y-b)^2}<\delta$ implies that $|f(x,y)-f(a,b)|=|y-b|<\epsilon$. This proves that $\lim_{(x,y) \to (a,b)} y = b$.
+\end{solution}}
+
+
 \appendix
 \section{Proof of the Arc Length Formula}\label{app:arc_length}
 \begin{prop}
@@ -2421,5 +2756,199 @@ and therefore
 	&=\epsilon.
 \end{align*}
 \end{pf}
+\newpage 
+
+\section{Topology of $\R^n$}\label{app:topology}
+A \emph{topology} is a structure on a set which allows us to define the notion of continuity. In this appendix, we collect some basic definitions used throughout the rest of the notes.
+
+\begin{defn}[Normed linear space]
+	Let $V$ be a real vector space. A \emph{norm} on $V$ is a function
+	\begin{align*}
+		\rho:V \to \R^{\geq 0}
+	\end{align*}
+	such that for all $\xi,\eta \in V$ and $c \in \R$ we have
+	\begin{enumerate}
+		\item $\rho(\xi)=0$ if and only if $\xi=0$,
+		\item $\rho(c\xi)=|c|\rho(\xi)$,
+		\item $\rho(\xi+\eta) \leq \rho(\xi)+\rho(\eta)$.
+	\end{enumerate}
+	The pair $(V,\rho)$ is called a \emph{normed linear space}. 
+	
+	Property (3) is called the \emph{triangle inequality}. We often use the notation $||\xi||=\rho(\xi)$ for the norm.
+\end{defn}
+
+\begin{example}
+For $V=\R^n$, define $\rho:\R^n \to \R^{\geq 0}$ by $\rho(\bx)=\sqrt{\sum_{i=1}^n x_i^2}$. This norm on $\R^n$ is called the \emph{Euclidean norm} and the normed linear space $(\R^n,\rho)$ is called \emph{Euclidean space}.	
+\end{example}
+
+\begin{exercise}
+Prove that the Euclidean norm on $\R^n$ is a norm.	
+\end{exercise}
+
+
+
+\begin{defn}[Metric space]
+	A metric space $(X,d)$ is a set $X$ together with a function
+	\begin{align*}
+		d:X \times X \to \R^{\geq 0}
+	\end{align*}
+	such that for all $x,y,z \in X$ we have
+	\begin{enumerate}
+		\item $d(x,y)=0$ if and only if $x=y$,
+		\item $d(x,y)=d(y,x)$,
+		\item $d(x,y) \leq d(x,z)+d(z,y)$.
+	\end{enumerate}
+	Again, property (3) is called the \emph{triangle inequality}.
+\end{defn}
+
+\begin{prop}
+	Let $(V,\rho)$ be a normed linear space. Then $V$ inherits a metric $d_\rho:V \times V \to \R^{\geq 0}$ defined by
+	\begin{align*}
+		d_\rho(\xi,\eta)=\rho(\xi-\eta), \hspace{0.5cm} \xi,\eta \in V.
+	\end{align*}
+	
+\end{prop}
+
+\begin{pf}
+	\begin{enumerate}
+		\item $d_\rho(\xi,\eta)=\rho(\eta-\xi)=0$ if and only if $\eta-\xi=0$ if and only if $\eta=\xi$.
+		\item $d_\rho(\eta,\xi)=\rho(\xi-\eta)=\rho(-1(\eta-\xi))=|-1|\rho(\eta-\xi)=\rho(\eta-\xi)=d_\rho(\xi,\eta)$.
+		\item $d_\rho(\xi,\eta)=\rho(\eta-\xi)=\rho(\eta-\alpha+\alpha-\xi) \leq \rho(\eta-\alpha)+\rho(\alpha-\xi)=d_\rho(\alpha,\eta)+d_\rho(\xi,\alpha)$.
+	\end{enumerate}
+\end{pf}
+
+\begin{example}
+The metric $d:\R^n \times \R^n \to \R^{\geq 0}$ defined by
+\begin{align*}
+	||\bx-\by||=\sqrt{\sum_{i=1}^n(x_i-y_i)^2}
+\end{align*}
+(called the \emph{Euclidean metric}) gives $(\R^n,d)$ the structure of a metric space.
+\end{example}
+
+\begin{defn}[Open ball]
+	Let $r>0$. The subset
+	\begin{align*}
+		B_r(\bx_0):=\{\bx \in \R^n:d(\bx,\bx_0)<r\}
+	\end{align*}
+	is called the \emph{open ball of radius $r$ centered at $\bx_0$}.
+\end{defn}
+
+\begin{example}
+\begin{enumerate}[(1)]
+	\item If $n=1$, then $B_r(x_0)$ is the open interval $(x_0-r,x_0+r)$.
+	\item If $n=2$, then $B_r(\bx_0)$ is the open disc of radius $r$ centered at $\bx_0$.
+\end{enumerate}	
+\end{example}
+
+\begin{defn}[Interior and boundary points]
+Let $U$ be a subset of $\R^n$ and let $\bx_0 \in U$.
+	\begin{enumerate}[(1)]
+		\item The point $\bx_0$ is an \emph{interior point} of $U$ if there exists $r>0$ such that $B_r(\bx_0) \subseteq U$. The \emph{interior of} $U$ is the set of interior points of $U$.
+		\item The point $\bx_0$ is a \emph{boundary point} of $U$ if for every $r>0$, $B_r(\bx_0)$ contains a point of $U$ as well as a point of $\R^n-U$. The boundary point itself need not belong to $U$. The \emph{boundary of $U$} is the set of boundary points of $U$.
+	\end{enumerate}
+\end{defn}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{figures_mvc/interior_point}
+  \subcaption{Interior point.}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{figures_mvc/boundary_point}
+  \subcaption{Boundary point.}
+\end{subfigure}
+\end{figure}
+
+\begin{defn}[Open and closed sets]
+	\begin{enumerate}[(1)]
+		\item A subset $U \subseteq \R^n$ is \emph{open} if it consists entirely of interior points.
+		\item A subset $U \subseteq \R^n$ is \emph{closed} if it contains all its boundary points. \fixme{Update: A subset $U \subseteq \R^n$ is \emph{closed} if it contains all its limit points.}
+	\end{enumerate}
+\end{defn}
+
+\begin{example}
+Every open ball is an open set.	
+\end{example}
+
+\begin{proof}
+	Let $\bx \in B_r(\bx_0)$. Then $h=r-d(\bx,\bx_0)>0$. Let $\by \in B_h(\bx)$. Then $d(\by,\bx)<h$. It then follows from the triangle inequality that
+	\begin{align*}
+		d(\bx_0,\by) &\leq d(\bx_0,\bx)+d(\bx,\by) \\
+		&<r-h+h=r,
+	\end{align*}
+	which shows that $\by \in B_r(\bx_0)$, and therefore $B_h(\bx) \subseteq B_r(\bx_0)$. Thus, $B_r(\bx_0)$ is open.
+\end{proof}
+
+\begin{defn}[Neighborhood]
+	A \emph{neighborhood} of a point $\bx \in \R^n$ is an open set containing $\bx$.
+\end{defn}
+
+
+
+\begin{remark}
+Note that a set can be neither open nor closed, or can be both open and closed.	
+\end{remark}
+
+\begin{example}
+\begin{enumerate}[(a)]
+	\item $\R^n$ is open since for any point $\bx \in \R^n$ we can find an open ball centered at $\bx$ contained in $\R^n$. The boundary of $\R^n$ is empty, so $\R^n$ trivially contains all of its boundary points. Thus, $\R^n$ is also closed. 
+	\item The half-open interval $(0,1] \subseteq \R$ is neither open nor closed.
+\end{enumerate}	
+\end{example}
+
+\begin{defn}[Limit points and isolated points]
+	Let $U$ be a subset of $\R^n$.
+	\begin{enumerate}[(a)]
+		\item A point $\bx$ is a \emph{limit point} of the set $U$ if every neighborhood of $\bx$ contains a point of $U$ different from $\bx$.
+		\item If $\bx \in U$ and $\bx$ is not a limit point of $U$, then $\bx$ is called an \emph{isolated point} of $U$.
+	\end{enumerate}
+\end{defn}
+
+\begin{thm}
+	If $\bx$ is a limit point of a set $U$, then every neighborhood of $\bx$ contains infinitely many points of $U$.	
+\end{thm}
+
+\begin{pf}
+(By contradiction) Suppose $V$ is a neighborhood of $\bx$ which contains only finitely many points of $U$. Let $\bx_1,\dots,\bx_n$ be the points of $V \cap U$ which are distinct from $\bx$, and let $r=\min\{d(\bx,\bx_i)\}_{i=1}^n$. Since the minimum of a finite set of positive numbers is positive, $r>0$. Then the neighborhood $B_r(\bx)$ contains no point of $U$ distinct from $\bx$, which is a contradiction since $\bx$ is a limit point of $U$.
+\end{pf}
+
+\begin{cor}
+A finite point set has no limit points.	
+\end{cor}
+
+\begin{example}
+Consider the set $U=\{\frac{1}{n}\}_{n=1}^\infty \subseteq \R$. By the Archimedian property of the real numbers \footnote{\fixme{Explain this.}}, given any $\epsilon>0$ there exists $n \in \N$ such that $\frac{1}{n}<\epsilon$. Thus, $0$ is a limit point of $U$, since every open ball $B_\epsilon(0)$ contains a point of $U$. Note however that every element of $U$ itself is an isolated point of $U$ since, for any $\frac{1}{n} \in U$, the open ball $B_{d(\frac{1}{n},\frac{1}{n+1})}(\frac{1}{n})$ contains only $\frac{1}{n}$. This illustrates the difference between a set having a limit point and containing a limit point. 	
+\end{example}
+
+\begin{thm}
+A set $U$ is open if and only if its complement is closed.	
+\end{thm}
+
+\begin{pf}
+Suppose $U^c\equiv\R^n-U$ is closed. Let $\bx \in U$. Then $\bx \notin U^c$ and $\bx$ is not a limit point of $U^c$. Hence there exists a neighborhood $N$ of $\bx$ such that $U^c \cap N$ is empty, that is, $N \subseteq U$. Thus $\bx$ is an interior point of $U$, so $U$ is open.
+
+Conversely, suppose that $U$ is open. Let $\bx$ be a limit point of $U^c$. Then every neighborhood of $\bx$ contains a point of $U^c$, so that $\bx$ is not an interior point of $U$. Since $U$ is open, this means that $\bx \in U^c$. It follows that $U^c$ is closed.
+\end{pf}
+
+\begin{cor}
+A set $V$ is closed if and only if its complement if open.	
+\end{cor}
+
+\fixme{Need to define relative open sets in order to define a connected subset of $\R^n$.}
+
+\begin{defn}[Bounded sets]
+	A subset $U \subseteq \R^n$ is \emph{bounded} if it is contained in some ball of finite radius. If $U$ is not bounded, then we say it is \emph{unbounded}.
+\end{defn}
+
+\begin{example}
+\begin{enumerate}
+	\item An open ball is bounded.
+	\item A line is unbounded.
+\end{enumerate}	
+\end{example}
+
 
 \end{document}
