@@ -2640,14 +2640,14 @@ Thus, $\lim_{(x,y) \to (0,0)}\frac{xy}{x^2+y^2}$ does not exist.
 \newpage 
 The previous example showed that it is not sufficient to compute the limit of a multivariable function by restricting the function to paths in the domain. We now show how to use Definition \ref{def:limit} to show that a limit \emph{does} exist.
 
-\begin{prop}\label{prop:simple_limits}
+\begin{thm}\label{thm:simple_limits}
 Let $a,b,c$ be fixed real numbers. Then
 \begin{enumerate}[(a)]
 	\item $\lim_{(x,y) \to (a,b)} c=c$.
 	\item $\lim_{(x,y) \to (a,b)} x = a$.
 	\item $\lim_{(x,y) \to (a,b)} y = b$.
 \end{enumerate}	
-\end{prop}
+\end{thm}
 
 \begin{proof}\hspace{15cm}
 	\begin{enumerate}[(a)]
@@ -2674,6 +2674,229 @@ Prove part (c) of Proposition \ref{prop:simple_limits}.
 		by taking $\delta=\epsilon$, $0<\sqrt{(x-a)^2+(y-b)^2}<\delta$ implies that $|f(x,y)-f(a,b)|=|y-b|<\epsilon$. This proves that $\lim_{(x,y) \to (a,b)} y = b$.
 \end{solution}}
 
+The next theorem shows that all of the limit properties of single-variable functions carry over to multivariable functions.
+
+\begin{thm}[Limit laws for multivariable functions]\label{thm:limit_laws_for_multivariable_functions}
+Suppose $f(x,y)$ and $g(x,y)$ are defined on the same open set containing $(x_0,y_0)$, and that 
+\begin{align*}
+	\lim_{(x,y) \to (x_0,y_0)}f(x,y)=L \hspace{0.5cm} \text{ and } \hspace{0.5cm} \lim_{(x,y) \to (x_0,y_0)}g(x,y)=M.
+\end{align*}
+Then
+	\begin{enumerate}[(i)]
+		\item $\lim_{(x,y) \to (x_0,y_0)} cf(x,y)=cL$ for any $c \in \R$;
+		\item $\lim_{(x,y) \to (x_0,y_0)}(f(x,y)+ g(x,y))=L+M$;
+		\item $\lim_{(x,y) \to (x_0,y_0)}(f(x,y)g(x,y))=LM$;
+		\item $\lim_{(x,y) \to (x_0,y_0)}=\frac{f(x,y)}{g(x,y)}=\frac{L}{M}$ whenever $M \neq 0$.
+	\end{enumerate}
+\end{thm}
+
+\begin{pf}
+The proofs of these are identical to the proofs of the corresponding properties in Theorem \ref{thm:limit_laws_for_single-variable_functions}, with the metric $d_\R(x,y)=|x-y|$ on $\R$ replaced by the metric $d_{\R^2}(\bx,\by)=||\bx-\by||$ on $\R^2$. \footnote{In fact, these properties hold for maps between any metric spaces. For a function $f:X \to Y$ between metric spaces, the definition of $\lim_{x \to x_0}f(x)=L$ becomes: for every $\epsilon>0$ there exists $\delta>0$ such that $d_Y(f(x),L)<\epsilon$ whenever $0<d_X(x,x_0)<\delta$. Since the proofs of the limit properties only depend on properties shared by every metric (e.g., the triangle inequality), the proofs are exactly the same, with the Euclidean metrics on $\R^2, \R$ replaced by the metrics on $X$ and $Y$.}   
+\end{pf}
+
+\begin{example}
+To evaluate $\lim_{(x,y) \to (1,2)}(x^2y^3-x^3y^2+3x+2y)$ using Theorems \ref{thm:limit_laws_for_multivariable_functions} and \ref{thm:simple_limits}, we have
+\begin{align*}
+	&\lim_{(x,y) \to (1,2)}(x^2y^3-x^3y^2+3x+2y)=\lim_{(x,y) \to (1,2)}(x^2y^3)+\lim_{(x,y) \to (1,2)}(-x^3y^2)+\lim_{(x,y) \to (1,2)}(3x+2y) \\
+	&=\lim_{(x,y) \to (1,2)}x^2\cdot \lim_{(x,y) \to (1,2)}y^3 - \lim_{(x,y) \to (1,2)} x^3\cdot \lim_{(x,y) \to (1,2)} y^2+3\lim_{(x,y) \to (1,2)} x+2\lim_{(x,y) \to (1,2)}y \\
+	&=(\lim_{(x,y) \to (1,2)}x)^2\cdot (\lim_{(x,y) \to (1,2)}y)^3 - (\lim_{(x,y) \to (1,2)} x)^3\cdot (\lim_{(x,y) \to (1,2)} y)^2+3\lim_{(x,y) \to (1,2)} x+2\lim_{(x,y) \to (1,2)}y \\ 
+	&=(1)^2(2)^3-(1)^3(2)^2+3(1)+2(2) \\
+	&=8-4+3+4 \\
+	&=11.
+\end{align*} 	
+\end{example}
+
+\begin{defn}[Continuous function]
+ A function $f$ of two variables is \emph{continuous at} $(a,b)$ if
+\begin{align*}
+	\lim_{(x,y) \to (a,b)}f(x,y)=f(a,b).
+\end{align*}
+The function $f$ is \emph{continuous on} $D$ if $f$ is continuous at every point $(a,b)$ in $D$.	
+\end{defn}
+As in single-variable calculus, continuous functions map nearby points in $D$ to nearby points in $\mathbb{R}$, so a surface that is the graph of a continuous function has no holes or breaks.
+
+Using the limit properties, we find that sums, products, and quotients of continuous functions are continuous on their domains. Similarly, compositions of continuous functions are continuous.  
+
+It follows from Theorem \ref{thm:simple_limits} that $f(x,y)=x, g(x,y)=y,$ and $h(x,y)=c$ are continuous. Since any polynomial, e.g.,
+\begin{align*}
+	f(x,y)=x^4+5x^3y^2+6xy^4-7y+6
+\end{align*}
+can be built out of these by multiplication and addition, all polynomials are continuous on $\mathbb{R}^2$. Likewise, any rational function is continuous on its domain because it is a quotient of continuous functions. E.g.,
+\begin{align*}
+	g(x,y)=\frac{2xy+1}{x^2+y^2}.
+\end{align*}
+
+\begin{example}
+The function $f(x,y)=\frac{x^2-y^2}{x^2+y^2}$ is continuous everywhere except at $(0,0)$.	
+\end{example}
+
+\begin{exercise}
+Where is the function
+\begin{align*}
+	g(x,y)=\begin{cases}
+		\frac{x^4-x^2y^2}{x+y}, &\text{ if } (x,y) \neq (0,0), \\
+		0, &\text{ if } (x,y)=(0,0).
+	\end{cases}
+\end{align*}	
+continuous?
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	Since a rational function is continuous everywhere it is defined, $g(x,y)$ is continuous for all $(x,y) \neq (0,0)$. Since for $(x,y) \neq (0,0)$
+	\begin{align*}
+		\frac{x^4-x^2y^2}{x+y}=\frac{x^2(x^2-y^2)}{x+y}=\frac{x^2(x+y)(x-y)}{x+y}=x^2(x-y),
+	\end{align*}
+	we have 
+	\begin{align*}
+		\lim_{(x,y) \to (0,0)}\frac{x^4-x^2y^2}{x+y}=\lim_{(x,y) \to (0,0)}x^2(x-y)=0.
+	\end{align*}
+	Thus, $g(x,y)$ is continuous everywhere.
+\end{solution}}
+\newpage
+
+\subsection{Partial Derivatives}
+\subsubsection{Motivation}
+\begin{example}[Heat index]\hspace{15cm}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/h_i_1}
+	\end{center}
+\end{figure}
+	
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.45]{figures_mvc/heat_index}
+	\end{center}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/h_i_2}
+	\end{center}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/h_i_4}
+	\end{center}
+\end{figure}
+By averaging these values we get the estimate $G'(70) \approx 0.9$. This says that, when the temperature is $96^\circ$ F and the relative humidity is $70\%$, the heat index rises about $0.9^\circ$ F for every percent the relative humidity rises.
+\end{example} 
+In general, if $f(x,y)$ is a function of two variables $x$ and $y$, and we consider the values of the function obtained by varying $x$ (say) while keeping $y$ fixed to a constant value $y=y_0$, then we are really considering a function of a \emph{single} variable $g(x)=f(x,y_0)$. Then if $g(x)$ is differentiable at $x=x_0$, we call $g'(x)$ a \emph{partial derivative} of $f(x,y)$. We now define this formally.
+
+\newpage 
+\subsubsection{Definition of Partial Derivatives}
+\begin{defn}[Partial derivative]
+	Let $f:U \subset \R^2 \to \R$ be defined on an open subset of $\R^2$ containing the point $(x_0,y_0)$. \footnote{Since $U$ is open, there exists a neighborhood of $(x_0,y_0)$ contained in $U$. Thus, if $h$ is sufficiently close to zero, then all points of the form $(x_0+h,y_0)$ will be in $U$, so this definition makes sense.} Then the real number
+	\begin{align*}
+		\frac{\partial f}{\partial x}(x_0,y_0)&=\lim_{h \to 0}\frac{f(x+h,y)-f(x,y)}{h} \\
+	\end{align*}
+	is called the \emph{partial derivative of $f$ with respect to $x$ at the point $(x_0,y_0)$}, provided this limit exists. Similarly, the real number
+	\begin{align*}
+		\frac{\partial f}{\partial y}(x_0,y_0)&=\lim_{h \to 0}\frac{f(x,y+h)-f(x,y)}{h}
+	\end{align*}
+	is called the \emph{partial derivative of $f$ with respect to $y$ at the point $(x_0,y_0)$}, provided this limit exists. If $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ are defined at all points of $U$, then they are functions on $U$.
+\end{defn}
+
+\begin{remark}
+Note that $\frac{\partial f}{\partial x}$ is not a quotient, but a \emph{limit} of a quotient. Thus, the symbols ``$\partial f$" or ``$\partial x$" do not have independent meaning. Similar remarks apply to $\frac{\partial f}{\partial y}$. While this is the most common notation for the partial derivatives (and the one we will use almost exclusively), other notations are also frequently used.
+\end{remark}
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/p_d_notation}
+\end{center}
+\caption{Notations for partial derivatives.}
+\end{figure}
+To compute the partial derivative of a function $f(x,y)$ with respect to $x$, one simply treats $y$ as a constant and differentiates $f(x,y)$ with respect to $x$. To compute the partial derivative with respect to $y$, treat $x$ as a constant and differentiate $f(x,y)$ with respect to $y$.
+
+\begin{example}
+If $f(x,y)=x^3+x^2y^3-2y^2$, then
+\begin{align*}
+	\frac{\partial f}{\partial x}&=3x^2+2xy^3 \\
+	\frac{\partial f}{\partial y}&=3x^2y^2-4y.
+\end{align*}	
+\end{example}
+\newpage
+
+\subsubsection{Interpretation of Partial Derivatives}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/pd_1}
+	\end{center}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/pd_2}
+	\end{center}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/pd_3}
+	\end{center}
+\end{figure}
+\newpage 
+\begin{exercise}
+If $f(x,y)=\sin\left(\frac{x}{1+y}\right)$, calculate $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$.
+\end{exercise}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/pd_ex_3_soln}
+	\end{center}
+\end{figure}
+
+\fixme{More Examples?}
+
+\fixme{Implicit differentiation here?}
+\newpage 
+\subsubsection{Functions of More than Two Variables}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/more_var_pd}
+	\end{center}
+\end{figure}
+That is, we hold all the variables other than $x_i$ constant and differentiate $f$ with respect to $x_i$.
+
+\begin{exercise}
+Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$, and  $\frac{\partial f}{\partial z}$ if $f(x,y,z)=e^{xy}\ln z$. 	
+\end{exercise}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/pd3vex}
+	\end{center}
+\end{figure}
+\newpage 
+
+\subsubsection{Higher Derivatives}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/higher_d}
+	\end{center}
+\end{figure}
+
+\begin{exercise}
+Compute the second partial derivatives of 
+\begin{align*}
+	f(x,y)=x^3+x^2y^3-2y^2.
+\end{align*}	
+\end{exercise}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/higher_d_ex}
+	\end{center}
+\end{figure}
+
+\fixme{Equality of mixed partials here?}
+\fixme{Higher derivaties?}
+\fixme{Partial differential equations?}
 
 \appendix
 \section{Proof of the Arc Length Formula}\label{app:arc_length}
