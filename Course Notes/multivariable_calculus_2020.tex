@@ -174,6 +174,7 @@
 \newcommand{\fr}{{\mathfrak r}}
 \newcommand{\fu}{{\mathfrak u}}
 \newcommand{\fG}{{\mathfrak G}}
+\newcommand{\bh}{{\bf h}}
 
 \newcommand{\cC}{\ensuremath{\mathcal C}}
 \newcommand{\cG}{\ensuremath{\mathcal G}}
@@ -238,6 +239,7 @@
 \newcommand{\dR}{\mathrm{dR}}
 \newcommand{\closed}{\mathrm{closed}}
 \newcommand{\exact}{\mathrm{exact}}
+\newcommand{\zv}{{\bf 0}}
 
 \newcommand{\abs}[1]{\lvert#1\rvert}
 \newcommand{\norm}[1]{\lVert#1\rVert}
@@ -2874,14 +2876,328 @@ Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$, and  $\f
 \end{figure}
 \newpage 
 
-\subsubsection{Higher Derivatives}
+\subsection{The Differential}
+
+
+\subsubsection{Differential of a Single-variable Function}
+Let $f(x)$ be defined on an open subset $U$ of $\R$. If $f$ is differentiable on $U$, then
+\begin{align}\label{eq:old_derivative}
+	f'(x)=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}
+\end{align}
+exists for each $x \in U$. Rearrange \eqref{eq:old_derivative} as follows:
+\begin{align*}
+	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)}{h}\right]-f'(x)&=0 \\
+	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)}{h}-f'(x)\right]&=0 \\
+	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)}{h}-\frac{f'(x)h}{h}\right]&=0 \\
+	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)-f'(x)h}{h}\right]&=0 \\
+\end{align*}
+Let $r(h) \equiv f(x+h)-f(x)-f'(x)h$. Then existence of the limit in equation \eqref{eq:old_derivative} implies that 
+\begin{align}
+	f(x+h)=f(x)+f'(x)h+r(h)
+\end{align}
+where $\lim_{h \to 0} \frac{r(h)}{h}=0$. This says that, up to a small error term, $f(x)$ is an affine map (see Appendix \ref{app:affine_space}) with differential 
+\begin{align*}
+	df_x:\R &\to \R \\
+	df_x(h)&=f'(x)h.
+\end{align*}
+That is, $df_x$ is the linear function which multiplies $h \in \R$ by the derivative of $f$ at $x$. \fixme{Refer to Linear Algebra notes. We have seen that every linear map from $\R \to \R$ is multiplication by some fixed real number.}
+
+We now give an equivalent definition of differentiability which will readily generalize to multivariable functions. We will say that $f(x)$ is \emph{old style differentiable} at $x$ if 
+\begin{align*}
+	f'(x)=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}
+\end{align*}
+exists.
+
+\begin{defn}[Differentiable function]\label{def:differentiable_function}
+	A function $f:U \subseteq \R \to \R$ defined on an open subset $U$ of $\R$ is \emph{differentiable} at $x \in U$ if there exists a linear map $T:\R \to \R$ such that 
+	\begin{align*}
+		f(x+h)=f(x)+Th+r(h)
+	\end{align*}
+	where $\lim_{h \to 0}\frac{r(h)}{h}=0$.
+\end{defn}
+
+\begin{prop}
+	If $T,T':\R \to \R$ are two linear maps which satisfy Definition \ref{def:differentiable_function}, then $T'=T$.
+\end{prop}
+
+\begin{proof}
+	Suppose 
+	\begin{align*}
+		f(x+h)&=f(x)+Th+r(h), \text{ and } \\
+		f(x+h)&=f(x)+T'h+r'(h) \\
+	\end{align*}
+	where $\lim_{h \to 0}\frac{r(h)}{h}=0$ and $\lim_{h \to 0}\frac{r'(h)}{h}=0$. Then
+	\begin{align*}
+		f(x)+Th+r(h)=f(x)+T'h+r'(h)
+	\end{align*}
+	implies
+	\begin{align*}
+		T-T'=\frac{r'(h)}{h}-\frac{r(h)}{h}
+	\end{align*}
+	and therefore
+	\begin{align*}
+		T-T'=\lim_{h \to 0}(T-T')=\lim_{h \to 0}\left(\frac{r'(h)}{h}-\frac{r(h)}{h}\right)=\lim_{h \to 0}\frac{r'(h)}{h}-\lim_{h \to 0}\frac{r(h)}{h}=0+0=0,
+	\end{align*}
+	hene $T=T'$.
+\end{proof}
+
+\begin{defn}[Differential]
+	If $f$ is differentiable at $x$, we call the unique linear map $T$ in Definition \ref{def:differentiable_function} the \emph{differential of $f$ at $x$} and write $T=df_x$.
+\end{defn}
+
+We have seen above that if $f$ is old style differentiable, then it is differentiable in the sense of Definition \ref{def:differentiable_function}. Conversely, if $f$ is differentiable at $x$ then there exists a unique linear map $T$ such that  
+\begin{align*}
+		f(x+h)=f(x)+Th+r(h),
+	\end{align*}
+which implies that 
+\begin{align*}
+	T=\frac{f(x+h)-f(x)-r(h)}{h}
+\end{align*}
+and therefore
+\begin{align*}
+	T=\lim_{h \to 0}T=\lim_{h \to 0}\left(\frac{f(x+h)-f(x)}{h}-\frac{r(h)}{h}\right)=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}-\lim_{h \to 0}\frac{r(h)}{h}=f'(x)+0=f'(x),
+\end{align*}
+so $f$ is old style differentiable at $x$.
+
+\subsubsection{Differential of a Multivariable Function}
+Following the previous discussion, we will define a multivariable function to be differentiable if it is well-approximated by an affine map, up to a small error term.
+
+\begin{defn}[Differentiable multivariable function]\label{def:differentiable_mv_function}
+	Le $f:U \subseteq \R^n \to \R$ be defined on an open subset of $\R^n$. We say that $f$ is \emph{differentiable} at $x \in U$ if there exists a linear map $T:\R^n \to \R$ such that 
+	\begin{align*}
+		f(\bx+\bh)=f(\bx)+T\bh+r(\bh)
+	\end{align*}
+	where $\lim_{\bh \to 0}\frac{|r(\bh)|}{||\bh||}=0$.
+\end{defn}
+
+\begin{defn}[Differential of a multivariable function]
+	If $f$ is differentiable at $\bx$, we call the unique linear map $T$ in Definition \ref{def:differentiable_mv_function} the \emph{differential of $f$ at $\bx$} and write $T=df_\bx$.
+\end{defn}
+
+\begin{prop}[Uniqueness of the differential]
+	If $T,T':\R^n \to \R$ are two linear maps which satisfy Definition \ref{def:differentiable_mv_function}, then $T'=T$.
+\end{prop}
+
+\begin{proof}
+	Suppose $T,T':\R^n \to \R$ are linear maps such that 
+	\begin{align*}
+		f(\bx+\bh)&=f(\bx)+T\bh+r(\bh), \\
+		f(\bx+\bh)&=f(\bx)+T'\bh+r'(\bh)
+	\end{align*}
+	with
+	\begin{align*}
+		\lim_{\bh \to \zv}\frac{|r(\bh)|}{||\bh||}=\lim_{\bh \to \zv}\frac{|r'(\bh)|}{||\bh||}=0.
+	\end{align*}
+	Then, since $T,T'$ are linear,
+	\begin{align*}
+		|(T-T')\bh|&=|T\bh-T'\bh| \\
+		&=|T\bh-T'\bh+f(\bx+\bh)-f(\bx)-(f(\bx+\bh)-f(\bx))| \\
+		&=|T-(f(\bx+\bh)-f(\bx))+f(\bx+\bh)-f(\bx)-T'| \\
+		&\leq |T-(f(\bx+\bh)-f(\bx))|+|f(\bx+\bh)-f(\bx)-T'| \\
+		&= |f(\bx+\bh)-f(\bx)-T|+|f(\bx+\bh)-f(\bx)-T'| \\
+		&=|r(\bh)|+|r'(\bh)|
+	\end{align*}
+	and therefore
+\begin{align*}
+	\frac{|(T-T')\bh|}{||\bh||}\leq \frac{|r(\bh)|}{||\bh||}+ \frac{|r'(\bh)|}{||\bh||}.
+\end{align*}
+	Since 
+\begin{align*}
+		\lim_{\bh \to \zv}\frac{|r(\bh)|}{||\bh||}=\lim_{\bh \to \zv}\frac{|r'(\bh)|}{||\bh||}=0,
+	\end{align*}	
+given $\epsilon>0$ there exist positive real numbers $\delta_1,\delta_2$ such that 
+	\begin{align*}
+		\frac{|r(\bh)|}{||\bh||}<\frac{\epsilon}{2}
+	\end{align*}
+	whenever $||\bh||<\delta_1$ and 
+	\begin{align*}
+		\frac{|r'(\bh)|}{||\bh||}<\frac{\epsilon}{2}
+	\end{align*}
+	whenever $||\bh||<\delta_2$. By choosing $\delta=\min\{\delta_1,\delta_2\}$, we have
+	\begin{align*}
+		\frac{|(T-T')\bh|}{||\bh||}\leq \frac{|r(\bh)|}{||\bh||}+ \frac{|r'(\bh)|}{||\bh||}<\frac{\epsilon}{2}+\frac{\epsilon}{2}
+	\end{align*}
+	whenever $||\bh||<\delta$, and therefore
+	\begin{align*}
+		\lim_{\bh \to \zv}\frac{|(T-T')\bh|}{||\bh||}=0.
+	\end{align*}
+Since this limit holds as $\bh \to \zv$ along any path, for any fixed $\bh \neq \zv$ we must have
+\begin{align*}
+		\lim_{\bh \to \zv}\frac{|(T-T')(t\bh)|}{||t\bh||}=0.
+	\end{align*}
+Since $T-T'$ is linear, this becomes
+\begin{align*}
+		0&=\lim_{t \to 0}\frac{|(T-T')(t\bh)|}{||t\bh||}\\
+		&=\lim_{t \to 0}\frac{|t(T-T')\bh|}{||t\bh||}\\
+		&=\lim_{t \to 0}\frac{|t|\ |(T-T')\bh|}{|t| \ ||\bh||}\\
+		&= \lim_{t \to 0}\frac{|(T-T')\bh|}{||\bh||}\\
+		&=\frac{|(T-T')\bh|}{||\bh||},
+	\end{align*}
+		which implies that $(T-T')\bh=0$ and therefore $\bh \in \ker (T-T')$. Since $\bh$ was an arbitrary nonzero vector, this means that $\ker(T-T')=\R^2$, so $T-T'$ is the zero map, and therefore $T=T'$.
+\end{proof}
+
+\begin{remark}
+\begin{enumerate}[(a)]
+	\item If $f:A \to B$ is an affine map (Definition \ref{def:affine_map}), then $f$ is differentiable for all $p \in A$ and $df_p$ is independent of $p$. In other words, an affine map has a constant differential. 
+	\item If $f$ is a linear map, then $d_p=f$.
+	\item If $f:U \to B$ is differentiable at $p \in U$, then the differential is a map
+	\begin{align*}
+		df:U \to \Hom(V,W).
+	\end{align*}
+\end{enumerate}	
+\end{remark}
+
+
+As in the single variable case, a differentiable function $f:U\subset \mathbb{R}^n \to \mathbb{R}$ is continuous.
+
+\begin{thm}[A differentiable function is continuous]
+	If $f:U\subset \mathbb{R}^n \to \mathbb{R}$ is differentiable at $\bx \in U$, then it is continuous at $\bx \in U$.
+\end{thm}
+
+\begin{proof}
+	Let $df_\bx$ be the differential of $f$ at $\bx$ and let $\epsilon>0$.
+	\begin{align*}
+		|f(\bx + \bh)-f(\bx)|&=|f(\bx + \bh)-f(\bx)-df_x(\bh)+df_x(\bh)| \\
+		&\leq |f(\bx + \bh)-f(\bx)-df_x(\bh)|+|df_x(\bh)|.
+	\end{align*}
+	Since $f$ is differentiable, there exists $\delta_0>0$ such that $|f(\bx + \bh)-f(\bx)-df_x(\bh)|<\frac{\epsilon}{2}||\bh||$ whenever $||\bh||<\delta_0$. By Theorem \ref{thm:every_linear_map_on_a_fd_nls_is_bdd}, there exists $C>0$ such that $|df_x(\bh)|<\epsilon C||\bh||$. Thus
+	\begin{align*}
+		|f(\bx + \bh)-f(\bx)|&\leq |f(\bx + \bh)-f(\bx)-df_x(\bh)|+|df_x(\bh)| \\
+		&<\epsilon(1+C)||\bh||. 
+	\end{align*}
+	Let $\delta=\min\{\delta_0,\frac{1}{(1+C)}\}$. Then for $||\bh||<\delta$ implies 
+	\begin{align*}
+		|f(\bx + \bh)-f(\bx)|&\leq \epsilon(1+C)||\bh|| \\
+		&<\epsilon(1+C)\frac{1}{(1+C)} \\
+		&=\epsilon,
+	\end{align*}
+	hence $f$ is continuous at $\bx$.
+\end{proof}
+
+\begin{defn}[Continuously differentiable function]
+	If $f$ is differentiable on $U$ and $df:U \to \Hom(V,W)$ is continuous, then we say that $f$ is \emph{continuously differentiable}.
+\end{defn}
+
+
+Note that the existence of both partial derivatives of a function $f$ at $(x,y)$ is \emph{not} sufficient for $f$ to be continuous at $(x,y)$.
+
+\begin{example}\label{ex:p_d_but_disc}
+	Let
+	\begin{align*}
+		f(x,y)=\begin{cases}
+			0 \text{ if } xy \neq 0, \\
+			1 \text{ if } xy=0
+		\end{cases}
+	\end{align*}
+Since $\lim_{(x,y) \to (0,0)}f(x,y)$ is 1 along the x-axis and $0$ along the line $y=x$, the limit does not exist and therefore $f(x,y)$ is discontinuous at $(0,0)$. However,
+	\begin{align*}
+		D_xf(0,0)&=\lim_{h \to 0}\frac{f(h,0)-f(0,0)}{h}=\lim_{h \to 0}\frac{1-1}{h}=0 \\
+		D_yf(0,0)&=\lim_{h \to 0}\frac{f(0,h)-f(0,0)}{h}=\lim_{h \to 0}\frac{1-1}{h}=0 \\
+	\end{align*}
+so the partial derivatives both exist at $(0,0)$. 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/p_d_but_disc}
+	\end{center}
+	\caption{Graph of the function $f(x,y)$ in Example \ref{ex:p_d_but_disc}}
+\end{figure}
+\end{example}
+Thus, the existence of both partial derivatives at $(x,y)$ is not strong enough to guarantee continuity at $(x,y)$. This also makes intuitive sense: continuity at $(a,b)$ requires that $\lim_{(x,y) \to (a,b)}f(x,y)=f(a,b)$ when the limit is taken along \emph{any} path passing through $(a,b)$. The partial derivatives, on the other hand, only depend on what is happening along lines through $(a,b)$ parallel to the $x$ and $y$ axes, and therefore they failed to detect the discontinuity in the previous example.
+
+\subsubsection{Matrix Representation of the Differential}
+In this section we clarify the relation between the differential of a function $f$ and the partial derivatives of $f$.
+
+Let $f:\R^n \to \R$. Then $df_\bx$ is a linear map for each $\bx \in \R^n$, so it can be represented by a matrix \fixme{Refer to my Linear Algebra notes.}
+  
+\begin{thm}
+	Let $U$ be an open subset of $\mathbb{R}^n$ and $f:U \to \mathbb{R}$. If $f$ is differentiable at $\bx \in U$, then the partial derivatives $\frac{\partial f}{\partial x_j}(\bx)$ all exist, and 
+	\begin{align*}
+		df_\bx({\bf e}_j)=\sum_{i=1}^m \frac{\partial f}{\partial x_j}(\bx), \ (1 \leq j \leq n),
+	\end{align*}
+	where $\{{\bf e}_j\}_{j=1}^n$ denotes the standard basis for $\mathbb{R}^n$.
+\end{thm}
+
+\begin{pf}
+	The $j$th column of the standard matrix of $df_\bx$ is $df_\bx({\bf e}_j)$. Since, $f$ is differentiable at $\bx$,
+	\begin{align*}
+		f(\bx+t{\bf e}_j)-f(\bx)=df_\bx(t{\bf e}_j)+r(t{\bf e}_j)
+	\end{align*}
+	where $r(t{\bf e}_j)/t \to 0$ as $t \to 0$. Since $df_\bx$ is linear, $df_\bx(t{\bf e}_j)=tdf_\bx({\bf e}_j)$. Dividing both sides of the equation above by $t$ and taking $t \to 0$, we have 
+	\begin{align*}
+		\frac{\partial f}{\partial x_j}(\bx)\equiv\lim_{t \to 0}\frac{f(\bx+t{\bf e}_j)-f(\bx)}{t}&=\lim_{t \to 0}[df_\bx({\bf e}_j)+\frac{r(t{\bf e}_j)}{t}] \\
+		&=\lim_{t \to 0}df_\bx({\bf e}_j)+\lim_{t \to 0}\frac{r(t{\bf e}_j)}{t} \\
+		&=df_\bx({\bf e}_j)+0\\
+		&=df_\bx({\bf e}_j).
+	\end{align*}
+\end{pf}	
+
+\begin{defn}
+	The $1 \times n$ matrix representing $df_\bx$ is called the \emph{gradient of $f$ at $\bx$}, and is denoted by
+	\begin{align*}
+		\nabla f(\bx)=(\frac{\partial f}{\partial x_1}(\bx),\frac{\partial f}{\partial x_2}(\bx),\cdots,\frac{\partial f}{\partial x_n}f(\bx)).
+	\end{align*}
+\end{defn}
+
+\begin{example}
+	Let $f(x,y)=3x+2y$. Then $\nabla f(x,y)=(3,2)$ and therefore
+	\begin{align*}
+		df_{(x,y)}(h_1,h_2)&=\nabla f(x,y)\cdot (h_1,h_2) \\
+		&=3h_1+2h_2 \\
+		&=f(h_1,h_2).
+	\end{align*}
+\end{example}
+
+As we saw in Example \ref{ex:p_d_but_disc}, the existence of all partial derivatives is not enough to guarantee differentiability (their existence was not even enough to guarantee continuity), that is, the existence of the differential $df$. However, as we will now show, if the partial derivatives all exist and are \emph{continuous}, then the differential \emph{does} exist. Thus, {\bf any function whose partial derivatives exist and are continuous is differentiable in the sense of Definition \ref{def:differentiable_mv_function}}.
+
+\begin{thm}
+	Let $U$ be an open subset of $\mathbb{R}^n$ and let $f:U \to \mathbb{R}$. Then, if each of the partial derivatives $\frac{\partial f}{\partial x_i}$ exists and is continuous on $U$, then $f$ is differentiable on $U$.
+\end{thm}
+
+\begin{pf}
+To cut down on writing, we will prove this for the case of $n=2$. The proof for $n>2$ is exactly the same. We need to show that, for any $(x,y) \in U$ and $\epsilon > 0$, there exists a $\delta > 0$ such that
+\begin{align*}
+	|f(x+h_1,y+h_2)-f(x,y)-df_{(x,y)}{\bf h}|<\epsilon||{\bf h}||
+\end{align*}
+whenever $||{\bf h}||\equiv \sqrt{h_1^2+h_2^2}< \delta$.  
+\begin{align*}
+	&|f(x+h_1,y+h_2)-f(x,y)-df_{(x,y)}{\bf h}|\\
+	&=|f(x+h_1,y+h_2)-f(x,y)-\frac{\partial f}{\partial x}(x,y)h_1-\frac{\partial f}{\partial y}(x,y)h_2| \\
+	&=|f(x+h_1,y+h_2)-f(x,y+h_2)+f(x,y+h_2)-f(x,y)-\frac{\partial f}{\partial x}(x,y)h_1-\frac{\partial f}{\partial y}(x,y)h_2| \\
+\end{align*}
+By the Mean Value Theorem, there exists $u_1 \in (x,x+h_1)$ and $u_2 \in (y,y+h_2)$ such that
+\begin{align*}
+	f(x+h_1,y+h_2)-f(x,y+h_2)&=\frac{\partial f}{\partial x}(u_1,y+h_2)h_1 \\
+	f(x,y+h_2)-f(x,y)&=\frac{\partial f}{\partial y}(x,u_2)h_2
+\end{align*}
+so the above is equal to
+\begin{align*}
+	&|(\frac{\partial f}{\partial x}(u_1,y+h_2)-\frac{\partial f}{\partial x}(x,y))h_1+(\frac{\partial f}{\partial y}(x,u_2)-\frac{\partial f}{\partial y}(x,y))h_2|\\
+	 \leq &|(\frac{\partial f}{\partial x}(u_1,y+h_2)-\frac{\partial f}{\partial x}(x,y), \frac{\partial f}{\partial y}(x,u_2)-\frac{\partial f}{\partial y}(x,y))| \ ||{\bf h}|| \\
+	 \leq &(|\frac{\partial f}{\partial x}(u_1,y+h_2)-\frac{\partial f}{\partial x}(x,y)|+|\frac{\partial f}{\partial y}(x,u_2)-\frac{\partial f}{\partial y}(x,y)|)||{\bf h}||
+\end{align*}
+where in the second line we have used the Cauchy-Schwarz inequality \footnote{The Cauchy-Schwarz inequality states that $|df_{(x,h)}\cdot {\bf h}|\leq |df_{(x,h)}| \ ||{\bf h}||$.} and in the third line the fact that $\sqrt{x^2+y^2}\leq |x|+|y|$. Since the partial derivatives are continuous, and since $u_1$ and $u_2$ lie between $x$ and $x+h_1$ and $y$ and $y+h_2$, respectively, there exists a $\delta_1$ such that the first absolute value in the parenthesis is less than $\epsilon/2$ whenever $||{\bf h}||<\delta_1$ and a $\delta_2$ such that the second absolute value in the parenthesis is less than $\epsilon/2$ whenever $||{\bf h}||<\delta_2$. Thus, by taking $||{\bf h}||<\delta=\text{min}\{\delta_1,\delta_2\}$, the entire parenthesis is less than $\epsilon$.
+\end{pf}
+
+\begin{example}
+	Let $f:\mathbb{R}^3 \to \mathbb{R}$ be defined by $f(x,y,z)=3x^2y^3z$. Since the partial derivatives
+	\begin{align*}
+		\frac{\partial f}{\partial x}(x,y,z)=6xy^3z, \hspace{0.25cm} \frac{\partial f}{\partial y}(x,y,z)=9x^2y^2z, \hspace{0.25cm} \frac{\partial f}{\partial z}(x,y,z)=3x^2y^3
+	\end{align*}
+	are continuous, the function $f$ is differentiable with gradient
+	\begin{align*}
+		\nabla f(x,y,z)=\begin{bmatrix}6xy^3z & 9x^2y^2z & 3x^2y^3 \end{bmatrix}.
+	\end{align*}
+\end{example}
+ 
+
+\subsection{Higher Derivatives}
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=\textwidth]{figures_mvc/higher_d}
 	\end{center}
 \end{figure}
 
-\begin{exercise}
+\begin{exercise}\label{ex:mixed_partials_equality}
 Compute the second partial derivatives of 
 \begin{align*}
 	f(x,y)=x^3+x^2y^3-2y^2.
@@ -2894,12 +3210,10 @@ Compute the second partial derivatives of
 	\end{center}
 \end{figure}
 
-\fixme{Equality of mixed partials here?}
-\fixme{Higher derivaties?}
-\fixme{Partial differential equations?}
+Notice for the function in Exercise \ref{ex:mixed_partials_equality} that $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$. This is no coincidence.
 
 \appendix
-\section{Proof of the Arc Length Formula}\label{app:arc_length}
+\section{Justification of the Arc Length Formula}\label{app:arc_length}
 \begin{prop}
 The arc length formula 
 \begin{align}
@@ -2983,7 +3297,7 @@ and therefore
 
 \section{Topology of $\R^n$}\label{app:topology}
 A \emph{topology} is a structure on a set which allows us to define the notion of continuity. In this appendix, we collect some basic definitions used throughout the rest of the notes.
-
+\subsection{Normed Linear Spaces}
 \begin{defn}[Normed linear space]
 	Let $V$ be a real vector space. A \emph{norm} on $V$ is a function
 	\begin{align*}
@@ -3008,8 +3322,41 @@ For $V=\R^n$, define $\rho:\R^n \to \R^{\geq 0}$ by $\rho(\bx)=\sqrt{\sum_{i=1}^
 Prove that the Euclidean norm on $\R^n$ is a norm.	
 \end{exercise}
 
+\fixme{Def of equivalent norms.}
+
+\fixme{All norms on a finite dimensional normed linear space are equivalent.}
+
+\begin{defn}[Continuous linear maps]
+	Let $V,W$ be normed linear spaces. A linear map $T:V \to W$ is \emph{bounded} if there exists $C>0$ such that 
+	\begin{align*}
+		||T\bv||_W \leq C||\bv||_V, \hspace{0.5 cm} \text{ for all } \bv \in V.
+	\end{align*}
+\end{defn}
+
+\begin{prop}[Equivalent definition of a bounded linear maps]
+	Let $T:V \to W$ be a bounded linear map, and let $S(V)\equiv \{\bv \in V:||\bv||_V=1\} \subseteq V$ be the unit sphere in $V$.  Then $T$ is bounded if and only if $T(S(V)) \subseteq W$ is bounded. 
+\end{prop}
+
+\begin{proof}
+	Suppose $T$ is bounded and suppose $\bv \in S(V)$. Then $||\bv||_V=1$ and therefore
+	\begin{align*}
+		||T\bv||_W \leq C||\bv||_V=C. 
+	\end{align*} 
+	Thus, $T(S(V))$ is bounded.
+	
+	Conversely, suppose $T(S(V))$ is bounded. For any $\bv \in V$, $\frac{\bv}{||\bv||_V} \in S(V)$ and by assumption there exists $C>0$ such that 
+	\begin{align*}
+		||T\frac{\bv}{||\bv||_V}||_W=\frac{1}{||\bv||_V}||T\bv||_V \leq C
+	\end{align*} 
+	and therefore
+	\begin{align*}
+		||T\bv||_W \leq C||\bv||_V.
+	\end{align*}
+	Hence, $T$ is bounded.
+\end{proof}
 
 
+\subsection{Metric Spaces}
 \begin{defn}[Metric space]
 	A metric space $(X,d)$ is a set $X$ together with a function
 	\begin{align*}
@@ -3172,6 +3519,157 @@ A set $V$ is closed if and only if its complement if open.
 	\item A line is unbounded.
 \end{enumerate}	
 \end{example}
+
+\subsection{Continuous maps}
+\begin{defn}[Lipschitz continuity]
+	Let $(X,d_X)$ and $(Y,d_Y)$ be metric spaces. A function $f:X \to Y$ is \emph{Lipschitz continuous} if there exists a positive real number $K$ such that 
+	\begin{align*}
+		d_Y(f(x_1)-f(x_2))\leq K d_X(x_1-x_2)
+	\end{align*}
+	for all $x_1,x_2 \in X$. The real number $K$ is said to be a \emph{Lipschitz constant} for the function $f$. 
+\end{defn}
+
+\begin{lem}
+If $f$ is Lipschitz continuous, then it is uniformly continuous.	
+\end{lem}
+
+\begin{proof}
+	Given $\epsilon>0$, choose $\delta=\frac{\epsilon}{K}$. Then
+	\begin{align*}
+		d_Y(f(x_1)-f(x_2))\leq K \frac{\epsilon}{K}=\epsilon
+	\end{align*}
+	whenever $d_X(x_1,x_2)<\delta$.
+\end{proof}
+
+
+\begin{thm}
+Let $T:V \to W$ be a linear map between normed linear spaces. The following are equivalent:
+\begin{enumerate}[(i)]
+	\item $T$ is bounded
+	\item $T$ is uniformly continuous
+	\item $T$ is continuous at $0 \in V$
+\end{enumerate}	
+\end{thm}
+
+\begin{proof}
+	To see that (i) implies (ii), if $T$ is bounded then
+	\begin{align*}
+		||T(\bv-\bw)||_W=||T\bv-T\bw||_W \leq C||\bv-\bw||_V,
+	\end{align*}
+	which says that $T$ is Lipschitz continuous, and therefore is uniformly continuous. To see that (ii) implies (iii), just take $\bw=0$ above. To prove that (iii) implies (i), if $T$ is not bounded then choose $\bv_n \in V$ such that $||\bv_n||_V=1$ and $||T\bv_n||_W>n$. Then $\bw_n\equiv \bv_n/n$ satisfies $\lim_{n \to \infty}\bw_n=0$ but $||T\bw_n||_W>1$, so the sequence $(T\bw_n)$ does not converge to $0 \in W$. Hence, $T$ is not continuous at $0 \in V$.
+\end{proof}
+
+\begin{thm}\label{thm:every_linear_map_on_a_fd_nls_is_bdd}
+Let $V,W$ be normed linear spaces and assume $V$ is finite dimensional. Then any linear map $T:V \to W$ is bounded.	
+\end{thm}
+
+\begin{proof}
+	\fixme{Finish.}
+\end{proof}
+
+\section{Affine Space}\label{app:affine_space}
+In our discussion of differentiability, it will be helpful to view points and vectors as distinct. This leads to the notion of an affine space over a vector space.
+\begin{defn}[Affine space]\label{def:affine_space}
+	Let $V$ be a vector space. An \emph{affine space} $A$ over $V$ is a set $A$ together with a map
+	\begin{align}\label{eq:action_of_v_on_a}
+		\psi:V \times A &\to A \\
+		\psi(\bv,p)&=p+\bv
+	\end{align}
+	with the following properties: \footnote{Recall that a vector space consists of the data $(V,0,+,\cdot)$, that is, a set $V$, a distinguished vector in $V$ (the zero vector), together with operations of vector addition and scalar multiplication. In particular, the vector space axioms tell us that $(V,0,+)$ is an \emph{abelian group}. A map \eqref{eq:action_of_v_on_a} satisfying properties 1-3 is said to be a \emph{simply transitive action} of the abelian group $(V,0,+)$ on $A$.}
+	\begin{enumerate}
+		\item $p+\zv=p$ for all $p \in A$.
+		\item $p+(\bv+\bw)=(p+\bv)+\bw$ for all $p \in A, \bv,\bw \in V$.
+		\item For every $p_1,p_2 \in A$, there exists a unique $\bv \in V$ such that $p_2=p_1+\bv$. Since $\bv$ is uniquely determined by $p_1$ and $p_2$, we write $\bv=p_2-p_1$. 
+	\end{enumerate}
+\end{defn}
+Elements of $A$ are called \emph{points}; elements of $V$ are called \emph{vectors}. While we have not been very careful about the distinction between points and vectors so far, they play very different roles. For example, we might model time by an affine space $A$ over a one-dimensional vector space $V$. Points of $A$ represent instants of time, whereas elements of $V$ represent intervals of time. Notice that it makes sense to add intervals of time, say 3 hours $+$ 4 hours $=$ 7 hours, whereas 3:00 PM $+$ 4:00 PM does not make good sense. Then again, that the difference 4:00 PM $-$ 3:00 PM (the same day) is the time interval 1 hour is part of our intuition about time. Similarly, in a flat model of the Earth we do not try to make sense of the sum of Chicago and New York, but their difference as a displacement vector does make sense.
+
+\begin{prop}\label{prop:canonical_affine_space}
+	Every vector space $V$ is an affine space over itself.
+\end{prop}
+
+\begin{proof}
+	Take $A=V$ and define 
+	\begin{align*}
+		\psi:V \times V &\to V \\
+		\psi(\bv,\bw)&=\bv+\bw
+	\end{align*}
+	to be vector addition. Then
+	\begin{enumerate}
+		\item $\bv+\zv=\bw$ for all $\bv \in V$ by definition of the zero vector.
+		\item $\bu+(\bv+\bw)=(\bu+\bv)+\bw$ for all $\bu,\bv,\bw \in V$ by associativity of vector addition.
+		\item For any $\bv, \bw \in V$, we have
+		\begin{align*}
+			\bw &=\zv+\bw \\
+			&=(\bv-\bv)+\bw \\
+			&=\bv+(\bw-\bv).
+		\end{align*}
+		To see that $\bw-\bv$ is the unique vector with this property, suppose that 
+		\begin{align*}
+			\bw=\bv+\bu
+		\end{align*}
+		for some vector $\bu \in V$. Then
+		\begin{align*}
+			\bv+(\bw-\bv)&=\bv+\bu.
+		\end{align*}
+		Adding $-\bv$ to both sides gives
+		\begin{align*}
+		-\bv+(\bv+(\bw-\bv))&=-\bv+(\bv+\bu) \\
+		(-\bv+\bv)+(\bw-\bv)&=(-\bv+\bv)+\bu \\
+		\zv+(\bw-\bv)&=\zv+\bu \\
+		\bw-\bv&=\bu \\
+		\end{align*}
+		which shows that $\bw-\bv$ is unique.
+	\end{enumerate}
+\end{proof}
+
+The affine space in Proposition \ref{prop:canonical_affine_space} is called the \emph{canonical affine space over $V$}. Loosely, one says that one obtains this affine space from $V$ by ``forgetting the zero vector".
+
+\begin{defn}[Affine map]\label{def:affine_map}
+	Let $A$ be an affine space over a vector space $V$ and $B$ be an affine space over a vector space $W$. A function $f:A \to B$ is an \emph{affine map} if there exists a linear map $T:V \to W$ such that
+	\begin{align*}
+		f(p+\bv)=f(p)+T\bv
+	\end{align*}
+	for all $p \in A, \bv \in V$. The linear map $T$ is called the \emph{differential} of $f$, and we write $T=df$.
+\end{defn}
+
+\begin{prop}[Uniqueness of the differential]\label{prop:uniqueness_of_the_differential}
+	Let $f:A \to B$ be an affine map. Then the differential of $f$ is unique.
+\end{prop}
+
+\begin{proof}
+	Suppose there exist linear maps $T,T':V \to V$ such that 
+	\begin{align*}
+		f(p+\bv)=f(p)+T\bv \hspace{0.5cm}\text{ and } \hspace{0.5cm} f(p+\bv)=f(p)+T'\bv.
+	\end{align*}
+	Then
+	\begin{align*}
+		f(p)+T\bv=f(p)+T'\bv.
+	\end{align*}
+Since $T\bv \in W$, $-T\bv \in W$, so we can act with $-T\bv$ on both sides of this equation to obtain
+\begin{align*}
+	(f(p)+T\bv)-T\bv &=(f(p)+T'\bv)-T\bv.
+\end{align*}
+By properties 1 and 2 of Definition \ref{def:affine_space}, 
+\begin{align*}
+	(f(p)+T\bv)-T\bv &=(f(p)+T'\bv)-T\bv \\
+	f(p)+(T\bv-T\bv) &=f(p)+(T'\bv-T\bv) \\
+	f(p)+\zv &=f(p)+(T'\bv-T\bv) \\
+	f(p)&=f(p)+(T'\bv-T\bv). 
+\end{align*}
+	By property 3 of Definition \ref{def:affine_space}, $\bu=\zv$ is the unique vector such that $f(p)=f(p)+\bu$, so we must have
+	\begin{align*}
+		T'\bv-T\bv=(T'-T)\bv=\zv,
+	\end{align*}
+	which says that $\bv \in \ker (T'-T)$. Since  $\bv$ was an arbitrary vector in $V$, we have $\ker (T'-T)=V$, so $T'-T$ is the zero map, and therefore $T'=T$.
+\end{proof}
+
+\begin{defn}[Affine isomorphism]
+	Let $A$ and $B$ be affine spaces over vector spaces $V$ and $W$, respectively. A bijective affine map $f:A \to B$ is said to be an \emph{affine isomorphism}.
+\end{defn}
+
+\fixme{Add more if we end up using it.}
+
 
 
 \end{document}
