@@ -240,6 +240,7 @@
 \newcommand{\closed}{\mathrm{closed}}
 \newcommand{\exact}{\mathrm{exact}}
 \newcommand{\zv}{{\bf 0}}
+\newcommand{\bbf}{{\bf F}}
 
 \newcommand{\abs}[1]{\lvert#1\rvert}
 \newcommand{\norm}[1]{\lVert#1\rVert}
@@ -2967,7 +2968,11 @@ Following the previous discussion, we will define a multivariable function to be
 	\begin{align*}
 		f(\bx+\bh)=f(\bx)+T\bh+r(\bh)
 	\end{align*}
-	where $\lim_{\bh \to 0}\frac{|r(\bh)|}{||\bh||}=0$.
+	where $\lim_{\bh \to 0}\frac{|r(\bh)|}{||\bh||}=0$. Equivalently, $f$ is differentiable at $x \in U$ if for every $\epsilon>0$ there exists $\delta>0$ such that $||\bh||<\delta$ implies
+	\begin{align*}
+		|f(\bx+\bh)-f(\bx)-T\bh|<\epsilon ||\bh||.
+	\end{align*}
+	
 \end{defn}
 
 \begin{defn}[Differential of a multivariable function]
@@ -3139,6 +3144,7 @@ Let $f:\R^n \to \R$. Then $df_\bx$ is a linear map for each $\bx \in \R^n$, so i
 \end{defn}
 
 \begin{example}
+	\fixme{Choose a function which is not linear.}
 	Let $f(x,y)=3x+2y$. Then $\nabla f(x,y)=(3,2)$ and therefore
 	\begin{align*}
 		df_{(x,y)}(h_1,h_2)&=\nabla f(x,y)\cdot (h_1,h_2) \\
@@ -3146,6 +3152,7 @@ Let $f:\R^n \to \R$. Then $df_\bx$ is a linear map for each $\bx \in \R^n$, so i
 		&=f(h_1,h_2).
 	\end{align*}
 \end{example}
+
 
 As we saw in Example \ref{ex:p_d_but_disc}, the existence of all partial derivatives is not enough to guarantee differentiability (their existence was not even enough to guarantee continuity), that is, the existence of the differential $df$. However, as we will now show, if the partial derivatives all exist and are \emph{continuous}, then the differential \emph{does} exist. Thus, {\bf any function whose partial derivatives exist and are continuous is differentiable in the sense of Definition \ref{def:differentiable_mv_function}}.
 
@@ -3189,6 +3196,103 @@ where in the second line we have used the Cauchy-Schwarz inequality \footnote{Th
 	\end{align*}
 \end{example}
  
+\fixme{Write equation of tangent plane at $(x,y)$ for a differentiable function $f(x,y)$.}
+
+\fixme{Directional derivatives here?}
+
+\subsection{The Composite Mapping Theorem (Chain Rule)}
+Suppose a particle moves along a path $C$ along which the temperature varies. The path is the image of 
+\begin{align*}
+	\bbr:I \to \mathbb{R}^2
+\end{align*}
+while the temperature at a point $(x,y) \in C$ is $z=T(x,y)$. Thus, $T:C \subset \mathbb{R}^2 \to \mathbb{R}$. The composite function
+\begin{align*}
+	F\equiv T \circ \bbr:I \to \mathbb{R}
+\end{align*}
+defined by $F(t)=T(\bbr(t))$
+gives the temperature felt by the particle at time $t$. Then $F'(t)$ is the rate at which the temperature at the position of the particle is changing with time at $t \in I$. How do we compute $F'(t)$?
+
+\begin{thm}[Chain rule]
+	Let $\bbr:I \to \R^2$ and $f:U \subseteq \R^2 \to \R$, where $I$ is an interval in $\R$ and $U$ is an open subset of $\R^2$ containing the trance of the curve $\bbr$. If $\bbr$ is differentiable at $t$ and $f$ is differentiable at $\bbr(t)$, then $f \circ \bbr:I \to \R$ is differentiable at $t$ and
+	\begin{align*}
+		d(f \circ \bbr)_{t}=df_{\bbr(t)} \circ d\bbr_t.
+	\end{align*}
+\end{thm}
+
+\fixme{Draw a picture.}
+
+\begin{pf}
+	Since $\bbr$ is differentiable at $t$ and $f$ is differentiable at $\bbr(t)$, given $\epsilon_1,\epsilon_2>0$ there exist $\delta_1,\delta_2>0$ such that if $|k|<\delta_1$ and $||\bh||<\delta_2$, then $t+k \in I$, $\bbr(t)+\bh \in U$ and 
+	\begin{align}\label{eq:chain_1}
+		||\bbr(t+k)-\bbr(t)-d\bbr_t(k)|| &\leq \epsilon_1|k|, \\ \label{eq:chain_2}
+		|f(\bbr(t)+\bh)-f(\bbr(t))-df_{\bbr(t)}(\bh)|&\leq \epsilon_2||\bh||.
+	\end{align}
+Set $\delta=\min\{\delta_1,\frac{\delta_2}{\epsilon_1+||d\bbr_t||}\}$. Let $k \in \R$ with $|k|<\delta$ and set $\bh=\bbr(t+k)-\bbr(t)$. Then \eqref{eq:chain_1} implies
+\begin{align*}
+	||\bh-d\bbr_t(k)|| \leq \epsilon_1|k|.
+\end{align*}
+By the triangle inequality, we then have
+\begin{align*}
+	||\bh||&=||\bh-d\bbr_t(k)+d\bbr_t(k)|| \\
+	&\leq ||\bh-d\bbr_t(k)||+||d\bbr_t(k)|| \\
+	&\leq \epsilon_1 |k|+||d\bbr_t|| |k| \\
+	&=(\epsilon_1+||d\bbr_t||)|k| \\
+	& < (\epsilon_1+||d\bbr_t||) \frac{\delta_2}{(\epsilon_1+||d\bbr_t||) } \\
+	&=\delta_2
+\end{align*}
+and therefore by \eqref{eq:chain_2}
+\begin{align*}
+	&|f(\bbr(t+k))-f(\bbr(t))-df_{\bbr(t)}(d\bbr_t(k))|=|f(\bbr(t+k)-\bbr(t)+\bbr(t))-f(\bbr(t))-df_{\bbr(t)}(d\bbr_t(k))| \\
+	=&|f(\bbr(t)+\bh)-f(\bbr(t))-df_{\bbr(t)}(d\bbr_t(k))| \\
+	=&|f(\bbr(t)+\bh)-f(\bbr(t))-df_{\bbr(t)}(\bh)+df_{\bbr(t)}(\bh)-df_{\bbr(t)}(d\bbr_t(k))| \\
+	\leq & |f(\bbr(t)+\bh)-f(\bbr(t))-df_{\bbr(t)}(\bh)|+|df_{\bbr(t)}(\bh)-df_{\bbr(t)}(d\bbr_t(k))| \\
+	=& |f(\bbr(t)+\bh)-f(\bbr(t))-df_{\bbr(t)}(\bh)|+|df_{\bbr(t)}(\bh-d\bbr_t(k))| \\
+	\leq & \epsilon_2||\bh||+||df_{\bbr(t)}||\epsilon_1|k| \\
+	\leq &\epsilon_2(\epsilon_1+||d\bbr_t||)|k|+\epsilon_1||df_{\bbr(t)}|| \ |k| \\
+	&=(\epsilon_2(\epsilon_1+||d\bbr_t||)+\epsilon_1||df_{\bbr(t)}||)|k|
+\end{align*}
+Thus, given any $\epsilon>0$, we can find $\delta_1,\delta_2>0$ such that \eqref{eq:chain_1} and \eqref{eq:chain_2} hold for 
+\begin{align*}
+	\epsilon_1&=\frac{1}{2}\frac{\epsilon}{||df_{\bbr(t)}||} \\
+	\epsilon_2&=\frac{1}{2}\frac{\epsilon}{\epsilon_1+||d\bbr_t||}.
+\end{align*}
+Defining $\delta$ as before, by taking $|k|<\delta$ we therefore have
+\begin{align*}
+	|f(\bbr(t+k))-f(\bbr(t))-df_{\bbr(t)}(d\bbr_t(k))|&\leq \epsilon|k|.
+\end{align*}
+This proves that $f \circ \bbr$ is differentiable at $t$ with differential $df_{\bbr(t)} \circ d\bbr_t$.
+\end{pf}
+
+Since the matrix representing a composition of linear maps is the product of the matrices representing each linear map \fixme{Refer to my Linear Algebra notes}, the standard matrix of $d(f \circ \bbr)_{t}$ is
+\begin{align*}
+	[d(f \circ \bbr)_{t}]&=\begin{bmatrix}
+		\frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} 
+	\end{bmatrix} \begin{bmatrix}
+		\frac{dx}{dt} \\ \frac{dx}{dt}
+	\end{bmatrix} \\
+	&=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt},
+\end{align*}
+evaluated at $(x(t),y(t))$.
+
+\begin{example}
+Let $f(x,y)=x^2y+3xy^4$ and $\bbr(t)=(x(t),y(t))=(\sin 2t, \cos t)$. If $F(t)=f(x(t),y(t))$, then
+\begin{align*}
+	\frac{dF}{dt}&=\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt} \\
+	&=(2xy+3y^4)2\cos(2t)+(x^2+12xy^3)(-\sin t)|_{(x,y)=(\sin 2t, \cos t)} \\
+	&=(2\sin(2t)\cos(t)+3\cos^4(t))2\cos(2t)-(\sin^2(2t)+12\sin(2t)\cos^3(t))\sin(t) \\
+	&=4\sin(2t)\cos(2t)\cos(t)+6\cos^4(t)\cos(2t)-\sin^2(2t)\sin(t)-12\sin(2t)\cos^3(t)\sin(t).
+\end{align*}	
+\end{example}
+
+\begin{exercise}
+Find $(f \circ \bbr)'(t)$ for each function.
+\begin{enumerate}[(1)]
+	\item $f(x,y)=x^2+y^2+xy$, $\bbr(t)=(\sin t,e^t)$.
+	\item $f(x,y)=\cos(x+4y)$, $\bbr(t)=(5t^4,t^{-1})$.
+\end{enumerate}	
+\end{exercise}
+
+
 
 \subsection{Higher Derivatives}
 \begin{figure}[h]
@@ -3332,6 +3436,8 @@ Prove that the Euclidean norm on $\R^n$ is a norm.
 		||T\bv||_W \leq C||\bv||_V, \hspace{0.5 cm} \text{ for all } \bv \in V.
 	\end{align*}
 \end{defn}
+
+\fixme{Define operator norm on $\Hom(V,W)$.}
 
 \begin{prop}[Equivalent definition of a bounded linear maps]
 	Let $T:V \to W$ be a bounded linear map, and let $S(V)\equiv \{\bv \in V:||\bv||_V=1\} \subseteq V$ be the unit sphere in $V$.  Then $T$ is bounded if and only if $T(S(V)) \subseteq W$ is bounded. 
@@ -3667,6 +3773,25 @@ By properties 1 and 2 of Definition \ref{def:affine_space},
 \begin{defn}[Affine isomorphism]
 	Let $A$ and $B$ be affine spaces over vector spaces $V$ and $W$, respectively. A bijective affine map $f:A \to B$ is said to be an \emph{affine isomorphism}.
 \end{defn}
+
+\begin{prop}
+Let $f:A \to B$ and $g:B \to C$ be affine maps. Then $g \circ f:A \to C$ is an affine map.	
+\end{prop}
+
+\begin{pf}
+	If
+	\begin{align*}
+		f(p+\bv)&=f(p)+df(\bv), \\
+		g(p+\bv)&=g(p)+dg(\bv), 
+	\end{align*}
+	then
+	\begin{align*}
+		g(f(p+\bv))&=g(f(p)+df(\bv)) \\
+		&=g(f(p))+dg(df(\bv)) \\
+		&=(g \circ f)(p)+(dg \circ df)(\bv),
+	\end{align*}
+	so $g \circ f$ is an affine map whose differential is $dg \circ df$.
+\end{pf}
 
 \fixme{Add more if we end up using it.}
 
