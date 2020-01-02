@@ -568,17 +568,26 @@ The previous example shows that it is not always easy to prove that a function h
 \begin{align*}
 	f(x)=\frac{6x^2-8x+9}{2x^2-1}
 \end{align*}
-then proving that $\lim_{x \to 1}f(x)=7$ using Definition \ref{def:limit_of_a_single-variable_function} would require a great deal of ingenuity. Instead, we prove the following theorems, which makes evaluating limits much easier.
+then proving that $\lim_{x \to 1}f(x)=7$ using Definition \ref{def:limit_of_a_single-variable_function} would require a great deal of ingenuity. Instead, we prove the following theorems, which makes evaluating limits much easier. The proofs of these theorems follow from the following properties of the absolute value function.
 
-\begin{lem}[Triangle Inequality]\label{lem:triangle_inequality}
-	For all $x,y \in \R$, 
+\begin{lem}[Properties of the absolute value function]\label{lem:triangle_inequality}
+The absolute value function $f(x)=|x|$ has the following properties
+\begin{enumerate}[(1)]
+	\item $|x|\geq 0$ for all $x \in \R$, and $|x|=0$ if and only if $x=0$.
+	\item $|xy|=|x| \ |y|$ for all $x,y \in \R$.
+	\item For all $x,y \in \R$, 
 	\begin{align*}
 		|x+y| \leq |x|+|y|.
 	\end{align*}
+\end{enumerate}	
+The third property is called the \emph{triangle inequality}.
 \end{lem}
 
 \begin{pf}
-We have
+\begin{enumerate}[(1)]
+	\item This is immediate from the definition of $|x|$.
+	\item If either $x=0$ or $y=0$, then $xy=0$ so by property (1) $|xy|=0=|x||y|$. Suppose now that neither $x$ nor $y$ are zero. If $x,y>0$ then $xy>0$, so  $|xy|=xy=|x| \ |y|$. If $x,y<0$, then $xy>0$, so $|xy|=xy=(-x)(-y)=|x|\ |y|$. If $x>0$ and $y<0$, then $xy<0$, so $|xy|=-xy=x(-y)=|x| \ |y|$. If $x<0$ and $y>0$ then $xy<0$, so $|xy|=-xy=(-x)y=|x| \ |y|$.
+	\item For any $x,y \in \R$ we have
 \begin{align*}
 	|x+y|^2=(x+y)^2&=x^2+y^2+2xy \\
 	&=|x|^2+|y|^2+2xy \\
@@ -589,6 +598,7 @@ Since both sides are nonnegative, this implies that
 \begin{align*}
 	|x+y| \leq |x|+|y|.
 \end{align*}
+\end{enumerate}
 \end{pf}
 
 
@@ -687,13 +697,27 @@ Note that, in both of these examples, the function $f(x)$ is actually defined at
 \begin{defn}[Continuity]
 	Let $f(x)$ be defined on an open interval $(a,b)$ containing a point $x_0$. We say that $f(x)$ is \emph{continuous at $x_0$} if $\lim_{x \to x_0}f(x)=f(x_0)$. We then say that $f(x)$ is \emph{continuous on $(a,b)$} if $f(x)$ is continuous at every point in $(a,b)$.
 \end{defn}
-The limit laws in Theorem \ref{thm:limit_laws_for_single-variable_functions} imply that
+The limit laws in Theorem \ref{thm:limit_laws_for_single-variable_functions} imply the following
+
+\begin{thm}[New continuous functions from old]\label{thm:new_continuous_functions_from_old}
+	Let $f(x)$ and $g(x)$ be defined on the same open interval containing $x_0$. If $f(x)$ and $g(x)$ are continuous at $x_0$, then so are
+	\begin{enumerate}[(i)]
+		\item $cf(x)$
+		\item $f(x)+g(x)$
+		\item $f(x)g(x)$
+		\item $f(x)/g(x)$ 
+	\end{enumerate}
+\end{thm}
+
+\begin{example}[Examples of Continuous Functions]\hspace{15cm}
 \begin{itemize}
 	\item Polynomials are continuous on $\R$;
 	\item Rational functions are continuous wherever they are defined;
 	\item The absolute value function $f(x)=|x|$ is continuous;
 \end{itemize}
-Trig functions, and exponential and logarithmic functions are all also continuous wherever they are defined.
+Trig functions, and exponential and logarithmic functions are all also continuous wherever they are defined.	
+\end{example}
+
 
 \begin{exercise}
 Prove that $f(x)=|x|$ is continuous on $\R$.	
@@ -702,15 +726,6 @@ Prove that $f(x)=|x|$ is continuous on $\R$.
 {\color{red} \begin{solution}
  	If $x>0$, then $f(x)=x$ which is continuous since it is a polynomial. The same is true for $x<0$ since then $f(x)=-x$. By taking $\delta=\epsilon$, $|f(x)-0|=||x||=|x|<\epsilon$ whenever $|x|<\delta=\epsilon$, so $\lim_{x \to 0}f(x)=0=f(0)$, which shows that $f(x)$ is also continuous at $x=0$. Thus, $f(x)$ is continuous on $\R$.
  \end{solution}}
-
-\begin{thm}[New continuous functions from old]
-	Let $f(x)$ and $g(x)$ be defined on the same open interval containing $x_0$. If $f(x)$ and $g(x)$ are continuous at $x_0$, then so are
-	\begin{enumerate}[(i)]
-		\item $cf(x)$
-		\item \fixme{Finish.}
-	\end{enumerate}
-\end{thm}
-
 
 \begin{thm}[A composition of continuous functions is continuous]\label{thm:a_composition_of_continuous_functions_is_continuous}
 	Suppose $f(x)$ is defined on an open interval containing $x_0$ and  $g(x)$ is defined on an open interval containing $f(x_0)$. If $f$ is continuous at $x_0$ and $g(x)$ is continuous at $f(x_0)$, then $(g \circ f)(x)$ is continuous at $x_0$.
@@ -746,7 +761,7 @@ for all $i=1,2,\dots,n$.
 \begin{pf}
 For any fixed index $i$, we have
 \begin{align*}
-	||\bx-\by||^2&=\sum_{i=1}^n(x_i-y_i)^2 \\
+	||\bx-\by||^2&=\sum_{j=1}^n(x_j-y_j)^2 \\
 	&=(x_i-y_i)^2+\underbrace{\sum_{j \neq i}(x_j-y_j)^2}_{\geq 0} \\
 	&\geq (x_i-y_i)^2.
 \end{align*}	
@@ -935,8 +950,10 @@ Let $\bu$ and $\bv$ be two vector-valued functions on $\R^n$ which are continuou
 	The proof follows immediately from Theorem \ref{thm:limit_laws_for_vector-valued_functions}. 
 \end{pf}
 
+The following theorem will be very useful to us in the next section.
+
 \begin{thm}[Continuity of composite function]
-	Let $\bbr:\R \to \R^3$ be a continuous vector-valued function and $\varphi:\R \to \R$ a continuous real-valued function. Then the composite function $\tilde{\bbr}=\bbr \circ \varphi:\R \to \R^3$ is continuous.
+	Let $\bbr:\R \to \R^n$ be a continuous vector-valued function and $\varphi:\R \to \R$ a continuous real-valued function. Then the composite function $\tilde{\bbr}=\bbr \circ \varphi:\R \to \R^n$ is continuous.
 \end{thm}
 
 \begin{pf}
@@ -963,7 +980,7 @@ Geometrically, $\bbr'(t_0)$ is the \emph{tangent vector} to the curve $\bbr$ at 
 \end{figure}
 The next theorem shows that we can compute the derivative of a vector-valued function in terms of the derivatives of its component functions.
 
-\begin{thm}[Derivative of a vector-valued function]
+\begin{thm}[Derivative of a vector-valued function]\label{thm:derivative_of_a_vector-valued_function}
 	The derivative of a vector-valued function $\bbr(t)=(r_1(t),r_2(t),r_3(t))$ is given by 
 	\begin{align*}
 		\bbr'(t)=(r_1'(t),r_2'(t),r_3'(t)).
@@ -997,7 +1014,7 @@ By Theorem \ref{thm:limit_of_a_vector-valued_function}
 \end{thm}
 
 \begin{pf}
-\fixme{Add proof.}	
+The proof follows immediately from Theorem \ref{thm:derivative_of_a_vector-valued_function} and the corresponding properties for real-valued functions.
 \end{pf}
 
 
@@ -1011,18 +1028,22 @@ Similarly, for $k$ a positive integer, the $k$th derivative of $\bbr$ is given b
 \begin{align*}
 	\bbr^{(k)}(t)=(f^{(k)}(t), g^{(k)}(t), h^{(k)}(t)).
 \end{align*}
-\item A vector-valued function is said to be of class $\mathscr{C}^k$ if its first $k$ derivatives exist and are continuous and of class $\mathscr{C}^\infty$ if all of its derivatives exist. Functions in the class $\mathscr{C}^\infty$ are also called \emph{smooth}.
+\item A vector-valued function is said to be \emph{of class $\mathscr{C}^k$} if its first $k$ derivatives exist and are continuous and \emph{of class $\mathscr{C}^\infty$} if all of its derivatives exist. Functions in the class $\mathscr{C}^\infty$ are also called \emph{smooth}.
 	\end{enumerate}
 \end{defn}
 
 \subsection{Parametrized Curves}
-We will now focus on a special class of vector-valued functions, which model the motion of a particle through space. Our interest will primarily be in the geometry of the trajectory of the particle.
+We will now focus on a special class of vector-valued functions, which model the motion of a particle through space. Our interest will primarily be in the geometry of the particle's trajectory.
 
 \begin{defn}[Parametrized curve]
-	Let $I$ be an interval. A \emph{parametrized curve} is a smooth mapping $\bbr:I \to \mathbb{R}^n$. For $n=2$, a curve is also called a \emph{plane curve} while for $n=3$ it is also called a \emph{space curve}. The variable $t$ is called the \emph{parameter}. The image $\bbr(I)$ is called the \emph{trace} of the curve $\bbr$.
+	Let $I$ be an interval. A \emph{parametrized curve} is a smooth mapping $\bbr:I \to \mathbb{R}^n$. For $n=2$, a curve is also called a \emph{plane curve} while for $n=3$ it is also called a \emph{space curve}. The variable $t$ is called the \emph{parameter}. The image $\bbr(I) \subseteq \R^n$ is called the \emph{trace} of the curve $\bbr$. \footnote{The \emph{image of $I$ under $\bbr$} is the set $\bbr(I)=\{\bbr(t):t \in I\}$.}
 \end{defn}
 
 \begin{remark}
+Every interval in $\R$ is of one of the following forms:
+\begin{align*}
+	(-\infty,b), (-\infty,b], (a,b), [a,b), (a,b], [a,b],[a,\infty), (a,\infty).
+\end{align*}
 If $I$ is an interval containing boundary points, such as $[a,b]$, then we define $f'(a)$ as the right-hand limit
 \begin{align*}
 	f'(a)=\lim_{h \to 0^+}\frac{f(a+h)-f(a)}{h}
@@ -1080,7 +1101,7 @@ The particle travels upwards along the parabola from $t=-\infty$, reaches the ve
 
 
 \begin{example}\label{ex:unit_circ}
-Consider the following three plane curves \fixme{Add definition of derivative for at boundary points of a closed interval.}
+Consider the following three plane curves 
 \begin{enumerate}[(1)]
 	\item $\bbr_1(t)=(\cos t, \sin t), 0 \leq t \leq 2\pi$, 
 	\item $\bbr_2(t)=(-\sin 2t, \cos 2t), 0 \leq t \leq 2\pi$,
@@ -1119,7 +1140,7 @@ Since the component functions are smooth, the reader may be surprised by the cus
 		\item A \emph{regular curve} is a curve with no singular points; that is, it is a curve for whice $\bbr'(t) \neq {\bf 0}$ for all $t \in I$.
 	\end{enumerate}
 \end{defn}
-In our study of the differential geometry of curves, we will need the curve to have a tangent vector at every point. Thus, from now on we will assume all curves are regular.
+In our study of the differential geometry of curves, we will assume the curve has a tangent vector at every point. Thus, from now on we will assume all curves are regular.
 
 \subsection{Reparametrizations}
 Recall the three regular curves from Example \ref{ex:unit_circ}:
@@ -1146,7 +1167,7 @@ then we see that $\bbr_2$ is equal to the composition $\bbr_2=\bbr_1 \circ \varp
 	&=\bbr_2(t).
 \end{align*}
 
-To understand this relationship, recall that a parametrized curve $\bbr(t)$ is a function which gives the position of the particle at time $t$, with respect to a given clock. If $\varphi$ denotes the time with respect to a different clock, then $\bbr(\varphi)$ gives the position of the particle at time $\varphi$. The particles follow the same trajectory, but are at different positions at different times if the two clocks are not synchronized. In this example, the clocks are related by $\varphi=2t+\frac{\pi}{2}$; that is, the $\varphi$-clock is $\frac{\pi}{2}$ seconds ahead of the $t$-clock (since $\varphi=\frac{\pi}{2}$ when $t=0$), and runs half as fast (since if the time interval between two successive ticks of the $t$-clock is $\Delta t=1$ s, then the time interval between two successive ticks of the $\varphi$-clock is  $\Delta \varphi=2\Delta t=2$ s; that is, if the $t$-clock ticks once every second, then the $\varphi$-clock ticks once every two seconds). Thus, if $\bbr_1(t)$ describes a single trip around the unit circle in the counterclockwise sense at unit speed, then, with respect to the $t$-clock, $\bbr_1(\varphi)=\bbr_2(t)$ describes a particle that is already at $(0,1)$ when $t=0$ and completes two trips around the circle at double speed in $2\pi$ seconds.
+\fixme{Speed vs time interval.} To understand this relationship, recall that a parametrized curve $\bbr(t)$ is a function which gives the position of the particle at time $t$, with respect to a given clock. If $\varphi$ denotes the time with respect to a different clock, then $\bbr(\varphi)$ gives the position of the particle at time $\varphi$. The particles follow the same trajectory, but are at different positions at different times if the two clocks are not synchronized. In this example, the clocks are related by $\varphi=2t+\frac{\pi}{2}$; that is, the $\varphi$-clock is $\frac{\pi}{2}$ seconds ahead of the $t$-clock (since $\varphi=\frac{\pi}{2}$ when $t=0$), and runs half as fast (since if the time interval between two successive ticks of the $t$-clock is $\Delta t=1$ s, then the time interval between two successive ticks of the $\varphi$-clock is  $\Delta \varphi=2\Delta t=2$ s; that is, if the $t$-clock ticks once every second, then the $\varphi$-clock ticks once every two seconds). Thus, if $\bbr_1(t)$ describes a single trip around the unit circle in the counterclockwise sense at unit speed, then, with respect to the $t$-clock, $\bbr_1(\varphi)=\bbr_2(t)$ describes a particle that is already at $(0,1)$ when $t=0$ and completes two trips around the circle at double speed in $2\pi$ seconds.
 
 \begin{exercise}\label{ex:orient_reve}
 Verify that by defining $\varphi:[0,2\pi] \to [0,2\pi]$ by $\varphi(t)=2\pi-t$, then $\bbr_3=\bbr_1 \circ \varphi$. Interpret this as above.	
@@ -1187,7 +1208,7 @@ The relation $\widetilde{\bbr} \sim \bbr$ if $\widetilde{\bbr}$ is a reparametri
 \begin{pf}
 	\begin{enumerate}[(1)]
 		\item (Reflexivity) Let $\bbr:I \to \R^n$ be a parametrized curve. Take $\varphi=id_I:T \to I$ to be the identity map on $I$. This is a smooth bijection, and since $id_I(t)=t$, $id_I'(t)=1 \neq 0$ for all $t \in I$. Since $\bbr=\bbr \circ id_I$, $\bbr \sim \bbr$. Thus, $\sim$ is reflexive.
-		\item (Symmetry) Suppose $\bbr:I \to \R^n$ and $\widetilde{\bbr}:\tilde{I} \to \R^n$ are parametrized curves with $\widetilde{\bbr} \sim \bbr$. Then there exists a smooth bijection $\varphi: \tilde{I} \to I$ with $\varphi'(t) \neq 0$ for all $t \in \tilde{I}$. It follows from the Inverse Function Theorem that $\varphi$ has a smooth inverse, $\varphi^{-1} :I \to \tilde{I}$, where $(\varphi^{-1})'(t)=1/\varphi'(t)$ Since $\varphi'(t)$ is never zero, neither is $(\varphi^{-1})'(t)$. \footnote{The \emph{Inverse Function Theorem} states that if $f:\R \to \R$ is continuously differentiable with $f'(a) \neq 0$ then $f$ is invertible in a neighborhood of $a$, the inverse is continuously differentiable, and the derivative of the inverse function at $b=f(a)$ is the reciprocal of the derivative of $f$ at $a$. Applying this to the $k$-th derivative, it follows as a corollary that we can replace ``continuously differentiable" everywhere in the theorem above by ``smooth". The \emph{Gluing Lemma} then allows us to patch together the inverse on each neighborhood into an inverse defined on the entire interval $I$.} This proves that $\widetilde{\bbr} \sim \bbr$ implies that $\bbr \sim \widetilde{\bbr}$. Thus, $\sim$ is symmetric.
+		\item (Symmetry) Suppose $\bbr:I \to \R^n$ and $\widetilde{\bbr}:\tilde{I} \to \R^n$ are parametrized curves with $\widetilde{\bbr} \sim \bbr$. Then there exists a smooth bijection $\varphi: \tilde{I} \to I$ with $\varphi'(t) \neq 0$ for all $t \in \tilde{I}$. It follows from the Inverse Function Theorem that $\varphi$ has a smooth inverse, $\varphi^{-1} :I \to \tilde{I}$, where $(\varphi^{-1})'(t)=1/\varphi'(t)$ Since $\varphi'(t)$ is never zero, neither is $(\varphi^{-1})'(t)$. \footnote{The \emph{Inverse Function Theorem} states that if $f:\R \to \R$ is continuously differentiable with $f'(a) \neq 0$ then $f$ is invertible in a neighborhood of $a$, the inverse is continuously differentiable, and the derivative of the inverse function at $b=f(a)$ is the reciprocal of the derivative of $f$ at $a$. Applying this to the $k$-th derivative, it follows as a corollary that we can replace ``continuously differentiable" everywhere in the theorem above by ``smooth". \fixme{Omit?} The \emph{Gluing Lemma} then allows us to patch together the inverse on each neighborhood into an inverse defined on the entire interval $I$.} This proves that $\widetilde{\bbr} \sim \bbr$ implies that $\bbr \sim \widetilde{\bbr}$. Thus, $\sim$ is symmetric.
 		\item (Transitivity) Let
 		\begin{align*}
 			\bbr_1:I_1 &\to \R^n, \\
@@ -2877,214 +2898,26 @@ Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$, and  $\f
 \end{figure}
 \newpage 
 
-\subsection{The Differential}
-
-
-\subsubsection{Differential of a Single-variable Function}
-Let $f(x)$ be defined on an open subset $U$ of $\R$. If $f$ is differentiable on $U$, then
+\section{Differentiability}
+If $f:U \subseteq \R$ is differentiable at $x_0 \in U$, then the limit
 \begin{align}\label{eq:old_derivative}
-	f'(x)=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}
+	f'(x_0)=\lim_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h}
 \end{align}
-exists for each $x \in U$. Rearrange \eqref{eq:old_derivative} as follows:
+exists. The existence of this limit implies that $f(x)$ is well-approximated by its tangent line
 \begin{align*}
-	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)}{h}\right]-f'(x)&=0 \\
-	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)}{h}-f'(x)\right]&=0 \\
-	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)}{h}-\frac{f'(x)h}{h}\right]&=0 \\
-	\lim_{h \to 0}\left[\frac{f(x+h)-f(x)-f'(x)h}{h}\right]&=0 \\
+	f(x)=f(x_0)+f'(x_0)(x-x_0)
 \end{align*}
-Let $r(h) \equiv f(x+h)-f(x)-f'(x)h$. Then existence of the limit in equation \eqref{eq:old_derivative} implies that 
-\begin{align}
-	f(x+h)=f(x)+f'(x)h+r(h)
-\end{align}
-where $\lim_{h \to 0} \frac{r(h)}{h}=0$. This says that, up to a small error term, $f(x)$ is an affine map (see Appendix \ref{app:affine_space}) with differential 
+for $x$ in a neighborhood of $x_0$. Recall also that a differentiable function is automatically continuous, since if $f$ is differentiable at $x_0$, then 
 \begin{align*}
-	df_x:\R &\to \R \\
-	df_x(h)&=f'(x)h.
+	\lim_{h \to 0}(f(x_0+h)-f(x_0))&=\lim_{h \to 0}\frac{h}{h}(f(x_0+h)-f(x_0)) \\
+	&=\lim_{h \to 0}\left(h \cdot \frac{f(x_0+h)-f(x_0)}{h}\right) \\
+	&=\lim_{h \to 0}h \cdot \lim_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h} \\
+	&=\lim_{h \to 0}h f'(x_0) \\
+	&=0 \cdot f'(x_0) \\
+	&=0.
 \end{align*}
-That is, $df_x$ is the linear function which multiplies $h \in \R$ by the derivative of $f$ at $x$. \fixme{Refer to Linear Algebra notes. We have seen that every linear map from $\R \to \R$ is multiplication by some fixed real number.}
 
-We now give an equivalent definition of differentiability which will readily generalize to multivariable functions. We will say that $f(x)$ is \emph{old style differentiable} at $x$ if 
-\begin{align*}
-	f'(x)=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}
-\end{align*}
-exists.
-
-\begin{defn}[Differentiable function]\label{def:differentiable_function}
-	A function $f:U \subseteq \R \to \R$ defined on an open subset $U$ of $\R$ is \emph{differentiable} at $x \in U$ if there exists a linear map $T:\R \to \R$ such that 
-	\begin{align*}
-		f(x+h)=f(x)+Th+r(h)
-	\end{align*}
-	where $\lim_{h \to 0}\frac{r(h)}{h}=0$.
-\end{defn}
-
-\begin{prop}
-	If $T,T':\R \to \R$ are two linear maps which satisfy Definition \ref{def:differentiable_function}, then $T'=T$.
-\end{prop}
-
-\begin{proof}
-	Suppose 
-	\begin{align*}
-		f(x+h)&=f(x)+Th+r(h), \text{ and } \\
-		f(x+h)&=f(x)+T'h+r'(h) \\
-	\end{align*}
-	where $\lim_{h \to 0}\frac{r(h)}{h}=0$ and $\lim_{h \to 0}\frac{r'(h)}{h}=0$. Then
-	\begin{align*}
-		f(x)+Th+r(h)=f(x)+T'h+r'(h)
-	\end{align*}
-	implies
-	\begin{align*}
-		T-T'=\frac{r'(h)}{h}-\frac{r(h)}{h}
-	\end{align*}
-	and therefore
-	\begin{align*}
-		T-T'=\lim_{h \to 0}(T-T')=\lim_{h \to 0}\left(\frac{r'(h)}{h}-\frac{r(h)}{h}\right)=\lim_{h \to 0}\frac{r'(h)}{h}-\lim_{h \to 0}\frac{r(h)}{h}=0+0=0,
-	\end{align*}
-	hene $T=T'$.
-\end{proof}
-
-\begin{defn}[Differential]
-	If $f$ is differentiable at $x$, we call the unique linear map $T$ in Definition \ref{def:differentiable_function} the \emph{differential of $f$ at $x$} and write $T=df_x$.
-\end{defn}
-
-We have seen above that if $f$ is old style differentiable, then it is differentiable in the sense of Definition \ref{def:differentiable_function}. Conversely, if $f$ is differentiable at $x$ then there exists a unique linear map $T$ such that  
-\begin{align*}
-		f(x+h)=f(x)+Th+r(h),
-	\end{align*}
-which implies that 
-\begin{align*}
-	T=\frac{f(x+h)-f(x)-r(h)}{h}
-\end{align*}
-and therefore
-\begin{align*}
-	T=\lim_{h \to 0}T=\lim_{h \to 0}\left(\frac{f(x+h)-f(x)}{h}-\frac{r(h)}{h}\right)=\lim_{h \to 0}\frac{f(x+h)-f(x)}{h}-\lim_{h \to 0}\frac{r(h)}{h}=f'(x)+0=f'(x),
-\end{align*}
-so $f$ is old style differentiable at $x$.
-
-\subsubsection{Differential of a Multivariable Function}
-Following the previous discussion, we will define a multivariable function to be differentiable if it is well-approximated by an affine map, up to a small error term.
-
-\begin{defn}[Differentiable multivariable function]\label{def:differentiable_mv_function}
-	Le $f:U \subseteq \R^n \to \R$ be defined on an open subset of $\R^n$. We say that $f$ is \emph{differentiable} at $x \in U$ if there exists a linear map $T:\R^n \to \R$ such that 
-	\begin{align*}
-		f(\bx+\bh)=f(\bx)+T\bh+r(\bh)
-	\end{align*}
-	where $\lim_{\bh \to 0}\frac{|r(\bh)|}{||\bh||}=0$. Equivalently, $f$ is differentiable at $x \in U$ if for every $\epsilon>0$ there exists $\delta>0$ such that $||\bh||<\delta$ implies
-	\begin{align*}
-		|f(\bx+\bh)-f(\bx)-T\bh|<\epsilon ||\bh||.
-	\end{align*}
-	
-\end{defn}
-
-\begin{defn}[Differential of a multivariable function]
-	If $f$ is differentiable at $\bx$, we call the unique linear map $T$ in Definition \ref{def:differentiable_mv_function} the \emph{differential of $f$ at $\bx$} and write $T=df_\bx$.
-\end{defn}
-
-\begin{prop}[Uniqueness of the differential]
-	If $T,T':\R^n \to \R$ are two linear maps which satisfy Definition \ref{def:differentiable_mv_function}, then $T'=T$.
-\end{prop}
-
-\begin{proof}
-	Suppose $T,T':\R^n \to \R$ are linear maps such that 
-	\begin{align*}
-		f(\bx+\bh)&=f(\bx)+T\bh+r(\bh), \\
-		f(\bx+\bh)&=f(\bx)+T'\bh+r'(\bh)
-	\end{align*}
-	with
-	\begin{align*}
-		\lim_{\bh \to \zv}\frac{|r(\bh)|}{||\bh||}=\lim_{\bh \to \zv}\frac{|r'(\bh)|}{||\bh||}=0.
-	\end{align*}
-	Then, since $T,T'$ are linear,
-	\begin{align*}
-		|(T-T')\bh|&=|T\bh-T'\bh| \\
-		&=|T\bh-T'\bh+f(\bx+\bh)-f(\bx)-(f(\bx+\bh)-f(\bx))| \\
-		&=|T-(f(\bx+\bh)-f(\bx))+f(\bx+\bh)-f(\bx)-T'| \\
-		&\leq |T-(f(\bx+\bh)-f(\bx))|+|f(\bx+\bh)-f(\bx)-T'| \\
-		&= |f(\bx+\bh)-f(\bx)-T|+|f(\bx+\bh)-f(\bx)-T'| \\
-		&=|r(\bh)|+|r'(\bh)|
-	\end{align*}
-	and therefore
-\begin{align*}
-	\frac{|(T-T')\bh|}{||\bh||}\leq \frac{|r(\bh)|}{||\bh||}+ \frac{|r'(\bh)|}{||\bh||}.
-\end{align*}
-	Since 
-\begin{align*}
-		\lim_{\bh \to \zv}\frac{|r(\bh)|}{||\bh||}=\lim_{\bh \to \zv}\frac{|r'(\bh)|}{||\bh||}=0,
-	\end{align*}	
-given $\epsilon>0$ there exist positive real numbers $\delta_1,\delta_2$ such that 
-	\begin{align*}
-		\frac{|r(\bh)|}{||\bh||}<\frac{\epsilon}{2}
-	\end{align*}
-	whenever $||\bh||<\delta_1$ and 
-	\begin{align*}
-		\frac{|r'(\bh)|}{||\bh||}<\frac{\epsilon}{2}
-	\end{align*}
-	whenever $||\bh||<\delta_2$. By choosing $\delta=\min\{\delta_1,\delta_2\}$, we have
-	\begin{align*}
-		\frac{|(T-T')\bh|}{||\bh||}\leq \frac{|r(\bh)|}{||\bh||}+ \frac{|r'(\bh)|}{||\bh||}<\frac{\epsilon}{2}+\frac{\epsilon}{2}
-	\end{align*}
-	whenever $||\bh||<\delta$, and therefore
-	\begin{align*}
-		\lim_{\bh \to \zv}\frac{|(T-T')\bh|}{||\bh||}=0.
-	\end{align*}
-Since this limit holds as $\bh \to \zv$ along any path, for any fixed $\bh \neq \zv$ we must have
-\begin{align*}
-		\lim_{\bh \to \zv}\frac{|(T-T')(t\bh)|}{||t\bh||}=0.
-	\end{align*}
-Since $T-T'$ is linear, this becomes
-\begin{align*}
-		0&=\lim_{t \to 0}\frac{|(T-T')(t\bh)|}{||t\bh||}\\
-		&=\lim_{t \to 0}\frac{|t(T-T')\bh|}{||t\bh||}\\
-		&=\lim_{t \to 0}\frac{|t|\ |(T-T')\bh|}{|t| \ ||\bh||}\\
-		&= \lim_{t \to 0}\frac{|(T-T')\bh|}{||\bh||}\\
-		&=\frac{|(T-T')\bh|}{||\bh||},
-	\end{align*}
-		which implies that $(T-T')\bh=0$ and therefore $\bh \in \ker (T-T')$. Since $\bh$ was an arbitrary nonzero vector, this means that $\ker(T-T')=\R^2$, so $T-T'$ is the zero map, and therefore $T=T'$.
-\end{proof}
-
-\begin{remark}
-\begin{enumerate}[(a)]
-	\item If $f:A \to B$ is an affine map (Definition \ref{def:affine_map}), then $f$ is differentiable for all $p \in A$ and $df_p$ is independent of $p$. In other words, an affine map has a constant differential. 
-	\item If $f$ is a linear map, then $d_p=f$.
-	\item If $f:U \to B$ is differentiable at $p \in U$, then the differential is a map
-	\begin{align*}
-		df:U \to \Hom(V,W).
-	\end{align*}
-\end{enumerate}	
-\end{remark}
-
-
-As in the single variable case, a differentiable function $f:U\subset \mathbb{R}^n \to \mathbb{R}$ is continuous.
-
-\begin{thm}[A differentiable function is continuous]
-	If $f:U\subset \mathbb{R}^n \to \mathbb{R}$ is differentiable at $\bx \in U$, then it is continuous at $\bx \in U$.
-\end{thm}
-
-\begin{proof}
-	Let $df_\bx$ be the differential of $f$ at $\bx$ and let $\epsilon>0$.
-	\begin{align*}
-		|f(\bx + \bh)-f(\bx)|&=|f(\bx + \bh)-f(\bx)-df_x(\bh)+df_x(\bh)| \\
-		&\leq |f(\bx + \bh)-f(\bx)-df_x(\bh)|+|df_x(\bh)|.
-	\end{align*}
-	Since $f$ is differentiable, there exists $\delta_0>0$ such that $|f(\bx + \bh)-f(\bx)-df_x(\bh)|<\frac{\epsilon}{2}||\bh||$ whenever $||\bh||<\delta_0$. By Theorem \ref{thm:every_linear_map_on_a_fd_nls_is_bdd}, there exists $C>0$ such that $|df_x(\bh)|<\epsilon C||\bh||$. Thus
-	\begin{align*}
-		|f(\bx + \bh)-f(\bx)|&\leq |f(\bx + \bh)-f(\bx)-df_x(\bh)|+|df_x(\bh)| \\
-		&<\epsilon(1+C)||\bh||. 
-	\end{align*}
-	Let $\delta=\min\{\delta_0,\frac{1}{(1+C)}\}$. Then for $||\bh||<\delta$ implies 
-	\begin{align*}
-		|f(\bx + \bh)-f(\bx)|&\leq \epsilon(1+C)||\bh|| \\
-		&<\epsilon(1+C)\frac{1}{(1+C)} \\
-		&=\epsilon,
-	\end{align*}
-	hence $f$ is continuous at $\bx$.
-\end{proof}
-
-\begin{defn}[Continuously differentiable function]
-	If $f$ is differentiable on $U$ and $df:U \to \Hom(V,W)$ is continuous, then we say that $f$ is \emph{continuously differentiable}.
-\end{defn}
-
-
-Note that the existence of both partial derivatives of a function $f$ at $(x,y)$ is \emph{not} sufficient for $f$ to be continuous at $(x,y)$.
+However, the next example shows that a multivariable function can be discontinuous at a point where the partial derivatives exist.
 
 \begin{example}\label{ex:p_d_but_disc}
 	Let
@@ -3107,67 +2940,268 @@ so the partial derivatives both exist at $(0,0)$.
 	\caption{Graph of the function $f(x,y)$ in Example \ref{ex:p_d_but_disc}}
 \end{figure}
 \end{example}
-Thus, the existence of both partial derivatives at $(x,y)$ is not strong enough to guarantee continuity at $(x,y)$. This also makes intuitive sense: continuity at $(a,b)$ requires that $\lim_{(x,y) \to (a,b)}f(x,y)=f(a,b)$ when the limit is taken along \emph{any} path passing through $(a,b)$. The partial derivatives, on the other hand, only depend on what is happening along lines through $(a,b)$ parallel to the $x$ and $y$ axes, and therefore they failed to detect the discontinuity in the previous example.
+The reason for this is that continuity at $(a,b)$ requires that $\lim_{(x,y) \to (a,b)}f(x,y)=f(a,b)$ when the limit is taken along \emph{any} path passing through $(a,b)$. The partial derivatives, on the other hand, only depend on what is happening along lines through $(a,b)$ parallel to the $x$ and $y$ axes, and therefore they failed to detect the discontinuity in the previous example. This suggests we need a stronger condition in our definition of differentiability for multivariable functions than the existence of the partial derivatives if we want differentiable multivariable functions to behave similarly to differentiable single variable functions.
 
-\subsubsection{Matrix Representation of the Differential}
-In this section we clarify the relation between the differential of a function $f$ and the partial derivatives of $f$.
+To see what definition to take, it is useful to view the definition of differentiability of a single-variable function from another perspective. We do this as follows. First, let $\Delta f(h)\equiv f(x+h)-f(x)$, where we view $\Delta f:\R \to \R$ as a function of $h$ with $x$ held fixed, which gives the change in $f$ when we change $x$ to $x+h$. We then rearrange \eqref{eq:old_derivative} as 
+\begin{align*}
+	\lim_{h \to 0}\left[\frac{\Delta f(h)}{h}\right]-f'(x)&=0 \\
+	\lim_{h \to 0}\left[\frac{\Delta f(h)}{h}-f'(x)\right]&=0 \\
+	\lim_{h \to 0}\left[\frac{\Delta f(h)}{h}-\frac{f'(x)h}{h}\right]&=0 \\
+	\lim_{h \to 0}\left[\frac{\Delta f(h)-f'(x)h}{h}\right]&=0 \\
+\end{align*} 
+If we let $r(h) \equiv \Delta f(h)-f'(x)h$, Then existence of the limit in equation \eqref{eq:old_derivative} implies that 
+\begin{align}
+	\Delta f(h)=f'(x)h+r(h)
+\end{align}
+where $\lim_{h \to 0}\frac{r(h)}{h}=0$. That is, for all points in a sufficiently small neighborhood of $x$,
+\begin{align}
+	\Delta f(h) \approx f'(x)h
+\end{align}
+which is a \emph{linear} function of $h$. 
+\begin{defn}
+If $f$ is differentiable at $x$, we call the linear function 
+\begin{align*}
+	df_x:\R \to \R
+\end{align*}	
+defined by $df_x(h)=f'(x)h$ the \emph{differential of $f$ at $x$}.
+\end{defn}
+Thus existence of the limit in \eqref{eq:old_derivative} is equivalent to the statement that there exists a \emph{linear} function (the differential of $f$ at $x$) that approximates the change of $f$ near $x$, up to an error term which can be made arbitrarily small by taking points sufficiently close to $x$.
 
-Let $f:\R^n \to \R$. Then $df_\bx$ is a linear map for each $\bx \in \R^n$, so it can be represented by a matrix \fixme{Refer to my Linear Algebra notes.}
-  
-\begin{thm}
-	Let $U$ be an open subset of $\mathbb{R}^n$ and $f:U \to \mathbb{R}$. If $f$ is differentiable at $\bx \in U$, then the partial derivatives $\frac{\partial f}{\partial x_j}(\bx)$ all exist, and 
+\begin{defn}\label{def:differentiable_mv_function}
+Let $f:U \subseteq \R^n \to \R$ be a multivariable function defined on an open subset $U$ of $\R^n$ and let $\Delta f:\R^n \to \R$ be defined by $\Delta f(\bh)=f(\bx + \bh)-f(\bx)$. We say that $f$ is \emph{differentiable} at $\bx \in U$ if there exists a linear function $T:\R^n \to \R$ such that  
+\begin{align*}
+	\Delta f(\bh)=T(\bh)+r(\bh)
+\end{align*}	
+where $r(\bh)$ is a ``small" error term, in the sense that $\lim_{\bh \to \zv}\frac{|r(\bh)|}{||\bh||}=0$. If $T$ exists, we denote it by $df_\bx$ and call it the \emph{differential of $f$ at $\bx$}. 
+
+Writing this out, this says that $f$ is differentiable at $\bx$ if for every $\epsilon>0$, there exists a linear function $df_\bx:\R^n \to \R$ and a number $\delta>0$ such that 
+\begin{align*}
+	|f(\bx+\bh)-f(\bx)-df_\bx(\bh)|<\epsilon ||\bh||
+\end{align*}
+whenever $||\bh||<\delta$.
+\end{defn}
+We see immediately that if the differential of $f$ at $\bx$ exists, it is unique.
+
+\begin{prop}[Uniqueness of the differential]\label{prop:uniqueness_of_the_differential}
+	If $T,T':\R^n \to \R$ are two linear maps which satisfy Definition \ref{def:differentiable_mv_function}, then $T'=T$.
+\end{prop}
+
+\begin{proof}
+	Suppose $T,T':\R^n \to \R$ are linear maps such that 
 	\begin{align*}
-		df_\bx({\bf e}_j)=\sum_{i=1}^m \frac{\partial f}{\partial x_j}(\bx), \ (1 \leq j \leq n),
+		f(\bx+\bh)&=f(\bx)+T(\bh)+r(\bh), \\
+		f(\bx+\bh)&=f(\bx)+T'(\bh)+r'(\bh)
 	\end{align*}
-	where $\{{\bf e}_j\}_{j=1}^n$ denotes the standard basis for $\mathbb{R}^n$.
+	with
+	\begin{align*}
+		\lim_{\bh \to \zv}\frac{|r(\bh)|}{||\bh||}=\lim_{\bh \to \zv}\frac{|r'(\bh)|}{||\bh||}=0.
+	\end{align*}
+	Then, since $T,T'$ are linear,
+	\begin{align*}
+		|(T-T')(\bh)|&=|T(\bh)-T'(\bh)| \\
+		&=|T(\bh)-T'(\bh)+f(\bx+\bh)-f(\bx)-(f(\bx+\bh)-f(\bx))| \\
+		&=|T(\bh)-(f(\bx+\bh)-f(\bx))+f(\bx+\bh)-f(\bx)-T'(\bh)| \\
+		&\leq |T(\bh)-(f(\bx+\bh)-f(\bx))|+|f(\bx+\bh)-f(\bx)-T'(\bh)| \\
+		&= |f(\bx+\bh)-f(\bx)-T(\bh)|+|f(\bx+\bh)-f(\bx)-T'(\bh)| \\
+		&=|r(\bh)|+|r'(\bh)|
+	\end{align*}
+	and therefore
+\begin{align*}
+	\frac{|(T-T')(\bh)|}{||\bh||}\leq \frac{|r(\bh)|}{||\bh||}+ \frac{|r'(\bh)|}{||\bh||}.
+\end{align*}
+	Since 
+\begin{align*}
+		\lim_{\bh \to \zv}\frac{|r(\bh)|}{||\bh||}=\lim_{\bh \to \zv}\frac{|r'(\bh)|}{||\bh||}=0,
+	\end{align*}	
+given $\epsilon>0$ there exist positive real numbers $\delta_1,\delta_2$ such that 
+	\begin{align*}
+		\frac{|r(\bh)|}{||\bh||}<\frac{\epsilon}{2}
+	\end{align*}
+	whenever $||\bh||<\delta_1$ and 
+	\begin{align*}
+		\frac{|r'(\bh)|}{||\bh||}<\frac{\epsilon}{2}
+	\end{align*}
+	whenever $||\bh||<\delta_2$. By choosing $\delta=\min\{\delta_1,\delta_2\}$, we have
+	\begin{align*}
+		\frac{|(T-T')(\bh)|}{||\bh||}\leq \frac{|r(\bh)|}{||\bh||}+ \frac{|r'(\bh)|}{||\bh||}<\frac{\epsilon}{2}+\frac{\epsilon}{2}
+	\end{align*}
+	whenever $||\bh||<\delta$, and therefore
+	\begin{align*}
+		\lim_{\bh \to \zv}\frac{|(T-T')(\bh)|}{||\bh||}=0.
+	\end{align*}
+Since this limit holds as $\bh \to \zv$ along any path, for any fixed $\bh \neq \zv$ we must have
+\begin{align*}
+		\lim_{\bh \to \zv}\frac{|(T-T')(t\bh)|}{||t\bh||}=0.
+	\end{align*}
+Since $T-T'$ is linear, this becomes
+\begin{align*}
+		0&=\lim_{t \to 0}\frac{|(T-T')(t\bh)|}{||t\bh||}\\
+		&=\lim_{t \to 0}\frac{|t(T-T')(\bh)|}{||t\bh||}\\
+		&=\lim_{t \to 0}\frac{|t|\ |(T-T')(\bh)|}{|t| \ ||\bh||}\\
+		&= \lim_{t \to 0}\frac{|(T-T')(\bh)|}{||\bh||}\\
+		&=\frac{|(T-T')(\bh)|}{||\bh||},
+	\end{align*}
+		which implies that $(T-T')(\bh)=0$ and therefore $\bh \in \ker (T-T')$. Since $\bh$ was an arbitrary nonzero vector, this means that $\ker(T-T')=\R^2$, so $T-T'$ is the zero map, and therefore $T=T'$.
+\end{proof}
+
+From Definition \ref{def:differentiable_mv_function}, we see that if $f:U \subseteq \R^n \to \R$ is a linear function, then $f$ is differentiable at each point $\bx \in U$ and $df_\bx = f$.
+
+\begin{prop}\label{prop:linear_f_equals_diff}
+If $f:U \subseteq \R^n \to \R$ is linear, then for each $\bx \in U$, $df_\bx=f$.	
+\end{prop}
+
+\begin{proof}
+		Since $f$ is linear,
+	\begin{align*}
+		\lim_{\bh \to {\bf 0}}\frac{|f(\bx+\bh)-f(\bx)-f(\bh)|}{||\bh||}&=\lim_{\bh \to {\bf 0}}\frac{|f(\bx)+f(\bh)-f(\bx)-f(\bh)|}{||\bh||} \\
+		&=\lim_{\bh \to {\bf 0}}\frac{0}{||\bh||} \\
+		&=0.
+	\end{align*}
+Thus, $df_\bx=f(\bx)$.
+\end{proof}
+
+\begin{thm}[A differentiable function is continuous]
+	If $f:U\subset \mathbb{R}^n \to \mathbb{R}$ is differentiable at $\bx \in U$, then it is continuous at $\bx \in U$.
 \end{thm}
 
-\begin{pf}
-	The $j$th column of the standard matrix of $df_\bx$ is $df_\bx({\bf e}_j)$. Since, $f$ is differentiable at $\bx$,
+\begin{proof}
+	Let $\epsilon>0$. Then
 	\begin{align*}
-		f(\bx+t{\bf e}_j)-f(\bx)=df_\bx(t{\bf e}_j)+r(t{\bf e}_j)
+		|f(\bx+\bh)-f(\bx)|&=|df_\bx(\bh)+r(\bh)| \\
+		&\leq |df_\bx(\bh)|+|r(\bh)|.
 	\end{align*}
-	where $r(t{\bf e}_j)/t \to 0$ as $t \to 0$. Since $df_\bx$ is linear, $df_\bx(t{\bf e}_j)=tdf_\bx({\bf e}_j)$. Dividing both sides of the equation above by $t$ and taking $t \to 0$, we have 
-	\begin{align*}
-		\frac{\partial f}{\partial x_j}(\bx)\equiv\lim_{t \to 0}\frac{f(\bx+t{\bf e}_j)-f(\bx)}{t}&=\lim_{t \to 0}[df_\bx({\bf e}_j)+\frac{r(t{\bf e}_j)}{t}] \\
-		&=\lim_{t \to 0}df_\bx({\bf e}_j)+\lim_{t \to 0}\frac{r(t{\bf e}_j)}{t} \\
-		&=df_\bx({\bf e}_j)+0\\
-		&=df_\bx({\bf e}_j).
-	\end{align*}
-\end{pf}	
+Choose $\delta_0>0$ such that $|r(\bh)|<\epsilon ||\bh||$ whenever $||\bh||<\delta_0$. Then
+\begin{align*}
+	|f(\bx+\bh)-f(\bx)|&<|df_\bx(\bh)|+\epsilon ||\bh||.
+\end{align*}
+By ???, $|df_\bx(\bh)|\leq ||df_\bx|| \ ||\bh||$, so 
+\begin{align*}
+	|f(\bx+\bh)-f(\bx)|&<||df_\bx|| \ ||\bh||+\epsilon ||\bh|| \\
+&=(||df_\bx|| +\epsilon)||\bh||.
+\end{align*}
+Let $\delta=\min\{\delta_0,\frac{\epsilon}{||df_\bx|| +\epsilon}\}$. Then by taking $||\bh||<\delta$, we have
+\begin{align*}
+	|f(\bx+\bh)-f(\bx)|&<(||df_\bx|| +\epsilon)||\bh|| \\
+&<(||df_\bx|| +\epsilon)\frac{\epsilon}{(||df_\bx|| +\epsilon)} \\
+&=\epsilon,
+\end{align*}
+which shows that $\lim_{\bh \to \zv} (f(\bx+\bh)-f(\bx))=0$. Hence, $f$ is continuous.
+\end{proof}
 
-\begin{defn}
-	The $1 \times n$ matrix representing $df_\bx$ is called the \emph{gradient of $f$ at $\bx$}, and is denoted by
+In the next section, we show how to compute the differential of a differentiable function.
+
+\subsection{Directional Derivatives}
+Our next task is to show how to compute $df_\bx(\bv)$ for any $\bv \in \R^n$. We now show that this computation can be reduced to the derivative of a single-variable function. 
+
+\begin{thm}[Computation of the differential]\label{thm:computation_of_the_differential}
+Let $f:U \subseteq \R^n \to \R$ be differentiable at $\bx \in U$ and let $\bbr: I\subseteq \R \to U$ be the straight-line path $\bbr(t)=\bx+t\bv$ passing through $\bx$ in the direction of $\bv$ at $t=0$. Then the single-variable function $f \circ \bbr :I \subseteq \R \to \R$ is the single-variable function given by $f(\bbr(t))$ is differentiable and 
+\begin{align*}
+	df_\bx(\bv)=\frac{d}{dt}f(\bx+t\bv)|_{t=0}.
+\end{align*}	
+\end{thm}
+
+\begin{proof}
+	Since $f$ is differentiable at $\bx$, for every $\epsilon>0$ there exists $\delta>0$ such that $||\bh||<\delta$ implies
 	\begin{align*}
-		\nabla f(\bx)=(\frac{\partial f}{\partial x_1}(\bx),\frac{\partial f}{\partial x_2}(\bx),\cdots,\frac{\partial f}{\partial x_n}f(\bx)).
+		|f(\bx+\bh)-f(\bx)-df_\bx(\bh)|&<\epsilon ||\bh||.
 	\end{align*}
+	Let $\bv$ be a fixed nonzero vector and choose $t \in \R$ sufficiently small so that $||t \bv||<\delta$. Then 
+	\begin{align*}
+		|f(\bx+t\bv)-f(\bx)-df_\bx(t\bv)|&<\epsilon ||t\bv||.
+	\end{align*} 
+	Since $df_\bx$ is linear, this implies
+	\begin{align*}
+				|f(\bx+t\bv)-f(\bx)-t df_\bx(\bv)|&<\epsilon |t| \ ||\bv||.
+	\end{align*}
+	Dividing through by $|t|$, we have
+	\begin{align*}
+		\left|\frac{f(\bx+t\bv)-f(\bx)}{t}-df_\bx(\bv)\right|&<\epsilon||\bv||.
+	\end{align*}
+	Since the quantity on the left can be made smaller than any positive number by taking $t$ sufficiently small, it must be that
+	\begin{align*}
+		\lim_{t \to 0}\frac{f(\bx+t\bv)-f(\bx)}{t}\equiv \frac{d}{dt}f(\bx+t\bv)|_{t=0}=df_\bx(\bv).
+	\end{align*}
+\end{proof}
+
+\begin{defn}[Directional derivative]\label{def:dd}
+The real number	$\frac{d}{dt}f(\bx+t\bv)|_{t=0}$ is called a \emph{directional derivative} of $f$, and is often denoted $D_\bv f(\bx)$. 
 \end{defn}
 
-\begin{example}
-	\fixme{Choose a function which is not linear.}
-	Let $f(x,y)=3x+2y$. Then $\nabla f(x,y)=(3,2)$ and therefore
+\begin{remark}
+	Strictly speaking, in Definition \ref{def:dd} we are misusing the word ``direction", since if $\bw=c\bv$ with $c>0$, then $\bw$ and $\bv$ point in the same direction but Theorem \ref{thm:computation_of_the_differential} shows that $D_\bw f(\bx)=df_\bx(\bw)=df_\bx(c\bv)=cD_\bv(\bx)$. Thus, when we speak of directional derivatives we will always take $\bv$ in Definition \ref{thm:computation_of_the_differential} to be a unit vector.
+\end{remark}
+
+\begin{cor}\label{cor:diff_imp_dd}
+If $f:U \subseteq \R^n \to \R$ is differentiable at $\bx$, then all of its directional derivatives exist at $\bx$. In particular, all the partial derivatives of $f$ exist at $\bx$.	
+\end{cor}
+
+\begin{proof}
+	By taking $\bv=e_i$ to be the $i$th standard basis vector for $\R^n$, by Theorem \ref{thm:computation_of_the_differential},
 	\begin{align*}
-		df_{(x,y)}(h_1,h_2)&=\nabla f(x,y)\cdot (h_1,h_2) \\
-		&=3h_1+2h_2 \\
-		&=f(h_1,h_2).
+		df_\bx(e_i)&=\lim_{t \to 0}\frac{f(\bx+te_i)-f(\bx)}{t}\\
+		&=\lim_{t \to 0}\frac{f(x_1,\dots,x_i+t,\dots,x_n)-f(x_1,\dots,x_i,\dots,x_n)}{t}\\
+		&\equiv \frac{\partial f}{\partial x_i}(x_1,\dots,x_n).
 	\end{align*}
+\end{proof}
+
+Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
+\begin{align*}
+	[df_\bx]=\begin{bmatrix}
+		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
+	\end{bmatrix}.
+\end{align*}
+
+If $f:\R^2 \to \R$ is differentiable at $\bx$, the equation of the \emph{tangent plane} to the graph of $f$ at $(\bx,f(\bx))$ is 
+\begin{align*}
+	f(x,y)&=f(x_0,y_0)+T(x-x_0,y-y_0) \\
+	&=f(x_0,y_0)+\begin{bmatrix}
+		\frac{\partial f(x_0,y_0)}{\partial x} & \frac{\partial f(x_0,y_0)}{\partial y} 
+	\end{bmatrix}\begin{bmatrix}
+		x-x_0 \\ y-y_0
+	\end{bmatrix} \\
+	&=f(x_0,y_0)+\frac{\partial f(x_0,y_0)}{\partial x}(x-x_0)+\frac{\partial f(x_0,y_0)}{\partial y}(y-y_0).
+\end{align*}
+
+The converse to Corollary \ref{cor:diff_imp_dd} is \emph{false}, as the next example shows.
+
+\begin{example}
+	A function $f:\R^n \to \R$ is said to be \emph{homogeneous} if $f(c\bx)=cf(\bx)$ for all $c \in \R$ and $\bx \in \R^n$. If $f$ is homogeneous, then for any nonzero $\bv \in \R^n$ we have
+	\begin{align*}
+		D_\bv(0)&=\lim_{t \to 0}\frac{f(0+t\bv)-f(0)}{t}\\
+		&=\lim_{t \to 0}\frac{f(t\bv)}{t}\\
+		&=\lim_{t \to 0}\frac{tf(\bv)}{t}\\
+		&=\lim_{t \to 0}f(\bv)\\
+		&=f(\bv),
+	\end{align*}
+	which shows that all the directional derivatives of a homogeneous function exist at 0 at $D_\bv f(0)=f(\bv)$. If $f$ is also differentiable at $0$, then
+	\begin{align*}
+		df_0(\bv)=D_\bv(0)=f(\bv),
+	\end{align*}
+thus $f=df_0$, so $f$ is linear by Proposition \ref{prop:linear_f_equals_diff}. Therefore, if $f$ is any nonlinear homogeneous function, then all of its directional derivatives will exist, but $f$ will not be differentiable. For instance, define $f:\R^2 \to \R$ by
+\begin{align*}
+	f(x,y)=\begin{cases}
+		\frac{x^3}{x^2+y^2}, &\text{ if } (x,y)
+ \neq (0,0) \\
+ 0, &\text{ if } (x,y)=(0,0).
+ 	\end{cases}
+\end{align*} 
+Then $f(tx,ty)=tf(x,y)$, so $f$ is homogeneous, but not linear.
 \end{example}
 
-
-As we saw in Example \ref{ex:p_d_but_disc}, the existence of all partial derivatives is not enough to guarantee differentiability (their existence was not even enough to guarantee continuity), that is, the existence of the differential $df$. However, as we will now show, if the partial derivatives all exist and are \emph{continuous}, then the differential \emph{does} exist. Thus, {\bf any function whose partial derivatives exist and are continuous is differentiable in the sense of Definition \ref{def:differentiable_mv_function}}.
+The converse to Corollary \ref{cor:diff_imp_dd} \emph{does} hold if we add the condition that the partial derivatives are \emph{continuous}:
 
 \begin{thm}
 	Let $U$ be an open subset of $\mathbb{R}^n$ and let $f:U \to \mathbb{R}$. Then, if each of the partial derivatives $\frac{\partial f}{\partial x_i}$ exists and is continuous on $U$, then $f$ is differentiable on $U$.
 \end{thm}
 
-\begin{pf}
+\begin{proof}
 To cut down on writing, we will prove this for the case of $n=2$. The proof for $n>2$ is exactly the same. We need to show that, for any $(x,y) \in U$ and $\epsilon > 0$, there exists a $\delta > 0$ such that
 \begin{align*}
-	|f(x+h_1,y+h_2)-f(x,y)-df_{(x,y)}{\bf h}|<\epsilon||{\bf h}||
+	|f(x+h_1,y+h_2)-f(x,y)-df_{(x,y)}({\bf h})|<\epsilon||{\bf h}||
 \end{align*}
 whenever $||{\bf h}||\equiv \sqrt{h_1^2+h_2^2}< \delta$.  
 \begin{align*}
-	&|f(x+h_1,y+h_2)-f(x,y)-df_{(x,y)}{\bf h}|\\
+	&|f(x+h_1,y+h_2)-f(x,y)-df_{(x,y)}({\bf h})|\\
 	&=|f(x+h_1,y+h_2)-f(x,y)-\frac{\partial f}{\partial x}(x,y)h_1-\frac{\partial f}{\partial y}(x,y)h_2| \\
 	&=|f(x+h_1,y+h_2)-f(x,y+h_2)+f(x,y+h_2)-f(x,y)-\frac{\partial f}{\partial x}(x,y)h_1-\frac{\partial f}{\partial y}(x,y)h_2| \\
 \end{align*}
@@ -3183,34 +3217,35 @@ so the above is equal to
 	 \leq &(|\frac{\partial f}{\partial x}(u_1,y+h_2)-\frac{\partial f}{\partial x}(x,y)|+|\frac{\partial f}{\partial y}(x,u_2)-\frac{\partial f}{\partial y}(x,y)|)||{\bf h}||
 \end{align*}
 where in the second line we have used the Cauchy-Schwarz inequality \footnote{The Cauchy-Schwarz inequality states that $|df_{(x,h)}\cdot {\bf h}|\leq |df_{(x,h)}| \ ||{\bf h}||$.} and in the third line the fact that $\sqrt{x^2+y^2}\leq |x|+|y|$. Since the partial derivatives are continuous, and since $u_1$ and $u_2$ lie between $x$ and $x+h_1$ and $y$ and $y+h_2$, respectively, there exists a $\delta_1$ such that the first absolute value in the parenthesis is less than $\epsilon/2$ whenever $||{\bf h}||<\delta_1$ and a $\delta_2$ such that the second absolute value in the parenthesis is less than $\epsilon/2$ whenever $||{\bf h}||<\delta_2$. Thus, by taking $||{\bf h}||<\delta=\text{min}\{\delta_1,\delta_2\}$, the entire parenthesis is less than $\epsilon$.
-\end{pf}
+\end{proof}
 
-\begin{example}
-	Let $f:\mathbb{R}^3 \to \mathbb{R}$ be defined by $f(x,y,z)=3x^2y^3z$. Since the partial derivatives
-	\begin{align*}
-		\frac{\partial f}{\partial x}(x,y,z)=6xy^3z, \hspace{0.25cm} \frac{\partial f}{\partial y}(x,y,z)=9x^2y^2z, \hspace{0.25cm} \frac{\partial f}{\partial z}(x,y,z)=3x^2y^3
-	\end{align*}
-	are continuous, the function $f$ is differentiable with gradient
-	\begin{align*}
-		\nabla f(x,y,z)=\begin{bmatrix}6xy^3z & 9x^2y^2z & 3x^2y^3 \end{bmatrix}.
-	\end{align*}
-\end{example}
- 
-\fixme{Write equation of tangent plane at $(x,y)$ for a differentiable function $f(x,y)$.}
 
-\fixme{Directional derivatives here?}
 
-\subsection{The Composite Mapping Theorem (Chain Rule)}
-Suppose a particle moves along a path $C$ along which the temperature varies. The path is the image of 
-\begin{align*}
-	\bbr:I \to \mathbb{R}^2
-\end{align*}
-while the temperature at a point $(x,y) \in C$ is $z=T(x,y)$. Thus, $T:C \subset \mathbb{R}^2 \to \mathbb{R}$. The composite function
-\begin{align*}
-	F\equiv T \circ \bbr:I \to \mathbb{R}
-\end{align*}
-defined by $F(t)=T(\bbr(t))$
-gives the temperature felt by the particle at time $t$. Then $F'(t)$ is the rate at which the temperature at the position of the particle is changing with time at $t \in I$. How do we compute $F'(t)$?
+\subsection{Explicit computation of the differential}
+To compute the differential explicitly, we observe that it obeys the usual rules of differentiation.
+
+\begin{prop}
+Let $f_1,f_2$ be differentiable at $\bx$. Then
+\begin{enumerate}[(1)]
+	\item $d$ is linear: $d(cf_1+f_2)=cdf_1+df_2$.
+	\item $d$ obeys the Leibnitz rule: $d(f_1 \cdot f_2)=df_1 \cdot f_2+f_1 \cdot df_2$.
+\end{enumerate}	
+\end{prop}
+
+\begin{proof}
+	\begin{enumerate}[(1)]
+		\item For any $\bv \in \R^n$, we have
+		\begin{align*}
+			d(cf_1+f_2)(\bv)=D_\bv(cf_1+f_2)(\bx)=c D_\bv f_1(\bx)+D_\bv f_2(\bx)=cdf_1(\bv)+df_2(\bv)
+		\end{align*}
+		and therefore $d(cf_1+f_2)=cdf_1+df_2$.
+		\item For any $\bv \in \R^n$, we have
+		\begin{align*}
+			d(f_1 \cdot f_2)(\bv)=D_\bv(f_1(\bv) \cdot f_2(\bv))=(D_\bv f_1(\bx))f_2+f_1(D_\bv f_2(\bx))=df_1(\bv)\cdot f_2(\bv)+f_1(\bv)df_2(\bv)
+		\end{align*}
+		and therefore $d(f_1 \cdot f_2)=df_1 \cdot f_2+f_1 \cdot df_2$.
+	\end{enumerate}
+\end{proof}
 
 \begin{thm}[Chain rule]
 	Let $\bbr:I \to \R^2$ and $f:U \subseteq \R^2 \to \R$, where $I$ is an interval in $\R$ and $U$ is an open subset of $\R^2$ containing the trance of the curve $\bbr$. If $\bbr$ is differentiable at $t$ and $f$ is differentiable at $\bbr(t)$, then $f \circ \bbr:I \to \R$ is differentiable at $t$ and
@@ -3221,7 +3256,7 @@ gives the temperature felt by the particle at time $t$. Then $F'(t)$ is the rate
 
 \fixme{Draw a picture.}
 
-\begin{pf}
+\begin{proof}
 	Since $\bbr$ is differentiable at $t$ and $f$ is differentiable at $\bbr(t)$, given $\epsilon_1,\epsilon_2>0$ there exist $\delta_1,\delta_2>0$ such that if $|k|<\delta_1$ and $||\bh||<\delta_2$, then $t+k \in I$, $\bbr(t)+\bh \in U$ and 
 	\begin{align}\label{eq:chain_1}
 		||\bbr(t+k)-\bbr(t)-d\bbr_t(k)|| &\leq \epsilon_1|k|, \\ \label{eq:chain_2}
@@ -3261,7 +3296,7 @@ Defining $\delta$ as before, by taking $|k|<\delta$ we therefore have
 	|f(\bbr(t+k))-f(\bbr(t))-df_{\bbr(t)}(d\bbr_t(k))|&\leq \epsilon|k|.
 \end{align*}
 This proves that $f \circ \bbr$ is differentiable at $t$ with differential $df_{\bbr(t)} \circ d\bbr_t$.
-\end{pf}
+\end{proof}
 
 Since the matrix representing a composition of linear maps is the product of the matrices representing each linear map \fixme{Refer to my Linear Algebra notes}, the standard matrix of $d(f \circ \bbr)_{t}$ is
 \begin{align*}
@@ -3293,8 +3328,19 @@ Find $(f \circ \bbr)'(t)$ for each function.
 \end{exercise}
 
 
+\begin{thm}
+If $U$ is connected, $f$ differentiable, and $df_p=0$ for all $p$, then $f$ is constant.	
+\end{thm}
 
-\subsection{Higher Derivatives}
+\fixme{Does this fit in somewhere? If so, discuss and prove this.}
+
+
+\subsection{Implicit Differentiation}
+\fixme{Add.}
+
+
+
+\subsection{Higher Partial Derivatives}
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=\textwidth]{figures_mvc/higher_d}
@@ -3315,6 +3361,12 @@ Compute the second partial derivatives of
 \end{figure}
 
 Notice for the function in Exercise \ref{ex:mixed_partials_equality} that $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$. This is no coincidence.
+
+\fixme{Finish.}
+
+\section{Optimization}
+Infinitesimal to local to global. Example: if $df_p$ zero at every point of $U$ and $U$ connected then $f$ is constant on $U$
+
 
 \appendix
 \section{Justification of the Arc Length Formula}\label{app:arc_length}
