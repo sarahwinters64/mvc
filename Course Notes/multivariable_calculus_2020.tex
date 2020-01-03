@@ -1208,7 +1208,7 @@ The relation $\widetilde{\bbr} \sim \bbr$ if $\widetilde{\bbr}$ is a reparametri
 \begin{pf}
 	\begin{enumerate}[(1)]
 		\item (Reflexivity) Let $\bbr:I \to \R^n$ be a parametrized curve. Take $\varphi=id_I:T \to I$ to be the identity map on $I$. This is a smooth bijection, and since $id_I(t)=t$, $id_I'(t)=1 \neq 0$ for all $t \in I$. Since $\bbr=\bbr \circ id_I$, $\bbr \sim \bbr$. Thus, $\sim$ is reflexive.
-		\item (Symmetry) Suppose $\bbr:I \to \R^n$ and $\widetilde{\bbr}:\tilde{I} \to \R^n$ are parametrized curves with $\widetilde{\bbr} \sim \bbr$. Then there exists a smooth bijection $\varphi: \tilde{I} \to I$ with $\varphi'(t) \neq 0$ for all $t \in \tilde{I}$. It follows from the Inverse Function Theorem that $\varphi$ has a smooth inverse, $\varphi^{-1} :I \to \tilde{I}$, where $(\varphi^{-1})'(t)=1/\varphi'(t)$ Since $\varphi'(t)$ is never zero, neither is $(\varphi^{-1})'(t)$. \footnote{The \emph{Inverse Function Theorem} states that if $f:\R \to \R$ is continuously differentiable with $f'(a) \neq 0$ then $f$ is invertible in a neighborhood of $a$, the inverse is continuously differentiable, and the derivative of the inverse function at $b=f(a)$ is the reciprocal of the derivative of $f$ at $a$. Applying this to the $k$-th derivative, it follows as a corollary that we can replace ``continuously differentiable" everywhere in the theorem above by ``smooth". \fixme{Omit?} The \emph{Gluing Lemma} then allows us to patch together the inverse on each neighborhood into an inverse defined on the entire interval $I$.} This proves that $\widetilde{\bbr} \sim \bbr$ implies that $\bbr \sim \widetilde{\bbr}$. Thus, $\sim$ is symmetric.
+		\item (Symmetry) Suppose $\bbr:I \to \R^n$ and $\widetilde{\bbr}:\tilde{I} \to \R^n$ are parametrized curves with $\widetilde{\bbr} \sim \bbr$. Then there exists a smooth bijection $\varphi: \tilde{I} \to I$ with $\varphi'(t) \neq 0$ for all $t \in \tilde{I}$. It follows from the Inverse Function Theorem that $\varphi$ has a smooth inverse, $\varphi^{-1} :I \to \tilde{I}$, where $(\varphi^{-1})'(t)=1/\varphi'(t)$ Since $\varphi'(t)$ is never zero, neither is $(\varphi^{-1})'(t)$. \footnote{The \emph{Inverse Function Theorem} states that if $f:\R \to \R$ is continuously differentiable with $f'(a) \neq 0$ then $f$ is invertible in a neighborhood of $a$, the inverse is continuously differentiable, and the derivative of the inverse function at $b=f(a)$ is the reciprocal of the derivative of $f$ at $a$. Applying this to the $k$-th derivative, it follows as a corollary that we can replace ``continuously differentiable" everywhere in the theorem above by ``smooth". Since $f'(t)$ is never zero on $I$, $f$ must be 1-1 on all of $I$.} This proves that $\widetilde{\bbr} \sim \bbr$ implies that $\bbr \sim \widetilde{\bbr}$. Thus, $\sim$ is symmetric.
 		\item (Transitivity) Let
 		\begin{align*}
 			\bbr_1:I_1 &\to \R^n, \\
@@ -2898,6 +2898,149 @@ Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$, and  $\f
 \end{figure}
 \newpage 
 
+\subsubsection{Higher Partial Derivatives}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\textwidth]{figures_mvc/higher_d}
+	\end{center}
+\end{figure}
+
+\begin{exercise}\label{ex:mixed_partials_equality}
+Compute the second partial derivatives of 
+\begin{align*}
+	f(x,y)=x^3+x^2y^3-2y^2.
+\end{align*}	
+\end{exercise}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/higher_d_ex}
+	\end{center}
+\end{figure}
+
+Notice for the function in Exercise \ref{ex:mixed_partials_equality} that $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$. This is no coincidence.
+
+\begin{thm}[Equality of mixed partial derivatives]\label{thm:clairaut}
+Let $f:U \subseteq \R^2 \to \R$. If $\frac{\partial f}{\partial x \partial y}$ and $\frac{\partial f}{\partial y \partial x}$	are both continuous, then $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$.
+\end{thm}
+
+\begin{proof}
+	Let $h \neq 0$ and consider the quantity
+	\begin{align}\label{eq:clairaut_delta_h}
+		\Delta(h)\equiv [f(a+h,b+h)-f(a+h,b)]-[f(a,b+h)-f(a,b)].
+	\end{align}
+	If we let $g(x) \equiv f(x,b+h)-f(x,b)$, then
+	\begin{align*}
+		\Delta(h)=g(a+h)-g(a).
+	\end{align*}
+	If $g$ is differentiable on $U$, by the Mean Value Theorem there exists $c \in (a,a+h)$ such that
+	\begin{align*}
+		g(a+h)-g(a)&=hg'(c) \\
+		&=h\left[\frac{\partial f}{\partial x}(c,b+h)-\frac{\partial f}{\partial x}(c,b)\right].
+	\end{align*}
+	Applying the Mean Value Theorem again to $\frac{\partial f}{\partial x}$, there exists $d \in (b,b+h)$ such that 
+	\begin{align*}
+		\frac{\partial f}{\partial x}(c,b+h)-\frac{\partial f}{\partial x}(c,b)&=h\frac{\partial^2 f}{\partial y \partial x}(c,d).
+	\end{align*}
+	Thus,
+	\begin{align*}
+		\Delta(h)=h^2\frac{\partial^2 f}{\partial y \partial x}(c,d). 
+	\end{align*}
+	As $h \to 0$, $(c,d) \to (a,b)$, so by continuity of $\frac{\partial^2 f}{\partial y \partial x}$,
+	\begin{align*}
+		\lim_{h \to 0}\frac{\Delta(h)}{h^2}=\lim_{(c,d) \to (a,b)}\frac{\partial^2 f}{\partial y \partial x}(c,d)=\frac{\partial^2 f}{\partial y \partial x}(a,b).
+	\end{align*}
+	Now regroup the terms in \eqref{eq:clairaut_delta_h} as 
+	\begin{align*}
+		\Delta(h)=[f(a+h,b+h)-f(a,b+h)]-[f(a+h,b)-f(a,b)]
+	\end{align*}
+	and let $u(y)\equiv f(a+h,y)-f(a,y)$ so that $\Delta(h)=u(b+h)-u(b)$. By the Mean Value Theorem there exists $d \in (b,b+h)$ such that 
+	\begin{align*}
+		u(b+h)-u(b)&=hg'(d) \\
+		&=h\left[\frac{\partial f}{\partial y}(a+h,d)-\frac{\partial f}{\partial y}(a,d)\right].
+	\end{align*}
+	Applying the Mean Value Theorem again, there exists $c \in (a,a+h)$ such that
+	\begin{align*}
+		\frac{\partial f}{\partial y}(a+h,d)-\frac{\partial f}{\partial y}(a,d)=h\frac{\partial^2 f}{\partial x \partial y}(c,d),
+	\end{align*}
+	so 
+	\begin{align*}
+	\Delta(h)=h^2\frac{\partial^2 f}{\partial x \partial y}(c,d).
+	\end{align*}
+	Since $(c,d) \to (a,b)$ as $h \to 0$, by continuity of $\frac{\partial^2 f}{\partial x \partial y}$ we have
+	\begin{align*}
+		\lim_{h \to 0}\frac{\Delta(h)}{h^2}=\lim_{(c,d) \to (a,b)}\frac{\partial^2 f}{\partial x \partial y}(c,d)=\frac{\partial^2 f}{\partial x \partial y}(a,b).
+	\end{align*}
+	Thus,
+	\begin{align*}
+		\frac{\partial^2 f}{\partial y \partial y}(a,b)=\frac{\partial^2 f}{\partial x \partial y}(a,b).
+	\end{align*}
+\end{proof}
+
+\begin{exercise}
+Compute the mixed partial derivatives of the function
+\begin{align*}
+	f(x,y)=xy+e^y(y^2+1)
+\end{align*}	
+and verify that these are equal. In which order do we get the answer more quickly?
+\end{exercise}
+
+\begin{exercise}
+For each function below, determine which order of computing the mixed partial derivatives will give you the answer the fastest and compute them.
+\begin{enumerate}[(a)]
+	\item $f(x,y)=x\sin y+e^y$
+	\item $f(x,y)=1/x$
+	\item $f(x,y)=y+x^2y+4y^3-\ln(y^2+1)$
+	\item $f(x,y)=x\ln(xy)$
+\end{enumerate}
+\end{exercise}
+We can partially-differentiate a function as many times as we like as long as the derivatives exist:
+\begin{align*}
+	\frac{\partial^3 f}{\partial y \partial y \partial x}(x,y), \frac{\partial^4 f}{\partial y \partial y \partial x \partial x}(x,y),\dots.
+\end{align*}
+\fixme{Add counterexample when they are not continuous.}
+
+By repeated application of Theorem \ref{thm:clairaut}, the order does not matter as long as the partial derivatives are all continuous.
+
+
+\begin{exercise}
+Compute 
+\begin{align*}
+	\frac{\partial^5 f}{\partial x \partial x \partial y \partial y \partial y}(x,y)
+\end{align*}
+if $f(x,y)=y^5x^4e^x+2\sin(3x)\cos(2y)$.	
+\end{exercise}
+
+\subsubsection{Application: Partial Differential Equations}
+A \emph{partial differential equation} (PDE) is an equation relating a function to one or more of its partial derivatives. PDEs arise frequently in physics and engineering. A famous one is \emph{Laplace's equation}
+\begin{align*}
+	\frac{\partial^2}{\partial x^2}u(x,y)+\frac{\partial^2}{\partial y^2}u(x,y)=0.
+\end{align*}
+Solutions of Laplace's equation which are continuous are called \emph{harmonic functions}. These play an important role in heat conduction, fluid flow, and electric potential.
+
+\begin{exercise}
+Show that the function $u(x,y)=e^x\sin y$ is harmonic.	
+\end{exercise}
+
+Another important PDE in physics and engineering is the \emph{wave equation}
+\begin{align*}
+	\frac{\partial^2}{\partial t^2}u(x,t)-v^2\frac{\partial^2}{\partial x^2}u(x,t)=0,
+\end{align*}
+which describes the motion of a wave propagating in the $x$-direction, such as a wave traveling on a vibrating string. The function $u(x,t)$ describes the displacement of the string at a distance $x$ from one end of the string at time $t$. The constant $v$ is the speed, which depends on the density of the string and the string tension.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/string}
+	\end{center}
+\caption{A solution $u(x,t)$ of the wave equation describes the displacement of a wave from equilibrium at position $x$ and time $t$.}
+\end{figure}
+
+\begin{exercise}
+Verify that the function $u(x,t)=\sin(x-vt)$ is a solution of the wave equation.	
+\end{exercise}
+
+
+
 \section{Differentiability}
 If $f:U \subseteq \R$ is differentiable at $x_0 \in U$, then the limit
 \begin{align}\label{eq:old_derivative}
@@ -3144,13 +3287,6 @@ If $f:U \subseteq \R^n \to \R$ is differentiable at $\bx$, then all of its direc
 	\end{align*}
 \end{proof}
 
-Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
-\begin{align*}
-	[df_\bx]=\begin{bmatrix}
-		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
-	\end{bmatrix}.
-\end{align*}
-
 If $f:\R^2 \to \R$ is differentiable at $\bx$, the equation of the \emph{tangent plane} to the graph of $f$ at $(\bx,f(\bx))$ is 
 \begin{align*}
 	f(x,y)&=f(x_0,y_0)+T(x-x_0,y-y_0) \\
@@ -3188,7 +3324,7 @@ thus $f=df_0$, so $f$ is linear by Proposition \ref{prop:linear_f_equals_diff}. 
 Then $f(tx,ty)=tf(x,y)$, so $f$ is homogeneous, but not linear.
 \end{example}
 
-The converse to Corollary \ref{cor:diff_imp_dd} \emph{does} hold if we add the condition that the partial derivatives are \emph{continuous}:
+The converse to Corollary \ref{cor:diff_imp_dd} \emph{does} hold if we add the condition that the directional derivatives are \emph{continuous}. It suffices to show this for the directional derivatives along a basis for $\R^n$, i.e., for the partial derivatives.
 
 \begin{thm}
 	Let $U$ be an open subset of $\mathbb{R}^n$ and let $f:U \to \mathbb{R}$. Then, if each of the partial derivatives $\frac{\partial f}{\partial x_i}$ exists and is continuous on $U$, then $f$ is differentiable on $U$.
@@ -3224,13 +3360,13 @@ where in the second line we have used the Cauchy-Schwarz inequality \footnote{Th
 \subsection{Explicit computation of the differential}
 To compute the differential explicitly, we observe that it obeys the usual rules of differentiation.
 
-\begin{prop}
+\begin{thm}[Algebraic properties of the differential]\label{thm:algebraic_properties_of_the_differential}
 Let $f_1,f_2$ be differentiable at $\bx$. Then
 \begin{enumerate}[(1)]
 	\item $d$ is linear: $d(cf_1+f_2)=cdf_1+df_2$.
 	\item $d$ obeys the Leibnitz rule: $d(f_1 \cdot f_2)=df_1 \cdot f_2+f_1 \cdot df_2$.
 \end{enumerate}	
-\end{prop}
+\end{thm}
 
 \begin{proof}
 	\begin{enumerate}[(1)]
@@ -3334,42 +3470,146 @@ If $U$ is connected, $f$ differentiable, and $df_p=0$ for all $p$, then $f$ is c
 
 \fixme{Does this fit in somewhere? If so, discuss and prove this.}
 
-
 \subsection{Implicit Differentiation}
-\fixme{Add.}
+Consider two real variables $x$ and $y$ related by an equation $F(x,y)=0$. We would like to say that this implicitly defines a function $y=f(x)$, and we would like to compute $\frac{dy}{dx}$. One generally cannot solve for $y$ explicitly, so it is important to know when such a function does indeed exist without having to solve for it.
 
 
+For example, consider the function $F(x,y)=x^2+y^2-1$. We are interested in those $x$ and $y$ related by the equation equation $F(x,y)=0$, which is the equation of the unit circle centered at the origin. A function $f(x)$ is a ``solution" if and only if $F(x,f(x))=0$ for all $x$ in the domain of $f$. In this example, $f$ must be given by $f(x)=\pm \sqrt{1-x^2}$, and either of these is a solution. This shows that $f$ need not be unique. Given $(x_0,y_0)$ such that $F(x_0,y_0)=0$, we would like to know if we can find $f(x)$ such that $F(x,f(x))=0$ and $f$ is differentiable and \emph{unique} near $(x_0,y_0)$. In our example, if $x_0 \neq \pm 1$, then this is true if $f$ is taken to be the appropriate square root. The (sign of the) given $y_0$ determines which square root must be selected. The points $x_0=\pm 1$ are exceptional for several reasons. First, $f$ is not differentiable there and second, near $x_0=\pm 1$, $f$ could be either square root, so $f$ is not uniquely determined. The exceptional points are exactly the places where $\partial F/\partial y=0$. Thus, in general, we want some condition like $\partial F/\partial y \neq 0$ to guarantee that, locally at least, we can find a unique differentiable $f$ such that $F(x,f(x))=0$. The exact condition is given by the following theorem
 
-\subsection{Higher Partial Derivatives}
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=\textwidth]{figures_mvc/higher_d}
-	\end{center}
-\end{figure}
+\begin{thm}[Implicit Function Theorem]
+	Let $F:U \subseteq \R^2 \to \R$ be a function of class $C^p$ defined on an open subset $U$ of $\R^2$. Suppose $(x_0,y_0) \subseteq U$ and $F(x_0,y_0)=0$. If $\partial F/\partial y \neq 0$, then there is a neighborhood $U \subseteq \R$ of $x_0$ and a neighborhood $V$ of $y_0$ and a unique function $f:U \to V$ of class $C^p$ such that 
+	\begin{align*}
+		F(x,f(x))=0
+	\end{align*}
+	for all $x \in U$. 
+\end{thm}
 
-\begin{exercise}\label{ex:mixed_partials_equality}
-Compute the second partial derivatives of 
+\begin{proof}
+	Omitted.
+\end{proof}
+
+If $F(x,y)=0$ defines $y$ implicitly as a function of $x$, say $y=f(x)$, then by the chain rule
 \begin{align*}
-	f(x,y)=x^3+x^2y^3-2y^2.
+	0&=\frac{d F}{d x} \\
+	&=\frac{\partial F}{\partial x}\frac{dx}{dx}+ \frac{\partial F}{\partial y}\frac{dy}{dx}\\
+	&=\frac{\partial F}{\partial x}+ \frac{\partial F}{\partial y}\frac{dy}{dx}
+\end{align*}
+and therefore
+\begin{align*}
+	\frac{dy}{dx}=-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}.
+\end{align*}
+
+\begin{example}
+Suppose $F(x,y)=x^2-xy+y^2-7$. Then $\partial F/\partial y=-x+2y$. By the Implicit Function Theorem, for all $y \neq 2x$, $F$ defines $y$ implicitly as a function of $x$ and 
+\begin{align*}
+	\frac{dy}{dx}=-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}=-\frac{2x-y}{-x+2y}=\frac{y-2x}{2y-x}.
+\end{align*}
+\end{example}
+
+\subsection{The Gradient}
+Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. \fixme{Refer to my linear algebra notes.} Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
+\begin{align*}
+	[df_\bx]=\begin{bmatrix}
+		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
+	\end{bmatrix}.
+\end{align*}
+
+\begin{defn}[Gradient]
+	The vector $\begin{bmatrix}
+		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
+	\end{bmatrix}$ is called the \emph{gradient of $f$ at $\bx$}, which we denote by $\nabla f(\bx)$. \footnote{The symbol ``$\nabla$" is called the \emph{nabla} symbol. The name, by reason of the symbol's shape, from the Hellenistic Greek work $\nu \acute{\alpha} \beta \lambda \alpha$ for a Phoenician harp.}
+\end{defn}
+Given a vector $\bv \in \R^n$ with coordinate vector $[\bv]=\begin{bmatrix}
+	v_1 & v_2 & \cdots & v_n
+\end{bmatrix}$, we therefore have
+\begin{align*}
+	[df_\bx(\bv)]&=[df_\bx][\bv] \\
+	&=\begin{bmatrix}
+		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
+	\end{bmatrix} \begin{bmatrix}
+	v_1 \\ v_2 \\ \vdots \\ v_n
+\end{bmatrix} \\
+&=v_1\frac{\partial f}{\partial x_1}(\bx)+v_2\frac{\partial f}{\partial x_2}(\bx)+\cdots+v_n\frac{\partial f}{\partial x_n}(\bx) \\
+&=\nabla f(\bx) \cdot \bv.
+\end{align*}
+Since $df_\bx(\bv)=D_\bv(\bx)$, we therefore have
+\begin{align}\label{eq:dd_dot}
+	D_\bv(\bx)=\nabla f(\bx) \cdot \bv.
+\end{align}
+
+\begin{exercise}
+Rederive Equation \eqref{eq:dd_dot} by computing
+\begin{align*}
+	D_\bv(\bx)=\frac{d}{dt}f(\bx+t\bv)|_{t=0}
 \end{align*}	
+using the chain rule.
 \end{exercise}
 
+\begin{example}
+We now show how to compute $D_{\bv}f(1,2)$ if  $f(x,y)=x^3-3xy+4y^2$ and $\hat{\bv}=(\frac{\sqrt{3}}{2},\frac{1}{2})$.	 The gradient of $f$ is 
+\begin{align*}
+	\nabla f(x,y)=\begin{bmatrix}
+		3x^2-3y & -3x+8y
+	\end{bmatrix}
+\end{align*}
+so $\nabla f(1,2)=(-3,13)$ and therefore
+\begin{align*}
+	D_\bv f(1,2)&=\nabla f(1,2) \cdot \bv \\
+	&=(-3,13) \cdot (\frac{\sqrt{3}}{2},\frac{1}{2}) \\
+	&=-\frac{3\sqrt{3}}{2}+\frac{13}{2} \\
+	&=\frac{13-3\sqrt{3}}{2}.
+\end{align*}
+\end{example}
+
+\begin{exercise}
+Let $f(x,y)=x^2y^3-4y$. Find the directional derivative at $(2,-1)$ in the direction of $\bv=(2,5)$. Make sure to normalize $\bv$ first.	
+\end{exercise}
+
+\begin{exercise}
+Let $f(x,y,z)=x \sin(yz)$. Find the directional derivative at $(1,3,0)$ in the direction of $\bv=(1,2,-1)$ 	
+\end{exercise}
+
+\begin{thm}[Algebraic Properties of the Gradient]
+The gradient of a differentiable function has the following properties.
+	\begin{enumerate}
+		\item $\nabla (cf)=c \nabla f$, where $c \in \R$
+		\item $\nabla(f+g)=\nabla f + \nabla g$
+		\item $\nabla(f \cdot g)=(\nabla f)g+g\nabla f$
+		\item $nabla\left(\frac{f}{g}\right)=\frac{g \nabla f-f \nabla g}{g^2}$
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+	The proof follows immediately from Theorem \ref{thm:algebraic_properties_of_the_differential}.
+\end{proof}
+
+\begin{example}
+If $f(x,y,z)=x-y$ and $g(x,y,z)=z$, then
+\begin{align*}
+	\nabla\left(\frac{f}{g}\right)&=\frac{g \nabla f-f \nabla g}{g^2} \\
+	&=\frac{z(1,-1,0)-(x-y)(0,0,1)}{z^2} \\
+	&=\frac{1}{z^2}(z,-z,-x+y) \\
+	&(\frac{1}{z},-\frac{1}{z},\frac{-x+y}{z^2}).
+\end{align*}	
+\end{example}
+
+\section{Finding Maxima and Minima}
+\fixme{Infinitesimal to local to global. Example: if $df_p$ zero at every point of $U$ and $U$ connected then $f$ is constant on $U$}
+
+\subsection{Review: Single-variable Functions}
+Let $f:I \subset \mathbb{R} \to \mathbb{R}$, $x_0 \in U$, and $(a,b)$ an \emph{open} interval containing $x_0$. Then $f(x_0)$ is called a 
+\begin{itemize}
+	\item \emph{local maximum} of $f$ on $(a,b)$ if $f(x_0) \geq f(x)$ for all $x \in (a,b)$
+	\item \emph{local minimum} of $f$ on $(a,b)$ if $f(x_0) \leq f(x)$ for all $x \in (a,b)$
+\end{itemize}
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.5]{figures_mvc/higher_d_ex}
-	\end{center}
+\includegraphics[scale=0.5]{figures_mvc/1_v_extrema}
+\end{center}
 \end{figure}
 
-Notice for the function in Exercise \ref{ex:mixed_partials_equality} that $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$. This is no coincidence.
-
-\fixme{Finish.}
-
-\section{Optimization}
-Infinitesimal to local to global. Example: if $df_p$ zero at every point of $U$ and $U$ connected then $f$ is constant on $U$
-
-
 \appendix
-\section{Justification of the Arc Length Formula}\label{app:arc_length}
+\section{Geometric Justification of the Arc Length Formula}\label{app:arc_length}
 \begin{prop}
 The arc length formula 
 \begin{align}
