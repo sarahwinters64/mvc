@@ -331,7 +331,8 @@
 
 
 \begin{center}
-\tb{Multivariable Calculus} \\
+\tb{Multivariable Calculus \\
+Semester 2: Multivariable Calculus} \\
 Anderson Trimm \\
 Gwinnett School of Mathematics, Science and Technology \\
 \end{center}
@@ -354,9 +355,12 @@ In this section we study functions with one input and multiple outputs.
 \subsection{Vector-valued functions}
 \subsubsection{Definitions}
 Suppose a particle moves in the plane along the following curve $C$:
-	\begin{center}
+	\begin{figure}[h]
+		\begin{center}
 		\includegraphics[scale=0.5]{figures_mvc/plane_curve}
 	\end{center}
+	\caption{Trajectory of a particle moving in the plane.}
+	\end{figure}
 Since the curve fails the vertical line test, $C$ cannot be described as the graph of a function $y=f(x)$. Note however that the x- and y-coords of the particle are functions of time
 \begin{align*}
 	x=f(t), \hspace{0.5cm} y=g(t)
@@ -365,18 +369,24 @@ so the curve $C$ can be described as the image of function ${\bf r}:I \to \mathb
 \begin{align*}
 	\bbr(t)=(f(t),g(t)),
 \end{align*}
-where $I=[a,b]$ is an interval in $\R$. \fixme{Add mapping diagram.}
+where $I=[a,b]$ is an interval in $\R$. 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures_mvc/mapping_diag}
+	\end{center}
+	\caption{A mapping diagram showing the function $\bbr:I \to \R^2$.}
+\end{figure}
 
 \begin{defn}[Vector-valued function]
-Let $U \subseteq \R$. A mapping $\bbr:U \to \mathbb{R}^n$ called a \emph{vector-valued function}. The value of $\bbr$ at $t \in U$ can be written as
+Let $I \subseteq \R$. A mapping $\bbr:I \to \mathbb{R}^n$ called a \emph{vector-valued function}. The value of $\bbr$ at $t \in I$ can be written as
 \begin{align*}
 	\bbr(t)=(r_1(t),r_2(t),\dots,r_n(t))
 \end{align*}
-where the $n$ functions $r_i:U \to \R$, $i=1,\dots,n$ are called the \emph{component functions} of $\bbr$.	
+where the $n$ functions $r_i:I \to \R$, $i=1,\dots,n$ are called the \emph{component functions} of $\bbr$.	
 \end{defn}
-Unless specified otherwise, we will take the domain $U$ of a vector-valued function to be the largest domain on which all of the component functions are defined.
+Unless specified otherwise, we will take the domain $I$ of a vector-valued function to be the largest domain on which all of the component functions are defined.
 \begin{example}
-Consider the vector-valued function $\bbr:U \to \mathbb{R}^3$ defined by
+Consider the vector-valued function $\bbr:I \to \mathbb{R}^3$ defined by
 	\begin{align*}
 		\bbr(t)=(t^3,\ln(3-t),\sqrt{t}).
 	\end{align*}
@@ -386,20 +396,28 @@ The component functions of $\bbr(t)$ are
 \end{align*}
 The domains of each of these functions, respectively, are 
 \begin{align*}
-	U_1=\R, \hspace{0.5cm} U_2=(-\infty,3), \hspace{0.5cm} U_3=[0,\infty),
+	I_1=\R, \hspace{0.5cm} I_2=(-\infty,3), \hspace{0.5cm} I_3=[0,\infty),
 \end{align*}	
-so the domain $U$ of $\bbr(t)$ is 
+so the domain $I$ of $\bbr(t)$ is 
 \begin{align*}
-	U=U_1 \cap U_2 \cap U_3=[0,3).
+	I=I_1 \cap I_2 \cap I_3=[0,3).
 \end{align*} 
 \end{example}
+This function can be visualized in \emph{Mathematica} using``ParametricPlot3D":
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/vv_fcn_first-ex}
+	\end{center}
+	\caption{Plot of the vector-valued function $\bbr(t)=(t^3,\ln(3-t),\sqrt{t})$ from $t=0$ to $t=1$.}
+\end{figure}
 
 \begin{exercise}
-	Consider the vector-valued function $\bbr:U \to \mathbb{R}^3$ defined by
+	Consider the vector-valued function $\bbr:I \to \mathbb{R}^3$ defined by
 	\begin{align*}
 		\bbr(t)=\left(\frac{t-2}{t+2},\sin t, \ln(9-t^2)\right).
 	\end{align*}
-What is the domain $U$ of the function?
+What is the domain $I$ of the function?
 \end{exercise}
 {\color{red}\begin{solution}
 	The component functions of $\bbr(t)$ are 
@@ -408,7 +426,7 @@ What is the domain $U$ of the function?
 	\end{align*}
 	The domains of $r_1(t)$ and $r_2(t)$ are given, respectively, by
 	\begin{align*}
-		U_1=(-\infty,2) \cup (2,\infty), \hspace{0.5cm} U_2=\R.
+		I_1=(-\infty,2) \cup (2,\infty), \hspace{0.5cm} I_2=\R.
 	\end{align*}
 	To find the domain of $r_3(t)$, we need to solve the inequality
 	\begin{align*}
@@ -424,11 +442,11 @@ What is the domain $U$ of the function?
 \end{figure}
 	We have $y>0$ where the graph is above the $x$-axis, so $y>0$ when $-3<x<3$. The domain of $r_3(t)$ is therefore
 	\begin{align*}
-		U_3=(-3,3).
+		I_3=(-3,3).
 	\end{align*}
 	The domain of $\bbr(t)$ is then
 	\begin{align*}
-		U=U_1 \cap U_2 \cap U_3=(-3,-2)\cup (-2,3).
+		I=I_1 \cap I_2 \cap I_3=(-3,-2)\cup (-2,3).
 	\end{align*}
 \end{solution}}
 
@@ -452,9 +470,7 @@ whose graph is shown in the figure below.
 \end{figure}
 From the graph, we see that when $x$ is close to 3 but not equal to 3, then $f(x)$ is close to 5, and so $\lim_{x \to 3}f(x)=5$.
 
-To obtain more detailed information about how $f(x)$ varies when $x$ is close to 3, we ask the following question: 
-
-\emph{How close to 3 does $x$ have to be so that $f(x)$ differs from 5 by less than $0.1$?}
+However, it is important to be able to state this precisely. For instance, we may ask: \emph{How close to 3 does $x$ have to be so that $f(x)$ differs from 5 by less than $0.1$?}
 
 The distance from $x$ to $3$ is $|x-3|$ and the distance from $f(x)$ to 5 is $|f(x)-5|$, so our problem is to find a number $\delta$ such that 
 \begin{align*}
@@ -497,6 +513,53 @@ Following the reasoning in this example,  the precise definition of a limit is t
 		\lim_{x \to x_0}f(x)=L.
 	\end{align*}
 \end{defn}
+
+In computing limits using Definition \ref{def:limit_of_a_single-variable_function}, we use the following properties of the absolute value function:
+
+\begin{thm}[Properties of the absolute value function]\label{thm:triangle_inequality}
+The absolute value function $f(x)=|x|$ has the following properties
+\begin{enumerate}[(1)]
+	\item $|x|\geq 0$ for all $x \in \R$, and $|x|=0$ if and only if $x=0$.
+	\item $|xy|=|x| \ |y|$ for all $x,y \in \R$.
+	\item For all $x,y \in \R$, 
+	\begin{align*}
+		|x+y| \leq |x|+|y|.
+	\end{align*}
+\end{enumerate}	
+\end{thm}
+The third property is called the \emph{triangle inequality}. This is because, geometrically, given two line segments of lengths $|x|$ and $|y|$, the third line segment must have length $< |x+y|$ to be able to form a triangle (the case $|x+y|=|x|+|y|$ corresponds to a straight line). 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures_mvc/triangle-inequa}
+	\end{center}
+	\caption{We see that if $\ell>|x|+|y|$, then the three line segments cannot form a triangle.}
+\end{figure}
+\newpage 
+
+\begin{pf}
+\begin{enumerate}[(1)]
+	\item We can define $|x|$ as 
+	\begin{align*}
+		|x|=\begin{cases}
+			x, \hspace{0.25cm} &\text{if } x \geq 0, \\
+			-x, \hspace{0.25cm} &\text{if } x < 0, \\
+		\end{cases}
+	\end{align*}
+	so this property is immediate from the definition.
+	\item If either $x=0$ or $y=0$, then $xy=0$ so by property (1) $|xy|=0=|x||y|$. Suppose now that neither $x$ nor $y$ are zero. If $x,y>0$ then $xy>0$, so  $|xy|=xy=|x| \ |y|$. If $x,y<0$, then $xy>0$, so $|xy|=xy=(-x)(-y)=|x|\ |y|$. If $x>0$ and $y<0$, then $xy<0$, so $|xy|=-xy=x(-y)=|x| \ |y|$. If $x<0$ and $y>0$ then $xy<0$, so $|xy|=-xy=(-x)y=|x| \ |y|$.
+	\item For any $x,y \in \R$ we have
+\begin{align*}
+	|x+y|^2=(x+y)^2&=x^2+y^2+2xy \\
+	&=|x|^2+|y|^2+2xy \\
+	&\leq |x|^2+|y|^2+2|x||y| \\
+	&=(|x|+|y|)^2.
+\end{align*}	
+Since both $|x+y|$ and $|x|+|y|$ are nonnegative, this implies that \footnote{Think about the graph of $f(x)=x^2$: it is strictly decreasing on $(-\infty,0)$ and increasing on $(0,\infty)$. Thus, it is only true in general that $x_1^2 < x_2^2 \implies x_1<x_2$ if both of these numbers are nonnegative. Otherwise, this might not be true. For instance, $2^2<(-4)^2$, but $-4<2$.}
+\begin{align*}
+	|x+y| \leq |x|+|y|.
+\end{align*}
+\end{enumerate}
+\end{pf}
 
 \begin{thm}[Uniqueness of limits]\label{thm:uniqueness_of_limits}
 	If $f(x)$ has a limit $L$ at $x_0$, then the limit is unique.
@@ -546,7 +609,14 @@ Notice that if we can find a positive number $C$ such that $|x+3|<C$, then
 \begin{align*}
 	|x+3||x-3|<C|x-3|
 \end{align*}
-and we can make $C|x-3|<\epsilon$ by taking $|x-3|<\frac{\epsilon}{C}=\delta$. We can find such a number $C$ if we restrict $x$ to lie in some interval centered at 3. Since we are only interested in values of $x$ that are close to 3, this is exactly what we want. Let's assume that $|x-3|<\alpha$ for some positive number $\alpha$, say $\alpha=1$ (it does not matter what number we take here). Then we have
+and we can make $C|x-3|<\epsilon$ by taking $|x-3|<\frac{\epsilon}{C}=\delta$. We can find such a number $C$ if we restrict $x$ to lie in some interval centered at 3. Since we are only interested in values of $x$ that are close to 3, this is exactly what we want. Let's assume that $|x-3|<\alpha$ for some positive number $\alpha$, say $\alpha=1$ (it does not matter what positive number we take here). 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures_mvc/interval-about-3}
+	\end{center}
+	\caption{The interval $(2,4)$ of radius 1 centered at $3$.}
+\end{figure}
+Then we have
 \begin{align*}
 	x-3<1 \hspace{0.5cm} \text{ or }  \hspace{0.5cm} -x+3<1.
 \end{align*}
@@ -568,40 +638,7 @@ The previous example shows that it is not always easy to prove that a function h
 \begin{align*}
 	f(x)=\frac{6x^2-8x+9}{2x^2-1}
 \end{align*}
-then proving that $\lim_{x \to 1}f(x)=7$ using Definition \ref{def:limit_of_a_single-variable_function} would require a great deal of ingenuity. Instead, we prove the following theorems, which makes evaluating limits much easier. The proofs of these theorems follow from the following properties of the absolute value function.
-
-\begin{lem}[Properties of the absolute value function]\label{lem:triangle_inequality}
-The absolute value function $f(x)=|x|$ has the following properties
-\begin{enumerate}[(1)]
-	\item $|x|\geq 0$ for all $x \in \R$, and $|x|=0$ if and only if $x=0$.
-	\item $|xy|=|x| \ |y|$ for all $x,y \in \R$.
-	\item For all $x,y \in \R$, 
-	\begin{align*}
-		|x+y| \leq |x|+|y|.
-	\end{align*}
-\end{enumerate}	
-The third property is called the \emph{triangle inequality}.
-\end{lem}
-
-\begin{pf}
-\begin{enumerate}[(1)]
-	\item This is immediate from the definition of $|x|$.
-	\item If either $x=0$ or $y=0$, then $xy=0$ so by property (1) $|xy|=0=|x||y|$. Suppose now that neither $x$ nor $y$ are zero. If $x,y>0$ then $xy>0$, so  $|xy|=xy=|x| \ |y|$. If $x,y<0$, then $xy>0$, so $|xy|=xy=(-x)(-y)=|x|\ |y|$. If $x>0$ and $y<0$, then $xy<0$, so $|xy|=-xy=x(-y)=|x| \ |y|$. If $x<0$ and $y>0$ then $xy<0$, so $|xy|=-xy=(-x)y=|x| \ |y|$.
-	\item For any $x,y \in \R$ we have
-\begin{align*}
-	|x+y|^2=(x+y)^2&=x^2+y^2+2xy \\
-	&=|x|^2+|y|^2+2xy \\
-	&\leq |x|^2+|y|^2+2|x||y| \\
-	&=(|x|+|y|)^2.
-\end{align*}	
-Since both sides are nonnegative, this implies that 
-\begin{align*}
-	|x+y| \leq |x|+|y|.
-\end{align*}
-\end{enumerate}
-\end{pf}
-
-
+then proving that $\lim_{x \to 1}f(x)=7$ using Definition \ref{def:limit_of_a_single-variable_function} would require a great deal of ingenuity. Instead, we prove the following theorems, which makes evaluating limits much easier. In the proofs, note the crucial role played by the properties of the absolute value function from Theorem \ref{thm:triangle_inequality}
 
 \begin{thm}[Limit laws for single-variable functions]\label{thm:limit_laws_for_single-variable_functions}
 Suppose $f(x)$ and $g(x)$ are defined on the same open set containing $x_0$, and that 
@@ -628,7 +665,7 @@ Then
 	\begin{align*}
 		|f(x)+g(x)-(L+M)|=|(f(x)-L)+(g(x)-M)| \leq |f(x)-L|+|g(x)-M|
 	\end{align*}
-	by the Triangle Inequality (Lemma \ref{lem:triangle_inequality}). Since $\lim_{x \to x_0}f(x)=L$ and $\lim_{x \to x_0}g(x)=M$, given $\epsilon>0$ there exist positive numbers $\delta_1$ and $\delta_2$ such that 
+	by the Triangle Inequality. Since $\lim_{x \to x_0}f(x)=L$ and $\lim_{x \to x_0}g(x)=M$, given $\epsilon>0$ there exist positive numbers $\delta_1$ and $\delta_2$ such that 
 	\begin{align*}
 		|f(x)-L|<\frac{\epsilon}{2} \hspace{0.5cm} \text{ if } \hspace{0.5cm} |x-x_0|<\delta_1
 	\end{align*} 
@@ -667,23 +704,32 @@ Then
 		\begin{align*}
 			\lim_{x \to x_0}f(x)g(x)=LM.
 		\end{align*}
-	\item First, note that since $|M|>0$ and $\lim_{x \to x_0}g(x)=M$, there exists $\delta_1>0$ such that $|g(x)|>\frac{1}{2}|M|$ whenever $|x-x_0|<\delta_1$ \fixme{Draw a picture.}. Let $\epsilon>0$. Choose $\delta_2>0$ such that $|x-x_0|<\delta_2$ implies that $|g(x)-M|<\frac{1}{2}|M|^2\epsilon$. Then, for $|x-x_0|<\delta = \min\{\delta_1,\delta_2\}$, we have
+	\item First, note that since $|M|>0$ and $\lim_{x \to x_0}g(x)=M$, there exists $\delta_1>0$ such that $|g(x)|>\frac{1}{2}|M|$ whenever $|x-x_0|<\delta_1$. Let $\epsilon>0$. Choose $\delta_2>0$ such that $|x-x_0|<\delta_2$ implies that $|g(x)-M|<\frac{1}{2}|M|^2\epsilon$. Then, for $|x-x_0|<\delta = \min\{\delta_1,\delta_2\}$, we have
 	\begin{align*}
 		|\frac{1}{g(x)}-\frac{1}{M}|&=|\frac{M-g(x)}{Mg(x)}|\\
 		&=\frac{|g(x)-M|}{|Mg(x)|} \\
 		&<\frac{\frac{1}{2}|M|^2\epsilon}{\frac{1}{2}|M|^2} \\
 		&=\epsilon,	
 	\end{align*}
-	and therefore $\lim_{x \to x_0}\frac{1}{g(x)}=\frac{1}{M}$. It then follows from (v) that
+	and therefore $\lim_{x \to x_0}\frac{1}{g(x)}=\frac{1}{M}$. 
+	\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/Quotient-of}
+	\end{center}
+	\caption{Illustration of bounds on $g(x)$ in proof of Limit Law (vi).}		
+	\end{figure}
+	\newpage 
+	It then follows from (v) that
 	\begin{align*}
 		\lim_{x \to x_0}\frac{f(x)}{g(x)}&=\lim_{x \to x_0}f(x) \lim_{x \to x_0}\frac{1}{g(x)} \\
 		&=\frac{L}{M}.
 	\end{align*}
 \end{enumerate}	
 \end{pf}
+
 Using Theorem \ref{thm:limit_laws_for_single-variable_functions}, it is much easier to prove the limits in the examples above. For instance
 \begin{align*}
-	\lim_{x \to 3}(4x-5)&=(\lim_{x \to 3}4)(\lim_{x \to 3}x)+(\lim_{x \to 3}(-5)) \\
+	\lim_{x \to 3}(4x-5)&=(\lim_{x \to 3}4)(\lim_{x \to 3}x)+(-\lim_{x \to 3}(5)) \\
 	&=4(3)+(-5) \\
 	&=12-5 \\
 	&=7,
@@ -694,10 +740,17 @@ and
 \end{align*}
 Note that, in both of these examples, the function $f(x)$ is actually defined at $x_0$ and $\lim_{x \to x_0}f(x)=f(x_0)$; that is, the limit of $f(x)$ as $x$ approaches $x_0$ is equal to the value of $f(x)$ at $x_0$.
 
-\begin{defn}[Continuity]
+\begin{defn}[Continuity]\label{def:continuity}
 	Let $f(x)$ be defined on an open interval $(a,b)$ containing a point $x_0$. We say that $f(x)$ is \emph{continuous at $x_0$} if $\lim_{x \to x_0}f(x)=f(x_0)$. We then say that $f(x)$ is \emph{continuous on $(a,b)$} if $f(x)$ is continuous at every point in $(a,b)$.
 \end{defn}
-The limit laws in Theorem \ref{thm:limit_laws_for_single-variable_functions} imply the following
+We emphasize that Definition \ref{def:continuity} says that for $f$ to be continuous at $x_0$, the following three things must be true:
+\begin{enumerate}
+	\item $f$ is defined at $x_0$,
+	\item $\lim_{x \to x_0}$ exists,
+	\item $\lim_{x \to x_0}=f(x_0)$.
+\end{enumerate}
+
+The limit laws in Theorem \ref{thm:limit_laws_for_single-variable_functions} immediately imply the following
 
 \begin{thm}[New continuous functions from old]\label{thm:new_continuous_functions_from_old}
 	Let $f(x)$ and $g(x)$ be defined on the same open interval containing $x_0$. If $f(x)$ and $g(x)$ are continuous at $x_0$, then so are
@@ -705,7 +758,7 @@ The limit laws in Theorem \ref{thm:limit_laws_for_single-variable_functions} imp
 		\item $cf(x)$
 		\item $f(x)+g(x)$
 		\item $f(x)g(x)$
-		\item $f(x)/g(x)$ 
+		\item $f(x)/g(x)$, whenever $g(x_0) \neq 0$. 
 	\end{enumerate}
 \end{thm}
 
@@ -715,7 +768,7 @@ The limit laws in Theorem \ref{thm:limit_laws_for_single-variable_functions} imp
 	\item Rational functions are continuous wherever they are defined;
 	\item The absolute value function $f(x)=|x|$ is continuous;
 \end{itemize}
-Trig functions, and exponential and logarithmic functions are all also continuous wherever they are defined.	
+Trig functions, and exponential and logarithmic functions are all also continuous wherever they are defined (though the proofs don't depend on Theorem \ref{thm:new_continuous_functions_from_old}).	
 \end{example}
 
 
@@ -732,17 +785,41 @@ Prove that $f(x)=|x|$ is continuous on $\R$.
 \end{thm}
 
 \begin{pf}
-Let $\epsilon>0$. Since $g$ is continuous at $f(x_0)$, corresponding to $\epsilon$ there exists $\eta>0$ such that $|g(f(x))-g(f(x_0))|<\epsilon$ whenever $|f(x)-f(x_0)|<\eta$. Since $f$ is continuous at $x_0$, corresponding to $\eta$ there exists $\delta>0$ such that $|f(x)-f(x_0)|<\eta$ whenever $|x-x_0|<\delta$. This shows that $|g(f(x))-g(f(x_0))|<\epsilon$ whenever $|x-x_0|<\delta$, proving that $(g \circ f)(x)$ is continuous at $x_0$.
+Let $\epsilon>0$. Since $g$ is continuous at $f(x_0)$, corresponding to $\epsilon$ there exists $\eta>0$ such that $|g(f(x))-g(f(x_0))|<\epsilon$ whenever $|f(x)-f(x_0)|<\eta$. Since $f$ is continuous at $x_0$, corresponding to $\eta$ there exists $\delta>0$ such that $|f(x)-f(x_0)|<\eta$ whenever $|x-x_0|<\delta$. This shows that $|g(f(x))-g(f(x_0))|<\epsilon$ whenever $|x-x_0|<\delta$, proving that $(g \circ f)(x)$ is continuous at $x_0$. 
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures_mvc/compo}
+	\end{center}
+	\caption{A composition of continuous functions is continuous.}
+\end{figure}
 \end{pf}
+
+\newpage
 
 \begin{example}
 Consider the function $f(x)=e^{x^2}$. We can view $f(x)$ as the composition $(h \circ g)(x)$, where $h(x)=e^x$ and $g(x)=x^2$. Since $h(x)$ and $g(x)$ are continuous on $\R$, by Theorem \ref{thm:a_composition_of_continuous_functions_is_continuous} so is $f(x)$.
 \end{example}
 
 \subsubsection{Limits of vector-valued functions}
-Throughout this section, let $I=(a,b)$ denote an open interval in $\R$ containing a point $t_0$, and let $\bbr(t)$ be a vector-valued function defined on $I$, except perhaps at $t_0$ itself. 
+Throughout this section, let $I=(a,b)$ denote an open interval in $\R$ containing a point $t_0$, and let $\bbr(t)$ be a vector-valued function defined on $I$, except perhaps at $t_0$ itself. For a vector $\bx=(x_1,\dots,x_n)$ in $\R^n$, we write
+\begin{align*}
+	||\bx||=\sqrt{\sum_{i=1}^n x_i^2}
+\end{align*}
+for the length of $\bx$. Recall that the distance between two points $\bx$ and $\by$ in $\R^n$ is then given by the length of the vector $\bx-\by$: 
+\begin{align*}
+	||\bx-\by||=\sqrt{\sum_{i=1}^n (x_i-y_i)^2}.
+	\end{align*}
+	
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.3]{figures_mvc/diet-btwn-vect}
+	\end{center}
+	\caption{The distance between points $\bx$ and $\by$ in $\R^n$ is the length of the vector $\bx-\by$.}
+\end{figure}
+
+The definition of the limit of a vector-valued function is the obvious generalization of the limit of a real-valued function.
 \begin{defn}[Limit of a vector-valued function]
-	A fixed vector $\bl \in \mathbb{R}^n$ is said to be the \emph{limit as $\bbr(t)$ approaches $t_0$} if for every $\epsilon >0$ there exists a corresponding $\delta > 0$ such that
+	A fixed vector $\bl \in \mathbb{R}^n$ is said to be the \emph{limit of $\bbr(t)$ as $\bbr(t)$ approaches $t_0$} if for every $\epsilon >0$ there exists a corresponding $\delta > 0$ such that
 	\begin{align*}
 		0 < |t-t_0|<\delta \implies ||\bbr(t)-{\bf L}||<\epsilon.
 	\end{align*}
@@ -763,11 +840,12 @@ For any fixed index $i$, we have
 \begin{align*}
 	||\bx-\by||^2&=\sum_{j=1}^n(x_j-y_j)^2 \\
 	&=(x_i-y_i)^2+\underbrace{\sum_{j \neq i}(x_j-y_j)^2}_{\geq 0} \\
-	&\geq (x_i-y_i)^2.
+	&\geq (x_i-y_i)^2 \\
+	&=|x_i-y_i|^2.
 \end{align*}	
-Since both sides are nonnegative, this implies that 
+Since both $||\bx-\by||$ and $|x_i-y_i|$ nonnegative, this implies that 
 \begin{align*}
-	||\bx-\by||\geq \sqrt{(x_i-y_i)^2}=|x_i-y_i|,
+	||\bx-\by||\geq |x_i-y_i|,
 \end{align*}
 so the first inequality holds. 
 
@@ -778,7 +856,7 @@ To see that the second inequality holds, note that
 	&= \sum_{i=1}^n(x_i-y_i)^2 \\
 	&=||\bx-\by||^2.
 \end{align*}
-Since both sides are nonnegative, this implies that 
+Since both $\sum_{i=1}^n|x_i-y_i|$ and $||\bx-\by||$ are nonnegative, this implies that 
 \begin{align*}
 	\sum_{i=1}^n|x_i-y_i| \geq ||\bx-\by||,
 \end{align*}
@@ -816,7 +894,7 @@ so we have $|r_i(t)-L_i|<\epsilon$ for each $i=1,\dots,n$ whenever $0<|t-t_0|<\d
 \end{align*}
 so by taking $\delta=\min\{\delta_1,\delta_2,\dots,\delta_n\}$, we have 
   \begin{align*}
-	||\bbr(t)-\bl||<\sum_{i=1}^n|r_i(t)-L_i|<\epsilon
+	||\bbr(t)-\bl||<\sum_{i=1}^n|r_i(t)-L_i|<\frac{\epsilon}{n}+\cdots+\frac{\epsilon}{n}=n\frac{\epsilon}{n}=\epsilon
 \end{align*}
 whenever $|t-t_0|<\delta$. Thus, $\lim_{t \to t_0}r_i(t)=L_i$ for all $i=1,\dots,n$ implies that $\lim_{t \to t_0}\bbr(t)=\bl$.
 \end{pf}
@@ -950,7 +1028,7 @@ Let $\bu$ and $\bv$ be two vector-valued functions on $\R^n$ which are continuou
 	The proof follows immediately from Theorem \ref{thm:limit_laws_for_vector-valued_functions}. 
 \end{pf}
 
-The following theorem will be very useful to us in the next section.
+The following theorem will be used extensively in the next section.
 
 \begin{thm}[Continuity of composite function]
 	Let $\bbr:\R \to \R^n$ be a continuous vector-valued function and $\varphi:\R \to \R$ a continuous real-valued function. Then the composite function $\tilde{\bbr}=\bbr \circ \varphi:\R \to \R^n$ is continuous.
@@ -960,7 +1038,22 @@ The following theorem will be very useful to us in the next section.
 Since $\bbr(t)$ is continuous, given $\epsilon>0$ there exists $\eta>0$ such that $||\bbr(\varphi(t))-\bbr(\varphi(t_0))||<\epsilon$ whenever $|\varphi(t)-\varphi(t_0)|<\eta$. Since $\varphi(t)$ is continuous, corresponding to $\eta$ there exists $\delta>0$ such that $|\varphi(t)-\varphi(t_0)|<\eta$ whenever $|t-t_0|<\delta$. Thus, given $\epsilon>0$, there exists $\delta>0$ such that $||\bbr(\varphi(t))-\bbr(\varphi(t_0))||<\epsilon$ whenever $|t-t_0|<\delta$.
 \end{pf}
 
-\fixme{Add example.}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/reparam-pf}
+	\end{center}
+	\caption{The composition of a continuous vector-valued function on the left of a continuous real-valued function is continuous.}
+\end{figure}
+
+\newpage
+
+\begin{example}
+Let $\bbr(t)=(\sin t,\cos t,e^t)$ and let $\varphi(t)=t^2-1$. Since $\bbr, \varphi$ are both continuous, so is
+\begin{align*}
+	\bbr(\varphi(t))=(\sin (t^2-1),\cos (t^2-1),e^{t^2-1}).
+\end{align*}	
+\end{example}
+
 
 \subsubsection{Derivatives of vector-valued functions}
 \begin{defn}[Derivative of a vector-valued function]
@@ -999,7 +1092,13 @@ By Theorem \ref{thm:limit_of_a_vector-valued_function}
 \end{align*}	
 \end{pf}
 
-\fixme{Add examples.}
+\begin{example}
+Let $\bbr(t)=(\sin t,\cos t,e^t)$. Then
+\begin{align*}
+	\bbr'(\varphi(t))&=((\sin t)',(\cos t)',(e^t)') \\
+	&=(\cos t, - \sin t, e^t).
+\end{align*}	
+\end{example}
 
 \begin{thm}[Differentiation formulas]
 	Let $\bu,\bv$ be differentiable vector-valued functions into $\R^n$, $c$ a constant, and $\varphi:\mathbb{R} \to \mathbb{R}$ a real-valued function. Then
@@ -1032,6 +1131,74 @@ Similarly, for $k$ a positive integer, the $k$th derivative of $\bbr$ is given b
 	\end{enumerate}
 \end{defn}
 
+\subsubsection{Integrals of Vector valued functions}
+Similar to derivatives, we define the integral of a vector-valued function in terms of the integrals of its component functions.
+
+\begin{defn}[Integral of a vector-valued function]
+	If $\bbr(t)=(r_1(t),\dots,r_n(t))$ is a vector-valued function, then
+	\begin{align*}
+		\int_a^b \bbr(t)dt=(\int_a^b r_1(t)dt,\cdots,\int_a^b r_n(t)dt).
+	\end{align*}
+	Indefinite integrals are defined similarly.
+\end{defn}
+
+\begin{example}
+\begin{enumerate}[(a)]
+	\item Let $\bbr(t)=(\cos t, 1, -2t)$. Then
+\begin{align*}
+	\int (\cos t, 1, -2t)dt&=\left(\int \cos t dt,\int dt,-\int 2t dt\right) \\
+	&=(\sin t+c_1,t+c_2,-(t^2+c_3)) \\
+	&=(\sin t, t, -t^2)+(c_1,c_2,-c_3).
+\end{align*}
+\item Now a definite integral:
+\begin{align*}
+	\int_0^\pi (\cos t, 1, -2t)dt&=\left(\int_0^\pi \cos t dt,\int_0^\pi dt,-\int_0^\pi 2t dt\right) \\
+	&=(\sin t|_0^\pi,t|_0^\pi,-t^2|_0^\pi) \\
+	&=(0-0,\pi-0,-(\pi^2-0^2)) \\
+	&=(0,\pi,-\pi^2).
+\end{align*}
+\end{enumerate}	
+\end{example}
+
+\begin{exercise}
+	Solve the first order differential equation
+	\begin{align*}
+		\bbr'(t)=(\cos t,-\sin t,1)
+	\end{align*}
+	subject to the initial condition $\bbr(0)=(2,0,1)$.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	This differential equation can be solved by integrating with respect to $t$:
+	\begin{align*}
+		\bbr(t)&=\int \bbr'(t)dt \\
+		&=(\int \cos t dt,-\int \sin t dt, \int dt) \\
+		&=(\sin t, \cos t, t)+(c_1,c_2,c_3).
+	\end{align*}
+	The initial condition says that
+	\begin{align*}
+		\bbr(0)&=(\sin 0, \cos 0, 0)+(c_1,c_2,c_3) \\
+		&=(0,1,0)+(c_1,c_2,c_3) \\
+		&=(c_1,c_2+1,c_3) \\
+		&=(2,0,1),
+	\end{align*}
+	and therefore
+	\begin{align*}
+		c_1&=2 \\
+		c_2+1&=0 \\
+		c_3&=1.
+	\end{align*}
+	Thus, the solution to the differential equation is
+	\begin{align*}
+		\bbr(t)&=(\sin t, \cos t, t)+(2,-1,1) \\
+		&=(\sin t+2, \cos t-1,t+1).
+	\end{align*}
+	
+\end{solution}}
+
+\newpage 
+
 \subsection{Parametrized Curves}
 We will now focus on a special class of vector-valued functions, which model the motion of a particle through space. Our interest will primarily be in the geometry of the particle's trajectory.
 
@@ -1054,6 +1221,17 @@ and, $f'(b)$ as the left-hand limit
 \end{align*}
 \end{remark}
 
+To avoid the proliferation of primes in what follows, we will use the following physical terminology.
+\begin{defn}[Velocity, speed, accleration]
+	\begin{enumerate}[(a)]
+		\item We will call the tangent vector $\bbr'(t)$ the \emph{velocity} at $t$. We call its length $||\bbr'(t)||$ the \emph{speed} at $t$.
+		\item We call the vector $\bbr''(t)$ the \emph{acceleration} at $t$.
+	\end{enumerate}
+	From now on we will write $\bv(t) \equiv \bbr'(t), ||\bv(t)||\equiv ||\bbr'(t)||$, and $\ba(t)\equiv \bbr''(t)$.
+\end{defn}
+
+
+\newpage
 
 \begin{example}
 The graph of any smooth function $y=f(x)$ can be written as a parametrized curve by defining
@@ -1072,6 +1250,7 @@ For example, the function $y=x^2$ can be written the parametrized curve $\bbr(t)
 
 The particle moves down the parabola from the upper left starting at $t=-\infty$, reaches the origin at $t=0$, and then continues up the parabola to the upper right for all $t>0$.
 \end{example}
+
 
 \begin{exercise}
 Sketch the trace of the plane curve $\bbr(t)=(t^2-2t,t+1)$, $-\infty < t < \infty$ in by making a table of the coordinates $(x(t),y(t))$ for integer values of $t$ from $-2 \leq t \leq 4$. Compare your sketch with the curve produced in \emph{Mathematica} using the ``ParametricPlot" command.	
@@ -1098,7 +1277,7 @@ which is the equation of a parabola in vertex form, with vertex at $(x,y)=(-1,2)
 The particle travels upwards along the parabola from $t=-\infty$, reaches the vertex at $t=1$, and then continues upward to the right for $t>0$.
 \end{solution}}
 
-
+\newpage
 
 \begin{example}\label{ex:unit_circ}
 Consider the following three plane curves 
@@ -1107,7 +1286,7 @@ Consider the following three plane curves
 	\item $\bbr_2(t)=(-\sin 2t, \cos 2t), 0 \leq t \leq 2\pi$,
 	\item $\bbr_3(t)=(\cos(-t), \sin(-t)), 0 \leq t \leq 2\pi$.
 \end{enumerate}	
-For all three curves, $x(t)^2+y(t)^2=1$, so the trace of each curve is the unit circle. However, the curves are different. The reader can easily verify the following by making a table for each curve and sketching the trace:
+For all three curves, $x(t)^2+y(t)^2=1$, so the trace of each curve is the unit circle. However, as trajectories of a particle, they are different. The reader can easily verify the following by making a table for each curve and sketching the trace:
 \begin{enumerate}[(1)]
 	\item In $\bbr_1$, the particle begins at $(x,y)=(1,0)$ at $t=0$ and completes one full circle, moving in the counterclockwise direction.
 	\item In $\bbr_2$, the particle begins at $(x,y)=(0,1)$ at $t=0$ and completes \emph{two} full circles, moving in the counterclockwise direction.
@@ -1120,6 +1299,9 @@ For all three curves, $x(t)^2+y(t)^2=1$, so the trace of each curve is the unit 
 	\caption{The trace of the curves $\bbr_1,\bbr_2,\bbr_3$.}
 \end{figure}
 \end{example}
+
+\newpage 
+
 The previous example shows that a parametrized curve is more than just the trace: it is the trace together with a choice of how to traverse the trace of curve.
 
 \begin{example}
@@ -1130,17 +1312,17 @@ Consider now the trace of the plane curve $\bbr(t)=(t^3,t^2)$, $-\infty<t<\infty
 		\includegraphics[scale=0.4]{figures_mvc/cusp_mma}
 	\end{center}
 \end{figure}
-Since the component functions are smooth, the reader may be surprised by the cusp at the origin. Solving for $y$ in terms of $x$ by eliminating $t$, we find that $y=x^{2/3}$, which is indeed not differentiable at the origin. Note that $\bbr'(t)=(3t^2,2t)\neq (0,0)$ everywhere except the origin, where the tangent vector vanishes.
+Since the component functions are smooth, the reader may be surprised by the cusp at the origin. Solving for $y$ in terms of $x$ by eliminating $t$, we find that $y=x^{2/3}$, which is indeed not differentiable at the origin. Note that $\bv(t)=(3t^2,2t)\neq (0,0)$ everywhere except the origin, where the tangent vector vanishes.
 \end{example}
  
 \begin{defn}[Regular curve]
 	Let $\bbr:I \to \R^n$ be a parametrized curve.
 	\begin{enumerate}[(a)]
-		\item A point where $\bbr'(t)={\bf 0}$ is called a \emph{singular point}, while a point where $\bbr'(t) \neq {\bf 0}$ is called a \emph{regular point}.
-		\item A \emph{regular curve} is a curve with no singular points; that is, it is a curve for whice $\bbr'(t) \neq {\bf 0}$ for all $t \in I$.
+		\item A point where $\bv(t)={\bf 0}$ is called a \emph{singular point}, while a point where $\bv(t) \neq {\bf 0}$ is called a \emph{regular point}.
+		\item A \emph{regular curve} is a curve with no singular points; that is, it is a curve for whice $\bv(t) \neq {\bf 0}$ for all $t \in I$.
 	\end{enumerate}
 \end{defn}
-In our study of the differential geometry of curves, we will assume the curve has a tangent vector at every point. Thus, from now on we will assume all curves are regular.
+In our study of the differential geometry of curves, we will assume our curve has a tangent vector at every point. Thus, from now on we will assume all curves are regular.
 
 \subsection{Reparametrizations}
 Recall the three regular curves from Example \ref{ex:unit_circ}:
@@ -1167,7 +1349,7 @@ then we see that $\bbr_2$ is equal to the composition $\bbr_2=\bbr_1 \circ \varp
 	&=\bbr_2(t).
 \end{align*}
 
-\fixme{Speed vs time interval.} To understand this relationship, recall that a parametrized curve $\bbr(t)$ is a function which gives the position of the particle at time $t$, with respect to a given clock. If $\varphi$ denotes the time with respect to a different clock, then $\bbr(\varphi)$ gives the position of the particle at time $\varphi$. The particles follow the same trajectory, but are at different positions at different times if the two clocks are not synchronized. In this example, the clocks are related by $\varphi=2t+\frac{\pi}{2}$; that is, the $\varphi$-clock is $\frac{\pi}{2}$ seconds ahead of the $t$-clock (since $\varphi=\frac{\pi}{2}$ when $t=0$), and runs half as fast (since if the time interval between two successive ticks of the $t$-clock is $\Delta t=1$ s, then the time interval between two successive ticks of the $\varphi$-clock is  $\Delta \varphi=2\Delta t=2$ s; that is, if the $t$-clock ticks once every second, then the $\varphi$-clock ticks once every two seconds). Thus, if $\bbr_1(t)$ describes a single trip around the unit circle in the counterclockwise sense at unit speed, then, with respect to the $t$-clock, $\bbr_1(\varphi)=\bbr_2(t)$ describes a particle that is already at $(0,1)$ when $t=0$ and completes two trips around the circle at double speed in $2\pi$ seconds.
+To understand this relationship, recall that a parametrized curve $\bbr(t)$ is a function which gives the position of the particle at time $t$, with respect to a given clock. If $\varphi$ denotes the time with respect to a different clock, then $\bbr(\varphi)$ gives the position of the particle at time $\varphi$. The particles follow the same trajectory, but are at different positions at different times if the two clocks are not synchronized. In this example, the clocks are related by $\varphi=2t+\frac{\pi}{2}$; that is, the $\varphi$-clock is $\frac{\pi}{2}$ seconds ahead of the $t$-clock (since $\varphi=\frac{\pi}{2}$ when $t=0$), and runs half as fast (since if the time interval between two successive ticks of the $t$-clock is $\Delta t=1$ s, then the time interval between two successive ticks of the $\varphi$-clock is  $\Delta \varphi=2\Delta t=2$ s; that is, if the $t$-clock ticks once every second, then the $\varphi$-clock ticks once every two seconds). Thus if $\bbr_1(t)$ describes a single trip around the unit circle in the counterclockwise sense at unit speed, then, with respect to the $t$-clock, $\bbr_1(\varphi)=\bbr_2(t)$ describes a particle that is already at $(0,1)$ when $t=0$ and completes two trips around the circle at double speed in $2\pi$ seconds.
 
 \begin{exercise}\label{ex:orient_reve}
 Verify that by defining $\varphi:[0,2\pi] \to [0,2\pi]$ by $\varphi(t)=2\pi-t$, then $\bbr_3=\bbr_1 \circ \varphi$. Interpret this as above.	
@@ -1186,19 +1368,19 @@ We see that $\bbr_1(\varphi(t))=(\cos(2\pi-t),\sin(2\pi-t))=(\cos(-t),\sin(-t))=
 	\begin{center}
 		\includegraphics[scale=0.5]{figures_mvc/reparametrization}
 	\end{center}
+	\caption{A reparametrization $\widetilde{\bbr}=\bbr \circ \varphi$ of a curve $\bbr$.}
 \end{figure}
 
 \begin{remark}
 Note that the hypotheses on $\varphi$ are all required to ensure that $\widetilde{\bbr}=\bbr \circ \varphi$ has the same trace as $\bbr$:
 \begin{itemize}
 	\item The requirement that $\varphi$ is smooth ensures that $\widetilde{\bbr}$ is smooth, since the composition of smooth functions is smooth.
-	\item The requirement that $\varphi$ is a bijection is also essential. If $\varphi$ is not surjective, then the trace of $\widetilde{\bbr}$ will only be a proper subset of the trace of $\bbr$. If $\varphi$ is not injective, then $\widetilde{\bbr}$ will have self-intersections at points where $\bbr$ does not (since if $\varphi(t_1)=\varphi(t_2)$ for $t_1 \neq t_2$, then even if $\bbr(t_1) \neq \bbr(t_2)$, we will have $\widetilde{\bbr}(\varphi(t_1))=\widetilde{\bbr}(\varphi(t_2))$). \fixme{Maybe say this better or give an example.}
+	\item The requirement that $\varphi$ is a bijection is also essential. If $\varphi$ is not surjective, then the trace of $\widetilde{\bbr}$ will only be a proper subset of the trace of $\bbr$. If $\varphi$ is not injective, then $\widetilde{\bbr}$ will have self-intersections at points where $\bbr$ does not (since if $\varphi(t_1)=\varphi(t_2)$ for $t_1 \neq t_2$, then even if $\bbr(t_1) \neq \bbr(t_2)$, we will have $\widetilde{\bbr}(\varphi(t_1))=\widetilde{\bbr}(\varphi(t_2))$). Thus, if $\varphi$ is not a bijection, then the two curves won't have the same trace.
 	\item The requirement that $\varphi'(t) \neq 0$ for all $t$ ensures that $\widetilde{\bbr}(t)$ is regular, since if $\bbr(t)$ is regular and $\varphi'(t) \neq 0$, then by the chain rule
 	\begin{align*}
-		\widetilde{\bbr}'(t)=\varphi'(t)\bbr'(t) \neq 0.
+		\widetilde{\bv}(t)=\varphi'(t)\bbr'(t) \neq 0.
 	\end{align*}
 \end{itemize}
-\fixme{Give examples or an exercise in which each of these separately fail.}
 \end{remark}
 
 \begin{prop}[Reparametrized curves are equivalent]
@@ -1208,7 +1390,13 @@ The relation $\widetilde{\bbr} \sim \bbr$ if $\widetilde{\bbr}$ is a reparametri
 \begin{pf}
 	\begin{enumerate}[(1)]
 		\item (Reflexivity) Let $\bbr:I \to \R^n$ be a parametrized curve. Take $\varphi=id_I:T \to I$ to be the identity map on $I$. This is a smooth bijection, and since $id_I(t)=t$, $id_I'(t)=1 \neq 0$ for all $t \in I$. Since $\bbr=\bbr \circ id_I$, $\bbr \sim \bbr$. Thus, $\sim$ is reflexive.
-		\item (Symmetry) Suppose $\bbr:I \to \R^n$ and $\widetilde{\bbr}:\tilde{I} \to \R^n$ are parametrized curves with $\widetilde{\bbr} \sim \bbr$. Then there exists a smooth bijection $\varphi: \tilde{I} \to I$ with $\varphi'(t) \neq 0$ for all $t \in \tilde{I}$. It follows from the Inverse Function Theorem that $\varphi$ has a smooth inverse, $\varphi^{-1} :I \to \tilde{I}$, where $(\varphi^{-1})'(t)=1/\varphi'(t)$ Since $\varphi'(t)$ is never zero, neither is $(\varphi^{-1})'(t)$. \footnote{The \emph{Inverse Function Theorem} states that if $f:\R \to \R$ is continuously differentiable with $f'(a) \neq 0$ then $f$ is invertible in a neighborhood of $a$, the inverse is continuously differentiable, and the derivative of the inverse function at $b=f(a)$ is the reciprocal of the derivative of $f$ at $a$. Applying this to the $k$-th derivative, it follows as a corollary that we can replace ``continuously differentiable" everywhere in the theorem above by ``smooth". Since $f'(t)$ is never zero on $I$, $f$ must be 1-1 on all of $I$.} This proves that $\widetilde{\bbr} \sim \bbr$ implies that $\bbr \sim \widetilde{\bbr}$. Thus, $\sim$ is symmetric.
+		\item (Symmetry) Suppose $\bbr:I \to \R^n$ and $\widetilde{\bbr}:\tilde{I} \to \R^n$ are parametrized curves with $\widetilde{\bbr} \sim \bbr$. Then there exists a smooth bijection $\varphi: \tilde{I} \to I$ with $\varphi'(t) \neq 0$ for all $t \in \tilde{I}$ such that $\widetilde{\bbr}=\bbr \circ \varphi$. It follows from the Inverse Function Theorem that $\varphi$ has a smooth inverse, $\varphi^{-1} :I \to \tilde{I}$, where $(\varphi^{-1})'(t)=1/\varphi'(t)$ Since $\varphi'(t)$ is never zero, neither is $(\varphi^{-1})'(t)$. \footnote{The \emph{Inverse Function Theorem} states that if $\varphi:I \to \R$ is continuously differentiable with $\varphi'(t_0) \neq 0$ then $\varphi$ is invertible in a neighborhood of $t_0$, the inverse is continuously differentiable, and the derivative of the inverse function at $b=\varphi(t_0)$ is the reciprocal of the derivative of $\varphi$ at $t_0$. Applying this to the $k$-th derivative, it follows as a corollary that we can replace ``continuously differentiable" everywhere in the theorem above by ``smooth". For a regular curve $\varphi'(t)$ is never zero on $I$, so $\varphi$ must be either increasing or decreasing on $I$. Either way $\varphi$ is 1-1 on all of $I$, and therefore the ``neighborhood" of $t_0$ appearing in the theorem is all of $I$.} Then 
+		\begin{align*}
+			\widetilde{\bbr} \circ \varphi^{-1}&=\bbr \circ \varphi^{-1} \circ \varphi \\
+			&=\bbr \circ id_I \\
+			&=\bbr. 
+		\end{align*}
+		 This proves that $\widetilde{\bbr} \sim \bbr$ implies that $\bbr \sim \widetilde{\bbr}$. Thus, $\sim$ is symmetric.
 		\item (Transitivity) Let
 		\begin{align*}
 			\bbr_1:I_1 &\to \R^n, \\
@@ -1238,8 +1426,9 @@ The relation $\widetilde{\bbr} \sim \bbr$ if $\widetilde{\bbr}$ is a reparametri
 	\begin{align*}
 		[\bbr]\equiv \{\widetilde{\bbr}:\widetilde{\bbr}=\bbr \circ \varphi \text{ for some } \varphi\}
 	\end{align*} 
- a \emph{curve} in $\R^n$. Any parametrized curve $\widetilde{\bbr}(t)$ in $[\bbr]$ is said to be a \emph{representative} of the equivalence class $[\bbr]$. \fixme{Show that if two curves have the same trace, then they are equivalent.}
+ a \emph{curve} in $\R^n$. Any parametrized curve $\widetilde{\bbr}(t)$ in $[\bbr]$ is said to be a \emph{representative} of the equivalence class $[\bbr]$. 
 \end{defn}
+
 Let $\bbr(t)$ be a parametrized curve and let $\widetilde{\bbr}=\bbr \circ \varphi$ be a reparametrization of $\bbr(t)$. Since $\varphi'(t)$ is nowhere 0, $\varphi$ must be either monotonically increasing ($\varphi'>0$) or monotonically decreasing ($\varphi'<0$) on all of $\tilde{I}$.
 
 \begin{defn}[Oriented curves]
@@ -1267,50 +1456,50 @@ We have just seen that a given curve can be parametrized in many ways. Out of th
 \begin{align}\label{eq:arc_leng_f_x}
 	s=\int_a^b\sqrt{1+(f'(x))^2}dx.
 \end{align}
-Writing the function as a parametrized curve $\bbr(t)=(t,f(t))$, we have $\bbr'(t)=(1,f'(t))$ and $||\bbr'(t)||=\sqrt{1+(f'(t))^2}$, so we can write Equation \eqref{eq:arc_leng_f_x} as
+Writing the function as a parametrized curve $\bbr(t)=(t,f(t))$, we have $\bv(t)=(1,f'(t))$ and $||\bv(t)||=\sqrt{1+(f'(t))^2}$, so we can write Equation \eqref{eq:arc_leng_f_x} as
 \begin{align}\label{eq:arc_length_gen}
-	s=\int_a^b||\bbr'(t)||dt.
+	s=\int_a^b||\bv(t)||dt.
 \end{align}
-\fixme{Add example.}
-How do we compute the arc length if $\bbr(t)$ is not the graph of a function? If $\bbr(t)$ is not the graph of a function, it turns out that Equation \eqref{eq:arc_length_gen} is still valid. In this case, we obtain the formula as the limit of a sequence of polygonal approximations of the curve (the proof is given in Appendix \ref{app:arc_length}). 
+
+How do we compute the arc length if $\bbr(t)$ is not the graph of a function?  If $\bbr(t)$ is not the graph of a function, it turns out that Equation \eqref{eq:arc_length_gen} is still valid.  In this case, we obtain the formula as the limit of a sequence of polygonal approximations of the curve. For those interested in the details, see Appendix \ref{app:arc_length}. 
 
 \begin{defn}{Arc length}\label{def:arc_length}
 Let $\bbr:[a,b] \to \R^n$ be a regular curve. We define the \emph{arc length} between the points $\bbr(a)$ and $\bbr(b)$ on the curve by
 \begin{align*}
-	s=\int_a^b||\bbr'(t)||dt.
+	s=\int_a^b||\bv(t)||dt.
 \end{align*}	
 \end{defn}
 
 \begin{example}\label{ex:unit_circl_ex}
 We now compute the arc length along the portion of the unit circle from $(1,0)$ to $(0,1)$. If we use the parametrization
 \begin{align*}
-	\bbr_1(t)=(\cos t,\sin t), 0 \leq t \leq \frac{\pi}{2},
+	\bbr_1(t)=(\cos t,\sin t), \hspace{0.25cm} 0 \leq t \leq \frac{\pi}{2},
 \end{align*}	
 then we have
 \begin{align*}
-	\bbr_1'(t)&=(-\sin t,\cos t), \\
-	||\bbr_1'(t)||&=\sqrt{(-\sin t)^2+(\cos t)^2}=\sqrt{1}=1.
+	\bv_1(t)&=(-\sin t,\cos t), \\
+	||\bv_1(t)||&=\sqrt{(-\sin t)^2+(\cos t)^2}=\sqrt{1}=1.
 \end{align*}
 Equation \eqref{eq:arc_length_gen} then gives
 \begin{align*}
-	s=\int_0^{\frac{\pi}{2}}||\bbr_1'(t)||dt=\int_0^{\frac{\pi}{2}}dt=\frac{\pi}{2}.
+	s=\int_0^{\frac{\pi}{2}}||\bv_1(t)||dt=\int_0^{\frac{\pi}{2}}dt=\frac{\pi}{2}.
 \end{align*}
 \end{example}
 
 \begin{exercise}
-Use the parametrization $\bbr_2(t)=(\cos(2t),\sin(2t)), 0 \leq t \leq \frac{\pi}{4}$ to compute the arc length of the same portion of the unit circle as in Example \ref{ex:unit_circl_ex}. Verify that you get the same answer.	
+Use the parametrization $\bbr_2(t)=(\cos(2t),\sin(2t))$, $0 \leq t \leq \frac{\pi}{4}$ to compute the arc length of the same portion of the unit circle as in Example \ref{ex:unit_circl_ex}. Verify that you get the same answer.	
 \end{exercise}
 
 {\color{red}
 \begin{solution}
 	Using the parametrization $\bbr_2(t)=(\cos(2t),\sin(2t))$, $0 \leq t \leq \frac{\pi}{4}$, we have
 	\begin{align*}
-		\bbr_2'(t)&=(-2\sin(2t),2\cos(2t)), \\
-		||\bbr_2'(t)||&=\sqrt{4\sin^2(2t)+4\cos^2(2t)}=\sqrt{4(\sin^2(2t)+\cos^2(2t))}=\sqrt{4}=2
+		\bv_2(t)&=(-2\sin(2t),2\cos(2t)), \\
+		||\bv_2(t)||&=\sqrt{4\sin^2(2t)+4\cos^2(2t)}=\sqrt{4(\sin^2(2t)+\cos^2(2t))}=\sqrt{4}=2
 	\end{align*} 
 	and therefore
 	\begin{align*}
-		s=\int_0^{\frac{\pi}{4}}||\bbr_2'(t)||dt=2\int_0^{\frac{\pi}{4}}dt=2\cdot \frac{\pi}{4}=\frac{\pi}{2}.
+		s=\int_0^{\frac{\pi}{4}}||\bv_2(t)||dt=2\int_0^{\frac{\pi}{4}}dt=2\cdot \frac{\pi}{4}=\frac{\pi}{2}.
 	\end{align*}
 \end{solution}}
 
@@ -1329,18 +1518,18 @@ Use an improper integral to prove that such a restriction has finite arc length 
 \begin{solution}
 	We have
 	\begin{align*}
-		\bbr'(t)&=c(\lambda e^{\lambda t}\cos t-e^{\lambda t}\sin t,\lambda e^{\lambda t}\sin t+e^{\lambda t}\cos t) \\
+		\bv(t)&=c(\lambda e^{\lambda t}\cos t-e^{\lambda t}\sin t,\lambda e^{\lambda t}\sin t+e^{\lambda t}\cos t) \\
 		&=ce^{\lambda t}(\lambda \cos t-\sin t, \lambda \sin t+\cos t)
 	\end{align*}
 	and therefore
 	\begin{align*}
-		||\bbr'(t)||&=|c|e^{\lambda t}\sqrt{(\lambda \cos t-\sin t)^2+(\lambda \sin t+\cos t)^2} \\
+		||\bv(t)||&=|c|e^{\lambda t}\sqrt{(\lambda \cos t-\sin t)^2+(\lambda \sin t+\cos t)^2} \\
 		&=|c|e^{\lambda t}\sqrt{\lambda^2\cos^2 t+\sin^2 t-2\lambda \sin t \cos t+\lambda^2\sin^2 t+ \cos ^2 t+2\lambda \sin t\cos t} \\
 		&=|c|e^{\lambda t}\sqrt{\lambda^2+1}.
 	\end{align*}
 	The arc length is then given by the integral
 	\begin{align*}
-		s=\int_0^\infty ||\bbr'(t)||dt=|c|\sqrt{\lambda^2+1}\int_0^\infty e^{-|\lambda|t}dt.
+		s=\int_0^\infty ||\bv(t)||dt=|c|\sqrt{\lambda^2+1}\int_0^\infty e^{-|\lambda|t}dt.
 	\end{align*}
 	Substituting
 	\begin{align*}
@@ -1362,13 +1551,13 @@ Use an improper integral to prove that such a restriction has finite arc length 
 \begin{pf}
 Let $\widetilde{\bbr}=\bbr \circ \varphi$ be a reparametrization of $\bbr$. Then since
 \begin{align*}
-	\widetilde{\bbr}'(t)&=[\bbr(\varphi(t))]'=\varphi'(t)\bbr'(\varphi(t)),
+\widetilde{\bv}(t)&=[\bbr(\varphi(t))]'=\varphi'(t)\bv(\varphi(t)),
 \end{align*}
 we have
 \begin{align*}
-	s&=\int_{t_0}^{t_1}||\widetilde{\bbr}'(t)||dt \\
-	&=\int_{t_0}^{t_1}||\varphi'(t)\bbr'(\varphi(t))||dt \\
-	&=\int_{t_0}^{t_1}||\bbr'(\varphi(t))|| \ |\varphi'(t)|dt \\
+	s&=\int_{t_0}^{t_1}||\widetilde{\bv}(t)||dt \\
+	&=\int_{t_0}^{t_1}||\varphi'(t)\bv(\varphi(t))||dt \\
+	&=\int_{t_0}^{t_1}||\bv(\varphi(t))|| \ |\varphi'(t)|dt \\
 \end{align*}	
 If $\varphi'(t)>0$, then $|\varphi'(t)|=\varphi'(t)$ and by substituting
 \begin{align*}
@@ -1376,13 +1565,12 @@ If $\varphi'(t)>0$, then $|\varphi'(t)|=\varphi'(t)$ and by substituting
 \end{align*}
 we obtain
 \begin{align*}
-	s=\int_{\varphi(t_0)}^{\varphi(t_1)}||\bbr'(u)||du.
+	s=\int_{\varphi(t_0)}^{\varphi(t_1)}||\bv(u)||du.
 \end{align*}
 If $\varphi'(t)<0$, then $|\varphi'(t)|=-\varphi'(t)$ and the same substitution gives
 \begin{align*}
-	s=-\int_{\varphi(t_0)}^{\varphi(t_1)}||\bbr'(u)||du=\int_{\varphi(t_0)}^{\varphi(t_1)}||\bbr'(u)||du.
+	s=-\int_{\varphi(t_0)}^{\varphi(t_1)}||\bv(u)||du=\int_{\varphi(t_0)}^{\varphi(t_1)}||\bv(u)||du.
 \end{align*}
-\fixme{Include figure?}
 \end{pf}
 
 \begin{prop}[Any regular curve can be parametrized by arc length]
@@ -1392,9 +1580,9 @@ If $\varphi'(t)<0$, then $|\varphi'(t)|=-\varphi'(t)$ and the same substitution 
 \begin{pf}
 Choose $t_0 \in I$ and consider the arc length function $s:I \to \R$ defined by
 \begin{align*}
-	s(t)=\int_{t_0}^t||\bbr'(u)||du. 
+	s(t)=\int_{t_0}^t||\bv(u)||du. 
 \end{align*}	
-Let $\tilde{I}=s(I)$ denote the image of $I$ under $s$. By the Fundamental Theorem of Calculus, $s'(t)=||\bbr'(t)|| \neq 0$ (since the curve is regular), so by the Inverse Function Theorem $s$ has an inverse $\varphi:\tilde{I} \to I$, which is also a smooth bijection with a nowhere-vanishing derivative. Then $\widetilde{\bbr}=\bbr \circ \varphi$ is parametrized by arc length, since $\bbr(\varphi(s))$ is the position of a point along the curve at the time when it achieves arc length $s$ measured from $t_0$.
+Let $\tilde{I}=s(I)$ denote the image of $I$ under $s$. By the Fundamental Theorem of Calculus, $s'(t)=||\bv(t)|| \neq 0$ (since the curve is regular), so by the Inverse Function Theorem $s$ has an inverse $\varphi:\tilde{I} \to I$, which is also a smooth bijection with a nowhere-vanishing derivative. Then $\widetilde{\bbr}=\bbr \circ \varphi$ is parametrized by arc length, since $\bbr(\varphi(s))$ is the position of a point along the curve at the time when it achieves arc length $s$ measured from $t_0$.
 \end{pf}
 
 \begin{example}\label{ex:helix_param_by_arc_length}
@@ -1407,11 +1595,11 @@ Consider the helix $\bbr(t)=(\cos t, \sin t, t)$, $t \in \R$.
 
  Let us reparametrize the helix with respect to the arc length measured from $(1,0,0)$ in the direction of increasing $t$. Since $\bbr(0)=(1,0,0)$, following the proof above we define
 \begin{align*}
-	s(t)=\int_0^t||\bbr'(u)||du.
+	s(t)=\int_0^t||\bv(u)||du.
 \end{align*}
-Since $\bbr'(u)=(-\sin u,\cos u,1)$, we have $||\bbr'(u)||=\sqrt{2}$ and therefore
+Since $\bv(u)=(-\sin u,\cos u,1)$, we have $||\bv(u)||=\sqrt{2}$ and therefore
 \begin{align*}
-	s(t)&=\int_0^t||\bbr'(u)||du \\
+	s(t)&=\int_0^t||\bv(u)||du \\
 	&=\sqrt{2}\int_0^t du \\
 	&=\sqrt{2}t.
 \end{align*}
@@ -1428,28 +1616,28 @@ and
 \begin{example}
 Let's reparametrzie the plane curve $\bbr(t)=(\cos(3t),\sin(2t))$ with respect to arc length measured from $(1,0)$ in the direction of increasing $t$. Since
 	\begin{align*}
-		\bbr'(t)&=(-3\sin(3t),2\cos(2t)) \\
-		||\bbr'(t)||&=\sqrt{9\sin^2(3t)+4^2\cos(2t)},
+		\bv(t)&=(-3\sin(3t),2\cos(2t)) \\
+		||\bv(t)||&=\sqrt{9\sin^2(3t)+4^2\cos(2t)},
 	\end{align*}
 	the arc length function is given by
 	\begin{align*}
 		s(t)=\int_0^t\sqrt{9\sin^2(3t)+4\cos^2(2t)}dt
 	\end{align*}
-	This integral cannot be evaluated in terms of elementary functions. \fixme{Explain what this means.} This example illustrates that, while our proof gave an explicit method to parametrize any curve by arc length, in practice it is usually not computationally reasonable to implement. However, we will use the fact that every curve can be parametrized by arc length for theoretical purposes.
+	This integral cannot be evaluated in closed form. This example illustrates that, while our proof gave an explicit method to parametrize any curve by arc length, in practice it is usually not computationally reasonable to implement. However, the fact that every curve can be parametrized by arc length is very important for theoretical purposes, as we will see in the following sections.
 \end{example}
 
 \begin{prop}
-	A curve parametrized by arc length is a \emph{unit speed curve}; that is, $||\bbr'(t)||=1$ for all $t \in I$.
+	A curve parametrized by arc length is a \emph{unit speed curve}; that is, $||\bv(t)||=1$ for all $t \in I$.
 \end{prop}
 
 \begin{proof}
 	If $\bbr$ is parametrized by arc length, then by the Fundamental Theorem of Calculus
 	\begin{align*}
-		s'(t)=\frac{d}{dt}\int_{t_0}^t||\bbr'(u)||du=||\bbr'(t)||=1.
+		s'(t)=\frac{d}{dt}\int_{t_0}^t||\bv(u)||du=||\bv(t)||=1.
 	\end{align*}
-	Conversely, suppose $||\bbr'(t)||=1$ for all $t$. Then
+	Conversely, suppose $||\bv(t)||=1$ for all $t$. Then
 	\begin{align*}
-		s(t)=\int_{t_0}^t||\bbr'(u)||du=\int_{t_0}^tdu=t-t_0
+		s(t)=\int_{t_0}^t||\bv(u)||du=\int_{t_0}^tdu=t-t_0
 	\end{align*}
 	so $t$ is equal to the arc length accumulated from the point $t_0$.
 \end{proof}
@@ -1460,9 +1648,9 @@ Verify that the helix parametrized by arc length in Example \ref{ex:helix_param_
 
 {\color{red}
 \begin{solution}
-We have $\bbr'(s)=\frac{1}{\sqrt{2}}(-\sin(\frac{s}{\sqrt{2}}), \cos(\frac{s}{\sqrt{2}}),1)$ and therefore 
+We have $\bv(s)=\frac{1}{\sqrt{2}}(-\sin(\frac{s}{\sqrt{2}}), \cos(\frac{s}{\sqrt{2}}),1)$ and therefore 
 \begin{align*}
-	||\bbr'(s)||&=\frac{1}{\sqrt{2}}\sqrt{\sin^2(\frac{s}{\sqrt{2}})+\cos^2(\frac{s}{\sqrt{2}})+1} \\
+	||\bv(s)||&=\frac{1}{\sqrt{2}}\sqrt{\sin^2(\frac{s}{\sqrt{2}})+\cos^2(\frac{s}{\sqrt{2}})+1} \\
 	&=\frac{1}{\sqrt{2}}\sqrt{2} \\
 	&=1.
 \end{align*}	
@@ -1475,12 +1663,12 @@ In this section, we will quantify how sharply a curve ``bends" at each point. Th
 \subsection{Curvature of a unit speed curve}
 We begin by considering curves parametrized by arc length. To define the curvature function, we will need the following lemma.
 \begin{lem}\label{lem:some_dot_products}
-Let $\bu, \bv:I \to \R^n$ be a pair of curves.
+Let $\bbr_1, \bbr_2:I \to \R^n$ be a pair of curves.
 \begin{enumerate}[(a)]
-	\item If $\bu$ has constant nonzero length (that is, if $||\bu(t)||=c>0$ for all $t \in I$), then $\bu'(t)$ is orthogonal to $\bu(t)$ for all $t \in I$.
-	\item If $\bu(t)$ is orthogonal to $\bv(t)$ for all $t \in I$, then
+	\item If $\bbr_1$ has constant nonzero length (that is, if $||\bbr_1(t)||=c>0$ for all $t \in I$), then $\bbr_1'(t)$ is orthogonal to $\bbr(t)$ for all $t \in I$.
+	\item If $\bbr_1(t)$ is orthogonal to $\bbr_2(t)$ for all $t \in I$, then
 	\begin{align*}
-		\bu'(t) \cdot \bv(t)=-\bu(t) \cdot \bv'(t)=0
+		\bbr_1'(t) \cdot \bbr_2(t)=-\bbr_1(t) \cdot \bbr_2'(t)=0
 	\end{align*}
 	for all $t \in I$.
 \end{enumerate}	
@@ -1488,46 +1676,46 @@ Let $\bu, \bv:I \to \R^n$ be a pair of curves.
 
 \begin{proof}
 	\begin{enumerate}[(1)]
-		\item Suppose $||\bu(t)||=c$ for all $t$. Differentiating both sides, gives $||\bu(t)||'=0$. That is,
+		\item Suppose $||\bbr_1(t)||=c$ for all $t$. Differentiating both sides, gives $||\bbr_1(t)||'=0$. That is,
 		\begin{align*}
-			0&=||\bu(t)||' \\
-			&=\sqrt{\bu(t) \cdot \bu(t)}' \\
-			&=\frac{2\bu'(t) \cdot \bu(t)}{2\sqrt{\bu(t) \cdot \bu(t)}} \\
-			&=\frac{\bu'(t) \cdot \bu(t)}{||\bu(t)||} \\
-			&=\frac{\bu'(t) \cdot \bu(t)}{c} \\
+			0&=||\bbr_1(t)||' \\
+			&=\sqrt{\bbr_1(t) \cdot \bbr_1(t)}' \\
+			&=\frac{2\bbr_1'(t) \cdot \bbr_1(t)}{2\sqrt{\bbr_1(t) \cdot \bbr_1(t)}} \\
+			&=\frac{\bbr_1'(t) \cdot \bbr_1(t)}{||\bbr_1(t)||} \\
+			&=\frac{\bbr_1'(t) \cdot \bbr_1(t)}{c} \\
 		\end{align*}
-		and therefore $\bu'(t) \cdot \bu(t)=0$ for all $t$.
-		\item Suppose $\bu(t) \cdot \bv(t)=0$ for all $t$. Differentiating both sides, we obtain
+		and therefore $\bbr_1'(t) \cdot \bbr_1(t)=0$ for all $t$.
+		\item Suppose $\bbr_1(t) \cdot \bbr_2(t)=0$ for all $t$. Differentiating both sides, we obtain
 		\begin{align*}
-			0&=\bu'(t) \cdot \bv(t)+\bu(t)+\bv'(t)
+			0&=\bbr_1'(t) \cdot \bbr_2(t)+\bbr_1(t)+\bbr_2'(t)
 		\end{align*}
 		and therefore
 		\begin{align*}
-			\bu'(t) \cdot \bv(t)=-\bu(t)+\bv'(t)
+			\bbr_1'(t) \cdot \bbr_2(t)=-\bbr_1(t)+\bbr_2'(t)
 		\end{align*}
 		for all $t$.
 	\end{enumerate}
 \end{proof}
 
-Note that both of these hypotheses of Lemma \ref{lem:some_dot_products} are true for an orthonormal set of vectors $\{\bu,\bv\}$.
+Note that both of these hypotheses of Lemma \ref{lem:some_dot_products} are true for an orthonormal set of vectors $\{\bbr_1,\bbr_1\}$.
 
-Let $\bbr:I \to \R^n$ be a curve parametrized by arc length. Since $\bbr'(s)$ has unit length, by part (a) of Lemma \ref{lem:some_dot_products}, $\bbr''(s)$ is orthogonal to $\bbr'(s)$. Thus, $||\bbr''(s)||$ measures the rate at which the curve is pulling away from the tangent line at $\bbr(s)$.
+Let $\bbr:I \to \R^n$ be a curve parametrized by arc length. Since $\bv(s)$ has unit length, by part (a) of Lemma \ref{lem:some_dot_products}, $\ba(s)$ is orthogonal to $\bv(s)$. Thus, $||\ba(s)||$ measures the rate at which the curve is pulling away from the tangent line at $\bbr(s)$.
 
 \begin{defn}[Curvature]\label{def:curvature}
-	Let $\bbr:I \to \R^n$ be a curve parametrized by arc length $s \in I$. Define the \emph{curvature function} $\kappa:I \to [0,\infty)$ by $\kappa(s)=||\bbr''(s)||$. The number $\kappa(s)$ is called the \emph{curvature} of the curve $\bbr$ at $s$.
+	Let $\bbr:I \to \R^n$ be a curve parametrized by arc length $s \in I$. Define the \emph{curvature function} $\kappa:I \to [0,\infty)$ by $\kappa(s)=||\ba(s)||$. The number $\kappa(s)$ is called the \emph{curvature} of the curve $\bbr$ at $s$.
 	\end{defn}
 
 \begin{example}\label{ex:line_circle}
 \begin{enumerate}[(a)]
-	\item If $\bbr$ is a straight line, then $\bbr(s)=\bbr'(s_0)s+\bbr(s_0)$, where $\bbr(s_0), \bbr'(s_0)$ are constant vectors and we have $\kappa(s)=\bbr''(s)\equiv 0$. Conversely, if $\kappa=||\bbr''(s)||\equiv 0$, then integrating twice gives $\bbr(s)=\bbr'(s_0)s+\bbr(s_0)$, so the curve is a straight line.
+	\item If $\bbr$ is a straight line, then $\bbr(s)=\bv(s_0)s+\bbr(s_0)$, where $\bbr(s_0), \bv(s_0)$ are constant vectors and we have $\kappa(s)=\ba(s)\equiv 0$. Conversely, if $\kappa=||\ba(s)||\equiv 0$, then integrating twice gives $\bbr(s)=\bv(s_0)s+\bbr(s_0)$, so the curve is a straight line.
 
 \item If $\bbr(s)=(R\cos(\frac{s}{R}),R\sin(\frac{s}{R}))$ is a circle of radius $R$, then
 \begin{align*}
-	\bbr''(s)=(-\frac{1}{R}\cos(\frac{s}{R}),-\frac{1}{R}\sin(\frac{s}{R}))
+	\ba(s)=(-\frac{1}{R}\cos(\frac{s}{R}),-\frac{1}{R}\sin(\frac{s}{R}))
 \end{align*}
 and therefore
 \begin{align*}
-	\kappa(s)=||\bbr''(s)||=\frac{1}{R}.
+	\kappa(s)=||\ba(s)||=\frac{1}{R}.
 \end{align*}
 \end{enumerate}	
 \end{example}
@@ -1535,15 +1723,15 @@ and therefore
 \begin{defn}[Unit normal vector]
 At points where $\kappa(s) \neq 0$, the vector
 \begin{align*}
-	\mathbf{\hat{n}}(s)=\frac{\bbr''(s)}{||\bbr''(s)||}
+	\mathbf{\hat{n}}(s)=\frac{\ba(s)}{||\ba(s)||}
 \end{align*}
-is a unit vector orthogonal to $\bbr'(s)$. This is called the \emph{unit normal vector} to $\bbr$ at $s$.	
+is a unit vector orthogonal to $\bv(s)$. This is called the \emph{unit normal vector} to $\bbr$ at $s$.	
 \end{defn}
 
 \subsection{Osculating Plane}
 Let $\bbr(s)$ be a unit-speed curve. Consider a point $s_0$ where $\kappa(s_0) \neq 0$. Then, for sufficiently small $h=s-s_0$, we can approximate $\bbr(s)$ by its second-order Taylor polynomial:
 \begin{align*}
-	\bbr(s_0+h)&=\bbr(s_0)+h\bbr'(s_0)+\frac{h^2}{2}\bbr''(s_0)+\mathbf{E}(h),  \\
+	\bbr(s_0+h)&=\bbr(s_0)+h\bv(s_0)+\frac{h^2}{2}\ba(s_0)+\mathbf{E}(h),  \\
 	\bbr(s_0+h)&=\bbr(s_0)+h\mathbf{\hat{t}}+\frac{h^2}{2}\kappa(s_0)\un(s_0)+\mathbf{E}(h),  \\
 \end{align*}
 where $\lim_{h \to 0}\frac{||\mathbf{E}(h)||}{h^2}=0$. Thus, sufficiently near $\bbr(s_0)$, the trace of a curve lies in the plane spanned by $\{\ut(s_0),\un(s_0)\}$, called the \emph{osculating plane at $\bbr(s_0)$}. With respect to the coordinate $\bbr(s_0+h)-\bbr(s_0)$ centered at $\bbr(s_0)$, the trace of the curve in the osculating plane is given by 
@@ -1578,10 +1766,10 @@ At points where $\kappa(s)=0$, the normal vector (and therefore the osculating p
 \subsection{Arbitrary parametrizations}
 As noted previously, in practice it is often too difficult to parametrize a curve by arc length, and we are forced to work with other parametrizations.
 
-Let $\bbr:I \to \R^n$ be a curve with an arbitrary parametrization $t \in I$. One might guess that the curvature. Since the speed $||\bbr'(t)||$ is no longer constant, the acceleration vector $\bbr''(t)$ will have a nonzero component in the direction of the velocity vector $\bbr'(t)$. We might therefore be tempted to define the curvature function $\kappa(t)$ as the magnitude of the component of the acceleration perpendicular to $\bbr'(t)$; that is, to define $\kappa(t):=||\bbr_\perp''(t)||$, where
+Let $\bbr:I \to \R^n$ be a curve with an arbitrary parametrization $t \in I$. One might guess that the curvature. Since the speed $||\bv(t)||$ is no longer constant, the acceleration vector $\ba(t)$ will have a nonzero component in the direction of the velocity vector $\bv(t)$. We might therefore be tempted to define the curvature function $\kappa(t)$ as the magnitude of the component of the acceleration perpendicular to $\bv(t)$; that is, to define $\kappa(t):=||\ba_\perp(t)||$, where
 \begin{align*}
-	\bbr''_\perp(t)&=\bbr''(t)-\text{proj}_{\bbr'(t)}\bbr''(t) \\
-	&=\bbr''(t)-\frac{\bbr''(t)\cdot \bbr'(t)}{\bbr'(t)\cdot \bbr'(t)}\bbr'(t). 
+	\ba_\perp(t)&=\ba(t)-\text{proj}_{\bv(t)}\ba(t) \\
+	&=\ba(t)-\frac{\ba(t)\cdot \bv(t)}{\bv(t)\cdot \bv(t)}\bv(t). 
 \end{align*}
  However, this definition is problematic, as the next example shows.
 
@@ -1593,61 +1781,61 @@ Consider the parabola which is the graph of $y=x^2$. Describe the parabola as a 
 \end{align*}
 In the first parametrization, the origin is the point $\bbr(0)=(0,0)$. Since
 \begin{align*}
-	\bbr_1'(t)&=(1,2t), \\
-	\bbr_1''(t)&=(0,2),
+	\bv_1(t)&=(1,2t), \\
+	\ba_1(t)&=(0,2),
 \end{align*}
 \begin{align*}
-	\bbr''_{1 \ \perp}(0)&=(0,2)-\frac{(0,2)\cdot (1,0)}{(1,0)\cdot (1,0)}(1,0) \\
+	\ba_{1 \ \perp}(0)&=(0,2)-\frac{(0,2)\cdot (1,0)}{(1,0)\cdot (1,0)}(1,0) \\
 	&=(0,2),
 \end{align*}
-and therefore $\kappa(0)=||\bbr''_{1 \ \perp}(0)||=2$.
+and therefore $\kappa(0)=||\ba_{1 \ \perp}(0)||=2$.
 
 In the second parametrization, the origin is $\bbr_2(1)=(0,0)$. Since
 \begin{align*}
-	\bbr_2'(t)&=(2,4(2t-2))=(2,8t-8) \\
-	\bbr_2''(t)&=(0,8) \\
+	\bv_2(t)&=(2,4(2t-2))=(2,8t-8) \\
+	\ba_2(t)&=(0,8) \\
 \end{align*}
 we have
 \begin{align*}
-	\bbr_{2 \ \perp}''(1)&=(0,8)-\frac{(0,8)\cdot (2,0)}{(2,0) \cdot (2,0)}(2,0) \\
+	\ba_{2 \ \perp}(1)&=(0,8)-\frac{(0,8)\cdot (2,0)}{(2,0) \cdot (2,0)}(2,0) \\
 	&=(0,8)
 \end{align*}
 and therefore
 \begin{align*}
-	\kappa(1)=||\bbr_{2 \ \perp}''(1)||=8.
+	\kappa(1)=||\ba_{2 \ \perp}(1)||=8.
 \end{align*}
 Using our definition of $\kappa(t)$, we have just obtained \emph{different} values of the curvature at the origin of the parabola by using different parametrizations. The curvature should be a geometric property of the curve that does not depend on parametrization, so this definition turns out to be bad. 
 \end{example}
 
 To find a satisfactory definition of curvature, we need to study more carefully the dependence of the derivatives of $\bbr(t)$ on parametrization. Let $\bbr:I \to \R^n$ be a regular curve with an arbitrary paramtrization, and let $\tilde{\bbr}=\bbr \circ \varphi$ be a reparametrization of $\bbr$. Then, by the chain rule,
 \begin{align*}
-	\widetilde{\bbr}'(t)&=\bbr'(\varphi(t))\varphi'(t), \\
-	\widetilde{\bbr}''(t)&=\bbr''(\varphi(t))(\varphi'(t))^2+\bbr'(\varphi(t))\varphi''(t), \\
-\widetilde{\bbr}''_\perp(t)&=\bbr''_\perp(\varphi(t))(\varphi'(t))^2.
+	\widetilde{\bv}(t)&=\bv(\varphi(t))\varphi'(t), \\
+	\widetilde{\ba}(t)&=\ba(\varphi(t))(\varphi'(t))^2+\bv(\varphi(t))\varphi''(t), \\
+\widetilde{\ba}_\perp(t)&=\ba_\perp(\varphi(t))(\varphi'(t))^2.
 \end{align*}
 From these expressions, we see that the quantity
 \begin{align}\label{eq:curvature_arb_param}
-	\frac{||\bbr''_\perp(t)||}{||\bbr'(t)||^2}
+	\frac{||\ba_\perp(t)||}{||\bv(t)||^2}
 \end{align}
-is invariant under reparametrizations. Moreover, when $t=s$ is the arc length, $||\bbr'(s)||=1$ and $\bbr''(s)=\bbr''_\perp(s)$, so the expression in \eqref{eq:curvature_arb_param} agrees with our definition of the curvature function of a unit speed curve in Definition \ref{def:curvature}.
+is invariant under reparametrizations. Moreover, when $t=s$ is the arc length, $||\bv(s)||=1$ and $\ba(s)=\ba_\perp(s)$, so the expression in \eqref{eq:curvature_arb_param} agrees with our definition of the curvature function of a unit speed curve in Definition \ref{def:curvature}.
 
 Thus, we arrive at our definition of the curvature function in an arbitrary parametrization.
 \begin{defn}[Curvature in an arbitrary parametrization]
 	Let $\bbr:I \to \R^n$ be a regular curve with an arbitrary parametrization $t \in I$. We define the \emph{curvature function} $\kappa:I \to [0,\infty)$ for all $t \in I$ by
 	\begin{align}\label{eq:curvature_function_defi}
-		\kappa(t)=\frac{||\bbr''_\perp(t)||}{||\bbr'(t)||^2}.
+		\kappa(t)=\frac{||\ba_\perp(t)||}{||\bv(t)||^2}.
 	\end{align}
 \end{defn}
 Rewriting \eqref{eq:curvature_function_defi} as 
 \begin{align*}
-	||\bbr_\perp''(t)||=\kappa(t)||\bbr'(t)||^2,
+	||\ba_\perp(t)||=\kappa(t)||\bv(t)||^2,
 \end{align*}
 this expression says, in physical terms, that the magnitude of the centripetal acceleration at $t$ depends not only on the curvature, but also on the speed at $t$. This explains the results of Example \ref{ex:curvature_arb_bad_def}.
 
 \begin{defn}[Unit tangent and Unit normal in an arbitrary parametrization]
 	Let $\bbr:I \to \R^n$ be a regular curve with an arbitrary parametrization and let $t \in I$ be a point where $\kappa(t) \neq 0$. We define the \emph{unit tangent} and \emph{unit normal vectors} at $t$ to be 
 	\begin{align*}
-		\ut(t)=\frac{\bbr'(t)}{||\bbr'(t)||}, \hspace{0.5cm} \un(t)=\frac{\bbr''_\perp(t)}{||\bbr''_\perp(t)||}.
+		\ut(t)=\frac{\bv(t)}{||\bbr'(t)||}, \hspace{0.5cm} \un(t)=\frac{\ba_\perp(t)}{||\ba_\perp(t)||}.
 	\end{align*} 
 \end{defn}
 
@@ -1663,25 +1851,25 @@ Let $\bbr:I \to \R^n$ be a regular curve. For any point where $\kappa(t) \neq 0$
 \begin{proof}
 	By the quotient rule,
 	\begin{align*}
-		\ut'(t)=\frac{||\bbr'(t)||\bbr''(t)-\bbr'(t)||\bbr'(t)||'}{||\bbr'(t)||^2}.
+		\ut'(t)=\frac{||\bv(t)||\ba(t)-\bv(t)||\bv(t)||'}{||\bv(t)||^2}.
 	\end{align*}
 	Now
 	\begin{align*}
-		||\bbr'(t)||'&=\frac{d}{dt}(\bbr'(t) \cdot \bbr'(t))^{1/2} \\
-		&=\frac{1}{2}(\bbr'(t) \cdot \bbr'(t))^{-1/2}(2\bbr''(t) \cdot \bbr'(t)) \\
-		&=\frac{\bbr''(t) \cdot \bbr'(t)}{||\bbr'(t)||} \\
+		||\bv(t)||'&=\frac{d}{dt}(\bv(t) \cdot \bv(t))^{1/2} \\
+		&=\frac{1}{2}(\bv(t) \cdot \bv(t))^{-1/2}(2\ba(t) \cdot \bv(t)) \\
+		&=\frac{\ba(t) \cdot \bv(t)}{||\bv(t)||} \\
 	\end{align*}
 	so we have
 	\begin{align*}
-		\ut'(t)&=\frac{||\bbr'(t)||\bbr''(t)-\bbr'(t)||\bbr'(t)||'}{||\bbr'(t)||^2} \\
-		&=\frac{\bbr''(t)}{||\bbr'(t)||}-\frac{\bbr''(t) \cdot \bbr'(t)}{||\bbr'(t)||^3}\bbr'(t) \\
-		&=\frac{1}{||\bbr'(t)||}\left(\bbr''(t)-\frac{\bbr''(t) \cdot \bbr'(t)}{||\bbr'(t)||^2}\bbr'(t)\right) \\
-		&=\frac{\bbr''_\perp(t)}{||\bbr'(t)||}.
+		\ut'(t)&=\frac{||\bv(t)||\ba(t)-\bv(t)||\bv(t)||'}{||\bv(t)||^2} \\
+		&=\frac{\ba(t)}{||\bv(t)||}-\frac{\ba(t) \cdot \bv(t)}{||\bv(t)||^3}\bv(t) \\
+		&=\frac{1}{||\bv(t)||}\left(\ba(t)-\frac{\ba(t) \cdot \bv(t)}{||\bv(t)||^2}\bv(t)\right) \\
+		&=\frac{\ba_\perp(t)}{||\bv(t)||}.
 	\end{align*}
 	and therefore
 	\begin{align*}
-		\frac{\ut'(t)}{||\ut'(t)||}&=\frac{\frac{\bbr''_\perp(t)}{||\bbr'(t)||}}{\frac{||\bbr''_\perp(t)||}{||\bbr'(t)||}} \\
-		&=\frac{\bbr''_\perp(t)}{||\bbr''_\perp(t)||} \\
+		\frac{\ut'(t)}{||\ut'(t)||}&=\frac{\frac{\ba_\perp(t)}{||\bv(t)||}}{\frac{||\ba_\perp(t)||}{||\bv(t)||}} \\
+		&=\frac{\ba_\perp(t)}{||\ba_\perp(t)||} \\
 		&\equiv \un(t).
 	\end{align*}
 \end{proof}
@@ -3041,7 +3229,7 @@ Verify that the function $u(x,t)=\sin(x-vt)$ is a solution of the wave equation.
 
 
 
-\section{Differentiability}
+\subsection{Differentiability}
 If $f:U \subseteq \R$ is differentiable at $x_0 \in U$, then the limit
 \begin{align}\label{eq:old_derivative}
 	f'(x_0)=\lim_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h}
@@ -3233,7 +3421,7 @@ which shows that $\lim_{\bh \to \zv} (f(\bx+\bh)-f(\bx))=0$. Hence, $f$ is conti
 
 In the next section, we show how to compute the differential of a differentiable function.
 
-\subsection{Directional Derivatives}
+\subsubsection{Directional Derivatives}
 Our next task is to show how to compute $df_\bx(\bv)$ for any $\bv \in \R^n$. We now show that this computation can be reduced to the derivative of a single-variable function. 
 
 \begin{thm}[Computation of the differential]\label{thm:computation_of_the_differential}
@@ -3357,7 +3545,7 @@ where in the second line we have used the Cauchy-Schwarz inequality \footnote{Th
 
 
 
-\subsection{Explicit computation of the differential}
+\subsubsection{Explicit computation of the differential}
 To compute the differential explicitly, we observe that it obeys the usual rules of differentiation.
 
 \begin{thm}[Algebraic properties of the differential]\label{thm:algebraic_properties_of_the_differential}
@@ -3470,7 +3658,7 @@ If $U$ is connected, $f$ differentiable, and $df_p=0$ for all $p$, then $f$ is c
 
 \fixme{Does this fit in somewhere? If so, discuss and prove this.}
 
-\subsection{Implicit Differentiation}
+\subsubsection{Implicit Differentiation}
 Consider two real variables $x$ and $y$ related by an equation $F(x,y)=0$. We would like to say that this implicitly defines a function $y=f(x)$, and we would like to compute $\frac{dy}{dx}$. One generally cannot solve for $y$ explicitly, so it is important to know when such a function does indeed exist without having to solve for it.
 
 
@@ -3506,7 +3694,7 @@ Suppose $F(x,y)=x^2-xy+y^2-7$. Then $\partial F/\partial y=-x+2y$. By the Implic
 \end{align*}
 \end{example}
 
-\subsection{The Gradient}
+\subsubsection{The Gradient}
 Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. \fixme{Refer to my linear algebra notes.} Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
 \begin{align*}
 	[df_\bx]=\begin{bmatrix}
@@ -3575,7 +3763,7 @@ The gradient of a differentiable function has the following properties.
 		\item $\nabla (cf)=c \nabla f$, where $c \in \R$
 		\item $\nabla(f+g)=\nabla f + \nabla g$
 		\item $\nabla(f \cdot g)=(\nabla f)g+g\nabla f$
-		\item $nabla\left(\frac{f}{g}\right)=\frac{g \nabla f-f \nabla g}{g^2}$
+		\item $\nabla\left(\frac{f}{g}\right)=\frac{g \nabla f-f \nabla g}{g^2}$
 	\end{enumerate}
 \end{thm}
 
@@ -3602,11 +3790,139 @@ Let $f:I \subset \mathbb{R} \to \mathbb{R}$, $x_0 \in U$, and $(a,b)$ an \emph{o
 	\item \emph{local maximum} of $f$ on $(a,b)$ if $f(x_0) \geq f(x)$ for all $x \in (a,b)$
 	\item \emph{local minimum} of $f$ on $(a,b)$ if $f(x_0) \leq f(x)$ for all $x \in (a,b)$
 \end{itemize}
+If $(a,b)=U$, then f is the \emph{absolute maximum} or \emph{absolute minimum}, respectively. Note that every absolute max or min is, in particular, a local max or min, respectively.
+
 \begin{figure}[h]
 	\begin{center}
 \includegraphics[scale=0.5]{figures_mvc/1_v_extrema}
 \end{center}
+\caption{Function with various local maxima and minima.}
 \end{figure}
+
+\begin{example}
+The function $f(x)=\cos(x)$ has a local maximum when $x=2\pi n$, $n \in \Z$ and a local minimum when $x=2 \pi(n+\frac{1}{2})$, $n \in \Z$. Each of these points is also an absolute max and an absolute min, respectively.
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.3]{figures_mvc/cos}
+\end{center}
+\caption{The graph of $f(x)=\cos x$.}
+\end{figure}	
+\end{example}
+
+\begin{example}
+The function $f(x)=x^2$ has a local minimum at $x=0$, which is a global minimum. It has no local maxima.
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.9]{figures_mvc/parabola}
+\end{center}
+\caption{The graph of $f(x)=x^2$.}
+\end{figure}	
+\end{example}
+
+\begin{example}
+The function $f(x)=x^3$ has no local maxima or minima.
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.9]{figures_mvc/cubic}
+\end{center}
+\caption{The graph of $f(x)=x^3$.}
+\end{figure}	
+\end{example}
+
+We have just seen that some functions have extreme values while others do not. When will a function have extreme values?
+
+\begin{thm}[Extreme Value Theorem]
+	If $f$ is continuous on a \emph{closed} interval, then $f$ attains an absolute maximum $f(x_1)$ and an absolute minimum $f(x_2)$ for some $x_1,x_2 \in [a,b]$.	
+\end{thm}
+
+\begin{proof}
+	The proof rests on several results beyond the scope of the course, so we omit it.
+\end{proof}
+
+We illustrate the Extreme Value Theorem with the following examples
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/evt_ex}
+	\end{center}	
+	\caption{Examples of the Extreme Value Theorem}
+\end{figure}
+
+and non-examples
+
+\begin{figure}[h]
+	\begin{center}
+	\includegraphics[scale=0.5]{figures_mvc/evt_non_ex}
+	\end{center}	
+	\caption{The graph on the left is not continuous at every point on $[0,2]$. The graph on the right is defined on $[0,2)$, which is not closed.}
+\end{figure}
+The Extreme Value Theorem tells us that the extreme values of $f$ exist, but not how to find them. 
+
+Let's start by looking for local maxima and minima. The following theorem gives a necessary condition for a function to have a local max or min at $x_0 \in (a,b)$.
+
+\begin{thm}[Fermat's Theorem]\label{thm:fermats_theorem}
+Suppose $f$ is differentiable on an interval $(a,b)$. If $f$ has a local max or min at a point $x_0 \in (a,b)$, then $f'(x_0)=0$.
+\end{thm}
+
+\begin{proof}
+	Suppose $f$ has a local max at $x_0$. Then $f(x_0)\geq f(x)$ for all $x \in (a,b)$. Then for any number $h$ sufficiently close to zero, we have
+	\begin{align*}
+		f(x_0) \geq f(x_0+h)
+	\end{align*}
+	and therefore
+	\begin{align}\label{eq:fermat_inequality}
+		f(x_0+h)-f(x_0) \leq 0.
+	\end{align}
+	If $h>0$, dividing both sides by $h$ gives
+	\begin{align*}
+		\frac{f(x_0+h)-f(x_0)}{h}\leq 0.
+	\end{align*}
+	Taking the right-hand limit of both sides of this inequality \fixme{Justify this.}, we get
+	\begin{align*}
+		\lim_{h \to 0^+}\frac{f(x_0+h)-f(x_0)}{h}\leq 0 \leq \lim_{h \to 0^+}0=0.
+	\end{align*}
+	Since $f'(x_0)$ exists, we have
+	\begin{align*}
+		f'(x_0)=\lim_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h}=\lim_{h \to 0^+}\frac{f(x_0+h)-f(x_0)}{h},
+	\end{align*}
+	so $f'(x_0) \leq 0$.
+	
+	If $h<0$, the the direction of the inequality in \eqref{eq:fermat_inequality} is reversed when we divide by $h$:
+	\begin{align*}
+		\frac{f(x_0+h)-f(x_0)}{h} \geq 0 \hspace{0.5cm} (h<0).
+	\end{align*}
+	Taking the left-hand limit \fixme{Justify this.}, we have
+	\begin{align*}
+		f'(x_0)=\lim_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h}=\lim_{h \to 0^-}\frac{f(x_0+h)-f(x_0)}{h}\geq 0.
+	\end{align*}
+	Since $f'(x_0) \leq 0$ and $f'(x_0)\geq 0$, we must have $f'(x_0)=0$. The proof in the case of a local minimum is similar.
+\end{proof}
+
+While this condition is necessary, it is not sufficient.
+\begin{example}
+If $f(x)=x^3$ then $f'(x)=3x^2$ and therefore $f'(0)=0$, but $f$ has no local max or min at $0$ (since $x^3>0$ for $x>0$ and $x^3<0$ for $x<0$).	
+\end{example}
+
+Theorem \ref{thm:fermats_theorem} also assumed that $f$ was differentiable on $(a,b)$. Points on $(a,b)$ where $f$ is not differentiable may also be a local max or min.
+
+\begin{example}
+The function $f(x)=|x|$ has a local min at $x=0$. Since $f$ is not differentiable at $x=0$, we cannot use Theorem \ref{thm:fermats_theorem} to find this point.	
+\end{example}
+
+\begin{defn}[Critical point]
+A \emph{critical point} of a function $f$ is a number $x_0$ in the domain of $f$ such that either $f'(x_0)=0$ or $f'(x_0)$ does not exist.	
+\end{defn}
+
+\begin{example}
+Let $f(x)=x^{3/5}(4-x)$. Since
+\begin{align*}
+	f'(x)&=\frac{3}{5}x^{-2/5}(4-x)+x^{3/5}(-1) \\
+	&=\frac{12-8x}{5x^{2/5}}
+\end{align*}	
+we see that $x=0$ is a critical point (since $f'(0)$ does not exist) and $x=\frac{3}{2}$ is a critical point (since $f'(3/2)=0$). These are the only critical points of $f(x)$.
+\end{example}
+
+
 
 \appendix
 \section{Geometric Justification of the Arc Length Formula}\label{app:arc_length}
