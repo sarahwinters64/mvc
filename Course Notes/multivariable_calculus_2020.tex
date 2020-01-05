@@ -275,6 +275,7 @@
 \newcommand{\ut}{{\bf {\hat{t}}}}
 \newcommand{\un}{{\bf {\hat{n}}}}
 \newcommand{\ub}{{\bf {\hat{b}}}}
+\newcommand{\bj}{{\bf j}}
 
 
 \DeclareMathOperator{\ad}{ad}
@@ -745,7 +746,7 @@ Note that, in both of these examples, the function $f(x)$ is actually defined at
 \end{defn}
 We emphasize that Definition \ref{def:continuity} says that for $f$ to be continuous at $x_0$, the following three things must be true:
 \begin{enumerate}
-	\item $f$ is defined at $x_0$,
+	\item $f$ is defined at $x_0$ (i.e., $f(x_0)$ exists),
 	\item $\lim_{x \to x_0}$ exists,
 	\item $\lim_{x \to x_0}=f(x_0)$.
 \end{enumerate}
@@ -766,7 +767,7 @@ The limit laws in Theorem \ref{thm:limit_laws_for_single-variable_functions} imm
 \begin{itemize}
 	\item Polynomials are continuous on $\R$;
 	\item Rational functions are continuous wherever they are defined;
-	\item The absolute value function $f(x)=|x|$ is continuous;
+	\item The absolute value function $f(x)=|x|$ is continuous on $\R$;
 \end{itemize}
 Trig functions, and exponential and logarithmic functions are all also continuous wherever they are defined (though the proofs don't depend on Theorem \ref{thm:new_continuous_functions_from_old}).	
 \end{example}
@@ -1707,7 +1708,7 @@ Let $\bbr:I \to \R^n$ be a curve parametrized by arc length. Since $\bv(s)$ has 
 
 \begin{example}\label{ex:line_circle}
 \begin{enumerate}[(a)]
-	\item If $\bbr$ is a straight line, then $\bbr(s)=\bv(s_0)s+\bbr(s_0)$, where $\bbr(s_0), \bv(s_0)$ are constant vectors and we have $\kappa(s)=\ba(s)\equiv 0$. Conversely, if $\kappa=||\ba(s)||\equiv 0$, then integrating twice gives $\bbr(s)=\bv(s_0)s+\bbr(s_0)$, so the curve is a straight line.
+	\item If $\bbr$ is a straight line, then $\bbr(s)={\bf \hat{v}}(s_0)s+\bbr(s_0)$. We have $\kappa(s)=\ba(s)\equiv 0$. Conversely, if $\kappa=||\ba(s)||\equiv 0$, then integrating twice gives $\bbr(s)={\bf \hat{v}}(s_0)s+\bbr(s_0)$, so the curve is a straight line.
 
 \item If $\bbr(s)=(R\cos(\frac{s}{R}),R\sin(\frac{s}{R}))$ is a circle of radius $R$, then
 \begin{align*}
@@ -1878,7 +1879,7 @@ Let $\bbr:I \to \R^n$ be a regular curve. For any point where $\kappa(t) \neq 0$
 Our results so far about curves in $\R^n$ have been valid for all $n$. In this section, we consider the special case $n=2$. This is the only dimension in which the terms ``clockwise" and ``counterclockwise" make sense for describing how a regular curve is turning.
 
 \begin{prop}
-The map $R: \R^2 \to \R^2$ defined by $R(x,y)=(-y,x)$ is an isomorphism.
+The map $R: \R^2 \to \R^2$ defined by $R(x,y)=(-y,x)$ is an isomorphism. \footnote{Recall that an \emph{isomorphism} is a map between vector spaces which is a linear bijection. For more details, see Section 4.8 of my linear algebra notes.}
 \end{prop}
 
 \begin{proof}
@@ -1893,51 +1894,54 @@ The map $R: \R^2 \to \R^2$ defined by $R(x,y)=(-y,x)$ is an isomorphism.
 \end{proof}
 Geometrically, $R$ rotates each vector $(x,y) \in \R^2$ counterclockwise by $90^\circ$. One can immediately check that $R^2(\bv)\equiv R(R(\bv))=-\bv$ for all $\bv \in \R^2$.
 
-Suppose now that $\bbr:I \to \R^2$ is a unit-speed curve. Then, for all $s \in I$, by Lemma \ref{lem:some_dot_products} $\bbr''(t)$ and $R(\bbr'(t))$ are both orthogonal to $\bbr'(t)$, so they must be parallel. We can therefore write
+Suppose now that $\bbr:I \to \R^2$ is a unit-speed curve. Then, for all $s \in I$, by Lemma \ref{lem:some_dot_products} $\ba(t)$ and $R(\bv(t))$ are both orthogonal to $\bv(t)$, so they must be parallel. We can therefore write
 \begin{align}\label{eq:acc_signed_curvature}
-	\bbr''(t)=\kappa_s(t) R(\bbr'(t))
+	\ba(t)=\kappa_s(t) R(\bv(t))
 \end{align}
 for some scalar $\kappa_s(t) \in \R$. We call $\kappa_s:I \to \R$ the \emph{signed curvature function}. It is negative if the curve is turning clockwise at $t$, and positive if it is turning counterclockwise, as shown below:
+
+\newpage
+
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[scale=0.5]{figures_mvc/signed_curvature_fcn}
 	\end{center}
-	\caption{Signed curvature is positive when the path is turning counterclockwise, and negative when turning clockwise.}
+	\caption{The signed curvature is positive when the path is turning counterclockwise, and negative when turning clockwise.}
 \end{figure}
-This measurement is called ``signed curvature" because its sign is interpreted as above, while its absolute value equals the curvature:
+This measurement is called the ``signed curvature" because its sign is interpreted as above, while its absolute value equals the curvature:
 
 \begin{prop}
-Let $\bbr:I \to \R^2$ be a regular unit-speed plane curve. Then $|\kappa_s(t)|=\kappa(t)$.	
+Let $\bbr:I \to \R^2$ be a regular unit-speed plane curve. Then $|\kappa_s(s)|=\kappa(s)$.	
 \end{prop}
 
 \begin{proof}
-	Since $||R(\bbr'(t))||=||\bbr'(t)||=1$,
+	Since $||R(\bv(s))||=||\bv(s)||=1$,
 	\begin{align*}
-		\kappa(t)=||\bbr''(t)||=||\kappa_s(t)R(\bbr'(t))||=|\kappa_s(t)| \ ||R(\bbr'(t))||=|\kappa_s(t)|.
+		\kappa(s)=||\ba(s)||=||\kappa_s(s)R(\bv(s))||=|\kappa_s(s)| \ ||R(\bv(s))||=|\kappa_s(s)|.
 	\end{align*}
 \end{proof}
 
-Taking the dot product of \eqref{eq:acc_signed_curvature} with $R(\bbr'(t))$, we obtain
+Taking the dot product of \eqref{eq:acc_signed_curvature} with $R(\bv(t))$, we obtain
 \begin{align*}
-	\bbr''(t) \cdot R(\bbr'(t))&=\kappa_s(t) R(\bbr'(t)) \cdot R(\bbr'(t))\\
-	&=\kappa_s(t) \bbr'(t) \cdot \bbr'(t) \\
-	&=\kappa_s(t) ||\bbr'(t)||^2 \\
-	&=\kappa_s(t),
+	\ba(s) \cdot R(\bv(s))&=\kappa_s(s) R(\bv(s)) \cdot R(\bv(s))\\
+	&=\kappa_s(s) \bv(s) \cdot \bv(s) \\
+	&=\kappa_s(s) ||\bv(s)||^2 \\
+	&=\kappa_s(s),
 \end{align*}
-so we can write $\kappa_s(t)$ as 
+so we can write $\kappa_s(s)$ as 
 \begin{align}
-	\kappa_s(t)&=\bbr''(t) \cdot R(\bbr'(t)).
+	\kappa_s(s)&=\ba(s) \cdot R(\bv(s)).
 \end{align}
 
 \begin{defn}
 Let $\bbr:I \to \R^2$ be a regular plane curve with an arbitrary parametrization. Then we define, for all $t \in I$,
 \begin{align}\label{eq:signed_curvature_arb}
-	\kappa_s(t)=\frac{\bbr''(t) \cdot R(\frac{\bbr'(t)}{||\bbr'(t)||})}{||\bbr'(t)||^2}=\frac{\bbr''(t) \cdot R(\bbr'(t))}{||\bbr'(t)||^3}.
+	\kappa_s(t)=\frac{\ba(t) \cdot R(\frac{\bv(t)}{||\bv(t)||})}{||\bv(t)||^2}=\frac{\ba(t) \cdot R(\bv(t))}{||\bv(t)||^3}.
 \end{align}	
 \end{defn}
-Note that this definition of $\kappa_s(t)$ agrees with our previous definition when $t=s$ is the arc length. This could also be verified by comparing the definition $\kappa(t)=\frac{||\bbr''_\perp(t)||}{||\bbr'(t)||^2}$ to the above formula for $\kappa_s(t)$, noticing that
+Note that this definition of $\kappa_s(t)$ agrees with our previous definition when $t=s$ is the arc length. This could also be verified by comparing the definition $\kappa(t)=\frac{||\ba_\perp(t)||}{||\bv(t)||^2}$ to the above formula for $\kappa_s(t)$, noticing that \fixme{Elaborate.}
 \begin{align*}
-	\bbr''(t) \cdot R(\frac{\bbr'(t)}{||\bbr'(t)||})=\pm ||\bbr''_\perp(t)||.
+	\ba(t) \cdot R(\frac{\bv(t)}{||\bv(t)||})=\pm ||\ba_\perp(t)||.
 \end{align*}
 
 \begin{prop}\label{prop:signed_curvature_inv}
@@ -1947,19 +1951,18 @@ The formula in \eqref{eq:signed_curvature_arb} is invariant under orientation-pr
 \begin{proof}
 	Let $\widetilde{\bbr}=\bbr \circ \varphi$ be an orientation-preserving reparametrization of $\bbr$ (i.e., $\varphi'(t)>0$ for all $t \in I$). Then
 	\begin{align*}
-		\widetilde{\bbr}'(t)&=\bbr'(\varphi(t))\varphi'(t), \\
-		R(\widetilde{\bbr}(t))&=\varphi'(t)R(\bbr'(\varphi(t))), \\
-		\widetilde{\bbr}''(t)&=\bbr''(\varphi(t))(\varphi'(t))^2+\bbr'(\varphi(t))\varphi''(t)
+		\widetilde{\bv}(t)&=\bv(\varphi(t))\varphi'(t), \\
+		R(\widetilde{\bv}(t))&=\varphi'(t)R(\bv(\varphi(t))), \\
+		\widetilde{\ba}(t)&=\ba(\varphi(t))(\varphi'(t))^2+\bv(\varphi(t))\varphi''(t)
 	\end{align*}
 	and
 	\begin{align*}
-		\frac{R(\widetilde{\bbr}'(t))\cdot \widetilde{\bbr}''(t) }{||\widetilde{\bbr}'(t)||^3}&=\frac{\varphi'(t)R(\widetilde{\bbr}'(t)) \cdot \widetilde{\bbr}''(t)(\varphi'(t))^2+\varphi'(t)R(\widetilde{\bbr}'(t)) \cdot \bbr'(\varphi(t))\varphi''(t)}{(\varphi'(t))^3||\widetilde{\bbr}'(t)||^3} \\
-		&=\frac{\varphi'(t)R(\widetilde{\bbr}'(t)) \cdot \widetilde{\bbr}''(t)(\varphi'(t))^2+0}{(\varphi'(t))^3||\widetilde{\bbr}'(t)||^3} \\
-		&=\frac{\varphi'(t)R(\widetilde{\bbr}'(t)) \cdot \widetilde{\bbr}''(t)(\varphi'(t))^2}{(\varphi'(t))^3||\widetilde{\bbr}'(t)||^3} \\
-		&=\frac{(\varphi'(t))^3R(\widetilde{\bbr}'(t)) \cdot \widetilde{\bbr}''(t)}{(\varphi'(t))^3||\widetilde{\bbr}'(t)||^3} \\
-		&=\frac{R(\widetilde{\bbr}'(t)) \cdot \widetilde{\bbr}''(t)}{||\widetilde{\bbr}'(t)||^3}. 
+		\frac{R(\widetilde{\bv}(t))\cdot \widetilde{\ba}(t) }{||\widetilde{\bv}(t)||^3}&=\frac{\varphi'(t)R(\widetilde{\bv}(t)) \cdot \widetilde{\ba}(t)(\varphi'(t))^2+\varphi'(t)R(\widetilde{\bv}(t)) \cdot \bv(\varphi(t))\varphi''(t)}{|\varphi'(t)|^3||\widetilde{\bv}(t)||^3} \\
+		&=\frac{\varphi'(t)R(\widetilde{\bv}(t)) \cdot \widetilde{\ba}(t)(\varphi'(t))^2+0}{(\varphi'(t))^3||\widetilde{\bv}(t)||^3} \\
+		&=\frac{\varphi'(t)R(\widetilde{\bv}(t)) \cdot \widetilde{\ba}(t)(\varphi'(t))^2}{(\varphi'(t))^3||\widetilde{\bv}(t)||^3} \\
+		&=\frac{(\varphi'(t))^3R(\widetilde{\bv}(t)) \cdot \widetilde{\ba}(t)}{(\varphi'(t))^3||\widetilde{\bv}(t)||^3} \\
+		&=\frac{R(\widetilde{\bv}(t)) \cdot \widetilde{\ba}(t)}{||\widetilde{\bv}(t)||^3}. 
 	\end{align*}
-	\fixme{Where did we use $\varphi'(t)>0$?}
 \end{proof}
 
 It follows from Proposition \ref{prop:signed_curvature_inv} that $|\kappa_s(t)|=\kappa(t)$ even for non-unit-speed curves.
@@ -1979,12 +1982,12 @@ It follows from Proposition \ref{prop:signed_curvature_inv} that $|\kappa_s(t)|=
 Consider the plane curve $\bbr(t)=(t,\ln(\cos t))$, $-\frac{\pi}{2}<t<\frac{\pi}{2}$.
 Then
 \begin{align*}
-	\bbr'(t)&=(1,-\tan t), \\
-	\bbr''(t)&=(0,-\sec^2 t). \\
+	\bv(t)&=(1,-\tan t), \\
+	\ba(t)&=(0,-\sec^2 t). \\
 \end{align*}	
 The unit tangent vector is
 \begin{align*}
-	\ut(t)&=\frac{\bbr'(t)}{||\bbr'(t)||} \\
+	\ut(t)&=\frac{\bv(t)}{||\bv(t)||} \\
 	&=\frac{1}{\sec t}(1,-\tan t) \\
 	&=(\cos t, -\sin t).
 \end{align*}
@@ -2007,13 +2010,14 @@ since $\sec t>0$ for all $-\frac{\pi}{2}<t<\frac{\pi}{2}$.
 \end{example}
 
 \subsection{Local-global connection}
+\fixme{Decide what to do with this section.}
 Recall the following theorem about triangles:
 
 \begin{thm}[Angle-Sum Theorem]
 	The sum of the interior angles of a triangle is $180^\circ$.
 \end{thm}
 
-This theorem shows how local data (the angle measures) influences the global shape by giving the condition for the three angles to fit together to form a triangle. In this section, we will prove a theorem for plane curves of a similar flavor.
+This theorem shows how local data (the angle measures) influences the global shape by giving the condition for the three angles to fit together to form a triangle. In this section, we will prove a theorem of a similar flavor for plane curves.
 
 \begin{defn}[Simple closed curve]
 	A \emph{closed curve} is a regular curve of the form $\bbr:[a,b] \to \R^n$ such that $\bbr(a)=\bbr(b)$ and all derivatives match:
@@ -2146,8 +2150,8 @@ Let $\bbr:[a,b] \to \R^2$ be a regular (not necessarily unit-speed) closed plane
 \subsection{Space Curves}
 In this section, we will consider regular curves $\bbr:I \to \R^3$ where $\kappa(t) \neq 0$ for all $t \in I$. In the previous section, we found that the unit tangent vector, unit normal vector, and curvature function are given by
 	\begin{align*}
-		\ut(t)&=\frac{\bbr'(t)}{||\bbr'(t)||}, \hspace{0.5cm} \un(t)=\frac{\ut'(t)}{||\ut'(t)||}, \\
-		\kappa(t)&=\frac{||\bbr''_\perp(t)||}{||\bbr'(t)||^2}.
+		\ut(t)&=\frac{\bv(t)}{||\bv(t)||}, \hspace{0.5cm} \un(t)=\frac{\ut'(t)}{||\ut'(t)||}, \\
+		\kappa(t)&=\frac{||\ba_\perp(t)||}{||\bv(t)||^2}.
 	\end{align*} 
 
 In $\R^3$, we can use the cross-product to simplify the computation of the curvature function.
@@ -2155,14 +2159,14 @@ In $\R^3$, we can use the cross-product to simplify the computation of the curva
 \begin{prop}
 	Let $\bbr:I \to \R^3$ be a regular space curve. Then for all $t \in I$,
 	\begin{align*}
-		\kappa(t)=\frac{||\bbr'(t) \times \bbr''(t)||}{||\bbr'(t)||^3}.
+		\kappa(t)=\frac{||\bv(t) \times \ba(t)||}{||\bv(t)||^3}.
 	\end{align*}
 \end{prop}
 
 \begin{proof}
-	Since $||\bbr''_{\perp}(t)||=||\bbr''(t)||\sin \theta$ (where $\theta$ is the angle between $\bbr'(t)$ and $\bbr''(t)$), we have
+	Since $||\ba_{\perp}(t)||=||\ba(t)||\sin \theta$ (where $\theta$ is the angle between $\bv(t)$ and $\ba(t)$), we have
 	\begin{align*}
-		\kappa(t)=\frac{||\bbr''_{\perp}(t)||}{||\bbr'(t)||^2}=\frac{||\bbr''(t)||\sin \theta}{||\bbr'(t)||^2}=\frac{||\bbr'(t)|| \ ||\bbr''(t)||}{||\bbr'(t)||^3}=\frac{||\bbr'(t) \times \bbr''(t)||}{||\bbr'(t)||^3}.
+		\kappa(t)=\frac{||\ba_{\perp}(t)||}{||\bv(t)||^2}=\frac{||\ba(t)||\sin \theta}{||\bv(t)||^2}=\frac{||\bv(t)|| \ ||\ba(t)||}{||\bv(t)||^3}=\frac{||\bv(t) \times \ba(t)||}{||\bv(t)||^3}.
 	\end{align*}
 \end{proof}
  
@@ -2214,9 +2218,10 @@ We can also use the cross product to add one more vector to the set $\{\ut(t),\u
 \end{defn}
  
 \begin{prop}
-The set $\{\ut(t),\un(t),\ub(t)\}$ is an orthonormal basis for $\R^3$.	
+The set $\{\ut(t),\un(t),\ub(t)\}$ is an orthonormal basis for $\R^3$. \footnote{Recall that an \emph{orthonormal basis} for a vector space $V$ is a basis $B$ for $V$ such that all vectors in $B$ have unit length and all pairs of distinct vectors in $B$ are orthogonal. For more details, see Section 5.4 of my linear algebra notes.}	
+
 \begin{proof}
-	We have already seen that $\{\ut(t),\un(t)\}$ is an orthonormal set. It follows immediately from the properties of the cross product \fixme{Reference this in my linear algebra notes.} that $\ub(t)$ is orthogonal to both $\ut(t)$ and $\un(t)$. Also
+	We have already seen that $\{\ut(t),\un(t)\}$ is an orthonormal set. It follows immediately from a property of the cross product that $\ub(t)$ is orthogonal to both $\ut(t)$ and $\un(t)$. \footnote{See Proposition 3.24(a) in my linear algebra notes.} Also
 	\begin{align*}
 		||\ub(t)||&=||\ut(t)|| \ ||\un(t)|| \ |\sin\left(\frac{\pi}{2}\right)|=1 \cdot 1 \cdot 1 = 1.
 	\end{align*}
@@ -2230,7 +2235,7 @@ A basis for $\R^n$ together with a choice of origin is called a \emph{frame}. Th
 
 The curvature function of the curve $\bbr$ gave us a quantitative measure of to what extent the trace of the curve fails to be a straight line in a neighborhood of the point $\bbr(t)$. We now want a quantitative measure of the extent to which the curve fails to lie in the osculating plane in a neighborhood of $\bbr(t)$. Similar to the definition of curvature, a good candidate for such a function is $||\bb'(t)||$, which gives the rate at which the osculating plane is tilting at $\bbr(t)$. However, we will instead find it more useful to define a \emph{signed} measurement of the rate at which the osculating plane is tilting.
 
-First, note that $\ub'(t)$ is parallel to $\un(t)$. To see this, note that note that since $\{\ut(t),\un(t),\ub(t)\}$ is an orthonormal basis, we can expand $\ub'$ in this basis as \fixme{Reference this in my linear algebra notes.}
+First, note that $\ub'(t)$ is parallel to $\un(t)$. To see this, note that note that since $\{\ut(t),\un(t),\ub(t)\}$ is an orthonormal basis, we can expand $\ub'$ in this basis as \footnote{See Equation 5.9 in my linear algebra notes.}
 \begin{align*}
 	\ub'(t)=(\ub'(t)\cdot \ut(t))\ut(t)+(\ub'(t)\cdot \un(t))\un(t)+(\ub'(t)\cdot \ub(t))\ub(t).
 \end{align*}
@@ -2261,8 +2266,8 @@ The minus sign in the definition above is conventional, and many textbooks defin
 	
 	To see that this formula is independent of parametrization, let us first consider the transformation of the vectors in the Frenet frame change under a reparametrization:
 	\begin{align*}
-		\widetilde{\ut}(t)&=\frac{\widetilde{\bbr'}(t)}{||\widetilde{\bbr'}(t)||}=\frac{\varphi'(t)\bbr'(\varphi(t))}{||\varphi'(t)\bbr'(\varphi(t))||}=\frac{\varphi'(t)\bbr'(\varphi(t))}{|\varphi'(t)|\||\bbr'(\varphi(t))||}=\text{sgn}(\varphi'(t))\ut(\varphi(t)) \\
-		\widetilde{\un}(t)&=\frac{\widetilde{\bbr''}_\perp(t)}{||\widetilde{\bbr''}_\perp(t)||}=\frac{(\varphi'(t))^2\bbr''_\perp(\varphi(t))}{||(\varphi'(t))^2\bbr''_\perp(\varphi(t))||}=\frac{(\varphi'(t))^2\bbr''_\perp(\varphi(t))}{(\varphi'(t))^2||\bbr''_\perp(\varphi(t))||}=\un(\varphi(t)) \\
+		\widetilde{\ut}(t)&=\frac{\widetilde{\bv}(t)}{||\widetilde{\bv}(t)||}=\frac{\varphi'(t)\bv(\varphi(t))}{||\varphi'(t)\bv(\varphi(t))||}=\frac{\varphi'(t)\bv(\varphi(t))}{|\varphi'(t)|\||\bv(\varphi(t))||}=\text{sgn}(\varphi'(t))\ut(\varphi(t)) \\
+		\widetilde{\un}(t)&=\frac{\widetilde{\ba}_\perp(t)}{||\widetilde{\ba}_\perp(t)||}=\frac{(\varphi'(t))^2\ba_\perp(\varphi(t))}{||(\varphi'(t))^2\ba_\perp(\varphi(t))||}=\frac{(\varphi'(t))^2\ba_\perp(\varphi(t))}{(\varphi'(t))^2||\ba_\perp(\varphi(t))||}=\un(\varphi(t)) \\
 		\widetilde{\ub}(t)&=\widetilde{\ut}(t) \times \widetilde{\un}(t)=\text{sgn}(\varphi'(t))\ub(\varphi(t))
 	\end{align*}
 If $\varphi$ is an orientation-preserving reparametrization ($\varphi'(t)>0$), then $\widetilde{\ut}=\ut \circ \varphi$, $\widetilde{\un}=\un \circ \varphi$, $\widetilde{\ub}=\ub \circ \varphi$, and 
@@ -2291,14 +2296,14 @@ Let $\bbr:I \to \mathbb{R}^3$ be a regular space curve with $\kappa(t) \neq 0$ f
 	Let $\bw=(a,b,c)$ be a fixed vector in $\R^3$ to serve as the normal vector of our plane. First, suppose that the trace of $\bbr$ is constrained to the plane $$P=\{\bx \in \mathbb{R}^3:\bx \cdot \bw=d\}.$$
 	 Since the trace of $\bbr$ lies in the plane $P$, $\bbr(t)\cdot \bw=d$ is a constant function of $t$, so its derivatives vanish:
 	\begin{align*}
-		0&=(\bbr(t)\cdot \bw)'=\bbr'(t)\cdot \bw \\
-		0&=(\bbr(t)\cdot \bw)''=\bbr''(t)\cdot \bw.
+		0&=(\bbr(t)\cdot \bw)'=\bv(t)\cdot \bw \\
+		0&=(\bbr(t)\cdot \bw)''=\ba(t)\cdot \bw.
 	\end{align*}
 	From this it follows that $\ut(t)$ and $\un(t)$ are both orthogonal to $\bw$, so their cross product must be parallel to $\bw$: $\ub(t)=\pm\frac{\bw}{||\bw||}$. Since $\ub(t)$ is a continuous function of $t$, this sign cannot change abruptly, so it must be constant on $I$. Thus, $\ub$ is constant, so $\tau(t)=0$ for all $t \in I$.
 	
 	Conversely, suppose that $\tau(t)=0$ for all $t \in I$. This implies that $\ub'(t)=0$ for all $t \in I$, so $\ub(t)=\bw$ (a constant vector) for all $t \in I$. Notice that
 	\begin{align*}
-		(\bw \cdot \bbr(t))'=\bw\cdot \bbr'(t)=||\bbr'(t)||(\ub(t) \cdot \ut(t))=0,
+		(\bw \cdot \bbr(t))'=\bw\cdot \bv(t)=||\bv(t)||(\ub(t) \cdot \ut(t))=0,
 	\end{align*} 
 	since $\ub(t)$ and $\ut(t)$ are orthogonal. This $\bw \cdot \bbr(t)=d$ is a constant function. In other words, the trace of $\bbr$ lies in the plane 
 	\begin{align*}
@@ -2335,13 +2340,15 @@ We can now describe more precisely how torsion measures the failure of the trace
 
 The third-order Taylor polynomial for the displacement vector ${\bf D}(h)\equiv \bbr(s+h)-\bbr(s)$ at $s \in I$ is given by
 \begin{align*}
-    {\bf D}(h)\equiv \bbr(s+h)-\bbr(s)=h\bbr'(s)+\frac{h^2}{2}\bbr''(s)+\frac{h^3}{6}\bbr'''(s)
+    {\bf D}(h)\equiv \bbr(s+h)-\bbr(s)=h\bv(s)+\frac{h^2}{2}\ba(s)+\frac{h^3}{6}\bj(s),
 \end{align*}
+where, in physics, $\bj(s) \equiv \bbr'''(s)$ is called the \emph{jerk}, since a curve with $\bbr'''(s) \neq 0$ experinces jerky motion.
+
 Using Proposition \ref{prop:frenet_equations},
 \begin{align*}
-    \bbr'(s)&=\ut(s) \\
-    \bbr''(s)&=\kappa(s) \un(s) \\
-    \bbr'''(s)&=(\kappa(s) \un(s))'=\kappa'(s)\un(s) + \kappa(s) \un'(s) \\
+    \bv(s)&=\ut(s) \\
+    \ba(s)&=\kappa(s) \un(s) \\
+    \bj(s)&=(\kappa(s) \un(s))'=\kappa'(s)\un(s) + \kappa(s) \un'(s) \\
     &= \kappa'(s)\un(s) + \kappa(s)(-\kappa(s)\ut(s)+\tau(s) \ub(s)) \\
     &=\kappa'(s)\un(s)-(\kappa(s))^2\ut(s) +\kappa(s) \tau(s) \ub(s) 
 \end{align*}
@@ -2350,11 +2357,11 @@ so the third-order Taylor polynomial of ${\bf D}(h)$ is
     {\bf D}(h)&=h\ut(s)+\kappa(s) \frac{h^2}{2}\un(s)+\frac{h^3}{6}(\kappa'(s)\un(s)-(\kappa(s))^2\ut(s) +\kappa(s) \tau(s) \ub(s)) \\
     &=(h-(\kappa(s))^2\frac{h^3}{6})\ut(s)+(\kappa(s)\frac{h^2}{2}+\kappa'(s)\frac{h^3}{6})\un(s)+\kappa(s)\tau(s)\frac{h^3}{6}\ub(s)
 \end{align*}
-If we choose a coordinate system centered at $\bbr(s)$ where $\ut(s)=(1,0,0),  \un(s)=(0,1,0),$ and $\ub(s)=(0,0,1)$, then  we have 
+If we choose a coordinate system centered at $\bbr(s)$ where $\ut(s)=(1,0,0),  \un(s)=(0,1,0)$, and $\ub(s)=(0,0,1)$, then we have 
 \begin{align*}
 	[{\bf D}(h)]_B=(x(h),y(h),z(h))=\left(h-(\kappa(s))^2\frac{h^3}{6},\kappa(s)\frac{h^2}{2}+\kappa'(s)\frac{h^3}{6},\kappa(s)\tau(s)\frac{h^3}{6}\right).
 \end{align*} 
-This representation is called the \emph{local canonical form} of $\bbr$, in a neighborhood of $s$. Below, we plot the projections of the trace of $\bbr$, for small $h$, in the $tn$, $tb$, and $nb$ planes. The $tn$ plane is the osculating plane, while the $tb$ and $nb$ planes are called the \emph{rectifying plane} and \emph{normal plane}, respectively.
+This representation is called the \emph{local canonical form of $\bbr$ in a neighborhood of $s$}. Below, we plot the projections of the trace of $\bbr$, for small $h$, in the $tn$, $tb$, and $nb$ planes. The $tn$ plane is the osculating plane, while the $tb$ and $nb$ planes are called the \emph{rectifying plane} and \emph{normal plane}, respectively.
 
 \begin{figure}[h]
 	\begin{center}
@@ -2401,9 +2408,8 @@ To avoid taking the derivative of the cross product, here is another formula for
 \begin{prop}
 	Let $\bbr:I \to \mathbb{R}^3$ be a regular space curve with an arbitrary parametrization. Then for every $t \in I$ with $\kappa(t) \neq 0$, the torsion is given by
 	\begin{align}\label{eq:torsion_jerk}
-		\tau(t)=\frac{\bbr'(t) \times \bbr''(t)\cdot \bbr'''(t)}{||\bbr'(t) \times \bbr''(t)||^2}.
+		\tau(t)=\frac{\bv(t) \times \ba(t)\cdot \bj(t)}{||\bv(t) \times \ba(t)||^2}.
 	\end{align}
-In physical terms, the vector $\bbr'''(t)$ (the rate of change of acceleration) is called the \emph{jerk} at time $t$.
 \end{prop}
 
 \begin{proof}
@@ -2422,32 +2428,32 @@ in agreement with Definition \ref{def:torsion_for_unit_speed_curve}.
 
 To check that this formula is independent of parametrization, as we computed previously, if $\widetilde{\bbr}=\bbr \circ \varphi$, then
 \begin{align*}
-	\widetilde{\bbr}'(t)&=\varphi'(t)\bbr'(\varphi(t)) \\
-	\widetilde{\bbr}''(t)&=\varphi''(t)\bbr'(\varphi(t))+(\varphi'(t))^2\bbr''(\varphi(t)) \\
-	\widetilde{\bbr}'''(t)&=\varphi'''(t)\bbr'(\varphi(t))+3\varphi'(t)\varphi''(t)\bbr''(\varphi(t))+(\varphi'(t))^3\bbr'''(\varphi(t)).
+	\widetilde{\bv}(t)&=\varphi'(t)\bv(\varphi(t)) \\
+	\widetilde{\ba}(t)&=\varphi''(t)\bv(\varphi(t))+(\varphi'(t))^2\ba(\varphi(t)) \\
+	\widetilde{\bj}(t)&=\varphi'''(t)\bv(\varphi(t))+3\varphi'(t)\varphi''(t)\ba(\varphi(t))+(\varphi'(t))^3\bj(\varphi(t)).
 \end{align*}
 Then 
 \begin{align*}
-	\widetilde{\bbr}'(t)\times \widetilde{\bbr}''(t)&=\varphi'(t)\bbr'(\varphi(t))  \times [\varphi''(t)\bbr'(\varphi(t))+(\varphi'(t))^2\bbr''(\varphi(t))] \\
-	&=\varphi'(t)\varphi''(t)\underbrace{\bbr'(\varphi(t))\times \bbr'(\varphi(t))}_{=0}+(\varphi'(t))^3(\bbr'(\varphi(t)) \times \bbr''(\varphi(t))) \\
-	&=(\varphi'(t))^3(\bbr'(\varphi(t)) \times \bbr''(\varphi(t))) \\
+	\widetilde{\bv}(t)\times \widetilde{\ba}(t)&=\varphi'(t)\bv(\varphi(t))  \times [\varphi''(t)\bv(\varphi(t))+(\varphi'(t))^2\ba(\varphi(t))] \\
+	&=\varphi'(t)\varphi''(t)\underbrace{\bv(\varphi(t))\times \bv(\varphi(t))}_{=0}+(\varphi'(t))^3(\bv(\varphi(t)) \times \ba(\varphi(t))) \\
+	&=(\varphi'(t))^3(\bv(\varphi(t)) \times \ba(\varphi(t))) \\
 \end{align*}
 and therefore
 \begin{align*}
-	\widetilde{\tau}(t)&=\frac{(\varphi'(t))^3 (\bbr'(\varphi(t)) \times \bbr''(\varphi(t)))\cdot (\varphi'''(t)\bbr'(\varphi(t))+3\varphi'(t)\varphi''(t)\bbr''(\varphi(t))+(\varphi'(t))^3\bbr'''(\varphi(t)))}{(\varphi'(t))^6||\bbr'(\varphi(t)) \times \bbr''(\varphi(t))||^2}
+	\widetilde{\tau}(t)&=\frac{(\varphi'(t))^3 (\bv(\varphi(t)) \times \ba(\varphi(t)))\cdot (\varphi'''(t)\bv(\varphi(t))+3\varphi'(t)\varphi''(t)\ba(\varphi(t))+(\varphi'(t))^3\bj(\varphi(t)))}{(\varphi'(t))^6||\bbr'(\varphi(t)) \times \ba(\varphi(t))||^2}
 \end{align*}
-Using the cyclic property of the triple product \fixme{Refer to my Linear Algebra notes.}, we have 
+Using the cyclic property of the triple product \footnote{See Proposition 3.33 in my linear algebra notes}, we have 
 \begin{align*}
-	\bbr'(t) \times \bbr''(t) \cdot \bbr'(t)=\underbrace{\bbr'(t) \times \bbr'(t)}_{=0} \cdot \bbr''(t)  =0
+	\bv(t) \times \ba(t) \cdot \bv(t)=\underbrace{\bv(t) \times \bv(t)}_{=0} \cdot \ba(t)  =0
 \end{align*}
 and 
 \begin{align*}
-	\bbr'(t) \times \bbr''(t) \cdot \bbr''(t) =\underbrace{\bbr''(t) \times \bbr''(t)}_{=0} \cdot \bbr'(t) =0
+	\bv(t) \times \ba(t) \cdot \ba(t) =\underbrace{\ba(t) \times \ba(t)}_{=0} \cdot \bv(t) =0
 \end{align*}
 so the formula becomes
 \begin{align*}
-	\widetilde{\tau}(t)&=\frac{(\varphi'(t))^6 (\bbr'(\varphi(t)) \times \bbr''(\varphi(t)))\cdot \bbr'''(\varphi(t)))}{(\varphi'(t))^6||\bbr'(\varphi(t)) \times \bbr''(\varphi(t))||^2}\\
-	&=\frac{(\bbr'(\varphi(t)) \times \bbr''(\varphi(t)))\cdot \bbr'''(\varphi(t)))}{||\bbr'(\varphi(t)) \times \bbr''(\varphi(t))||^2} \\
+	\widetilde{\tau}(t)&=\frac{(\varphi'(t))^6 (\bv(\varphi(t)) \times \ba(\varphi(t)))\cdot \bj(\varphi(t)))}{(\varphi'(t))^6||\bv(\varphi(t)) \times \ba(\varphi(t))||^2}\\
+	&=\frac{(\bv(\varphi(t)) \times \ba(\varphi(t)))\cdot \bj(\varphi(t)))}{||\bv(\varphi(t)) \times \ba(\varphi(t))||^2} \\
 	&=\tau(\varphi(t)) \\
 \end{align*}
 which shows $\tau$ is invariant under reparametrizations.
@@ -2486,7 +2492,7 @@ Physically, we can think of a curve in $\R^3$ a being obtained from a straight l
 	\end{enumerate}
 \end{thm}
 
-The complete proof of this theorem involves the theorem of existence and uniqueness of solutions of ordinary differential equations. However, we can prove the construction of the plane curve in part (1).
+We will prove the first of these. The complete proof of part (b) involves the theorem of existence and uniqueness of solutions of ordinary differential equations, which we have not covered. 
 
 \begin{proof}
 	(1) Choose any $t_0 \in I$. For this, define the angle function $\Theta:I \to \R$ by
@@ -2519,7 +2525,6 @@ The complete proof of this theorem involves the theorem of existence and uniquen
 
 
 \subsection{Summary of formulas}
-Let $\bv\equiv \bbr'$, $\ba\equiv \bbr''$, ${\bf j}\equiv \bbr'''$ and drop the dependence on the parameter $t$.
 \subsubsection{Plane Curves}
 \begin{enumerate}
 	\item Unit tangent and unit normal vectors 
