@@ -206,7 +206,7 @@
 \newcommand{\half}{\ensuremath{\frac{1}{2}}}
 \newcommand{\qtr}{\ensuremath{\frac{1}{4}}}
 \newcommand{\bq}{{\mathbf q}}
-\newcommand{\N}{{\mathcal N}}
+\newcommand{\N}{{\mathbb N}}
 \newcommand{\F}{{\mathcal F}}
 \newcommand{\HH}{{\mathcal H}}
 \newcommand{\LL}{{\mathcal L}}
@@ -427,7 +427,7 @@ What is the domain $I$ of the function?
 	\end{align*}
 	The domains of $r_1(t)$ and $r_2(t)$ are given, respectively, by
 	\begin{align*}
-		I_1=(-\infty,2) \cup (2,\infty), \hspace{0.5cm} I_2=\R.
+		I_1=(-\infty,-2) \cup (-2,\infty), \hspace{0.5cm} I_2=\R.
 	\end{align*}
 	To find the domain of $r_3(t)$, we need to solve the inequality
 	\begin{align*}
@@ -4016,7 +4016,262 @@ and therefore
 \end{pf}
 \newpage 
 
-\section{Topology of $\R^n$}\label{app:topology}
+\section{Least Upper Bounds}
+At some point in your study of calculus, you may have wondered why we use $\R$ to do calculus. Is there something stopping us from, say, doing calculus over $\Q$? There certainly nothing stopping us from defining limits, continuity, derivatives, etc. for functions $f:\Q \to \Q$ exactly as we have done for real functions. \fixme{Add example.} However, the reason we are more interested in calculus over $\R$ rather than $\Q$ is that various important theorems become \emph{false} over $\Q$. For instance, the intermediate value theorem and the extreme value theorem are false over $\Q$. \fixme{Add examples.} Since these theorems are used to prove even more important theorems - such as the Mean Value Theorem and the Fundamental Theorem of Calculus, calculus is pretty boring over $\Q$, and is not capable of applications in physics, etc.
+
+The reason why these theorems are false over $\Q$ is that $\R$ has an important property which is not shared by $\Q$, even though $\R$ and $\Q$ have the same \emph{algebraic} properties. Already, $\Q$ is insufficient to solve basic equations; for instance, the equation $x^2=2$ has no solution in $\Q$ (since $\sqrt{2}$ is not rational). It turns out there are infinitely many \emph{irrational} numbers, so one may visualize the set of rational numbers as lying along a number line which has certain ``gaps". The real number system is constructed to \emph{extend} $\Q$; that is, $\R$ contains (an isomorphic copy of) $\Q$ and has exactly the same algebraic properties of $\Q$, but in such a way the \emph{real} number line has no gaps. 
+
+We need to formalize this property, which $\Q$ fails to have, that ensures a set has no gaps when the real numbers are ordered and placed along a number line. Since this property should only depend on the set in question, this seems immediately puzzling: if $\Q$ is all we have, then how are we to state that there is a ``gap" at $\sqrt{2}$ without making reference to $\sqrt{2}$?! The following example sheds some light on the situation:
+\begin{example}\label{ex:q_no_lub_property}
+Let $A=\{p \in \Q: p^2<2\}$ and $B=\{p \in \Q:p^2>2\}$. We will show that $A$ contains no largest element and $B$ contains no smallest element. Explicitly, for every $p \in A$ we can find a $q \in A$ such that $p<q$, and for every $p\in B$ we can find $q \in B$ such that $q<p$.
+
+To do this, associate with each rational number $p>0$ the number
+\begin{align}\label{eq:a_no_lub}
+	q=p-\frac{p^2-p}{p+2}=\frac{2p+2}{p+2}.
+\end{align}	
+Then
+\begin{align}\label{eq:g_no_glb}
+	q^2-2=\frac{2(p^2-2)}{(p+2)^2}.
+\end{align}
+If $p \in A$ then $p^2-2<0$,  \eqref{eq:a_no_lub} shows that $q>p$, and \eqref{eq:g_no_glb} shows that $q^2<2$. Thus, $q \in A$.
+
+If $p \in B$ then $p^2-2>0$, \eqref{eq:a_no_lub} shows that $0<q<p$, and \eqref{eq:g_no_glb} shows that $q^2>2$. Thus, $q \in B$.
+\end{example}
+Thus, elements in $A$ get closer and closer to $\sqrt{2}$ without ever reaching it, and elements of $B$ get closer and closer to $\sqrt{2}$ without ever reaching it.
+
+To discuss the issue, we make the following definitions.
+
+\begin{defn}[Upper and lower bounds]\hspace{15cm}
+	\begin{enumerate}
+		\item A set $A$ of numbers is \emph{bounded above} if there is a real number $x$ (which need not be in $A$) such that $a \leq x$ for every $a \in A$. The number $x$ is called an \emph{upper bound} for $A$.
+		\item A set $A$ of numbers is \emph{bounded below} if there is a real number $x$ (which need not be in $A$) such that $x \geq a$ for every $a \in A$. The number $x$ is called a \emph{lower bound} for $A$.
+	\end{enumerate}  
+\end{defn}
+
+\begin{example}\label{ex:exs_lub}
+	\begin{enumerate}[(a)]
+		\item Looking back at Example \ref{ex:q_no_lub_property}, we see that every element of $B$ is an upper bound of $A$, and every element of $A$ is a lower bound of $B$.
+		\item The entire collections $\R$, $\Q$, and $\N$ are examples of sets which are \emph{not} bounded above.
+		\item The set $S=\{x \in \R:0 \leq x <1\}$ is bounded above.
+	\end{enumerate}
+\end{example}
+
+The set $S$ in part (c) of Example \ref{ex:exs_lub} has many upper bounds; any real $x\geq 1$ will do. However, the upper bound 1 is the \emph{least} upper bound, since if $\epsilon$ is any positive number, the interval $(1-\epsilon,1)$ is nonempty, and thus contains a number smaller than 1, which is therefore not an upper bound of $S$. We now define this formally.
+
+\begin{defn}[Least upper bound]\label{def:lub}
+	Let $A$ be a set of numbers which is bounded above. A number $x$ is a \emph{least upper bound} of $A$ if
+	\begin{enumerate}[(1)]
+		\item $x$ is an upper bound of $A$, and
+		\item if $y$ is an upper bound of $A$, then $x \leq y$.
+	\end{enumerate}
+\end{defn}
+Thus, unlike the set $S$ of Example \ref{ex:exs_lub}(c), the set $A$ of Example \ref{ex:q_no_lub_property} is bounded above, but has no least upper bound, since $B$ has no smallest element.
+
+\begin{prop}
+Let $A$ be a set of numbers. If $A$ has a least upper bound, then it is unique.	
+\end{prop}
+
+\begin{proof}
+	Suppose $x$ and $y$ are both least upper bounds of $A$. Then
+	\begin{align*}
+		x \leq y, & \hspace{0.5cm} \text{ since $y$ is an upper bound, and $x$ is a least upper bound, and} \\
+		y \leq x, & \hspace{0.5cm} \text{ since $x$ is an upper bound, and $y$ is a least upper bound}. 
+	\end{align*}
+	Thus, $x=y$.
+\end{proof}
+Therefore, we speak of \emph{the} least upper bound of $A$, when it exists. The least upper bound is also called the \emph{supremum} of $A$, and is denoted $\sup A$ (pronounced ``soup $A$"). 
+
+There is an analogous definition for sets bounded below.
+
+\begin{defn}[Greatest lower bound]
+	Let $A$ be a set of numbers. A number $x$ is the \emph{greatest lower bound} of $A$ if
+	\begin{enumerate}[(1)]
+		\item $x$ is a lower bound of $A$, and
+		\item if $y$ is a lower bound of $A$, then $x \geq y$.
+	\end{enumerate}
+	The greatest lower bound of $A$ is also called the \emph{infimum} of $A$, denoted $\inf A$.
+	\end{defn}
+
+We have seen that some sets have a least upper bound while others do not (similarly for greatest lower bounds). We may then ask, ``Which sets have a least upper bound?".
+
+\begin{defn}[The least upper bound property]\label{def:lub_proper}
+	A set $S$ of numbers is said to have the \emph{least upper bound property} if every nonempty subset of $S$ which is bounded above has a least upper bound. \footnote{Consider $\emptyset \subseteq S$. Then by Definition \ref{def:lub},  every element of $S$ is an upper bound for $\emptyset$, since $\emptyset$ has no elements (i.e., it is \emph{vacuously true} that, given any $x \in S$, $y \leq x$ for all $y \in \emptyset$). Since any number $x \in S$ is an upper bound for $\emptyset$, if $S$ is infinite then there is no least upper bound for $\emptyset$.}
+\end{defn}
+
+Example \ref{ex:q_no_lub_property} shows that $\Q$ does not have the least upper bound property.
+
+\begin{thm}[$\R$ has the least upper bound property.]\label{thm:lub_property}
+	$\R$ has the least upper bound property.
+\end{thm}
+
+Theorem \ref{thm:lub_property} is proved by constructing $\R$ from $\Q$. This is straightfoward, but rather long, so we do not go through this here. It is a fact that $\R$ is the \emph{unique} extension of $\Q$ which has the least upper bound property (up to isomorphism). Going forward, we will simply assume this to be true and we will continue to use real numbers the way you are accustomed to using them. In the following, we will illustrate the least upper bound property and some consequences which are important for the study of calculus.
+
+It follows from Theorem \label{thm:lub_property} that $\R$ also has the \emph{greatest lower bound property} (defined analogously to Definition \ref{def:lub_proper}).
+
+\begin{thm}
+The fact that $\R$ has the least upper bound property implies that $\R$ also has the greatest lower bound property.
+\end{thm}
+
+\begin{proof}
+	Let $B$ be a nonempty subset of $\R$ which is bounded below. Let $L$ be the set of all lower bounds of $B$, which is nonempty by assumption. Then, every $y \in L$ has the property that $y \leq x$ for all $x \in B$. This says that every $x \in B$ is an \emph{upper bound} of $L$. Since $L$ is a nonempty subset of $\R$ which is bounded above, it has a least upper bound by Theorem \ref{thm:lub_property}. Let $\alpha=\sup L$. We claim that $\alpha=\inf B$. 
+	
+	Suppose $y<\alpha$. Then $y$ is not an upper bound of $L$, hence $y \notin B$. This shows that $\alpha \leq x$ for every $x \in B$. Thus, $\alpha \in L$.
+	
+	If $\alpha<y$, then $y \notin L$, since $\alpha$ is an upper bound of $L$.
+	
+	We have shown that $\alpha \in L$ but $y \notin L$ if $y>\alpha$. In other words, $\alpha$ is a lower bound of $B$, but $y$ is not if $y>\alpha$. Thus, $\alpha=\inf B$.
+	
+	We have shown that every nonempty subset of $\R$ which is bounded below has a greatest lower bound. Thus, $\R$ satisfies the greatest lower bound property.
+	
+\end{proof}
+
+
+
+\begin{thm}[$\N \subseteq \R$ is not bounded above.]\label{thm:n_not_bdd_above}
+	$\N \subseteq \R$ is not bounded above.
+\end{thm}
+
+\begin{proof}
+	(By contradiction.) Suppose $\N \subseteq \R$ is bounded above. Since $\N \neq \emptyset$, there exists a least upper bound for $\N$. Let $\alpha\equiv \sup \N$. Then
+	\begin{align*}
+		\alpha \geq n \hspace{0.5cm} \text{ for all $n \in \N$}.
+	\end{align*}
+	Consequently,
+	\begin{align*}
+		\alpha \geq n+1 \hspace{0.5cm} \text{ for all $n \in \N$},
+	\end{align*}
+	since $n+1 \in \N$ if $n \in \N$. But then
+	\begin{align*}
+		\alpha-1 \geq n \hspace{0.5cm} \text{ for all $n \in \N$},
+	\end{align*}
+	which says that $\alpha-1$ is also an upper bound for $\N$. Since $\alpha-1<\alpha$, this contradicts the fact that $\alpha$ is the \emph{least} upper bound for $\N$.
+\end{proof}
+
+\begin{cor}\label{cor:arch}
+	For every $\epsilon>0$ there exists $n \in \N$ such that $\frac{1}{n}<\epsilon$.
+\end{cor}
+
+\begin{proof}
+	(By contradiction.) Suppose otherwise. Then $\frac{1}{n}\geq \epsilon$ for all $n \in \N$, and therefore $n \leq \frac{1}{\epsilon}$ for all $n \in \N$, which says that $\frac{1}{\epsilon}$ is an upper bound for $\N$, contradicting Theorem \ref{thm:n_not_bdd_above}.
+\end{proof}
+
+\begin{example}
+Consider the set $A=\left\{\frac{1}{n}:n \in \N\right\}$. Then $\sup A=1$, since $\frac{1}{n}\leq 1$ for all $n \in \N$ and if $y<1$, then $\frac{1}{1}=1>1$, so $y$ is not an upper bound. Note that $\sup A \in A$.
+
+	We have $\inf A=0$. Since $\frac{1}{n}>0$ for all $n \in \N$, $0$ is a lower bound of $A$. If $\epsilon>0$, then by Cor.\ref{cor:arch} there exists $n \in \N$ such that $\frac{1}{n}<\epsilon$, which shows that no positive number $\epsilon$ is a lower bound for $A$. Note that $\inf A=0 \notin A$.
+\end{example}
+
+\begin{prop}\label{prop:negative_stuff}
+\begin{enumerate}[(a)]
+	\item Suppose $A \neq \emptyset$ is a subset of $\R$ that is bounded below. Let $-A=\{-x:x \in A\}$. Then $-A \neq \emptyset$ is bounded above, and $\inf A=-\sup(-A)$.
+	\item If $A \neq \emptyset$ is bounded below, then the set $B$ of all lower bounds of $A$ is nonempty, bounded above, and $\sup B=\inf A$.
+\end{enumerate}	
+\end{prop}
+
+\begin{proof}
+	$\clubsuit$ Finish...
+\end{proof}
+
+\begin{exercise}
+Find $\sup A$ and $\inf A$ (if they exist) for each the following subset of $\R$:
+$A=\left\{\frac{1}{n}:n \in \Z \text{ and } n \neq 0\right\}$.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	By exactly the same argument as above, $\sup A=1$.
+	The fact that $\inf A=-1$ follows from Proposition \ref{prop:negative_stuff}. \fixme{Finish.}
+\end{solution}
+}
+
+\subsection{Proof of the Intermediate Value Theorem}
+\begin{lem}
+Suppose $f$ is continuous at $x_0$, and $f(x_0)>0$. Then $f(x)>0$ throughout a neighborhood of $x_0$. Similarly, if $f(x_0)<0$, then $f(x)<0$ throughout a neighborhood of $x_0$.	
+\end{lem}
+
+\begin{proof}
+	Suppose $f(x_0)>0$. Since $f$ is continuous at $x_0$, there exists $\delta>0$ such that 
+	\begin{align*}
+		|x-x_0|<\delta \implies |f(x)-f(x_0)|<f(x_0).
+	\end{align*}
+	Since $-f(x_0)<0$, if $f(x)\leq 0$ for some $x$ in $(x_0-\delta,x_0+\delta)$, then $|f(x)-f(x_0)|\geq f(x_0)$, which is a contradiction. Thus, $f(x)>0$ throughout this entire neighborhood.
+	
+	If $f(x_0)<0$, then by continuity of $f$ at $x_0$ there exists $\delta>0$ such that 
+	\begin{align*}
+		|x-x_0|<\delta \implies |f(x)-f(x_0)|<-f(x_0).
+	\end{align*}
+	Since $-f(x_0)>0$, if $f(x) \geq 0$ for some $x$ in $(x-\delta,x+\delta)$, then $|f(x)-f(x_0)|\geq -f(x_0)$, which is a contradiction. Thus, we must have $f(x)<0$ throughout this neighborhood.
+\end{proof}
+
+\begin{thm}[Intermediate Value Theorem]
+	If $f$ is continuous on $[a,b]$ and $f(a)<c<f(b)$, then there is some $x$ in $[a,b]$ such that $f(x)=c$.
+\end{thm}
+
+\begin{proof}
+	It suffices to prove that if $f$ is continuous on $[a,b]$ and $f(a)<0<f(b)$, then there is some $x$ in $[a,b]$ such that $f(x)=0$. The theorem then follows immediately by taking $g=f-c$, since  then $g$ is continuous, and $g(a)<0<g(b)$, so there is some $x$ in $[a,b]$ such that $g(x)=f(x)-c=0$, i.e., such that $f(x)=c$.
+	
+	Let $A$ be the set
+	\begin{align*}
+		A=\{x:a \leq x \leq b \text{ and } f(x)<0 \text{ on } [a,x]\}.
+	\end{align*}
+	Since $f(a)<0$ by assumption, $a \in A$ so $A \neq \emptyset$. It follows from continuity of $f$ that there exists $\delta>0$ such that $f(x)<0$ for all $a \leq x <a+\delta$. From the definition of $A$, $b$ is an upper bound of $A$. Since $f(b)>0$, again by continuity of $f$ there exists $\delta>0$ such that $f(x)>0$ for all $b-\delta < x \leq b$. Since none of these points are in $A$, it follows that all of these points are upper bounds for $A$.
+	
+	Since $A$ is a nonempty bounded subset of real numbers, $A$ has a least upper bound, $\alpha$. From the observations above, we must have $a< \alpha<b$. We now show that $f(\alpha)=0$ by eliminating the possibilities $f(\alpha)<0$ and $f(\alpha)>0$.
+	
+	Suppose first that $f(\alpha)<0$. By continuity of $f$, there exists $\delta>0$ such that $f(x)<0$ for all $\alpha-\delta<x<\alpha+\delta$. Since $\alpha$ is the least upper bound for $A$, $\alpha-\delta$ is not an upper bound for $A$, so there exists some number $x_0$ in $A$ such that $\alpha-\delta<x_0<\alpha$. Since $x_0 \in A$, $f$ is negative on the whole interval $[a,x_0]$. But for any number $x_1$ between $\alpha$ and $\alpha+\delta$, then $f$ is also negative on the whole interval $[x_0,x_1]$ (since $f(x)<0$ for all $x \in \alpha-\delta<x<\alpha+\delta$). Therefore $f$ is negative on the interval $[a,x_1]$, so $x_1$ is in $A$. But this contradicts the fact that $\alpha$ is an upper bound for $A$, so our original assumption that $f(\alpha)<0$ must be false.
+	
+	Suppose, on the other hand, that $f(\alpha)>0$. Then by continuity of $f$ there exists $\delta>0$ such that $f(x)>0$ for all $\alpha-\delta<x<\alpha+\delta$. By the same reason as above, there exists an $x_0$ in $A$ satisfying $\alpha-\delta<x_0<\alpha$, but this means that $f$ is negative on $[a,x_0]$, which is impossible since $f(x_0)>0$. Thus the assumption that $f(\alpha)>0$ also leads to a contradiction, leaving $f(\alpha)=0$ as the only possible alternative. This completes the proof of the Intermediate Value Theorem.
+\end{proof}
+
+\subsection{Proof of the Extreme Value Theorem}
+\begin{lem}
+If $f$ is continuous at $x_0$, then $f$ is bounded above on an neighborhood of $x_0$.	
+\end{lem}
+
+\begin{proof}
+	Since $f$ is continuous at $x_0$, there exists $\delta>0$ such that
+	\begin{align*}
+		|x-x_0|<\delta \implies |f(x)-f(x_0)|<1.
+	\end{align*}
+	Thus, for all $x$ in $(x_0-\delta,x_0+\delta)$, $f(x)-f(x_0)<1$ and therefore $f(x)<f(x_0)+1$.
+\end{proof}
+
+\begin{thm}
+If $f$ is continuous on $[a,b]$, then $f$ is bounded above on $[a,b]$.	
+\end{thm}
+
+\begin{proof}
+	Let
+	\begin{align*}
+		A=\{x:a \leq x \leq b \text{ and } f \text{ is bounded above on } [a,x]\}.
+	\end{align*}
+	Since $a \in A$ (trivially), $A \neq \emptyset$. By definition of $A$, $A$ is bounded above by $b$. Since $A$ is a nonempty subset of real numbers which is bounded above, it has a least upper bound, $\alpha$. Note first that $\alpha \neq a$. Suppose $\alpha=a$. Since $f$ is continuous at $a$, by the lemma there exists $\delta>0$ such that $f$ is bounded on $[a,a+\delta)$. For any $a < x_1 \leq a+\delta$, $f$ is bounded on the interval $[a,x_1]$, so $x_1 \in A$, contradicting the fact that $\alpha$ is an upper bound for $A$.
+	
+We will now show that $\alpha=b$. Suppose $\alpha<b$. Since $f$ is continuous on $[a,b]$, by the previous lemma exists $\delta>0$ such that $f$ is bounded on $(\alpha-\delta,\alpha+\delta)$ (since $a<\alpha<b$, this interval is contained in $[a,b]$). Since $\alpha=\sup A$, $\alpha-\delta$ is not an upper bound for $A$, so there exists $x_0$ in $A$ such that $\alpha-\delta<x_0<\alpha$. Since $x_0 \in A$, $f$ is bounded on $[a,x_0]$. Since $f$ is bounded on all of $(\alpha-\delta,\alpha+\delta)$, for any $\alpha<x_1<\alpha+\delta$, $f$ is bounded on $[x_0,x_1]$ and therefore is bounded on $[a,x_1]$, so $\alpha<x_1 \in A$,  contradicting the fact that $\alpha$ is an upper bound for $A$. Thus, we must have $\alpha=b$.
+
+All that remains is to prove that $b \in A$. Since $f$ is continuous at $b$, by the lemma there exists $\delta>0$ such that $f$ is bounded on $(b-\delta,b]$. Since $b=\sup A$, $b-\delta$ is not an upper bound for $A$ so there exists $x_0 \in A$ such that $b-\delta<x_0<b$. Thus $f$ is bounded on $[a,x_0]$ and also on $[x_0,b]$, so $f$ is bounded on $[a,b]$.
+\end{proof}
+
+\begin{thm}
+	If $f$ is continuous on $[a,b]$, then there is a number $y$ in $[a,b]$ such that $f(y) \geq f(x)$ for all $x$ in $[a,b]$.
+\end{thm}
+
+\begin{proof}
+	We have just proved in the previous theorem that $f$ is bounded on $[a,b]$. Since $f([a,b]) \neq \emptyset$, it has a least upper bound, $\alpha$. Since $\alpha \geq f(x)$ for all $x \in [a,b]$ it suffices to show that $\alpha=f(y)$ for some $y$ in $[a,b]$.
+	
+	Suppose instead that $\alpha \neq f(y)$ for all $y \in [a,b]$ Then the function $g$ defined by
+	\begin{align*}
+		g(x)=\frac{1}{\alpha-f(x)}, \hspace{0.5cm} x \in [a,b]
+	\end{align*}
+	is continuous on $[a,b]$, since the denominator is never zero. On the other hand, since $\alpha$ is the least upper bound of $f([a,b])$, this means that for every $\epsilon>0$, there exists $x \in [a,b]$ such that $\alpha-\epsilon<f(x)$ or that $\alpha-f(x)<\epsilon$, which implies that for every $\epsilon>0$ there is an $x \in [a,b]$ such that $g(x)>\frac{1}{\epsilon}$. But this means that $g$ is not bounded on $[a,b]$, contradicting the previous theorem.
+\end{proof}
+
+\section{Topology of $\R^n$}
+
+
+
+
+\section{OLD Topology of $\R^n$}\label{app:topology}
 A \emph{topology} is a structure on a set which allows us to define the notion of continuity. In this appendix, we collect some basic definitions used throughout the rest of the notes.
 \subsection{Normed Linear Spaces}
 \begin{defn}[Normed linear space]
