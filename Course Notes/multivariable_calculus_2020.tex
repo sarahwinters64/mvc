@@ -575,11 +575,11 @@ and
 \begin{align*}
 	|f(x)-L'|<\frac{\epsilon}{2} \hspace{0.5cm} \text{ if } \hspace{0.5cm} |x-x_0|<\delta_2.
 \end{align*} 
-Then by taking $|x-x_0|<\delta=\min\{\delta_1,\delta_2\}$, we have
+Let $\delta\equiv \min\{\delta_1,\delta_2\}$ be the \emph{minimum} of $\delta_1$ and $\delta_2$. \footnote{Note that $\delta>0$, since the minimum of two positive numbers is positive.} Then if we take $|x-x_0|<\delta$, \emph{both} of these inequalities hold at the same time, so we have
 \begin{align*}
 	|L-L'|=|L-L'+f(x)-f(x)|=|L-f(x)+f(x)-L|\leq |f(x)-L|+|f(x)-L'|<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon.
 \end{align*}
-For this to be true for all $\epsilon>0$, we must have $L-L'=0$, or $L=L'$.
+For this to be true for all $\epsilon>0$ (that is, $|L-L'|$ is smaller than \emph{any} positive number), we must have $L-L'=0$, or $L=L'$.
 \end{pf}
 
 
@@ -1441,16 +1441,21 @@ A reparametrization $\widetilde{\bbr}=\bbr \circ \varphi$ is said to be \emph{or
 Each subset is called an \emph{oriented curve}. A choice of orientation of a curve $[\bbr]$ is a choice of one of these two subsets.
 \end{defn}
 
-\begin{example}
+\begin{exercise}
 Consider again three parametrized curves from Example \ref{ex:unit_circ} and :
 \begin{enumerate}[(1)]
 	\item $\bbr_1(t)=(\cos t, \sin t), 0 \leq t \leq 2\pi$, 
 	\item $\bbr_2(t)=(-\sin 2t, \cos 2t), 0 \leq t \leq 2\pi$,
 	\item $\bbr_3(t)=(\cos(-t), \sin(-t)), 0 \leq t \leq 2\pi$.
 \end{enumerate}	
-We have seen that $\bbr_2=\bbr_1 \circ \varphi$ where $\varphi(t)=2t+\frac{\pi}{2}$. Since $\varphi'(t)=2>0$, these two curves have the same orientation (i.e., they are representatives of the same oriented curve). We also saw that $\bbr_3=\bbr_1 \circ \psi$ where $\psi(t)=2\pi-t$. Since $\psi'(t)=-1<0$, these two curves have opposite orientations.
-\end{example}
-\fixme{Add exercises.}
+Which of these curves have the same orientation?
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	We have seen that $\bbr_2=\bbr_1 \circ \varphi$ where $\varphi(t)=2t+\frac{\pi}{2}$. Since $\varphi'(t)=2>0$, these two curves have the same orientation (i.e., they are representatives of the same oriented curve). We also saw that $\bbr_3=\bbr_1 \circ \psi$ where $\psi(t)=2\pi-t$. Since $\psi'(t)=-1<0$, these two curves have opposite orientation.
+\end{solution}
+}
 
 \subsection{Arc Length}
 We have just seen that a given curve can be parametrized in many ways. Out of these many options, there is a natural choice for the parameter $t$, namely, the \emph{arc length} measured from any point $\bbr_0$ on the curve. This is because the arc length is an \emph{invariant} of the curve, which is independent of the parametrization. For a curve given by the graph of a function $y=f(x)$, the arc length from $a$ to $b$ is given by
