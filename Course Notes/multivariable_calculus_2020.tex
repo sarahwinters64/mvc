@@ -1821,11 +1821,11 @@ Let $\bbr(s)$ be a unit-speed curve. Consider a point $s_0$ where $\kappa(s_0) \
 	\bbr(s_0+h)&=\bbr(s_0)+h\bv(s_0)+\frac{h^2}{2}\ba(s_0)+\mathbf{E}(h),  \\
 	\bbr(s_0+h)&=\bbr(s_0)+h\mathbf{\hat{t}}+\frac{h^2}{2}\kappa(s_0)\un(s_0)+\mathbf{E}(h),  \\
 \end{align*}
-where $\lim_{h \to 0}\frac{||\mathbf{E}(h)||}{h^2}=0$. Thus, sufficiently near $\bbr(s_0)$, the trace of a curve lies in the plane spanned by $\{\ut(s_0),\un(s_0)\}$, called the \emph{osculating plane at $\bbr(s_0)$}. With respect to the coordinate $\bbr(s_0+h)-\bbr(s_0)$ centered at $\bbr(s_0)$, the trace of the curve in the osculating plane is given by 
+where $\lim_{h \to 0}\frac{||\mathbf{E}(h)||}{h^2}=0$. Thus, sufficiently near $\bbr(s_0)$ (where we can ignore the error term ${\bf E}(h)$), the trace of a curve lies in the plane spanned by $\{\ut(s_0),\un(s_0)\}$, called the \emph{osculating plane at $\bbr(s_0)$}. With respect to the coordinate ${\bf D}(h)\equiv \bbr(s_0+h)-\bbr(s_0)$ centered at $\bbr(s_0)$, the trace of the curve in the osculating plane is given by 
 \begin{align*}
-	\{(h,\frac{\kappa(s_0)}{2}h^2):-\epsilon < h < \epsilon\} \subseteq \R^2,
+	{\bf D}(I)=\{(h,\frac{\kappa(s_0)}{2}h^2):-\epsilon < h < \epsilon\} \subseteq \text{Span}\{\ut(s_0),\un(s_0)\} \cong \R^2,
 \end{align*}
-which is a parabola $y=\frac{\kappa(s_0)}{2}x^2$ whose vertex is at the origin and whose concavity is $y''=\kappa(s_0)$.
+which is the parabola $y=\frac{\kappa(s_0)}{2}x^2$ whose vertex is at the origin and whose concavity is $y''=\kappa(s_0)$.
 
 \begin{figure}[h]
 	\begin{center}
@@ -1847,7 +1847,7 @@ The trace of the curve in the neighborhood of a point $s_0$ where $\kappa(s_0) \
 	\end{center}
 	\caption{The osculating circle for a plane curve (left) and a space curve (right).}
 \end{figure}
-Thus, we may also interpret the curvature as the radius of the osculating circle. \fixme{Add Exercise 1.42?}
+Thus, we may also interpret the curvature as the radius of the osculating circle. 
 
 Note that $s \mapsto \epsilon(s)$ is itself a parametrized curve (not necessarily regular) on any neighborhood of $s_0$ along which $\kappa(s_0) \neq 0$. This curve is called the \emph{evolute} of $\bbr$.
 
