@@ -1661,13 +1661,34 @@ We have $\bv(s)=\frac{1}{\sqrt{2}}(-\sin(\frac{s}{\sqrt{2}}), \cos(\frac{s}{\sqr
 	&=1.
 \end{align*}	
 \end{solution}
+}
+
+\begin{exercise}
+Parametrize each of the following curves by arc length (measured from $t=0$) and verify that $||\bv(s)||=1$ for all $s$.
+\begin{enumerate}[(1)]
+	\item Helix: $\bbr(t)=(a\cos t, a \sin t, bt), \ -\infty<t<\infty, \ a,b \text{ fixed positive real numbers.}$
+	\item Logarithmic Spiral: $\bbr(t)=(e^t \cos t, e^t \sin t), \ -\infty<t<\infty.$
+\end{enumerate}	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+\begin{enumerate}[(1)]
+	\item $\bbr(s)=(a \cos(\frac{s}{\sqrt{a^2+b^2}}),a \sin(\frac{s}{\sqrt{a^2+b^2}}),\frac{bs}{\sqrt{a^2+b^2}})$
+	\item $\bbr(s)=((\frac{s}{\sqrt{2}}+1)\cos(\ln(\frac{s}{\sqrt{2}}+1)),(\frac{s}{\sqrt{2}}+1)\sin(\ln(\frac{s}{\sqrt{2}}+1)))$
+\end{enumerate}	
+\end{solution}
 
 }
+
+\newpage 
+
 \subsection{Curvature}
-In this section, we will quantify how sharply a curve ``bends" at each point. This will lead us to define a function called the \emph{curvature function} for the curve.
+In this section, we seek a quantity which measures how sharply a curve ``bends" at each point. We call this number the \emph{curvature} at that point. Since the curvature can vary from point to point along the curve, we seek a \emph{curvature function} $\kappa:I \to \R^{\geq 0}$ which gives the curvature at each point along the curve. By definition, the curvature function should be identically zero for a straight line. Our curvature function should also be constant for a circle (due to the rotational symmetry), and inversely proportional to the radius (since a circle of smaller radius is ``more curved" than a circle of a larger radius). We choose units such that $\kappa(s)=\frac{1}{R}$ for a circle of radius $R$.
 
 \subsection{Curvature of a unit speed curve}
-We begin by considering curves parametrized by arc length. To define the curvature function, we will need the following lemma.
+We begin by considering curves parametrized by arc length. The following lemma will be extremely useful for unit-speed curves.
+
 \begin{lem}\label{lem:some_dot_products}
 Let $\bbr_1, \bbr_2:I \to \R^n$ be a pair of curves.
 \begin{enumerate}[(a)]
@@ -1703,17 +1724,21 @@ Let $\bbr_1, \bbr_2:I \to \R^n$ be a pair of curves.
 	\end{enumerate}
 \end{proof}
 
-Note that both of these hypotheses of Lemma \ref{lem:some_dot_products} are true for an orthonormal set of vectors $\{\bbr_1,\bbr_1\}$.
+Note that both of these hypotheses of Lemma \ref{lem:some_dot_products} are true for an orthonormal set of vectors $\{\bbr_1,\bbr_1\}$. \footnote{See Section 5.4 of my Linear Algebra Notes for the definition of an orthonormal set of vectors.}
 
-Let $\bbr:I \to \R^n$ be a curve parametrized by arc length. Since $\bv(s)$ has unit length, by part (a) of Lemma \ref{lem:some_dot_products}, $\ba(s)$ is orthogonal to $\bv(s)$. Thus, $||\ba(s)||$ measures the rate at which the curve is pulling away from the tangent line at $\bbr(s)$.
+Let $\bbr:I \to \R^n$ be a curve parametrized by arc length. Since $\bv(s)$ has unit length, by part (a) of Lemma \ref{lem:some_dot_products}, $\ba(s)$ is orthogonal to $\bv(s)$. Thus, $||\ba(s)||$ measures the rate at which the curve is pulling away from the tangent line at $\bbr(s)$. The function $||\ba(s)||$ is therefore a good candidate for our curvature function.
 
-\begin{defn}[Curvature]\label{def:curvature}
-	Let $\bbr:I \to \R^n$ be a curve parametrized by arc length $s \in I$. Define the \emph{curvature function} $\kappa:I \to [0,\infty)$ by $\kappa(s)=||\ba(s)||$. The number $\kappa(s)$ is called the \emph{curvature} of the curve $\bbr$ at $s$.
-	\end{defn}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/accel-vec}
+	\end{center}
+	\caption{For a unit-speed curve, the magnitude of the acceleration vector measures the rate at which the curve is pulling away from the tangent line at $\bbr(s)$.}
+\end{figure}
 
-\begin{example}\label{ex:line_circle}
+Note also that 
+
 \begin{enumerate}[(a)]
-	\item If $\bbr$ is a straight line, then $\bbr(s)={\bf \hat{v}}(s_0)s+\bbr(s_0)$. We have $\kappa(s)=\ba(s)\equiv 0$. Conversely, if $\kappa=||\ba(s)||\equiv 0$, then integrating twice gives $\bbr(s)={\bf \hat{v}}(s_0)s+\bbr(s_0)$, so the curve is a straight line.
+	\item If $\bbr$ is a straight line, then $\bbr(s)={\bf \hat{v}}(s_0)s+\bbr(s_0)$. We have $\ba(s)\equiv 0$. Conversely, if $\kappa=||\ba(s)||\equiv 0$, then $\ba(s)\equiv 0$, and  integrating twice gives $\bbr(s)={\bf \hat{v}}(s_0)s+\bbr(s_0)$, so the curve is a straight line. Thus, a curve is a straight line if and only if $||\ba(s)||\equiv 0$.
 
 \item If $\bbr(s)=(R\cos(\frac{s}{R}),R\sin(\frac{s}{R}))$ is a circle of radius $R$, then
 \begin{align*}
@@ -1724,7 +1749,46 @@ and therefore
 	\kappa(s)=||\ba(s)||=\frac{1}{R}.
 \end{align*}
 \end{enumerate}	
-\end{example}
+Thus, $||\ba(s)||$ satisfies the requirements we set out in the beginning for our curvature function.
+
+\begin{defn}[Curvature]\label{def:curvature}
+	Let $\bbr:I \to \R^n$ be a curve parametrized by arc length $s \in I$. Define the \emph{curvature function} $\kappa:I \to [0,\infty)$ by $\kappa(s)=||\ba(s)||$. The number $\kappa(s)$ is called the \emph{curvature} of the curve $\bbr$ at $s$.
+	\end{defn}
+	
+\begin{exercise}\label{ex:curvature_fcns}
+Compute the curvature function of each of the following unit-speed curves:
+\begin{enumerate}[(a)]
+	\item $\bbr(s)=(a \cos(\frac{s}{\sqrt{a^2+b^2}}),a \sin(\frac{s}{\sqrt{a^2+b^2}}),\frac{bs}{\sqrt{a^2+b^2}}), \ s>0.$
+	\item $\bbr(s)=((\frac{s}{\sqrt{2}}+1)\cos(\ln(\frac{s}{\sqrt{2}}+1)),(\frac{s}{\sqrt{2}}+1)\sin(\ln(\frac{s}{\sqrt{2}}+1))), \ s>0.$
+\end{enumerate}	
+\end{exercise}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/helix}
+  \caption{A portion of a helix.}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/log_spiral_ex}
+  \caption{A portion of a logarithmic spiral.}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{The curves in Exercise \ref{ex:curvature_fcns}.}
+\label{fig:test}
+\end{figure}
+
+{\color{red}
+\begin{solution}\hspace{15cm}
+	\begin{enumerate}[(a)]
+		\item $\kappa(s)=||\ba(s)||=\frac{a}{a^2+b^2}$. Note that if $b=0$, then the curve is a circle of radius $a$ and $\kappa(s)=\frac{a}{a^2+0^2}=\frac{1}{a}$ as it should be. If $a=0$, then the curve is a straight line, and $\kappa(s)=\frac{0}{0^2+b^2}\equiv 0$, again as expected.
+		\item $\kappa(s)=||\ba(s)||=\frac{\sqrt{2}}{\sqrt{2}s+2}$. Note that the curvature is highest at $s=0$, and monotonically decreases as $s$ increases.
+	\end{enumerate}
+\end{solution}}
+	
 
 \begin{defn}[Unit normal vector]
 At points where $\kappa(s) \neq 0$, the vector
@@ -1734,6 +1798,22 @@ At points where $\kappa(s) \neq 0$, the vector
 is a unit vector orthogonal to $\bv(s)$. This is called the \emph{unit normal vector} to $\bbr$ at $s$.	
 \end{defn}
 The vectors $\{\ut, \un\}$ play an important role in the geometry of the curve in the neighborhood of a point $s_0$ where $\kappa(s_0)\neq 0$, which we will see next.
+
+\begin{exercise}
+Compute the unit tangent and unit normal vectors for the helix
+\begin{align*}
+	\bbr(s)=(a \cos(\frac{s}{\sqrt{a^2+b^2}}),a \sin(\frac{s}{\sqrt{a^2+b^2}}),\frac{bs}{\sqrt{a^2+b^2}}), \ s>0.
+\end{align*}
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	\begin{align*}
+		\ut(s)&=\bv(s)=\frac{1}{\sqrt{a^2+b^2}}(-a\sin(\frac{s}{\sqrt{a^2+b^2}}),a\cos(\frac{s}{\sqrt{a^2+b^2}}),\frac{b}{\sqrt{a^2+b^2}}) \\
+		\un(s)&=\frac{\ba(s)}{||\ba(s)||}=(-\cos(\frac{s}{\sqrt{a^2+b^2}}),-\sin(\frac{s}{\sqrt{a^2+b^2}}),0)
+	\end{align*}
+\end{solution}}
+
 
 \subsection{Osculating Plane}
 Let $\bbr(s)$ be a unit-speed curve. Consider a point $s_0$ where $\kappa(s_0) \neq 0$. Then, for sufficiently small $h=s-s_0$, we can approximate $\bbr(s)$ by its second-order Taylor polynomial:
