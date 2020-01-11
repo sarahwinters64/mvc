@@ -1856,7 +1856,7 @@ At points where $\kappa(s)=0$, the normal vector (and therefore the osculating p
 \subsection{Arbitrary parametrizations}
 As noted previously, in practice it is often too difficult to parametrize a curve by arc length, and we are forced to work with other parametrizations.
 
-Let $\bbr:I \to \R^n$ be a curve with an arbitrary parametrization $t \in I$. One might guess that the curvature. Since the speed $||\bv(t)||$ is no longer constant, the acceleration vector $\ba(t)$ will have a nonzero component in the direction of the velocity vector $\bv(t)$. We might therefore be tempted to define the curvature function $\kappa(t)$ as the magnitude of the component of the acceleration perpendicular to $\bv(t)$; that is, to define $\kappa(t):=||\ba_\perp(t)||$, where
+Let $\bbr:I \to \R^n$ be a curve with an arbitrary parametrization $t \in I$. Since the speed $||\bv(t)||$ is no longer constant, the acceleration vector $\ba(t)$ will have a nonzero component in the direction of the velocity vector $\bv(t)$. We might therefore be tempted to define the curvature function $\kappa(t)$ as the magnitude of the component of the acceleration perpendicular to $\bv(t)$; that is, to define $\kappa(t):=||\ba_\perp(t)||$, where
 \begin{align*}
 	\ba_\perp(t)&=\ba(t)-\text{proj}_{\bv(t)}\ba(t) \\
 	&=\ba(t)-\frac{\ba(t)\cdot \bv(t)}{\bv(t)\cdot \bv(t)}\bv(t). 
@@ -1894,10 +1894,12 @@ and therefore
 \begin{align*}
 	\kappa(1)=||\ba_{2 \ \perp}(1)||=8.
 \end{align*}
-Using our definition of $\kappa(t)$, we have just obtained \emph{different} values of the curvature at the origin of the parabola by using different parametrizations. The curvature should be a geometric property of the curve that does not depend on parametrization, so this definition turns out to be bad. 
+Using our definition of $\kappa(t)$, we have just obtained \emph{different} values of the curvature at the origin of the parabola by using different parametrizations. This makes no sense, as curvature is a geometric property of the curve that does not depend on parametrization, so this definition is bad. The problem, as we will see in a moment, is that $||\ba_\perp(t)||$ depends not only on the shape of the curve, but also on the speed at time $t$.
 \end{example}
 
-To find a satisfactory definition of curvature, we need to study more carefully the dependence of the derivatives of $\bbr(t)$ on parametrization. Let $\bbr:I \to \R^n$ be a regular curve with an arbitrary paramtrization, and let $\tilde{\bbr}=\bbr \circ \varphi$ be a reparametrization of $\bbr$. Then, by the chain rule,
+To find a satisfactory definition of curvature, we need to study more carefully the dependence of the derivatives of $\bbr(t)$ on parametrization. Our function $\kappa(t)$ should be independent of parametrization, and should agree with our previous definition when $t=s$ is the arc length.
+
+Let $\bbr:I \to \R^n$ be a regular curve with an arbitrary paramtrization, and let $\tilde{\bbr}=\bbr \circ \varphi$ be a reparametrization of $\bbr$. Then, by the chain rule,
 \begin{align*}
 	\widetilde{\bv}(t)&=\bv(\varphi(t))\varphi'(t), \\
 	\widetilde{\ba}(t)&=\ba(\varphi(t))(\varphi'(t))^2+\bv(\varphi(t))\varphi''(t), \\
@@ -1907,9 +1909,7 @@ From these expressions, we see that the quantity
 \begin{align}\label{eq:curvature_arb_param}
 	\frac{||\ba_\perp(t)||}{||\bv(t)||^2}
 \end{align}
-is invariant under reparametrizations. Moreover, when $t=s$ is the arc length, $||\bv(s)||=1$ and $\ba(s)=\ba_\perp(s)$, so the expression in \eqref{eq:curvature_arb_param} agrees with our definition of the curvature function of a unit speed curve in Definition \ref{def:curvature}.
-
-Thus, we arrive at our definition of the curvature function in an arbitrary parametrization.
+is invariant under reparametrizations. Moreover, when $t=s$ is the arc length, $||\bv(s)||=1$ and $\ba(s)=\ba_\perp(s)$, so the expression in \eqref{eq:curvature_arb_param} agrees with our definition of the curvature function of a unit speed curve in Definition \ref{def:curvature}. Thus, we have arrived at our desired definition of the curvature function in an arbitrary parametrization.
 \begin{defn}[Curvature in an arbitrary parametrization]
 	Let $\bbr:I \to \R^n$ be a regular curve with an arbitrary parametrization $t \in I$. We define the \emph{curvature function} $\kappa:I \to [0,\infty)$ for all $t \in I$ by
 	\begin{align}\label{eq:curvature_function_defi}
@@ -1963,6 +1963,8 @@ Let $\bbr:I \to \R^n$ be a regular curve. For any point where $\kappa(t) \neq 0$
 		&\equiv \un(t).
 	\end{align*}
 \end{proof}
+
+\fixme{Assign exercises from the book.}
 
 \subsection{Plane curves}
 Our results so far about curves in $\R^n$ have been valid for all $n$. In this section, we consider the special case $n=2$. This is the only dimension in which the terms ``clockwise" and ``counterclockwise" make sense for describing how a regular curve is turning.
