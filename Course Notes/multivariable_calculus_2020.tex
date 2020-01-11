@@ -1686,7 +1686,7 @@ Parametrize each of the following curves by arc length (measured from $t=0$) and
 \subsection{Curvature}
 In this section, we seek a quantity which measures how sharply a curve ``bends" at each point. We call this number the \emph{curvature} at that point. Since the curvature can vary from point to point along the curve, we seek a \emph{curvature function} $\kappa:I \to \R^{\geq 0}$ which gives the curvature at each point along the curve. By definition, the curvature function should be identically zero for a straight line. Our curvature function should also be constant for a circle (due to the rotational symmetry), and inversely proportional to the radius (since a circle of smaller radius is ``more curved" than a circle of a larger radius). We choose units such that $\kappa(s)=\frac{1}{R}$ for a circle of radius $R$.
 
-\subsection{Curvature of a unit speed curve}
+\subsubsection{Curvature of a unit speed curve}
 We begin by considering curves parametrized by arc length. The following lemma will be extremely useful for unit-speed curves.
 
 \begin{lem}\label{lem:some_dot_products}
@@ -1815,7 +1815,7 @@ Compute the unit tangent and unit normal vectors for the helix
 \end{solution}}
 
 
-\subsection{Osculating Plane}
+\subsubsection{Osculating Plane}
 Let $\bbr(s)$ be a unit-speed curve. Consider a point $s_0$ where $\kappa(s_0) \neq 0$. Then, for sufficiently small $h=s-s_0$, we can approximate $\bbr(s)$ by its second-order Taylor polynomial:
 \begin{align*}
 	\bbr(s_0+h)&=\bbr(s_0)+h\bv(s_0)+\frac{h^2}{2}\ba(s_0)+\mathbf{E}(h),  \\
@@ -1853,7 +1853,7 @@ Note that $s \mapsto \epsilon(s)$ is itself a parametrized curve (not necessaril
 
 At points where $\kappa(s)=0$, the normal vector (and therefore the osculating plane) is not defined. To proceed with our analysis, we will need the osculating plane, so from now on we will only consider curves for which $\kappa(s) \neq 0$ for all $s \in I$.
 
-\subsection{Arbitrary parametrizations}
+\subsubsection{Arbitrary parametrizations}
 As noted previously, in practice it is often too difficult to parametrize a curve by arc length, and we are forced to work with other parametrizations.
 
 Let $\bbr:I \to \R^n$ be a curve with an arbitrary parametrization $t \in I$. Since the speed $||\bv(t)||$ is no longer constant, the acceleration vector $\ba(t)$ will have a nonzero component in the direction of the velocity vector $\bv(t)$. We might therefore be tempted to define the curvature function $\kappa(t)$ as the magnitude of the component of the acceleration perpendicular to $\bv(t)$; that is, to define $\kappa(t):=||\ba_\perp(t)||$, where
