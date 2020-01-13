@@ -4250,7 +4250,7 @@ Consider the set $A=\left\{\frac{1}{n}:n \in \N\right\}$. Then $\sup A=1$, since
 \end{prop}
 
 \begin{proof}
-	$\clubsuit$ Finish...
+	\fixme{Finish.}
 \end{proof}
 
 \begin{exercise}
@@ -4348,11 +4348,305 @@ All that remains is to prove that $b \in A$. Since $f$ is continuous at $b$, by 
 \end{proof}
 
 \section{Topology of $\R^n$}
+In this section we begin our study of those basic properties of $\R^n$ which allow us to define the notion of a continuous function. We will study open sets, which generalize open intervals on $\R$, and closed sets, which generalize closed intervals.
+
+Most of what follows depends only on the basic properties of the distance function
+\begin{align*}
+	||\bx-\by||=\sqrt{\sum_{i=1}^n(x_i-y_i)^2}, \hspace{0.5cm} \bx, \by \in \R^n.
+\end{align*}
+
+\begin{thm}[Properties of the distance function]
+	\begin{enumerate}[(i)]\hspace{15cm}
+		\item $||\bx-\by||\geq 0$, with equality if and only if $\bx=\by$;
+		\item $||\bx-\by||=||\by-\bx||$;
+		\item $||\bx-\by||\leq ||\bx-\bz||+||\bz-\by||$ (triangle inequality).
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Properties (i) and (ii) are obvious from the definition. We prove (iii):
+
+Let $\bu, \bv \in \R^n$. Then
+\begin{align*}
+	||\bu+\bv||^2&=(\bu+\bv)\cdot (\bu+\bv) \\
+	&=||\bu||^2+||\bv||^2+2\bu \cdot \bv \\
+	&\leq ||\bu||^2+||\bv||^2+2|\bu \cdot \bv| \\
+	&\leq ||\bu||^2+||\bv||^2+2||\bu|| \cdot ||\bv|| \text{ (by the Cauchy-Schwarz inequality)} \\
+	&=(||\bu||+||\bv||)^2.
+\end{align*}	
+Since $||\bu+\bv||$ and $||\bu||+||\bv||$ are nonnegative, it follows that
+\begin{align*}
+	||\bu+\bv|| \leq ||\bu||+||\bv||.
+\end{align*}
+The proof of the theorem then follows by taking $\bu=\bx-\bz$ and $\bv=\bz-\by$.
+\end{proof}
+
+\subsection{Open Sets}
+In order to define open sets, we first introduce the notion of an open ball.
+
+\begin{defn}
+	Let $\bx_0 \in \R^n$ and let $r>0$. The \emph{open ball of radius $r$ centered at $\bx_0$ is the set}	
+	\begin{align*}
+		B_r(\bx_0)=\{ \bx \in \R^n:||\bx-\bx_0||<r \}.
+	\end{align*}	
+\end{defn}
+
+\begin{example}\hspace{15cm}
+	\begin{enumerate}[(a)]
+		\item In $\R$, the open ball $B_r(x_0)$ is the open interval $(x_0-r,x_0+r)$.
+		\item In $\R^2$, the open ball $B_r(\bx_0)$ is the open disc
+		\begin{align*}
+			B_r(\bx_0)=\{(x,y) \in \R^2:\sqrt{(x-x_0)^2+(y-y_0)^2}<r\}.
+		\end{align*}
+	\end{enumerate}
+\end{example}
+
+\begin{defn}[Open Set]\label{def:open_set}
+	A subset $A \subseteq \R^n$ is open if, given any point $\bx \in A$, there exists an open ball centered at $\bx$ contained in $A$.
+\end{defn}
+That is, an open set $A$ is one for which if you are originally located at any point $\bx \in A$, then you can move a sufficiently small distance and still remain in $A$. 
+
+\begin{defn}[Neighborhood]
+If $A$ is an open set containing a point $\bx$, we say that $A$ is a \emph{neighborhood} of $\bx$.	
+\end{defn}
 
 
+It is immediate from Definition \ref{def:open_set} that $\R^n$ itself and $\emptyset$ are open sets. Here is a nontrivial example:
+
+\begin{prop}\label{prop:open_ball_is_open}
+An open ball is an open set.	
+\end{prop}
+
+\begin{proof}
+	Let $\bx \in B_r(\bx_0)$. Then $h=r-d(\bx,\bx_0)>0$. Let $\by \in B_h(\bx)$. Then $d(\by,\bx)<h$. It then follows from the triangle inequality that
+	\begin{align*}
+		d(\bx_0,\by) &\leq d(\bx_0,\bx)+d(\bx,\by) \\
+		&<r-h+h=r,
+	\end{align*}
+	which shows that $\by \in B_r(\bx_0)$, and therefore $B_h(\bx) \subseteq B_r(\bx_0)$. Thus, $B_r(\bx_0)$ is open.
+\end{proof}
+
+Note that whether or not a set is open depends not only on the set itself, but on which $\R^n$ we are considering it to be a subset of. For instance, the open interval $(0,1)$ is open in $\R$, but it is not open in $\R^2$, since every open ball $B_r(\bx)$ with $\bx \in \{(x,0): 0 < x < 1\}$ contains points $(x,y) \in \R^2$ with $y \neq 0$.
+
+\begin{thm}[Properties of Open Sets]\label{thm:properties_of_open_sets}\hspace{15cm}
+\begin{enumerate}[(i)]
+	\item The intersection of a finite collection of open sets is open.
+	\item The union of an arbitrary collection of open sets is open.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+	\begin{enumerate}[(i)]
+		\item Let $\{U_i\}_{i=1}^n$ be a finite collection of open sets and let $\bx \in U \equiv \cap_{i=1}^n U_i$. Then $\bx \in U_i$ for all $i=1,\dots,n$. Since each $U_i$ is open, there exists $r_i>0$ such that $\bx \in B_{r_i}(\bx)\subseteq U_i$. By taking $r=\min\{r_1,\dots,r_n\}$, $\bx \in B_r(\bx)\subseteq U_i$ for all $i=1,\dots,n$, and therefore $\bx \in B_r(\bx) \subseteq U$.
+		\item Let $\{U_\alpha\}_{\alpha \in \mathscr{A}}$ be an arbitrary collection of open sets. Let $\bx \in \cup_{\alpha \in \mathscr{A}}U_\alpha$. Then $\bx \in U_\alpha$ for some $\alpha \in \mathscr{A}$. Since $U_\alpha$ is open, there exists $r>0$ such that $\bx \in B_r(\bx) \subseteq U_\alpha$ and therefore $\bx \in B_r(\bx) \subseteq U$.
+	\end{enumerate}
+\end{proof}
+
+Note that it is \emph{not} true that the intersection of an arbitrary collection of open sets is necessarily open. For example, let $x_0 \in \R$ and consider the collection of open balls $B_r(x_0)=(x_0-r,x_0+r)$. Since $x_0 \in B_r(x_0)$ for all $r>0$, $\cap_{r > 0}B_r(x_0) \neq \emptyset$. Suppose there is a point $y$ different from $x$ in $\cap_{r > 0}B_r(x_0)$. Let $d=|y-x|$. Then for $0<r<d$, $y$ is not in $B_r(x_0)$ and therefore not in $\cap_{r > 0}B_r(x_0)$, which is a contradiction. Hence, $\cap_{r > 0}B_r(x_0)=\{x_0\}$, which is not open, since for every $r>0$, $B_r(x_0)$ contains points of $\R$ other than $x_0$.
+
+\begin{defn}[Topological Space]
+	Let $X$ be a set and let $\mathscr{T}$ be a collection of subsets of $X$ (called \emph{open sets}) with the following properties:
+	\begin{enumerate}[(i)]
+		\item $X$ is open.
+		\item $\emptyset$ is open.
+		\item The intersection of finitely many open sets is open.
+		\item The union of an arbitrary collection of open sets is open.
+	\end{enumerate}
+	Then $\mathscr{T}$ is called a \emph{topology} on $X$ and the ordered pair $(X,\mathscr{T})$ is called a \emph{topological space}.
+\end{defn}
+Thus, $\R^n$ together with the collection of open subsets of $\R^n$ as defined in Definition \ref{def:open_set} is a topological space. We will not consider other topological spaces in these notes, but many of the results we discuss will hold in any topological space. 
+
+\begin{defn}[Interior of a Set]
+	Let $A$ be any subset of $\R^n$. A point $\bx \in A$ is an \emph{interior point} of $A$ if there is an open ball centered $\bx$ contained in $A$; that is, if there exists $r>0$ such that $\bx \in B_r(\bx) \subseteq A$. The \emph{interior} of $A$ is the set of all interior points of $A$, denoted $\text{Int}(A)$.
+\end{defn}
+
+Note that $\text{Int}(A)$ might be empty. For example, if $A=\{x_0\}$ contains a single point, then $\text{Int}(A)$ is empty.
+
+\begin{prop}
+The interior of $A$ is the largest open set contained in $A$, in the sense of that if $U$ is any other open set contained in $A$, then $U \subseteq \text{Int}(A)$. Since the intersection of all open sets contained in $A$ has this property, $\text{Int}(A)$ is the union of all open subsets contained in $A$.	
+\end{prop}
+
+\begin{proof}
+	Let $A \subseteq \R^n$, let $\{U_\alpha\}_{\alpha \in \mathscr{A}}$ be the collection of open subsets of $\R^n$ contained in $A$, and let $U\equiv \cup_{\alpha \in \mathscr{A}} U_\alpha$. If $\bx \in U$, then $\bx \in U_\alpha$ for some $\alpha$. Since $U_\alpha$ is open, there exists $r>0$ such that $\bx \in B_r(\bx) \subseteq U_\alpha \subseteq A$, which shows that $\bx \in \text{Int}(A)$. This shows that $U \subseteq \text{Int}(A)$. Conversely, suppose that $\bx \in \text{Int}(A)$. Then there exists $r>0$ such that $\bx \in B_r(\bx) \subseteq A$. By Proposition \ref{prop:open_ball_is_open}, $B_r(\bx)$ is open subset of $\R^n$. Since $B_r(\bx)$ is an open subset of $\R^n$ contained in $A$, it is contained in the union of all such subsets. Hence, $\bx \in U$. This shows that $\text{Int}(A)\subseteq U$ and therefore $U=\text{Int}(A)$.
+\end{proof}
+
+\begin{prop}
+	A subset $A \subseteq \R^n$ is open if and only if $\text{Int}(A)=A$.
+\end{prop}
+
+\begin{proof}
+	Definition \ref{def:open_set} says precisely that $A$ is open if and only if every point is an interior point, that is, if and only if $\text{Int}(A)=A$.
+\end{proof}
+
+\subsection{Closed Sets}
+\begin{defn}[Closed set]\label{def:closed_set}
+	A set $B$ in $\R^n$ is \emph{closed} if its complement ($\R^n-B$) is open.
+\end{defn}
+
+\begin{example}
+A set $\{\bx_0\} \subseteq \R^n$ containing a single point is closed. To see that its complement is open, let $\bx$ be any point in $\R^n-\{\bx_0\}$, and take $r=||\bx-\bx_0||$. Then the open ball $B_r(\bx)$ is contained in $\R^n-\{\bx_0\}$. Thus, $\R^n-\{\bx_0\}$, so $\{\bx_0\}$ is closed.
+\end{example}
 
 
-\section{OLD Topology of $\R^n$}\label{app:topology}
+It is important to note from Definitions \ref{def:open_set} and \ref{def:closed_set} that a set can be \emph{neither} open nor closed or \emph{both} open and closed.
+
+\begin{example}
+\begin{enumerate}[(a)]
+\item The half open interval $(0,1] \subseteq \R$ is neither open nor closed in $\R$. It is not open because every open ball centered at $1$ contains points $>1$. Its complement is $\R-(0,1]=(-\infty,0]\cup(1,\infty)$ is not open, since every open ball centered at $0$ contains points $<0$, so $(0,1]$ is not closed.
+\item Since $\R^n$ is open $\emptyset=\R^n-\R^n$ is closed. Similarly, since $\emptyset$ is open, $\R^n-\emptyset=\R^n$ is closed. Hence, $\R^n$ and $\emptyset$ are both open and closed. \footnote{Such sets are sometimes referred to as \emph{clopen}.}
+\end{enumerate}	
+\end{example}
+
+Recall the following set theoretic identities:\\
+\\
+If $\{U_\alpha\}_{\alpha \in \mathscr{A}}$ is a collection of subsets of a set $X$, then 
+
+\begin{align*}
+	X-\cup_{\alpha \in \mathscr{A}}U_\alpha &= \cap_{\alpha \in \mathscr{A}}(X-U_\alpha) \\
+	X-\cap_{\alpha \in \mathscr{A}}U_\alpha &= \cup_{\alpha \in \mathscr{A}}(X-U_\alpha) \\
+\end{align*}
+
+The following properties of closed sets follow from these identities and from the corresponding properties of open sets.
+
+\begin{thm}[Properties of closed sets]\label{thm:properties_of_closed_sets}\hspace{15cm}
+	\begin{enumerate}[(i)]
+		\item The union of finitely many closed sets is closed.
+		\item The intersection of an arbitrary collection of closed sets is closed.
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+	\begin{enumerate}[(i)]
+		\item Let $\{U_i\}_{i=1}^n$ be a finite collection of closed subsets of $\R^n$. Then $\R^n-U_i$ is open for each $i=1,\dots,n$ and therefore by part (ii) of Theorem \ref{thm:properties_of_open_sets}
+		\begin{align*}
+			\cup_{i=1}^n(\R^n-U_i)=\R^n-\cap_{i=1}^nU_i
+		\end{align*}
+		is open, and therefore $\cap_{i=1}^nU_i$ is closed.
+		\item Let $\{U_\alpha\}_{\alpha \in \mathscr{A}}$ be an arbitrary collection of closed sets. Then $\R^n-U_\alpha$ is open for each $\alpha \in \mathscr{A}$, and by part (i) of Theorem \ref{thm:properties_of_open_sets},
+		\begin{align*}
+			\cup_{\alpha \in \mathscr{A}}(\R^n-U_\alpha)=\R^n-\cap_{\alpha \in \mathscr{A}}U_\alpha
+		\end{align*}
+		is open, and therefore $\cap_{\alpha \in \mathscr{A}}U_\alpha$ is closed.
+	\end{enumerate}
+\end{proof}
+
+\begin{example}
+Let $\bx_0 \in \R^n$ and $r>0$. Define the \emph{closed ball of radius $r$ centered at $\bx_0$} to be the set
+\begin{align*}
+	\overline{B}_r(\bx_0)\equiv \{\bx \in \R:||\bx - \bx_0||<r\}.
+\end{align*}
+To see that this set is closed, let $\bx \in \R^n-\overline{B}_r(\bx_0)$. Letting $\epsilon=||\bx-\bx_0||-r$ (note that $\epsilon>0$), the open ball $B_\epsilon(\bx)$ is contained in $\R^n-\overline{B}_r(\bx_0)$. This shows that $\R^n-\overline{B}_r(\bx_0)$ is open and therefore $\overline{B}_r(\bx_0)$ is closed.
+\end{example}
+
+\begin{example}
+	We have seen that one point sets are closed. It follows from part (i) of Theorem \ref{thm:properties_of_closed_sets} that any finite subset of $\R^n$ is closed. 
+\end{example}
+
+\subsection{Limit points}
+There is another very useful way to determine whether or not a set is closed. This depends on the important concept of a limit point.
+
+\begin{defn}[Limit point]
+	Let $A \subseteq \R^n$. A point $\bx \in \R^n$ is called a \emph{limit point} of $A$ if every open ball centered at $\bx$ contains a point of $A$ other than $\bx$.
+\end{defn}
+That is, a limit point $\bx$ of a set $A$ is a point such that there are other points of $A$ arbitrarily close to $\bx$. \footnote{Note that the concept of a limit point of a set is distinct from that of a limit of a function.}
+
+\begin{example}\label{ex:limit_pts}
+\begin{enumerate}[(a)]
+	\item A one point set $\{\bx_0\} \subseteq \R^n$ has no limit points. Since $\R^n-\{\bx_0\}$ is open, a one-point subset of $\R^n$ has no limit points, because for every point $\bx \in \R^n-\{\bx_0\}$, there exists some open ball which is contained in $\R^n-\{\bx_0\}$, and therefore does not contain $\bx_0$. For an open ball centered at $\bx_0$ itself, it is not possible for it to contain a point of $\{\bx_0\}$ different from $\bx_0$ since that is the only point in the set.
+	\item In $\R$, the set of limit points of the open interval $(0,1)$ is given by the closed interval $[0,1]$, since for any $x \in [0,1]$ and any $r>0$, the open ball $B_r(x)$ contains a point of $(0,1)$ different from $x$. This shows that a limit point $\bx$ of a set $A$ need not lie in $A$.
+\end{enumerate}	
+\end{example}
+
+\begin{defn}[Isolated point]
+If $\bx \in A$ and $\bx$ is not a limit point of $A$, then $\bx$ is called an \emph{isolated point} of $A$.	
+\end{defn}
+
+\begin{example}
+Consider the set $\{\frac{1}{n}\}_{n \in \N}$. Each point in this set is an isolated point, since by choosing $r=|\frac{1}{n+1}-\frac{1}{n}|$, the open ball $B_r(\frac{1}{n})$ contains only the point $\frac{1}{n}$. A set in which every point is isolated is called a \emph{discrete} set.	
+\end{example}
+
+
+The definitions of limit points and closed sets are closely related, as shown by the next theorem.
+
+\begin{thm}[A closed sets is one that contains all its limit points]\label{thm:closed_sets_limit_points}
+Let $A \subseteq \R^n$. Then $A$ is closed if and only if $A$ contains all of its limit points.	
+\end{thm}
+
+\begin{proof}
+	Suppose $A$ is closed and let $\bx$ be a limit point of $A$. Suppose $\bx \in \R^n-A$. Since $\R^n-A$ is open, there exists an open ball centered at $\bx$ contained in $\R^n-A$. This contradicts the fact that $\bx$ is a limit point of $A$. Thus, $\bx$ must be in $A$.
+	
+	Now suppose $A$ contains all its limit points. Let $\bx \in \R^n-A$. Then $\bx$ is not a limit point of $A$, so there exists some open ball centered at $\bx$ which is contained in $\R^n-A$. This shows that $\R^n-A$ is open, and therefore $A$ is closed. 
+\end{proof}
+
+Note that a set need not have any limit points (e.g., any finite subset of $\R^n$). It is then vacuously true that such a set contains all its limit points, so Theorem \ref{thm:closed_sets_limit_points} still applies and we conclude that the set is closed. 
+
+\subsection{Closure of a Set}
+The interior of a set $A$ is the largest open subset contained in $A$. Similarly, we can form the smallest closed set containing a set $A$. What it means for a set $U$ to be the smallest closed set containing $A$ is that if $W$ is any other closed set containing $A$, then $U \subseteq W$. If we let $\{U_\alpha\}_{\alpha \in \mathscr{A}}$ be the collection of all closed sets containing $A$, then we see that $\cap_{\alpha \in \mathscr{A}} U_\alpha$ has this property, and therefore is the smallest closed set containing $A$.
+
+\begin{defn}[Closure]
+	Let $A \subseteq \R^n$. The \emph{closure} of $A$ is defined to be the intersection of all closed sets containing $A$. We denote the closure of $A$ by $\bar{A}$.
+\end{defn}
+By part (ii) of Theorem \ref{thm:properties_of_closed_sets}, $\bar{A}$ is closed. 
+
+\begin{example}\label{ex:closure}
+Let $A=(0,1) \subseteq \R$. Then $\bar{A}=[0,1]$.	
+\end{example}
+
+
+\begin{prop}
+A is closed if and only if $A=\bar{A}$.	
+\end{prop}
+
+\begin{proof}
+	Suppose $A$ is closed. Then, since $A$ is a closed subset containing $A$, the intersection of all such subsets is clearly $A$. Thus, $A=\bar{A}$.
+	
+	Conversely, suppose $A=\bar{A}$. By definition, if $\{U_\alpha\}_{\alpha \in \mathscr{A}}$ is the collection of closed subsets containing $A$, then $\bar{A}=\cap_{\alpha \in \mathscr{A}}U_\alpha$. We have then
+	\begin{align*}
+		X-A&=X-\cap_{\alpha \in \mathscr{A}}U_\alpha \\
+		&=\cup_{\alpha \in \mathscr{A}}(X-U_\alpha)
+ 	\end{align*}
+ 	is open is each $X-U_\alpha$ is open and arbitrary unions of open sets are open. Thus $A$ is closed.
+\end{proof}
+
+The connected between closure and limit points is given by the following theorem.
+
+\begin{thm}\label{thm:closed_set_limit_pts}
+	Let $A \subseteq \R^n$. Let $A'$ denote the set of limit points of $A$. Then $\bar{A}=A \cup A'$.
+\end{thm}
+
+\begin{proof}
+	Since a closed set contains all of its limit points, any closed set containing $A$ contains $A \cup A'$. Thus, it suffices to show that $A \cup A'$ is closed, for then $A \cup A'$ will be the smallest closed set containing $A$. Let $\bx$ be a limit point of $A \cup A'$. If $\bx \in A$, then $\bx \in A \cup A'$, so assume $\bx \notin A$. Let $B_r(\bx)$ be an open ball containing $\bx$. Since $\bx$ is a limit point of $A \cup A'$, $B_r(\bx) \cap (A \cup A')$ contains a point $\by$ of $A \cup A'$ distinct from $\bx$. Now either $\by \in A$ or $\by \in A'$. If $\by \in A$, this shows that $\bx$ is a limit point of $A$ and we are done. If $\by \in A'$, then, since $B_r(\bx)$ is a neighborhood of $\by$, $B_r(\bx)$ contains a point $\bz$ of $A$ distinct from $\by$. Since $\bx \notin A$, $\bz \neq \bx$. Thus, $\bx \in A'$ and therefore $\bx \in A \cup A'$. This shows that $A \cup A'$ contains all of its limit points, and is therefore closed by Theorem \ref{thm:closed_sets_limit_points}.
+\end{proof}
+
+We saw previously in Example \ref{ex:limit_pts} (b) that if $A=(0,1)$, then $A'=[0,1]$, in agreement with Example \ref{ex:closure}.
+
+\subsection{Boundary of a Set}
+If we consider the unit disc in $\R^2$, we know what we would like to call the boundary - the obvious choice is the unit circle. But, for more complicated sets, such as the rationals, it is not as intuitively clear what the boundary should be. Therefore a precise definition is needed.
+
+\begin{defn}[Boundary of a set]
+	Given $A \subseteq \R^n$, the \emph{boundary} of $A$, denoted $\partial A$, is defined to be the set
+	\begin{align*}
+	 \partial A=\bar{A} \cap \overline{\R^n-A}.
+	\end{align*}
+\end{defn}
+By part (ii) of Theorem \ref{thm:properties_of_closed_sets}, $\partial A$ is closed. Also note that $\partial A=\partial (\R^n-A)$. It follows from Theorem \ref{thm:closed_set_limit_pts}, that we can also describe the boundary is the following intuitive way.
+
+\begin{thm}
+	Let $A \subseteq \R^n$. Then $\bx \in \partial A$ if and only if for every $\epsilon>0$, $D_\epsilon(\bx)$ contains points of $A$ and $\R^n-A$ (these points might included $\bx$ it self).
+\end{thm}
+\fixme{Draw a picture.}
+
+\begin{proof}
+	Let $\bx \in \partial A=\bar{A} \cap \overline{\R^n-A}$. Now, either $\bx \in A$ or $\bx \in \R^n-A$. If $\bx \in A$, then by Theorem \ref{thm:closed_set_limit_pts} $\bx$ is a limit point of $\R^n-A$, so for every $\epsilon>0$, the open ball $B_\epsilon(\bx)$ contains a point of $\R^n-A$. The case $x \in \R^n-A$ and the converse as similar. \fixme{Finish.}
+\end{proof}
+
+\begin{example}
+Let $A=\Q \cap [0,1] \subseteq \R$. Then $\partial A=[0,1]$, since for any $\epsilon>0$ and $x \in A$, $D_\epsilon(x)$ contains both rational and irrational points. \fixme{Need to prove rationals dense in $\R$.}
+\end{example}
+
+Note that if $\bx \in \partial A$, then $\bx$ need not be a limit point of $A$. For example, if $A=\{0\} \subseteq \R$, then $A$ has no limit points, but $\partial A=\{0\}$.
+
+\section{Normed Linear Spaces}\label{app:topology}
 A \emph{topology} is a structure on a set which allows us to define the notion of continuity. In this appendix, we collect some basic definitions used throughout the rest of the notes.
 \subsection{Normed Linear Spaces}
 \begin{defn}[Normed linear space]
