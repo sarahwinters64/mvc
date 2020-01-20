@@ -2339,12 +2339,13 @@ In the last section we studied functions with one input and multiple outputs. In
 	f:U \subseteq \R^n \to \R.
 \end{align*}
 
-Examples abound.
-
 \begin{example}
 \begin{enumerate}[(a)]
 	\item The volume of a right circular cylinder of radius $r$ and height $h$ is a function $V:U \subseteq \R^2 \to \R$ defined by $V(r,h)=\pi r^2h$.
-	\item The Euclidean norm on $\R^n$ is a function $\rho:\R^n \to \R$ defined by $\rho(x_1,x_2,\dots,x_n)=\sqrt{x_1^2+x_2^2+\cdots+x_n^2}$.
+	\item The distance function on $\R^n$ is a function $\rho:\R^n \to \R$ defined by
+	\begin{align*}
+	\rho(x_1,x_2,\dots,x_n)=\sqrt{x_1^2+x_2^2+\cdots+x_n^2}.
+	\end{align*}
 	\item The ideal gas law is a function giving the pressure in terms of the temperature and volume:
 	\begin{align*} 
 		p:\R^2 &\to \R\\
@@ -2402,10 +2403,44 @@ For each of the following functions, evaluate $f(3,2)$ and find and sketch the d
 
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[scale=0.35]{figures_mvc/dom_range_solution_part_2}
+	\includegraphics[scale=0.5]{figures_mvc/dom_range_solution_part_2}
 \end{center}
 \end{figure}
 \subsection{Visualizing Multivariable Functions}
+\subsubsection{Shapes and Functions}
+Consider the following three expressions:
+\begin{align*}
+	&(\cos(t),\sin(t)) \\
+	&x^2+y^2=1 \\
+	&\sqrt{1-x^2}
+\end{align*}
+Each evokes a shape: a circle. (The last may evoke only an arc of a circle.) Let us describe each of these evocations in the language of sets and functions: for each, we define sets $X,Y$, a function $f:X \to Y$, and tell how the shape appears as a subset of either $Y,X,$ or $X \times Y$.
+
+\begin{itemize}
+	\item \emph{Image}. As in the previous section, take $X=[0,2\pi)$, $Y=\R^2$, and define
+	\begin{align*}
+		f:[0,2\pi) &\to \R^2 \\
+		t &\mapsto (\cos(t),\sin(t)).
+	\end{align*}
+	Then the circle is the \emph{image} $f(\R) \subseteq Y$ of the function $f$, a subset of the codomain. The image construction parametrizes a shape.
+	\item \emph{Preimage}. Now take $X=\R^2$, $Y=\R$ and define
+	\begin{align*}
+		f:\R^2 &\to \R, \\
+		(x,y) &\mapsto x^2+y^2. 
+	\end{align*}
+	Then the circle is the \emph{preimage} $f^{-1}(1) \subseteq X$, a subset of the domain.
+	\item \emph{Graph}. Take $X=(-1,1)$ and $Y=\R$. Define
+	\begin{align*}
+		f:[-1,1] &\to \R \\
+		x &\mapsto \sqrt{1-x^2}.
+	\end{align*}
+	Then a half-circle is the graph $\Gamma(f) \subseteq X \times Y$, the subset of the Cartesian product defined by
+	\begin{align*}
+		\Gamma(f)=\{(x,f(x)): x \in X\}.
+	\end{align*}
+\end{itemize}
+
+\subsubsection{Visualizing Multivariable Functions}
 \begin{defn}
 	Let $f:U \subset \mathbb{R}^2 \to \mathbb{R}$ be a real-valued function of two variables.  
 \begin{enumerate}[(1)]
@@ -2534,6 +2569,173 @@ Plot the level surfaces of the function $f:\R^3 \to \R$ defined by $f(x,y,z)=x+z
 	\caption{Level surfaces of $f(x,y,z)=x+z$.}
 \end{figure}
 \end{solution}}
+
+\subsection{Quadric Surfaces}
+\begin{defn}[Quadric Surface]
+	Let $A,B,C,D,E,F,G,H,I,J,K$ be fixed real numbers and define a function
+	\begin{align*}
+		f:\R^3 &\to \R  \\
+		(x,y,z)&\mapsto Ax^2+By^2+Cz^2+Dxy+Eyz+Fxz+Gx+Hy+Jz+K.
+	\end{align*}
+	A \emph{quadric surface} is the preimage $f^{-1}(0)$; that is, it is the set of all points $(x,y,z) \in \R^3$ such that 
+	\begin{align*}
+		Ax^2+By^2+Cz^2+Dxy+Eyz+Fxz+Gx+Hy+Jz+K=0.
+	\end{align*}
+\end{defn}
+Here, we will consider some famous examples.
+\subsubsection{Ellipsoids}
+\begin{defn}[Ellipsoid]
+	An \emph{ellipsoid} is the quadric surface whose equation is of the form
+	\begin{align*}
+		\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1.
+	\end{align*}
+\end{defn}
+Note that the intersection of this surface with each coordinate plane is an ellipse. For example,
+\begin{align*}
+	\frac{x^2}{a^2}+\frac{y^2}{b^2}=1 \hspace{0.5cm} \text{ when } z=0.
+\end{align*}
+If any two of the parameters $a,b,c$ are equal, then the surface is an \emph{ellipsoid of revolution}. If all three are equal, the surface is a sphere.
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.4]{figures_mvc/mma_ellipsoid}
+	\end{center}
+	\caption{The ellipsoid $\frac{x^2}{4}+\frac{y^2}{9}+\frac{z^2}{16}=1$.}
+\end{figure}
+
+\subsubsection{Paraboloids}
+\begin{defn}[Elliptic Paraboloid]
+	An \emph{elliptic paraboloid} is the quadric described by the equation
+	\begin{align*}
+		\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z}{c}.
+	\end{align*}
+\end{defn}
+Except for the point $(0,0,0)$, the surface lies entirely above or entirely below the $xy$-plane, depending on the sign of $c$.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/el_paraboloid_1}
+  \caption{The elliptic paraboloid $\frac{x^2}{4}+\frac{y^2}{9}=\frac{z}{16}$.}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{figures_mvc/el_paraboloid_2}
+  \caption{The elliptic paraboloid $\frac{x^2}{4}+\frac{y^2}{9}=-\frac{z}{16}$.}
+\end{subfigure}
+\end{figure}
+The intersections of the surface with the coordinate planes are
+\begin{align*}
+	&x=0: \text{ the parabola } z=\frac{c}{b^2}y^2 \\
+	&y=0: \text{ the parabola } z=\frac{c}{a^2}x^2 \\
+	&z=0: \text{ the point } (0,0,0). \\
+\end{align*}
+
+Each plane $z=z_0$ above the $xy$-plane intersects the surface in the ellipse
+\begin{align*}
+	\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z_0}{c}.
+\end{align*}
+If $a=b$, the surface is called a \emph{circular paraboloid} or a \emph{paraboloid of revolution}.
+
+\subsubsection{Cones}
+\begin{defn}[Cone]
+	An \emph{elliptic cone} is the quadric surface described by the equation
+	\begin{align*}
+		\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z^2}{c^2}.
+	\end{align*}
+\end{defn}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/cone}
+	\end{center}
+	\caption{A cone.}
+\end{figure}
+
+The intersections of the surface with the coordinate planes are
+\begin{align*}
+	&x=0: \text{ the lines } z=\pm \frac{c}{b}y \\
+	&y=0: \text{ the parabola } z=\pm \frac{c}{a}x \\
+	&z=0: \text{ the point } (0,0,0). \\
+\end{align*}
+The intersections with the planes $z=z_0$ above and below the $xy$-plane are ellipses whose centers lie on the $z$-axis and whose vertices lie on the above lines. 
+
+If $a=b$, the cone is a \emph{right circular cone}.
+
+\subsubsection{Hyperboloids}
+\begin{defn}[Hyperboloid of one sheet]
+	A \emph{hyperboloid of one sheet} is the quadric surface described by the equation
+	\begin{align*}
+		\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1.
+	\end{align*}
+\end{defn}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/hyp_1_sheet}
+	\end{center}
+	\caption{A hyperboloid of one sheet.}
+\end{figure}
+
+The intersections with the coordinate planes are
+\begin{align*}
+	&x=0: \text{ the hyperbola } \frac{y^2}{b^2}-\frac{z^2}{c^2}=1 \\
+	&y=0: \text{ the hyperbola } \frac{x^2}{a^2}-\frac{z^2}{c^2}=1 \\
+	&z=0: \text{ the ellipse } \frac{x^2}{a^2}+\frac{y^2}{b^2}=1. \\
+\end{align*}
+The plane $z=z_0$ intersects the surface in an ellipse with center on the $z$-axis and vertices on one of the above hyperbolas.
+
+The surface is connected, meaning that it is possible to travel from one point on it to any other without leaving the surface. For this reason, it is said to have \emph{one sheet}, in contrast to the hyperboloid in the next example, which has two sheets.
+
+If $a=b$, the hyperboloid is a surface of revolution. 
+
+\begin{defn}[Hyperboloid of two sheets]
+	A \emph{hyperboloid of two sheets} is the quadric surface described by the equation
+	\begin{align*}
+		-\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1.
+	\end{align*}
+\end{defn}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/hyp_2_sheets}
+	\end{center}
+	\caption{A hyperboloid of two sheets.}
+\end{figure}
+
+The plane $z=0$ does not intersect the surface; in fact, for a horizontal plane to intersect the surface, we must have $|z|\geq |c|$. The hyperbolic cross-sections 
+\begin{align*}
+	&x=0: \frac{z^2}{c^2}-\frac{y^2}{b^2}=1 \\
+	&y=0: \frac{z^2}{c^2}-\frac{x^2}{a^2}=1 \\
+\end{align*}
+have their vertices and foci on the $z$-axis. The surface has two disconnected components, one above the plane $z=c$ and the other below the plane $z=-c$.
+
+\subsubsection{Hyperbolic Paraboloids}
+\begin{defn}[Hyperbolic paraboloid]
+	A \emph{hyperbolic paraboloid} is the quadric surface described by the equation
+	\begin{align*}
+		\frac{y^2}{b^2}-\frac{x^2}{a^2}=\frac{z}{c}, \hspace{0.5cm} c>0.
+	\end{align*}
+\end{defn}
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/last_one}
+	\end{center}
+	\caption{A hyperbolic paraboloid.}
+\end{figure}
+The intersections with the coordinate planes are
+\begin{align*}
+	&x=0: \text{ the parabola } z=\frac{c}{b^2}y^2 \\
+	&y=0: \text{ the parabola } z=-\frac{c}{a^2}x^2. 
+\end{align*}
+In the plane $x=0$, the parabola opens upward from the origin. The parabola in the plane $y=0$ opens downward.
+
+The intersection of the surface with a plane $z=z_0>0$ is the hyperbola
+\begin{align*}
+	\frac{y^2}{b^2}-\frac{x^2}{a^2}=\frac{z_0}{c}.
+\end{align*}
+
+Near the origin, the surface is shaped like a saddle. To a person traveling along the surface in the $yz$-plane, the origin looks like a minimum. To a person traveling in the $xz$-plane, the origin looks like a maximum. Such a point is called a \emph{saddle point} of a surface.
 
 \subsection{Limits}
 Let's compare the behavior of the functions
@@ -3786,7 +3988,7 @@ and therefore
 \end{align*}
 \end{pf}
 
-\section{Topology of $\R^n$}
+\section{Topology of $\R^n$}\label{app:topology}
 In this section we begin our study of those basic properties of $\R^n$ which allow us to define the notion of a continuous function. We will study open sets, which generalize open intervals on $\R$, and closed sets, which generalize closed intervals.
 
 Most of what follows depends only on the basic properties of the distance function
