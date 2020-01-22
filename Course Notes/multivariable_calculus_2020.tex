@@ -3051,10 +3051,30 @@ If $f(x,y)=\sin\left(\frac{x}{1+y}\right)$, calculate $\frac{\partial f}{\partia
 	\end{center}
 \end{figure}
 
-\fixme{More Examples?}
+\begin{exercise}
+If $f(x,y)=y\sin(xy)$, calculate $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$.	
+\end{exercise}
 
-\fixme{Implicit differentiation here?}
-\newpage 
+{\color{red}
+\begin{solution}
+	\begin{align*}
+		\frac{\partial f}{\partial x}=y^2\cos(xy), \hspace{0.5cm}
+	\frac{\partial f}{\partial y}=\sin(xy)+xy\cos(xy).
+	\end{align*}	
+\end{solution}}
+
+ \begin{exercise}
+If $f(x,y)=\frac{2y}{y+\cos(x)}$, calculate $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$.	
+\end{exercise}
+
+{\color{red}\begin{solution}
+	\begin{align*}
+		\frac{\partial f}{\partial x}=\frac{2y\sin(x)}{(y+\cos(x))^2}, \hspace{0.5cm}
+	\frac{\partial f}{\partial y}=\frac{2\cos(x)}{(y+\cos(x))^2}.
+	\end{align*}	
+\end{solution}}
+
+
 \subsubsection{Functions of More than Two Variables}
 \begin{figure}[h]
 	\begin{center}
@@ -3072,7 +3092,40 @@ Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$, and  $\f
 		\includegraphics[scale=0.5]{figures_mvc/pd3vex}
 	\end{center}
 \end{figure}
-\newpage 
+
+\subsubsection{Implicit Partial Differentiation}
+Implicit partial differentiation works exactly as in the single variable case.
+
+\begin{example}
+If the equation
+\begin{align*}
+	yz-\ln z=x+y
+\end{align*}	
+defines $z$ implicitly as a function of $x$ and $y$, then we compute $\frac{\partial z}{\partial x}$ by differentiating each side with respect to $x$:
+\begin{align*}
+	y\frac{\partial z}{\partial x}-\frac{1}{z}\frac{\partial z}{\partial x}&=1 \\
+	\implies \frac{\partial z}{\partial x}&=\frac{1}{y-\frac{1}{z}}.
+\end{align*}
+\end{example}
+
+\begin{exercise}
+	Compute $\frac{\partial z}{\partial y}$ if the equation
+\begin{align*}
+	yz-\ln z=x+y
+\end{align*}	
+defines $z$ implicitly as a function of $x$ and $y$.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+\begin{align*}
+	\frac{\partial z}{\partial y}=\frac{1-z}{y}.
+\end{align*}	
+\end{solution}
+
+}
+
+
 
 \subsubsection{Higher Partial Derivatives}
 \begin{figure}[h]
@@ -3080,6 +3133,8 @@ Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$, and  $\f
 		\includegraphics[width=\textwidth]{figures_mvc/higher_d}
 	\end{center}
 \end{figure}
+
+\newpage 
 
 \begin{exercise}\label{ex:mixed_partials_equality}
 Compute the second partial derivatives of 
@@ -3093,11 +3148,10 @@ Compute the second partial derivatives of
 		\includegraphics[scale=0.5]{figures_mvc/higher_d_ex}
 	\end{center}
 \end{figure}
-
 Notice for the function in Exercise \ref{ex:mixed_partials_equality} that $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$. This is no coincidence.
 
 \begin{thm}[Equality of mixed partial derivatives]\label{thm:clairaut}
-Let $f:U \subseteq \R^2 \to \R$. If $\frac{\partial f}{\partial x \partial y}$ and $\frac{\partial f}{\partial y \partial x}$	are both continuous, then $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$.
+Let $f:U \subseteq \R^2 \to \R$. If $\frac{\partial f}{\partial x \partial y}$ and $\frac{\partial f}{\partial y \partial x}$	are both continuous on $U$, then $\frac{\partial f}{\partial x \partial y}=\frac{\partial f}{\partial y \partial x}$ throughout $U$.
 \end{thm}
 
 \begin{proof}
@@ -3174,7 +3228,6 @@ We can partially-differentiate a function as many times as we like as long as th
 \begin{align*}
 	\frac{\partial^3 f}{\partial y \partial y \partial x}(x,y), \frac{\partial^4 f}{\partial y \partial y \partial x \partial x}(x,y),\dots.
 \end{align*}
-\fixme{Add counterexample when they are not continuous.}
 
 By repeated application of Theorem \ref{thm:clairaut}, the order does not matter as long as the partial derivatives are all continuous.
 
@@ -3186,6 +3239,78 @@ Compute
 \end{align*}
 if $f(x,y)=y^5x^4e^x+2\sin(3x)\cos(2y)$.	
 \end{exercise}
+
+\begin{example}[A function whose mixed partials are unequal]
+Consider the following function
+\begin{align*}
+	f(x,y)=\begin{cases}
+		\frac{xy^3-x^3y}{x^2+y^2}, &(x,y)\neq (0,0), \\
+		0, &(x,y)=(0,0).
+	\end{cases}
+\end{align*}
+For $(x,y) \neq (0,0)$, the quotient rule gives
+\begin{align*}
+\frac{\partial f}{\partial x}&=\frac{y^3-3x^2y}{x^2+y^2}-\frac{2x(xy^3-x^3y)}{(x^2+y^2)^2} \\
+&=\frac{y^5-4x^2y^3-x^4y}{(x^2+y^2)^2}.
+\end{align*}
+The partial derivative with respect to $x$ at $(0,0)$ is 
+\begin{align*}
+	\frac{\partial f}{\partial x}(0,0)&=\lim_{h \to 0}\frac{f(h,0)-f(0,0)}{h}=0,
+\end{align*}	
+so 
+\begin{align*}
+	\frac{\partial f}{\partial x}&=
+	\begin{cases}
+	\frac{y^5-4x^2y^3-x^4y}{(x^2+y^2)^2}, &(x,y)\neq (0,0) \\
+		0, &(x,y)=(0,0).
+	\end{cases}
+\end{align*}
+A similar calculation gives
+\begin{align*}
+	\frac{\partial f}{\partial y}&=\begin{cases}
+		\frac{-x^5+4x^3y^2+xy^4}{(x^2+y^2)^2}, &(x,y)\neq (0,0) \\
+		0, &(x,y)=(0,0).
+	\end{cases}
+\end{align*}
+The second partial derivative with respect to $y$ is given by, when $(x,y) \neq (0,0)$
+\begin{align*}
+	\frac{\partial f}{\partial y \partial x}&=\frac{-x^6-9x^4y^2+9x^2y^4+y^6}{(x^2+y^2)^3}
+\end{align*}
+while at $(0,0)$ it is given by
+\begin{align*}
+	\frac{\partial f}{\partial y \partial x}(0,0)&=\lim_{h \to 0}\frac{\frac{\partial f}{\partial x}(0,h)-\frac{\partial f}{\partial x}(0,0)}{h}=\lim_{h \to 0}\frac{1}{h}\frac{h^5-0-0}{h^4}=\lim_{h \to 0}\frac{h}{h}=1.
+\end{align*}
+Thus,
+\begin{align*}
+	\frac{\partial f}{\partial y \partial x}=\begin{cases}
+		\frac{-x^6-9x^4y^2+9x^2y^4+y^6}{(x^2+y^2)^3}, &(x,y) \neq (0,0), \\
+		1, &(x,y)=(0,0).
+	\end{cases}
+\end{align*}
+Now for $(x,y) \neq (0,0)$,
+
+\begin{align*}
+	\frac{\partial f}{\partial x \partial y}&=\frac{-x^6-9x^4y^2+9x^2y^4+y^6}{(x^2+y^2)^3}
+\end{align*} 
+and for $(x,y)=(0,0)$
+\begin{align*}
+	\frac{\partial f}{\partial x \partial y}(0,0)&=\lim_{h \to 0}\frac{1}{h}\frac{-h^5+0+0}{h^4}=\lim_{h \to 0}\frac{-h}{h}=-1. 
+\end{align*}
+Thus,
+\begin{align*}
+	\frac{\partial f}{\partial x \partial y}=\begin{cases}
+		\frac{-x^6-9x^4y^2+9x^2y^4+y^6}{(x^2+y^2)^3}, &(x,y) \neq (0,0) \\
+		-1, &(x,y)=(0,0).
+	\end{cases}
+\end{align*}
+
+We see that the mixed partial derivatives are not equal at the origin. The reason for this is that the mixed partial derivatives are not continuous at the origin. To see this, consider approaching the origin along the path along the line $y=x$. Then
+\begin{align*}
+	\lim_{(h,h) \to (0,0)}\frac{\partial f}{\partial x \partial y}=\lim_{(h,h) \to (0,0)}\frac{\partial f}{\partial y \partial x}\frac{0}{8h^6}=0.
+\end{align*}
+Since the mixed partials are discontinuous at the origin, they do not satisfy the hypothesis of Theorem \ref{thm:clairaut} at the origin, and they are unequal.
+\end{example}
+
 
 \subsubsection{Application: Partial Differential Equations}
 A \emph{partial differential equation} (PDE) is an equation relating a function to one or more of its partial derivatives. PDEs arise frequently in physics and engineering. A famous one is \emph{Laplace's equation}
