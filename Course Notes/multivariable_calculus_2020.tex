@@ -2356,7 +2356,7 @@ In the last section we studied functions with one input and multiple outputs. In
 In calculus, one generally defines a function by writing $y=f(x)$, where it is understood that the domain of the function is the largest set for which it is defined. This is common practice for multivariable functions as well, and one writes $z=f(x,y)$ meaning that the value of the function $f$ at $(x,y) \in \R^2$ is $z$. Similarly, one writes $u=f(x,y,z)$, $w=f(x,y,z,u)$, etc., if $f$ depends on more variables.
 
 \begin{example}\label{ex:parab_blue}
-Consider the function $f:D \subseteq \R^2 \to \R$ defined by $f(x,y)=\sqrt{y-x^2}$. For the square root to be defined, we must have $y-x^2\geq 0$. Taking the domain $D$ to be the largest set where the function is defined, we have then $D=\{(x,y) \in \R^2:y \geq x^2\}$, which is the shaded region above (and including) the parabola $y=x^2$ shown below. Note that $D$ is closed (since it contains its boundary $y=x^2$) and unbounded. (See Appendix \ref{app:topology} for definitions of these terms.)
+Consider the function $f:D \subseteq \R^2 \to \R$ defined by $f(x,y)=\sqrt{y-x^2}$. For the square root to be defined, we must have $y-x^2\geq 0$. Taking the domain $D$ to be the largest set where the function is defined, we have then $D=\{(x,y) \in \R^2:y \geq x^2\}$, which is the shaded region above (and including) the parabola $y=x^2$ shown below. Note that $D$ is closed (since it contains its boundary $y=x^2$) and unbounded. (See Section \ref{sec:regions} for definitions of these terms.)
 \begin{figure}[h]
 	\begin{center}
 		\includegraphics[scale=0.5]{figures_mvc/domain_parab}
@@ -2407,7 +2407,7 @@ For each of the following functions, evaluate $f(3,2)$ and find and sketch the d
 \end{center}
 \end{figure}
 
-\subsection{Regions in $\R^n$}
+\subsection{Regions in $\R^n$}\label{sec:regions}
 In the study of single-variable functions, open and closed intervals played important roles. We now describe regions of $\R^n$ which are the generalizations of such intervals to higher dimensions.
 
 Most of what follows depends only on the basic properties of the distance function
@@ -2496,18 +2496,27 @@ If $A$ is an open set containing a point $\bx$, we say that $A$ is a \emph{neigh
 
 It is immediate from Definition \ref{def:open_set} that $\R^n$ itself and $\emptyset$ are open sets. Here is a nontrivial example:
 
+\newpage 
+
 \begin{prop}\label{prop:open_ball_is_open}
 An open ball is an open set.	
 \end{prop}
 
 \begin{proof}
-	Let $\bx \in B_r(\bx_0)$. Then $h=r-d(\bx,\bx_0)>0$. Let $\by \in B_h(\bx)$. Then $d(\by,\bx)<h$. It then follows from the triangle inequality that
+	Let $\bx \in B_r(\bx_0)$. Then $h\equiv r-||\bx-\bx_0||>0$. Let $\by \in B_h(\bx)$. Then $||\by-\bx||<h$. It then follows from the triangle inequality that
 	\begin{align*}
-		d(\bx_0,\by) &\leq d(\bx_0,\bx)+d(\bx,\by) \\
+		||\bx_0-\by|| &\leq ||\bx_0-\bx||+||\bx-\by|| \\
 		&<r-h+h=r,
 	\end{align*}
 	which shows that $\by \in B_r(\bx_0)$, and therefore $B_h(\bx) \subseteq B_r(\bx_0)$. Thus, $B_r(\bx_0)$ is open.
 \end{proof}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.5]{figures_mvc/Openballisopen}
+	\end{center}
+	\caption{An open ball in $\R^n$ is an open set.}
+\end{figure}
 
 Note that a set can be neither open nor closed, or can be both open and closed.
 
@@ -3974,9 +3983,9 @@ Given a vector $\bv \in \R^n$ with coordinate vector $[\bv]=\begin{bmatrix}
 &=v_1\frac{\partial f}{\partial x_1}(\bx)+v_2\frac{\partial f}{\partial x_2}(\bx)+\cdots+v_n\frac{\partial f}{\partial x_n}(\bx) \\
 &=\nabla f(\bx) \cdot \bv.
 \end{align*}
-Since $df_\bx(\bv)=D_\bv(\bx)$, we therefore have
+Since $df_\bx(\bv)=D_\bv f(\bx)$, we therefore have
 \begin{align}\label{eq:dd_dot}
-	D_\bv(\bx)=\nabla f(\bx) \cdot \bv.
+	D_\bv f(\bx)=\nabla f(\bx) \cdot \bv.
 \end{align}
 
 \begin{exercise}
