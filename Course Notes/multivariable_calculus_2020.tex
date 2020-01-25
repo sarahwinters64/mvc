@@ -4568,338 +4568,64 @@ Let $A=\Q \cap [0,1] \subseteq \R$. Then $\partial A=[0,1]$, since for any $\eps
 
 Note that if $\bx \in \partial A$, then $\bx$ need not be a limit point of $A$. For example, if $A=\{0\} \subseteq \R$, then $A$ has no limit points, but $\partial A=\{0\}$.
 
-\section{Every linear map on a finite-dimensional vector space is continuous}
-\subsection{Least Upper Bounds}
-At some point in your study of calculus, you may have wondered why we use $\R$ to do calculus. Is there something stopping us from, say, doing calculus over $\Q$? There certainly nothing stopping us from defining limits, continuity, derivatives, etc. for functions $f:\Q \to \Q$ exactly as we have done for real functions. \fixme{Add example.} However, the reason we are more interested in calculus over $\R$ rather than $\Q$ is that various important theorems become \emph{false} over $\Q$. For instance, the intermediate value theorem and the extreme value theorem are false over $\Q$. \fixme{Add examples.} Since these theorems are used to prove even more important theorems - such as the Mean Value Theorem and the Fundamental Theorem of Calculus, calculus is pretty boring over $\Q$, and is not capable of applications in physics, etc.
-
-The reason why these theorems are false over $\Q$ is that $\R$ has an important property which is not shared by $\Q$, even though $\R$ and $\Q$ have the same \emph{algebraic} properties. Already, $\Q$ is insufficient to solve basic equations; for instance, the equation $x^2=2$ has no solution in $\Q$ (since $\sqrt{2}$ is not rational). It turns out there are infinitely many \emph{irrational} numbers, so one may visualize the set of rational numbers as lying along a number line which has certain ``gaps". The real number system is constructed to \emph{extend} $\Q$; that is, $\R$ contains (an isomorphic copy of) $\Q$ and has exactly the same algebraic properties of $\Q$, but in such a way the \emph{real} number line has no gaps. 
-
-We need to formalize this property, which $\Q$ fails to have, that ensures a set has no gaps when the real numbers are ordered and placed along a number line. Since this property should only depend on the set in question, this seems immediately puzzling: if $\Q$ is all we have, then how are we to state that there is a ``gap" at $\sqrt{2}$ without making reference to $\sqrt{2}$?! The following example sheds some light on the situation:
-\begin{example}\label{ex:q_no_lub_property}
-Let $A=\{p \in \Q: p^2<2\}$ and $B=\{p \in \Q:p^2>2\}$. We will show that $A$ contains no largest element and $B$ contains no smallest element. Explicitly, for every $p \in A$ we can find a $q \in A$ such that $p<q$, and for every $p\in B$ we can find $q \in B$ such that $q<p$.
-
-To do this, associate with each rational number $p>0$ the number
-\begin{align}\label{eq:a_no_lub}
-	q=p-\frac{p^2-p}{p+2}=\frac{2p+2}{p+2}.
-\end{align}	
-Then
-\begin{align}\label{eq:g_no_glb}
-	q^2-2=\frac{2(p^2-2)}{(p+2)^2}.
-\end{align}
-If $p \in A$ then $p^2-2<0$,  \eqref{eq:a_no_lub} shows that $q>p$, and \eqref{eq:g_no_glb} shows that $q^2<2$. Thus, $q \in A$.
-
-If $p \in B$ then $p^2-2>0$, \eqref{eq:a_no_lub} shows that $0<q<p$, and \eqref{eq:g_no_glb} shows that $q^2>2$. Thus, $q \in B$.
-\end{example}
-Thus, elements in $A$ get closer and closer to $\sqrt{2}$ without ever reaching it, and elements of $B$ get closer and closer to $\sqrt{2}$ without ever reaching it.
-
-To discuss the issue, we make the following definitions.
-
-\begin{defn}[Upper and lower bounds]\hspace{15cm}
-	\begin{enumerate}
-		\item A set $A$ of numbers is \emph{bounded above} if there is a real number $x$ (which need not be in $A$) such that $a \leq x$ for every $a \in A$. The number $x$ is called an \emph{upper bound} for $A$.
-		\item A set $A$ of numbers is \emph{bounded below} if there is a real number $x$ (which need not be in $A$) such that $x \geq a$ for every $a \in A$. The number $x$ is called a \emph{lower bound} for $A$.
-	\end{enumerate}  
-\end{defn}
-
-\begin{example}\label{ex:exs_lub}
-	\begin{enumerate}[(a)]
-		\item Looking back at Example \ref{ex:q_no_lub_property}, we see that every element of $B$ is an upper bound of $A$, and every element of $A$ is a lower bound of $B$.
-		\item The entire collections $\R$, $\Q$, and $\N$ are examples of sets which are \emph{not} bounded above.
-		\item The set $S=\{x \in \R:0 \leq x <1\}$ is bounded above.
-	\end{enumerate}
-\end{example}
-
-The set $S$ in part (c) of Example \ref{ex:exs_lub} has many upper bounds; any real $x\geq 1$ will do. However, the upper bound 1 is the \emph{least} upper bound, since if $\epsilon$ is any positive number, the interval $(1-\epsilon,1)$ is nonempty, and thus contains a number smaller than 1, which is therefore not an upper bound of $S$. We now define this formally.
-
-\begin{defn}[Least upper bound]\label{def:lub}
-	Let $A$ be a set of numbers which is bounded above. A number $x$ is a \emph{least upper bound} of $A$ if
-	\begin{enumerate}[(1)]
-		\item $x$ is an upper bound of $A$, and
-		\item if $y$ is an upper bound of $A$, then $x \leq y$.
-	\end{enumerate}
-\end{defn}
-Thus, unlike the set $S$ of Example \ref{ex:exs_lub}(c), the set $A$ of Example \ref{ex:q_no_lub_property} is bounded above, but has no least upper bound, since $B$ has no smallest element.
-
-\begin{prop}
-Let $A$ be a set of numbers. If $A$ has a least upper bound, then it is unique.	
-\end{prop}
-
-\begin{proof}
-	Suppose $x$ and $y$ are both least upper bounds of $A$. Then
-	\begin{align*}
-		x \leq y, & \hspace{0.5cm} \text{ since $y$ is an upper bound, and $x$ is a least upper bound, and} \\
-		y \leq x, & \hspace{0.5cm} \text{ since $x$ is an upper bound, and $y$ is a least upper bound}. 
-	\end{align*}
-	Thus, $x=y$.
-\end{proof}
-Therefore, we speak of \emph{the} least upper bound of $A$, when it exists. The least upper bound is also called the \emph{supremum} of $A$, and is denoted $\sup A$ (pronounced ``soup $A$"). 
-
-There is an analogous definition for sets bounded below.
-
-\begin{defn}[Greatest lower bound]
-	Let $A$ be a set of numbers. A number $x$ is the \emph{greatest lower bound} of $A$ if
-	\begin{enumerate}[(1)]
-		\item $x$ is a lower bound of $A$, and
-		\item if $y$ is a lower bound of $A$, then $x \geq y$.
-	\end{enumerate}
-	The greatest lower bound of $A$ is also called the \emph{infimum} of $A$, denoted $\inf A$.
-	\end{defn}
-
-We have seen that some sets have a least upper bound while others do not (similarly for greatest lower bounds). We may then ask, ``Which sets have a least upper bound?".
-
-\begin{defn}[The least upper bound property]\label{def:lub_proper}
-	A set $S$ of numbers is said to have the \emph{least upper bound property} if every nonempty subset of $S$ which is bounded above has a least upper bound. \footnote{Consider $\emptyset \subseteq S$. Then by Definition \ref{def:lub},  every element of $S$ is an upper bound for $\emptyset$, since $\emptyset$ has no elements (i.e., it is \emph{vacuously true} that, given any $x \in S$, $y \leq x$ for all $y \in \emptyset$). Since any number $x \in S$ is an upper bound for $\emptyset$, if $S$ is infinite then there is no least upper bound for $\emptyset$.}
-\end{defn}
-
-Example \ref{ex:q_no_lub_property} shows that $\Q$ does not have the least upper bound property.
-
-\begin{thm}[$\R$ has the least upper bound property.]\label{thm:lub_property}
-	$\R$ has the least upper bound property.
-\end{thm}
-
-Theorem \ref{thm:lub_property} is proved by constructing $\R$ from $\Q$. This is straightfoward, but rather long, so we do not go through this here. It is a fact that $\R$ is the \emph{unique} extension of $\Q$ which has the least upper bound property (up to isomorphism). Going forward, we will simply assume this to be true and we will continue to use real numbers the way you are accustomed to using them. In the following, we will illustrate the least upper bound property and some consequences which are important for the study of calculus.
-
-It follows from Theorem \label{thm:lub_property} that $\R$ also has the \emph{greatest lower bound property} (defined analogously to Definition \ref{def:lub_proper}).
-
-\begin{thm}
-The fact that $\R$ has the least upper bound property implies that $\R$ also has the greatest lower bound property.
-\end{thm}
-
-\begin{proof}
-	Let $B$ be a nonempty subset of $\R$ which is bounded below. Let $L$ be the set of all lower bounds of $B$, which is nonempty by assumption. Then, every $y \in L$ has the property that $y \leq x$ for all $x \in B$. This says that every $x \in B$ is an \emph{upper bound} of $L$. Since $L$ is a nonempty subset of $\R$ which is bounded above, it has a least upper bound by Theorem \ref{thm:lub_property}. Let $\alpha=\sup L$. We claim that $\alpha=\inf B$. 
-	
-	Suppose $y<\alpha$. Then $y$ is not an upper bound of $L$, hence $y \notin B$. This shows that $\alpha \leq x$ for every $x \in B$. Thus, $\alpha \in L$.
-	
-	If $\alpha<y$, then $y \notin L$, since $\alpha$ is an upper bound of $L$.
-	
-	We have shown that $\alpha \in L$ but $y \notin L$ if $y>\alpha$. In other words, $\alpha$ is a lower bound of $B$, but $y$ is not if $y>\alpha$. Thus, $\alpha=\inf B$.
-	
-	We have shown that every nonempty subset of $\R$ which is bounded below has a greatest lower bound. Thus, $\R$ satisfies the greatest lower bound property.
-	
-\end{proof}
-
-
-
-\begin{thm}[$\N \subseteq \R$ is not bounded above.]\label{thm:n_not_bdd_above}
-	$\N \subseteq \R$ is not bounded above.
-\end{thm}
-
-\begin{proof}
-	(By contradiction.) Suppose $\N \subseteq \R$ is bounded above. Since $\N \neq \emptyset$, there exists a least upper bound for $\N$. Let $\alpha\equiv \sup \N$. Then
-	\begin{align*}
-		\alpha \geq n \hspace{0.5cm} \text{ for all $n \in \N$}.
-	\end{align*}
-	Consequently,
-	\begin{align*}
-		\alpha \geq n+1 \hspace{0.5cm} \text{ for all $n \in \N$},
-	\end{align*}
-	since $n+1 \in \N$ if $n \in \N$. But then
-	\begin{align*}
-		\alpha-1 \geq n \hspace{0.5cm} \text{ for all $n \in \N$},
-	\end{align*}
-	which says that $\alpha-1$ is also an upper bound for $\N$. Since $\alpha-1<\alpha$, this contradicts the fact that $\alpha$ is the \emph{least} upper bound for $\N$.
-\end{proof}
-
-\begin{cor}\label{cor:arch}
-	For every $\epsilon>0$ there exists $n \in \N$ such that $\frac{1}{n}<\epsilon$.
-\end{cor}
-
-\begin{proof}
-	(By contradiction.) Suppose otherwise. Then $\frac{1}{n}\geq \epsilon$ for all $n \in \N$, and therefore $n \leq \frac{1}{\epsilon}$ for all $n \in \N$, which says that $\frac{1}{\epsilon}$ is an upper bound for $\N$, contradicting Theorem \ref{thm:n_not_bdd_above}.
-\end{proof}
-
-\begin{example}
-Consider the set $A=\left\{\frac{1}{n}:n \in \N\right\}$. Then $\sup A=1$, since $\frac{1}{n}\leq 1$ for all $n \in \N$ and if $y<1$, then $\frac{1}{1}=1>1$, so $y$ is not an upper bound. Note that $\sup A \in A$.
-
-	We have $\inf A=0$. Since $\frac{1}{n}>0$ for all $n \in \N$, $0$ is a lower bound of $A$. If $\epsilon>0$, then by Cor.\ref{cor:arch} there exists $n \in \N$ such that $\frac{1}{n}<\epsilon$, which shows that no positive number $\epsilon$ is a lower bound for $A$. Note that $\inf A=0 \notin A$.
-\end{example}
-
-\begin{prop}\label{prop:negative_stuff}
-\begin{enumerate}[(a)]
-	\item Suppose $A \neq \emptyset$ is a subset of $\R$ that is bounded below. Let $-A=\{-x:x \in A\}$. Then $-A \neq \emptyset$ is bounded above, and $\inf A=-\sup(-A)$.
-	\item If $A \neq \emptyset$ is bounded below, then the set $B$ of all lower bounds of $A$ is nonempty, bounded above, and $\sup B=\inf A$.
-\end{enumerate}	
-\end{prop}
-
-\begin{proof}
-	\fixme{Finish.}
-\end{proof}
-
-\begin{exercise}
-Find $\sup A$ and $\inf A$ (if they exist) for each the following subset of $\R$:
-$A=\left\{\frac{1}{n}:n \in \Z \text{ and } n \neq 0\right\}$.
-\end{exercise}
-
-{\color{red}
-\begin{solution}
-	By exactly the same argument as above, $\sup A=1$.
-	The fact that $\inf A=-1$ follows from Proposition \ref{prop:negative_stuff}. \fixme{Finish.}
-\end{solution}
-}
-\subsection{Continuous maps OLD}
-\begin{defn}[Lipschitz continuity]
-	A function $f:\R^n \to \R^k$ is \emph{Lipschitz continuous} if there exists a positive real number $K$ such that 
-	\begin{align*}
-		||f(x_1)-f(x_2)||_{\R^k}\leq K ||x_1-x_2||_{\R^n}
-	\end{align*}
-	for all $x_1,x_2 \in \R^n$. The real number $K$ is said to be a \emph{Lipschitz constant} for the function $f$. 
-\end{defn}
-
-\begin{lem}
-If $f$ is Lipschitz continuous, then it is uniformly continuous.	
-\end{lem}
-
-\begin{proof}
-	Given $\epsilon>0$, choose $\delta=\frac{\epsilon}{K}$. Then
-	\begin{align*}
-		||f(x_1)-f(x_2)||_{\R^k}\leq K \frac{\epsilon}{K}=\epsilon
-	\end{align*}
-	whenever $||x_1-x_2||_{\R^n}<\delta$.
-\end{proof}
-
-
-\begin{thm}
-Let $T:V \to W$ be a linear map between normed linear spaces. The following are equivalent:
-\begin{enumerate}[(i)]
-	\item $T$ is bounded
-	\item $T$ is uniformly continuous
-	\item $T$ is continuous at $0 \in V$
-\end{enumerate}	
-\end{thm}
-
-\begin{proof}
-	To see that (i) implies (ii), if $T$ is bounded then
-	\begin{align*}
-		||T(\bv-\bw)||_W=||T\bv-T\bw||_W \leq C||\bv-\bw||_V,
-	\end{align*}
-	which says that $T$ is Lipschitz continuous, and therefore is uniformly continuous. To see that (ii) implies (iii), just take $\bw=0$ above. To prove that (iii) implies (i), if $T$ is not bounded then choose $\bv_n \in V$ such that $||\bv_n||_V=1$ and $||T\bv_n||_W>n$. Then $\bw_n\equiv \bv_n/n$ satisfies $\lim_{n \to \infty}\bw_n=0$ but $||T\bw_n||_W>1$, so the sequence $(T\bw_n)$ does not converge to $0 \in W$. Hence, $T$ is not continuous at $0 \in V$.
-\end{proof}
-
-
-\subsection{Continuous maps}
-\begin{defn}[Bounded linear map]
-	A \emph{linear} map $T:\R^n \to \R^m$ is said to be \emph{bounded} if there exists $C\geq 0$ such that \footnote{Note that $||T\bx||$ is computed with respect to the distance function of $\R^m$ while $||\bx||$ is computed with respect to the distance function of $\R^n$. Since this is obvious from context, we will use the same notation.}
+\section{Every Linear Map is Bounded}
+\begin{defn}[Bounded linear map]\label{def:bdd_lin_map}
+	A \emph{linear} map $T:\R^n \to \R^m$ is said to be \emph{bounded} if there exists a real number $C\geq 0$ such that 
 	\begin{align}\label{eq:bounded_op}
-		||T(\bx)||\leq C||\bx||, \hspace{0.5cm} \text{ for all } \bx \in \R^n.
+		||T(\bx)||\leq C||\bx||, \hspace{0.5cm} \text{ for all } \bx \in \R^n. \footnote{Note that $||T\bx||$ is computed with respect to the distance function of $\R^m$ while $||\bx||$ is computed with respect to the distance function of $\R^n$. Since which distance function we are using is obvious from context, we will use the same notation for each one.}
 	\end{align}
 \end{defn}
 
-Note that this definition differs from the usual definition of a bounded function, which says that $T:\R^n \to \R^m$ is bounded if its image is a bounded subset of $\R^m$; that is, if there exists $C$ such that $||T(\bx)||\leq C$ for all $\bx \in \R^n$. Since $T$ is linear, it can't be bounded in this sense, since for all $\lambda \in \R$, we have $||T(\lambda \bx)||=|\lambda| \ ||T(\bx)||$. What this \emph{does} say, is that applying $T$ to a vector $\bx \in \R^n$ produces a vector in $\R^m$ whose length is never increased by more than a factor of $C$. Thus, the image of a bounded set under a bounded linear map $T$ is always bounded.
-
-It therefore makes sense to define the ``size" of a bounded linear map $T$ to be the ``maximum" factor by which $T$ ``lengthens" vectors (which corresponds to the smallest value of $C$ for which \eqref{eq:bounded_op} holds for all $\bx \in \R^n$). The precise definition is the following.
-
-\begin{defn}[Operator norm]
-	Let $T:\R^n \to \R^m$ be a bounded linear operator. Define
-	\begin{align*}
-		||T||_\text{op}=\inf\{C\geq 0:||T(\bx)||\leq C||\bx|| \text{ for all } \bx \in \R^n\}.
-	\end{align*}
-	Note that the infimum exists, because this set is a nonempty subset of $\R$ which is bounded below (by zero).
-	
-	The number $||T||_\text{op}$ is called the \emph{operator norm} of $T$, which we will simply denote by $||T||$.
-\end{defn}
-
-\fixme{Example?}
-
-\begin{prop}[Properties of the operator norm]
-	Let $T,T_1,T_2:\R^n \to \R^m$ be bounded linear operators and let $c \in \R$. Then
-	\begin{enumerate}[(i)]
-		\item $||T|| \geq 0$ and $||T||=0$ if and only if $T=0$ (i.e., if and only if $T$ is the zero map);
-		\item $||cT||=|c| \ ||T||$;
-		\item $||T_1+T_2||\leq ||T_1||+||T_2||$;
-		\item The following inequality is an immediate consequence of the definition:
-		\begin{align*}
-			||T(\bx)||\leq ||T|| \ ||\bx|| \hspace{0.5cm} \text{ for every } \bx \in \R^n.
-		\end{align*}
-	\end{enumerate}
-\end{prop}
-
-\begin{proof}
-	\fixme{Finish.}
-\end{proof}
+Note that this definition differs from the usual definition of a bounded function, which says that $T:\R^n \to \R^m$ is bounded if its image is a bounded subset of $\R^m$; that is, if there exists $C$ such that $||T(\bx)||\leq C$ for all $\bx \in \R^n$. Since $T$ is linear, it can't be bounded in this sense, since for all $\lambda \in \R$, we have $||T(\lambda \bx)||=|\lambda| \ ||T(\bx)||$, which can be any positive real number since $|\lambda|$ can be any positive real number. What Definition \ref{def:bdd_lin_map} \emph{does} say, is that applying $T$ to a vector $\bx \in \R^n$ produces a vector in $\R^m$ whose length is never increased by more than a factor of $C$. Thus, the image of a \emph{bounded} set  of vectors (such as the set of all unit vectors) under a bounded linear map $T$ is always bounded.
 
 
 
-The next theorem shows that the bounded linear maps are precisely the continuous ones.
-
-\begin{thm}
-Let $T:\R^n \to \R^m$ be a bounded linear map. Then $T$ is bounded if and only if it is continuous.
-\end{thm}
-
-\begin{proof}
-	Suppose $T$ is bounded. Then there exists $C>0$ such that 
-	\begin{align*}
-		||T(\bx)||\leq C||\bx||, \hspace{0.5cm} \text{ for all } \bx \in \R^n.
-	\end{align*}
-	Given any $\epsilon>0$, choose $\delta=\frac{\epsilon}{C}$. Then $||\bx-\by||<\delta$ implies 
-	\begin{align*}
-		||T(\bx-\by)||&\leq C||\bx-\by|| \\
-		&<C\delta \\
-		&=C\frac{\epsilon}{C} \\
-		=\epsilon,
-	\end{align*}
-	which shows that $T$ is continuous.
-	
-	Conversely, suppose that $T$ is continuous. In particular, $T$ is continuous at the zero vector, so 
-	\begin{align*}
-		||T(\bx)||=||T(\bx)-T({\bf 0})||\leq 1
-	\end{align*}
-	for all vectors $\bx \in \R^n$ with $||\bx||\leq \delta$. Thus, for all nonzero vectors $\bv \in \R^n$,
-	\begin{align*}
-		||T(\bv)||&=\left|\left|\frac{||\bv||}{\delta}T(\delta \frac{\bv}{||\bv||})\right|\right| \\
-		&=\frac{||\bv||}{\delta}\left|\left|T(\delta \frac{\bv}{||\bv||})\right|\right| \\
-		&\leq \frac{||\bv||}{\delta} \cdot 1 \\
-		&=\frac{1}{\delta}||\bv||,
-	\end{align*}
-	which proves that $T$ is bounded.
-\end{proof}
-
-We now show that every linear map from $\R^n$ to $\R^m$ is continuous. We will need the following lemma.
+We will now show that every linear map $T:\R^n \to \R^m$ is bounded in this sense. We need the following lemma.
 
 \begin{lem}\label{eq:inequality_we_need}
-	For any vector $\bv=\sum_{i=1}^nc_i\bv_i \in \R^n$,
-	\begin{align*}
-		||\bv|| \geq \frac{1}{n}\sum_{i=1}^n|c_i|.
-	\end{align*}
+Let $\bv \in \R^n$ and let $B=\{\bv_i\}_{i=1}^n$ be a basis for $\R^n$ so that
+\begin{align*}
+	\bv=\sum_{i=1}^nc_i\bv_i.
+\end{align*}
+Let $c\equiv \max\{|c_i|\}_{i=1}^n$. Then
+\begin{align*}
+	||\bv||\geq c.
+\end{align*}
 \end{lem}
 
 \begin{proof}
+For each $i=1,\dots,n$,
 	\begin{align*}
-		||\bv||=\sqrt{\sum_{i=1}^n c_i^2} \geq |c_i|
+		||\bv||^2=\sum_{j=1}^n c_j^2=\sum_{j=1}^n |c_j|^2 \geq |c_i|^2. 
 	\end{align*}
-	for each $i=1,\dots,n$. Therefore
-	\begin{align*}
-		\underbrace{||\bv||+\cdots+||\bv||}_\text{$n$ times}=n||\bv||\geq \sum_{i=1}^n|c_i|
-	\end{align*}
-	and therefore
-	\begin{align*}
-		||\bv|| \geq \frac{1}{n}\sum_{i=1}^n|c_i|.
-	\end{align*}
+Since both $||\bv||$ and $|c_i|$ are nonnegative, it follows that
+\begin{align*}
+	||\bv|| \geq |c_i|.
+\end{align*}
+Since $||\bv||$ is greater than or equal to \emph{every} $|c_i|$, in particular it is greater than or equal to the biggest one. Thus, $||\bv||\geq c$.
 \end{proof}
 
-
-\begin{thm}
-Every linear map $T:\R^n \to \R^m$ is bounded.	
+\begin{thm}\label{thm:every_lin_op_is_cont}
+	Every linear map $T:\R^n \to \R^m$ is bounded.
 \end{thm}
 
 \begin{proof}
-	Let $B=\{\bv_i\}_{i=1}^n$ be an ordered basis for $\R^n$. Then for any vector $\bv$ there exist unique scalars $\{c_i\}_{i=1}^n$ such that
+	Let $T:\R^n \to \R^m$ be a linear map and let $\bv \in \R^n$. Choose a basis $B=\{\bv_i\}_{i=1}^n$ for $\R^n$ so that $\bv=\sum_{i=1}^nc_i\bv_i$. Let $c \equiv \max\{|c_i|\}_{i=1}^n$. Then
 	\begin{align*}
-		\bv=\sum_{i=1}^nc_i\bv_i.
+		||T(\bv)||&=||T(\sum_{i=1}^nc_i\bv_i)|| \\
+		&=||\sum_{i=1}^nc_i T(\bv_i)|| \hspace{0.5cm} \text{ (since $T$ is linear)}\\
+		&\leq \sum_{i=1}^n ||c_i T(\bv_i)|| \hspace{0.5cm} \text{ (by the triangle inequality)}\\
+		&=\sum_{i=1}^n|c_i| \ ||T(\bv_i)|| \\
+		&\leq c(\sum_{i=1}^n ||T(\bv_i)||) \hspace{0.5cm} \text{ (since each $|c_i|\leq c$)}\\
+		& \leq ||\bv||(\sum_{i=1}^n ||T(\bv_i)||) \hspace{0.5cm} \text{ (by Lemma \ref{eq:inequality_we_need})}\\
 	\end{align*}
-	Then 
-	\begin{align*}
-		||T(\bv)||&=\left|\left|T(\sum_{i=1}^nc_i\bv_i)\right|\right| \\
-		&=\left|\left|\sum_{i=1}^nc_iT(\bv_i)\right|\right| \\
-		&=\sum_{i=1}^n|c_i| \ \left|\left|T(\bv_i)\right|\right| \\
-	\end{align*}
-	Let $C=\max\{T(\bv_i)\}_{i=1}^n$. Then
-	\begin{align*}
-		||T(\bv)||&\leq C \sum_{i=1}^n|c_i| \\
-		&\leq C n||\bv||,
-	\end{align*}
-	(where we have used Lemma \ref{eq:inequality_we_need}) which shows that $T$ is bounded.
+Let $M=\max\{||T(\bv_i)||\}_{i=1}^n$. Then
+\begin{align*}
+	||T(\bv)||&\leq ||\bv||(\sum_{i=1}^n ||T(\bv_i)||) \\
+	&\leq nM||\bv||. 
+\end{align*}	
+Since $n>0$ and $M \geq 0$, $nM \geq 0$, which shows that $T$ is bounded.
 \end{proof}
-
 
 
 
