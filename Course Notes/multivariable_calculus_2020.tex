@@ -2416,7 +2416,7 @@ Most of what follows depends only on the basic properties of the distance functi
 \end{align*}
 which are exactly the same properties as those of the absolute value function $|x|$, $x \in \R$ (which is the distance function on $\R^n$ for $n=1$).
 
-\begin{thm}[Properties of the distance function]
+\begin{thm}[Properties of the distance function]\label{thm:props_of_the_distance_function}
 	\begin{enumerate}[(i)]\hspace{15cm}
 		\item $||\bx-\by||\geq 0$, with equality if and only if $\bx=\by$;
 		\item $||\bx-\by||=||\by-\bx||$;
@@ -2909,11 +2909,15 @@ as $(x,y) \to (0,0)$. Note that neither function is defined at $(0,0)$:
 It looks like $\lim_{(x,y) \to (0,0)}f(x,y)=1$ (since the values of the function approach 1 from all directions) while $\lim_{(x,y) \to (0,0)}g(x,y)$ does not exist (since the values of the function near $(0,0)$ do not approach any fixed value).
 
 \begin{defn}[Limit]\label{def:limit}
-	Let $f:U-\{\bx_0\} \subset \mathbb{R}^n \to \mathbb{R}$, and $L \in \mathbb{R}$. We say that $f(\bx) \to L$ as $\bx \to \bx_0$ if for every $\epsilon > 0$ there exists a corresponding $\delta>0$ such that
+Let $U$ be an open subset of $\R^n$ and $f:U \to \mathbb{R}$, which may or may not be defined at $\bx_0 \in U$, and let $L \in \mathbb{R}$. We say that 
+\begin{align*}
+	\lim_{\bx \to \bx_0}f(\bx)=L
+\end{align*}
+if for every $\epsilon > 0$ there exists a corresponding $\delta>0$ such that
 \begin{align*}
 	0<||\bx-\bx_0||<\delta \implies |f(\bx)-L|<\epsilon.
 \end{align*}
-In this case $L$ is called the \emph{limit} of $f$ as $\bx$ approaches $\bx_0$, and  we write $\lim_{\bx \to \bx_0}f(\bx)=L$.
+In this case $L$ is called the \emph{limit} of $f$ as $\bx$ approaches $\bx_0$.
 \end{defn}
 This definition says that the distance between $f(\bx)$ and $L$ can be made arbitrarily small by making the distance between $\bx$ and  $\bx_0$ sufficiently small. \footnote{Two points $x_1,x_2$ are said to be \emph{arbitrarily close} if, for \emph{every} $\epsilon>0$, $d(x_1,x_2)<\epsilon$. A point $x_1$ is said to be \emph{sufficiently close} to $x_2$ if there exists \emph{some} (fixed) $\delta>0$ such that $d(x_1,x_2)<\delta$.}
 
@@ -2989,7 +2993,7 @@ Thus, $\lim_{(x,y) \to (0,0)}\frac{xy}{x^2+y^2}$ does not exist.
 	\caption{The function $f(x,y)=\frac{xy}{x^2+y^2}$ has no limit as $(x,y) \to (0,0)$.}
 \end{figure}
 \newpage 
-The previous example showed that it is not sufficient to compute the limit of a multivariable function by restricting the function to paths in the domain. We now show how to use Definition \ref{def:limit} to show that a limit \emph{does} exist.
+The previous example shows that it is not sufficient to compute the limit of a multivariable function by restricting the function to paths in the domain. We now show how to use Definition \ref{def:limit} to show that a limit \emph{does} exist.
 
 \begin{thm}\label{thm:simple_limits}
 Let $a,b,c$ be fixed real numbers. Then
@@ -3013,7 +3017,7 @@ Let $a,b,c$ be fixed real numbers. Then
 \end{proof}
 
 \begin{exercise}
-Prove part (c) of Proposition \ref{prop:simple_limits}. 	
+Prove part (c) of Theorem \ref{thm:simple_limits}. 	
 \end{exercise}
 
 {\color{red}
@@ -3042,7 +3046,7 @@ Then
 \end{thm}
 
 \begin{pf}
-The proofs of these are identical to the proofs of the corresponding properties in Theorem \ref{thm:limit_laws_for_single-variable_functions}, with the metric $d_\R(x,y)=|x-y|$ on $\R$ replaced by the metric $d_{\R^2}(\bx,\by)=||\bx-\by||$ on $\R^2$. \footnote{In fact, these properties hold for maps between any metric spaces. For a function $f:X \to Y$ between metric spaces, the definition of $\lim_{x \to x_0}f(x)=L$ becomes: for every $\epsilon>0$ there exists $\delta>0$ such that $d_Y(f(x),L)<\epsilon$ whenever $0<d_X(x,x_0)<\delta$. Since the proofs of the limit properties only depend on properties shared by every metric (e.g., the triangle inequality), the proofs are exactly the same, with the Euclidean metrics on $\R^2, \R$ replaced by the metrics on $X$ and $Y$.}   
+It follows from Theorem \ref{thm:props_of_the_distance_function} that the proofs of these properties are identical to the proofs of the corresponding properties of single-variable functions in Theorem \ref{thm:limit_laws_for_single-variable_functions}, with the absolute value replaced by the distance function on $\R^n$.
 \end{pf}
 
 \begin{example}
@@ -3058,15 +3062,15 @@ To evaluate $\lim_{(x,y) \to (1,2)}(x^2y^3-x^3y^2+3x+2y)$ using Theorems \ref{th
 \end{example}
 
 \begin{defn}[Continuous function]
- A function $f$ of two variables is \emph{continuous at} $(a,b)$ if
+ A multivariable function $f:U \subseteq \R^n \to \R$ is \emph{continuous at} $\bx_0$ if
 \begin{align*}
-	\lim_{(x,y) \to (a,b)}f(x,y)=f(a,b).
+	\lim_{\bx \to \bx_0}f(\bx)=f(\bx_0).
 \end{align*}
-The function $f$ is \emph{continuous on} $D$ if $f$ is continuous at every point $(a,b)$ in $D$.	
+The function $f$ is \emph{continuous on} $U$ if $f$ is continuous at every point in $U$.	
 \end{defn}
-As in single-variable calculus, continuous functions map nearby points in $D$ to nearby points in $\mathbb{R}$, so a surface that is the graph of a continuous function has no holes or breaks.
+As in single-variable calculus, continuous functions map nearby points in $U$ to nearby points in $\mathbb{R}$, so the graph of a continuous function has no holes or breaks.
 
-Using the limit properties, we find that sums, products, and quotients of continuous functions are continuous on their domains. Similarly, compositions of continuous functions are continuous.  
+It follows immediately from Theorem \ref{thm:limit_laws_for_multivariable_functions} that that sums, products, and quotients of continuous functions are continuous on their domains. Similarly, compositions of continuous functions are continuous.  
 
 It follows from Theorem \ref{thm:simple_limits} that $f(x,y)=x, g(x,y)=y,$ and $h(x,y)=c$ are continuous. Since any polynomial, e.g.,
 \begin{align*}
@@ -3100,7 +3104,7 @@ continuous?
 	\end{align*}
 	we have 
 	\begin{align*}
-		\lim_{(x,y) \to (0,0)}\frac{x^4-x^2y^2}{x+y}=\lim_{(x,y) \to (0,0)}x^2(x-y)=0.
+		\lim_{(x,y) \to (0,0)}\frac{x^4-x^2y^2}{x+y}=\lim_{(x,y) \to (0,0)}x^2(x-y)=0=g(0,0).
 	\end{align*}
 	Thus, $g(x,y)$ is continuous everywhere.
 \end{solution}}
