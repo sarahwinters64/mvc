@@ -3969,7 +3969,7 @@ Suppose $F(x,y)=x^2-xy+y^2-7$. Then $\partial F/\partial y=-x+2y$. By the Implic
 \end{example}
 
 \subsubsection{The Gradient}
-Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. \fixme{Refer to my linear algebra notes.} Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
+Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. \footnote{See section 4.11 of my Linear Algebra notes.} Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
 \begin{align*}
 	[df_\bx]=\begin{bmatrix}
 		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
@@ -4056,12 +4056,108 @@ If $f(x,y,z)=x-y$ and $g(x,y,z)=z$, then
 \end{example}
 
 \subsubsection{Application: Linear Approximations}
-If $f:\R^2 \to \R$ is differentiable at $\bx$, the equation of the \emph{tangent plane} to the graph of $f$ at $(\bx,f(\bx))$ is given by the equation
+If $f:\R^2 \to \R$ is differentiable at $\bx$, the equation of the \emph{tangent plane} to the graph of $f$ at $(x,y,z=f(x,y))$ is given by the equation
 \begin{align*}
 	z=z_0+\frac{\partial f(x_0,y_0)}{\partial x}(x-x_0)+\frac{\partial f(x_0,y_0)}{\partial y}(y-y_0).
 \end{align*}
+where $z_0=f(x_0,y_0)$.
 
-\fixme{Add examples from the book.}
+\begin{exercise}
+Find the equation of the tangent plane to the graph of the function
+\begin{align*}
+	f(x,y)=x^2-xy+\frac{1}{2}y^2+3
+\end{align*}	
+at the point $(3,2)$.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+Since
+\begin{align*}
+	\frac{\partial f}{\partial x}&=2x-y, \\
+	\frac{\partial f}{\partial y}&=-x+y \\
+\end{align*}
+we have
+\begin{align*}
+	f(3,2)&=8, \\
+	\frac{\partial f}{\partial x}(3,2)&=4, \\
+	\frac{\partial f}{\partial y}(3,2)&=-1, \\
+\end{align*}	
+so the equation of the tangent plane is
+\begin{align*}
+	z=8+4(x-3)-(y-2).
+\end{align*}
+\end{solution}
+
+}
+
+\begin{exercise}
+A cylindrical can has a radius of 1 in. and a height of 5 in. Estimate the absolute and relative change in volume by changing the radius by $\Delta r=0.03$ in. and the height by $\Delta h=-0.1$ in.	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+We estimate the change in volume $V(r,h)=\pi r^2h$ by its differential at $(r,h)=(1,5)$:
+\begin{align*}
+	V(1+0.03,5-0.1)-V(1,5) \approx dV_{(1,5)}(0.03,-0.1).
+\end{align*}
+Since
+\begin{align*}
+	\frac{\partial V}{\partial r}&=2\pi rh, \\
+	\frac{\partial V}{\partial h}&=\pi r^2, \\
+\end{align*}
+we have
+\begin{align*}
+	\frac{\partial V}{\partial r}(1,5)&=10\pi, \\
+	\frac{\partial V}{\partial h}(1,5)&=\pi, \\
+\end{align*}	
+so
+\begin{align*}
+	dV_{(1,5)}(\begin{bmatrix}
+		0.03 \\ -0.1
+	\end{bmatrix})=10\pi(0.03)+\pi(-0.1)=0.2\pi.
+\end{align*}
+Thus, the absolute change in volume 
+\begin{align*}
+	\Delta V(\begin{bmatrix}
+		0.03 \\ -0.1
+	\end{bmatrix}) \approx dV_{(1,5)}(\begin{bmatrix}
+		0.03 \\ -0.1
+	\end{bmatrix})=0.2\pi.
+\end{align*}
+The relative change in volume is
+\begin{align*}
+	\frac{\Delta V(\begin{bmatrix}
+		0.03 \\ -0.1
+	\end{bmatrix})}{V(1,5)} \approx \frac{dV_{(1,5)}(\begin{bmatrix}
+		0.03 \\ -0.1
+	\end{bmatrix})}{V(1,5)}=\frac{0.2\pi}{5\pi}=0.04,
+\end{align*}
+so the relative change in volume is approximately $4\%$.
+\end{solution}
+}
+
+\begin{example}[Error propagation]
+	Suppose we compute the volume of a right circular cylinder from measured values of $r$ and $h$. Suppose $r$ is measured with an error of no more than $2\%$ and $h$ with an error of no more than $5\%$.  What then is the maximum error in our calculation of $V$?
+	
+	We are given that
+	\begin{align*}
+		|\frac{\Delta r}{r}|\leq 0.02 \text{ and } |\frac{\Delta r}{r}|\leq 0.005.
+	\end{align*}
+	Now
+	\begin{align*}
+		\frac{\Delta V(\begin{bmatrix} \Delta r \\ \Delta h \end{bmatrix})}{V} \approx \frac{dV(\begin{bmatrix} \Delta r \\ \Delta h \end{bmatrix})}{V}=\frac{2\pi r h \Delta r+\pi r^2 \Delta h}{\pi r^2 h}=\frac{2 \Delta r}{r}+\frac{dh}{h},
+	\end{align*}
+	so
+	\begin{align*}
+		\left|\frac{dV(\begin{bmatrix} \Delta r \\ \Delta h \end{bmatrix})}{V}\right|&=\left|\frac{2 \Delta r}{r}+\frac{\Delta h}{h}\right| \\
+		&\leq \left|\frac{2 \Delta r}{r}\right|+\left|\frac{\Delta h}{h}\right| \hspace{0.5cm} \text{ (by the triangle inequality)}\\
+		&\leq 2(0.02)+0.005=0.045.
+	\end{align*}
+	Thus, the maximum error in $V$ from this calculation is $4.5\%$.
+\end{example}
+
+
 
 \section{Finding Maxima and Minima}
 \fixme{Infinitesimal to local to global. Example: if $df_p$ zero at every point of $U$ and $U$ connected then $f$ is constant on $U$}
