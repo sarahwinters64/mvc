@@ -3498,7 +3498,7 @@ Verify that the function $u(x,t)=\sin(x-vt)$ is a solution of the wave equation.
 
 
 \subsection{Differentiability}
-If a single-variable function $f:U \subseteq \R$ is differentiable at $x_0 \in U$, then the limit
+Recall that we say a single-variable function $f:U \subseteq \R$ is \emph{differentiable} at $x_0 \in U$ if the limit
 \begin{align}\label{eq:old_derivative}
 	f'(x_0)=\lim_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h}
 \end{align}
@@ -3506,7 +3506,35 @@ exists. The existence of this limit implies that $f(x)$ is well-approximated by 
 \begin{align*}
 	f(x)=f(x_0)+f'(x_0)(x-x_0)
 \end{align*}
-for $x$ in a neighborhood of $x_0$. Recall also that a differentiable function is automatically continuous, since if $f$ is differentiable at $x_0$, then 
+for $x$ in a neighborhood of $x_0$.
+
+\begin{example}
+Suppose we want to compute $\sqrt{3.98}$ without a calculator. This would be quite a lot of work. Instead, we can approximate $f(x)=\sqrt{x}$ at $x=4$ by its tangent line:
+\begin{align*}
+	f(x)&\approx f(4)+f'(4)(x-4) \\
+	f(x)&\approx 2+\frac{1}{4}(x-4) \\
+\end{align*}
+Therefore
+\begin{align*}
+	f(3.98)\approx 2+\frac{1}{4}(-0.02)=1.995.
+\end{align*}
+According to \emph{Mathematica}, $\sqrt{3.98}=1.99499$, which gives a relative error of
+\begin{align*}
+	\frac{1.995-1.99499}{1.99499}=5.0 \times 10^{-6}.
+\end{align*}	
+\end{example}
+
+The condition that $f(x)$ is differentiable at $x_0$ is \emph{stronger} than the condition that $f(x)$ is continuous at $x_0$. For example, the absolute value function $f(x)=|x|$ is continuous at $x=0$, but is not differentiable there since 
+\begin{align*}
+	\lim_{h \to 0^+}\frac{|h|-|0|}{h}=\lim_{h \to 0^+}\frac{h-0}{h}=1
+\end{align*}
+while
+\begin{align*}
+	\lim_{h \to 0^-}\frac{|h|-|0|}{h}=\lim_{h \to 0^-}\frac{-h-0}{h}=-1.
+\end{align*}
+Thus, the limit does not exist.
+
+On the other hand, if $f$ is differentiable at $x_0$, then it is continuous at $x_0$ since 
 \begin{align*}
 	\lim_{h \to 0}(f(x_0+h)-f(x_0))&=\lim_{h \to 0}\frac{h}{h}(f(x_0+h)-f(x_0)) \\
 	&=\lim_{h \to 0}\left(h \cdot \frac{f(x_0+h)-f(x_0)}{h}\right) \\
@@ -3516,7 +3544,7 @@ for $x$ in a neighborhood of $x_0$. Recall also that a differentiable function i
 	&=0.
 \end{align*}
 
-However, the next example shows that a multivariable function can be discontinuous at a point where the partial derivatives exist.
+The next example shows that a multivariable function can be discontinuous at a point where the partial derivatives exist.
 
 \begin{example}\label{ex:p_d_but_disc}
 	Let
@@ -3571,7 +3599,7 @@ If $f$ is differentiable at $x$, we call the linear function
 \end{align*}	
 the \emph{differential of $f$ at $x$}.
 \end{defn}
-The converse is also true: if $\Delta f=T+r$, where $T$ is a linear map (which must be of the form $T(h)=ch$ for some constant $c$) and $\lim_{h\to 0}\frac{r(h)}{h}$, then
+The converse is also true: if $\Delta f=T+r$, where $T$ is a linear map (which must be of the form $T(h)=ch$ for some constant $c$) \footnote{See my Linear Algebra notes.} and $\lim_{h\to 0}\frac{r(h)}{h}$, then
 \begin{align*}
 	f'(x)\equiv \lim_{h \to 0}\frac{f(x+h)-f(x)}{h}&=\lim_{h \to 0}\frac{T(h)+r(h)}{h}\\
 	&=\lim_{h \to 0}\frac{T(h)}{h}+\lim_{h \to 0}\frac{r(h)}{h} \\
@@ -3746,6 +3774,18 @@ The real number	$\frac{d}{dt}f(\bx+t\bv)|_{t=0}$ is called a \emph{directional d
 	Strictly speaking, in Definition \ref{def:dd} we are misusing the word ``direction", since if $\bw=c\bv$ with $c>0$, then $\bw$ and $\bv$ point in the same direction but Theorem \ref{thm:computation_of_the_differential} shows that $D_\bw f(\bx)=df_\bx(\bw)=df_\bx(c\bv)=cD_\bv(\bx)$. Thus, when we speak of directional derivatives we will always take $\bv$ in Definition \ref{def:dd} to be a unit vector.
 \end{remark}
 
+\begin{example}
+Let $f(x,y)=\frac{x}{y}$. Then for any unit vector $\bv=(v_1,v_2)$,
+\begin{align*}
+	df_{(x,y)}(\bv)&=\frac{d}{dt}f(x+v_1t,y+v_2t)|_{t=0} \\
+	&=\frac{d}{dt}\frac{x+v_1t}{y+v_2t}|_{t=0} \\
+	&=\frac{(y+v_2t)v_1-(x+v_1t)v_2}{(y+v_2t)^2}|_{t=0}\\
+	&=\frac{yv_1-xv_2}{y^2} \\
+	&=\frac{1}{y}v_1-\frac{x}{y^2}v_2.
+\end{align*}	
+\end{example}
+
+
 \begin{cor}\label{cor:diff_imp_dd}
 If $f:U \subseteq \R^n \to \R$ is differentiable at $\bx$, then all of its directional derivatives exist at $\bx$. In particular, all the partial derivatives of $f$ exist at $\bx$.	
 \end{cor}
@@ -3804,7 +3844,7 @@ whenever $||{\bf h}||\equiv \sqrt{h_1^2+h_2^2}< \delta$.
 	&=|f(x+h_1,y+h_2)-f(x,y)-h_1\frac{\partial f}{\partial x}(x,y)-h_2\frac{\partial f}{\partial y}(x,y)| \\
 	&=|f(x+h_1,y+h_2)-f(x,y+h_2)+f(x,y+h_2)-f(x,y)-\frac{\partial f}{\partial x}(x,y)h_1-\frac{\partial f}{\partial y}(x,y)h_2| \\
 \end{align*}
-By the Mean Value Theorem, there exists $u_1 \in (x,x+h_1)$ and $u_2 \in (y,y+h_2)$ such that
+By the Mean Value Theorem, \footnote{Recall that the \emph{Mean Value Theorem} states that if $f(x)$ is continuous on the closed interval $[a,b]$ and closed on the open interval $(a,b)$, then there exists $c \in (a,b)$ such that $f(b)-f(a)=f'(c)(b-a)$.} there exists $u_1 \in (x,x+h_1)$ and $u_2 \in (y,y+h_2)$ such that
 \begin{align*}
 	f(x+h_1,y+h_2)-f(x,y+h_2)&=\frac{\partial f}{\partial x}(u_1,y+h_2)h_1 \\
 	f(x,y+h_2)-f(x,y)&=\frac{\partial f}{\partial y}(x,u_2)h_2
@@ -3818,48 +3858,165 @@ so the above is equal to
 where in the second line we have used the Cauchy-Schwarz inequality \footnote{The Cauchy-Schwarz inequality states that, for any two vectors $\bu, \bv \in \R^n$, $|\bu \cdot \bv| \leq ||\bu|| \ ||\bv||$.} and in the third line the fact that $\sqrt{x^2+y^2}\leq |x|+|y|$. \footnote{For $x,y \in \R$ we have $(|x|+|y|)^2=x^2+y^2+2|x||y| \geq x^2+y^2$. Since both $|x|+|y|$ and $x^2+y^2$ are nonnegative, it follows that $|x|+|y| \geq \sqrt{x^2+y^2}$.} Since the partial derivatives are continuous, and since $u_1$ and $u_2$ lie between $x$ and $x+h_1$ and $y$ and $y+h_2$, respectively, there exists a $\delta_1$ such that the first absolute value in the parenthesis is less than $\epsilon/2$ whenever $||{\bf h}||<\delta_1$ and a $\delta_2$ such that the second absolute value in the parenthesis is less than $\epsilon/2$ whenever $||{\bf h}||<\delta_2$. Thus, by taking $||{\bf h}||<\delta=\text{min}\{\delta_1,\delta_2\}$, the entire parenthesis is less than $\epsilon$.
 \end{proof}
 
-\subsubsection{Explicit computation of the differential}
-To compute the differential explicitly, we observe that it obeys the usual rules of differentiation.
+\begin{example}
+Let $f$ be a polynomial in $n$ variables. Since the partial derivatives of $f$ exist and are continuous on all of $\R^n$, $f$ is differentiable on all of $\R^n$.	
+\end{example}
+
+
+\subsubsection{Properties of the differential}
+If $f:U \subseteq \R^n \to \R$ is differentiable at each $\bx \in U$, then the differential is a map
+\begin{align*}
+	df:U &\to \text{Hom}(\R^n,\R) \\
+	\bx &\mapsto df_\bx.
+\end{align*}
+
+Let $d$ denote the map which takes a differentiable function to its differential. Observe that the map $d$ obeys the usual rules of differentiation of single-variable functions. 
 
 \begin{thm}[Properties of the differential]\label{thm:algebraic_properties_of_the_differential}
-Let $f_1,f_2$ be differentiable at $\bx$. Then
+Let $f_1,f_2:U \subseteq \R^n \to \R$ be differentiable at $\bx$. Then
 \begin{enumerate}[(1)]
-	\item $d$ is linear: $d(cf_1+f_2)_\bx=c(df_1)_\bx+(df_2)_\bx$.
-	\item $d$ obeys the Leibnitz rule: $d(f_1 \cdot f_2)_\bx=(df_1)_\bx \cdot f_2(\bx)+f_1(\bx) \cdot (df_2)_\bx$.
-	\item $d$ obeys the quotient rule: $d(\frac{f}{g})_\bx=\frac{g(\bx) df_\bx-f(\bx)dg_\bx}{(g(\bx))^2}$.
+	\item $d$ is linear: $d(cf_1+f_2)=c(df_1)+(df_2)$.
+	\item $d$ obeys the Leibnitz rule: $d(f_1 \cdot f_2)=(df_1) \cdot f_2+f_1 \cdot (df_2)$.
+	\item $d$ obeys the quotient rule: $d(\frac{f}{g})_\bx=\frac{g df-fdg}{g^2}$.
 \end{enumerate}	
 \end{thm}
 
 \begin{proof}
 These all follow from the corresponding properties of the directional derivative, which are familiar from single-variable calculus.
 	\begin{enumerate}[(1)]
-		\item For any $\bv \in \R^n$, we have
+		\item For any $\bx \in U$ and $\bv \in \R^n$, we have
 		\begin{align*}
 			d(cf_1+f_2)_\bx(\bv)=D_\bv(cf_1+f_2)(\bx)=c D_\bv f_1(\bx)+D_\bv f_2(\bx)=c(df_1)_\bx(\bv)+(df_2)_\bx(\bv)
 		\end{align*}
-		and therefore $d(cf_1+f_2)_\bx=c(df_1)_\bx+(df_2)_\bx$.
-		\item For any $\bv \in \R^n$, we have
+		and therefore $d(cf_1+f_2)=c(df_1)+(df_2)$.
+		\item For any $\bx \in U$ and $\bv \in \R^n$, we have
 		\begin{align*}
 			d(f_1 \cdot f_2)_\bx(\bv)&=D_\bv(f_1(\bx) \cdot f_2(\bx))=(D_\bv f_1(\bx))f_2+f_1(D_\bv f_2(\bx))\\
 			&=(df_1)_\bx(\bv)\cdot f_2(\bv)+f_1(\bv)(df_2)_\bx(\bv)
 		\end{align*}
-		and therefore $d(f_1 \cdot f_2)_\bx=(df_1)_\bx \cdot f_2+f_1 \cdot (df_2)_\bx$.
-		\item For any $\bv \in \R^n$, we have
+		and therefore $d(f_1 \cdot f_2)=(df_1) \cdot f_2+f_1 \cdot (df_2)$.
+		\item For any $\bx \in U$ and $\bv \in \R^n$, we have
 		\begin{align*}
-			d(\frac{f}{g})(\bv)&=D_\bv(\frac{f(\bx)}{g(\bx)})=\frac{g(\bx)D_\bv(f)-f(\bx)D_\bv(g)}{(g(\bx))^2}=\frac{g(\bx) df_\bx(\bv)-f(\bx)dg_\bx(\bv)}{(g(\bx))^2},
+			d\left(\frac{f}{g}\right)_\bx(\bv)&=D_\bv(\frac{f(\bx)}{g(\bx)})=\frac{g(\bx)D_\bv f(\bx)-f(\bx)D_\bv g(\bx)}{(g(\bx))^2}=\frac{g(\bx) df_\bx(\bv)-f(\bx)dg_\bx(\bv)}{(g(\bx))^2},
 		\end{align*}
-		and therefore $d(\frac{f}{g})_\bx=\frac{g(\bx) df_\bx-f(\bx)dg_\bx}{(g(\bx))^2}$.
+		and therefore $d\left(\frac{f}{g}\right)=\frac{g df-f dg}{g^2}$.
 	\end{enumerate}
 \end{proof}
 
+\subsubsection{The Gradient}
+Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. \footnote{See section 4.11 of my Linear Algebra notes.} Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
+\begin{align*}
+	[df_\bx]=\begin{bmatrix}
+		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
+	\end{bmatrix}.
+\end{align*}
+
+\begin{defn}[Gradient]
+	The vector $\begin{bmatrix}
+		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
+	\end{bmatrix}$ is called the \emph{gradient of $f$ at $\bx$}, which we denote by $\nabla f(\bx)$. \footnote{The symbol ``$\nabla$" is called the \emph{nabla} symbol. The name, by reason of the symbol's shape, from the Hellenistic Greek work $\nu \acute{\alpha} \beta \lambda \alpha$ for a Phoenician harp.}
+\end{defn}
+Given a vector $\bv \in \R^n$ with coordinate vector $[\bv]=\begin{bmatrix}
+	v_1 & v_2 & \cdots & v_n
+\end{bmatrix}$, we therefore have
+\begin{align*}
+	[df_\bx(\bv)]&=[df_\bx][\bv] \\
+	&=\begin{bmatrix}
+		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
+	\end{bmatrix} \begin{bmatrix}
+	v_1 \\ v_2 \\ \vdots \\ v_n
+\end{bmatrix} \\
+&=v_1\frac{\partial f}{\partial x_1}(\bx)+v_2\frac{\partial f}{\partial x_2}(\bx)+\cdots+v_n\frac{\partial f}{\partial x_n}(\bx) \\
+&=\nabla f(\bx) \cdot \bv.
+\end{align*}
+Since $df_\bx(\bv)=D_\bv f(\bx)$, we therefore have
+\begin{align}\label{eq:dd_dot}
+	D_\bv f(\bx)=\nabla f(\bx) \cdot \bv.
+\end{align}
+
+\begin{exercise}
+Rederive Equation \eqref{eq:dd_dot} by computing
+\begin{align*}
+	D_\bv(\bx)=\frac{d}{dt}f(\bx+t\bv)|_{t=0}
+\end{align*}	
+using the chain rule.
+\end{exercise}
+
+\begin{example}
+We now show how to compute $D_{\bv}f(1,2)$ if  $f(x,y)=x^3-3xy+4y^2$ and $\hat{\bv}=(\frac{\sqrt{3}}{2},\frac{1}{2})$.	 The gradient of $f$ is 
+\begin{align*}
+	\nabla f(x,y)=\begin{bmatrix}
+		3x^2-3y & -3x+8y
+	\end{bmatrix}
+\end{align*}
+so $\nabla f(1,2)=(-3,13)$ and therefore
+\begin{align*}
+	D_\bv f(1,2)&=\nabla f(1,2) \cdot \bv \\
+	&=(-3,13) \cdot (\frac{\sqrt{3}}{2},\frac{1}{2}) \\
+	&=-\frac{3\sqrt{3}}{2}+\frac{13}{2} \\
+	&=\frac{13-3\sqrt{3}}{2}.
+\end{align*}
+\end{example}
+
+\begin{exercise}
+Let $f(x,y)=x^2y^3-4y$. Find the directional derivative at $(2,-1)$ in the direction of $\bv=(2,5)$. Make sure to normalize $\bv$ first.	
+\end{exercise}
+
+\begin{exercise}
+Let $f(x,y,z)=x \sin(yz)$. Find the directional derivative at $(1,3,0)$ in the direction of $\bv=(1,2,-1)$ 	
+\end{exercise}
+
+\begin{thm}[Algebraic Properties of the Gradient]\label{thm:algebraic_properties_of_the_gradient}
+Let $f,g:U \subseteq \R^n \to \R$ be differentiable on $U$ and let $c \in \R$. Then
+	\begin{enumerate}
+		\item $\nabla (cf+g)=c \nabla f+ \nabla g$.
+		\item $\nabla(f \cdot g)=(\nabla f)g+f(\nabla g)$.
+		\item $\nabla\left(\frac{f}{g}\right)=\frac{g \nabla f-f \nabla g}{g^2}$.
+	\end{enumerate}
+\end{thm}
+
+\begin{proof}
+\begin{enumerate}
+	\item 
+	\begin{align*}
+		\nabla(cf+g)&= \begin{bmatrix}
+			\frac{\partial (cf+g)}{\partial x^1} & \cdots & \frac{\partial (cf+g)}{\partial x^n}
+		\end{bmatrix} \\
+		&=\begin{bmatrix}
+			c\frac{\partial f}{\partial x^1}+ \frac{\partial g}{\partial x^1}& \cdots & c\frac{\partial f}{\partial x^n}+\frac{\partial g}{\partial x^n}
+		\end{bmatrix} \\
+		&=c\begin{bmatrix}
+			\frac{\partial f}{\partial x^1}& \cdots & \frac{\partial f}{\partial x^n}
+		\end{bmatrix}+\begin{bmatrix}
+			\frac{\partial g}{\partial x^1}& \cdots & \frac{\partial g}{\partial x^n}
+		\end{bmatrix} \\
+		&=c\nabla f+\nabla g.
+			\end{align*}
+\end{enumerate}
+The proofs of the product and quotient rules are similar and are left as an exercise.
+\end{proof}
+
+\begin{exercise}
+Prove properties 2 and 3 of Theorem \ref{thm:algebraic_properties_of_the_gradient}.	
+\end{exercise}
+
+\begin{example}
+If $f(x,y,z)=x-y$ and $g(x,y,z)=z$, then
+\begin{align*}
+	\nabla\left(\frac{f}{g}\right)&=\frac{g \nabla f-f \nabla g}{g^2} \\
+	&=\frac{z(1,-1,0)-(x-y)(0,0,1)}{z^2} \\
+	&=\frac{1}{z^2}(z,-z,-x+y) \\
+	&(\frac{1}{z},-\frac{1}{z},\frac{-x+y}{z^2}).
+\end{align*}	
+\end{example}
+
+\subsubsection{The Composite Mapping Theorem (Chain Rule)}
 \begin{thm}[Chain rule]
 	Let $\bbr:I \to \R^2$ and $f:U \subseteq \R^2 \to \R$, where $I$ is an interval in $\R$ and $U$ is an open subset of $\R^2$ containing the trance of the curve $\bbr$. If $\bbr$ is differentiable at $t$ and $f$ is differentiable at $\bbr(t)$, then $f \circ \bbr:I \to \R$ is differentiable at $t$ and
 	\begin{align*}
 		d(f \circ \bbr)_{t}=df_{\bbr(t)} \circ d\bbr_t.
 	\end{align*}
 \end{thm}
-
-\fixme{Draw a picture.}
 
 \begin{proof}
 	Since $\bbr$ is differentiable at $t$ and $f$ is differentiable at $\bbr(t)$, given $\epsilon_1,\epsilon_2>0$ there exist $\delta_1,\delta_2>0$ such that if $|k|<\delta_1$ and $||\bh||<\delta_2$, then $t+k \in I$, $\bbr(t)+\bh \in U$ and 
@@ -3966,93 +4123,6 @@ Suppose $F(x,y)=x^2-xy+y^2-7$. Then $\partial F/\partial y=-x+2y$. By the Implic
 \begin{align*}
 	\frac{dy}{dx}=-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}=-\frac{2x-y}{-x+2y}=\frac{y-2x}{2y-x}.
 \end{align*}
-\end{example}
-
-\subsubsection{The Gradient}
-Since $df_\bx:\R^n \to \R$ is a linear map, it can be represented by an $1 \times n$ matrix i.e., a row vector. \footnote{See section 4.11 of my Linear Algebra notes.} Note that $df_\bx(e_i)=\frac{\partial f}{\partial x_i}(\bx)$ is the $i$th column of the matrix representing $df_\bx$ with respect to the standard bases. Thus, the standard matrix of $df_\bx$ is 
-\begin{align*}
-	[df_\bx]=\begin{bmatrix}
-		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
-	\end{bmatrix}.
-\end{align*}
-
-\begin{defn}[Gradient]
-	The vector $\begin{bmatrix}
-		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
-	\end{bmatrix}$ is called the \emph{gradient of $f$ at $\bx$}, which we denote by $\nabla f(\bx)$. \footnote{The symbol ``$\nabla$" is called the \emph{nabla} symbol. The name, by reason of the symbol's shape, from the Hellenistic Greek work $\nu \acute{\alpha} \beta \lambda \alpha$ for a Phoenician harp.}
-\end{defn}
-Given a vector $\bv \in \R^n$ with coordinate vector $[\bv]=\begin{bmatrix}
-	v_1 & v_2 & \cdots & v_n
-\end{bmatrix}$, we therefore have
-\begin{align*}
-	[df_\bx(\bv)]&=[df_\bx][\bv] \\
-	&=\begin{bmatrix}
-		\frac{\partial f}{\partial x_1}(\bx) & \frac{\partial f}{\partial x_2}(\bx) & \cdots & \frac{\partial f}{\partial x_n}(\bx)
-	\end{bmatrix} \begin{bmatrix}
-	v_1 \\ v_2 \\ \vdots \\ v_n
-\end{bmatrix} \\
-&=v_1\frac{\partial f}{\partial x_1}(\bx)+v_2\frac{\partial f}{\partial x_2}(\bx)+\cdots+v_n\frac{\partial f}{\partial x_n}(\bx) \\
-&=\nabla f(\bx) \cdot \bv.
-\end{align*}
-Since $df_\bx(\bv)=D_\bv f(\bx)$, we therefore have
-\begin{align}\label{eq:dd_dot}
-	D_\bv f(\bx)=\nabla f(\bx) \cdot \bv.
-\end{align}
-
-\begin{exercise}
-Rederive Equation \eqref{eq:dd_dot} by computing
-\begin{align*}
-	D_\bv(\bx)=\frac{d}{dt}f(\bx+t\bv)|_{t=0}
-\end{align*}	
-using the chain rule.
-\end{exercise}
-
-\begin{example}
-We now show how to compute $D_{\bv}f(1,2)$ if  $f(x,y)=x^3-3xy+4y^2$ and $\hat{\bv}=(\frac{\sqrt{3}}{2},\frac{1}{2})$.	 The gradient of $f$ is 
-\begin{align*}
-	\nabla f(x,y)=\begin{bmatrix}
-		3x^2-3y & -3x+8y
-	\end{bmatrix}
-\end{align*}
-so $\nabla f(1,2)=(-3,13)$ and therefore
-\begin{align*}
-	D_\bv f(1,2)&=\nabla f(1,2) \cdot \bv \\
-	&=(-3,13) \cdot (\frac{\sqrt{3}}{2},\frac{1}{2}) \\
-	&=-\frac{3\sqrt{3}}{2}+\frac{13}{2} \\
-	&=\frac{13-3\sqrt{3}}{2}.
-\end{align*}
-\end{example}
-
-\begin{exercise}
-Let $f(x,y)=x^2y^3-4y$. Find the directional derivative at $(2,-1)$ in the direction of $\bv=(2,5)$. Make sure to normalize $\bv$ first.	
-\end{exercise}
-
-\begin{exercise}
-Let $f(x,y,z)=x \sin(yz)$. Find the directional derivative at $(1,3,0)$ in the direction of $\bv=(1,2,-1)$ 	
-\end{exercise}
-
-\begin{thm}[Algebraic Properties of the Gradient]
-The gradient of a differentiable function has the following properties.
-	\begin{enumerate}
-		\item $\nabla (cf)=c \nabla f$, where $c \in \R$
-		\item $\nabla(f+g)=\nabla f + \nabla g$
-		\item $\nabla(f \cdot g)=(\nabla f)g+f(\nabla g)$
-		\item $\nabla\left(\frac{f}{g}\right)=\frac{g \nabla f-f \nabla g}{g^2}$
-	\end{enumerate}
-\end{thm}
-
-\begin{proof}
-	The proof follows immediately from Theorem \ref{thm:algebraic_properties_of_the_differential}.
-\end{proof}
-
-\begin{example}
-If $f(x,y,z)=x-y$ and $g(x,y,z)=z$, then
-\begin{align*}
-	\nabla\left(\frac{f}{g}\right)&=\frac{g \nabla f-f \nabla g}{g^2} \\
-	&=\frac{z(1,-1,0)-(x-y)(0,0,1)}{z^2} \\
-	&=\frac{1}{z^2}(z,-z,-x+y) \\
-	&(\frac{1}{z},-\frac{1}{z},\frac{-x+y}{z^2}).
-\end{align*}	
 \end{example}
 
 \subsubsection{Application: Linear Approximations}
