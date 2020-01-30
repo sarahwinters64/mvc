@@ -3318,12 +3318,12 @@ Let $f:U \subseteq \R^2 \to \R$. If $\frac{\partial f}{\partial x \partial y}$ a
 	\begin{align*}
 		\Delta(h)=g(a+h)-g(a).
 	\end{align*}
-	If $g$ is differentiable on $U$, by the Mean Value Theorem there exists $c \in (a,a+h)$ such that
+	Since $\frac{\partial f}{\partial x}$ exists  on $U$, $g$ is differentiable on $(a,a+h)$. By the Mean Value Theorem, there exists $c \in (a,a+h)$ such that
 	\begin{align*}
 		g(a+h)-g(a)&=hg'(c) \\
 		&=h\left[\frac{\partial f}{\partial x}(c,b+h)-\frac{\partial f}{\partial x}(c,b)\right].
 	\end{align*}
-	Applying the Mean Value Theorem again to $\frac{\partial f}{\partial x}$, there exists $d \in (b,b+h)$ such that 
+	Since $\frac{\partial f}{\partial x}$ is differentiable with respect to $y$, applying the Mean Value Theorem again to $\frac{\partial f}{\partial x}$, there exists $d \in (b,b+h)$ such that 
 	\begin{align*}
 		\frac{\partial f}{\partial x}(c,b+h)-\frac{\partial f}{\partial x}(c,b)&=h\frac{\partial^2 f}{\partial y \partial x}(c,d).
 	\end{align*}
