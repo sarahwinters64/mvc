@@ -3395,6 +3395,8 @@ Compute
 if $f(x,y)=y^5x^4e^x+2\sin(3x)\cos(2y)$.	
 \end{exercise}
 
+The proof of Theorem \ref{thm:clairaut} assumed continuity of the mixed partial derivatives. The next example shows that, if the mixed partial derivatives are not continuous, then Theorem \ref{thm:clairaut} need not hold.
+
 \begin{example}[A function whose mixed partials are unequal]
 Consider the following function
 \begin{align*}
@@ -3410,7 +3412,7 @@ For $(x,y) \neq (0,0)$, the quotient rule gives
 \end{align*}
 The partial derivative with respect to $x$ at $(0,0)$ is 
 \begin{align*}
-	\frac{\partial f}{\partial x}(0,0)&=\lim_{h \to 0}\frac{f(h,0)-f(0,0)}{h}=0,
+	\frac{\partial f}{\partial x}(0,0)&=\lim_{h \to 0}\frac{f(h,0)-f(0,0)}{h}=\frac{1}{h}\frac{0-0-0}{(h^2+0^2)^2}=0,
 \end{align*}	
 so 
 \begin{align*}
@@ -3459,11 +3461,7 @@ Thus,
 	\end{cases}
 \end{align*}
 
-We see that the mixed partial derivatives are not equal at the origin. The reason for this is that the mixed partial derivatives are not continuous at the origin. To see this, consider approaching the origin along the path along the line $y=x$. Then
-\begin{align*}
-	\lim_{(h,h) \to (0,0)}\frac{\partial f}{\partial x \partial y}=\lim_{(h,h) \to (0,0)}\frac{\partial f}{\partial y \partial x}\frac{0}{8h^6}=0.
-\end{align*}
-Since the mixed partials are discontinuous at the origin, they do not satisfy the hypothesis of Theorem \ref{thm:clairaut} at the origin, so there is no reason they must be equal there.
+We see that the mixed partial derivatives are not continuous at the origin, and not equal there (though they are equal at all other points, as required by Theorem \ref{thm:clairaut}). 
 \end{example}
 
 
