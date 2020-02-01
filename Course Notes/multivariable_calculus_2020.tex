@@ -3772,6 +3772,14 @@ The real number	$\frac{d}{dt}f(\bx+t\bv)|_{t=0}$ is called a \emph{directional d
 	Strictly speaking, in Definition \ref{def:dd} we are misusing the word ``direction", since if $\bw=c\bv$ with $c>0$, then $\bw$ and $\bv$ point in the same direction but Theorem \ref{thm:computation_of_the_differential} shows that $D_\bw f(\bx)=df_\bx(\bw)=df_\bx(c\bv)=cD_\bv(\bx)$. Thus, when we speak of directional derivatives we will always take $\bv$ in Definition \ref{def:dd} to be a unit vector.
 \end{remark}
 
+The directional derivative $D_\bv f(\bx)$ is the rate of change of $f$ at $\bx$ in the direction of $\bv$. If we consider a surface $S$ which is the graph of a function $f(x,y)$, then the vertical plane that passes through the point $(x_0,y_0,f(x_0,y_0))$ in the direction of $\bv$ intersects $S$ along a curve $C$, $D_\bv f(x_0,y_0)$ is the slope of the tangent line to $C$ at this point.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/dirderiv}
+	\caption{The directional derivative.}
+\end{figure}
+
 \begin{example}
 Let $f(x,y)=\frac{x}{y}$. Then for any unit vector $\bv=(v_1,v_2)$,
 \begin{align*}
@@ -3932,14 +3940,6 @@ Since $df_\bx(\bv)=D_\bv f(\bx)$, we therefore have
 	D_\bv f(\bx)=\nabla f(\bx) \cdot \bv.
 \end{align}
 
-\begin{exercise}
-Rederive Equation \eqref{eq:dd_dot} by computing
-\begin{align*}
-	D_\bv(\bx)=\frac{d}{dt}f(\bx+t\bv)|_{t=0}
-\end{align*}	
-using the chain rule.
-\end{exercise}
-
 \begin{example}
 We now show how to compute $D_{\bv}f(1,2)$ if  $f(x,y)=x^3-3xy+4y^2$ and $\hat{\bv}=(\frac{\sqrt{3}}{2},\frac{1}{2})$.	 The gradient of $f$ is 
 \begin{align*}
@@ -3960,9 +3960,20 @@ so $\nabla f(1,2)=(-3,13)$ and therefore
 Let $f(x,y)=x^2y^3-4y$. Find the directional derivative at $(2,-1)$ in the direction of $\bv=(2,5)$. Make sure to normalize $\bv$ first.	
 \end{exercise}
 
+{\color{red}
+\begin{solution}
+	$\frac{32}{\sqrt{29}}$.
+\end{solution}}
+
+
 \begin{exercise}
 Let $f(x,y,z)=x \sin(yz)$. Find the directional derivative at $(1,3,0)$ in the direction of $\bv=(1,2,-1)$ 	
 \end{exercise}
+
+{\color{red}
+\begin{solution}
+	$-\sqrt{\frac{3}{2}}$.
+\end{solution}}
 
 \begin{thm}[Algebraic Properties of the Gradient]\label{thm:algebraic_properties_of_the_gradient}
 Let $f,g:U \subseteq \R^n \to \R$ be differentiable on $U$ and let $c \in \R$. Then
@@ -4007,6 +4018,59 @@ If $f(x,y,z)=x-y$ and $g(x,y,z)=z$, then
 	&(\frac{1}{z},-\frac{1}{z},\frac{-x+y}{z^2}).
 \end{align*}	
 \end{example}
+
+We now show that $\nabla f(x_0,y_0)$ is the ``direction of steepest increase" of $f$ at $(x_0,y_0)$.
+
+\begin{thm}
+Let $f:U \subseteq \R^2 \to \R$ be differentiable at $(x_0,y_0)$. Then $D_\bv f(x_0,y_0)$ is maximized when $\bv$ points in the direction of $\nabla f(x_0,y_0)$, and the maximum rate of change is $||\nabla f(x_0,y_0)||$.	
+\end{thm}
+
+\begin{proof}
+	Note that
+	\begin{align*}
+		D_\bv f(x_0,y_0)&=\nabla f(x_0,y_0) \cdot \bv \\
+		&=||\nabla f(x_0,y_0)|| \ \underbrace{||\bv||}_{=1} \cos \theta \\
+		&=||\nabla f(x_0,y_0)|| \cos \theta \\ 
+		&\leq ||\nabla f(x_0,y_0)|| \ |\cos \theta| \\
+		&\leq ||\nabla f(x_0,y_0)||.
+	\end{align*}
+	Thus, the maximum rate of increase of $f$ at $(x_0,y_0)$ is $||\nabla f(x_0,y_0)||$ and is achieved when the angle between $\bv$ and $\nabla f(x_0,y_0)$ is zero; that is, when $\bv=\frac{1}{||\nabla f(x_0,y_0)||} \nabla f(x_0,y_0)$.
+\end{proof}
+It follows immediately that $\bv=-\frac{1}{||\nabla f(x_0,y_0)||} \nabla f(x_0,y_0)$ is the direction of steepest \emph{decrease} of $f$ at $(x_0,y_0)$. Note also that $D_\bv f(x_0,y_0)=0$ if $\bv$ is orthogonal to $\nabla f(x_0,y_0)$.
+
+\begin{exercise}
+Let $f(x,y)=xe^y$. Find the magnitude and direction of the maximum rate of change of $f$ at $(x,y)$.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	The gradient of $f$ is $\nabla f=(e^y,xe^y)$ and therefore the maximum rate of change of $f$ at $(x,y)$ is $||\nabla f||=\sqrt{e^{2y}+x^2e^{2y}}=e^y\sqrt{1+x^2}$. The direction of the maximum rate of change is 
+	\begin{align*}
+		\frac{\nabla f}{||\nabla f||}=\left(\frac{1}{\sqrt{1+x^2}},\frac{x}{\sqrt{1+x^2}}\right).
+	\end{align*}
+\end{solution}}
+
+ 
+ 
+
+\begin{thm}
+The gradient is orthogonal to level curves of $f$.	
+\end{thm}
+
+\begin{proof}
+	Let $\bbr(t)=(x(t),y(t))$ be a level curve of $f(x,y)$. Then $f(x(t),y(t))=$ constant. By the chain rule,
+	\begin{align*}
+		0=\frac{\partial f}{\partial x}\frac{\partial x}{\partial t}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial t}=\nabla f \cdot \bbr'(t)
+	\end{align*}
+	This says that at each time $t$, $\nabla f$ is orthogonal to the tangent vector to the level curve $\bbr'(t)$.
+\end{proof}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/grad_lc}
+	\caption{At each point along a level curve of $f$, the gradient is orthogonal to the tangent vector.}
+\end{figure}
+
 
 \subsubsection{The Composite Mapping Theorem (Chain Rule)}
 \begin{thm}[Chain rule]
@@ -4087,6 +4151,26 @@ Find $(f \circ \bbr)'(t)$ for each function.
 \end{enumerate}	
 \end{exercise}
 
+\begin{exercise}
+Rederive Equation \eqref{eq:dd_dot} by computing
+\begin{align*}
+	D_\bv(\bx)=\frac{d}{dt}f(\bx+t\bv)|_{t=0}
+\end{align*}	
+using the chain rule.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+If $(x(t),y(t))=(x_0+v_1t,y_0+v_2t)$, then by the chain rule
+\begin{align*}
+	D_\bv f(x_0,y_0)&=\frac{d}{dt}f(x_0+v_1t,y_0+v_2t)|_{t=0} \\
+	&\frac{\partial f}{\partial x}|_{(x_0,y_0)}\frac{\partial x}{\partial t}|_{t=0}+\frac{\partial f}{\partial y}|_{(x_0,y_0)}\frac{\partial y}{\partial t}|_{t=0} \\
+	&=\frac{\partial f}{\partial x}(x_0,y_0)v_1+\frac{\partial f}{\partial y}(x_0,y_0)v_2 \\
+	&=\nabla f(x_0,y_0) \cdot \bv.
+\end{align*}	
+\end{solution}
+}
+
 \subsubsection{Implicit Differentiation, Revisited}
 Consider two real variables $x$ and $y$ related by an equation $F(x,y)=0$. We would like to say that this implicitly defines a function $y=f(x)$, and we would like to compute $\frac{dy}{dx}$. One generally cannot solve for $y$ explicitly, so it is important to know when such a function does indeed exist without having to solve for it.
 
@@ -4122,6 +4206,9 @@ Suppose $F(x,y)=x^2-xy+y^2-7$. Then $\partial F/\partial y=-x+2y$. By the Implic
 	\frac{dy}{dx}=-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}=-\frac{2x-y}{-x+2y}=\frac{y-2x}{2y-x}.
 \end{align*}
 \end{example}
+
+
+
 
 \subsubsection{Application: Linear Approximations}
 If $f:\R^2 \to \R$ is differentiable at $\bx$, the equation of the \emph{tangent plane} to the graph of $f$ at $(x,y,z=f(x,y))$ is given by the equation
