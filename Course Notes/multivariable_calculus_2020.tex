@@ -4315,8 +4315,6 @@ so the relative change in volume is approximately $4\%$.
 
 
 \section{Finding Maxima and Minima}
-\fixme{Infinitesimal to local to global. Example: if $df_p$ zero at every point of $U$ and $U$ connected then $f$ is constant on $U$}
-
 \subsection{Review: Single-variable Functions}
 Let $f:I \subset \mathbb{R} \to \mathbb{R}$, $x_0 \in U$, and $(a,b)$ an \emph{open} interval containing $x_0$. Then $f(x_0)$ is called a 
 \begin{itemize}
@@ -4332,6 +4330,8 @@ If $(a,b)=U$, then f is the \emph{absolute maximum} or \emph{absolute minimum}, 
 \caption{Function with various local maxima and minima.}
 \end{figure}
 
+\newpage 
+
 \begin{example}
 The function $f(x)=\cos(x)$ has a local maximum when $x=2\pi n$, $n \in \Z$ and a local minimum when $x=2 \pi(n+\frac{1}{2})$, $n \in \Z$. Each of these points is also an absolute max and an absolute min, respectively.
 
@@ -4344,7 +4344,7 @@ The function $f(x)=\cos(x)$ has a local maximum when $x=2\pi n$, $n \in \Z$ and 
 \end{example}
 
 \begin{example}
-The function $f(x)=x^2$ has a local minimum at $x=0$, which is a global minimum. It has no local maxima.
+The function $f(x)=x^2$ has a local minimum at $x=0$, which is a global minimum. It has no local maximum.
 \begin{figure}[h]
 	\begin{center}
 	\includegraphics[scale=0.9]{figures_mvc/parabola}
@@ -4352,6 +4352,8 @@ The function $f(x)=x^2$ has a local minimum at $x=0$, which is a global minimum.
 \caption{The graph of $f(x)=x^2$.}
 \end{figure}	
 \end{example}
+
+\newpage
 
 \begin{example}
 The function $f(x)=x^3$ has no local maxima or minima.
@@ -4370,26 +4372,27 @@ We have just seen that some functions have extreme values while others do not. W
 \end{thm}
 
 \begin{proof}
-	The proof rests on several results beyond the scope of the course, so we omit it.
+	The proof requires techniques beyond the scope of the course, so we omit it.
 \end{proof}
 
-We illustrate the Extreme Value Theorem with the following examples
+We illustrate the Extreme Value Theorem with the examples shown in the figure below. Each curve is the graph of a continuous function defined on a closed interval $[a,b]$ and thus has an absolute maximum and an absolute minimum. It is important to note that the absolute max or min might be the endpoints of the curve.
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/evt_ex}
+	\includegraphics[scale=0.7]{figures_mvc/evt_ex}
 	\end{center}	
 	\caption{Examples of the Extreme Value Theorem}
 \end{figure}
+\newpage 
 
-and non-examples
+In the figure below, we show two functions for which the Extreme Value Theorem does not hold, since the functions do not satisfy the hypotheses of the theorem. In particular, the function whose graph is shown on the left is not continuous at every point on $[0,2]$, while the domain of the function whose graph is shown on the right is not a closed interval.
 
 \begin{figure}[h]
 	\begin{center}
-	\includegraphics[scale=0.5]{figures_mvc/evt_non_ex}
+	\includegraphics[scale=0.7]{figures_mvc/evt_non_ex}
 	\end{center}	
 	\caption{The graph on the left is not continuous at every point on $[0,2]$. The graph on the right is defined on $[0,2)$, which is not closed.}
 \end{figure}
-The Extreme Value Theorem tells us that the extreme values of $f$ exist, but not how to find them. 
+The Extreme Value Theorem tells us that the extreme values of $f$ exist, but not how to find them. As we saw in the examples above, an absolute max or min might be a local max or min, or might occur at the endpoints, so we will need to check both.
 
 Let's start by looking for local maxima and minima. The following theorem gives a necessary condition for a function to have a local max or min at $x_0 \in (a,b)$.
 
@@ -4410,7 +4413,7 @@ Suppose $f$ is differentiable on an interval $(a,b)$. If $f$ has a local max or 
 	\begin{align*}
 		\frac{f(x_0+h)-f(x_0)}{h}\leq 0.
 	\end{align*}
-	Taking the right-hand limit of both sides of this inequality \fixme{Justify this.}, we get
+	By the theorem in Appendix \ref{app:lim_and_ineq}, taking the right-hand limit of both sides of this inequality, we get
 	\begin{align*}
 		\lim_{h \to 0^+}\frac{f(x_0+h)-f(x_0)}{h}\leq 0 \leq \lim_{h \to 0^+}0=0.
 	\end{align*}
@@ -4424,14 +4427,21 @@ Suppose $f$ is differentiable on an interval $(a,b)$. If $f$ has a local max or 
 	\begin{align*}
 		\frac{f(x_0+h)-f(x_0)}{h} \geq 0 \hspace{0.5cm} (h<0).
 	\end{align*}
-	Taking the left-hand limit \fixme{Justify this.}, we have
+	Taking the left-hand limit (again applying the theorem in Appendix \ref{app:lim_and_ineq}), we have
 	\begin{align*}
 		f'(x_0)=\lim_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h}=\lim_{h \to 0^-}\frac{f(x_0+h)-f(x_0)}{h}\geq 0.
 	\end{align*}
 	Since $f'(x_0) \leq 0$ and $f'(x_0)\geq 0$, we must have $f'(x_0)=0$. The proof in the case of a local minimum is similar.
 \end{proof}
 
-While this condition is necessary, it is not sufficient.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{figures_mvc/horiz_tangent_line_fermat}
+	\caption{Fermat's theorem proves that at a local maximum or minimum, the slope of the tangent line is zero.}
+\end{figure}
+
+While $f'(x_0)=0$ is a necessary condition for $x_0$ to be a local max or min, it is not sufficient, as the next example shows.
+
 \begin{example}
 If $f(x)=x^3$ then $f'(x)=3x^2$ and therefore $f'(0)=0$, but $f$ has no local max or min at $0$ (since $x^3>0$ for $x>0$ and $x^3<0$ for $x<0$).	
 \end{example}
@@ -4455,7 +4465,54 @@ Let $f(x)=x^{3/5}(4-x)$. Since
 we see that $x=0$ is a critical point (since $f'(0)$ does not exist) and $x=\frac{3}{2}$ is a critical point (since $f'(3/2)=0$). These are the only critical points of $f(x)$.
 \end{example}
 
+If an absolute max or min of a continuous function $f$ on a closed interval $[a,b]$ is local, then it must occur at a critical point. Otherwise, it occurs at the endpoint of the interval. The following three-step procedure therefore always produces the absolute max and min of such a function:
+\begin{enumerate}
+	\item Find the values of $f$ at the critical points $(a,b)$.
+	\item Find the values of $f$ at the endpoints of the interval.
+	\item The largest of these values is the absolute max and the smallest is the absolute min.
+\end{enumerate}
 
+\begin{example}
+Consider the function
+\begin{align*}
+	f:\left[-\frac{1}{2},4\right] &\to \R \\
+	f(x)&=x^3-3x^2+1.
+\end{align*}	
+\begin{enumerate}
+	\item Find the critical points and evaluate.
+	\begin{align*}
+		f'(x)=3x^2-6x=3x(x-2)=0
+	\end{align*}
+	has solution $x=0,2$, so these are the only critical points. We find that $f(0)=1$ and $f(2)=-3$.
+	\item Evaluate the endpoints.
+	\begin{align*}
+		f(-\frac{1}{2})&=\frac{1}{8}. \\
+		f(4)&=17.
+	\end{align*}
+	\item Comparing the values above, we find that $f(4)=17$ is the absolute max and $f(2)=-3$ is the absolute min.
+\end{enumerate}
+\end{example}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/abs_max_min_example}
+	\caption{The graph of the function $f(x)=x^3-3x^2+1$ on $[-\frac{1}{2},4]$}
+\end{figure}
+
+\begin{exercise}
+Find the extreme values of the function $f(x)=3x^4-4x^3-12x^2+1$ on $[-2,3]$.	
+\end{exercise}
+\newpage 
+{\color{red}
+\begin{solution}
+The absolute max is $f(-2)=33$ and the absolute min is $f(2)=-31$.	
+\end{solution}
+}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/abs_max_min_exercise}
+	\caption{The graph of the function $f(x)=3x^4-4x^3-12x^2+1$ on $[-2,3]$.}
+\end{figure}
 
 \appendix
 \section{Geometric Justification of the Arc Length Formula}\label{app:arc_length}
@@ -4897,6 +4954,32 @@ Let $M=\max\{||T(\bv_i)||\}_{i=1}^n$. Then
 Since $n>0$ and $M \geq 0$, $nM \geq 0$, which shows that $T$ is bounded.
 \end{proof}
 
+\section{Limits and Inequalities}\label{app:lim_and_ineq}
+\begin{thm}
+If $f(x) \leq g(x)$ for all $x$ in an open interval that contains $a$ (except possibly at $a$) and 
+\begin{align*}
+	\lim_{x \to a}f(x)=L \text{ and } \lim_{x \to a}g(x)=M
+\end{align*}	
+then $L \leq M$.
+\end{thm}
+
+\begin{proof}
+	(By contradiction.) Suppose $L>M$. Then
+	\begin{align*}
+		\lim_{x \to a}[g(x)-f(x)]=M-L.
+	\end{align*}
+	Since $L-M>0$ there exists $\delta>0$ such that
+	\begin{align*}
+		|[g(x)-f(x)]-(M-L)|<L-M
+	\end{align*}
+	whenever $0<|x-a|<\delta$. Since $a \leq |a|$ for any real number $a$, whenever $0<|x-a|<\delta$ we have
+	\begin{align*}
+		[g(x)-f(x)]-(M-L)&<L-M \\
+		g(x)-f(x)&<0 \\
+		g(x)<f(x),
+	\end{align*}
+	contradicting the assumption that $f(x) \leq g(x)$ for all such $0<|x-a|<\delta$. Thus, we conclude that $L \leq M$.
+\end{proof}
 
 
 \end{document}
