@@ -4514,6 +4514,320 @@ The absolute max is $f(-2)=33$ and the absolute min is $f(2)=-31$.
 	\caption{The graph of the function $f(x)=3x^4-4x^3-12x^2+1$ on $[-2,3]$.}
 \end{figure}
 
+\subsection{Maximum and Minimum Values of Multivariable Functions}
+We will now use partial derivatives to locate the maximum and minimum values of a function of two variables.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/max_min_values}
+	\caption{The graph of a multivariable function with various maxima and minima.}
+\end{figure}
+
+\begin{defn}
+	A real-valued function of two variables $f$ has a \emph{local maximum} at $(a,b)$ if $f(x,y) \leq f(a,b)$ for all $(x,y)$ in some open set containing $(a,b)$. Similarly, $f$ has a \emph{local minimum} at $(a,b)$ if $f(x,y) \geq f(a,b)$ for all $(x,y)$ in some open set containing $(a,b)$.
+	
+	If these inequalities hold for all points $(x,y)$ in the domain of $f$, then $f$ has an \emph{absolute maximum} (resp,\emph{absolute minimum}) at $(a,b)$.
+\end{defn}
+We have the following generalization of Fermat's theorem for multivariable functions.
+
+\begin{thm}
+If $f$ has a local maximum or minimum at $(a,b)$ and the first-order partial derivatives exist there, then $\frac{\partial f}{\partial x}(a,b)=	\frac{\partial f}{\partial y}(a,b)=0$. If $f$ is differentiable, we may write this as the equivalent condition $\nabla f(a,b)={\bf 0}$.	
+\end{thm}
+
+\begin{proof}
+	Suppose $f(a,b)$ is a local maximum (resp., minimum). Let $g(x)=f(x,b)$. Then $g(a)$ is a local maximum (resp., minimum), so by Fermat's theorem $g'(a)=\frac{\partial f}{\partial x}(a,b)=0$. Similarly, if we let $h(y)=f(a,y)$, then $h(b)$ is a maximum (resp., minimum), so $h'(b)=\frac{\partial f}{\partial y}(a,b)=0$. If $f$ is differentiable, then $\nabla f=(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y})$, so $\frac{\partial f}{\partial x}(a,b)=\frac{\partial f}{\partial y}(a,b)=0$ is equivalent to $\nabla f(a,b)=0$. 
+\end{proof}
+If $f$ is differentiable and $\nabla f(a,b)={\bf 0}$, then the equation of the tangent plane at $(a,b)$ becomes 
+\begin{align*}
+\frac{\partial f}{\partial x}(a,b)(x-a)+	\frac{\partial f}{\partial y}(a,b)(y-b)-(z-f(a,b))&=0 \\
+0(x-a)+	0(y-b)-(z-f(a,b))&=0 \\
+z&=f(a,b)=\text{constant}.
+\end{align*}
+Thus, if the graph of $f$ has a tangent plane at a local max or min, the tangent plane is horizontal.
+\begin{defn}
+A point $(a,b)$ is called a {\bf critical point} of $f$ if $\frac{\partial f}{\partial x}(a,b)=\frac{\partial f}{\partial y}(a,b)=0$, or if one of these partial derivatives does not exist.	
+\end{defn}
+Fermat's theorem says that if $f$ has a local max or min at $(a,b)$, then $(a,b)$ is a critical point of $f$. 
+
+\begin{example}
+Consider the function 
+\begin{align*}
+	f(x,y)=x^2+y^2-2x-6y+14.
+\end{align*}
+Since 
+\begin{align*}
+	\frac{\partial f}{\partial x}&=2x-2, \\
+	\frac{\partial f}{\partial y}&=2y-6, \\
+\end{align*}	
+$(1,3)$ is the only critical point and $f(1,3)=4$. Completing the square,
+\begin{align*}
+	f(x,y)=(x-1)^2+(y-3)^2+4 \geq 4=f(1,3)
+\end{align*}
+for all $(x,y)$. Thus, $f(1,3)$ is the absolute minimum of $f$.
+\end{example}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/gr_ex}
+	\caption{The graph of the function $f(x,y)=x^2+y^2-2x-6y+14$.}
+\end{figure}
+
+
+As in the single-variable case, not all critical points give rise to maxima or minima, as the next example shows
+
+\begin{example}
+Consider the function $f(x,y)=y^2-x^2$. Then
+\begin{align*}
+	\frac{\partial f}{\partial x}&=-2x, \\
+	\frac{\partial f}{\partial y}&=2y, \\
+\end{align*} 	
+so $(x,y)=(0,0)$ is the only critical point. For points on the $x$-axis, 
+\begin{align*}
+	f(x,0)=-x^2<0 \text{ for all } x \neq 0.
+\end{align*}
+For points on the $y$-axis,
+\begin{align*}
+	f(0,y)=y^2>0 \text{ for all } y \neq 0.
+\end{align*}
+Thus, on every open disc centered at $(0,0)$, $f$ takes positive and negative values, so $(0,0)$ is neither a local max nor a local min of $f$. We call a critical point with this property a \emph{saddle point}.
+\end{example}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/saddle_pt}
+	\caption{The graph of the function $f(x,y)=y^2-x^2$.}
+\end{figure}
+
+\begin{thm}[Second Derivative Test]
+	Let $f$ be a function of two variables whose second partial derivatives of $f$ are continuous on a disk containing a critical point $(a,b)$ of $f$ and let $D$ denote the quantity
+\begin{align*}
+	D=D(a,b)=\frac{\partial^2f}{\partial^2 x}(a,b)\frac{\partial^2f}{\partial^2 y}(a,b)-\left[\frac{\partial^2f}{\partial x \partial y}(a,b)\right]^2.
+\end{align*}
+\begin{enumerate}[(a)]
+		\item If $D>0$ and $\frac{\partial^2f}{\partial^2 x}(a,b)>0$, then $f(a,b)$ is a local minimum.
+		\item If $D>0$ and $\frac{\partial^2f}{\partial^2 x}(a,b)<0$, then $f(a,b)$ is a local maximum.
+		\item If $D<0$, then $f(a,b)$ is neither a local maximum nor minimum.
+	\end{enumerate}
+\end{thm}
+
+\begin{remarks}\hspace{15cm}
+\begin{enumerate}
+	\item In case (c), $(a,b)$ is called a {\bf saddle point} of $f$ and the graph of $f$ crosses its tangent plane at $(a,b)$.
+	\item If $D=0$, the test is inconclusive.
+	\item $D$ can be written as $\begin{vmatrix}
+		\frac{\partial^2 f}{\partial^2x} & \frac{\partial^2 f}{\partial x \partial y} \\
+		\frac{\partial^2 f}{\partial x \partial y}  & \frac{\partial^2 f}{\partial^2 y}
+	\end{vmatrix}.$
+\end{enumerate}		
+\end{remarks}
+
+\begin{proof}
+	We only prove part (a), as the proof of part (b) is similar. One can show that part (c) is inconclusive by considering different examples.
+	\begin{enumerate}[(a)]
+		\item Suppose $f_{xx}(a,b)>0$ and $D(a,b)>0$. We will show that there exists an open disc $B_\delta(a,b)$ such that $D^2_\bu(x,y)>0$ for all $(x,y) \in B_\delta(a,b)$, where $\bu=(h,k)$ is an arbitrary unit vector. This will show that the curve $C$, obtained by intersecting the graph of $f$ with the vertical plane through $P(a,b,f(a,b))$ in the direction of $\bu$ is concave upward on an interval of length $\delta>0$. Since $\bu$ is arbitrary, this is true in the direction of every unit vector, so for all $(x,y) \in B_\delta(x,y)$, the graph of $f(x,y)$ lies above its horizontal tangent plane $z=f(a,b)$, and therefore is a local minimum.
+		 
+		To see this, since $f_{xx}$ and $D=f_{xx}f_{yy}-(f_{xy})^2$ are continuous at $(a,b)$ with $f_{xx}(a,b)>0$ and $D(a,b)>0$, there exists $\delta>0$ such that $f_{xx}>0$ and $D>0$ for all $(x,y) \in B_\delta(a,b)$. \fixme{Justify this.} Now,
+		\begin{align*}
+			D^2_\bu f&=D_\bu(D_\bu f) \\
+			&=D_\bu(f_xh+f_yk) \\
+			&=(f_xh+f_yk)_xh+(f_xh+f_yk)_yk \\
+			&=f_{xx}h^2+f_{yx}kh+f_{xy}hk+f_{yy}k^2 \\
+			&=f_{xx}h^2+2f_{xy}hk+f_{yy}k^2 \\
+			&=f_{xx}(h^2+2\frac{f_{xy}}{f_{xx}}hk)+f_{yy}k^2 \\
+			&=f_{xx}[(h+\frac{f_{xy}}{f_{xx}}k)^2-\frac{f_{xy}^2}{f_{xx}^2}k^2]+f_{yy}k^2 \\
+			&=f_{xx}(h+\frac{f_{xy}}{f_{xx}}k)^2+(f_{yy}-\frac{f_{xy}^2}{f_{xx}})k^2 \\
+			&=\underbrace{f_{xx}}_{>0}\underbrace{(h+\frac{f_{xy}}{f_{xx}}k)^2}_{>0}+\underbrace{\frac{k^2}{f_{xx}}}_{>0}\underbrace{(f_{xx}f_{yy}-f_{xy}^2)}_{>0}>0.
+		\end{align*}
+	\end{enumerate} 
+\end{proof}
+
+\begin{example}
+We now classify the critical points of $f(x,y)=x^4+y^4-4xy+1$.	 Since
+\begin{align*}
+	\frac{\partial f}{\partial x}&=4x^3-4y, \\
+	\frac{\partial f}{\partial y}&=4y^3-4x, \\
+\end{align*}
+to find the critical points we need to solve the nonlinear system of equations
+\begin{align*}
+	x^3-y&=0 \\
+	y^3-x&=0.
+\end{align*}
+The first equation says that $y=x^3$. Substituting into the second equation gives
+\begin{align*}
+	(x^3)^3-x&=0 \\
+	x^9-x&=0 \\
+	x(x^8-1)&=0 \\
+	x(x^4+1)(x^4-1)&=0 \\
+	x(x^2+i)(x^2-i)(x^2+1)(x^2-1)&=0 \\
+	x(x+i^{3/2})(x-i^{3/2})(x+i^{1/2})(x-i^{1/2})(x+i)(x-i)(x+1)(x-1)&=0,
+\end{align*}
+where we have repeatedly used the formulas
+\begin{align*}
+	a^2-b^2&=(a+b)(a-b) \\
+	a^2+b^2&=(a+ib)(a-ib).
+\end{align*}
+This equation has three real roots: $x=0,-1,1$. The corresponding $y$-values are given by cubing each of these, so we find three critical points: $(x,y)=(0,0), (1,1), (-1,-1)$.
+
+Since
+\begin{align*}
+	f_{xx}&=12x^2 \\
+	f_{xy}&=-4 \\
+	f_{yy}&=12y^2
+\end{align*}
+the $D$-function is given by
+\begin{align*}
+	D(x,y)&=\begin{vmatrix}
+		12x^2 & -4 \\
+		-4 & 12y^2
+	\end{vmatrix} \\
+	&=144x^2y^2-16.
+\end{align*}
+Checking each critical point,
+\begin{align*}
+	D(0,0)=-16<0
+\end{align*}
+so this is a saddle point.
+\begin{align*}
+	D(-1,-1)=144-16>0, \hspace{0.5cm} f_{xx}(-1,-1)=12(-1)^2=12>0
+\end{align*}
+so this is a local minimum.
+\begin{align*}
+	D(1,1)=144-16>0, \hspace{0.5cm} f_{xx}(1,1)=12(1)^2=12>0
+\end{align*}
+so this is also a local minimum.
+\end{example}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/pants}
+	\caption{The graph of the function $f(x,y)=x^4+y^4-4xy+1$.}
+\end{figure}
+
+\newpage 
+
+\begin{exercise}
+Find the shortest distance from the point $(1,0,-2)$ to the plane $x+2y+z=4$.	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	\fixme{Explain why it suffices to minimize $d^2$.} The square of the distance from any point $(x,y,z)$ to $(1,0,-2)$ is
+	\begin{align*}
+		d^2=(x-1)^2+y^2+(z+2)^2.
+	\end{align*}
+	If $(x,y,z)$ lies on the plane $x+2y+z=4$, then $z=4-x-2y$ and therefore
+	\begin{align*}
+		d^2=(x-1)^2+y^2+(6-x-2y)^2\equiv f(x,y).
+	\end{align*}
+	Since
+	\begin{align*}
+		\frac{\partial f}{\partial x}&=4x+4y-14, \\
+		\frac{\partial f}{\partial y}&=4x+10y-24, \\
+	\end{align*}
+	to find the critical points we need to solve the inhomogeneous \emph{linear} system
+	\begin{align*}
+		4x+4y&=14 \\
+		4x+10y&=24.
+	\end{align*}
+	This system has the unique solution $(x,y)=(\frac{11}{6},\frac{5}{3})$, so this is the only critical point. Since
+	\begin{align*}
+		f_{xx}&=4>0, \\
+		f_{xy}&=4, \\
+		f_{yy}&=10,
+	\end{align*}
+	the $D$-function is given by
+	\begin{align*}
+		D(x,y)&=\begin{vmatrix}
+			4 & 4 \\
+			4 & 10
+		\end{vmatrix}=40-16=24>0.
+	\end{align*}
+	Since $D(\frac{11}{6},\frac{5}{3})>0$ and $f_{xx}(\frac{11}{6},\frac{5}{3})>0$, this is a local minimum (physically, it has to be the global minimum). The corresponding minimum distance is therefore
+	\begin{align*}
+		d=\sqrt{f(\frac{11}{6},\frac{5}{3})}=\frac{5}{\sqrt{6}}.
+	\end{align*}
+\end{solution}}
+
+\begin{exercise}
+A rectangular box without a lid is to be made from $12 m^2$ of cardboard. Find the maximum volume of such a box. 	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+	The volume and surface area of the box without lid are given by
+	\begin{align*}
+		V&=xyz \\
+		A&=2xz+2yz+xy=12.
+	\end{align*}
+	Solving the latter for $z$ gives
+	\begin{align*}
+		z=\frac{12-xy}{2(x+y)}.
+	\end{align*}
+	Substituting this into $V$ gives
+	\begin{align*}
+		V(x,y)=\frac{12xy-x^2y^2}{2(x+y)}.
+	\end{align*}
+	To find the critical points, we need to solve the nonlinear system
+	\begin{align*}
+		\frac{\partial V}{\partial x}&=\frac{y^2(12-2xy-x^2)}{2(x+y)^2}=0 \\
+		\frac{\partial V}{\partial y}&=\frac{x^2(12-2xy-y^2)}{2(x+y)^2}=0 .
+	\end{align*}
+	This has an obvious solution $(x,y)=(0,0)$, which we are not interested in. To find a nontrivial solution, we must therefore solve the nonlinear system
+	\begin{align*}
+		12-2xy-x^2&=0 \\
+		12-2xy-y^2&=0
+	\end{align*}
+	from which we see that $x^2=y^2$ and therefore $x=y$. Substituting this into the first equation gives
+	\begin{align*}
+		4-x^2=0
+	\end{align*}
+	which has solution $x=2$ (since, physically, $x$ must be positive as it represents the length of the box). Thus, the point $(x,y)=(2,2)$ is a critical point. Evaluating at this point gives
+	\begin{align*}
+		V(2,2)=4 m^3,
+	\end{align*}
+	which, physically, must correspond to the absolute maximum of the box.
+\end{solution}}
+
+\subsection{Absolute Maxima and Minima for Multivariable Functions}
+\begin{thm}[Extreme value theorem for functions of two variables]
+ If $f$ is continuous on a closed, bounded set $D$ in $\mathbb{R}^2$, then $f$ attains an absolute max $f(x_1,y_1)$ and an absolute min $f(x_2,y_2)$ at some points $(x_1,y_1)$ and $(x_2,y_2)$ in $D$.	
+\end{thm}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/closed_and_not_closed}
+	\caption{Closed subsets of the plane vs. sets which are not closed.}
+\end{figure}
+To find the absolute max and min of a continuous function $f$ on a closed, bounded set $D$:
+\begin{enumerate}
+	\item Find the values of $f$ at the critical points of $f$ in $D$.
+	\item Find the extreme values of $f$ on the boundary of $D$.
+	\item The largest of these values is the absolute max and the smallest is the absolute min.
+\end{enumerate}	
+
+\begin{example}
+Find the absolute max and min of the function $$f(x,y)=x^2-2xy+2y$$ on the rectangle $D=\{(x,y):0 \leq x \leq 3, 0 \leq y \leq 2\}$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/abs_ex_1}
+\end{figure}	
+\end{example}
+
+\begin{exercise}
+Find the absolute max and min values of
+$$f(x,y)=x^4+y^4-4xy+2$$
+on $D=\{(x,y):0 \leq x \leq 3, 0 \leq y \leq 2\}$.	
+\end{exercise}
+
+{\color{red}
+\begin{solution}	
+\end{solution}}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/abs_ex_2}
+\end{figure}	
+
+
+
+
 \appendix
 \section{Geometric Justification of the Arc Length Formula}\label{app:arc_length}
 \begin{prop}
