@@ -3877,14 +3877,14 @@ If $f:U \subseteq \R^n \to \R$ is differentiable at each $\bx \in U$, then the d
 	\bx &\mapsto df_\bx.
 \end{align*}
 
-Let $d$ denote the map which takes a differentiable function to its differential. Observe that the map $d$ obeys the usual rules of differentiation of single-variable functions. 
+The differential has the following properties.
 
 \begin{thm}[Properties of the differential]\label{thm:algebraic_properties_of_the_differential}
-Let $f_1,f_2:U \subseteq \R^n \to \R$ be differentiable at $\bx$. Then
+Let $f_1,f_2:U \subseteq \R^n \to \R$ be differentiable. Then
 \begin{enumerate}[(1)]
 	\item $d$ is linear: $d(cf_1+f_2)=c(df_1)+(df_2)$.
 	\item $d$ obeys the Leibnitz rule: $d(f_1 \cdot f_2)=(df_1) \cdot f_2+f_1 \cdot (df_2)$.
-	\item $d$ obeys the quotient rule: $d(\frac{f}{g})_\bx=\frac{g df-fdg}{g^2}$.
+	\item $d$ obeys the quotient rule: $d(\frac{f}{g})=\frac{g df-fdg}{g^2}$.
 \end{enumerate}	
 \end{thm}
 
