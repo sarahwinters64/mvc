@@ -3605,7 +3605,15 @@ The converse is also true: if $\Delta f=T+r$, where $T$ is a linear map (which m
 	&=c+0 \\
 	&=c
 \end{align*} 
-so $f$ is differentiable. Thus the existence of the limit in \eqref{eq:old_derivative} is equivalent to the statement that there exists a \emph{linear} function (the differential of $f$ at $x$) that approximates the change of $f$ near $x$, up to an error term which can be made arbitrarily small by taking points sufficiently close to $x$. It is the latter characterization of a differentiable function (existence of the differential) which generalizes immediately to multivariable functions.
+so $f$ is differentiable. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{figures_mvc/differential_graph_illustration}
+	\caption{Here, $\Delta f_a(t)$ is the change in the function $f$ as we move from $a$ to $a+t$. The corresponding change in the linear function $df_a$ is $f'(a)t$. The difference $df_a(t)-\Delta_a(t)$ goes to zero faster than $t$ as $t \to 0$.}
+\end{figure}
+
+Thus the existence of the limit in \eqref{eq:old_derivative} is equivalent to the statement that there exists a \emph{linear} function (the differential of $f$ at $x$) that approximates the change of $f$ near $x$, up to an error term which can be made arbitrarily small by taking points sufficiently close to $x$. It is the latter characterization of a differentiable function (existence of the differential) which generalizes immediately to multivariable functions.
 
 \begin{defn}\label{def:differentiable_mv_function}
 Let $f:U \subseteq \R^n \to \R$ be a multivariable function defined on an open subset $U$ of $\R^n$ and let $\Delta f:\R^n \to \R$ be defined by $\Delta f(\bh)=f(\bx + \bh)-f(\bx)$. We say that $f$ is \emph{differentiable} at $\bx \in U$ if there exists a linear function $T:\R^n \to \R$ such that  
