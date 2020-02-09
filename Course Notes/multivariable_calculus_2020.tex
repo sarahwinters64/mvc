@@ -3249,7 +3249,24 @@ Compute $\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}$, and  $\f
 \end{figure}
 
 \subsubsection{Implicit Partial Differentiation}
-Implicit partial differentiation works exactly as in the single variable case.
+Consider two real variables $x$ and $y$ related by an equation $F(x,y)=0$. We would like to say that this implicitly defines a function $y=f(x)$, and we would like to compute $\frac{dy}{dx}$. One generally cannot solve for $y$ explicitly, so it is important to know when such a function does indeed exist without having to solve for it.
+
+
+For example, consider the function $F(x,y)=x^2+y^2-1$. We are interested in those $x$ and $y$ related by the equation equation $F(x,y)=0$, which is the equation of the unit circle centered at the origin. A function $f(x)$ is a ``solution" if and only if $F(x,f(x))=0$ for all $x$ in the domain of $f$. In this example, $f$ must be given by $f(x)=\pm \sqrt{1-x^2}$, and either of these is a solution. This shows that $f$ need not be unique. Given $(x_0,y_0)$ such that $F(x_0,y_0)=0$, we would like to know if we can find $f(x)$ such that $F(x,f(x))=0$ and $f$ is differentiable and \emph{unique} near $(x_0,y_0)$. In our example, if $x_0 \neq \pm 1$, then this is true if $f$ is taken to be the appropriate square root. The (sign of the) given $y_0$ determines which square root must be selected. The points $x_0=\pm 1$ are exceptional for several reasons. First, $f$ is not differentiable there and second, near $x_0=\pm 1$, $f$ could be either square root, so $f$ is not uniquely determined. The exceptional points are exactly the places where $\partial F/\partial y=0$. Thus, in general, we want some condition like $\partial F/\partial y \neq 0$ to guarantee that, locally at least, we can find a unique differentiable $f$ such that $F(x,f(x))=0$. The exact condition is given by the following theorem
+
+\begin{thm}[Implicit Function Theorem]\label{thm:implicit_function_thm}
+	Let $F:U \subseteq \R^2 \to \R$ be a function of class $C^p$ defined on an open subset $U$ of $\R^2$. Suppose $(x_0,y_0) \subseteq U$ and $F(x_0,y_0)=0$. If $\partial F/\partial y \neq 0$, then there is a neighborhood $U \subseteq \R$ of $x_0$ and a neighborhood $V$ of $y_0$ and a unique function $f:U \to V$ of class $C^p$ such that 
+	\begin{align*}
+		F(x,f(x))=0
+	\end{align*}
+	for all $x \in U$. 
+\end{thm}
+
+\begin{proof}
+	Omitted.
+\end{proof}
+
+Implicit partial differentiation in the multivariable setting works exactly as in the single variable case. As in your previous calculus course, we will not be concerned about using Theorem \ref{thm:implicit_function_thm} to show when an equation $F(x,y,z)=0$ defines $z$ as a function of $x$ and $y$, but rather \emph{given} and $F(x,y,z)=0$ that \emph{does} define $z$ as a function of $x$ and $y$, we show how to compute $\frac{\partial z}{\partial x}$ and $\frac{\partial z}{\partial y}$.
 
 \begin{example}
 If the equation
@@ -3280,7 +3297,7 @@ defines $z$ implicitly as a function of $x$ and $y$.
 
 }
 
-
+\newpage 
 
 \subsubsection{Higher-order Partial Derivatives}
 \begin{figure}[h]
@@ -4059,27 +4076,121 @@ Let $f(x,y)=xe^y$. Find the magnitude and direction of the maximum rate of chang
 	\end{align*}
 \end{solution}}
 
- 
- 
+\subsubsection{Application: Linear Approximations}
+If $f:\R^2 \to \R$ is differentiable at $(x_0,y_0)$, then for all $(x,y)=(x_0+(x-x_0),y_0+(y-y_0))$ in a neighborhood of $(x_0,y_0)$ (that is, for $(x-x_0)$ and $(y-y_0)$ sufficiently small),
+\begin{align*}
+	f(x,y)-f(x_0,y_0)&\approx df_{(x_0,y_0)}(x-x_0,y-y_0) \\
+	&=\nabla f(x_0,y_0) \cdot (x-x_0,y-y_0) \\
+	&=\frac{\partial f(x_0,y_0)}{\partial x}(x-x_0)+\frac{\partial f(x_0,y_0)}{\partial y}(y-y_0)
+\end{align*}
+\begin{defn}[Linearization of a differentiable function]
+	The function
+\begin{align*}
+	f_L(x,y)=f(x_0,y_0)+\frac{\partial f(x_0,y_0)}{\partial x}(x-x_0)+\frac{\partial f(x_0,y_0)}{\partial y}(y-y_0)
+\end{align*}
+is called the \emph{linearization of $f(x,y)$ at $(x_0,y_0)$.}
+\end{defn}
 
-\begin{thm}
-At each point of a level curve of a function $f$, the gradient is orthogonal to the tangent vector.	
-\end{thm}
+Since $z=f(x,y)$, letting $z_0\equiv f(x_0,y_0)$ we see that the linearization of $f(x,y)$ is the equation of the \emph{tangent plane} to the graph of $f$ at $(x,y,z=f(x,y))$:
+\begin{align*}
+	z=z_0+\frac{\partial f(x_0,y_0)}{\partial x}(x-x_0)+\frac{\partial f(x_0,y_0)}{\partial y}(y-y_0).
+\end{align*}
 
-\begin{proof}
-	Let $\bbr(t)=(x(t),y(t))$ be a level curve of $f(x,y)$. Then $f(x(t),y(t))=$ constant. By the chain rule,
-	\begin{align*}
-		0=\frac{\partial f}{\partial x}\frac{\partial x}{\partial t}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial t}=\nabla f \cdot \bbr'(t)
-	\end{align*}
-	This says that at each time $t$, $\nabla f$ is orthogonal to the tangent vector to the level curve $\bbr'(t)$.
-\end{proof}
+
+\begin{exercise}
+Find the equation of the tangent plane to the graph of the function
+\begin{align*}
+	f(x,y)=x^2-xy+\frac{1}{2}y^2+3
+\end{align*}	
+at the point $(3,2)$.
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+Since
+\begin{align*}
+	\frac{\partial f}{\partial x}&=2x-y, \\
+	\frac{\partial f}{\partial y}&=-x+y \\
+\end{align*}
+we have
+\begin{align*}
+	f(3,2)&=8, \\
+	\frac{\partial f}{\partial x}(3,2)&=4, \\
+	\frac{\partial f}{\partial y}(3,2)&=-1, \\
+\end{align*}	
+so the equation of the tangent plane is
+\begin{align*}
+	z=8+4(x-3)-(y-2).
+\end{align*}
+\end{solution}
+}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{figures_mvc/grad_lc}
-	\caption{At each point along a level curve of $f$, the gradient is orthogonal to the tangent vector.}
+	\includegraphics[scale=0.5]{figures_mvc/change_in_f}
+	\caption{Describing the change in the value of a function under a small displacement in each variable.}
 \end{figure}
 
+\begin{example}
+A cylindrical can has a radius of 1 in. and a height of 5 in. Estimate the absolute and relative change in volume by changing the radius by $\Delta r=0.03$ in. and the height by $\Delta h=-0.1$ in.	
+
+We estimate the change in volume $V(r,h)=\pi r^2h$ by its differential at $(r,h)=(1,5)$:
+\begin{align*}
+	V(1+0.03,5-0.1)-V(1,5) &\approx dV_{(1,5)}(0.03,-0.1)\\
+	&=\nabla V(1,5)\cdot (0.03,-0.1).
+\end{align*}
+Since
+\begin{align*}
+\nabla V=\begin{bmatrix}
+	\frac{\partial V}{\partial r} & \frac{\partial V}{\partial h}
+\end{bmatrix}=\begin{bmatrix}
+	2\pi rh & \pi r^2
+\end{bmatrix}
+\end{align*}
+we have
+\begin{align*}
+\nabla V(1,5)=\begin{bmatrix}
+	\frac{\partial V}{\partial r}(1,5) & \frac{\partial V}{\partial h}(1,5)
+\end{bmatrix}=\begin{bmatrix}
+	10\pi & \pi 
+\end{bmatrix}
+\end{align*}	
+so the absolute change in volume is approximately
+\begin{align*}
+	dV_{(1,5)}(\begin{bmatrix}
+		0.03 \\ -0.1
+	\end{bmatrix})=10\pi(0.03)+\pi(-0.1)=0.2\pi.
+\end{align*}
+The relative change in volume is then approximately
+\begin{align*}
+	 \frac{dV_{(1,5)}(0.03,-0.1)}{V(1,5)}=\frac{0.2\pi}{5\pi}=0.04,
+\end{align*}
+so the relative change in volume is approximately $4\%$.
+\end{example}
+
+
+
+
+
+\begin{example}[Error propagation]
+	Suppose we compute the volume of a right circular cylinder from measured values of $r$ and $h$. Suppose $r$ is measured with an error of no more than $2\%$ and $h$ with an error of no more than $5\%$.  What then is the maximum error in our calculation of $V$?
+	
+	We are given that
+	\begin{align*}
+		\left|\frac{\Delta r}{r}\right|\leq 0.02 \hspace{0.5cm} \text{ and } \hspace{0.5cm} \left|\frac{\Delta h}{h}\right|\leq 0.005.
+	\end{align*}
+	The relative change in volume corresponding to changes $\Delta r, \Delta h$ in $r,h$, respectively, is approximately
+	\begin{align*}
+		\frac{dV(\Delta r,\Delta h )}{V}=\frac{2\pi r h \Delta r+\pi r^2 \Delta h}{\pi r^2 h}=\frac{2 \Delta r}{r}+\frac{\Delta h}{h},
+	\end{align*}
+	so the maximum change in volume is approximately
+	\begin{align*}
+		\left|\frac{dV(\Delta r,\Delta h)}{V}\right|&=\left|\frac{2 \Delta r}{r}+\frac{\Delta h}{h}\right| \\
+		&\leq \left|\frac{2 \Delta r}{r}\right|+\left|\frac{\Delta h}{h}\right| \hspace{0.5cm} \text{ (by the triangle inequality)}\\
+		&\leq 2(0.02)+0.005=0.045.
+	\end{align*}
+	Thus, the maximum error in $V$ from this calculation is $4.5\%$.
+\end{example}
 
 \subsubsection{The Composite Mapping Theorem (Chain Rule)}
 \begin{thm}[Chain rule]
@@ -4180,24 +4291,25 @@ If $(x(t),y(t))=(x_0+v_1t,y_0+v_2t)$, then by the chain rule
 \end{solution}
 }
 
-\subsubsection{Implicit Differentiation, Revisited}
-Consider two real variables $x$ and $y$ related by an equation $F(x,y)=0$. We would like to say that this implicitly defines a function $y=f(x)$, and we would like to compute $\frac{dy}{dx}$. One generally cannot solve for $y$ explicitly, so it is important to know when such a function does indeed exist without having to solve for it.
-
-
-For example, consider the function $F(x,y)=x^2+y^2-1$. We are interested in those $x$ and $y$ related by the equation equation $F(x,y)=0$, which is the equation of the unit circle centered at the origin. A function $f(x)$ is a ``solution" if and only if $F(x,f(x))=0$ for all $x$ in the domain of $f$. In this example, $f$ must be given by $f(x)=\pm \sqrt{1-x^2}$, and either of these is a solution. This shows that $f$ need not be unique. Given $(x_0,y_0)$ such that $F(x_0,y_0)=0$, we would like to know if we can find $f(x)$ such that $F(x,f(x))=0$ and $f$ is differentiable and \emph{unique} near $(x_0,y_0)$. In our example, if $x_0 \neq \pm 1$, then this is true if $f$ is taken to be the appropriate square root. The (sign of the) given $y_0$ determines which square root must be selected. The points $x_0=\pm 1$ are exceptional for several reasons. First, $f$ is not differentiable there and second, near $x_0=\pm 1$, $f$ could be either square root, so $f$ is not uniquely determined. The exceptional points are exactly the places where $\partial F/\partial y=0$. Thus, in general, we want some condition like $\partial F/\partial y \neq 0$ to guarantee that, locally at least, we can find a unique differentiable $f$ such that $F(x,f(x))=0$. The exact condition is given by the following theorem
-
-\begin{thm}[Implicit Function Theorem]
-	Let $F:U \subseteq \R^2 \to \R$ be a function of class $C^p$ defined on an open subset $U$ of $\R^2$. Suppose $(x_0,y_0) \subseteq U$ and $F(x_0,y_0)=0$. If $\partial F/\partial y \neq 0$, then there is a neighborhood $U \subseteq \R$ of $x_0$ and a neighborhood $V$ of $y_0$ and a unique function $f:U \to V$ of class $C^p$ such that 
-	\begin{align*}
-		F(x,f(x))=0
-	\end{align*}
-	for all $x \in U$. 
+\begin{thm}
+At each point of a level curve of a function $f$, the gradient is orthogonal to the tangent vector.	
 \end{thm}
 
 \begin{proof}
-	Omitted.
+	Let $\bbr(t)=(x(t),y(t))$ be a level curve of $f(x,y)$. Then $f(x(t),y(t))=$ constant. By the chain rule,
+	\begin{align*}
+		0=\frac{\partial f}{\partial x}\frac{\partial x}{\partial t}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial t}=\nabla f \cdot \bbr'(t)
+	\end{align*}
+	This says that at each time $t$, $\nabla f$ is orthogonal to the tangent vector to the level curve $\bbr'(t)$.
 \end{proof}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/grad_lc}
+	\caption{At each point along a level curve of $f$, the gradient is orthogonal to the tangent vector.}
+\end{figure}
+
+\subsubsection{Implicit Differentiation, Revisited}
 If $F(x,y)=0$ defines $y$ implicitly as a function of $x$, say $y=f(x)$, then by the chain rule
 \begin{align*}
 	0&=\frac{d F}{d x} \\
@@ -4215,113 +4327,6 @@ Suppose $F(x,y)=x^2-xy+y^2-7$. Then $\partial F/\partial y=-x+2y$. By the Implic
 	\frac{dy}{dx}=-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}=-\frac{2x-y}{-x+2y}=\frac{y-2x}{2y-x}.
 \end{align*}
 \end{example}
-
-
-
-
-\subsubsection{Application: Linear Approximations}
-If $f:\R^2 \to \R$ is differentiable at $\bx$, the equation of the \emph{tangent plane} to the graph of $f$ at $(x,y,z=f(x,y))$ is given by the equation
-\begin{align*}
-	z=z_0+\frac{\partial f(x_0,y_0)}{\partial x}(x-x_0)+\frac{\partial f(x_0,y_0)}{\partial y}(y-y_0).
-\end{align*}
-where $z_0=f(x_0,y_0)$.
-
-\begin{exercise}
-Find the equation of the tangent plane to the graph of the function
-\begin{align*}
-	f(x,y)=x^2-xy+\frac{1}{2}y^2+3
-\end{align*}	
-at the point $(3,2)$.
-\end{exercise}
-
-{\color{red}
-\begin{solution}
-Since
-\begin{align*}
-	\frac{\partial f}{\partial x}&=2x-y, \\
-	\frac{\partial f}{\partial y}&=-x+y \\
-\end{align*}
-we have
-\begin{align*}
-	f(3,2)&=8, \\
-	\frac{\partial f}{\partial x}(3,2)&=4, \\
-	\frac{\partial f}{\partial y}(3,2)&=-1, \\
-\end{align*}	
-so the equation of the tangent plane is
-\begin{align*}
-	z=8+4(x-3)-(y-2).
-\end{align*}
-\end{solution}
-
-}
-
-\begin{exercise}
-A cylindrical can has a radius of 1 in. and a height of 5 in. Estimate the absolute and relative change in volume by changing the radius by $\Delta r=0.03$ in. and the height by $\Delta h=-0.1$ in.	
-\end{exercise}
-
-{\color{red}
-\begin{solution}
-We estimate the change in volume $V(r,h)=\pi r^2h$ by its differential at $(r,h)=(1,5)$:
-\begin{align*}
-	V(1+0.03,5-0.1)-V(1,5) \approx dV_{(1,5)}(0.03,-0.1).
-\end{align*}
-Since
-\begin{align*}
-	\frac{\partial V}{\partial r}&=2\pi rh, \\
-	\frac{\partial V}{\partial h}&=\pi r^2, \\
-\end{align*}
-we have
-\begin{align*}
-	\frac{\partial V}{\partial r}(1,5)&=10\pi, \\
-	\frac{\partial V}{\partial h}(1,5)&=\pi, \\
-\end{align*}	
-so
-\begin{align*}
-	dV_{(1,5)}(\begin{bmatrix}
-		0.03 \\ -0.1
-	\end{bmatrix})=10\pi(0.03)+\pi(-0.1)=0.2\pi.
-\end{align*}
-Thus, the absolute change in volume 
-\begin{align*}
-	\Delta V(\begin{bmatrix}
-		0.03 \\ -0.1
-	\end{bmatrix}) \approx dV_{(1,5)}(\begin{bmatrix}
-		0.03 \\ -0.1
-	\end{bmatrix})=0.2\pi.
-\end{align*}
-The relative change in volume is
-\begin{align*}
-	\frac{\Delta V(\begin{bmatrix}
-		0.03 \\ -0.1
-	\end{bmatrix})}{V(1,5)} \approx \frac{dV_{(1,5)}(\begin{bmatrix}
-		0.03 \\ -0.1
-	\end{bmatrix})}{V(1,5)}=\frac{0.2\pi}{5\pi}=0.04,
-\end{align*}
-so the relative change in volume is approximately $4\%$.
-\end{solution}
-}
-
-\begin{example}[Error propagation]
-	Suppose we compute the volume of a right circular cylinder from measured values of $r$ and $h$. Suppose $r$ is measured with an error of no more than $2\%$ and $h$ with an error of no more than $5\%$.  What then is the maximum error in our calculation of $V$?
-	
-	We are given that
-	\begin{align*}
-		|\frac{\Delta r}{r}|\leq 0.02 \text{ and } |\frac{\Delta r}{r}|\leq 0.005.
-	\end{align*}
-	Now
-	\begin{align*}
-		\frac{\Delta V(\begin{bmatrix} \Delta r \\ \Delta h \end{bmatrix})}{V} \approx \frac{dV(\begin{bmatrix} \Delta r \\ \Delta h \end{bmatrix})}{V}=\frac{2\pi r h \Delta r+\pi r^2 \Delta h}{\pi r^2 h}=\frac{2 \Delta r}{r}+\frac{dh}{h},
-	\end{align*}
-	so
-	\begin{align*}
-		\left|\frac{dV(\begin{bmatrix} \Delta r \\ \Delta h \end{bmatrix})}{V}\right|&=\left|\frac{2 \Delta r}{r}+\frac{\Delta h}{h}\right| \\
-		&\leq \left|\frac{2 \Delta r}{r}\right|+\left|\frac{\Delta h}{h}\right| \hspace{0.5cm} \text{ (by the triangle inequality)}\\
-		&\leq 2(0.02)+0.005=0.045.
-	\end{align*}
-	Thus, the maximum error in $V$ from this calculation is $4.5\%$.
-\end{example}
-
-
 
 \section{Finding Maxima and Minima}
 \subsection{Review: Single-variable Functions}
@@ -5220,9 +5225,9 @@ Note that if $\bx \in \partial A$, then $\bx$ need not be a limit point of $A$. 
 
 \section{Every Linear Map is Bounded}
 \begin{defn}[Bounded linear map]\label{def:bdd_lin_map}
-	A \emph{linear} map $T:\R^n \to \R^m$ is said to be \emph{bounded} if there exists a real number $C\geq 0$ such that 
+	A \emph{linear} map $T:\R^n \to \R^m$ is said to be \emph{bounded} if there exists a real number $C\geq 0$ such that \footnote{Note that $||T\bx||$ is computed with respect to the distance function of $\R^m$ while $||\bx||$ is computed with respect to the distance function of $\R^n$. Since which distance function we are using is obvious from context, we will use the same notation for each one.} 
 	\begin{align}\label{eq:bounded_op}
-		||T(\bx)||\leq C||\bx||, \hspace{0.5cm} \text{ for all } \bx \in \R^n. \footnote{Note that $||T\bx||$ is computed with respect to the distance function of $\R^m$ while $||\bx||$ is computed with respect to the distance function of $\R^n$. Since which distance function we are using is obvious from context, we will use the same notation for each one.}
+		||T(\bx)||\leq C||\bx||, \hspace{0.5cm} \text{ for all } \bx \in \R^n. 
 	\end{align}
 \end{defn}
 
