@@ -4076,7 +4076,7 @@ Let $f(x,y)=xe^y$. Find the magnitude and direction of the maximum rate of chang
 	\end{align*}
 \end{solution}}
 
-\subsubsection{Application: Linear Approximations}
+\subsubsection{Application: Linear Approximations}\label{sec:linear_approx}
 If $f:\R^2 \to \R$ is differentiable at $(x_0,y_0)$, then for all $(x,y)=(x_0+(x-x_0),y_0+(y-y_0))$ in a neighborhood of $(x_0,y_0)$ (that is, for $(x-x_0)$ and $(y-y_0)$ sufficiently small),
 \begin{align*}
 	f(x,y)-f(x_0,y_0)&\approx df_{(x_0,y_0)}(x-x_0,y-y_0) \\
@@ -4326,6 +4326,100 @@ Suppose $F(x,y)=x^2-xy+y^2-7$. Then $\partial F/\partial y=-x+2y$. By the Implic
 \begin{align*}
 	\frac{dy}{dx}=-\frac{\frac{\partial F}{\partial x}}{\frac{\partial F}{\partial y}}=-\frac{2x-y}{-x+2y}=\frac{y-2x}{2y-x}.
 \end{align*}
+\end{example}
+
+\subsection{Tangent Plane and Normal Line to a Level Surface}
+Consider a level surface $S$ of a differentiable function $f(x,y,z)$, defined by an equation of the form
+\begin{align*}
+	f(x,y,z)=c.
+\end{align*}
+If $\bbr(t)=(x(t),y(t),z(t))$ in $S$, is a smooth curve in $S$, then
+\begin{align*}
+	f(x(t),y(t),z(t))=c.
+\end{align*}
+Differentiating both sides with respect to $t$ and using the chain rule, we obtain
+\begin{align*}
+	\frac{d}{dt}f(x(t),y(t),z(t))&=\frac{d}{dt}(c) \\
+	\frac{\partial f}{\partial x}\frac{dx}{dt}+\frac{\partial f}{\partial y}\frac{dy}{dt}+\frac{\partial f}{\partial z}\frac{dz}{dt}&=0 \\
+	\nabla f(x(t),y(t),z(t)) \cdot \bbr'(t)&=0.
+\end{align*}
+We see that at every point $(x(t),y(t),z(t))$ on the curve, $\nabla f$ is orthogonal to the tangent vector at $(x(t),y(t),z(t))$.
+
+Now consider the curves in $S$ which pass through a fixed point $P_0(x_0,y_0,z_0)$. All the tangent vectors at $P_0$ are orthogonal to $\nabla f$ at $P_0$, so these all lie in the plane through $P_0$ normal to $\nabla f$. This is the \emph{tangent plane} of the surface at $P_0$. The line through $P_0$ perpendicular to the plane is the surface's \emph{normal line} at $P_0$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/tangent_space}
+	\caption{The tangent plane and normal line at $P_0$.}
+\end{figure}
+
+\begin{defn}[Tangent Plane and Normal Line]\hspace{15cm}
+	\begin{enumerate}[(a)]
+		\item The \emph{tangent plane} at the point $P_0(x_0,y_0,z_0)$ on the level surface $f(x,y,z)=c$ is the plane through $P_0$ normal to $\nabla f|_{P_0}$. 
+		\item The \emph{normal line} of the surface at $P_0$ is the line through $P_0$ parallel to $\nabla f|_{P_0}$.
+	\end{enumerate}
+\end{defn}
+
+From last semester, the equations of the tangent plane and normal line are therefore, respectively, 
+\begin{align}\label{eq:tangent_plane}
+	\frac{\partial f}{\partial x}(x-x_0)+\frac{\partial f}{\partial y}(y-y_0)+\frac{\partial f}{\partial z}(z-z_0)&=0 \\ \label{eq:normal_line}
+	x=x_0+\frac{\partial f}{\partial x}t, \hspace{0.5cm}	y=y_0+\frac{\partial f}{\partial y}t, \hspace{0.5cm} 	z=z_0&+\frac{\partial f}{\partial z}t,
+\end{align}
+where the partial derivatives are all evaluated at $P_0$.
+
+\begin{example}
+Consider the circular paraboloid defined by the equation
+\begin{align*}
+	f(x,y,z)=x^2+y^2+z-9=0.
+\end{align*}	
+We now find the equations of the tangent plane and normal line to the surface at $P_0(1,2,4)$. Since 
+\begin{align*}
+	\nabla f|_{P_0}=(2x,2y,1)|_{P_0}=(2,4,1),
+\end{align*}
+plugging into Equations \eqref{eq:tangent_plane} and \eqref{eq:normal_line} give
+\begin{align*}
+	2(x-1)+4(y-2)+(z-4)&=0, \\
+	x=1+2t, \hspace{0.5cm} y=2+4t, \hspace{0.5cm} z=4&+t.
+\end{align*}
+\end{example}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/tp_nl_ex}
+	\caption{The tangent plane and normal line to the surface $x^2+y^2+z-9=0$ at $P_0(1,2,4)$.}
+\end{figure}
+
+If $z=f(x,y)$ is the graph of a differentiable function of two variables, we can either compute the equation of the tangent plane to the surface at the point $(x_0,y_0,z_0)$, where $z_0=f(x_0,y_0)$ as in Section \ref{sec:linear_approx}, or we can view this surface as the zero set of the function $F(x,y,z)\equiv f(x,y)-z$, which is differentiable since it is the difference of two differentiable functions. Either way, the equation of the tangent plane to the surface at $(x_0,y_0,z_0)$ is
+\begin{align*}
+	\frac{\partial f}{\partial x}(x-x_0)+\frac{\partial f}{\partial y}(y-y_0)-(z-z_0)=0,
+\end{align*}
+
+where the partial derivatives are both evaluated at $(x_0,y_0,z_0)$.
+
+\begin{example}
+Consider the graph of the function $f(x,y)=x \cos y-ye^x$. The gradient is
+\begin{align*}
+	\nabla f=(\cos y-ye^x,-x\sin y-e^x),
+\end{align*}
+which at the origin is
+\begin{align*}
+	\nabla f(0,0)=(1,-1),
+\end{align*}
+The linearization of $f$ at the origin is
+\begin{align*}
+	f_L(x,y)&=f(0,0)+\frac{\partial f}{\partial x}(0,0)x+\frac{\partial f}{\partial y}(0,0)y \\
+	&=x-y.
+	\end{align*}
+	Letting $z=f_L(x,y)$, the equation of the tangent plane to the surface at the origin is
+	\begin{align*}
+		z=x-y.
+	\end{align*}
+	Alternatively, let $F(x,y,z)=f(x,y)-z$. Then  Equation \ref{eq:tangent_plane} gives
+	\begin{align*}
+		\frac{\partial F(0,0,0)}{\partial x}(x-x_0)+\frac{\partial F(0,0,0)}{\partial y}(y-y_0)+\frac{\partial F(0,0,0)}{\partial z}(z-z_0)&=0 \\
+		\frac{\partial f(0,0,0)}{\partial x}(x-x_0)+\frac{\partial f(0,0,0)}{\partial y}(y-y_0)-(z-z_0)&=0 \\
+		(x-0)-(y-0)-(z-0)&=0 \\
+		z&=x-y.
+	\end{align*}
 \end{example}
 
 \section{Finding Maxima and Minima}
