@@ -4631,7 +4631,7 @@ We will now use partial derivatives to locate the maximum and minimum values of 
 \end{figure}
 
 \begin{defn}
-	A real-valued function of two variables $f$ has a \emph{local maximum} at $(a,b)$ if $f(x,y) \leq f(a,b)$ for all $(x,y)$ in some open set containing $(a,b)$. Similarly, $f$ has a \emph{local minimum} at $(a,b)$ if $f(x,y) \geq f(a,b)$ for all $(x,y)$ in some open set containing $(a,b)$.
+	A real-valued function of two variables $f$ has a \emph{local maximum} at $(a,b)$ if $f(x,y) \leq f(a,b)$ for all $(x,y)$ in some open disc containing $(a,b)$. Similarly, $f$ has a \emph{local minimum} at $(a,b)$ if $f(x,y) \geq f(a,b)$ for all $(x,y)$ in some open disc containing $(a,b)$.
 	
 	If these inequalities hold for all points $(x,y)$ in the domain of $f$, then $f$ has an \emph{absolute maximum} (resp,\emph{absolute minimum}) at $(a,b)$.
 \end{defn}
@@ -4696,7 +4696,7 @@ For points on the $y$-axis,
 \begin{align*}
 	f(0,y)=y^2>0 \text{ for all } y \neq 0.
 \end{align*}
-Thus, on every open disc centered at $(0,0)$, $f$ takes positive and negative values, so $(0,0)$ is neither a local max nor a local min of $f$. We call a critical point with this property a \emph{saddle point}.
+Thus, on every open disc centered at $(0,0)$, $f$ takes both positive and negative values, so $(0,0)$ is neither a local max nor a local min of $f$. We call a critical point with this property a \emph{saddle point}.
 \end{example}
 
 \begin{figure}[h]
@@ -4706,44 +4706,38 @@ Thus, on every open disc centered at $(0,0)$, $f$ takes positive and negative va
 \end{figure}
 
 \begin{thm}[Second Derivative Test]
-	Let $f$ be a function of two variables whose second partial derivatives of $f$ are continuous on a disk containing a critical point $(a,b)$ of $f$ and let $D$ denote the quantity
-\begin{align*}
-	D=D(a,b)=\frac{\partial^2f}{\partial^2 x}(a,b)\frac{\partial^2f}{\partial^2 y}(a,b)-\left[\frac{\partial^2f}{\partial x \partial y}(a,b)\right]^2.
-\end{align*}
+	Let $f$ be a function of two variables whose second partial derivatives of $f$ are continuous on a disc containing a critical point $(a,b)$ of $f$ and let $D$ denote the determinant of the matrix of second derivatives, \footnote{This matrix is called the \emph{Hessian matrix of $f$ at $(a,b)$}, and its determinant is called the \emph{Hessian determinant}.} evaluated at $(a,b)$:
+	\begin{align*}
+		D=\begin{vmatrix}
+		f_{xx} & f_{xy} \\
+		f_{yx}  & f_{yy}
+	\end{vmatrix}=f_{xx}f_{yy}-(f_{xy})^2.
+	\end{align*}
+	Then
 \begin{enumerate}[(a)]
-		\item If $D>0$ and $\frac{\partial^2f}{\partial^2 x}(a,b)>0$, then $f(a,b)$ is a local minimum.
-		\item If $D>0$ and $\frac{\partial^2f}{\partial^2 x}(a,b)<0$, then $f(a,b)$ is a local maximum.
-		\item If $D<0$, then $f(a,b)$ is neither a local maximum nor minimum.
+		\item If $D>0$ and $f_{xx}(a,b)>0$, then $f(a,b)$ is a local minimum.
+		\item If $D>0$ and $f_{xx}(a,b)<0$, then $f(a,b)$ is a local maximum.
+		\item If $D<0$, then $f(a,b)$ is a saddle point.
+		\item If $D=0$, the test is inconclusive.
 	\end{enumerate}
 \end{thm}
 
-\begin{remarks}\hspace{15cm}
-\begin{enumerate}
-	\item In case (c), $(a,b)$ is called a {\bf saddle point} of $f$ and the graph of $f$ crosses its tangent plane at $(a,b)$.
-	\item If $D=0$, the test is inconclusive.
-	\item $D$ can be written as $\begin{vmatrix}
-		\frac{\partial^2 f}{\partial^2x} & \frac{\partial^2 f}{\partial x \partial y} \\
-		\frac{\partial^2 f}{\partial x \partial y}  & \frac{\partial^2 f}{\partial^2 y}
-	\end{vmatrix}.$
-\end{enumerate}		
-\end{remarks}
-
 \begin{proof}
-	We only prove part (a), as the proof of part (b) is similar. One can show that part (c) is inconclusive by considering different examples.
+	We only prove part (a), as the proof of parts (b) and (c) are similar. One can show that part (d) is inconclusive by considering different examples. \footnote{This is similar to the one-variable case: for the functions $f(x)=x^4$ and $g(x)=-x^4$, both functions have a critical point at $x=0$ at which the second derivative is zero, but one function has a local max while the other has a local min, so the second derivative test tells us nothing when the second derivative is zero. For a multivariable example, take $f(x,y)=x^4+y^4$ and $g(x,y)=-(x^4+y^4)$. The Hessian determinant vanishes for both at the origin (since the mixed partial derivatives are zero), but $f$ has a local min at the origin (since $f(x,y) \geq 0$ for all $(x,y)$) while $g$ has a local max at the origin (since $g(x,y) \leq 0$ for all $(x,y)$).}
 	\begin{enumerate}[(a)]
-		\item Suppose $f_{xx}(a,b)>0$ and $D(a,b)>0$. We will show that there exists an open disc $B_\delta(a,b)$ such that $D^2_\bu(x,y)>0$ for all $(x,y) \in B_\delta(a,b)$, where $\bu=(h,k)$ is an arbitrary unit vector. This will show that the curve $C$, obtained by intersecting the graph of $f$ with the vertical plane through $P(a,b,f(a,b))$ in the direction of $\bu$ is concave upward on an interval of length $\delta>0$. Since $\bu$ is arbitrary, this is true in the direction of every unit vector, so for all $(x,y) \in B_\delta(x,y)$, the graph of $f(x,y)$ lies above its horizontal tangent plane $z=f(a,b)$, and therefore is a local minimum.
+		\item Suppose $f_{xx}(a,b)>0$ and $D(a,b)>0$. We will show that there exists an open disc $B_\delta(a,b)$ such that $D^2_\bu(x,y)>0$ for all $(x,y) \in B_\delta(a,b)$, where $\bu=(u_1,u_2)$ is an arbitrary unit vector. This will show that the curve $C$, obtained by intersecting the graph of $f$ with the vertical plane through $P(a,b,f(a,b))$ in the direction of $\bu$ is concave upward on an interval of length $\delta>0$. Since $\bu$ is arbitrary, this is true in the direction of every unit vector, so for all $(x,y) \in B_\delta(x,y)$, the graph of $f(x,y)$ lies above its horizontal tangent plane $z=f(a,b)$, and therefore is a local minimum.
 		 
-		To see this, since $f_{xx}$ and $D=f_{xx}f_{yy}-(f_{xy})^2$ are continuous at $(a,b)$ with $f_{xx}(a,b)>0$ and $D(a,b)>0$, there exists $\delta>0$ such that $f_{xx}>0$ and $D>0$ for all $(x,y) \in B_\delta(a,b)$. \fixme{Justify this.} Now,
+		To see this, since $f_{xx}$ and $D=f_{xx}f_{yy}-(f_{xy})^2$ are continuous at $(a,b)$ with $f_{xx}(a,b)>0$ and $D(a,b)>0$, it follows from the Theorem in Appendix \ref{sec:continuous_nonzero_maps} there exists $\delta>0$ such that $f_{xx}>0$ and $D>0$ for all $(x,y) \in B_\delta(a,b)$. Now,
 		\begin{align*}
 			D^2_\bu f&=D_\bu(D_\bu f) \\
-			&=D_\bu(f_xh+f_yk) \\
-			&=(f_xh+f_yk)_xh+(f_xh+f_yk)_yk \\
-			&=f_{xx}h^2+f_{yx}kh+f_{xy}hk+f_{yy}k^2 \\
-			&=f_{xx}h^2+2f_{xy}hk+f_{yy}k^2 \\
-			&=f_{xx}(h^2+2\frac{f_{xy}}{f_{xx}}hk)+f_{yy}k^2 \\
-			&=f_{xx}[(h+\frac{f_{xy}}{f_{xx}}k)^2-\frac{f_{xy}^2}{f_{xx}^2}k^2]+f_{yy}k^2 \\
-			&=f_{xx}(h+\frac{f_{xy}}{f_{xx}}k)^2+(f_{yy}-\frac{f_{xy}^2}{f_{xx}})k^2 \\
-			&=\underbrace{f_{xx}}_{>0}\underbrace{(h+\frac{f_{xy}}{f_{xx}}k)^2}_{>0}+\underbrace{\frac{k^2}{f_{xx}}}_{>0}\underbrace{(f_{xx}f_{yy}-f_{xy}^2)}_{>0}>0.
+			&=D_\bu(f_xu_1+f_yu_2) \\
+			&=\frac{\partial}{\partial x}(f_xu_1+f_yu_2)u_1+\frac{\partial}{\partial y}(f_xu_1+f_yu_2)u_2 \\
+			&=f_{xx}u_1^2+f_{yx}u_2u_1+f_{xy}u_1u_2+f_{yy}u_2^2 \\
+			&=f_{xx}u_1^2+2f_{xy}u_1u_2+f_{yy}u_2^2 \\
+			&=f_{xx}(u_1^2+2\frac{f_{xy}}{f_{xx}}u_1u_2)+f_{yy}u_2^2 \\
+			&=f_{xx}[(u_1+\frac{f_{xy}}{f_{xx}}u_2)^2-\frac{f_{xy}^2}{f_{xx}^2}u_2^2]+f_{yy}u_2^2 \\
+			&=f_{xx}(u_1+\frac{f_{xy}}{f_{xx}}u_2)^2+(f_{yy}-\frac{f_{xy}^2}{f_{xx}})u_2^2 \\
+			&=\underbrace{f_{xx}}_{>0}\underbrace{(u_1+\frac{f_{xy}}{f_{xx}}u_2)^2}_{>0}+\underbrace{\frac{u_2^2}{f_{xx}}}_{>0}\underbrace{(f_{xx}f_{yy}-f_{xy}^2)}_{>0}>0.
 		\end{align*}
 	\end{enumerate} 
 \end{proof}
@@ -4818,7 +4812,7 @@ Find the shortest distance from the point $(1,0,-2)$ to the plane $x+2y+z=4$.
 
 {\color{red}
 \begin{solution}
-	\fixme{Explain why it suffices to minimize $d^2$.} The square of the distance from any point $(x,y,z)$ to $(1,0,-2)$ is
+	To minimize the distance, it is sufficient to minimize the square of the distance. \footnote{Suppose $d^2(\bx_0) \leq d^2(\bx)$ for all $\bx$. Since $d^2(\bx) \geq 0$ for all $\bx$, it follows that $d(\bx_0) \leq d(\bx)$ for all $\bx$ (since the graph of $f(d)=d^2$ is increasing for all $d \geq 0$).} The square of the distance from any point $(x,y,z)$ to $(1,0,-2)$ is
 	\begin{align*}
 		d^2=(x-1)^2+y^2+(z+2)^2.
 	\end{align*}
@@ -5403,5 +5397,23 @@ then $L \leq M$.
 	contradicting the assumption that $f(x) \leq g(x)$ for all such $0<|x-a|<\delta$. Thus, we conclude that $L \leq M$.
 \end{proof}
 
+\section{Continuous Nonzero Maps}\label{sec:continuous_nonzero_maps}
+\begin{thm}
+If $f:U \subseteq \R^n \to \R$ is continuous and positive at $\bx_0$, then $f(\bx) > 0$ throughout an open disc centered at $\bx_0$.
+\end{thm}
+
+\begin{proof}
+	Let $\epsilon=\frac{f(\bx_0)}{2}$, which is positive by assumption. Since $f$ is continuous at $\bx_0$, there exists $\delta>0$ such that 
+	\begin{align}\label{eq:cont_condition}
+		|f(\bx)-f(\bx_0)|<\epsilon=\frac{f(\bx_0)}{2}
+	\end{align}
+	whenever $||\bx-\bx_0||<\delta$. If $f(\bx)\leq 0$ for some $\bx \in B_\delta(\bx_0)$, then $f(\bx)=-|f(\bx)|$ and Equation \eqref{eq:cont_condition} implies
+	\begin{align*}
+		|f(\bx)-f(\bx_0)|&=|-|f(\bx)|-f(\bx_0)| \\
+		&=|-(\underbrace{|f(\bx)|+f(\bx_0)}_{>0})| \\
+		&=|f(\bx)|+f(\bx_0)<\frac{f(\bx_0)}{2},
+	\end{align*}
+	which is a contradiction since $f(\bx_0)+|f(\bx)| \geq f(\bx_0)$. Hence, $f(\bx)$ must be positive throughout $B_\delta(\bx_0)$.
+\end{proof}
 
 \end{document}
