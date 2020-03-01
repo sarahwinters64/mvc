@@ -4291,7 +4291,7 @@ If $(x(t),y(t))=(x_0+v_1t,y_0+v_2t)$, then by the chain rule
 \end{solution}
 }
 
-\begin{thm}
+\begin{thm}\label{thm:gradient_orth_to_lc}
 At each point of a level curve of a function $f$, the gradient is orthogonal to the tangent vector.	
 \end{thm}
 
@@ -4891,7 +4891,7 @@ A rectangular box without a lid is to be made from $12 m^2$ of cardboard. Find t
 
 \subsection{Absolute Maxima and Minima for Multivariable Functions}
 \begin{thm}[Extreme value theorem for functions of two variables]
- If $f$ is continuous on a closed, bounded set $D$ in $\mathbb{R}^2$, then $f$ attains an absolute max $f(x_1,y_1)$ and an absolute min $f(x_2,y_2)$ at some points $(x_1,y_1)$ and $(x_2,y_2)$ in $D$.	
+ If $f$ is continuous on a closed, bounded set $D$ in $\mathbb{R}^2$, then $f$ attains an absolute max $f(x_1,y_1)$ and an absolute min $f(x_2,y_2)$ at some points $(x_1,y_1)$ and $(x_2,y_2)$ in $D$. \footnote{As in Calculus 1, we will not prove this theorem as the proof requires looking at the properties of the real numbers in significantly more depth than we have done so far.}
 \end{thm}
 \begin{figure}[h]
 	\centering
@@ -4904,7 +4904,7 @@ To find the absolute max and min of a continuous function $f$ on a closed, bound
 	\item Find the extreme values of $f$ on the boundary of $D$.
 	\item The largest of these values is the absolute max and the smallest is the absolute min.
 \end{enumerate}	
-
+\newpage
 \begin{example}
 Find the absolute max and min of the function $$f(x,y)=x^2-2xy+2y$$ on the rectangle $D=\{(x,y):0 \leq x \leq 3, 0 \leq y \leq 2\}$.
 \begin{figure}[h]
@@ -4912,7 +4912,7 @@ Find the absolute max and min of the function $$f(x,y)=x^2-2xy+2y$$ on the recta
 	\includegraphics[scale=0.5]{figures_mvc/abs_ex_1}
 \end{figure}	
 \end{example}
-
+ 
 \begin{exercise}
 Find the absolute max and min values of
 $$f(x,y)=x^4+y^4-4xy+2$$
@@ -4927,6 +4927,271 @@ on $D=\{(x,y):0 \leq x \leq 3, 0 \leq y \leq 2\}$.
 	\includegraphics[scale=0.5]{figures_mvc/abs_ex_2}
 \end{figure}	
 
+\subsection{Constrained Optimization}
+In this section we discuss \emph{Lagrange's method} for maximization of a multivariable function $f(x,y,z)$ subject to a constraint of the form $g(x,y,z)=k$. We begin with functions of two variables.
+\subsubsection{Old Method}
+\begin{example}
+Find the rectangular fence of maximum area which you can build with 12m of fencing.	
+\end{example}
+
+\begin{solution}
+	Recall from Calculus 1 that to maximize the area we solve the constraint and substitute, reducing the problem to a one-variable maximization problem. 
+	
+	Call the length $x$ and the width $y$. We want to maximize the area
+	\begin{align*}
+		A(x,y)=xy
+	\end{align*}
+	subject to the constraint that the perimeter is fixed to be 12m; that is, 
+	\begin{align*}
+		P(x,y)=2x+2y=12.
+	\end{align*}
+	To do this we solve the constraint equation for $y$ in terms of $x$:
+	\begin{align*}
+		y=6-x
+	\end{align*}
+	and substitute it into the formula for the area:
+	\begin{align*}
+		A(x)=6x-x^2.
+	\end{align*}
+	This is the function we want to maximize. Since
+	\begin{align*}
+		A'(x)=6-2x=0
+	\end{align*}
+	has the unique solution $x=3$, there is a single critical point at $x=3$, and the maximum area is therefore \footnote{$A''(3)=-2$, so by the second derivative test this is indeed a maximum, as we expect on physical grounds.}
+	\begin{align*}
+		A(3)=(3)(6-3)=9m^2.
+	\end{align*}
+\end{solution}
+\newpage 
+\subsubsection{Lagrange's Method}
+We can rephrase the previous example as a two-variable problem.
+\begin{example}
+Maximize the function $A(x,y)=xy$ when the values of $(x,y)$ are restricted to lie on the level curve $L(x,y)=6$ of the function $L(x,y)=x+y$.
+\end{example}
+
+Note that, due to the constraint, we are only interested in evaluating $A(x,y)$ on points $(x,y)$ which lie on the level curve $L(x,y)=6$. We are interested in finding a the points $(x,y)$ which lie on the level curve $L(x,y)=6$ and make $A(x,y)$ a maximum. To visualize this, we plot below the level curve $L(x,y)=x+y=6$ together with several level curves of $A(x,y)=xy$. In terms of the level curves, to maximize $A(x,y)$ subject to $L(x,y)=6$ means to find the largest value $c$ such that the level curve $A(x,y)=c$ intersects $L(x,y)=6$. Notice that, when $c$ is the largest value for which the level curves $A(x,y)=c$ and $L(x,y)=6$ intersect, these level curves are \emph{tangent} (otherwise, $c$ could have been made bigger, and they would still intersect). 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{figures_mvc/lagrange_1}
+	\caption{The level curve $L(x,y)=6$ is shown in blue. Its intersections with various level curves of $A(x,y)=xy$ (note that only those in the first quadrant are physical) are shown as red dots. The green curve is the level curve of $A(x,y)$ corresponding to the optimized value of $A(x,y)$.}
+\end{figure}	
+Tangency of the level curves, in fact, characterizes the maximum. To see this, let $f(x,y)$ and $g(x,y)$ be differentiable functions. Suppose we want to optimize $f(x,y)$ subject to the constraint $g(x,y)=k$, where $\nabla g(x,y) \neq 0$ at all points $(x,y)$ along the level curve $g(x,y)=k$. By the theorem in Appendix \ref{sec:level_curves_of_a_differentiable_function}, this assumption guarantees that the level curve is regular, so that it has a tangent vector at each point. Writing this level curve in parametrized form as $\bbr(t)=(x(t),y(t))$, maximizing $f(x,y)$ subject to the constraint $g(x,y)=k$ is equivalent to maximizing 
+\begin{align*}
+	w(t)=(f \circ r)(t)=f(x(t),y(t)).
+\end{align*}
+If $w(t_0)=c$ is an extreme point, by Fermat's theorem we have $w'(t_0)=0$. Computing $w'(t_0)$ by the chain rule, this implies
+\begin{align*}
+	\frac{\partial f}{\partial x}|_{(x(t_0),y(t_0))}\frac{dx}{dt}+\frac{\partial f}{\partial y}|_{(x(t_0),y(t_0))}\frac{dy}{dt}=0;
+\end{align*}
+or, equivalently,
+\begin{align*}
+	\nabla f(x(t_0),y(t_0)) \cdot \bbr'(t_0)=0.
+\end{align*}
+Thus, we see that $\nabla f$ is orthogonal to the level curve $g(x,y)=k$ at a point which maximizes $f$. By Theorem \ref{thm:gradient_orth_to_lc}, $\nabla g$ is orthogonal to the level curve at every point, so we see that the level curves $g(x,y)=k$ and $f(x,y)=c$ have a common tangent when $c$ is an extreme value of $f$.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{figures_mvc/lagrange_2}
+	\caption{We are looking for the largest value $c$ such that $f(x,y)=c$ intersects the level curve $g(x,y)=k$. For such a $c$, the level curves have a common tangent.}
+\end{figure}
+
+
+ Since $\nabla f$ and $\nabla g$ are parallel at this point, there exists a scalar $\lambda$ such that
+\begin{align*}
+	\nabla f(x_0,y_0)=\lambda \nabla g(x_0,y_0).
+\end{align*}
+The scalar $\lambda$ is called a \emph{Lagrange multiplier}. Thus, we can solve the constrained optimization problem by solving the system of equations
+\begin{align*}
+	f_x&=\lambda g_x \\
+	f_y&=\lambda g_y \\
+	g(x,y)&=k.
+\end{align*}
+This is called \emph{Lagrange's Method} or the \emph{method of Lagrange Multipliers}.
+
+\newpage
+
+\begin{example}
+Use Lagrange's method to find the recatangular fence of maximum area which you can build with 12m of fencing.	
+\end{example}
+
+\begin{solution}
+We want to maximize $A(x,y)=xy$ subject to $L(x,y)=x+y=6$. Since 
+\begin{align*}
+	\nabla A&=(y,x) \\
+	\nabla L&=(1,1) \\
+	\end{align*}
+	we need to solve the system of equations
+	\begin{align*}
+	y&=\lambda \\
+	x&=\lambda \\
+	x+y&=6.
+	\end{align*}
+	The fist two equations imply that $x=y$, so the third becomes $2x=6$, and therefore $x=y=3$. The maximum area is therefore $A(3,3)=9m^2$, as we found before.
+\end{solution}
+
+\begin{example}
+Find the extreme values of the function $f(x,y)=x^2+2y^2$ on the disc $x^2+y^2 \leq 1$.	
+\end{example}
+
+\begin{solution}
+Since the domain is closed and bounded, an absolute max and an absolute min are guaranteed to exist. Since
+\begin{align*}
+	\nabla f=(2x,4y),
+\end{align*}	
+the only critical point is $(0,0)$, which gives $f(0,0)=0$. Since $f(x,y) \geq 0$, this is the absolute minimum. To find the extreme values of $f$ on the boundary (the circle $g(x,y)=x^2+y^2=1$), we use the method of Lagrange multipliers. Since $\nabla g=(2x,2y)$, we must solve the system of equations 
+\begin{align*}
+	2x&=\lambda 2x \\
+	4y&=\lambda 2y \\
+	x^2+y^2&=1.
+\end{align*}
+We can rewrite these as 
+\begin{align*}
+	2x(1-\lambda)&=0 \\
+	2y(2-\lambda)&=0 \\
+	x^2+y^2&=1.
+\end{align*}
+The first equation holds if either $\lambda=1$ or $x=0$. The second equation holds if either $\lambda=2$ or $y=0$. The third equation implies that $x$ and $y$ cannot both be zero. If $\lambda=1$, then we must have $y=0$, in which case the third equation gives $x=\pm 1$. Thus, $(\pm 1,0)$ are critical points. If $\lambda=2$, then $x=0$, in which case the third equation gives $y=\pm 1$. Thus $(0,\pm 1)$ are also critical points. Since $f(\pm 1,0)=1$ and $f(0,\pm 1)=2$, we see that $f(0,\pm 1)=2$ is the absolute maximum of the function.
+\end{solution}
+\subsubsection{Lagrange's Method for Functions of Three Variables}
+Lagrange's Method generalizes immediately to functions of three variables. If $f(x,y,z)$ and $g(x,y,z)$ are differentiable functions of three variables, then to find the extreme values of $f(x,y,z)$ subject to $g(x,y,z)=k$, then we need to solve the system of equations
+\begin{align*}
+	f_x&=\lambda g_x \\
+	f_y&=\lambda g_y \\
+	f_z&=\lambda g_z \\
+	g(x,y,z)&=k.
+\end{align*}
+
+\begin{example}
+Find the maximum volume of a rectangular box without a lid that can be made with $12m^2$ of cardboard.	
+\end{example}
+
+\begin{solution}
+We want to maximize
+\begin{align*}
+	V(x,y,z)=xyz
+\end{align*}	
+subject to
+\begin{align*}
+	A(x,y,z)=2xz+2yz+xy=12.
+\end{align*}
+Since
+\begin{align*}
+	\nabla V&=(yz,xz,xy) \hspace{0.5cm} (x,y,z>0), \\
+	\nabla A&=(2z+y,2z+x,2x+y) \\
+\end{align*}
+we must solve the system of equations
+\begin{align*}
+	yz&=\lambda(2z+y) \\
+	xz&=\lambda(2z+x) \\
+	xy&=\lambda(2x+2y) \\
+	2xz+2yz+xy&=12.
+\end{align*}
+Note first that we must have $\lambda \neq 0$. Otherwise, the first three equations imply that $yz=xz=xy=0$, which contradicts the final equation. Multiplying the first equation by $x$, the second by $y$, and the third by $z$, the first three equations become
+\begin{align*}
+	xyz&=\lambda(2xz+xy) \\
+	xyz&=\lambda(2yz+xy) \\
+	xyz&=(2xz+2yz).
+\end{align*}
+The first two equations imply that 
+\begin{align*}
+	2xz+xy=2yz+xy
+\end{align*}
+and therefore $xz=yz$. Since $z \neq 0$ by assumption, $x=y$. The second two equations imply that 
+\begin{align*}
+	2yz+xy&=2xz+2yz \\
+	xy&=2xz \\
+	x^2&=2xz \hspace{0.5cm} \text{(since $x=y$)}.
+\end{align*}
+Since $x \neq 0$, this implies $x=2z$. Thus, from the first three equations we learn that $x=y=2z$. In terms of $z$, the final equation (the constraint) then becomes
+\begin{align*}
+	2(2z)z+2(2z)z+(2z)^2&=12 \\
+	12z^2&=12
+\end{align*}
+so $z=1$ and therefore $x=y=2$. Thus, the maximum volume is 
+\begin{align*}
+	V(2,2,1)=4m^3.
+\end{align*}
+\end{solution}
+
+\begin{exercise}
+Use Lagrange's method to find the points on the sphere $x^2+y^2+z^2=4$ that are closest to and farthest from the point $(3,1,-1)$.	
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+It is sufficient to minimize the square of the distance
+\begin{align*}
+	f(x,y,z)\equiv d^2=(x-3)^2+(y-1)^2+(z+1)^2
+\end{align*}
+subject to the constraint
+\begin{align*}
+	g(x,y,z)=x^2+y^2+z^2=4.
+\end{align*}
+Using Lagrange's method, we need to solve $\nabla f=\lambda \nabla g$, $g=4$. This gives
+\begin{align*}
+	2(x-3)&=2x\lambda \\
+	2(y-1)&=2y\lambda \\
+	2(z+1)&=2z\lambda \\
+	x^2+y^2+z^2&=4.
+\end{align*}
+If $\lambda \neq 1$, then we can solve the first three equations for $x,y$ and $z$ in terms of $\lambda$:
+\begin{align*}
+	x&=\frac{3}{1-\lambda}, \\
+	y&=\frac{1}{1-\lambda}, \\
+	z&=-\frac{1}{1-\lambda}. \\
+\end{align*}
+Substituting into the fourth equation, we have
+\begin{align*}
+	\frac{3^2}{(1-\lambda)^2}+\frac{1^2}{(1-\lambda)^2}+\frac{(-1)^2}{(1-\lambda)^2}=4,
+\end{align*}
+which gives $(1-\lambda)^2=\frac{11}{4}$, $1-\lambda=\pm \sqrt{11}/2$, so
+\begin{align*}
+	\lambda=1\pm \frac{\sqrt{11}}{2}.
+\end{align*}
+These values of $\lambda$ then give the corresponding points $(x,y,z)$ by substitution. We find that
+	$P_1=(\frac{6}{\sqrt{11}},\frac{2}{\sqrt{11}},\frac{-2}{\sqrt{11}})$ is the closest and $P_2=(\frac{-6}{\sqrt{11}},\frac{-2}{\sqrt{11}},\frac{2}{\sqrt{11}})$ is the farthest from the point $(3,1,-1)$.
+\end{solution}}
+
+\begin{exercise}
+Use Lagrange's method to find the maximum and minimum values of the function
+\begin{align*}
+	f(x,y,z)=x^2y^2z^2
+\end{align*}
+subject to the constraint
+\begin{align*}
+	x^2+y^2+z^2=1.
+\end{align*}
+\end{exercise}
+
+{\color{red}
+\begin{solution}
+We must solve the system
+\begin{align*}
+	2xy^2z^2&=2x\lambda \\
+	2yx^2z^2&=2y\lambda \\
+	2zx^2y^2&=2z\lambda \\
+	x^2+y^2+z^2&=1.
+\end{align*}
+The last equation implies that not all $x,y,z$ can be zero. Suppose $y=z=0$, but $x neq 0$. Then the first three equations imply that $\lambda=0$, while the fourth gives $x^2= 1$, and therefore $x=\pm 1$. Similarly, we can assume that $x=z=0$, which gives $y=\pm 1$ and $x=y=0$ gives $z=\pm 1$. 
+
+If $x=0$, we find that $\lambda=0$ and $y^2+z^2=1$, which implies $z=\pm \sqrt{1-y^2}$ (and similarly for the other variables).
+
+If all three variables are nonzero, then the first three equations imply that
+\begin{align*}
+	x^2=y^2=z^2
+\end{align*}
+and the fourth equation then gives
+\begin{align*}
+	3x^2=1
+\end{align*}
+and therefore $x=\pm \frac{1}{\sqrt{3}}$, so
+\begin{align*}
+	(x,y,z)=(\pm \frac{1}{\sqrt{3}},\pm \frac{1}{\sqrt{3}},\pm \frac{1}{\sqrt{3}})
+\end{align*}
+with signs taken in all possible combinations. Evaluating the points found above, we find that
+	$f(\pm \frac{1}{\sqrt{3}},\pm \frac{1}{\sqrt{3}},\pm \frac{1}{\sqrt{3}})=\frac{1}{27}$ is the absolute max, while $f(\pm 1,0,0)=f(0,\pm 1,0)=f(0,0,\pm 1)=0$ is the absolute min.
+\end{solution}}
 
 
 
@@ -5414,6 +5679,16 @@ If $f:U \subseteq \R^n \to \R$ is continuous and positive at $\bx_0$, then $f(\b
 		&=|f(\bx)|+f(\bx_0)<\frac{f(\bx_0)}{2},
 	\end{align*}
 	which is a contradiction since $f(\bx_0)+|f(\bx)| \geq f(\bx_0)$. Hence, $f(\bx)$ must be positive throughout $B_\delta(\bx_0)$.
+\end{proof}
+
+\section{Level Curves of a Differentiable Function}
+\label{sec:level_curves_of_a_differentiable_function}
+\begin{thm}
+Let $f:U \subseteq \R^2 \to \R$ be continuously differentiable on a connected subset $U$. If $\nabla f \neq 0$ at all points along the level curve $C=\{\bx \in U:f(\bx)=c\}$, then $C$ is continuously differentiable and $\nabla f$ is normal to $C$ at all points of $C$.
+\end{thm}
+
+\begin{proof}
+	A little technical, so we omit the proof. This follows from the Implicit Function Theorem. 
 \end{proof}
 
 \end{document}
